@@ -3092,6 +3092,33 @@ async function renderDatabasePage(container){
   shareCard.appendChild(shareStatus);
   body.appendChild(shareCard);
 
+  // Update check
+  const updateCard=h('div',{class:'card',style:{marginBottom:'16px'}});
+  updateCard.appendChild(h('div',{style:{fontWeight:'700',fontSize:'14px',marginBottom:'8px'}},'🔄  App-Update'));
+  updateCard.appendChild(h('div',{style:{fontSize:'13px',color:'var(--text-muted)',marginBottom:'12px'}},'Die App prüft beim Start automatisch, ob eine neue Version vorliegt, und zeigt ggf. ein Banner. Falls du ganz sicher gehen willst, kannst du hier manuell suchen. Funktioniert nur online.'));
+  const updateStatus=h('div',{style:{marginTop:'8px',fontSize:'13px'}});
+  updateCard.appendChild(h('button',{class:'btn btn-surface',onClick:async()=>{
+    updateStatus.style.color='var(--text-muted)';
+    updateStatus.textContent='Prüfe auf Updates …';
+    const r=await swCheckForUpdate();
+    if(r.updateAvailable){
+      updateStatus.style.color='var(--green-light)';
+      updateStatus.textContent='✓ Neue Version gefunden! Seite wird neu geladen …';
+      setTimeout(()=>location.reload(),1200);
+    }else if(r.reason==='no-sw'){
+      updateStatus.style.color='var(--accent)';
+      updateStatus.textContent='✕ Service Worker nicht aktiv (lokale Datei? Private Browsersitzung?). Updates nur auf der GitHub-Pages-Version möglich.';
+    }else if(r.reason==='network-fail'||r.reason==='timeout'){
+      updateStatus.style.color='var(--accent)';
+      updateStatus.textContent='✕ Netzwerkfehler — bist du online?';
+    }else{
+      updateStatus.style.color='var(--green-light)';
+      updateStatus.textContent='✓ Du hast bereits die aktuellste Version.';
+    }
+  }},'🔄  Nach Updates suchen'));
+  updateCard.appendChild(updateStatus);
+  body.appendChild(updateCard);
+
   // Database info
   const infoCard=h('div',{class:'card',style:{marginBottom:'16px'}});
   infoCard.appendChild(h('div',{style:{fontWeight:'700',fontSize:'14px',marginBottom:'12px'}},'📊  Datenbank-Übersicht'));
@@ -3456,10 +3483,11 @@ function renderHelpPage(container){
     {title:'💾  Datenbank',text:'Backup & Verwaltung. Hier kannst du die gesamte Datenbank als JSON-Datei exportieren (Backup) oder eine zuvor exportierte Datei importieren. Einzelne Tabellen können separat gelöscht werden. Nützlich für Datensicherung, Übertragung auf andere Rechner oder Browser. Achtung: Beim Import werden alle aktuellen Daten überschrieben. Die Datenbank-Übersicht zeigt dir, wie viele Einträge in jeder Tabelle gespeichert sind. Über „Standard-Daten laden" kannst du den mitgelieferten Basis-Datenbestand direkt aus dem Repo holen — dabei werden nur Rezepte, Zutaten und Stammdaten überschrieben, deine Kochaktionen, Kochtage, Mahlzeit-Slots und Rezept-Zuweisungen bleiben erhalten. Über „Kochaktionen teilen" kannst du einzelne Aktionen samt ihrer Rezept-Zuweisungen als JSON an andere Teammitglieder weitergeben — beim Import werden die Aktionen additiv hinzugefügt, nichts wird überschrieben.'},
     {title:'🗓  Saisonkalender',text:'Übersicht, welches Obst, Gemüse und welche Kräuter in welchen Monaten in Deutschland Saison haben. Grün = Frisch/Freiland, Gelb = aus Lager verfügbar, Grau = nicht in Saison. Der aktuelle Monat wird farblich markiert. Mit Suche und Filtern kannst du gezielt nach saisonalen Zutaten für deine Rezeptplanung suchen.'},
     {title:'⚠  Allergene',text:'Auf dieser Seite findest du eine Übersicht der 14 EU-Hauptallergene, häufige Unverträglichkeiten und praktische Hinweise für die Küche. Im Rezeptbuch kannst du jedem Rezept Allergene zuordnen — automatisch aus den Zutaten oder manuell. Rezepte, die als „Allergieessen" markiert sind, stehen in der Einkaufsliste als Allergie-Alternative zur Verfügung.'},
+    {title:'📲  Installation & Updates',text:'Die App läuft als Progressive Web App (PWA): über die GitHub-Pages-URL kannst du sie auf Smartphone, Tablet oder Desktop installieren. Auf Android/Chrome/Edge erscheint dazu ein Installations-Symbol in der Adressleiste. Auf iPhone/iPad öffnest du die Seite in Safari, tippst auf „Teilen" und wählst „Zum Home-Bildschirm". Einmal installiert, funktioniert die App auch komplett offline — der Service Worker cacht die App-Shell, alle Daten liegen ohnehin lokal in der IndexedDB. Bei einer neuen Version prüft die App beim Start automatisch und blendet unten ein Banner „Neue Version verfügbar" ein; mit „Neu laden" aktivierst du die neue Version. Falls das Banner mal nicht erscheint, kannst du auf der Datenbank-Seite unter „🔄 App-Update" manuell suchen. Wichtig: Auf iOS pausiert der Hintergrund-Update-Check manchmal — wenn du Änderungen erwartest, nutze dort den manuellen Button.'},
     {title:'Allgemeine Hinweise',items:[
       'Alle Daten werden lokal in deinem Browser gespeichert (IndexedDB). Andere Browser oder Rechner haben keinen Zugriff auf diese Daten.',
       'Erstelle regelmäßig ein Backup über die Datenbank-Seite, insbesondere vor Browser-Updates oder dem Löschen von Browserdaten, da sonst deine Datenbank verloren gehen könnte.',
-      'Die HTML-Datei ist komplett eigenständig, es ist keine Internetverbindung erforderlich.',
+      'Die App funktioniert vollständig offline. Einmal geladen, ist keine Internetverbindung mehr nötig — außer zum Prüfen auf neue Versionen oder zum Laden des Standard-Datenbestands.',
       'Rezept-Import unterstützt das .txt-Format mit den Abschnitten === REZEPT ===, --- ZUTATEN ---, --- ZUBEREITUNG --- und --- HINWEIS ---. Optionale Zutaten werden mit „; optional" am Zeilenende markiert.',
       'Du kannst zwischen Hell- und Dunkel-Theme wechseln über den Button oben rechts.',
     ]}
@@ -3495,12 +3523,39 @@ function showUpdateBanner(){
   );
   document.body.appendChild(banner);
 }
+
+// Aktive Update-Prüfung: fragt den SW per MessageChannel.
+// Liefert {updateAvailable:bool, reason?:string}. reason='no-sw' wenn kein SW aktiv.
+function swCheckForUpdate(timeoutMs=8000){
+  return new Promise((resolve)=>{
+    if(!('serviceWorker' in navigator)) return resolve({updateAvailable:false,reason:'no-sw'});
+    navigator.serviceWorker.ready.then((reg)=>{
+      const sw=reg.active||navigator.serviceWorker.controller;
+      if(!sw) return resolve({updateAvailable:false,reason:'no-sw'});
+      // Registrierung zusätzlich aktualisieren lassen (prüft sw.js auf Änderungen)
+      try{reg.update();}catch(_){}
+      const mc=new MessageChannel();
+      const to=setTimeout(()=>resolve({updateAvailable:false,reason:'timeout'}),timeoutMs);
+      mc.port1.onmessage=(e)=>{clearTimeout(to);resolve(e.data||{updateAvailable:false});};
+      sw.postMessage({type:'CHECK_UPDATE'},[mc.port2]);
+    }).catch(()=>resolve({updateAvailable:false,reason:'no-sw'}));
+  });
+}
+
 if('serviceWorker' in navigator){
+  // WICHTIG: Listener synchron registrieren, damit keine Nachrichten
+  // verloren gehen, die der SW während des initialen Fetch schon feuert.
+  navigator.serviceWorker.addEventListener('message',(e)=>{
+    if(e.data&&e.data.type==='SW_UPDATE_AVAILABLE') showUpdateBanner();
+  });
   window.addEventListener('load',()=>{
-    navigator.serviceWorker.register('sw.js').catch(err=>console.warn('SW-Registrierung fehlgeschlagen:',err));
-    navigator.serviceWorker.addEventListener('message',(e)=>{
-      if(e.data&&e.data.type==='SW_UPDATE_AVAILABLE') showUpdateBanner();
-    });
+    navigator.serviceWorker.register('sw.js').then(()=>{
+      // Nach dem Start aktiv prüfen, ob eine neue Version vorliegt.
+      // Kleine Verzögerung, damit der SW sicher aktiv ist.
+      setTimeout(()=>{
+        swCheckForUpdate().then(r=>{if(r&&r.updateAvailable) showUpdateBanner();});
+      },2000);
+    }).catch(err=>console.warn('SW-Registrierung fehlgeschlagen:',err));
   });
 }
 

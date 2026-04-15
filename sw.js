@@ -3,7 +3,7 @@
    Daten liegen in IndexedDB (vom Browser eh offline verfügbar),
    der SW cacht nur die statischen Assets. */
 
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = 'v2';
 const CACHE_NAME = `kuefa-${CACHE_VERSION}`;
 
 // Relative Pfade, damit es unter https://<user>.github.io/Kuefa-calculator/ funktioniert
@@ -48,14 +48,12 @@ self.addEventListener('fetch', (event) => {
         // Nur erfolgreiche Responses cachen
         if (resp && resp.status === 200 && resp.type === 'basic') {
           cache.put(req, resp.clone());
-          // Clients benachrichtigen, wenn neue Version da ist
+          // Clients benachrichtigen, wenn neue Version da ist (best-effort)
           if (cached && cached.status === 200) {
             cached.clone().text().then((oldText) => {
               resp.clone().text().then((newText) => {
                 if (oldText !== newText) {
-                  self.clients.matchAll().then((clients) => {
-                    clients.forEach((c) => c.postMessage({ type: 'SW_UPDATE_AVAILABLE' }));
-                  });
+                  broadcastUpdate();
                 }
               }).catch(() => {});
             }).catch(() => {});
@@ -68,7 +66,51 @@ self.addEventListener('fetch', (event) => {
   );
 });
 
-// Nachricht vom Client: sofort aktualisieren
+// Hilfsfunktion: alle Clients über neue Version informieren
+function broadcastUpdate() {
+  self.clients.matchAll({ includeUncontrolled: true }).then((clients) => {
+    clients.forEach((c) => c.postMessage({ type: 'SW_UPDATE_AVAILABLE' }));
+  });
+}
+
+// Aktive Update-Prüfung (vom Client angefragt).
+// Holt index.html frisch (Cache-Bypass), vergleicht mit gecachter Version
+// und antwortet über den MessageChannel-Port.
+async function checkForUpdate() {
+  try {
+    const cache = await caches.open(CACHE_NAME);
+    const cachedResp = await cache.match('./index.html') || await cache.match('./');
+    if (!cachedResp) return { updateAvailable: false, reason: 'no-cache' };
+    const networkResp = await fetch('./index.html', { cache: 'no-store' });
+    if (!networkResp || networkResp.status !== 200) {
+      return { updateAvailable: false, reason: 'network-fail' };
+    }
+    const [oldText, newText] = await Promise.all([
+      cachedResp.clone().text(),
+      networkResp.clone().text()
+    ]);
+    if (oldText !== newText) {
+      // Cache gleich aktualisieren, damit ein reload die neue Version bekommt
+      await cache.put('./index.html', networkResp.clone());
+      return { updateAvailable: true };
+    }
+    return { updateAvailable: false };
+  } catch (e) {
+    return { updateAvailable: false, reason: 'error', error: String(e) };
+  }
+}
+
+// Nachrichten vom Client
 self.addEventListener('message', (event) => {
-  if (event.data === 'SKIP_WAITING') self.skipWaiting();
+  if (event.data === 'SKIP_WAITING') {
+    self.skipWaiting();
+    return;
+  }
+  if (event.data && event.data.type === 'CHECK_UPDATE') {
+    const port = event.ports && event.ports[0];
+    checkForUpdate().then((result) => {
+      if (port) port.postMessage(result);
+      if (result.updateAvailable) broadcastUpdate();
+    });
+  }
 });
