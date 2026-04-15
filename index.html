@@ -2867,6 +2867,8 @@ tr:nth-child(even){background:#fafafa}
 //  DATABASE PAGE
 // ══════════════════════════════════════════════════════════════
 const ALL_STORES=['actions','cooking_days','meal_slots','ingredients','subcategories','standard_meals','meal_components','categories','recipes','recipe_categories','recipe_ingredients','assignments','preparation_methods','meal_type_categories','allergens','ingredient_allergens','recipe_allergens'];
+// Stores, die zu konkreten Kochaktionen / Planungen gehören und beim Laden des Standard-Datenbestands bewahrt werden sollen
+const ACTION_STORES=['actions','cooking_days','meal_slots','assignments'];
 
 async function exportFullDatabase(){
   const data={_meta:{version:DB_VERSION,exported_at:new Date().toISOString(),app:'KF Portionsrechner'}};
@@ -2876,10 +2878,13 @@ async function exportFullDatabase(){
   return JSON.stringify(data,null,2);
 }
 
-async function importFullDatabase(json){
+// stores=null → alle Stores überschreiben (klassischer Import)
+// stores=Array → nur angegebene Stores überschreiben, Rest bleibt unberührt
+async function importFullDatabase(json,stores=null){
   const data=JSON.parse(json);
   if(!data._meta) throw new Error('Ungültige Datei — kein gültiges KF-Backup');
-  for(const store of ALL_STORES){
+  const targetStores=stores||ALL_STORES;
+  for(const store of targetStores){
     if(!data[store]) continue;
     // Clear store
     await new Promise((res,rej)=>{const tx=db.transaction(store,'readwrite');const s=tx.objectStore(store);const r=s.clear();r.onsuccess=()=>res();r.onerror=e=>rej(e);});
@@ -2935,17 +2940,19 @@ async function renderDatabasePage(container){
   // Standard backup from repo
   const defaultCard=h('div',{class:'card',style:{marginBottom:'16px'}});
   defaultCard.appendChild(h('div',{style:{fontWeight:'700',fontSize:'14px',marginBottom:'8px'}},'🌐  Standard-Datenbestand laden'));
-  defaultCard.appendChild(h('div',{style:{fontSize:'13px',color:'var(--text-muted)',marginBottom:'12px'}},'Lädt den mitgelieferten Basis-Datenbestand (Standard-Rezepte, Zutaten, Allergene etc.) direkt vom GitHub-Repo. Achtung: Alle aktuellen Daten werden dabei überschrieben!'));
+  defaultCard.appendChild(h('div',{style:{fontSize:'13px',color:'var(--text-muted)',marginBottom:'12px'}},'Lädt den mitgelieferten Basis-Datenbestand (Standard-Rezepte, Zutaten, Allergene etc.) direkt vom GitHub-Repo. Deine Kochaktionen, Kochtage, Mahlzeit-Slots und Rezept-Zuweisungen bleiben dabei erhalten — überschrieben werden nur Rezepte, Zutaten und Stammdaten.'));
   const defaultStatus=h('div',{style:{marginTop:'8px',fontSize:'13px'}});
   defaultCard.appendChild(h('button',{class:'btn btn-surface',onClick:async()=>{
-    if(!confirm('Alle aktuellen Daten werden durch den Standard-Datenbestand ersetzt. Fortfahren?')) return;
+    if(!confirm('Rezepte, Zutaten und Stammdaten werden durch den Standard-Datenbestand ersetzt.\n\nKochaktionen, Kochtage, Mahlzeit-Slots und Rezept-Zuweisungen bleiben unverändert.\n\nFortfahren?')) return;
     defaultStatus.style.color='var(--text-muted)';
     defaultStatus.textContent='Lade standardbackup.json …';
     try{
       const resp=await fetch('standardbackup.json',{cache:'no-store'});
       if(!resp.ok) throw new Error('Datei nicht gefunden (HTTP '+resp.status+')');
       const text=await resp.text();
-      await importFullDatabase(text);
+      // Nur Nicht-Aktions-Stores überschreiben
+      const storesToImport=ALL_STORES.filter(s=>!ACTION_STORES.includes(s));
+      await importFullDatabase(text,storesToImport);
       defaultStatus.style.color='var(--green-light)';
       defaultStatus.textContent='✓ Standard-Daten geladen! Seite wird neu geladen …';
       setTimeout(()=>location.reload(),1500);
@@ -3318,7 +3325,7 @@ function renderHelpPage(container){
     {title:'📄  Einkaufsliste nach Rezept',text:'Hier weist du den Mahlzeit-Slots konkrete Rezepte, Beilagen und Allergie-Essen zu. Die Einkaufsliste wird dann auf Zutatenebene berechnet. Bei mehreren Rezepten pro Slot werden die Portionen automatisch gleichmäßig aufgeteilt, genau so mit den Beilagen. Du kannst die Aufteilung aber auch manuell anpassen. Eine Summenanzeige warnt dich, wenn die Teilportionen nicht mit der definierten Gesamtzahl übereinstimmen. Allergie-Essen werden separat mit eigenen Portionszahlen verwaltet (Empfehlung: ca. 1% der Gesamtportionen). Über die Bestellgruppen-Leiste oben kannst du Kochtage verschiedenen Bestellungen zuordnen (z.B. Bestellung 1 für Tag 1–4, Bestellung 2 für Tag 5–8). Beim Generieren werden separate Einkaufslisten pro Bestellgruppe erzeugt. Über den Rezepte Drucken Button kann eine PDF-Datei erzeugt werden, welche die Rezepte für jede einzelne Mahlzeit ausgibt.'},
     {title:'📖  Rezeptbuch',text:'Deine Rezeptsammlung. Jedes Rezept enthält Zutaten (mit Menge pro Person und Verarbeitungsmethode), Zubereitungsschritte, Hinweise und optional Zeitangaben. Beim Erstellen kannst du angeben, für wie viele Portionen deine Mengenangaben gelten — die App rechnet automatisch auf 1 Person herunter. Zutaten können als optional markiert werden; diese erscheinen in der Einkaufsliste mit dem Label „(optional)". Rezepte können als „Allergieessen" markiert werden, damit sie beim Zuweisen von Allergie-Essen zur Auswahl stehen. Rezepte werden den gleichen Mahlzeitkategorien zugeordnet wie die Standardmahlzeiten (z.B. Frühstück, Mittagessen). Dadurch werden in der Einkaufsliste nur passende Rezepte pro Mahlzeit angeboten. Du kannst Rezepte als .txt-Datei importieren und exportieren, duplizieren oder über eine Maske neu erstellen.'},
     {title:'📦  Zutaten',text:'Die Zutatendatenbank. Jede Zutat hat einen Namen, eine Einheit (kg, l, etc.), einen Preis pro Einheit als Referenz, eine Kategorie, einen Abschnitt-Wert (% Verlust beim Schälen/Schneiden), einen Kochfaktor (Gewichtsänderung beim Kochen), Verarbeitungs- und Lagerhinweise sowie zugeordnete Allergene. Der Abschnitt-Wert wird bei der Bestellmengenberechnung automatisch aufgeschlagen und im Rezept als Netto-Menge angezeigt. Der Kochfaktor ist ein Multiplikator (1 = unverändert, 2.6 = trockene Kichererbsen werden gekocht 2,6-fach schwerer, 0.15 = Spinat schrumpft beim Garen auf 15%) und wird in Rezept und PDF als Gekocht-Spalte dargestellt – rein informativ, damit der Koch weiß, wie viel am Ende auf dem Teller landet. Die Einheit wird automatisch in die Rezepte übernommen. Zutaten lassen sich als .csv oder .txt exportieren und importieren.'},
-    {title:'💾  Datenbank',text:'Backup & Verwaltung. Hier kannst du die gesamte Datenbank als JSON-Datei exportieren (Backup) oder eine zuvor exportierte Datei importieren. Einzelne Tabellen können separat gelöscht werden. Nützlich für Datensicherung, Übertragung auf andere Rechner oder Browser. Achtung: Beim Import werden alle aktuellen Daten überschrieben. Die Datenbank-Übersicht zeigt dir, wie viele Einträge in jeder Tabelle gespeichert sind. Über „Standard-Daten laden" kannst du den mitgelieferten Basis-Datenbestand direkt aus dem Repo holen.'},
+    {title:'💾  Datenbank',text:'Backup & Verwaltung. Hier kannst du die gesamte Datenbank als JSON-Datei exportieren (Backup) oder eine zuvor exportierte Datei importieren. Einzelne Tabellen können separat gelöscht werden. Nützlich für Datensicherung, Übertragung auf andere Rechner oder Browser. Achtung: Beim Import werden alle aktuellen Daten überschrieben. Die Datenbank-Übersicht zeigt dir, wie viele Einträge in jeder Tabelle gespeichert sind. Über „Standard-Daten laden" kannst du den mitgelieferten Basis-Datenbestand direkt aus dem Repo holen — dabei werden nur Rezepte, Zutaten und Stammdaten überschrieben, deine Kochaktionen, Kochtage, Mahlzeit-Slots und Rezept-Zuweisungen bleiben erhalten.'},
     {title:'🗓  Saisonkalender',text:'Übersicht, welches Obst, Gemüse und welche Kräuter in welchen Monaten in Deutschland Saison haben. Grün = Frisch/Freiland, Gelb = aus Lager verfügbar, Grau = nicht in Saison. Der aktuelle Monat wird farblich markiert. Mit Suche und Filtern kannst du gezielt nach saisonalen Zutaten für deine Rezeptplanung suchen.'},
     {title:'⚠  Allergene',text:'Auf dieser Seite findest du eine Übersicht der 14 EU-Hauptallergene, häufige Unverträglichkeiten und praktische Hinweise für die Küche. Im Rezeptbuch kannst du jedem Rezept Allergene zuordnen — automatisch aus den Zutaten oder manuell. Rezepte, die als „Allergieessen" markiert sind, stehen in der Einkaufsliste als Allergie-Alternative zur Verfügung.'},
     {title:'Allgemeine Hinweise',items:[
