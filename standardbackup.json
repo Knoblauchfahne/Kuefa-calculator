@@ -1,0 +1,7419 @@
+{
+  "_meta": {
+    "version": 4,
+    "exported_at": "2026-04-15T09:12:27.802Z",
+    "app": "KF Portionsrechner"
+  },
+  "actions": [],
+  "cooking_days": [],
+  "meal_slots": [],
+  "ingredients": [
+    {
+      "id": 499,
+      "name": "Agavendicksaft",
+      "unit": "kg",
+      "price": 5,
+      "subcategory": "Zucker",
+      "verarbeitungshinweis": "weniger süß als Zucker - ggf. mehr verwenden",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre nach Öffnen",
+      "abschnitt": 0
+    },
+    {
+      "id": 500,
+      "name": "Ahornsirup",
+      "unit": "L",
+      "price": 8,
+      "subcategory": "Zucker",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank nach Öffnen ca. 1 Jahr Haltbar",
+      "abschnitt": 0
+    },
+    {
+      "id": 501,
+      "name": "Amaranth",
+      "unit": "kg",
+      "price": 6,
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
+      "verarbeitungshinweis": "2,5-fache Wassermenge,  20 min kochen, wird klebrig",
+      "lagerhinweis": "Trocken: kühl/dunkel 1 Jahr,  gekocht: Kühlschrank 3 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 502,
+      "name": "Ananas",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Obst",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank 3-5 Tage",
+      "abschnitt": 30
+    },
+    {
+      "id": 503,
+      "name": "Äpfel",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Obst",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank bis 4 Wochen, Raumtemperatur 1-2 Wochen",
+      "abschnitt": 8
+    },
+    {
+      "id": 504,
+      "name": "Apfelessig",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Essig",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühl und dunkel, unbegränzt haltbar",
+      "abschnitt": 0
+    },
+    {
+      "id": 505,
+      "name": "Aprikosen getrocknet",
+      "unit": "kg",
+      "price": 8,
+      "subcategory": "Obst",
+      "verarbeitungshinweis": "einweichen macht sie weicher (30 min)",
+      "lagerhinweis": "Kühl/trocken/luftdicht 6-12 Monate",
+      "abschnitt": 0
+    },
+    {
+      "id": 506,
+      "name": "Pfeilwurzelmehl",
+      "unit": "kg",
+      "price": 10,
+      "subcategory": "Mehl",
+      "verarbeitungshinweis": "In kalter Flüssigkeit anrühren, bindet beim Erhitzen, neutral im Geschmack",
+      "lagerhinweis": "Kühl/trocken/luftdicht 2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 507,
+      "name": "Aubergine (Dose)",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Konserven oder Schläuche",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "geöffnet: Kühlschrank 3-4 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 508,
+      "name": "Auberginen",
+      "unit": "kg",
+      "price": 3.5,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "Salzen und 30 min ziehen lassen reduziert Bitterstoffe",
+      "lagerhinweis": "Kühlschrank 5-7 Tage,  nicht neben Tomaten lagern",
+      "abschnitt": 8
+    },
+    {
+      "id": 509,
+      "name": "Avocado",
+      "unit": "kg",
+      "price": 8,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "Fruchtfleisch oxidiert schnell (Zitronensaft hilft)",
+      "lagerhinweis": "Reif: Kühlschrank 2-3 Tage",
+      "abschnitt": 25
+    },
+    {
+      "id": 510,
+      "name": "Azukibohnen",
+      "unit": "kg",
+      "price": 6,
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
+      "verarbeitungshinweis": "12 Stunden einweichen, Einweichwasser wegschütten",
+      "lagerhinweis": "Trocken: kühl/dunkel 1-2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 511,
+      "name": "Backpulver",
+      "unit": "kg",
+      "price": 5,
+      "subcategory": "Backzutaten",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühl/trocken/luftdicht 1 Jahr, verliert offen an wirkung,  nach Öffnen 3 Monate",
+      "abschnitt": 0
+    },
+    {
+      "id": 512,
+      "name": "Balsamico",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Essig",
+      "verarbeitungshinweis": "nicht erhitzen (verliert Aroma)",
+      "lagerhinweis": "Kühl und dunkel",
+      "abschnitt": 0
+    },
+    {
+      "id": 513,
+      "name": "Bananen",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Obst",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "nicht kühlen (Schale schwärzt)",
+      "abschnitt": 12
+    },
+    {
+      "id": 514,
+      "name": "Basilikum",
+      "unit": "kg",
+      "price": 15,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "frisch am Ende hinzufügen, nicht mitkochen",
+      "lagerhinweis": "",
+      "abschnitt": 20
+    },
+    {
+      "id": 515,
+      "name": "Basilikum (getrocknet)",
+      "unit": "kg",
+      "price": 15,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "Im Mörser mahlen intensiviert Aroma,  zum Kochen geeignet",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 516,
+      "name": "Basmati Reis",
+      "unit": "kg",
+      "price": 5,
+      "subcategory": "Reis",
+      "verarbeitungshinweis": "2-fache Wassermenge, 10-12 min kochen, Waschen bis Wasser klar",
+      "lagerhinweis": "Trocken: kühl/dunkel 1-2 Jahre,  gekocht: Kühlschrank 3 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 517,
+      "name": "Belugalinsen",
+      "unit": "kg",
+      "price": 6,
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
+      "verarbeitungshinweis": "Kein Einweichen nötig,  2-fache Wassermenge, 25-30 min kochen",
+      "lagerhinweis": "Trocken: kühl/dunkel 1-2 Jahre,  gekocht: Kühlschrank 3-4 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 518,
+      "name": "Birnen",
+      "unit": "kg",
+      "price": 3.5,
+      "subcategory": "Obst",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "unreif bei Raumtemperatur nachreifen lassen",
+      "abschnitt": 10
+    },
+    {
+      "id": 519,
+      "name": "Blaubeeren",
+      "unit": "kg",
+      "price": 12,
+      "subcategory": "Obst",
+      "verarbeitungshinweis": "Waschen vor Gebrauch",
+      "lagerhinweis": "Kühlschrank 5-7 Tage",
+      "abschnitt": 3
+    },
+    {
+      "id": 520,
+      "name": "Blumenkohl",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Wenn in Plastikfolie, diese zum Lagern entfernen, Kühlschrank 5-7 Tage",
+      "abschnitt": 30
+    },
+    {
+      "id": 521,
+      "name": "Bohnensprossen",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank 3-4 Tage, trocken lagern",
+      "abschnitt": 5
+    },
+    {
+      "id": 522,
+      "name": "Brandweinessig",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Essig",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühl/dunkel",
+      "abschnitt": 0
+    },
+    {
+      "id": 523,
+      "name": "Brokkoli",
+      "unit": "kg",
+      "price": 3.5,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "Stiel schälen und verwenden",
+      "lagerhinweis": "Kühlschrank 5-7 Tage",
+      "abschnitt": 25
+    },
+    {
+      "id": 524,
+      "name": "Bulgur",
+      "unit": "kg",
+      "price": 6,
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
+      "verarbeitungshinweis": "Wasserverhältniss 1:2, 6-8 Min Kochen, dann Quellen lassen",
+      "lagerhinweis": "gequollen: Kühlschrank 3 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 525,
+      "name": "Cashews",
+      "unit": "kg",
+      "price": 12,
+      "subcategory": "Nüsse und Samen",
+      "verarbeitungshinweis": "eingeweicht für Saucen/Cremes 2-4 Std.",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 3-6 Monate",
+      "abschnitt": 0
+    },
+    {
+      "id": 526,
+      "name": "Cayennepfeffer",
+      "unit": "kg",
+      "price": 18,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "hautreizend - Augen meiden",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 527,
+      "name": "Champignons",
+      "unit": "kg",
+      "price": 6,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank 5-7 Tage in Papiertüte",
+      "abschnitt": 10
+    },
+    {
+      "id": 528,
+      "name": "Chapati Mehl",
+      "unit": "kg",
+      "price": 2,
+      "subcategory": "Mehl",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühl/trocken/luftdicht 6 Monate",
+      "abschnitt": 0
+    },
+    {
+      "id": 529,
+      "name": "Chiasamen",
+      "unit": "kg",
+      "price": 7,
+      "subcategory": "Nüsse und Samen",
+      "verarbeitungshinweis": "10-15 min in Flüssigkeit quellen lassen (bilden Gel)",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 530,
+      "name": "Chicoree",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Salat",
+      "verarbeitungshinweis": "Bittere Spitze entfernen",
+      "lagerhinweis": "Kühlschrank 1 Woche,  dunkel lagern (kein Licht - wird bitter)",
+      "abschnitt": 15
+    },
+    {
+      "id": 531,
+      "name": "Chili Flocken",
+      "unit": "kg",
+      "price": 12,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "Hände nach Kontakt waschen",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 532,
+      "name": "Chili Pulver",
+      "unit": "kg",
+      "price": 14,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "in Öl anrösten für mehr Aroma",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 533,
+      "name": "Chinakohl",
+      "unit": "kg",
+      "price": 2.5,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "Äußere Blätter entfernen",
+      "lagerhinweis": "Kühlschrank 1-2 Wochen",
+      "abschnitt": 10
+    },
+    {
+      "id": 534,
+      "name": "Chipotle",
+      "unit": "kg",
+      "price": 25,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "Sehr rauchig-scharf",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 535,
+      "name": "Couscous",
+      "unit": "kg",
+      "price": 5,
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
+      "verarbeitungshinweis": "Gleiche Menge kochendes Wasser/Brühe,  5 min quellen lassen",
+      "lagerhinweis": "Trocken: kühl/dunkel 1 Jahr, gequollen 3 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 536,
+      "name": "Cranberries getrocknet",
+      "unit": "kg",
+      "price": 10,
+      "subcategory": "Obst",
+      "verarbeitungshinweis": "oft Gesüßt",
+      "lagerhinweis": "Kühl/trocken/luftdicht 1 Jahr",
+      "abschnitt": 0
+    },
+    {
+      "id": 537,
+      "name": "Cumin",
+      "unit": "kg",
+      "price": 20,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "Im Mörser mahlen oder ganz in Öl anrösten für Aroma",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 538,
+      "name": "Cumin (Kreuzkümmel)",
+      "unit": "kg",
+      "price": 20,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "Im Mörser mahlen oder ganz in Öl anrösten für Aroma",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 539,
+      "name": "Curry Pulver",
+      "unit": "kg",
+      "price": 14,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "In Öl anrösten aktiviert Aromen",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 540,
+      "name": "Currypulver",
+      "unit": "kg",
+      "price": 14,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "In Öl anrösten aktiviert Aromen",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 541,
+      "name": "Datteln",
+      "unit": "kg",
+      "price": 12,
+      "subcategory": "Obst",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühl/dunkel 6-12 Monate",
+      "abschnitt": 8
+    },
+    {
+      "id": 542,
+      "name": "Dill",
+      "unit": "kg",
+      "price": 15,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "nicht Mitkochen, am Ende hinzufügen",
+      "lagerhinweis": "Frisch: Kühlschrank 5-7 Tage",
+      "abschnitt": 20
+    },
+    {
+      "id": 543,
+      "name": "Eisbergsalat",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Salat",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank 5-7 Tage",
+      "abschnitt": 15
+    },
+    {
+      "id": 544,
+      "name": "Erdbeeren",
+      "unit": "kg",
+      "price": 8,
+      "subcategory": "Obst",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank 2-3 Tage",
+      "abschnitt": 5
+    },
+    {
+      "id": 545,
+      "name": "Erdnüsse",
+      "unit": "kg",
+      "price": 5,
+      "subcategory": "Nüsse und Samen",
+      "verarbeitungshinweis": "rösten intensiviert Aroma",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 3-6 Monate, mag keine Feuchtigkeit",
+      "abschnitt": 0
+    },
+    {
+      "id": 546,
+      "name": "Essig (Weißwein)",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Essig",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühl/dunkel",
+      "abschnitt": 0
+    },
+    {
+      "id": 547,
+      "name": "Estragon",
+      "unit": "kg",
+      "price": 28,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "frisch am Ende hinzufügen",
+      "lagerhinweis": "Frisch: Kühlschrank 5 Tage",
+      "abschnitt": 20
+    },
+    {
+      "id": 548,
+      "name": "Fenchel",
+      "unit": "kg",
+      "price": 3.5,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank 5-7 Tage",
+      "abschnitt": 20
+    },
+    {
+      "id": 549,
+      "name": "Fenchelsamen",
+      "unit": "kg",
+      "price": 15,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "Im Mörser leicht mahlen oder ganz,  in Öl anrösten",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 550,
+      "name": "Flohsamenschalen",
+      "unit": "kg",
+      "price": 20,
+      "subcategory": "Nüsse und Samen",
+      "verarbeitungshinweis": "Mit viel Wasser verwenden (1 TL auf 200ml),  als Bindemittel",
+      "lagerhinweis": "Kühl/trocken/luftdicht 2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 551,
+      "name": "Frühlingszwiebeln",
+      "unit": "kg",
+      "price": 2.5,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank 1-2 Wochen",
+      "abschnitt": 15
+    },
+    {
+      "id": 552,
+      "name": "Garam Masala",
+      "unit": "kg",
+      "price": 18,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "nicht zu lange mitkochen",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 553,
+      "name": "Gelbe Linsen",
+      "unit": "kg",
+      "price": 6,
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
+      "verarbeitungshinweis": "Kein Einweichen nötig,  2-fache Wassermenge, 15 min kochen",
+      "lagerhinweis": "gekocht: Kühlschrank 3-4 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 554,
+      "name": "Gemüse Bouillon Paste",
+      "unit": "kg",
+      "price": 20,
+      "subcategory": "Saucen & Pasten",
+      "verarbeitungshinweis": "20g pro 1l Wasser",
+      "lagerhinweis": "",
+      "abschnitt": 0
+    },
+    {
+      "id": 555,
+      "name": "Gemüsebrühe",
+      "unit": "L",
+      "price": 0.4,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "20g Pulver pro Liter heißes Wasser auflösen",
+      "lagerhinweis": "Pulver: kühl/dunkel/luftdicht, Fertige Brühe 2-3 Tage im Kühlschrank",
+      "abschnitt": 0
+    },
+    {
+      "id": 556,
+      "name": "Gemüsebrühpulver",
+      "unit": "kg",
+      "price": 20,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "20g pro Liter Wasser",
+      "lagerhinweis": "Pulver: kühl/dunkel/luftdicht, Fertige Brühe 2-3 Tage im Kühlschrank",
+      "abschnitt": 0
+    },
+    {
+      "id": 557,
+      "name": "Getrocknete Shiitake",
+      "unit": "kg",
+      "price": 25,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "30-60 min in warmem Wasser einweichen,  Einweichwasser als Fond nutzbar",
+      "lagerhinweis": "eingeweicht: Kühlschrank 3 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 558,
+      "name": "Granatapfel",
+      "unit": "kg",
+      "price": 6,
+      "subcategory": "Obst",
+      "verarbeitungshinweis": "unter Wasser einfacher zu entkernen",
+      "lagerhinweis": "Raumtemperatur 1-2 Wochen",
+      "abschnitt": 55
+    },
+    {
+      "id": 559,
+      "name": "Grüne Erbsen (Dose)",
+      "unit": "kg",
+      "price": 2,
+      "subcategory": "Konserven oder Schläuche",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "geöffnet: Kühlschrank 3-4 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 560,
+      "name": "Gurken",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank 5-7 Tage,  nicht neben Tomaten lagern",
+      "abschnitt": 5
+    },
+    {
+      "id": 561,
+      "name": "Haferflocken kernig",
+      "unit": "kg",
+      "price": 0.8,
+      "subcategory": "Haferflocken und Zerialien",
+      "verarbeitungshinweis": "Mit heißem Wasser/Milch kochen 5-10 min oder über Nacht einweichen",
+      "lagerhinweis": "Kühl/trocken/luftdicht 6-12 Monate",
+      "abschnitt": 0
+    },
+    {
+      "id": 562,
+      "name": "Haferflocken zart",
+      "unit": "kg",
+      "price": 0.8,
+      "subcategory": "Haferflocken und Zerialien",
+      "verarbeitungshinweis": "Direkt mit heißem Wasser/Milch übergießen 3-5 min oder kalt einweichen",
+      "lagerhinweis": "Kühl/trocken/luftdicht 6-12 Monate",
+      "abschnitt": 0
+    },
+    {
+      "id": 563,
+      "name": "Hafermilch",
+      "unit": "L",
+      "price": 2,
+      "subcategory": "Pflanzendrink",
+      "verarbeitungshinweis": "Gut schütteln",
+      "lagerhinweis": "Ungeöffnet: Raumtemperatur,  geöffnet: Kühlschrank 5-7 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 564,
+      "name": "Hafersahne",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Pflanzendrink",
+      "verarbeitungshinweis": "Gut schütteln",
+      "lagerhinweis": "Ungeöffnet: Raumtemperatur,  geöffnet: Kühlschrank 5-7 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 565,
+      "name": "Haselnüsse",
+      "unit": "kg",
+      "price": 12,
+      "subcategory": "Nüsse und Samen",
+      "verarbeitungshinweis": "rösten verbessert das Aroma",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 3-6 Monate",
+      "abschnitt": 0
+    },
+    {
+      "id": 566,
+      "name": "Hefeflocken",
+      "unit": "kg",
+      "price": 4.5,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "nicht erhitzen (zerstört Nährstoffe)",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1 Jahr",
+      "abschnitt": 0
+    },
+    {
+      "id": 567,
+      "name": "Himbeeren",
+      "unit": "kg",
+      "price": 12,
+      "subcategory": "Obst",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank 1-2 Tage",
+      "abschnitt": 5
+    },
+    {
+      "id": 568,
+      "name": "Hirseflocken",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Haferflocken und Zerialien",
+      "verarbeitungshinweis": "Mit heißem Wasser/Milch übergießen,  5 min quellen lassen",
+      "lagerhinweis": "Kühl/trocken/luftdicht 6-12 Monate",
+      "abschnitt": 0
+    },
+    {
+      "id": 569,
+      "name": "Ingwer",
+      "unit": "kg",
+      "price": 7,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank 3 Wochen",
+      "abschnitt": 15
+    },
+    {
+      "id": 570,
+      "name": "Jasminreis",
+      "unit": "kg",
+      "price": 3.5,
+      "subcategory": "Reis",
+      "verarbeitungshinweis": "1,5-fache Wassermenge,  10 min kochen",
+      "lagerhinweis": "gekocht: Kühlschrank 3 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 571,
+      "name": "Kaffeepulver",
+      "unit": "kg",
+      "price": 20,
+      "subcategory": "Getränke",
+      "verarbeitungshinweis": "Temperatur 90-96°C für optimale Extraktion",
+      "lagerhinweis": "Luftdicht/kühl/dunkel,  2-4 Wochen nach Öffnen",
+      "abschnitt": 0
+    },
+    {
+      "id": 572,
+      "name": "Kakaopulver",
+      "unit": "kg",
+      "price": 8,
+      "subcategory": "Backzutaten",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühl/trocken/luftdicht 1-2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 573,
+      "name": "Kardamom grün",
+      "unit": "kg",
+      "price": 50,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühl/dunkel/luftdicht (ganze Kapseln) 2-3 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 574,
+      "name": "Karotten",
+      "unit": "kg",
+      "price": 2,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank 3-4 Wochen,  von Obst getrennt lagern",
+      "abschnitt": 15
+    },
+    {
+      "id": 575,
+      "name": "Kartoffeln",
+      "unit": "kg",
+      "price": 2,
+      "subcategory": "Kartoffeln",
+      "verarbeitungshinweis": "grüne Stellen enthalten Solanin (entfernen)",
+      "lagerhinweis": "Kühl/dunkel/trocken",
+      "abschnitt": 15
+    },
+    {
+      "id": 576,
+      "name": "Ketchup",
+      "unit": "kg",
+      "price": 2.5,
+      "subcategory": "Saucen & Pasten",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "geöffnet: Kühlschrank 3 Monate",
+      "abschnitt": 0
+    },
+    {
+      "id": 577,
+      "name": "Kichererbsen",
+      "unit": "kg",
+      "price": 5,
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
+      "verarbeitungshinweis": "12 Std. einweichen,  60-90 min kochen bis weich",
+      "lagerhinweis": "Trocken: kühl/dunkel 1-2 Jahre,  gekocht: Kühlschrank 4-5 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 578,
+      "name": "Kichererbsen (Dose, abgetropft)",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
+      "verarbeitungshinweis": "Aquafaba (Dosenflüssigkeit) als Ei-Ersatz nutzbar",
+      "lagerhinweis": "geöffnet: Kühlschrank 3-4 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 579,
+      "name": "Kichererbsenmehl",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Mehl",
+      "verarbeitungshinweis": "Roh bitter - immer verarbeiten/garen,  gut als Bindemittel",
+      "lagerhinweis": "Kühl/trocken/luftdicht 6-12 Monate",
+      "abschnitt": 0
+    },
+    {
+      "id": 580,
+      "name": "Kidneybohnen",
+      "unit": "kg",
+      "price": 6,
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
+      "verarbeitungshinweis": "12 Std. einweichen,  mind. 10 min sprudelnd kochen (Lektine!),  dann 45-60 min weich kochen",
+      "lagerhinweis": "gekocht: Kühlschrank 3-4 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 581,
+      "name": "Kirschen",
+      "unit": "kg",
+      "price": 8,
+      "subcategory": "Obst",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank 3-5 Tage",
+      "abschnitt": 10
+    },
+    {
+      "id": 582,
+      "name": "Kiwi",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Obst",
+      "verarbeitungshinweis": "nicht für Gelatinespeisen geeignet (Enzym Actinidin)",
+      "lagerhinweis": "Kühlschrank reif 5-7 Tage",
+      "abschnitt": 15
+    },
+    {
+      "id": 583,
+      "name": "Knoblauch",
+      "unit": "kg",
+      "price": 7,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Trocken/kühl/dunkel 3-6 Monate,  nicht kühlen",
+      "abschnitt": 20
+    },
+    {
+      "id": 584,
+      "name": "Kohlrabi",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank 1-2 Wochen",
+      "abschnitt": 25
+    },
+    {
+      "id": 585,
+      "name": "Kokosblütenzucker",
+      "unit": "kg",
+      "price": 6,
+      "subcategory": "Zucker",
+      "verarbeitungshinweis": "1:1 Ersatz für Zucker,  karamelliges Aroma",
+      "lagerhinweis": "Kühl/trocken/luftdicht 2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 586,
+      "name": "Kokosmilch",
+      "unit": "L",
+      "price": 2,
+      "subcategory": "Pflanzendrink",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "geöffnet: Kühlschrank 3-4 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 587,
+      "name": "Kokosöl",
+      "unit": "L",
+      "price": 8,
+      "subcategory": "Öle & Fette",
+      "verarbeitungshinweis": "Rauchpunkt ca. 200°C raffiniert",
+      "lagerhinweis": "Kühl/dunkel",
+      "abschnitt": 0
+    },
+    {
+      "id": 588,
+      "name": "Kokosraspeln",
+      "unit": "kg",
+      "price": 6,
+      "subcategory": "Nüsse und Samen",
+      "verarbeitungshinweis": "trocken rösten für mehr Aroma",
+      "lagerhinweis": "Kühl/trocken/luftdicht 6 Monate",
+      "abschnitt": 0
+    },
+    {
+      "id": 589,
+      "name": "Koriander",
+      "unit": "kg",
+      "price": 12,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "Stiele mitverwendbar,  frisch am Ende hinzufügen",
+      "lagerhinweis": "Frisch: Kühlschrank 5-7 Tage",
+      "abschnitt": 20
+    },
+    {
+      "id": 590,
+      "name": "Kreuzkümmel",
+      "unit": "kg",
+      "price": 20,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "In Öl anrösten für mehr Aroma",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 591,
+      "name": "Kümmel",
+      "unit": "kg",
+      "price": 12,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "in Öl anrösten verstärkt Aroma",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 592,
+      "name": "Kürbis Hokaido",
+      "unit": "kg",
+      "price": 2.5,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "Schale bei Hokaido essbar",
+      "lagerhinweis": "Ganz: kühl/dunkel 2-3 Monate,  geschnitten: Kühlschrank 3-4 Tage",
+      "abschnitt": 10
+    },
+    {
+      "id": 593,
+      "name": "Kurkuma",
+      "unit": "kg",
+      "price": 14,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "In Öl anrösten (Bioverfügbarkeit steigt mit Pfeffer und Fett)",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 594,
+      "name": "Langkornreis",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Reis",
+      "verarbeitungshinweis": "2-fache Wassermenge,  15 min kochen, 5 min Dämpfen",
+      "lagerhinweis": "gekocht: Kühlschrank 3 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 595,
+      "name": "Lauch",
+      "unit": "kg",
+      "price": 2.5,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank 1-2 Wochen",
+      "abschnitt": 25
+    },
+    {
+      "id": 596,
+      "name": "Lauchzwiebeln",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Zwiebeln",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank 1-2 Wochen",
+      "abschnitt": 15
+    },
+    {
+      "id": 597,
+      "name": "Leinsamen",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Nüsse und Samen",
+      "verarbeitungshinweis": "eingeweicht als Ei-Ersatz (1 EL + 3 EL Wasser)",
+      "lagerhinweis": "Ganz: kühl/dunkel 1 Jahr",
+      "abschnitt": 0
+    },
+    {
+      "id": 598,
+      "name": "Limetten",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Zitrusfrüchte",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank 2-3 Wochen",
+      "abschnitt": 30
+    },
+    {
+      "id": 599,
+      "name": "Limettensaft",
+      "unit": "L",
+      "price": 3,
+      "subcategory": "Saft",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank nach Öffnen 5-7 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 600,
+      "name": "Linsen grün",
+      "unit": "kg",
+      "price": 5,
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
+      "verarbeitungshinweis": "2-fache Wassermenge,  20-25 min kochen",
+      "lagerhinweis": "gekocht: Kühlschrank 3-4 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 601,
+      "name": "Lorbeerblätter",
+      "unit": "kg",
+      "price": 15,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "Ganz in Gerichte geben",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 602,
+      "name": "Mais",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Konserven oder Schläuche",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "geöffnet: Kühlschrank 3-4 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 603,
+      "name": "Maiskolben",
+      "unit": "kg",
+      "price": 5,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "10-15 min kochen oder grillen",
+      "lagerhinweis": "Kühlschrank 3-5 Tage in Schale",
+      "abschnitt": 20
+    },
+    {
+      "id": 604,
+      "name": "Maisstärke",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Mehl",
+      "verarbeitungshinweis": "In kalter Flüssigkeit anrühren,  bindet beim Erhitzen,  glutenfrei",
+      "lagerhinweis": "Kühl/trocken/luftdicht 2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 605,
+      "name": "Majoran",
+      "unit": "kg",
+      "price": 12,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "abschnitt": 20
+    },
+    {
+      "id": 606,
+      "name": "Mandelmehl",
+      "unit": "kg",
+      "price": 10,
+      "subcategory": "Mehl",
+      "verarbeitungshinweis": "kein Gluten",
+      "lagerhinweis": "Kühl/trocken/luftdicht 3-6 Monate",
+      "abschnitt": 0
+    },
+    {
+      "id": 607,
+      "name": "Mandelmilch",
+      "unit": "L",
+      "price": 2,
+      "subcategory": "Pflanzendrink",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "geöffnet: Kühlschrank 5-7 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 608,
+      "name": "Mandeln",
+      "unit": "kg",
+      "price": 12,
+      "subcategory": "Nüsse und Samen",
+      "verarbeitungshinweis": "blanchieren: kurz in kochendes Wasser, Haut abziehen",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 6-12 Monate",
+      "abschnitt": 0
+    },
+    {
+      "id": 609,
+      "name": "Mandelsplitter",
+      "unit": "kg",
+      "price": 18,
+      "subcategory": "Nüsse und Samen",
+      "verarbeitungshinweis": "Trocken rösten für mehr Aroma",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 3-6 Monate",
+      "abschnitt": 0
+    },
+    {
+      "id": 610,
+      "name": "Manderine",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Zitrusfrüchte",
+      "verarbeitungshinweis": "Häute sind bei Mandarinen essbar",
+      "lagerhinweis": "Kühlschrank 1-2 Wochen",
+      "abschnitt": 20
+    },
+    {
+      "id": 611,
+      "name": "Mango",
+      "unit": "kg",
+      "price": 6,
+      "subcategory": "Obst",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Reif: Kühlschrank 3-5 Tage",
+      "abschnitt": 30
+    },
+    {
+      "id": 612,
+      "name": "Mangold",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank 3-5 Tage",
+      "abschnitt": 15
+    },
+    {
+      "id": 613,
+      "name": "Margarine",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Öle & Fette",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "nach Öffnen 2-3 Wochen",
+      "abschnitt": 0
+    },
+    {
+      "id": 614,
+      "name": "Marmeladen",
+      "unit": "kg",
+      "price": 6,
+      "subcategory": "Saucen & Pasten",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "geöffnet: Kühlschrank 4-6 Wochen",
+      "abschnitt": 0
+    },
+    {
+      "id": 615,
+      "name": "Milchreis",
+      "unit": "kg",
+      "price": 5,
+      "subcategory": "Milchreis",
+      "verarbeitungshinweis": "5-fache Flüssigkeitsmenge,  25-30 min bei niedriger Hitze unter Rühren köcheln",
+      "lagerhinweis": "gekocht: Kühlschrank 2-3 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 616,
+      "name": "Minze",
+      "unit": "kg",
+      "price": 12,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "Blätter abzupfen,  nicht mitkochen",
+      "lagerhinweis": "Frisch: Glas mit Wasser Raumtemperatur 5-7 Tage",
+      "abschnitt": 20
+    },
+    {
+      "id": 617,
+      "name": "Miso Paste (dunkel)",
+      "unit": "kg",
+      "price": 8,
+      "subcategory": "Saucen & Pasten",
+      "verarbeitungshinweis": "Nicht kochen (zerstört probiotische Kulturen),  am Ende einrühren",
+      "lagerhinweis": "Kühlschrank",
+      "abschnitt": 0
+    },
+    {
+      "id": 618,
+      "name": "Miso Paste (hell)",
+      "unit": "kg",
+      "price": 7,
+      "subcategory": "Saucen & Pasten",
+      "verarbeitungshinweis": "Nicht kochen,  am Ende einrühren",
+      "lagerhinweis": "Kühlschrank",
+      "abschnitt": 0
+    },
+    {
+      "id": 619,
+      "name": "Mungbohne",
+      "unit": "kg",
+      "price": 5,
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
+      "verarbeitungshinweis": "Kein Einweichen nötig (optional 4 Std.), 2,5-fache Wassermenge,  20-25 min kochen",
+      "lagerhinweis": "gekocht: Kühlschrank 3-4 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 620,
+      "name": "Muskatnuss",
+      "unit": "kg",
+      "price": 50,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "Frisch reiben,  sparsam dosieren (in großen Mengen giftig)",
+      "lagerhinweis": "gemahlen: 1 Jahr",
+      "abschnitt": 0
+    },
+    {
+      "id": 621,
+      "name": "Natron",
+      "unit": "kg",
+      "price": 6,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "Nur mit Säure (Zitrone, Essig) als Triebmittel",
+      "lagerhinweis": "Kühl/trocken/luftdicht 2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 622,
+      "name": "Nelken",
+      "unit": "kg",
+      "price": 30,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 2-3 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 623,
+      "name": "Nori Blätter",
+      "unit": "kg",
+      "price": 30,
+      "subcategory": "Sonstiges",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühl/trocken/luftdicht",
+      "abschnitt": 0
+    },
+    {
+      "id": 624,
+      "name": "Nudeln",
+      "unit": "kg",
+      "price": 2,
+      "subcategory": "Pasta",
+      "verarbeitungshinweis": "8-12 min je nach Sorte (al dente)",
+      "lagerhinweis": "gekocht: Kühlschrank 2 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 625,
+      "name": "Olivenöl",
+      "unit": "L",
+      "price": 10,
+      "subcategory": "Öle & Fette",
+      "verarbeitungshinweis": "nicht zu stark erhitzen (Rauchpunkt ca. 180°C)",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre nach Öffnen",
+      "abschnitt": 0
+    },
+    {
+      "id": 626,
+      "name": "Olivenöl extra vergine",
+      "unit": "L",
+      "price": 12,
+      "subcategory": "Öle & Fette",
+      "verarbeitungshinweis": "nicht zu stark erhitzen (Rauchpunkt ca. 180°C)",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre nach Öffnen",
+      "abschnitt": 0
+    },
+    {
+      "id": 627,
+      "name": "Orangen",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Zitrusfrüchte",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank 2-3 Wochen",
+      "abschnitt": 25
+    },
+    {
+      "id": 628,
+      "name": "Oregano",
+      "unit": "kg",
+      "price": 12,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "Getrocknet stärker als frisch,  zum Kochen geeignet,  am Anfang hinzufügen",
+      "lagerhinweis": "",
+      "abschnitt": 20
+    },
+    {
+      "id": 629,
+      "name": "Pak Choi",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank 3-5 Tage",
+      "abschnitt": 10
+    },
+    {
+      "id": 630,
+      "name": "Paprika",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank 1-2 Wochen",
+      "abschnitt": 15
+    },
+    {
+      "id": 631,
+      "name": "Paprika (grün)",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "bitterer als rot/gelb",
+      "lagerhinweis": "Kühlschrank 1-2 Wochen",
+      "abschnitt": 15
+    },
+    {
+      "id": 632,
+      "name": "Paprika (rot)",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "süßer als grün",
+      "lagerhinweis": "Kühlschrank 1-2 Wochen",
+      "abschnitt": 15
+    },
+    {
+      "id": 633,
+      "name": "Paprikapulver (geräuchert)",
+      "unit": "kg",
+      "price": 30,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "In Öl anrösten für mehr Tiefe",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 634,
+      "name": "Paprikapulver edelsüß",
+      "unit": "kg",
+      "price": 12,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "In Öl anrösten für mehr Aroma, wird schnell bitter",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 635,
+      "name": "Paprikapulver rosenscharf",
+      "unit": "kg",
+      "price": 12,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "In Öl anrösten",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 636,
+      "name": "Parboiled Reis",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Reis",
+      "verarbeitungshinweis": "2-fache Wassermenge,  15-20 min kochen",
+      "lagerhinweis": "gekocht: Kühlschrank 3 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 637,
+      "name": "Pastinaken",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank 2-3 Wochen",
+      "abschnitt": 15
+    },
+    {
+      "id": 638,
+      "name": "Petersilie",
+      "unit": "kg",
+      "price": 12,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "am Ende hinzufügen (Vitamine erhalten)",
+      "lagerhinweis": "",
+      "abschnitt": 10
+    },
+    {
+      "id": 639,
+      "name": "Pfeffer",
+      "unit": "kg",
+      "price": 17,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "Frisch mahlen für bestes Aroma,  zum Ende würzen",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 2-3 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 640,
+      "name": "Pfeffer schwarz",
+      "unit": "kg",
+      "price": 17,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "Frisch mahlen,  verstärkt Bioverfügbarkeit von Kurkuma (Piperin)",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 2-3 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 641,
+      "name": "Pfeffer weiß",
+      "unit": "kg",
+      "price": 30,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 2-3 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 642,
+      "name": "Pfirsich",
+      "unit": "kg",
+      "price": 3.5,
+      "subcategory": "Obst",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank reif 3-5 Tage",
+      "abschnitt": 10
+    },
+    {
+      "id": 643,
+      "name": "Piment",
+      "unit": "kg",
+      "price": 18,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 2-3 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 644,
+      "name": "Pinienkerne",
+      "unit": "kg",
+      "price": 25,
+      "subcategory": "Nüsse und Samen",
+      "verarbeitungshinweis": "Trocken rösten für mehr Aroma - verbrennt aber schnell",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-3 Monate",
+      "abschnitt": 0
+    },
+    {
+      "id": 645,
+      "name": "Pintobohnen",
+      "unit": "kg",
+      "price": 6,
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
+      "verarbeitungshinweis": "12 Std. einweichen,  60-90 min kochen",
+      "lagerhinweis": "gekocht: Kühlschrank 3-4 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 646,
+      "name": "Pistazien",
+      "unit": "kg",
+      "price": 20,
+      "subcategory": "Nüsse und Samen",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 3-6 Monate",
+      "abschnitt": 0
+    },
+    {
+      "id": 647,
+      "name": "Polenta",
+      "unit": "kg",
+      "price": 5,
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
+      "verarbeitungshinweis": "4-5-fache Wassermenge,  30-40 min unter Rühren kochen",
+      "lagerhinweis": "gekocht: Kühlschrank 3 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 648,
+      "name": "Portobello Pilze",
+      "unit": "kg",
+      "price": 10,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "trocken abbürsten",
+      "lagerhinweis": "Kühlschrank 5-7 Tage in Papiertüte",
+      "abschnitt": 10
+    },
+    {
+      "id": 649,
+      "name": "Quinoa",
+      "unit": "kg",
+      "price": 5,
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
+      "verarbeitungshinweis": "2-fache Wassermenge,  15 min kochen,  5 min quellen lassen",
+      "lagerhinweis": "gekocht: Kühlschrank 4-5 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 650,
+      "name": "Rapsöl",
+      "unit": "L",
+      "price": 2,
+      "subcategory": "Öle & Fette",
+      "verarbeitungshinweis": "Für Braten und Backen geeignet (Rauchpunkt ca. 200°C raffiniert)",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1 Jahr nach Öffnen",
+      "abschnitt": 0
+    },
+    {
+      "id": 651,
+      "name": "Reisbandnudeln",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Pasta",
+      "verarbeitungshinweis": "In warmem Wasser 15-30 min einweichen oder kurz in kochendem Wasser garen 2-3 min",
+      "lagerhinweis": "gegart: Kühlschrank 2-3 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 652,
+      "name": "Reisessig",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Essig",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "abschnitt": 0
+    },
+    {
+      "id": 653,
+      "name": "Reismilch",
+      "unit": "L",
+      "price": 2,
+      "subcategory": "Pflanzendrink",
+      "verarbeitungshinweis": "Gut schütteln",
+      "lagerhinweis": "geöffnet: Kühlschrank 5-7 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 654,
+      "name": "Reiswaffeln",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Brot und Teigwaren",
+      "verarbeitungshinweis": "nach Öffnen 1-2 Wochen",
+      "lagerhinweis": "",
+      "abschnitt": 0
+    },
+    {
+      "id": 655,
+      "name": "Rosinen",
+      "unit": "kg",
+      "price": 5,
+      "subcategory": "Obst",
+      "verarbeitungshinweis": "einweichen macht sie weicher (30 min)",
+      "lagerhinweis": "Kühl/trocken/luftdicht 6-12 Monate",
+      "abschnitt": 0
+    },
+    {
+      "id": 656,
+      "name": "Rosmarin",
+      "unit": "kg",
+      "price": 12,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "Kann mitgekocht werden,  früh hinzufügen",
+      "lagerhinweis": "",
+      "abschnitt": 20
+    },
+    {
+      "id": 657,
+      "name": "Rote Bete",
+      "unit": "kg",
+      "price": 2.5,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "Schälen (Handschuhe empfohlen!),  45-60 min kochen oder 40 min bei 200°C backen",
+      "lagerhinweis": "gekocht 5 Tage",
+      "abschnitt": 15
+    },
+    {
+      "id": 658,
+      "name": "Rote Linsen",
+      "unit": "kg",
+      "price": 7,
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
+      "verarbeitungshinweis": "Kein Einweichen nötig,  2-fache Wassermenge,  15 min kochen",
+      "lagerhinweis": "gekocht: Kühlschrank 3-4 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 659,
+      "name": "Rote Paprika (Dose)",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Konserven oder Schläuche",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "geöffnet: Kühlschrank 3-4 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 660,
+      "name": "Rotkohl",
+      "unit": "kg",
+      "price": 1.5,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "Essig stabilisiert Farbe",
+      "lagerhinweis": "Kühlschrank,  geschnitten 5-7 Tage",
+      "abschnitt": 15
+    },
+    {
+      "id": 661,
+      "name": "Rotweinessig",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Essig",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühl/dunkel",
+      "abschnitt": 0
+    },
+    {
+      "id": 662,
+      "name": "Rukola",
+      "unit": "kg",
+      "price": 8,
+      "subcategory": "Salat",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank 3-5 Tage",
+      "abschnitt": 10
+    },
+    {
+      "id": 663,
+      "name": "Rundkornreis",
+      "unit": "kg",
+      "price": 5,
+      "subcategory": "Reis",
+      "verarbeitungshinweis": "1,5-fache Wassermenge,  15-18 min kochen",
+      "lagerhinweis": "gekocht: Kühlschrank 3 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 664,
+      "name": "Safran",
+      "unit": "kg",
+      "price": 10000,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "In warmem Wasser/Milch 10 min einweichen, dann hinzufügen",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 2-3 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 665,
+      "name": "Salz",
+      "unit": "kg",
+      "price": 0.7,
+      "subcategory": "Salz",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Trocken/luftdicht",
+      "abschnitt": 0
+    },
+    {
+      "id": 666,
+      "name": "Schalotten",
+      "unit": "kg",
+      "price": 1.5,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühl/dunkel/trocken 1-2 Monate,  nicht kühlen",
+      "abschnitt": 15
+    },
+    {
+      "id": 667,
+      "name": "Schokolade  (Zartbitter)",
+      "unit": "kg",
+      "price": 15,
+      "subcategory": "Backzutaten",
+      "verarbeitungshinweis": "Temperatur max. 50°C",
+      "lagerhinweis": "Kühl/trocken/dunkel 1 Jahr,  nicht im Kühlschrank (Reif)",
+      "abschnitt": 0
+    },
+    {
+      "id": 668,
+      "name": "Schwarze Bohnen",
+      "unit": "kg",
+      "price": 6,
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
+      "verarbeitungshinweis": "12 Std. einweichen,  60-90 min kochen",
+      "lagerhinweis": "gekocht: Kühlschrank 3-4 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 669,
+      "name": "Schwarzkümmel",
+      "unit": "kg",
+      "price": 18,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "in Öl anrösten",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 670,
+      "name": "Seitanpulver",
+      "unit": "kg",
+      "price": 12,
+      "subcategory": "Mehl",
+      "verarbeitungshinweis": "Mit Wasser verkneten (ca. 50% Wasser),  30-40 min köcheln lassen",
+      "lagerhinweis": "Trocken: kühl/dunkel 1 Jahr,  zubereitet: Kühlschrank 5 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 671,
+      "name": "Sellerie (Knolle)",
+      "unit": "kg",
+      "price": 2,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "oxidiert geschählt schnell (Zitronenwasser),  15-20 min kochen",
+      "lagerhinweis": "Kühlschrank 2-3 Wochen",
+      "abschnitt": 25
+    },
+    {
+      "id": 672,
+      "name": "Senf",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Saucen & Pasten",
+      "verarbeitungshinweis": "beim Kochen verfliegt Aroma - am Ende hinzufügen",
+      "lagerhinweis": "geöffnet: Kühlschrank 1 Jahr",
+      "abschnitt": 0
+    },
+    {
+      "id": 673,
+      "name": "Senfkörner",
+      "unit": "kg",
+      "price": 10,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "In Öl anrösten bis sie springen",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 2-3 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 674,
+      "name": "Sesam",
+      "unit": "kg",
+      "price": 6,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "Trocken rösten für mehr Aroma",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 6-12 Monate",
+      "abschnitt": 0
+    },
+    {
+      "id": 675,
+      "name": "Sesam schwarz",
+      "unit": "kg",
+      "price": 8,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "Trocken rösten",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 6-12 Monate",
+      "abschnitt": 0
+    },
+    {
+      "id": 676,
+      "name": "Sesamöl",
+      "unit": "L",
+      "price": 8,
+      "subcategory": "Öle & Fette",
+      "verarbeitungshinweis": "Nicht zum Braten (niedrigen Rauchpunkt)",
+      "lagerhinweis": "Kühl/dunkel  nach Öffnen 6 Monate",
+      "abschnitt": 0
+    },
+    {
+      "id": 677,
+      "name": "Sobanudeln",
+      "unit": "kg",
+      "price": 5,
+      "subcategory": "Pasta",
+      "verarbeitungshinweis": "In kochendem Wasser 5-7 min kochen",
+      "lagerhinweis": "gekocht: Kühlschrank 2-3 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 678,
+      "name": "Soja Schnetzel",
+      "unit": "kg",
+      "price": 10,
+      "subcategory": "Tofu und Soja",
+      "verarbeitungshinweis": "15-20 min in heißem Wasser/Brühe einweichen,  gut ausdrücken,  dann braten",
+      "lagerhinweis": "eingeweicht: Kühlschrank 3 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 679,
+      "name": "Sojagranulat",
+      "unit": "kg",
+      "price": 10,
+      "subcategory": "Tofu und Soja",
+      "verarbeitungshinweis": "Muss nicht eingeweicht werden",
+      "lagerhinweis": "eingeweicht: Kühlschrank 3 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 680,
+      "name": "Sojajogurt",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Pflanzendrink",
+      "verarbeitungshinweis": "nicht kochen",
+      "lagerhinweis": "Kühlschrank,  MHD beachten",
+      "abschnitt": 0
+    },
+    {
+      "id": 681,
+      "name": "Sojamilch (ungesüßt)",
+      "unit": "L",
+      "price": 2,
+      "subcategory": "Pflanzendrink",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "geöffnet: Kühlschrank 5-7 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 682,
+      "name": "Sojasauce",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Saucen & Pasten",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank nach Öffnen",
+      "abschnitt": 0
+    },
+    {
+      "id": 683,
+      "name": "Sonnenblumenöl",
+      "unit": "L",
+      "price": 2,
+      "subcategory": "Öle & Fette",
+      "verarbeitungshinweis": "Für Braten geeignet (Rauchpunkt ca. 225°C raffiniert)",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1 Jahr nach Öffnen",
+      "abschnitt": 0
+    },
+    {
+      "id": 684,
+      "name": "Spargel grün",
+      "unit": "kg",
+      "price": 6,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank 3-5 Tage aufrecht in feuchtem Tuch",
+      "abschnitt": 10
+    },
+    {
+      "id": 685,
+      "name": "Spargel weiß",
+      "unit": "kg",
+      "price": 5,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "10-15 min in leicht gesalzenem Wasser kochen",
+      "lagerhinweis": "Kühlschrank 3-5 Tage in feuchtem Tuch",
+      "abschnitt": 20
+    },
+    {
+      "id": 686,
+      "name": "Spinat",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Frisch: Kühlschrank 3-5 Tage",
+      "abschnitt": 20
+    },
+    {
+      "id": 687,
+      "name": "Sriracha-Sauce",
+      "unit": "kg",
+      "price": 6,
+      "subcategory": "Saucen & Pasten",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank nach Öffnen",
+      "abschnitt": 0
+    },
+    {
+      "id": 688,
+      "name": "Stärke",
+      "unit": "kg",
+      "price": 10,
+      "subcategory": "Mehl",
+      "verarbeitungshinweis": "In kalter Flüssigkeit anrühren,  bindet beim Erhitzen",
+      "lagerhinweis": "",
+      "abschnitt": 0
+    },
+    {
+      "id": 689,
+      "name": "Sternanis",
+      "unit": "kg",
+      "price": 20,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "Ganz mitkochen",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 2-3 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 690,
+      "name": "Sumach",
+      "unit": "kg",
+      "price": 18,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "säuerliches Aroma,  am Ende hinzufügen",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 691,
+      "name": "Süßkartoffeln",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Kartoffeln",
+      "verarbeitungshinweis": "20-25 min kochen oder 30-40 min backen",
+      "lagerhinweis": "Kühl/dunkel/trocken 2-3 Wochen,  nicht kühlen",
+      "abschnitt": 10
+    },
+    {
+      "id": 692,
+      "name": "Szechuan Pfeffer",
+      "unit": "kg",
+      "price": 30,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "Trocken rösten, taubt die Zunge leicht",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 693,
+      "name": "Tafelessig",
+      "unit": "kg",
+      "price": 2,
+      "subcategory": "Essig",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühl/dunkel",
+      "abschnitt": 0
+    },
+    {
+      "id": 694,
+      "name": "Tahini",
+      "unit": "kg",
+      "price": 8,
+      "subcategory": "Saucen & Pasten",
+      "verarbeitungshinweis": "Gut umrühren (Öl setzt sich ab)",
+      "lagerhinweis": "Kühlschrank nach Öffnen",
+      "abschnitt": 0
+    },
+    {
+      "id": 695,
+      "name": "Tamari",
+      "unit": "kg",
+      "price": 5,
+      "subcategory": "Saucen & Pasten",
+      "verarbeitungshinweis": "Wie Sojasauce verwenden,  meist glutenfrei - Etikett prüfen",
+      "lagerhinweis": "Kühlschrank nach Öffnen",
+      "abschnitt": 0
+    },
+    {
+      "id": 696,
+      "name": "Tamarindenpaste",
+      "unit": "kg",
+      "price": 7,
+      "subcategory": "Saucen & Pasten",
+      "verarbeitungshinweis": "Mit Wasser verdünnen,  intensiv säuerlich-süß",
+      "lagerhinweis": "Kühlschrank nach Öffnen 3-6 Monate",
+      "abschnitt": 0
+    },
+    {
+      "id": 697,
+      "name": "Tee",
+      "unit": "kg",
+      "price": 15,
+      "subcategory": "Getränke",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 698,
+      "name": "Tellerlinsen",
+      "unit": "kg",
+      "price": 5,
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
+      "verarbeitungshinweis": "Kein Einweichen nötig,  2-fache Wassermenge,  25-30 min kochen",
+      "lagerhinweis": "gekocht: Kühlschrank 4-5 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 699,
+      "name": "Tempeh",
+      "unit": "kg",
+      "price": 9,
+      "subcategory": "Tofu und Soja",
+      "verarbeitungshinweis": "10-15 min braten,  Marinieren empfohlen",
+      "lagerhinweis": "Kühlschrank 7-10 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 700,
+      "name": "Thymian",
+      "unit": "kg",
+      "price": 15,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "verträgt langes Kochen",
+      "lagerhinweis": "Frisch: Kühlschrank 1-2 Wochen",
+      "abschnitt": 20
+    },
+    {
+      "id": 701,
+      "name": "Tofu",
+      "unit": "kg",
+      "price": 5,
+      "subcategory": "Tofu und Soja",
+      "verarbeitungshinweis": "Ausdrücken mind. 30 min unter Gewicht",
+      "lagerhinweis": "Kühlschrank in Wasser",
+      "abschnitt": 0
+    },
+    {
+      "id": 702,
+      "name": "Tomaten",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Raumtemperatur (nie kühlen - verlieren Aroma), reif 3-5 Tage",
+      "abschnitt": 5
+    },
+    {
+      "id": 703,
+      "name": "Tomaten (passiert)",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Konserven oder Schläuche",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "geöffnet: Kühlschrank 3-4 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 704,
+      "name": "Tomaten getrocknet",
+      "unit": "kg",
+      "price": 6,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "In Öl eingelegt direkt verwenden,  trocken: 30 min in warmem Wasser einweichen",
+      "lagerhinweis": "",
+      "abschnitt": 0
+    },
+    {
+      "id": 705,
+      "name": "Tomaten Passata",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Konserven oder Schläuche",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "geöffnet: Kühlschrank 3-4 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 706,
+      "name": "Tomatenmark",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Konserven oder Schläuche",
+      "verarbeitungshinweis": "2-3 min in Öl anrösten (Röstaromen)",
+      "lagerhinweis": "geöffnet: Kühlschrank 3-5 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 707,
+      "name": "Topinambur",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "roh oder 15-20 min kochen/rösten",
+      "lagerhinweis": "Kühlschrank 1-2 Wochen",
+      "abschnitt": 10
+    },
+    {
+      "id": 708,
+      "name": "Vanille",
+      "unit": "kg",
+      "price": 500,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "Schote für Aroma mitverwenden",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 2 Jahre,  nicht einfrieren",
+      "abschnitt": 0
+    },
+    {
+      "id": 709,
+      "name": "Vollkornnudeln",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Pasta",
+      "verarbeitungshinweis": "10-14 min kochen (länger als normale Nudeln)",
+      "lagerhinweis": "gekocht: Kühlschrank 3 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 710,
+      "name": "Wacholderbeeren",
+      "unit": "kg",
+      "price": 17,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "Leicht andrücken oder mahlen",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 2-3 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 711,
+      "name": "Wahlnüsse",
+      "unit": "kg",
+      "price": 18,
+      "subcategory": "Nüsse und Samen",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 3-6 Monate",
+      "abschnitt": 0
+    },
+    {
+      "id": 712,
+      "name": "Wasser",
+      "unit": "L",
+      "price": 0,
+      "subcategory": "Sonstiges",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "abschnitt": 0
+    },
+    {
+      "id": 713,
+      "name": "Weiße Bohnen",
+      "unit": "kg",
+      "price": 5,
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
+      "verarbeitungshinweis": "12 Std. einweichen,  60-90 min kochen",
+      "lagerhinweis": "gekocht: Kühlschrank 3-4 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 714,
+      "name": "Weißkohl",
+      "unit": "kg",
+      "price": 1.5,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank 2-3 Wochen (ganz)",
+      "abschnitt": 15
+    },
+    {
+      "id": 715,
+      "name": "Weißwein (zum Kochen)",
+      "unit": "L",
+      "price": 4,
+      "subcategory": "Sonstiges",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank nach Öffnen",
+      "abschnitt": 0
+    },
+    {
+      "id": 716,
+      "name": "Weisweinessig",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Essig",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "abschnitt": 0
+    },
+    {
+      "id": 717,
+      "name": "Weizenmehl T550",
+      "unit": "kg",
+      "price": 0.7,
+      "subcategory": "Mehl",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "abschnitt": 0
+    },
+    {
+      "id": 718,
+      "name": "Wildreis",
+      "unit": "kg",
+      "price": 18,
+      "subcategory": "Reis",
+      "verarbeitungshinweis": "3-fache Wassermenge,  40-50 min kochen",
+      "lagerhinweis": "gekocht: Kühlschrank 4 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 719,
+      "name": "Worcestersauce",
+      "unit": "kg",
+      "price": 5,
+      "subcategory": "Saucen & Pasten",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank nach Öffnen",
+      "abschnitt": 0
+    },
+    {
+      "id": 720,
+      "name": "Wraps",
+      "unit": "kg",
+      "price": 6,
+      "subcategory": "Brot und Teigwaren",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühl/trocken 1-2 Wochen",
+      "abschnitt": 0
+    },
+    {
+      "id": 721,
+      "name": "Yufkateig / Filoteig",
+      "unit": "kg",
+      "price": 5,
+      "subcategory": "Brot und Teigwaren",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "nach dem Auftauen im Kühlschrank 2-3 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 722,
+      "name": "Zimt",
+      "unit": "kg",
+      "price": 20,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "Ceylon-Zimt für süße Gerichte bevorzugen (weniger Cumarin)",
+      "lagerhinweis": "Kühl/dunkel/luftdicht 1-3 Jahre",
+      "abschnitt": 0
+    },
+    {
+      "id": 723,
+      "name": "Zitronen",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Zitrusfrüchte",
+      "verarbeitungshinweis": "bio für Schale bevorzugen",
+      "lagerhinweis": "Kühlschrank 3-4 Wochen",
+      "abschnitt": 25
+    },
+    {
+      "id": 724,
+      "name": "Zitronengras",
+      "unit": "kg",
+      "price": 10,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank 2-3 Wochen",
+      "abschnitt": 30
+    },
+    {
+      "id": 725,
+      "name": "Zitronensaft",
+      "unit": "L",
+      "price": 4,
+      "subcategory": "Saft",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank nach Öffnen 5-7 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 726,
+      "name": "Zucchini",
+      "unit": "kg",
+      "price": 2.5,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank 5-7 Tage",
+      "abschnitt": 5
+    },
+    {
+      "id": 727,
+      "name": "Zucker",
+      "unit": "kg",
+      "price": 0.8,
+      "subcategory": "Zucker",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Trocken/luftdicht",
+      "abschnitt": 0
+    },
+    {
+      "id": 728,
+      "name": "Zwiebeln",
+      "unit": "kg",
+      "price": 2,
+      "subcategory": "Zwiebeln",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühl/dunkel/trocken 1-2 Monate,  nicht kühlen",
+      "abschnitt": 10
+    },
+    {
+      "id": 729,
+      "name": "Zwiebeln rot",
+      "unit": "kg",
+      "price": 2,
+      "subcategory": "Zwiebeln",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühl/dunkel/trocken 1-2 Monate,  nicht kühlen",
+      "abschnitt": 10
+    },
+    {
+      "id": 730,
+      "name": "Zwiebeln weiß",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Zwiebeln",
+      "verarbeitungshinweis": "besser verträglich bei Histaminintoleranz",
+      "lagerhinweis": "Kühl/dunkel/trocken 1-2 Monate,  nicht kühlen",
+      "abschnitt": 10
+    },
+    {
+      "name": "Paprikapulver (edelsüß)",
+      "unit": "kg",
+      "price": 0,
+      "subcategory": "",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "abschnitt": 0,
+      "id": 731
+    },
+    {
+      "name": "Kümmel (gemahlen)",
+      "unit": "kg",
+      "price": 0,
+      "subcategory": "",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "abschnitt": 0,
+      "id": 732
+    },
+    {
+      "name": "Öl (Sonnenblume)",
+      "unit": "l",
+      "price": 0,
+      "subcategory": "",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "abschnitt": 0,
+      "id": 733
+    },
+    {
+      "name": "Reis",
+      "unit": "kg",
+      "price": 0,
+      "subcategory": "",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "abschnitt": 0,
+      "id": 734
+    },
+    {
+      "name": "Nudeln (Penne oder Spaghetti)",
+      "unit": "kg",
+      "price": 0,
+      "subcategory": "",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "abschnitt": 0,
+      "id": 735
+    },
+    {
+      "name": "Oregano (getrocknet)",
+      "unit": "kg",
+      "price": 0,
+      "subcategory": "",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "abschnitt": 0,
+      "id": 736
+    },
+    {
+      "name": "Zitronenschale",
+      "unit": "kg",
+      "price": 0,
+      "subcategory": "",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "abschnitt": 0,
+      "id": 737
+    },
+    {
+      "name": "Weiswein",
+      "unit": "kg",
+      "price": 0,
+      "subcategory": "",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "abschnitt": 0,
+      "id": 738
+    },
+    {
+      "id": 739,
+      "name": "Rosenkohl",
+      "unit": "kg",
+      "price": 3.5,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "10-15 min kochzeit, Zucker reduziert die bitterkeit",
+      "lagerhinweis": "Gekühlt 4-5 Tage",
+      "abschnitt": 15
+    },
+    {
+      "name": "Paniermehl",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Mehl",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "abschnitt": 0,
+      "id": 740
+    },
+    {
+      "name": "Vegane Butter",
+      "unit": "kg",
+      "price": 10,
+      "subcategory": "Öle & Fette",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "abschnitt": 0,
+      "id": 741
+    },
+    {
+      "name": "Kala Namak",
+      "unit": "kg",
+      "price": 10,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "Vorsichtig dosieren, größere Steine mahlen oder in Wasser auflösen",
+      "lagerhinweis": "",
+      "abschnitt": 0,
+      "id": 742
+    },
+    {
+      "name": "Hartweizengrieß",
+      "unit": "kg",
+      "price": 1.5,
+      "subcategory": "Mehl",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "abschnitt": 0,
+      "id": 743
+    },
+    {
+      "name": "Späzlemehl",
+      "unit": "kg",
+      "price": 1,
+      "subcategory": "Mehl",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "abschnitt": 0,
+      "id": 744
+    },
+    {
+      "name": "Paprikamark",
+      "unit": "kg",
+      "price": 15,
+      "subcategory": "Konserven oder Schläuche",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "abschnitt": 0,
+      "id": 745
+    },
+    {
+      "name": "Dunkles Bier",
+      "unit": "L",
+      "price": 2.4,
+      "subcategory": "Getränke",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "abschnitt": 0,
+      "id": 746
+    },
+    {
+      "name": "Haferflocken (Glutenfrei)",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Haferflocken und Zerialien",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "abschnitt": 0,
+      "id": 747
+    },
+    {
+      "name": "Räuchertofu",
+      "unit": "kg",
+      "price": 5,
+      "subcategory": "Tofu und Soja",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "abschnitt": 0,
+      "id": 748
+    },
+    {
+      "name": "Berglinsen",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "abschnitt": 0,
+      "id": 749
+    }
+  ],
+  "subcategories": [
+    {
+      "name": "Gemüse",
+      "id": 1
+    },
+    {
+      "name": "Obst",
+      "id": 2
+    },
+    {
+      "name": "Salz",
+      "id": 7
+    },
+    {
+      "name": "Öle & Fette",
+      "id": 8
+    },
+    {
+      "name": "Konserven oder Schläuche",
+      "id": 9
+    },
+    {
+      "name": "Getränke",
+      "id": 10
+    },
+    {
+      "name": "Backzutaten",
+      "id": 11
+    },
+    {
+      "name": "Sonstiges",
+      "id": 14
+    },
+    {
+      "name": "Kartoffeln",
+      "id": 15
+    },
+    {
+      "name": "Reis",
+      "id": 16
+    },
+    {
+      "name": "Pasta",
+      "id": 17
+    },
+    {
+      "name": "Zwiebeln",
+      "id": 18
+    },
+    {
+      "name": "Haferflocken und Zerialien",
+      "id": 19
+    },
+    {
+      "name": "Brot und Teigwaren",
+      "id": 20
+    },
+    {
+      "name": "Milchreis",
+      "id": 21
+    },
+    {
+      "name": "Pflanzendrink",
+      "id": 22
+    },
+    {
+      "name": "Zucker",
+      "id": 23
+    },
+    {
+      "name": "Gewürze",
+      "id": 24
+    },
+    {
+      "name": "Nüsse und Samen",
+      "id": 25
+    },
+    {
+      "name": "Saucen & Pasten",
+      "id": 26
+    },
+    {
+      "name": "Mehl",
+      "id": 27
+    },
+    {
+      "name": "Zitrusfrüchte",
+      "id": 28
+    },
+    {
+      "name": "Saft",
+      "id": 29
+    },
+    {
+      "name": "Tofu und Soja",
+      "id": 30
+    },
+    {
+      "name": "Salat",
+      "id": 31
+    },
+    {
+      "name": "Essig",
+      "id": 32
+    },
+    {
+      "name": "Hülsenfrüchte und Trockenwaren",
+      "id": 34
+    }
+  ],
+  "standard_meals": [
+    {
+      "meal_type": "Frühstück",
+      "name": "Frühstück 1",
+      "is_active": 1,
+      "id": 1
+    },
+    {
+      "meal_type": "Abendessen",
+      "name": "Abendessen",
+      "is_active": 1,
+      "id": 3
+    },
+    {
+      "meal_type": "Zwischenmahlzeit",
+      "name": "Action food",
+      "is_active": 0,
+      "id": 4
+    },
+    {
+      "meal_type": "Mittagessen",
+      "name": "Mittagessen",
+      "is_active": 1,
+      "id": 5
+    },
+    {
+      "meal_type": "Frühstück",
+      "name": "Frühstück 2",
+      "is_active": 0,
+      "id": 6
+    },
+    {
+      "meal_type": "Mittagessen",
+      "name": "Mittagessen Beilage",
+      "is_active": 0,
+      "id": 7
+    },
+    {
+      "meal_type": "Abendessen",
+      "name": "Abendessen Beilage",
+      "is_active": 0,
+      "id": 8
+    },
+    {
+      "meal_type": "Zwischenmahlzeit",
+      "name": "Actionfood 2",
+      "is_active": 1,
+      "id": 9
+    }
+  ],
+  "meal_components": [
+    {
+      "standard_meal_id": 3,
+      "ingredient_id": 0,
+      "quantity_per_100": 9,
+      "unit": "kg",
+      "subcategory": "Kartoffeln",
+      "id": 1,
+      "price_per_unit": 1.5
+    },
+    {
+      "standard_meal_id": 3,
+      "ingredient_id": 0,
+      "quantity_per_100": 3,
+      "unit": "kg",
+      "subcategory": "Reis",
+      "id": 2,
+      "price_per_unit": 2
+    },
+    {
+      "standard_meal_id": 3,
+      "ingredient_id": 0,
+      "quantity_per_100": 3.5,
+      "unit": "kg",
+      "subcategory": "Pasta",
+      "id": 3,
+      "price_per_unit": 2
+    },
+    {
+      "standard_meal_id": 3,
+      "ingredient_id": 0,
+      "quantity_per_100": 30,
+      "unit": "kg",
+      "subcategory": "Gemüse",
+      "id": 4,
+      "price_per_unit": 3
+    },
+    {
+      "standard_meal_id": 3,
+      "ingredient_id": 0,
+      "quantity_per_100": 6,
+      "unit": "kg",
+      "subcategory": "Hülsenfrüchte und Trockenwaren ",
+      "id": 5,
+      "price_per_unit": 3
+    },
+    {
+      "standard_meal_id": 3,
+      "ingredient_id": 0,
+      "quantity_per_100": 2,
+      "unit": "L",
+      "subcategory": "Öle & Fette",
+      "id": 6,
+      "price_per_unit": 2.5
+    },
+    {
+      "standard_meal_id": 3,
+      "ingredient_id": 0,
+      "quantity_per_100": 5,
+      "unit": "kg",
+      "subcategory": "Zwiebeln",
+      "id": 7,
+      "price_per_unit": 1.5
+    },
+    {
+      "standard_meal_id": 3,
+      "ingredient_id": 0,
+      "quantity_per_100": 1,
+      "unit": "kg",
+      "subcategory": "Salz",
+      "id": 8,
+      "price_per_unit": 0.5
+    },
+    {
+      "standard_meal_id": 5,
+      "ingredient_id": 0,
+      "quantity_per_100": 3,
+      "unit": "kg",
+      "subcategory": "Reis",
+      "id": 12,
+      "price_per_unit": 2
+    },
+    {
+      "standard_meal_id": 5,
+      "ingredient_id": 0,
+      "quantity_per_100": 10,
+      "unit": "kg",
+      "subcategory": "Kartoffeln",
+      "id": 13,
+      "price_per_unit": 1.5
+    },
+    {
+      "standard_meal_id": 5,
+      "ingredient_id": 0,
+      "quantity_per_100": 3.5,
+      "unit": "kg",
+      "subcategory": "Pasta",
+      "id": 14,
+      "price_per_unit": 2
+    },
+    {
+      "standard_meal_id": 5,
+      "ingredient_id": 0,
+      "quantity_per_100": 30,
+      "unit": "kg",
+      "subcategory": "Gemüse",
+      "id": 15,
+      "price_per_unit": 3
+    },
+    {
+      "standard_meal_id": 5,
+      "ingredient_id": 0,
+      "quantity_per_100": 5,
+      "unit": "kg",
+      "subcategory": "Hülsenfrüchte und Trockenwaren ",
+      "id": 16,
+      "price_per_unit": 3
+    },
+    {
+      "standard_meal_id": 5,
+      "ingredient_id": 0,
+      "quantity_per_100": 2,
+      "unit": "L",
+      "subcategory": "Öle & Fette",
+      "id": 17,
+      "price_per_unit": 2.5
+    },
+    {
+      "standard_meal_id": 5,
+      "ingredient_id": 0,
+      "quantity_per_100": 5,
+      "unit": "kg",
+      "subcategory": "Zwiebeln",
+      "id": 18,
+      "price_per_unit": 1.5
+    },
+    {
+      "standard_meal_id": 5,
+      "ingredient_id": 0,
+      "quantity_per_100": 1,
+      "unit": "kg",
+      "subcategory": "Salz",
+      "id": 19,
+      "price_per_unit": 0.5
+    },
+    {
+      "standard_meal_id": 1,
+      "ingredient_id": 0,
+      "quantity_per_100": 2.5,
+      "unit": "kg",
+      "subcategory": "Haferflocken und Zerialien",
+      "id": 20,
+      "price_per_unit": 1
+    },
+    {
+      "standard_meal_id": 1,
+      "ingredient_id": 0,
+      "quantity_per_100": 3,
+      "unit": "kg",
+      "subcategory": "Brot und Teigwaren",
+      "id": 21,
+      "price_per_unit": 3.5
+    },
+    {
+      "standard_meal_id": 1,
+      "ingredient_id": 0,
+      "quantity_per_100": 2,
+      "unit": "kg",
+      "subcategory": "Milchreis",
+      "id": 22,
+      "price_per_unit": 2
+    },
+    {
+      "standard_meal_id": 1,
+      "ingredient_id": 0,
+      "quantity_per_100": 8,
+      "unit": "L",
+      "subcategory": "Pflanzendrink",
+      "id": 23,
+      "price_per_unit": 2
+    },
+    {
+      "standard_meal_id": 1,
+      "ingredient_id": 0,
+      "quantity_per_100": 12,
+      "unit": "kg",
+      "subcategory": "Obst",
+      "id": 24,
+      "price_per_unit": 3.5
+    },
+    {
+      "standard_meal_id": 1,
+      "ingredient_id": 0,
+      "quantity_per_100": 1.5,
+      "unit": "kg",
+      "subcategory": "Hülsenfrüchte und Trockenwaren ",
+      "id": 25,
+      "price_per_unit": 3
+    },
+    {
+      "standard_meal_id": 1,
+      "ingredient_id": 0,
+      "quantity_per_100": 3,
+      "unit": "kg",
+      "subcategory": "Gemüse",
+      "id": 26,
+      "price_per_unit": 3
+    },
+    {
+      "standard_meal_id": 1,
+      "ingredient_id": 0,
+      "quantity_per_100": 1,
+      "unit": "L",
+      "subcategory": "Öle & Fette",
+      "id": 27,
+      "price_per_unit": 2.5
+    },
+    {
+      "standard_meal_id": 1,
+      "ingredient_id": 0,
+      "quantity_per_100": 1.5,
+      "unit": "kg",
+      "subcategory": "Zucker",
+      "id": 28,
+      "price_per_unit": 1
+    },
+    {
+      "standard_meal_id": 4,
+      "ingredient_id": 0,
+      "quantity_per_100": 20,
+      "unit": "kg",
+      "subcategory": "Obst",
+      "id": 29,
+      "price_per_unit": 3.5
+    },
+    {
+      "standard_meal_id": 4,
+      "ingredient_id": 0,
+      "quantity_per_100": 5,
+      "unit": "kg",
+      "subcategory": "Brot und Teigwaren",
+      "id": 30,
+      "price_per_unit": 3.5
+    },
+    {
+      "standard_meal_id": 4,
+      "ingredient_id": 0,
+      "quantity_per_100": 0.3,
+      "unit": "kg",
+      "subcategory": "Öle & Fette",
+      "id": 32,
+      "price_per_unit": 2.5
+    },
+    {
+      "standard_meal_id": 4,
+      "ingredient_id": 0,
+      "quantity_per_100": 1.5,
+      "unit": "kg",
+      "subcategory": "Hülsenfrüchte und Trockenwaren ",
+      "id": 33,
+      "price_per_unit": 3
+    }
+  ],
+  "categories": [
+    {
+      "name": "Frühstück",
+      "id": 1
+    },
+    {
+      "name": "Mittagessen",
+      "id": 3
+    },
+    {
+      "name": "Abendessen",
+      "id": 4
+    },
+    {
+      "name": "Beilage",
+      "id": 7
+    }
+  ],
+  "recipes": [
+    {
+      "name": "Bulgurbeilage",
+      "description": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "",
+      "hinweis": "",
+      "allergen_hinweis": "",
+      "created_at": "2026-04-09T15:18:19.407Z",
+      "id": 90
+    },
+    {
+      "name": "Chana Masala",
+      "description": "Chana zu deutsch Kichererbsen bilden die Hauptzutat in diesem weit verbreiteten Curry.",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "1. Kichererbsen über Nacht einweichen und morgens kochen. Gemüse kleinschneiden. Die Form ist nicht entscheidend, da es Püriert wird. Aus geschältem Knoblauch und Ingwer mit Öl und Salz eine Paste herstellen.\n2. Gewürze mischen und 2/3 der Gewürze im topf in heißem Öl anrösten. Dann Zwiebeln und Ingwer Knoblauch Paste dazu geben und glasig anbraten. Tomaten dazu geben und nochmal köcheln lassen. Das ganze Pürieren, wenn alles durch ist.\n4. Kichererbsen und restliche gewürze dazu geben und nochmal aufkochen. Korriandergürn hacken und gesondert dazu servieren.",
+      "hinweis": "Ohne Beilage, typischerweise Basmatireis.\nDie Sauce kann auch noch mit Kichererbsenwasser angedickt werden.",
+      "allergen_hinweis": "",
+      "created_at": "2026-04-09T15:18:20.222Z",
+      "id": 91
+    },
+    {
+      "name": "Chili",
+      "description": "",
+      "zubereitung_zeit": "",
+      "garzeit": "30",
+      "zubereitung": "1. Bohnen mindestens 12 Stunden in Wasser einlegen und Vorkochen.\n2. Gemüse kleinschneiden und Anbraten (Knoblauch als letzten dazu geben). Paralell Beilage Vorbereiten\n3 Gewürze dazu geben und kurz mit im Topf lassen bevor Bohnen und Tomate dazu kommt.\n4. Köcheln lassen und evtl. Wasser mit dazu geben. Abschmecken,",
+      "hinweis": "Optionale Gewürze: Lorbeerblätter, Oregano, Zucker",
+      "allergen_hinweis": "",
+      "created_at": "2026-04-09T15:18:21.171Z",
+      "id": 92
+    },
+    {
+      "name": "Couscous-Pfanne",
+      "description": "Schnelle, bunte Couscous-Pfanne mit Kichererbsen und frischem Gemüse. Perfekt, wenn es schnell gehen muss.",
+      "zubereitung_zeit": "15 min",
+      "garzeit": "10 min",
+      "zubereitung": "1. Gemüsebrühe aufkochen und über den Couscous gießen. Abdecken und 5 min quellen lassen, dann mit einer Gabel auflockern.\n2. Zwiebeln und Knoblauch in Olivenöl anschwitzen.\n3. Zucchini und Paprika dazugeben und 5 min anbraten.\n4. Kichererbsen, Tomaten, Kreuzkümmel und Kurkuma dazugeben, 3 min mitbraten.\n5. Couscous unterheben, mit Zitronensaft, Salz und Pfeffer abschmecken.",
+      "hinweis": "Couscous braucht nur heißes Wasser und gar keine Kochzeit — ideal, wenn wenig Brennstoff vorhanden ist. Kann auch kalt als Salat serviert werden.",
+      "allergen_hinweis": "",
+      "created_at": "2026-04-09T15:18:26.432Z",
+      "id": 93
+    },
+    {
+      "name": "Couscousbeilage",
+      "description": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "",
+      "hinweis": "",
+      "allergen_hinweis": "",
+      "created_at": "2026-04-09T15:18:27.186Z",
+      "id": 94
+    },
+    {
+      "id": 95,
+      "name": "Kartoffelbeilage",
+      "description": "Gekochte Kartoffeln",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "",
+      "hinweis": "",
+      "allergen_hinweis": "",
+      "created_at": "2026-04-09T15:18:27.673Z",
+      "updated_at": "2026-04-13T16:57:27.354Z"
+    },
+    {
+      "name": "Kartoffelgulasch",
+      "description": "Deftiger Eintopf mit Kartoffeln und Paprika. Einfach, wärmend und ideal für kühle Abende im Camp.",
+      "zubereitung_zeit": "20 min",
+      "garzeit": "35 min",
+      "zubereitung": "1. Zwiebeln und Knoblauch in Olivenöl glasig anschwitzen.\n2. Tomatenmark einrühren und kurz anrösten lassen.\n3. Paprikapulver (edelsüß und geräuchert) sowie Kümmel dazugeben, kurz mitrösten.\n4. Paprikastücke dazugeben und 3 min mitbraten.\n5. Kartoffelwürfel dazugeben, mit passierte Tomaten und Gemüsebrühe aufgießen.\n6. Ca. 25-30 min köcheln lassen, bis die Kartoffeln gar sind.\n7. Mit Salz und Pfeffer abschmecken. Für eine dickere Konsistenz ein paar Kartoffeln zerdrücken.",
+      "hinweis": "Wird am nächsten Tag noch besser! Lässt sich gut in großen Töpfen warmhalten. Optional mit Brot servieren.",
+      "allergen_hinweis": "",
+      "created_at": "2026-04-09T15:18:33.231Z",
+      "id": 96
+    },
+    {
+      "name": "Krautsalat",
+      "description": "Frischer, knackiger Krautsalat als Beilage. Lässt sich gut vorbereiten und wird durch das Durchziehen noch besser.",
+      "zubereitung_zeit": "15 min",
+      "garzeit": "0 min",
+      "zubereitung": "1. Weißkohl in feine Streifen schneiden (Gemüsehobel empfohlen bei großen Mengen).\n2. Karotten grob raspeln und zum Kohl geben.\n3. Dressing aus Essig, Öl, Zucker, Salz und Pfeffer anrühren.\n4. Dressing über den Salat geben und kräftig durchkneten, damit der Kohl weicher wird.\n5. Mindestens 30 min durchziehen lassen — besser 2-3 Stunden.",
+      "hinweis": "Am Vortag zubereiten ist ideal! Der Salat wird durch das Ziehen noch besser und nimmt weniger Platz ein. Bei großen Mengen den Kohl am besten mit einer Brotschneidemaschine oder einem Gemüsehobel schneiden.",
+      "allergen_hinweis": "",
+      "created_at": "2026-04-09T15:18:35.260Z",
+      "id": 97
+    },
+    {
+      "name": "Linsen-Dal",
+      "description": "Cremiges indisches Linsengericht mit Kokosmilch und Gewürzen. Sättigend, günstig und perfekt für große Gruppen.",
+      "zubereitung_zeit": "20 min",
+      "garzeit": "30 min",
+      "zubereitung": "1. Reis in Salzwasser kochen (ca. 15 min), beiseite stellen.\n2. Zwiebeln, Knoblauch und Ingwer in Olivenöl in einem großen Topf anschwitzen.\n3. Currypulver, Kurkuma und Kreuzkümmel dazugeben und kurz mitrösten.\n4. Rote Linsen und passierte Tomaten dazugeben, mit Wasser auffüllen.\n5. Bei mittlerer Hitze ca. 20 min köcheln lassen, bis die Linsen zerfallen sind.\n6. Kokosmilch einrühren, weitere 5 min köcheln lassen.\n7. Mit Salz abschmecken und mit Reis servieren.",
+      "hinweis": "Rote Linsen müssen nicht eingeweicht werden. Bei großen Mengen etwas mehr Wasser verwenden, da die Linsen viel Flüssigkeit aufnehmen. Gut warmzuhalten im Topf.",
+      "allergen_hinweis": "",
+      "created_at": "2026-04-09T15:18:38.342Z",
+      "id": 98
+    },
+    {
+      "name": "Nudeln mit Ketchup",
+      "description": "Klassische Studentenküche",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "",
+      "hinweis": "",
+      "allergen_hinweis": "",
+      "created_at": "2026-04-09T15:18:39.066Z",
+      "id": 99
+    },
+    {
+      "name": "Overnight Oats",
+      "description": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "Haferflocken über nacht in einem geschlossenen Behälter einweichen. In der Früh noch Äpfel oder optional anderes Obst schneiden und seperat servieren.",
+      "hinweis": "Es gibt immer Menschen die eine Variante ohne Zucker oder ohne Zimt wollen.",
+      "allergen_hinweis": "",
+      "created_at": "2026-04-09T15:18:40.627Z",
+      "id": 100
+    },
+    {
+      "name": "Pad Thai mit Tofu",
+      "description": "Ein gutes Pad Thai ist einfach der Hammer! Achte darauf, die Reisnudeln nicht zu lange einzuweichen. Sie sollen noch Biss haben, wenn sie in den Wok geworfen werden.",
+      "zubereitung_zeit": "20 Minuten",
+      "garzeit": "20 Minuten",
+      "zubereitung": "1. Reisnudeln einweichen: Einen Topf Wasser aufkochen, dann vom Herd nehmen. Nudeln darin 4-7 Minuten quellen lassen, bis sie durchscheinend weiß werden. Sie sollen biegsam, aber nicht weich sein. In ein Sieb geben, unter fließendem kaltem Wasser abschrecken und gründlich abtropfen lassen. Beiseitestellen.\n\n2. Kichererbsenmehl, Salz und 0.03 l Wasser in einer Schale klümpchenfrei verrühren. Etwas Öl in einem Wok oder tiefen Pfanne erhitzen. Die Kichererbsenmasse bei mittlerer bis starker Hitze etwa 2 Minuten braten, dann mit einem Spatel verrühren und 5-6 Minuten weitergaren, bis die Masse zu stocken beginnt. Große Klumpen auflockern. Auf einen Teller geben und ggf. in kleinere Stücke zerteilen. Beiseitestellen.\n\n3. Pad-Thai-Sauce: Tamarindenpaste, Sojasauce, Zucker, Limettensaft und Sriracha-Sauce in einer Schale verquirlen.\n\n4. Den Wok auswischen und bei mittlerer Hitze wieder erhitzen. Knoblauch und Schalotten 4-5 Minuten anbraten, bis die Schalotten weich sind. Gemüse, Pad-Thai-Sauce und Tofu untermischen. Nudeln ebenfalls untermischen; wenn sie noch zu hart sind, etwa 0.015 l Wasser dazugeben. Unter Rühren 3-4 Minuten braten, bis Nudeln und Gemüse gar sind, aber noch Biss haben.\n\n5. Mit Erdnüssen, Limettenspalten, einer Handvoll Bohnensprossen und etwas gehacktem Koriander garnieren.",
+      "hinweis": "Wer mehr Zeit hat, kann die Nudeln auf thailändische Art 40-60 Minuten in kaltem Wasser einweichen, bis sie weiß, weich und biegsam sind, aber noch Biss haben. Gut abtropfen lassen. Entweder sofort weiterverarbeiten oder in einem Plastikbeutel bis zu 2 Tagen im Kühlschrank aufbewahren.\nTipp: Sojasauce kann durch Tamari ersetzt werden (glutenfrei).",
+      "allergen_hinweis": "",
+      "created_at": "2026-04-09T15:18:47.315Z",
+      "id": 101
+    },
+    {
+      "id": 102,
+      "name": "Pasta Bolognese",
+      "description": "Klassische Bolognese mit Sojagranulat statt Hackfleisch. Kaum von der Original-Version zu unterscheiden.",
+      "zubereitung_zeit": "20 min",
+      "garzeit": "30 min",
+      "zubereitung": "1. Sojagranulat in heißem Wasser 10 min einweichen, dann gut abtropfen lassen.\n2. Zwiebeln, Knoblauch und Karotten in Olivenöl anschwitzen.\n3. Sojagranulat dazugeben und kurz mitbraten.\n4. Tomatenmark einrühren und kurz anrösten.\n5. Passierte Tomaten dazugeben, mit Oregano, Basilikum, Zucker, Salz und Pfeffer würzen.\n6. Ca. 20 min bei mittlerer Hitze köcheln lassen, gelegentlich umrühren.\n7. Nudeln in einem separaten Topf in Salzwasser al dente kochen.\n8. Soße abschmecken und mit den Nudeln servieren.",
+      "hinweis": "Sojagranulat nimmt den Geschmack der Soße gut auf. Alternativ können auch Linsen (grün oder braun) als Hack-Ersatz verwendet werden — diese brauchen aber etwas länger. Bei großen Mengen Nudeln portionsweise kochen.",
+      "allergen_hinweis": "",
+      "is_allergy_friendly": false,
+      "created_at": "2026-04-09T15:18:51.110Z",
+      "updated_at": "2026-04-13T21:53:13.049Z"
+    },
+    {
+      "name": "Pastabeilage",
+      "description": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "",
+      "hinweis": "",
+      "allergen_hinweis": "",
+      "created_at": "2026-04-09T15:18:52.097Z",
+      "id": 103
+    },
+    {
+      "name": "Rattatuille",
+      "description": "Beschreibung: Der Star der provenzalischen Küche – ein aromatisches Schmorgericht aus Sommergemüse.",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "1. Zunächst alle Gemüse in ca. 1x1 bis 2x2 cm große Würfel schneiden.\n2. Gewürfeltes Gemüse mit Salz und Öl in einen Vorgeheizten Topf geben und Braten bis sie Farbe bekommen.\n3. Tomatisieren, sprich Tomartenmark unterrühren und nach kurzer Zeit mit Essig ablöschen.\n4. Passata und Gewürze dazugeben und köcheln lassen bis die gewünschte Konsistenz erreicht ist.",
+      "hinweis": "Es wird auch oft mit Zucker, Lorbeer oder Piment gearbeitet.",
+      "allergen_hinweis": "",
+      "created_at": "2026-04-09T15:18:55.098Z",
+      "id": 104
+    },
+    {
+      "id": 105,
+      "name": "Reisbeilage (Basmati)",
+      "description": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "",
+      "hinweis": "",
+      "allergen_hinweis": "",
+      "is_allergy_friendly": true,
+      "created_at": "2026-04-09T15:18:56.203Z",
+      "updated_at": "2026-04-13T21:43:06.798Z"
+    },
+    {
+      "id": 106,
+      "name": "Reisbeilage (Jasminreis)",
+      "description": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "",
+      "hinweis": "",
+      "allergen_hinweis": "",
+      "is_allergy_friendly": true,
+      "created_at": "2026-04-09T15:18:56.691Z",
+      "updated_at": "2026-04-13T21:44:06.479Z"
+    },
+    {
+      "id": 107,
+      "name": "Reisbeilage (Langkornreis)",
+      "description": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "",
+      "hinweis": "",
+      "allergen_hinweis": "",
+      "is_allergy_friendly": true,
+      "created_at": "2026-04-09T15:18:57.149Z",
+      "updated_at": "2026-04-13T21:43:54.347Z"
+    },
+    {
+      "id": 108,
+      "name": "Reisbeilage (Parboiled)",
+      "description": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "",
+      "hinweis": "",
+      "allergen_hinweis": "",
+      "is_allergy_friendly": true,
+      "created_at": "2026-04-09T15:18:57.653Z",
+      "updated_at": "2026-04-13T21:43:42.859Z"
+    },
+    {
+      "name": "Soja Gyros",
+      "description": "Süchtig machendes veganes Gyros aus Soja Chunks – mariniert, gekräutert und angebraten. Besteht aus mehreren Komponenten: Soja Gyros, Kartoffeln, Zaziki und Krautsalat.",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "1. Wasser, Soja Schnetzel, Sojasauce und Gemüsebrühpulver zusammen kurz aufkochen. Schnetzel vollsaugen lassen.\n\n2. Währenddessen Marinadenpaste aus Zitronensaft, Knoblauch, Öl, Paprikapulver, Cumin und Salz anrühren.\n\n3. Schnetzel abkühlen lassen. Mit der Paste sowie Oregano und Majoran vermengen. Restliches Öl dazugeben.\n\n4. Alles gut durchziehen lassen.\n\n5. Vor dem Servieren scharf anbraten.",
+      "hinweis": "Komplett mit Kartoffeln, Zaziki und Krautsalat servieren.",
+      "allergen_hinweis": "",
+      "created_at": "2026-04-09T15:18:59.545Z",
+      "id": 109
+    },
+    {
+      "id": 110,
+      "name": "Wildreisbeilage",
+      "description": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "",
+      "hinweis": "",
+      "allergen_hinweis": "",
+      "is_allergy_friendly": true,
+      "created_at": "2026-04-09T15:19:00.698Z",
+      "updated_at": "2026-04-13T21:43:18.490Z"
+    },
+    {
+      "name": "Zitronen Risotto",
+      "description": "",
+      "zubereitung_zeit": "",
+      "garzeit": "20",
+      "zubereitung": "1. Gemüse schneiden und Zwiebeln in Öl glasig braten. Danach Knoblauch dazu geben.\n2. Reis anschwitzen und 1-2 Min. mitrösten und optional  mit Weiswein ablöschen.\n3. Nach und nach Brühe einrühren. Nach 20 min Zitronensaft dazu geben.\n4. Mit Salz, Pfeffer, Hefeflocken und Kräutern abschmecken.",
+      "hinweis": "Nicht alle Brühe auf einmal, viel rühren",
+      "allergen_hinweis": "",
+      "created_at": "2026-04-09T15:36:31.767Z",
+      "id": 111
+    },
+    {
+      "name": "Rote Bete Salat Beilage",
+      "description": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "1. Rote Bete, Äpfel(optional) und Zwiebeln(optional) schneiden. Zwiebeln kurz in wassere einlegen.\n2. Das ganze mit Zitronensaft, Öl, Salz, Pfeffer + Optional Zucker als Dressing versetzen.\n3. Min 10 min durchziehen lassen und Kräuter unterheben .",
+      "hinweis": "Kühl servieren",
+      "allergen_hinweis": "",
+      "created_at": "2026-04-09T15:43:29.889Z",
+      "id": 112
+    },
+    {
+      "id": 113,
+      "name": "Auberginenschnitzel mit Karottenpüree und Rosenkohl",
+      "description": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "1. Kartoffeln und Karotten schälen und würfeln. Beides dann in einem Topf mit Wasser bedeckt zum kochen bringen. Für den Rosenkohl, Strunk knapp abschneiden, wenn nötig äußere Blätter entfernen und halbieren. Währenddessen einen Topf mit Wasser zum Kochen bringen. Den Rosenkohl anschliepßend für 3-4 min in Kochendes Wasser geben (Zucker oder Zitronensaft im Kochwasser reduzieren Bitterkeit). (Eventuell kann das Kochende Wasser noch bei  den Kartoffeln weiter verwendet werden.\n2. Auberginen in 1 cm dicke Scheiben schneide, salzen und ziehen lassen, dann trocken tupfen. Währenddessen Panierstation vorbereiten. \n2.1 Für die erste Panierstation eine Nasspanade vorbereiten aus Mehl, Pflanzenmilch, Öl, Salz und optional noch Paprikapulver. Als zweite Station Paniermehl bereitstellen und als letztes viele GN behälter bereit halten um die Panierten Auberginenscheiben zwischen lagern zu können.\n2.2 Auberginen erst in die Nasspanade, dann ins Paniermehl tauchen. Anschließend, optional mit Küchenpapier in GNs Zwischenlagern.\n3. Den vorgekochten Rosenkohl in einer Paella Pfanne mit Öl anbraten bis dieser ordentlich Farbe bekommen hat und dann mit Salz und Pfeffer abschmecken.\n4. Gargekochte Kartoffeln und Karotten mit veganer Butter (oder Öl) und Pflanzenmilch stampfen oder pürieren. Mit Salz und Pfeffer abschmecken. \n5. Fürs Panieren eine Paellapfanne bereitstellen und ca. 2-4 cm hoch mit Öl befüllen. (Auf Regensicheres Dach und Standfestigkeit prüfen.) Sobald das Öl die entsprechende Temperatur erreicht hat die Auberginen ausbacken und wieder in niedrigen GN Behältern lagern, bzw. zur Ausgabe bringen.\n6. Optional Granatapfelkerne oder Kräuter anbieten.",
+      "hinweis": "",
+      "allergen_hinweis": "",
+      "is_allergy_friendly": false,
+      "created_at": "2026-04-09T19:55:07.330Z",
+      "updated_at": "2026-04-14T16:07:10.077Z"
+    },
+    {
+      "id": 114,
+      "name": "Palak Tofu",
+      "description": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "",
+      "hinweis": "",
+      "allergen_hinweis": "",
+      "created_at": "2026-04-09T19:56:25.128Z",
+      "updated_at": "2026-04-09T19:57:42.564Z"
+    },
+    {
+      "name": "Schokopancakes",
+      "description": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "",
+      "hinweis": "",
+      "allergen_hinweis": "",
+      "created_at": "2026-04-09T19:59:08.927Z",
+      "id": 115
+    },
+    {
+      "id": 116,
+      "name": "Sojagulasch",
+      "description": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "Am besten einen Tag vorher ansetzen und durchziehen lassen.\n1. Zwiebeln schmelzen, wenn durchgegart Paprikamark dazu geben und kurz anrösten\n2. Mit dunklem Bier ablöschen und einreduzieren lassen, dann Kümmel, Piment und Lorbeer dazu geben.\n3. Die Masse mit der hälfte der Brühe aufgießen und Sojaschnetzel einrühren. Kaltrühren und über Nacht durchziehen lassen.\nAm Kochtag:\n1. Paprika in Mundgerechten Stücken Würfeln und scharf anbraten. Zeitgleich die Gulaschbasis vom Vortag aufwärmen und Paprika dazu geben.\n2. Masse mit dem Rest der Brühe auf die gewünschte Konsistenz bringen und abschmecken.",
+      "hinweis": "",
+      "allergen_hinweis": "",
+      "created_at": "2026-04-13T17:02:36.439Z",
+      "updated_at": "2026-04-13T19:05:42.884Z"
+    },
+    {
+      "name": "Kartoffelbreibeilage",
+      "description": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "",
+      "hinweis": "",
+      "allergen_hinweis": "",
+      "created_at": "2026-04-13T17:03:23.519Z",
+      "id": 117
+    },
+    {
+      "id": 118,
+      "name": "Spätzlebeilage",
+      "description": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "1. Erst alle trockenen Zutaten Vermengen, dann alle nassen Zutaten hinzu geben.\n2. Teig mit einem Holzlöffel schlagen bis er blasen wirft.\n3. 15-60 min ruhen lassen.\n4. Durch Späzlehobel oder Grobe Loch GN in einen Topf mit Kochendem Wasser Passieren, dann mit Kaltem Wasser abschrecken.",
+      "hinweis": "In eine weiße Wanne passen genau 5 kg Sätzlemehl und respektive viele Spätzle",
+      "allergen_hinweis": "",
+      "is_allergy_friendly": false,
+      "created_at": "2026-04-13T17:03:38.909Z",
+      "updated_at": "2026-04-14T16:37:10.480Z"
+    },
+    {
+      "id": 119,
+      "name": "Mildes Reis Gemüse A",
+      "description": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "1. Reis mit doppelter Menge Wasser kochen und Gemüse vorbereiten. Auf gesonderte Schneidebretter achten.\n2. Gemüse mit wenig Öl bei niedriger Hitze unter einsatz von ein wenig Wasser dünsten oder Dämpfen.\n3. Reis und Gemüse mischen und Abschmecken.",
+      "hinweis": "",
+      "allergen_hinweis": "Kein Jod Salz verwenden",
+      "is_allergy_friendly": true,
+      "created_at": "2026-04-13T21:32:13.576Z",
+      "updated_at": "2026-04-13T21:52:58.130Z"
+    },
+    {
+      "id": 120,
+      "name": "Kartoffel-Gemüse-Pfanne A",
+      "description": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "1. Kartoffeln würfeln und 10 min vorkochen. \n2. Restliches Gemüse Schneiden und in Öl sanft anbraten, dann salzen.",
+      "hinweis": "",
+      "allergen_hinweis": "Evtl. darauf achten kein Jodsalz zu verwenden",
+      "is_allergy_friendly": true,
+      "created_at": "2026-04-13T21:39:56.764Z",
+      "updated_at": "2026-04-13T21:52:43.743Z"
+    },
+    {
+      "name": "Süßkartoffel -Püree A",
+      "description": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "1. Süßkartoffeln Kochen\n2. Stampfen und Öl, sowie Salz unter rühren.",
+      "hinweis": "",
+      "allergen_hinweis": "",
+      "is_allergy_friendly": true,
+      "created_at": "2026-04-13T21:42:41.175Z",
+      "id": 121
+    },
+    {
+      "name": "Karotten-Ingwer-Suppe A",
+      "description": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "Alles klein schneiden, weich kochen und pürieren. Abschmecken.",
+      "hinweis": "",
+      "allergen_hinweis": "",
+      "is_allergy_friendly": true,
+      "created_at": "2026-04-13T21:52:30.882Z",
+      "id": 122
+    },
+    {
+      "name": "Kartoffelsuppe A",
+      "description": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "1. Kartoffeln schälen, Grob schneiden und Kochen.\n2. Öl und Salz einpürrieren und abschmecken.",
+      "hinweis": "",
+      "allergen_hinweis": "",
+      "is_allergy_friendly": true,
+      "created_at": "2026-04-13T21:55:58.942Z",
+      "id": 123
+    },
+    {
+      "name": "Overnight Oats A",
+      "description": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "Banahnen klein schneiden, alles mischen und über Nacht kühl stellen.",
+      "hinweis": "",
+      "allergen_hinweis": "",
+      "is_allergy_friendly": true,
+      "created_at": "2026-04-13T22:00:22.930Z",
+      "id": 124
+    },
+    {
+      "name": "Bananen Reisbrei",
+      "description": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "Reis kochen, Bananen zerdrücken und untermischen.",
+      "hinweis": "",
+      "allergen_hinweis": "",
+      "is_allergy_friendly": true,
+      "created_at": "2026-04-13T22:02:07.354Z",
+      "id": 125
+    },
+    {
+      "id": 126,
+      "name": "Braune Linsen Eintopf mit Räuchertofu",
+      "description": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "1. Gemüse Vorbereiten, dann in einem großen Topf anbraten bis es durch ist und leicht Farbe bekommen hat, dann Tomatisieren (Tomatenmark unterrühern und diesen kurz anbraten lassen) .\n2. Dann Linsen in den Topf, zusammen mit den Kartoffeln, Salz und Lorbeer zum kochen bringen und köcheln bis durch.\n3. Währenddessen Tofu seperat anbraten und als Topping bereithalten oder unter rühren.",
+      "hinweis": "Ohne Tofu ist das ganze Sojafrei.",
+      "allergen_hinweis": "",
+      "is_allergy_friendly": false,
+      "created_at": "2026-04-14T16:09:56.675Z",
+      "updated_at": "2026-04-14T16:29:35.608Z"
+    }
+  ],
+  "recipe_categories": [
+    {
+      "recipe_id": 90,
+      "category_id": 10,
+      "id": 199
+    },
+    {
+      "recipe_id": 91,
+      "category_id": 2,
+      "id": 200
+    },
+    {
+      "recipe_id": 91,
+      "category_id": 3,
+      "id": 201
+    },
+    {
+      "recipe_id": 92,
+      "category_id": 2,
+      "id": 202
+    },
+    {
+      "recipe_id": 92,
+      "category_id": 3,
+      "id": 203
+    },
+    {
+      "recipe_id": 93,
+      "category_id": 2,
+      "id": 204
+    },
+    {
+      "recipe_id": 93,
+      "category_id": 3,
+      "id": 205
+    },
+    {
+      "recipe_id": 94,
+      "category_id": 10,
+      "id": 206
+    },
+    {
+      "recipe_id": 96,
+      "category_id": 2,
+      "id": 208
+    },
+    {
+      "recipe_id": 96,
+      "category_id": 3,
+      "id": 209
+    },
+    {
+      "recipe_id": 97,
+      "category_id": 10,
+      "id": 210
+    },
+    {
+      "recipe_id": 98,
+      "category_id": 2,
+      "id": 211
+    },
+    {
+      "recipe_id": 98,
+      "category_id": 3,
+      "id": 212
+    },
+    {
+      "recipe_id": 99,
+      "category_id": 2,
+      "id": 213
+    },
+    {
+      "recipe_id": 99,
+      "category_id": 3,
+      "id": 214
+    },
+    {
+      "recipe_id": 100,
+      "category_id": 1,
+      "id": 215
+    },
+    {
+      "recipe_id": 101,
+      "category_id": 2,
+      "id": 216
+    },
+    {
+      "recipe_id": 101,
+      "category_id": 3,
+      "id": 217
+    },
+    {
+      "recipe_id": 103,
+      "category_id": 10,
+      "id": 220
+    },
+    {
+      "recipe_id": 104,
+      "category_id": 2,
+      "id": 221
+    },
+    {
+      "recipe_id": 104,
+      "category_id": 3,
+      "id": 222
+    },
+    {
+      "recipe_id": 109,
+      "category_id": 2,
+      "id": 227
+    },
+    {
+      "recipe_id": 109,
+      "category_id": 3,
+      "id": 228
+    },
+    {
+      "recipe_id": 111,
+      "category_id": 2,
+      "id": 230
+    },
+    {
+      "recipe_id": 111,
+      "category_id": 3,
+      "id": 231
+    },
+    {
+      "recipe_id": 112,
+      "category_id": 10,
+      "id": 232
+    },
+    {
+      "recipe_id": 115,
+      "category_id": 1,
+      "id": 233
+    },
+    {
+      "recipe_id": 95,
+      "category_id": 10,
+      "id": 234
+    },
+    {
+      "recipe_id": 117,
+      "category_id": 10,
+      "id": 237
+    },
+    {
+      "recipe_id": 116,
+      "category_id": 2,
+      "id": 242
+    },
+    {
+      "recipe_id": 116,
+      "category_id": 3,
+      "id": 243
+    },
+    {
+      "recipe_id": 121,
+      "category_id": 10,
+      "id": 248
+    },
+    {
+      "recipe_id": 105,
+      "category_id": 10,
+      "id": 249
+    },
+    {
+      "recipe_id": 110,
+      "category_id": 10,
+      "id": 250
+    },
+    {
+      "recipe_id": 108,
+      "category_id": 10,
+      "id": 251
+    },
+    {
+      "recipe_id": 107,
+      "category_id": 10,
+      "id": 252
+    },
+    {
+      "recipe_id": 106,
+      "category_id": 10,
+      "id": 253
+    },
+    {
+      "recipe_id": 122,
+      "category_id": 2,
+      "id": 254
+    },
+    {
+      "recipe_id": 122,
+      "category_id": 3,
+      "id": 255
+    },
+    {
+      "recipe_id": 120,
+      "category_id": 2,
+      "id": 256
+    },
+    {
+      "recipe_id": 120,
+      "category_id": 3,
+      "id": 257
+    },
+    {
+      "recipe_id": 119,
+      "category_id": 2,
+      "id": 258
+    },
+    {
+      "recipe_id": 119,
+      "category_id": 3,
+      "id": 259
+    },
+    {
+      "recipe_id": 102,
+      "category_id": 2,
+      "id": 260
+    },
+    {
+      "recipe_id": 102,
+      "category_id": 3,
+      "id": 261
+    },
+    {
+      "recipe_id": 123,
+      "category_id": 2,
+      "id": 262
+    },
+    {
+      "recipe_id": 123,
+      "category_id": 3,
+      "id": 263
+    },
+    {
+      "recipe_id": 124,
+      "category_id": 1,
+      "id": 264
+    },
+    {
+      "recipe_id": 125,
+      "category_id": 1,
+      "id": 265
+    },
+    {
+      "recipe_id": 113,
+      "category_id": 2,
+      "id": 270
+    },
+    {
+      "recipe_id": 113,
+      "category_id": 3,
+      "id": 271
+    },
+    {
+      "recipe_id": 126,
+      "category_id": 2,
+      "id": 272
+    },
+    {
+      "recipe_id": 126,
+      "category_id": 3,
+      "id": 273
+    },
+    {
+      "recipe_id": 118,
+      "category_id": 10,
+      "id": 278
+    }
+  ],
+  "recipe_ingredients": [
+    {
+      "recipe_id": 90,
+      "ingredient_id": 524,
+      "quantity_per_person": 0.06,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1052
+    },
+    {
+      "recipe_id": 90,
+      "ingredient_id": 712,
+      "quantity_per_person": 0.12,
+      "unit": "L",
+      "preparation": "",
+      "id": 1053
+    },
+    {
+      "recipe_id": 91,
+      "ingredient_id": 728,
+      "quantity_per_person": 0.1,
+      "unit": "kg",
+      "preparation": "würfeln 1x1",
+      "id": 1054
+    },
+    {
+      "recipe_id": 91,
+      "ingredient_id": 583,
+      "quantity_per_person": 0.008,
+      "unit": "kg",
+      "preparation": "paste",
+      "id": 1055
+    },
+    {
+      "recipe_id": 91,
+      "ingredient_id": 569,
+      "quantity_per_person": 0.01,
+      "unit": "kg",
+      "preparation": "paste",
+      "id": 1056
+    },
+    {
+      "recipe_id": 91,
+      "ingredient_id": 577,
+      "quantity_per_person": 0.08,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1057
+    },
+    {
+      "recipe_id": 91,
+      "ingredient_id": 702,
+      "quantity_per_person": 0.2,
+      "unit": "kg",
+      "preparation": "hacken",
+      "id": 1058
+    },
+    {
+      "recipe_id": 91,
+      "ingredient_id": 650,
+      "quantity_per_person": 0.02,
+      "unit": "L",
+      "preparation": "",
+      "id": 1059
+    },
+    {
+      "recipe_id": 91,
+      "ingredient_id": 537,
+      "quantity_per_person": 0.002,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1060
+    },
+    {
+      "recipe_id": 91,
+      "ingredient_id": 593,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1061
+    },
+    {
+      "recipe_id": 91,
+      "ingredient_id": 634,
+      "quantity_per_person": 0.002,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1062
+    },
+    {
+      "recipe_id": 91,
+      "ingredient_id": 532,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1063
+    },
+    {
+      "recipe_id": 91,
+      "ingredient_id": 589,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1064
+    },
+    {
+      "recipe_id": 91,
+      "ingredient_id": 552,
+      "quantity_per_person": 0.002,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1065
+    },
+    {
+      "recipe_id": 91,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1066
+    },
+    {
+      "recipe_id": 91,
+      "ingredient_id": 640,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1067
+    },
+    {
+      "recipe_id": 91,
+      "ingredient_id": 725,
+      "quantity_per_person": 0.01,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1068
+    },
+    {
+      "recipe_id": 92,
+      "ingredient_id": 580,
+      "quantity_per_person": 0.05,
+      "unit": "kg",
+      "preparation": "einweichen",
+      "id": 1069
+    },
+    {
+      "recipe_id": 92,
+      "ingredient_id": 712,
+      "quantity_per_person": 0.1,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1070
+    },
+    {
+      "recipe_id": 92,
+      "ingredient_id": 705,
+      "quantity_per_person": 0.1,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1071
+    },
+    {
+      "recipe_id": 92,
+      "ingredient_id": 728,
+      "quantity_per_person": 0.1,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1072
+    },
+    {
+      "recipe_id": 92,
+      "ingredient_id": 583,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1073
+    },
+    {
+      "recipe_id": 92,
+      "ingredient_id": 574,
+      "quantity_per_person": 0.05,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1074
+    },
+    {
+      "recipe_id": 92,
+      "ingredient_id": 650,
+      "quantity_per_person": 0.005,
+      "unit": "L",
+      "preparation": "",
+      "id": 1075
+    },
+    {
+      "recipe_id": 92,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1076
+    },
+    {
+      "recipe_id": 92,
+      "ingredient_id": 640,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1077
+    },
+    {
+      "recipe_id": 92,
+      "ingredient_id": 538,
+      "quantity_per_person": 0.002,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1078
+    },
+    {
+      "recipe_id": 92,
+      "ingredient_id": 635,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1079
+    },
+    {
+      "recipe_id": 92,
+      "ingredient_id": 634,
+      "quantity_per_person": 0.002,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1080
+    },
+    {
+      "recipe_id": 92,
+      "ingredient_id": 531,
+      "quantity_per_person": 0.002,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1081
+    },
+    {
+      "recipe_id": 93,
+      "ingredient_id": 535,
+      "quantity_per_person": 0.08,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1082
+    },
+    {
+      "recipe_id": 93,
+      "ingredient_id": 578,
+      "quantity_per_person": 0.06,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1083
+    },
+    {
+      "recipe_id": 93,
+      "ingredient_id": 726,
+      "quantity_per_person": 0.06,
+      "unit": "kg",
+      "preparation": "würfeln 1x1",
+      "id": 1084
+    },
+    {
+      "recipe_id": 93,
+      "ingredient_id": 632,
+      "quantity_per_person": 0.04,
+      "unit": "kg",
+      "preparation": "würfeln 1x1",
+      "id": 1085
+    },
+    {
+      "recipe_id": 93,
+      "ingredient_id": 702,
+      "quantity_per_person": 0.05,
+      "unit": "kg",
+      "preparation": "würfeln 1x1",
+      "id": 1086
+    },
+    {
+      "recipe_id": 93,
+      "ingredient_id": 583,
+      "quantity_per_person": 0.003,
+      "unit": "kg",
+      "preparation": "fein gehackt",
+      "id": 1087
+    },
+    {
+      "recipe_id": 93,
+      "ingredient_id": 590,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1088
+    },
+    {
+      "recipe_id": 93,
+      "ingredient_id": 593,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1089
+    },
+    {
+      "recipe_id": 93,
+      "ingredient_id": 725,
+      "quantity_per_person": 0.01,
+      "unit": "l",
+      "preparation": "",
+      "id": 1090
+    },
+    {
+      "recipe_id": 93,
+      "ingredient_id": 625,
+      "quantity_per_person": 0.015,
+      "unit": "l",
+      "preparation": "",
+      "id": 1091
+    },
+    {
+      "recipe_id": 93,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.003,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1092
+    },
+    {
+      "recipe_id": 93,
+      "ingredient_id": 639,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1093
+    },
+    {
+      "recipe_id": 93,
+      "ingredient_id": 555,
+      "quantity_per_person": 0.1,
+      "unit": "l",
+      "preparation": "",
+      "id": 1094
+    },
+    {
+      "recipe_id": 94,
+      "ingredient_id": 535,
+      "quantity_per_person": 0.06,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1095
+    },
+    {
+      "recipe_id": 94,
+      "ingredient_id": 712,
+      "quantity_per_person": 0.06,
+      "unit": "L",
+      "preparation": "",
+      "id": 1096
+    },
+    {
+      "recipe_id": 96,
+      "ingredient_id": 575,
+      "quantity_per_person": 0.2,
+      "unit": "kg",
+      "preparation": "geschält, gewürfelt",
+      "id": 1098
+    },
+    {
+      "recipe_id": 96,
+      "ingredient_id": 632,
+      "quantity_per_person": 0.05,
+      "unit": "kg",
+      "preparation": "würfeln 1x1",
+      "id": 1099
+    },
+    {
+      "recipe_id": 96,
+      "ingredient_id": 631,
+      "quantity_per_person": 0.05,
+      "unit": "kg",
+      "preparation": "würfeln 1x1",
+      "id": 1100
+    },
+    {
+      "recipe_id": 96,
+      "ingredient_id": 706,
+      "quantity_per_person": 0.015,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1101
+    },
+    {
+      "recipe_id": 96,
+      "ingredient_id": 703,
+      "quantity_per_person": 0.08,
+      "unit": "l",
+      "preparation": "",
+      "id": 1102
+    },
+    {
+      "recipe_id": 96,
+      "ingredient_id": 555,
+      "quantity_per_person": 0.15,
+      "unit": "l",
+      "preparation": "",
+      "id": 1103
+    },
+    {
+      "recipe_id": 96,
+      "ingredient_id": 731,
+      "quantity_per_person": 0.003,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1104
+    },
+    {
+      "recipe_id": 96,
+      "ingredient_id": 633,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1105
+    },
+    {
+      "recipe_id": 96,
+      "ingredient_id": 732,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1106
+    },
+    {
+      "recipe_id": 96,
+      "ingredient_id": 583,
+      "quantity_per_person": 0.003,
+      "unit": "kg",
+      "preparation": "fein gehackt",
+      "id": 1107
+    },
+    {
+      "recipe_id": 96,
+      "ingredient_id": 625,
+      "quantity_per_person": 0.01,
+      "unit": "l",
+      "preparation": "",
+      "id": 1108
+    },
+    {
+      "recipe_id": 96,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.003,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1109
+    },
+    {
+      "recipe_id": 96,
+      "ingredient_id": 639,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1110
+    },
+    {
+      "recipe_id": 97,
+      "ingredient_id": 714,
+      "quantity_per_person": 0.1,
+      "unit": "kg",
+      "preparation": "in feine Streifen geschnitten",
+      "id": 1111
+    },
+    {
+      "recipe_id": 97,
+      "ingredient_id": 574,
+      "quantity_per_person": 0.02,
+      "unit": "kg",
+      "preparation": "grob geraspelt",
+      "id": 1112
+    },
+    {
+      "recipe_id": 97,
+      "ingredient_id": 546,
+      "quantity_per_person": 0.015,
+      "unit": "l",
+      "preparation": "",
+      "id": 1113
+    },
+    {
+      "recipe_id": 97,
+      "ingredient_id": 733,
+      "quantity_per_person": 0.01,
+      "unit": "l",
+      "preparation": "",
+      "id": 1114
+    },
+    {
+      "recipe_id": 97,
+      "ingredient_id": 727,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1115
+    },
+    {
+      "recipe_id": 97,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.003,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1116
+    },
+    {
+      "recipe_id": 97,
+      "ingredient_id": 639,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1117
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 658,
+      "quantity_per_person": 0.08,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1118
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 586,
+      "quantity_per_person": 0.05,
+      "unit": "l",
+      "preparation": "",
+      "id": 1119
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 728,
+      "quantity_per_person": 0.04,
+      "unit": "kg",
+      "preparation": "würfeln 1x1",
+      "id": 1120
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 583,
+      "quantity_per_person": 0.003,
+      "unit": "kg",
+      "preparation": "fein gehackt",
+      "id": 1121
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 569,
+      "quantity_per_person": 0.003,
+      "unit": "kg",
+      "preparation": "gerieben",
+      "id": 1122
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 703,
+      "quantity_per_person": 0.08,
+      "unit": "l",
+      "preparation": "",
+      "id": 1123
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 540,
+      "quantity_per_person": 0.003,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1124
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 593,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1125
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 590,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1126
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.003,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1127
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 625,
+      "quantity_per_person": 0.01,
+      "unit": "l",
+      "preparation": "",
+      "id": 1128
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 712,
+      "quantity_per_person": 0.15,
+      "unit": "l",
+      "preparation": "",
+      "id": 1129
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 734,
+      "quantity_per_person": 0.08,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1130
+    },
+    {
+      "recipe_id": 99,
+      "ingredient_id": 624,
+      "quantity_per_person": 0.15,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1131
+    },
+    {
+      "recipe_id": 99,
+      "ingredient_id": 576,
+      "quantity_per_person": 0.07,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1132
+    },
+    {
+      "recipe_id": 100,
+      "ingredient_id": 561,
+      "quantity_per_person": 0.03,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1133
+    },
+    {
+      "recipe_id": 100,
+      "ingredient_id": 562,
+      "quantity_per_person": 0.03,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1134
+    },
+    {
+      "recipe_id": 100,
+      "ingredient_id": 712,
+      "quantity_per_person": 0.15,
+      "unit": "L",
+      "preparation": "",
+      "id": 1135
+    },
+    {
+      "recipe_id": 100,
+      "ingredient_id": 503,
+      "quantity_per_person": 0.08,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1136
+    },
+    {
+      "recipe_id": 100,
+      "ingredient_id": 722,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1137
+    },
+    {
+      "recipe_id": 100,
+      "ingredient_id": 727,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1138
+    },
+    {
+      "recipe_id": 101,
+      "ingredient_id": 651,
+      "quantity_per_person": 0.05,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1139
+    },
+    {
+      "recipe_id": 101,
+      "ingredient_id": 579,
+      "quantity_per_person": 0.015,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1140
+    },
+    {
+      "recipe_id": 101,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.0003,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1141
+    },
+    {
+      "recipe_id": 101,
+      "ingredient_id": 650,
+      "quantity_per_person": 0.005,
+      "unit": "L",
+      "preparation": "",
+      "id": 1142
+    },
+    {
+      "recipe_id": 101,
+      "ingredient_id": 696,
+      "quantity_per_person": 0.003,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1143
+    },
+    {
+      "recipe_id": 101,
+      "ingredient_id": 682,
+      "quantity_per_person": 0.0075,
+      "unit": "L",
+      "preparation": "",
+      "id": 1144
+    },
+    {
+      "recipe_id": 101,
+      "ingredient_id": 585,
+      "quantity_per_person": 0.003,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1145
+    },
+    {
+      "recipe_id": 101,
+      "ingredient_id": 599,
+      "quantity_per_person": 0.0025,
+      "unit": "L",
+      "preparation": "",
+      "id": 1146
+    },
+    {
+      "recipe_id": 101,
+      "ingredient_id": 687,
+      "quantity_per_person": 0.0006,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1147
+    },
+    {
+      "recipe_id": 101,
+      "ingredient_id": 583,
+      "quantity_per_person": 0.006,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1148
+    },
+    {
+      "recipe_id": 101,
+      "ingredient_id": 666,
+      "quantity_per_person": 0.03,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1149
+    },
+    {
+      "recipe_id": 101,
+      "ingredient_id": 574,
+      "quantity_per_person": 0.03,
+      "unit": "kg",
+      "preparation": "julienne",
+      "id": 1150
+    },
+    {
+      "recipe_id": 101,
+      "ingredient_id": 551,
+      "quantity_per_person": 0.03,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1151
+    },
+    {
+      "recipe_id": 101,
+      "ingredient_id": 521,
+      "quantity_per_person": 0.03,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1152
+    },
+    {
+      "recipe_id": 101,
+      "ingredient_id": 701,
+      "quantity_per_person": 0.075,
+      "unit": "kg",
+      "preparation": "pressen",
+      "id": 1153
+    },
+    {
+      "recipe_id": 101,
+      "ingredient_id": 545,
+      "quantity_per_person": 0.01,
+      "unit": "kg",
+      "preparation": "hacken",
+      "id": 1154
+    },
+    {
+      "recipe_id": 101,
+      "ingredient_id": 598,
+      "quantity_per_person": 0.03,
+      "unit": "kg",
+      "preparation": "achtel",
+      "id": 1155
+    },
+    {
+      "recipe_id": 103,
+      "ingredient_id": 624,
+      "quantity_per_person": 0.1,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1168
+    },
+    {
+      "recipe_id": 103,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.01,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1169
+    },
+    {
+      "recipe_id": 103,
+      "ingredient_id": 712,
+      "quantity_per_person": 0.1,
+      "unit": "L",
+      "preparation": "",
+      "id": 1170
+    },
+    {
+      "recipe_id": 104,
+      "ingredient_id": 508,
+      "quantity_per_person": 0.1,
+      "unit": "kg",
+      "preparation": "würfeln 1x1",
+      "id": 1171
+    },
+    {
+      "recipe_id": 104,
+      "ingredient_id": 726,
+      "quantity_per_person": 0.1,
+      "unit": "kg",
+      "preparation": "würfeln 1x1",
+      "id": 1172
+    },
+    {
+      "recipe_id": 104,
+      "ingredient_id": 630,
+      "quantity_per_person": 0.05,
+      "unit": "kg",
+      "preparation": "würfeln 1x1",
+      "id": 1173
+    },
+    {
+      "recipe_id": 104,
+      "ingredient_id": 705,
+      "quantity_per_person": 0.1,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1174
+    },
+    {
+      "recipe_id": 104,
+      "ingredient_id": 728,
+      "quantity_per_person": 0.05,
+      "unit": "kg",
+      "preparation": "würfeln 1x1",
+      "id": 1175
+    },
+    {
+      "recipe_id": 104,
+      "ingredient_id": 640,
+      "quantity_per_person": 0.0005,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1176
+    },
+    {
+      "recipe_id": 104,
+      "ingredient_id": 583,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "pürieren",
+      "id": 1177
+    },
+    {
+      "recipe_id": 104,
+      "ingredient_id": 650,
+      "quantity_per_person": 0.005,
+      "unit": "L",
+      "preparation": "",
+      "id": 1178
+    },
+    {
+      "recipe_id": 104,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.004,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1179
+    },
+    {
+      "recipe_id": 104,
+      "ingredient_id": 700,
+      "quantity_per_person": 0.0005,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1180
+    },
+    {
+      "recipe_id": 104,
+      "ingredient_id": 628,
+      "quantity_per_person": 0.0005,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1181
+    },
+    {
+      "recipe_id": 104,
+      "ingredient_id": 634,
+      "quantity_per_person": 0.002,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1182
+    },
+    {
+      "recipe_id": 104,
+      "ingredient_id": 706,
+      "quantity_per_person": 0.03,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1183
+    },
+    {
+      "recipe_id": 104,
+      "ingredient_id": 716,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1184
+    },
+    {
+      "recipe_id": 109,
+      "ingredient_id": 678,
+      "quantity_per_person": 0.025,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1193
+    },
+    {
+      "recipe_id": 109,
+      "ingredient_id": 682,
+      "quantity_per_person": 0.005,
+      "unit": "L",
+      "preparation": "",
+      "id": 1194
+    },
+    {
+      "recipe_id": 109,
+      "ingredient_id": 556,
+      "quantity_per_person": 0.002,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1195
+    },
+    {
+      "recipe_id": 109,
+      "ingredient_id": 725,
+      "quantity_per_person": 0.005,
+      "unit": "L",
+      "preparation": "",
+      "id": 1196
+    },
+    {
+      "recipe_id": 109,
+      "ingredient_id": 583,
+      "quantity_per_person": 0.0004,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1197
+    },
+    {
+      "recipe_id": 109,
+      "ingredient_id": 650,
+      "quantity_per_person": 0.016,
+      "unit": "L",
+      "preparation": "",
+      "id": 1198
+    },
+    {
+      "recipe_id": 109,
+      "ingredient_id": 634,
+      "quantity_per_person": 0.00125,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1199
+    },
+    {
+      "recipe_id": 109,
+      "ingredient_id": 537,
+      "quantity_per_person": 0.0004,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1200
+    },
+    {
+      "recipe_id": 109,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.0004,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1201
+    },
+    {
+      "recipe_id": 111,
+      "ingredient_id": 663,
+      "quantity_per_person": 0.08,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1204
+    },
+    {
+      "recipe_id": 111,
+      "ingredient_id": 728,
+      "quantity_per_person": 0.08,
+      "unit": "kg",
+      "preparation": "fein Würfeln",
+      "id": 1205
+    },
+    {
+      "recipe_id": 111,
+      "ingredient_id": 583,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "fein hacken",
+      "id": 1206
+    },
+    {
+      "recipe_id": 111,
+      "ingredient_id": 625,
+      "quantity_per_person": 0.015,
+      "unit": "L",
+      "preparation": "",
+      "id": 1207
+    },
+    {
+      "recipe_id": 111,
+      "ingredient_id": 555,
+      "quantity_per_person": 0.5,
+      "unit": "L",
+      "preparation": "",
+      "id": 1208
+    },
+    {
+      "recipe_id": 111,
+      "ingredient_id": 725,
+      "quantity_per_person": 0.02,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1209
+    },
+    {
+      "recipe_id": 111,
+      "ingredient_id": 737,
+      "quantity_per_person": 0.002,
+      "unit": "kg",
+      "preparation": "abrieb",
+      "id": 1210
+    },
+    {
+      "recipe_id": 111,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1211
+    },
+    {
+      "recipe_id": 111,
+      "ingredient_id": 639,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1212
+    },
+    {
+      "recipe_id": 111,
+      "ingredient_id": 566,
+      "quantity_per_person": 0.01,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1213
+    },
+    {
+      "recipe_id": 111,
+      "ingredient_id": 638,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1214
+    },
+    {
+      "recipe_id": 111,
+      "ingredient_id": 738,
+      "quantity_per_person": 0.05,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1215
+    },
+    {
+      "recipe_id": 112,
+      "ingredient_id": 657,
+      "quantity_per_person": 0.1,
+      "unit": "kg",
+      "preparation": "gekocht",
+      "id": 1216
+    },
+    {
+      "recipe_id": 112,
+      "ingredient_id": 725,
+      "quantity_per_person": 0.02,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1217
+    },
+    {
+      "recipe_id": 112,
+      "ingredient_id": 625,
+      "quantity_per_person": 0.01,
+      "unit": "L",
+      "preparation": "",
+      "id": 1218
+    },
+    {
+      "recipe_id": 112,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.003,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1219
+    },
+    {
+      "recipe_id": 112,
+      "ingredient_id": 639,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1220
+    },
+    {
+      "recipe_id": 112,
+      "ingredient_id": 727,
+      "quantity_per_person": 0.003,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1221
+    },
+    {
+      "recipe_id": 112,
+      "ingredient_id": 638,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "hacken",
+      "id": 1222
+    },
+    {
+      "recipe_id": 112,
+      "ingredient_id": 503,
+      "quantity_per_person": 0.08,
+      "unit": "kg",
+      "preparation": "würfeln",
+      "id": 1223
+    },
+    {
+      "recipe_id": 112,
+      "ingredient_id": 728,
+      "quantity_per_person": 0.04,
+      "unit": "kg",
+      "preparation": "fein Würfeln",
+      "id": 1224
+    },
+    {
+      "recipe_id": 95,
+      "ingredient_id": 575,
+      "quantity_per_person": 0.25,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1255
+    },
+    {
+      "recipe_id": 116,
+      "ingredient_id": 678,
+      "quantity_per_person": 0.05,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1264
+    },
+    {
+      "recipe_id": 116,
+      "ingredient_id": 632,
+      "quantity_per_person": 0.06,
+      "unit": "kg",
+      "preparation": "würfeln 2x2",
+      "id": 1265
+    },
+    {
+      "recipe_id": 116,
+      "ingredient_id": 728,
+      "quantity_per_person": 0.09,
+      "unit": "kg",
+      "preparation": "würfeln 2x2",
+      "id": 1266
+    },
+    {
+      "recipe_id": 116,
+      "ingredient_id": 729,
+      "quantity_per_person": 0.09,
+      "unit": "kg",
+      "preparation": "würfeln 2x2",
+      "id": 1267
+    },
+    {
+      "recipe_id": 116,
+      "ingredient_id": 745,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1268
+    },
+    {
+      "recipe_id": 116,
+      "ingredient_id": 746,
+      "quantity_per_person": 0.03,
+      "unit": "L",
+      "preparation": "",
+      "id": 1269
+    },
+    {
+      "recipe_id": 116,
+      "ingredient_id": 555,
+      "quantity_per_person": 0.12,
+      "unit": "L",
+      "preparation": "",
+      "id": 1270
+    },
+    {
+      "recipe_id": 116,
+      "ingredient_id": 591,
+      "quantity_per_person": 0.0005,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1271
+    },
+    {
+      "recipe_id": 116,
+      "ingredient_id": 643,
+      "quantity_per_person": 0.0001,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1272
+    },
+    {
+      "recipe_id": 116,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1273
+    },
+    {
+      "recipe_id": 116,
+      "ingredient_id": 601,
+      "quantity_per_person": 0.00015,
+      "unit": "kg",
+      "preparation": "",
+      "id": 1274
+    },
+    {
+      "recipe_id": 121,
+      "ingredient_id": 691,
+      "quantity_per_person": 0.3,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1288
+    },
+    {
+      "recipe_id": 121,
+      "ingredient_id": 650,
+      "quantity_per_person": 0.01,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 1289
+    },
+    {
+      "recipe_id": 121,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.003,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1290
+    },
+    {
+      "recipe_id": 105,
+      "ingredient_id": 516,
+      "quantity_per_person": 0.08,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1291
+    },
+    {
+      "recipe_id": 105,
+      "ingredient_id": 712,
+      "quantity_per_person": 0.16,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1292
+    },
+    {
+      "recipe_id": 110,
+      "ingredient_id": 718,
+      "quantity_per_person": 0.06,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1293
+    },
+    {
+      "recipe_id": 110,
+      "ingredient_id": 712,
+      "quantity_per_person": 0.18,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 1294
+    },
+    {
+      "recipe_id": 108,
+      "ingredient_id": 636,
+      "quantity_per_person": 0.08,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1295
+    },
+    {
+      "recipe_id": 108,
+      "ingredient_id": 712,
+      "quantity_per_person": 0.16,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 1296
+    },
+    {
+      "recipe_id": 107,
+      "ingredient_id": 594,
+      "quantity_per_person": 0.08,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1297
+    },
+    {
+      "recipe_id": 107,
+      "ingredient_id": 712,
+      "quantity_per_person": 0.16,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1298
+    },
+    {
+      "recipe_id": 106,
+      "ingredient_id": 570,
+      "quantity_per_person": 0.08,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1299
+    },
+    {
+      "recipe_id": 106,
+      "ingredient_id": 712,
+      "quantity_per_person": 0.16,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 1300
+    },
+    {
+      "recipe_id": 122,
+      "ingredient_id": 574,
+      "quantity_per_person": 0.25,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1301
+    },
+    {
+      "recipe_id": 122,
+      "ingredient_id": 712,
+      "quantity_per_person": 0.4,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 1302
+    },
+    {
+      "recipe_id": 122,
+      "ingredient_id": 569,
+      "quantity_per_person": 0.004,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1303
+    },
+    {
+      "recipe_id": 122,
+      "ingredient_id": 650,
+      "quantity_per_person": 0.005,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 1304
+    },
+    {
+      "recipe_id": 122,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.004,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1305
+    },
+    {
+      "recipe_id": 120,
+      "ingredient_id": 575,
+      "quantity_per_person": 0.3,
+      "unit": "kg",
+      "preparation": "würfeln 1x1",
+      "optional": false,
+      "id": 1306
+    },
+    {
+      "recipe_id": 120,
+      "ingredient_id": 574,
+      "quantity_per_person": 0.12,
+      "unit": "kg",
+      "preparation": "würfeln 1x1",
+      "optional": false,
+      "id": 1307
+    },
+    {
+      "recipe_id": 120,
+      "ingredient_id": 726,
+      "quantity_per_person": 0.12,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1308
+    },
+    {
+      "recipe_id": 120,
+      "ingredient_id": 650,
+      "quantity_per_person": 0.015,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 1309
+    },
+    {
+      "recipe_id": 120,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.004,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1310
+    },
+    {
+      "recipe_id": 119,
+      "ingredient_id": 570,
+      "quantity_per_person": 0.08,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1311
+    },
+    {
+      "recipe_id": 119,
+      "ingredient_id": 574,
+      "quantity_per_person": 0.12,
+      "unit": "kg",
+      "preparation": "würfeln 1x1",
+      "optional": false,
+      "id": 1312
+    },
+    {
+      "recipe_id": 119,
+      "ingredient_id": 726,
+      "quantity_per_person": 0.12,
+      "unit": "kg",
+      "preparation": "würfeln 1x1",
+      "optional": false,
+      "id": 1313
+    },
+    {
+      "recipe_id": 119,
+      "ingredient_id": 650,
+      "quantity_per_person": 0.01,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 1314
+    },
+    {
+      "recipe_id": 119,
+      "ingredient_id": 712,
+      "quantity_per_person": 0.25,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 1315
+    },
+    {
+      "recipe_id": 119,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.003,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1316
+    },
+    {
+      "recipe_id": 119,
+      "ingredient_id": 549,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "optional": true,
+      "id": 1317
+    },
+    {
+      "recipe_id": 119,
+      "ingredient_id": 593,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "optional": true,
+      "id": 1318
+    },
+    {
+      "recipe_id": 102,
+      "ingredient_id": 735,
+      "quantity_per_person": 0.125,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1319
+    },
+    {
+      "recipe_id": 102,
+      "ingredient_id": 679,
+      "quantity_per_person": 0.03,
+      "unit": "kg",
+      "preparation": "in heißem Wasser eingeweicht",
+      "optional": false,
+      "id": 1320
+    },
+    {
+      "recipe_id": 102,
+      "ingredient_id": 703,
+      "quantity_per_person": 0.12,
+      "unit": "l",
+      "preparation": "",
+      "optional": false,
+      "id": 1321
+    },
+    {
+      "recipe_id": 102,
+      "ingredient_id": 706,
+      "quantity_per_person": 0.01,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1322
+    },
+    {
+      "recipe_id": 102,
+      "ingredient_id": 574,
+      "quantity_per_person": 0.03,
+      "unit": "kg",
+      "preparation": "fein gewürfelt",
+      "optional": false,
+      "id": 1323
+    },
+    {
+      "recipe_id": 102,
+      "ingredient_id": 583,
+      "quantity_per_person": 0.003,
+      "unit": "kg",
+      "preparation": "fein gehackt",
+      "optional": false,
+      "id": 1324
+    },
+    {
+      "recipe_id": 102,
+      "ingredient_id": 625,
+      "quantity_per_person": 0.01,
+      "unit": "l",
+      "preparation": "",
+      "optional": false,
+      "id": 1325
+    },
+    {
+      "recipe_id": 102,
+      "ingredient_id": 736,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1326
+    },
+    {
+      "recipe_id": 102,
+      "ingredient_id": 515,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1327
+    },
+    {
+      "recipe_id": 102,
+      "ingredient_id": 727,
+      "quantity_per_person": 0.002,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1328
+    },
+    {
+      "recipe_id": 102,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.003,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1329
+    },
+    {
+      "recipe_id": 102,
+      "ingredient_id": 639,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1330
+    },
+    {
+      "recipe_id": 123,
+      "ingredient_id": 575,
+      "quantity_per_person": 0.3,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1331
+    },
+    {
+      "recipe_id": 123,
+      "ingredient_id": 712,
+      "quantity_per_person": 0.4,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 1332
+    },
+    {
+      "recipe_id": 123,
+      "ingredient_id": 650,
+      "quantity_per_person": 0.005,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 1333
+    },
+    {
+      "recipe_id": 123,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.004,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1334
+    },
+    {
+      "recipe_id": 124,
+      "ingredient_id": 747,
+      "quantity_per_person": 0.06,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1335
+    },
+    {
+      "recipe_id": 124,
+      "ingredient_id": 712,
+      "quantity_per_person": 0.15,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 1336
+    },
+    {
+      "recipe_id": 124,
+      "ingredient_id": 513,
+      "quantity_per_person": 0.1,
+      "unit": "kg",
+      "preparation": "rondelle",
+      "optional": false,
+      "id": 1337
+    },
+    {
+      "recipe_id": 125,
+      "ingredient_id": 663,
+      "quantity_per_person": 0.06,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1338
+    },
+    {
+      "recipe_id": 125,
+      "ingredient_id": 712,
+      "quantity_per_person": 0.3,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 1339
+    },
+    {
+      "recipe_id": 125,
+      "ingredient_id": 513,
+      "quantity_per_person": 0.12,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1340
+    },
+    {
+      "recipe_id": 113,
+      "ingredient_id": 508,
+      "quantity_per_person": 0.125,
+      "unit": "kg",
+      "preparation": "Scheiben",
+      "optional": false,
+      "id": 1411
+    },
+    {
+      "recipe_id": 113,
+      "ingredient_id": 575,
+      "quantity_per_person": 0.125,
+      "unit": "kg",
+      "preparation": "grob würfeln",
+      "optional": false,
+      "id": 1412
+    },
+    {
+      "recipe_id": 113,
+      "ingredient_id": 574,
+      "quantity_per_person": 0.125,
+      "unit": "kg",
+      "preparation": "grob würfeln",
+      "optional": false,
+      "id": 1413
+    },
+    {
+      "recipe_id": 113,
+      "ingredient_id": 739,
+      "quantity_per_person": 0.15,
+      "unit": "kg",
+      "preparation": "halbiert",
+      "optional": false,
+      "id": 1414
+    },
+    {
+      "recipe_id": 113,
+      "ingredient_id": 717,
+      "quantity_per_person": 0.025,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1415
+    },
+    {
+      "recipe_id": 113,
+      "ingredient_id": 681,
+      "quantity_per_person": 0.07,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 1416
+    },
+    {
+      "recipe_id": 113,
+      "ingredient_id": 740,
+      "quantity_per_person": 0.05,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1417
+    },
+    {
+      "recipe_id": 113,
+      "ingredient_id": 566,
+      "quantity_per_person": 0.01,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1418
+    },
+    {
+      "recipe_id": 113,
+      "ingredient_id": 731,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1419
+    },
+    {
+      "recipe_id": 113,
+      "ingredient_id": 639,
+      "quantity_per_person": 0.002,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1420
+    },
+    {
+      "recipe_id": 113,
+      "ingredient_id": 650,
+      "quantity_per_person": 0.015,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 1421
+    },
+    {
+      "recipe_id": 113,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1422
+    },
+    {
+      "recipe_id": 113,
+      "ingredient_id": 558,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "Kerne",
+      "optional": true,
+      "id": 1423
+    },
+    {
+      "recipe_id": 113,
+      "ingredient_id": 741,
+      "quantity_per_person": 0.01,
+      "unit": "kg",
+      "preparation": "",
+      "optional": true,
+      "id": 1424
+    },
+    {
+      "recipe_id": 113,
+      "ingredient_id": 605,
+      "quantity_per_person": 0.002,
+      "unit": "kg",
+      "preparation": "",
+      "optional": true,
+      "id": 1425
+    },
+    {
+      "recipe_id": 113,
+      "ingredient_id": 736,
+      "quantity_per_person": 0.002,
+      "unit": "kg",
+      "preparation": "",
+      "optional": true,
+      "id": 1426
+    },
+    {
+      "recipe_id": 126,
+      "ingredient_id": 749,
+      "quantity_per_person": 0.0625,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1447
+    },
+    {
+      "recipe_id": 126,
+      "ingredient_id": 748,
+      "quantity_per_person": 0.05,
+      "unit": "kg",
+      "preparation": "fein Würfeln",
+      "optional": false,
+      "id": 1448
+    },
+    {
+      "recipe_id": 126,
+      "ingredient_id": 575,
+      "quantity_per_person": 0.0875,
+      "unit": "kg",
+      "preparation": "würfeln 1x1",
+      "optional": false,
+      "id": 1449
+    },
+    {
+      "recipe_id": 126,
+      "ingredient_id": 728,
+      "quantity_per_person": 0.05,
+      "unit": "kg",
+      "preparation": "fein Würfeln",
+      "optional": false,
+      "id": 1450
+    },
+    {
+      "recipe_id": 126,
+      "ingredient_id": 574,
+      "quantity_per_person": 0.05,
+      "unit": "kg",
+      "preparation": "fein Würfeln",
+      "optional": false,
+      "id": 1451
+    },
+    {
+      "recipe_id": 126,
+      "ingredient_id": 706,
+      "quantity_per_person": 0.0125,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1452
+    },
+    {
+      "recipe_id": 126,
+      "ingredient_id": 556,
+      "quantity_per_person": 0.0075,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1453
+    },
+    {
+      "recipe_id": 126,
+      "ingredient_id": 504,
+      "quantity_per_person": 0.0075,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1454
+    },
+    {
+      "recipe_id": 126,
+      "ingredient_id": 640,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1455
+    },
+    {
+      "recipe_id": 126,
+      "ingredient_id": 633,
+      "quantity_per_person": 0.0005,
+      "unit": "kg",
+      "preparation": "",
+      "optional": true,
+      "id": 1456
+    },
+    {
+      "recipe_id": 118,
+      "ingredient_id": 744,
+      "quantity_per_person": 0.15,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1488
+    },
+    {
+      "recipe_id": 118,
+      "ingredient_id": 743,
+      "quantity_per_person": 0.03,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1489
+    },
+    {
+      "recipe_id": 118,
+      "ingredient_id": 681,
+      "quantity_per_person": 0.12,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 1490
+    },
+    {
+      "recipe_id": 118,
+      "ingredient_id": 712,
+      "quantity_per_person": 0.06,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 1491
+    },
+    {
+      "recipe_id": 118,
+      "ingredient_id": 650,
+      "quantity_per_person": 0.05,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 1492
+    },
+    {
+      "recipe_id": 118,
+      "ingredient_id": 742,
+      "quantity_per_person": 0.0002,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1493
+    },
+    {
+      "recipe_id": 118,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.0027,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1494
+    },
+    {
+      "recipe_id": 118,
+      "ingredient_id": 526,
+      "quantity_per_person": 0.0001,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1495
+    },
+    {
+      "recipe_id": 118,
+      "ingredient_id": 550,
+      "quantity_per_person": 0.0002,
+      "unit": "kg",
+      "preparation": "",
+      "optional": true,
+      "id": 1496
+    },
+    {
+      "recipe_id": 118,
+      "ingredient_id": 620,
+      "quantity_per_person": 0.0001,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1497
+    }
+  ],
+  "assignments": [
+    {
+      "meal_slot_id": 27,
+      "recipe_id": 91,
+      "portion_override": 50,
+      "is_side": false,
+      "id": 35
+    },
+    {
+      "meal_slot_id": 27,
+      "recipe_id": 105,
+      "portion_override": 50,
+      "is_side": true,
+      "id": 36
+    },
+    {
+      "meal_slot_id": 28,
+      "recipe_id": 111,
+      "portion_override": 5,
+      "is_side": false,
+      "id": 37
+    },
+    {
+      "meal_slot_id": 28,
+      "recipe_id": 112,
+      "portion_override": 5,
+      "is_side": true,
+      "id": 38
+    },
+    {
+      "meal_slot_id": 28,
+      "recipe_id": 119,
+      "portion_override": 1,
+      "is_side": false,
+      "is_allergy": true,
+      "id": 44
+    },
+    {
+      "meal_slot_id": 20,
+      "recipe_id": 113,
+      "portion_override": 700,
+      "is_side": false,
+      "is_allergy": false,
+      "id": 48
+    },
+    {
+      "meal_slot_id": 21,
+      "recipe_id": 126,
+      "portion_override": 700,
+      "is_side": false,
+      "is_allergy": false,
+      "id": 49
+    },
+    {
+      "meal_slot_id": 21,
+      "recipe_id": 118,
+      "portion_override": 700,
+      "is_side": true,
+      "is_allergy": false,
+      "id": 50
+    }
+  ],
+  "preparation_methods": [
+    {
+      "name": "achtel",
+      "id": 1
+    },
+    {
+      "name": "hacken",
+      "id": 2
+    },
+    {
+      "name": "pressen",
+      "id": 3
+    },
+    {
+      "name": "fein Würfeln",
+      "id": 4
+    },
+    {
+      "name": "trocken",
+      "id": 7
+    },
+    {
+      "name": "kleingeschnitten",
+      "id": 8
+    },
+    {
+      "name": "julienne",
+      "id": 9
+    },
+    {
+      "name": "würfeln 1x1",
+      "id": 10
+    },
+    {
+      "name": "pürieren",
+      "id": 11
+    },
+    {
+      "name": "einweichen",
+      "id": 12
+    },
+    {
+      "name": "paste",
+      "id": 13
+    },
+    {
+      "name": "reiben",
+      "id": 14
+    },
+    {
+      "name": "würfeln 2x2",
+      "id": 15
+    },
+    {
+      "name": "würfeln",
+      "id": 16
+    },
+    {
+      "name": "brunoise",
+      "id": 17
+    },
+    {
+      "name": "batonnet",
+      "id": 18
+    },
+    {
+      "name": "chiffonade",
+      "id": 19
+    },
+    {
+      "name": "rondelle",
+      "id": 20
+    },
+    {
+      "name": "pasanne",
+      "id": 21
+    },
+    {
+      "name": "fein hacken",
+      "id": 22
+    },
+    {
+      "name": "abrieb",
+      "id": 23
+    },
+    {
+      "name": "gekocht",
+      "id": 24
+    },
+    {
+      "name": "in Wasser eingeweicht",
+      "id": 25
+    },
+    {
+      "name": "Scheiben",
+      "id": 26
+    },
+    {
+      "name": "Kerne",
+      "id": 27
+    },
+    {
+      "name": "grob würfeln",
+      "id": 28
+    },
+    {
+      "name": "halbiert",
+      "id": 29
+    }
+  ],
+  "meal_type_categories": [
+    {
+      "name": "Frühstück",
+      "sort_order": 1,
+      "id": 1
+    },
+    {
+      "name": "Mittagessen",
+      "sort_order": 3,
+      "id": 2
+    },
+    {
+      "name": "Abendessen",
+      "sort_order": 5,
+      "id": 3
+    },
+    {
+      "name": "Zwischenmahlzeit",
+      "sort_order": 7,
+      "id": 5
+    },
+    {
+      "name": "Nachspeise",
+      "sort_order": 8,
+      "id": 9
+    },
+    {
+      "name": "Beilage",
+      "sort_order": 9,
+      "id": 10
+    }
+  ],
+  "allergens": [
+    {
+      "name": "Glutenhaltiges Getreide",
+      "id": 1
+    },
+    {
+      "name": "Krebstiere",
+      "id": 2
+    },
+    {
+      "name": "Fisch",
+      "id": 4
+    },
+    {
+      "name": "Erdnüsse",
+      "id": 5
+    },
+    {
+      "name": "Soja",
+      "id": 6
+    },
+    {
+      "name": "Milch (Laktose)",
+      "id": 7
+    },
+    {
+      "name": "Schalenfrüchte (Nüsse)",
+      "id": 8
+    },
+    {
+      "name": "Sellerie",
+      "id": 9
+    },
+    {
+      "name": "Senf",
+      "id": 10
+    },
+    {
+      "name": "Sesamsamen",
+      "id": 11
+    },
+    {
+      "name": "Schwefeldioxid & Sulfite",
+      "id": 13
+    },
+    {
+      "name": "Lupinen",
+      "id": 14
+    },
+    {
+      "name": "Weichtiere",
+      "id": 15
+    },
+    {
+      "name": "Histermin",
+      "id": 16
+    },
+    {
+      "name": "Zusatzstoffe (Farbstoffe etc.)",
+      "id": 17
+    },
+    {
+      "name": "Fruktose",
+      "id": 18
+    },
+    {
+      "name": "Laktose",
+      "id": 19
+    },
+    {
+      "name": "Gluten",
+      "id": 20
+    },
+    {
+      "name": "Sorbit",
+      "id": 21
+    },
+    {
+      "name": "Salicylate",
+      "id": 22
+    },
+    {
+      "name": "FODMAPs",
+      "id": 23
+    },
+    {
+      "name": "Koffein",
+      "id": 24
+    },
+    {
+      "name": "Glutamat",
+      "id": 26
+    },
+    {
+      "name": "glutenfrei",
+      "id": 44
+    },
+    {
+      "name": "Eier",
+      "id": 64
+    },
+    {
+      "name": "Capsaicin",
+      "id": 65
+    },
+    {
+      "name": "Jod",
+      "id": 66
+    }
+  ],
+  "ingredient_allergens": [
+    {
+      "ingredient_id": 500,
+      "allergen_id": 18,
+      "id": 515
+    },
+    {
+      "ingredient_id": 503,
+      "allergen_id": 18,
+      "id": 519
+    },
+    {
+      "ingredient_id": 503,
+      "allergen_id": 23,
+      "id": 520
+    },
+    {
+      "ingredient_id": 504,
+      "allergen_id": 16,
+      "id": 521
+    },
+    {
+      "ingredient_id": 504,
+      "allergen_id": 13,
+      "id": 522
+    },
+    {
+      "ingredient_id": 505,
+      "allergen_id": 18,
+      "id": 523
+    },
+    {
+      "ingredient_id": 505,
+      "allergen_id": 16,
+      "id": 524
+    },
+    {
+      "ingredient_id": 505,
+      "allergen_id": 13,
+      "id": 525
+    },
+    {
+      "ingredient_id": 505,
+      "allergen_id": 21,
+      "id": 526
+    },
+    {
+      "ingredient_id": 507,
+      "allergen_id": 16,
+      "id": 527
+    },
+    {
+      "ingredient_id": 508,
+      "allergen_id": 16,
+      "id": 528
+    },
+    {
+      "ingredient_id": 509,
+      "allergen_id": 16,
+      "id": 529
+    },
+    {
+      "ingredient_id": 512,
+      "allergen_id": 16,
+      "id": 530
+    },
+    {
+      "ingredient_id": 512,
+      "allergen_id": 13,
+      "id": 531
+    },
+    {
+      "ingredient_id": 513,
+      "allergen_id": 18,
+      "id": 532
+    },
+    {
+      "ingredient_id": 513,
+      "allergen_id": 23,
+      "id": 533
+    },
+    {
+      "ingredient_id": 518,
+      "allergen_id": 18,
+      "id": 534
+    },
+    {
+      "ingredient_id": 518,
+      "allergen_id": 23,
+      "id": 535
+    },
+    {
+      "ingredient_id": 518,
+      "allergen_id": 21,
+      "id": 536
+    },
+    {
+      "ingredient_id": 519,
+      "allergen_id": 18,
+      "id": 537
+    },
+    {
+      "ingredient_id": 519,
+      "allergen_id": 23,
+      "id": 538
+    },
+    {
+      "ingredient_id": 519,
+      "allergen_id": 22,
+      "id": 539
+    },
+    {
+      "ingredient_id": 520,
+      "allergen_id": 23,
+      "id": 540
+    },
+    {
+      "ingredient_id": 521,
+      "allergen_id": 6,
+      "id": 541
+    },
+    {
+      "ingredient_id": 522,
+      "allergen_id": 16,
+      "id": 542
+    },
+    {
+      "ingredient_id": 524,
+      "allergen_id": 1,
+      "id": 543
+    },
+    {
+      "ingredient_id": 525,
+      "allergen_id": 8,
+      "id": 544
+    },
+    {
+      "ingredient_id": 526,
+      "allergen_id": 65,
+      "id": 545
+    },
+    {
+      "ingredient_id": 527,
+      "allergen_id": 16,
+      "id": 546
+    },
+    {
+      "ingredient_id": 528,
+      "allergen_id": 20,
+      "id": 547
+    },
+    {
+      "ingredient_id": 528,
+      "allergen_id": 1,
+      "id": 548
+    },
+    {
+      "ingredient_id": 530,
+      "allergen_id": 23,
+      "id": 549
+    },
+    {
+      "ingredient_id": 531,
+      "allergen_id": 65,
+      "id": 550
+    },
+    {
+      "ingredient_id": 532,
+      "allergen_id": 65,
+      "id": 551
+    },
+    {
+      "ingredient_id": 534,
+      "allergen_id": 65,
+      "id": 552
+    },
+    {
+      "ingredient_id": 535,
+      "allergen_id": 1,
+      "id": 553
+    },
+    {
+      "ingredient_id": 536,
+      "allergen_id": 22,
+      "id": 554
+    },
+    {
+      "ingredient_id": 536,
+      "allergen_id": 18,
+      "id": 555
+    },
+    {
+      "ingredient_id": 536,
+      "allergen_id": 13,
+      "id": 556
+    },
+    {
+      "ingredient_id": 539,
+      "allergen_id": 10,
+      "id": 557
+    },
+    {
+      "ingredient_id": 540,
+      "allergen_id": 10,
+      "id": 558
+    },
+    {
+      "ingredient_id": 541,
+      "allergen_id": 18,
+      "id": 559
+    },
+    {
+      "ingredient_id": 541,
+      "allergen_id": 23,
+      "id": 560
+    },
+    {
+      "ingredient_id": 541,
+      "allergen_id": 16,
+      "id": 561
+    },
+    {
+      "ingredient_id": 544,
+      "allergen_id": 16,
+      "id": 562
+    },
+    {
+      "ingredient_id": 544,
+      "allergen_id": 22,
+      "id": 563
+    },
+    {
+      "ingredient_id": 545,
+      "allergen_id": 5,
+      "id": 564
+    },
+    {
+      "ingredient_id": 545,
+      "allergen_id": 16,
+      "id": 565
+    },
+    {
+      "ingredient_id": 546,
+      "allergen_id": 16,
+      "id": 566
+    },
+    {
+      "ingredient_id": 546,
+      "allergen_id": 13,
+      "id": 567
+    },
+    {
+      "ingredient_id": 548,
+      "allergen_id": 23,
+      "id": 568
+    },
+    {
+      "ingredient_id": 551,
+      "allergen_id": 23,
+      "id": 569
+    },
+    {
+      "ingredient_id": 554,
+      "allergen_id": 9,
+      "id": 570
+    },
+    {
+      "ingredient_id": 554,
+      "allergen_id": 26,
+      "id": 571
+    },
+    {
+      "ingredient_id": 555,
+      "allergen_id": 9,
+      "id": 572
+    },
+    {
+      "ingredient_id": 555,
+      "allergen_id": 26,
+      "id": 573
+    },
+    {
+      "ingredient_id": 556,
+      "allergen_id": 9,
+      "id": 574
+    },
+    {
+      "ingredient_id": 556,
+      "allergen_id": 26,
+      "id": 575
+    },
+    {
+      "ingredient_id": 557,
+      "allergen_id": 16,
+      "id": 576
+    },
+    {
+      "ingredient_id": 558,
+      "allergen_id": 16,
+      "id": 577
+    },
+    {
+      "ingredient_id": 559,
+      "allergen_id": 23,
+      "id": 578
+    },
+    {
+      "ingredient_id": 561,
+      "allergen_id": 1,
+      "id": 579
+    },
+    {
+      "ingredient_id": 562,
+      "allergen_id": 1,
+      "id": 580
+    },
+    {
+      "ingredient_id": 563,
+      "allergen_id": 1,
+      "id": 581
+    },
+    {
+      "ingredient_id": 564,
+      "allergen_id": 1,
+      "id": 582
+    },
+    {
+      "ingredient_id": 565,
+      "allergen_id": 8,
+      "id": 583
+    },
+    {
+      "ingredient_id": 567,
+      "allergen_id": 16,
+      "id": 584
+    },
+    {
+      "ingredient_id": 567,
+      "allergen_id": 22,
+      "id": 585
+    },
+    {
+      "ingredient_id": 569,
+      "allergen_id": 16,
+      "id": 586
+    },
+    {
+      "ingredient_id": 571,
+      "allergen_id": 16,
+      "id": 587
+    },
+    {
+      "ingredient_id": 571,
+      "allergen_id": 24,
+      "id": 588
+    },
+    {
+      "ingredient_id": 572,
+      "allergen_id": 16,
+      "id": 589
+    },
+    {
+      "ingredient_id": 572,
+      "allergen_id": 22,
+      "id": 590
+    },
+    {
+      "ingredient_id": 576,
+      "allergen_id": 16,
+      "id": 591
+    },
+    {
+      "ingredient_id": 576,
+      "allergen_id": 18,
+      "id": 592
+    },
+    {
+      "ingredient_id": 576,
+      "allergen_id": 9,
+      "id": 593
+    },
+    {
+      "ingredient_id": 576,
+      "allergen_id": 17,
+      "id": 594
+    },
+    {
+      "ingredient_id": 581,
+      "allergen_id": 16,
+      "id": 595
+    },
+    {
+      "ingredient_id": 581,
+      "allergen_id": 22,
+      "id": 596
+    },
+    {
+      "ingredient_id": 581,
+      "allergen_id": 21,
+      "id": 597
+    },
+    {
+      "ingredient_id": 582,
+      "allergen_id": 16,
+      "id": 598
+    },
+    {
+      "ingredient_id": 583,
+      "allergen_id": 23,
+      "id": 599
+    },
+    {
+      "ingredient_id": 583,
+      "allergen_id": 16,
+      "id": 600
+    },
+    {
+      "ingredient_id": 585,
+      "allergen_id": 18,
+      "id": 601
+    },
+    {
+      "ingredient_id": 595,
+      "allergen_id": 23,
+      "id": 602
+    },
+    {
+      "ingredient_id": 596,
+      "allergen_id": 23,
+      "id": 603
+    },
+    {
+      "ingredient_id": 598,
+      "allergen_id": 16,
+      "id": 604
+    },
+    {
+      "ingredient_id": 598,
+      "allergen_id": 22,
+      "id": 605
+    },
+    {
+      "ingredient_id": 599,
+      "allergen_id": 16,
+      "id": 606
+    },
+    {
+      "ingredient_id": 602,
+      "allergen_id": 18,
+      "id": 607
+    },
+    {
+      "ingredient_id": 603,
+      "allergen_id": 18,
+      "id": 608
+    },
+    {
+      "ingredient_id": 606,
+      "allergen_id": 8,
+      "id": 609
+    },
+    {
+      "ingredient_id": 607,
+      "allergen_id": 8,
+      "id": 610
+    },
+    {
+      "ingredient_id": 608,
+      "allergen_id": 8,
+      "id": 611
+    },
+    {
+      "ingredient_id": 609,
+      "allergen_id": 8,
+      "id": 612
+    },
+    {
+      "ingredient_id": 610,
+      "allergen_id": 16,
+      "id": 613
+    },
+    {
+      "ingredient_id": 610,
+      "allergen_id": 22,
+      "id": 614
+    },
+    {
+      "ingredient_id": 611,
+      "allergen_id": 16,
+      "id": 615
+    },
+    {
+      "ingredient_id": 611,
+      "allergen_id": 18,
+      "id": 616
+    },
+    {
+      "ingredient_id": 614,
+      "allergen_id": 18,
+      "id": 617
+    },
+    {
+      "ingredient_id": 614,
+      "allergen_id": 16,
+      "id": 618
+    },
+    {
+      "ingredient_id": 614,
+      "allergen_id": 17,
+      "id": 619
+    },
+    {
+      "ingredient_id": 616,
+      "allergen_id": 22,
+      "id": 620
+    },
+    {
+      "ingredient_id": 617,
+      "allergen_id": 6,
+      "id": 621
+    },
+    {
+      "ingredient_id": 617,
+      "allergen_id": 1,
+      "id": 622
+    },
+    {
+      "ingredient_id": 617,
+      "allergen_id": 16,
+      "id": 623
+    },
+    {
+      "ingredient_id": 618,
+      "allergen_id": 6,
+      "id": 624
+    },
+    {
+      "ingredient_id": 618,
+      "allergen_id": 16,
+      "id": 625
+    },
+    {
+      "ingredient_id": 622,
+      "allergen_id": 22,
+      "id": 626
+    },
+    {
+      "ingredient_id": 623,
+      "allergen_id": 66,
+      "id": 627
+    },
+    {
+      "ingredient_id": 624,
+      "allergen_id": 1,
+      "id": 628
+    },
+    {
+      "ingredient_id": 625,
+      "allergen_id": 16,
+      "id": 629
+    },
+    {
+      "ingredient_id": 626,
+      "allergen_id": 16,
+      "id": 630
+    },
+    {
+      "ingredient_id": 627,
+      "allergen_id": 16,
+      "id": 631
+    },
+    {
+      "ingredient_id": 627,
+      "allergen_id": 22,
+      "id": 632
+    },
+    {
+      "ingredient_id": 632,
+      "allergen_id": 16,
+      "id": 633
+    },
+    {
+      "ingredient_id": 635,
+      "allergen_id": 65,
+      "id": 634
+    },
+    {
+      "ingredient_id": 637,
+      "allergen_id": 18,
+      "id": 635
+    },
+    {
+      "ingredient_id": 637,
+      "allergen_id": 23,
+      "id": 636
+    },
+    {
+      "ingredient_id": 639,
+      "allergen_id": 16,
+      "id": 637
+    },
+    {
+      "ingredient_id": 640,
+      "allergen_id": 16,
+      "id": 638
+    },
+    {
+      "ingredient_id": 641,
+      "allergen_id": 16,
+      "id": 639
+    },
+    {
+      "ingredient_id": 642,
+      "allergen_id": 16,
+      "id": 640
+    },
+    {
+      "ingredient_id": 642,
+      "allergen_id": 22,
+      "id": 641
+    },
+    {
+      "ingredient_id": 642,
+      "allergen_id": 21,
+      "id": 642
+    },
+    {
+      "ingredient_id": 644,
+      "allergen_id": 8,
+      "id": 643
+    },
+    {
+      "ingredient_id": 646,
+      "allergen_id": 8,
+      "id": 644
+    },
+    {
+      "ingredient_id": 646,
+      "allergen_id": 23,
+      "id": 645
+    },
+    {
+      "ingredient_id": 648,
+      "allergen_id": 16,
+      "id": 646
+    },
+    {
+      "ingredient_id": 655,
+      "allergen_id": 18,
+      "id": 647
+    },
+    {
+      "ingredient_id": 655,
+      "allergen_id": 16,
+      "id": 648
+    },
+    {
+      "ingredient_id": 655,
+      "allergen_id": 13,
+      "id": 649
+    },
+    {
+      "ingredient_id": 656,
+      "allergen_id": 22,
+      "id": 650
+    },
+    {
+      "ingredient_id": 659,
+      "allergen_id": 16,
+      "id": 651
+    },
+    {
+      "ingredient_id": 660,
+      "allergen_id": 23,
+      "id": 652
+    },
+    {
+      "ingredient_id": 661,
+      "allergen_id": 16,
+      "id": 653
+    },
+    {
+      "ingredient_id": 661,
+      "allergen_id": 13,
+      "id": 654
+    },
+    {
+      "ingredient_id": 662,
+      "allergen_id": 22,
+      "id": 655
+    },
+    {
+      "ingredient_id": 666,
+      "allergen_id": 23,
+      "id": 656
+    },
+    {
+      "ingredient_id": 666,
+      "allergen_id": 16,
+      "id": 657
+    },
+    {
+      "ingredient_id": 667,
+      "allergen_id": 16,
+      "id": 658
+    },
+    {
+      "ingredient_id": 667,
+      "allergen_id": 22,
+      "id": 659
+    },
+    {
+      "ingredient_id": 670,
+      "allergen_id": 20,
+      "id": 660
+    },
+    {
+      "ingredient_id": 670,
+      "allergen_id": 1,
+      "id": 661
+    },
+    {
+      "ingredient_id": 671,
+      "allergen_id": 9,
+      "id": 662
+    },
+    {
+      "ingredient_id": 671,
+      "allergen_id": 16,
+      "id": 663
+    },
+    {
+      "ingredient_id": 672,
+      "allergen_id": 10,
+      "id": 664
+    },
+    {
+      "ingredient_id": 673,
+      "allergen_id": 10,
+      "id": 665
+    },
+    {
+      "ingredient_id": 674,
+      "allergen_id": 11,
+      "id": 666
+    },
+    {
+      "ingredient_id": 675,
+      "allergen_id": 11,
+      "id": 667
+    },
+    {
+      "ingredient_id": 676,
+      "allergen_id": 11,
+      "id": 668
+    },
+    {
+      "ingredient_id": 677,
+      "allergen_id": 1,
+      "id": 669
+    },
+    {
+      "ingredient_id": 678,
+      "allergen_id": 6,
+      "id": 670
+    },
+    {
+      "ingredient_id": 679,
+      "allergen_id": 6,
+      "id": 671
+    },
+    {
+      "ingredient_id": 680,
+      "allergen_id": 6,
+      "id": 672
+    },
+    {
+      "ingredient_id": 682,
+      "allergen_id": 6,
+      "id": 674
+    },
+    {
+      "ingredient_id": 682,
+      "allergen_id": 1,
+      "id": 675
+    },
+    {
+      "ingredient_id": 682,
+      "allergen_id": 16,
+      "id": 676
+    },
+    {
+      "ingredient_id": 684,
+      "allergen_id": 23,
+      "id": 677
+    },
+    {
+      "ingredient_id": 685,
+      "allergen_id": 23,
+      "id": 678
+    },
+    {
+      "ingredient_id": 686,
+      "allergen_id": 16,
+      "id": 679
+    },
+    {
+      "ingredient_id": 687,
+      "allergen_id": 65,
+      "id": 680
+    },
+    {
+      "ingredient_id": 687,
+      "allergen_id": 16,
+      "id": 681
+    },
+    {
+      "ingredient_id": 691,
+      "allergen_id": 18,
+      "id": 682
+    },
+    {
+      "ingredient_id": 693,
+      "allergen_id": 16,
+      "id": 683
+    },
+    {
+      "ingredient_id": 694,
+      "allergen_id": 11,
+      "id": 684
+    },
+    {
+      "ingredient_id": 695,
+      "allergen_id": 6,
+      "id": 685
+    },
+    {
+      "ingredient_id": 695,
+      "allergen_id": 16,
+      "id": 686
+    },
+    {
+      "ingredient_id": 696,
+      "allergen_id": 16,
+      "id": 687
+    },
+    {
+      "ingredient_id": 697,
+      "allergen_id": 24,
+      "id": 688
+    },
+    {
+      "ingredient_id": 699,
+      "allergen_id": 6,
+      "id": 689
+    },
+    {
+      "ingredient_id": 699,
+      "allergen_id": 16,
+      "id": 690
+    },
+    {
+      "ingredient_id": 701,
+      "allergen_id": 6,
+      "id": 691
+    },
+    {
+      "ingredient_id": 702,
+      "allergen_id": 16,
+      "id": 692
+    },
+    {
+      "ingredient_id": 702,
+      "allergen_id": 22,
+      "id": 693
+    },
+    {
+      "ingredient_id": 703,
+      "allergen_id": 16,
+      "id": 694
+    },
+    {
+      "ingredient_id": 703,
+      "allergen_id": 22,
+      "id": 695
+    },
+    {
+      "ingredient_id": 704,
+      "allergen_id": 16,
+      "id": 696
+    },
+    {
+      "ingredient_id": 704,
+      "allergen_id": 22,
+      "id": 697
+    },
+    {
+      "ingredient_id": 704,
+      "allergen_id": 13,
+      "id": 698
+    },
+    {
+      "ingredient_id": 705,
+      "allergen_id": 16,
+      "id": 699
+    },
+    {
+      "ingredient_id": 705,
+      "allergen_id": 22,
+      "id": 700
+    },
+    {
+      "ingredient_id": 706,
+      "allergen_id": 16,
+      "id": 701
+    },
+    {
+      "ingredient_id": 706,
+      "allergen_id": 22,
+      "id": 702
+    },
+    {
+      "ingredient_id": 707,
+      "allergen_id": 23,
+      "id": 703
+    },
+    {
+      "ingredient_id": 709,
+      "allergen_id": 1,
+      "id": 704
+    },
+    {
+      "ingredient_id": 711,
+      "allergen_id": 8,
+      "id": 705
+    },
+    {
+      "ingredient_id": 711,
+      "allergen_id": 16,
+      "id": 706
+    },
+    {
+      "ingredient_id": 714,
+      "allergen_id": 23,
+      "id": 707
+    },
+    {
+      "ingredient_id": 715,
+      "allergen_id": 16,
+      "id": 708
+    },
+    {
+      "ingredient_id": 715,
+      "allergen_id": 13,
+      "id": 709
+    },
+    {
+      "ingredient_id": 716,
+      "allergen_id": 16,
+      "id": 710
+    },
+    {
+      "ingredient_id": 716,
+      "allergen_id": 13,
+      "id": 711
+    },
+    {
+      "ingredient_id": 717,
+      "allergen_id": 20,
+      "id": 712
+    },
+    {
+      "ingredient_id": 717,
+      "allergen_id": 1,
+      "id": 713
+    },
+    {
+      "ingredient_id": 719,
+      "allergen_id": 4,
+      "id": 714
+    },
+    {
+      "ingredient_id": 719,
+      "allergen_id": 16,
+      "id": 715
+    },
+    {
+      "ingredient_id": 719,
+      "allergen_id": 13,
+      "id": 716
+    },
+    {
+      "ingredient_id": 719,
+      "allergen_id": 26,
+      "id": 717
+    },
+    {
+      "ingredient_id": 720,
+      "allergen_id": 1,
+      "id": 718
+    },
+    {
+      "ingredient_id": 721,
+      "allergen_id": 1,
+      "id": 719
+    },
+    {
+      "ingredient_id": 722,
+      "allergen_id": 22,
+      "id": 720
+    },
+    {
+      "ingredient_id": 723,
+      "allergen_id": 16,
+      "id": 721
+    },
+    {
+      "ingredient_id": 723,
+      "allergen_id": 22,
+      "id": 722
+    },
+    {
+      "ingredient_id": 727,
+      "allergen_id": 18,
+      "id": 724
+    },
+    {
+      "ingredient_id": 728,
+      "allergen_id": 23,
+      "id": 725
+    },
+    {
+      "ingredient_id": 728,
+      "allergen_id": 16,
+      "id": 726
+    },
+    {
+      "ingredient_id": 729,
+      "allergen_id": 23,
+      "id": 727
+    },
+    {
+      "ingredient_id": 729,
+      "allergen_id": 16,
+      "id": 728
+    },
+    {
+      "ingredient_id": 730,
+      "allergen_id": 23,
+      "id": 729
+    },
+    {
+      "ingredient_id": 502,
+      "allergen_id": 16,
+      "id": 730
+    },
+    {
+      "ingredient_id": 502,
+      "allergen_id": 18,
+      "id": 731
+    },
+    {
+      "ingredient_id": 502,
+      "allergen_id": 23,
+      "id": 732
+    },
+    {
+      "ingredient_id": 725,
+      "allergen_id": 16,
+      "id": 733
+    },
+    {
+      "ingredient_id": 741,
+      "allergen_id": 6,
+      "id": 734
+    },
+    {
+      "ingredient_id": 741,
+      "allergen_id": 8,
+      "id": 735
+    },
+    {
+      "ingredient_id": 741,
+      "allergen_id": 20,
+      "id": 736
+    },
+    {
+      "ingredient_id": 499,
+      "allergen_id": 18,
+      "id": 737
+    },
+    {
+      "ingredient_id": 742,
+      "allergen_id": 13,
+      "id": 738
+    },
+    {
+      "ingredient_id": 743,
+      "allergen_id": 1,
+      "id": 739
+    },
+    {
+      "ingredient_id": 744,
+      "allergen_id": 1,
+      "id": 740
+    },
+    {
+      "ingredient_id": 746,
+      "allergen_id": 13,
+      "id": 741
+    },
+    {
+      "ingredient_id": 746,
+      "allergen_id": 16,
+      "id": 742
+    },
+    {
+      "ingredient_id": 746,
+      "allergen_id": 20,
+      "id": 743
+    },
+    {
+      "ingredient_id": 681,
+      "allergen_id": 6,
+      "id": 744
+    },
+    {
+      "ingredient_id": 748,
+      "allergen_id": 6,
+      "id": 745
+    }
+  ],
+  "recipe_allergens": [
+    {
+      "ingredient_id": 25,
+      "recipe_id": 25,
+      "allergen_id": 23,
+      "id": 1
+    },
+    {
+      "ingredient_id": 26,
+      "recipe_id": 26,
+      "allergen_id": 23,
+      "id": 2
+    },
+    {
+      "ingredient_id": 31,
+      "recipe_id": 31,
+      "allergen_id": 23,
+      "id": 3
+    },
+    {
+      "ingredient_id": 32,
+      "recipe_id": 32,
+      "allergen_id": 23,
+      "id": 4
+    },
+    {
+      "ingredient_id": 33,
+      "recipe_id": 33,
+      "allergen_id": 1,
+      "id": 5
+    },
+    {
+      "ingredient_id": 37,
+      "recipe_id": 37,
+      "allergen_id": 1,
+      "id": 6
+    },
+    {
+      "ingredient_id": 38,
+      "recipe_id": 38,
+      "allergen_id": 23,
+      "id": 7
+    },
+    {
+      "ingredient_id": 23,
+      "recipe_id": 23,
+      "allergen_id": 23,
+      "id": 10
+    },
+    {
+      "ingredient_id": 19,
+      "recipe_id": 19,
+      "allergen_id": 23,
+      "id": 11
+    },
+    {
+      "ingredient_id": 18,
+      "recipe_id": 18,
+      "allergen_id": 23,
+      "id": 12
+    },
+    {
+      "ingredient_id": 1,
+      "recipe_id": 1,
+      "allergen_id": 1,
+      "id": 13
+    },
+    {
+      "ingredient_id": 7,
+      "recipe_id": 7,
+      "allergen_id": 23,
+      "id": 14
+    },
+    {
+      "ingredient_id": 46,
+      "recipe_id": 46,
+      "allergen_id": 1,
+      "id": 15
+    },
+    {
+      "ingredient_id": 48,
+      "recipe_id": 48,
+      "allergen_id": 23,
+      "id": 16
+    },
+    {
+      "ingredient_id": 49,
+      "recipe_id": 49,
+      "allergen_id": 23,
+      "id": 17
+    },
+    {
+      "ingredient_id": 53,
+      "recipe_id": 53,
+      "allergen_id": 23,
+      "id": 18
+    },
+    {
+      "ingredient_id": 55,
+      "recipe_id": 55,
+      "allergen_id": 1,
+      "id": 19
+    },
+    {
+      "ingredient_id": 61,
+      "recipe_id": 61,
+      "allergen_id": 1,
+      "id": 20
+    },
+    {
+      "ingredient_id": 62,
+      "recipe_id": 62,
+      "allergen_id": 23,
+      "id": 21
+    },
+    {
+      "ingredient_id": 70,
+      "recipe_id": 70,
+      "allergen_id": 23,
+      "id": 22
+    },
+    {
+      "ingredient_id": 71,
+      "recipe_id": 71,
+      "allergen_id": 23,
+      "id": 23
+    },
+    {
+      "ingredient_id": 76,
+      "recipe_id": 76,
+      "allergen_id": 23,
+      "id": 24
+    },
+    {
+      "ingredient_id": 77,
+      "recipe_id": 77,
+      "allergen_id": 23,
+      "id": 25
+    },
+    {
+      "ingredient_id": 78,
+      "recipe_id": 78,
+      "allergen_id": 1,
+      "id": 26
+    },
+    {
+      "ingredient_id": 82,
+      "recipe_id": 82,
+      "allergen_id": 1,
+      "id": 27
+    },
+    {
+      "ingredient_id": 83,
+      "recipe_id": 83,
+      "allergen_id": 23,
+      "id": 28
+    },
+    {
+      "ingredient_id": 91,
+      "recipe_id": 91,
+      "allergen_id": 23,
+      "id": 29
+    },
+    {
+      "ingredient_id": 92,
+      "recipe_id": 92,
+      "allergen_id": 23,
+      "id": 30
+    },
+    {
+      "ingredient_id": 97,
+      "recipe_id": 97,
+      "allergen_id": 23,
+      "id": 31
+    },
+    {
+      "ingredient_id": 98,
+      "recipe_id": 98,
+      "allergen_id": 23,
+      "id": 32
+    },
+    {
+      "ingredient_id": 99,
+      "recipe_id": 99,
+      "allergen_id": 1,
+      "id": 33
+    },
+    {
+      "ingredient_id": 103,
+      "recipe_id": 103,
+      "allergen_id": 1,
+      "id": 34
+    },
+    {
+      "ingredient_id": 104,
+      "recipe_id": 104,
+      "allergen_id": 23,
+      "id": 35
+    }
+  ]
+}

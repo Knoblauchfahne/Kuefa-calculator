@@ -2907,6 +2907,31 @@ async function renderDatabasePage(container){
   importCard.appendChild(statusDiv);
   body.appendChild(importCard);
 
+  // Standard backup from repo
+  const defaultCard=h('div',{class:'card',style:{marginBottom:'16px'}});
+  defaultCard.appendChild(h('div',{style:{fontWeight:'700',fontSize:'14px',marginBottom:'8px'}},'🌐  Standard-Datenbestand laden'));
+  defaultCard.appendChild(h('div',{style:{fontSize:'13px',color:'var(--text-muted)',marginBottom:'12px'}},'Lädt den mitgelieferten Basis-Datenbestand (Standard-Rezepte, Zutaten, Allergene etc.) direkt vom GitHub-Repo. Achtung: Alle aktuellen Daten werden dabei überschrieben!'));
+  const defaultStatus=h('div',{style:{marginTop:'8px',fontSize:'13px'}});
+  defaultCard.appendChild(h('button',{class:'btn btn-surface',onClick:async()=>{
+    if(!confirm('Alle aktuellen Daten werden durch den Standard-Datenbestand ersetzt. Fortfahren?')) return;
+    defaultStatus.style.color='var(--text-muted)';
+    defaultStatus.textContent='Lade standardbackup.json …';
+    try{
+      const resp=await fetch('standardbackup.json',{cache:'no-store'});
+      if(!resp.ok) throw new Error('Datei nicht gefunden (HTTP '+resp.status+')');
+      const text=await resp.text();
+      await importFullDatabase(text);
+      defaultStatus.style.color='var(--green-light)';
+      defaultStatus.textContent='✓ Standard-Daten geladen! Seite wird neu geladen …';
+      setTimeout(()=>location.reload(),1500);
+    }catch(e){
+      defaultStatus.style.color='var(--accent)';
+      defaultStatus.textContent='✕ Fehler: '+e.message;
+    }
+  }},'🌐  Standard-Daten laden'));
+  defaultCard.appendChild(defaultStatus);
+  body.appendChild(defaultCard);
+
   // Database info
   const infoCard=h('div',{class:'card',style:{marginBottom:'16px'}});
   infoCard.appendChild(h('div',{style:{fontWeight:'700',fontSize:'14px',marginBottom:'12px'}},'📊  Datenbank-Übersicht'));
