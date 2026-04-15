@@ -1,7 +1,7 @@
 {
   "_meta": {
     "version": 4,
-    "exported_at": "2026-04-15T09:12:27.802Z",
+    "exported_at": "2026-04-15T12:33:36.406Z",
     "app": "KF Portionsrechner"
   },
   "actions": [],
@@ -185,7 +185,7 @@
       "price": 5,
       "subcategory": "Reis",
       "verarbeitungshinweis": "2-fache Wassermenge, 10-12 min kochen, Waschen bis Wasser klar",
-      "lagerhinweis": "Trocken: kühl/dunkel 1-2 Jahre,  gekocht: Kühlschrank 3 Tage",
+      "lagerhinweis": "gekocht: Kühlschrank 3 Tage",
       "abschnitt": 0
     },
     {
@@ -661,7 +661,7 @@
     {
       "id": 564,
       "name": "Hafersahne",
-      "unit": "kg",
+      "unit": "L",
       "price": 4,
       "subcategory": "Pflanzendrink",
       "verarbeitungshinweis": "Gut schütteln",
@@ -2399,14 +2399,14 @@
       "id": 737
     },
     {
+      "id": 738,
       "name": "Weiswein",
-      "unit": "kg",
+      "unit": "L",
       "price": 0,
       "subcategory": "",
       "verarbeitungshinweis": "",
       "lagerhinweis": "",
-      "abschnitt": 0,
-      "id": 738
+      "abschnitt": 0
     },
     {
       "id": 739,
@@ -2517,6 +2517,36 @@
       "lagerhinweis": "",
       "abschnitt": 0,
       "id": 749
+    },
+    {
+      "id": 750,
+      "name": "Risottoreis",
+      "unit": "kg",
+      "price": 5,
+      "subcategory": "Reis",
+      "verarbeitungshinweis": "3-fache Wassermenge, ca. 20 min kochzeit",
+      "lagerhinweis": "gekocht: Kühlschrank 3 Tage",
+      "abschnitt": 0
+    },
+    {
+      "id": 751,
+      "name": "Cumin Samen",
+      "unit": "kg",
+      "price": 16,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "abschnitt": 0
+    },
+    {
+      "name": "Koriandergrün",
+      "unit": "kg",
+      "price": 23,
+      "subcategory": "Gewürze",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "abschnitt": 5,
+      "id": 752
     }
   ],
   "subcategories": [
@@ -3051,15 +3081,17 @@
       "id": 97
     },
     {
+      "id": 98,
       "name": "Linsen-Dal",
       "description": "Cremiges indisches Linsengericht mit Kokosmilch und Gewürzen. Sättigend, günstig und perfekt für große Gruppen.",
       "zubereitung_zeit": "20 min",
       "garzeit": "30 min",
-      "zubereitung": "1. Reis in Salzwasser kochen (ca. 15 min), beiseite stellen.\n2. Zwiebeln, Knoblauch und Ingwer in Olivenöl in einem großen Topf anschwitzen.\n3. Currypulver, Kurkuma und Kreuzkümmel dazugeben und kurz mitrösten.\n4. Rote Linsen und passierte Tomaten dazugeben, mit Wasser auffüllen.\n5. Bei mittlerer Hitze ca. 20 min köcheln lassen, bis die Linsen zerfallen sind.\n6. Kokosmilch einrühren, weitere 5 min köcheln lassen.\n7. Mit Salz abschmecken und mit Reis servieren.",
+      "zubereitung": "",
       "hinweis": "Rote Linsen müssen nicht eingeweicht werden. Bei großen Mengen etwas mehr Wasser verwenden, da die Linsen viel Flüssigkeit aufnehmen. Gut warmzuhalten im Topf.",
       "allergen_hinweis": "",
+      "is_allergy_friendly": false,
       "created_at": "2026-04-09T15:18:38.342Z",
-      "id": 98
+      "updated_at": "2026-04-15T12:25:02.103Z"
     },
     {
       "name": "Nudeln mit Ketchup",
@@ -3206,6 +3238,7 @@
       "updated_at": "2026-04-13T21:43:18.490Z"
     },
     {
+      "id": 111,
       "name": "Zitronen Risotto",
       "description": "",
       "zubereitung_zeit": "",
@@ -3213,8 +3246,9 @@
       "zubereitung": "1. Gemüse schneiden und Zwiebeln in Öl glasig braten. Danach Knoblauch dazu geben.\n2. Reis anschwitzen und 1-2 Min. mitrösten und optional  mit Weiswein ablöschen.\n3. Nach und nach Brühe einrühren. Nach 20 min Zitronensaft dazu geben.\n4. Mit Salz, Pfeffer, Hefeflocken und Kräutern abschmecken.",
       "hinweis": "Nicht alle Brühe auf einmal, viel rühren",
       "allergen_hinweis": "",
+      "is_allergy_friendly": false,
       "created_at": "2026-04-09T15:36:31.767Z",
-      "id": 111
+      "updated_at": "2026-04-15T11:48:25.086Z"
     },
     {
       "name": "Rote Bete Salat Beilage",
@@ -3397,6 +3431,19 @@
       "is_allergy_friendly": false,
       "created_at": "2026-04-14T16:09:56.675Z",
       "updated_at": "2026-04-14T16:29:35.608Z"
+    },
+    {
+      "id": 127,
+      "name": "Risotto mit Blumenkohl",
+      "description": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "1. Zunächst den Blumenkohl in halbe Röschen verarbeiten, Knoblauch schälen und mit wenig Öl anbraten, bis dieser Farbe bekommt. Anschließend Konoblauch dazu geben mit ein wenig Wasser weich Dämpfen. Dann zu einer glatten Masse Pürieren und Hefeflocken einrühren.\n2. Dann Zwiebeln fein würfeln, und einen Topf mit Brühe zum Kochen bringen. Die Zwiebeln in einem großen Topf glasig anschwitzen. Risottoreis dazu geben und mit ein bischen Öl in im Topf mit erhitzen. Optional mit Weiswein ablöschen. Nach und nach unter rühren die Brühe aufgießen bis der Risottoreis gar ist.\n3. Blumenkohl masse unter das Risotto rühren, würzen und abschmecken.",
+      "hinweis": "",
+      "allergen_hinweis": "",
+      "is_allergy_friendly": false,
+      "created_at": "2026-04-15T11:43:02.787Z",
+      "updated_at": "2026-04-15T12:02:30.959Z"
     }
   ],
   "recipe_categories": [
@@ -3456,16 +3503,6 @@
       "id": 210
     },
     {
-      "recipe_id": 98,
-      "category_id": 2,
-      "id": 211
-    },
-    {
-      "recipe_id": 98,
-      "category_id": 3,
-      "id": 212
-    },
-    {
       "recipe_id": 99,
       "category_id": 2,
       "id": 213
@@ -3514,16 +3551,6 @@
       "recipe_id": 109,
       "category_id": 3,
       "id": 228
-    },
-    {
-      "recipe_id": 111,
-      "category_id": 2,
-      "id": 230
-    },
-    {
-      "recipe_id": 111,
-      "category_id": 3,
-      "id": 231
     },
     {
       "recipe_id": 112,
@@ -3669,6 +3696,36 @@
       "recipe_id": 118,
       "category_id": 10,
       "id": 278
+    },
+    {
+      "recipe_id": 111,
+      "category_id": 2,
+      "id": 281
+    },
+    {
+      "recipe_id": 111,
+      "category_id": 3,
+      "id": 282
+    },
+    {
+      "recipe_id": 127,
+      "category_id": 2,
+      "id": 289
+    },
+    {
+      "recipe_id": 127,
+      "category_id": 3,
+      "id": 290
+    },
+    {
+      "recipe_id": 98,
+      "category_id": 2,
+      "id": 295
+    },
+    {
+      "recipe_id": 98,
+      "category_id": 3,
+      "id": 296
     }
   ],
   "recipe_ingredients": [
@@ -4193,110 +4250,6 @@
       "id": 1117
     },
     {
-      "recipe_id": 98,
-      "ingredient_id": 658,
-      "quantity_per_person": 0.08,
-      "unit": "kg",
-      "preparation": "",
-      "id": 1118
-    },
-    {
-      "recipe_id": 98,
-      "ingredient_id": 586,
-      "quantity_per_person": 0.05,
-      "unit": "l",
-      "preparation": "",
-      "id": 1119
-    },
-    {
-      "recipe_id": 98,
-      "ingredient_id": 728,
-      "quantity_per_person": 0.04,
-      "unit": "kg",
-      "preparation": "würfeln 1x1",
-      "id": 1120
-    },
-    {
-      "recipe_id": 98,
-      "ingredient_id": 583,
-      "quantity_per_person": 0.003,
-      "unit": "kg",
-      "preparation": "fein gehackt",
-      "id": 1121
-    },
-    {
-      "recipe_id": 98,
-      "ingredient_id": 569,
-      "quantity_per_person": 0.003,
-      "unit": "kg",
-      "preparation": "gerieben",
-      "id": 1122
-    },
-    {
-      "recipe_id": 98,
-      "ingredient_id": 703,
-      "quantity_per_person": 0.08,
-      "unit": "l",
-      "preparation": "",
-      "id": 1123
-    },
-    {
-      "recipe_id": 98,
-      "ingredient_id": 540,
-      "quantity_per_person": 0.003,
-      "unit": "kg",
-      "preparation": "",
-      "id": 1124
-    },
-    {
-      "recipe_id": 98,
-      "ingredient_id": 593,
-      "quantity_per_person": 0.001,
-      "unit": "kg",
-      "preparation": "",
-      "id": 1125
-    },
-    {
-      "recipe_id": 98,
-      "ingredient_id": 590,
-      "quantity_per_person": 0.001,
-      "unit": "kg",
-      "preparation": "",
-      "id": 1126
-    },
-    {
-      "recipe_id": 98,
-      "ingredient_id": 665,
-      "quantity_per_person": 0.003,
-      "unit": "kg",
-      "preparation": "",
-      "id": 1127
-    },
-    {
-      "recipe_id": 98,
-      "ingredient_id": 625,
-      "quantity_per_person": 0.01,
-      "unit": "l",
-      "preparation": "",
-      "id": 1128
-    },
-    {
-      "recipe_id": 98,
-      "ingredient_id": 712,
-      "quantity_per_person": 0.15,
-      "unit": "l",
-      "preparation": "",
-      "id": 1129
-    },
-    {
-      "recipe_id": 98,
-      "ingredient_id": 734,
-      "quantity_per_person": 0.08,
-      "unit": "kg",
-      "preparation": "",
-      "id": 1130
-    },
-    {
       "recipe_id": 99,
       "ingredient_id": 624,
       "quantity_per_person": 0.15,
@@ -4705,102 +4658,6 @@
       "id": 1201
     },
     {
-      "recipe_id": 111,
-      "ingredient_id": 663,
-      "quantity_per_person": 0.08,
-      "unit": "kg",
-      "preparation": "",
-      "id": 1204
-    },
-    {
-      "recipe_id": 111,
-      "ingredient_id": 728,
-      "quantity_per_person": 0.08,
-      "unit": "kg",
-      "preparation": "fein Würfeln",
-      "id": 1205
-    },
-    {
-      "recipe_id": 111,
-      "ingredient_id": 583,
-      "quantity_per_person": 0.005,
-      "unit": "kg",
-      "preparation": "fein hacken",
-      "id": 1206
-    },
-    {
-      "recipe_id": 111,
-      "ingredient_id": 625,
-      "quantity_per_person": 0.015,
-      "unit": "L",
-      "preparation": "",
-      "id": 1207
-    },
-    {
-      "recipe_id": 111,
-      "ingredient_id": 555,
-      "quantity_per_person": 0.5,
-      "unit": "L",
-      "preparation": "",
-      "id": 1208
-    },
-    {
-      "recipe_id": 111,
-      "ingredient_id": 725,
-      "quantity_per_person": 0.02,
-      "unit": "kg",
-      "preparation": "",
-      "id": 1209
-    },
-    {
-      "recipe_id": 111,
-      "ingredient_id": 737,
-      "quantity_per_person": 0.002,
-      "unit": "kg",
-      "preparation": "abrieb",
-      "id": 1210
-    },
-    {
-      "recipe_id": 111,
-      "ingredient_id": 665,
-      "quantity_per_person": 0.005,
-      "unit": "kg",
-      "preparation": "",
-      "id": 1211
-    },
-    {
-      "recipe_id": 111,
-      "ingredient_id": 639,
-      "quantity_per_person": 0.001,
-      "unit": "kg",
-      "preparation": "",
-      "id": 1212
-    },
-    {
-      "recipe_id": 111,
-      "ingredient_id": 566,
-      "quantity_per_person": 0.01,
-      "unit": "kg",
-      "preparation": "",
-      "id": 1213
-    },
-    {
-      "recipe_id": 111,
-      "ingredient_id": 638,
-      "quantity_per_person": 0.005,
-      "unit": "kg",
-      "preparation": "",
-      "id": 1214
-    },
-    {
-      "recipe_id": 111,
-      "ingredient_id": 738,
-      "quantity_per_person": 0.05,
-      "unit": "kg",
-      "preparation": "",
-      "id": 1215
-    },
-    {
       "recipe_id": 112,
       "ingredient_id": 657,
       "quantity_per_person": 0.1,
@@ -4869,7 +4726,7 @@
       "ingredient_id": 728,
       "quantity_per_person": 0.04,
       "unit": "kg",
-      "preparation": "fein Würfeln",
+      "preparation": "fein würfeln",
       "id": 1224
     },
     {
@@ -5603,7 +5460,7 @@
       "ingredient_id": 748,
       "quantity_per_person": 0.05,
       "unit": "kg",
-      "preparation": "fein Würfeln",
+      "preparation": "fein würfeln",
       "optional": false,
       "id": 1448
     },
@@ -5621,7 +5478,7 @@
       "ingredient_id": 728,
       "quantity_per_person": 0.05,
       "unit": "kg",
-      "preparation": "fein Würfeln",
+      "preparation": "fein würfeln",
       "optional": false,
       "id": 1450
     },
@@ -5630,7 +5487,7 @@
       "ingredient_id": 574,
       "quantity_per_person": 0.05,
       "unit": "kg",
-      "preparation": "fein Würfeln",
+      "preparation": "fein würfeln",
       "optional": false,
       "id": 1451
     },
@@ -5768,6 +5625,393 @@
       "preparation": "",
       "optional": false,
       "id": 1497
+    },
+    {
+      "recipe_id": 111,
+      "ingredient_id": 750,
+      "quantity_per_person": 0.08,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1498
+    },
+    {
+      "recipe_id": 111,
+      "ingredient_id": 728,
+      "quantity_per_person": 0.08,
+      "unit": "kg",
+      "preparation": "fein würfeln",
+      "optional": false,
+      "id": 1499
+    },
+    {
+      "recipe_id": 111,
+      "ingredient_id": 583,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "fein hacken",
+      "optional": false,
+      "id": 1500
+    },
+    {
+      "recipe_id": 111,
+      "ingredient_id": 625,
+      "quantity_per_person": 0.015,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 1501
+    },
+    {
+      "recipe_id": 111,
+      "ingredient_id": 555,
+      "quantity_per_person": 0.5,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 1502
+    },
+    {
+      "recipe_id": 111,
+      "ingredient_id": 725,
+      "quantity_per_person": 0.02,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1503
+    },
+    {
+      "recipe_id": 111,
+      "ingredient_id": 737,
+      "quantity_per_person": 0.002,
+      "unit": "kg",
+      "preparation": "abrieb",
+      "optional": false,
+      "id": 1504
+    },
+    {
+      "recipe_id": 111,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1505
+    },
+    {
+      "recipe_id": 111,
+      "ingredient_id": 639,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1506
+    },
+    {
+      "recipe_id": 111,
+      "ingredient_id": 566,
+      "quantity_per_person": 0.01,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1507
+    },
+    {
+      "recipe_id": 111,
+      "ingredient_id": 638,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1508
+    },
+    {
+      "recipe_id": 111,
+      "ingredient_id": 738,
+      "quantity_per_person": 0.05,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1509
+    },
+    {
+      "recipe_id": 127,
+      "ingredient_id": 750,
+      "quantity_per_person": 0.08,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1546
+    },
+    {
+      "recipe_id": 127,
+      "ingredient_id": 520,
+      "quantity_per_person": 0.15,
+      "unit": "kg",
+      "preparation": "hacken",
+      "optional": false,
+      "id": 1547
+    },
+    {
+      "recipe_id": 127,
+      "ingredient_id": 728,
+      "quantity_per_person": 0.08,
+      "unit": "kg",
+      "preparation": "fein Würfeln",
+      "optional": false,
+      "id": 1548
+    },
+    {
+      "recipe_id": 127,
+      "ingredient_id": 583,
+      "quantity_per_person": 0.003,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1549
+    },
+    {
+      "recipe_id": 127,
+      "ingredient_id": 650,
+      "quantity_per_person": 0.01,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 1550
+    },
+    {
+      "recipe_id": 127,
+      "ingredient_id": 555,
+      "quantity_per_person": 0.25,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 1551
+    },
+    {
+      "recipe_id": 127,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.003,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1552
+    },
+    {
+      "recipe_id": 127,
+      "ingredient_id": 640,
+      "quantity_per_person": 0.002,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1553
+    },
+    {
+      "recipe_id": 127,
+      "ingredient_id": 620,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "optional": true,
+      "id": 1554
+    },
+    {
+      "recipe_id": 127,
+      "ingredient_id": 566,
+      "quantity_per_person": 0.01,
+      "unit": "kg",
+      "preparation": "",
+      "optional": true,
+      "id": 1555
+    },
+    {
+      "recipe_id": 127,
+      "ingredient_id": 638,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "",
+      "optional": true,
+      "id": 1556
+    },
+    {
+      "recipe_id": 127,
+      "ingredient_id": 738,
+      "quantity_per_person": 0.08,
+      "unit": "L",
+      "preparation": "",
+      "optional": true,
+      "id": 1557
+    },
+    {
+      "recipe_id": 127,
+      "ingredient_id": 725,
+      "quantity_per_person": 0.008,
+      "unit": "L",
+      "preparation": "",
+      "optional": true,
+      "id": 1558
+    },
+    {
+      "recipe_id": 127,
+      "ingredient_id": 564,
+      "quantity_per_person": 0.01,
+      "unit": "kg",
+      "preparation": "",
+      "optional": true,
+      "id": 1559
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 658,
+      "quantity_per_person": 0.08,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1586
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 712,
+      "quantity_per_person": 0.4,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 1587
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 702,
+      "quantity_per_person": 0.2,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1588
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 728,
+      "quantity_per_person": 0.1,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1589
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 583,
+      "quantity_per_person": 0.013,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1590
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 569,
+      "quantity_per_person": 0.01,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1591
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 593,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1592
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 589,
+      "quantity_per_person": 0.002,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1593
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 538,
+      "quantity_per_person": 0.002,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1594
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.003,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1595
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 751,
+      "quantity_per_person": 0.002,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1596
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 673,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1597
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 531,
+      "quantity_per_person": 0.002,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1598
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 552,
+      "quantity_per_person": 0.002,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1599
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 638,
+      "quantity_per_person": 0.002,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 1600
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 725,
+      "quantity_per_person": 0.01,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 1601
+    },
+    {
+      "recipe_id": 98,
+      "ingredient_id": 752,
+      "quantity_per_person": 0.01,
+      "unit": "kg",
+      "preparation": "",
+      "optional": true,
+      "id": 1602
     }
   ],
   "assignments": [
@@ -5846,7 +6090,7 @@
       "id": 3
     },
     {
-      "name": "fein Würfeln",
+      "name": "fein würfeln",
       "id": 4
     },
     {
@@ -6082,6 +6326,14 @@
     {
       "name": "Jod",
       "id": 66
+    },
+    {
+      "name": "Typ-I-Allergen",
+      "id": 67
+    },
+    {
+      "name": "Typ IV-Kontacktallergen",
+      "id": 68
     }
   ],
   "ingredient_allergens": [
@@ -6404,11 +6656,6 @@
       "ingredient_id": 563,
       "allergen_id": 1,
       "id": 581
-    },
-    {
-      "ingredient_id": 564,
-      "allergen_id": 1,
-      "id": 582
     },
     {
       "ingredient_id": 565,
@@ -7214,6 +7461,21 @@
       "ingredient_id": 748,
       "allergen_id": 6,
       "id": 745
+    },
+    {
+      "ingredient_id": 564,
+      "allergen_id": 1,
+      "id": 746
+    },
+    {
+      "ingredient_id": 751,
+      "allergen_id": 67,
+      "id": 748
+    },
+    {
+      "ingredient_id": 751,
+      "allergen_id": 68,
+      "id": 749
     }
   ],
   "recipe_allergens": [
@@ -7390,12 +7652,6 @@
       "recipe_id": 97,
       "allergen_id": 23,
       "id": 31
-    },
-    {
-      "ingredient_id": 98,
-      "recipe_id": 98,
-      "allergen_id": 23,
-      "id": 32
     },
     {
       "ingredient_id": 99,
