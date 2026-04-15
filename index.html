@@ -2878,6 +2878,86 @@ async function exportFullDatabase(){
   return JSON.stringify(data,null,2);
 }
 
+// ── Teilbarer Aktions-Export ──────────────────────────────────
+// Exportiert eine oder alle Aktionen inkl. aller abhängigen Daten (Tage, Slots, Zuweisungen).
+// Nur zum Teilen mit anderen Menschen im Team gedacht, nicht als Vollbackup.
+async function exportActions(actionIds=null){
+  const allActions=await dbGetAll('actions');
+  const targetActions=actionIds?allActions.filter(a=>actionIds.includes(a.id)):allActions;
+  const targetActionIdSet=new Set(targetActions.map(a=>a.id));
+  const allDays=await dbGetAll('cooking_days');
+  const targetDays=allDays.filter(d=>targetActionIdSet.has(d.action_id));
+  const targetDayIdSet=new Set(targetDays.map(d=>d.id));
+  const allSlots=await dbGetAll('meal_slots');
+  const targetSlots=allSlots.filter(s=>targetDayIdSet.has(s.cooking_day_id));
+  const targetSlotIdSet=new Set(targetSlots.map(s=>s.id));
+  const allAssignments=await dbGetAll('assignments');
+  const targetAssignments=allAssignments.filter(a=>targetSlotIdSet.has(a.meal_slot_id));
+  // Rezeptnamen mitspeichern, damit Empfänger fehlende Rezepte erkennen kann
+  const recipeIds=[...new Set(targetAssignments.map(a=>a.recipe_id).filter(Boolean))];
+  const recipeNames={};
+  for(const rid of recipeIds){const r=await dbGet('recipes',rid);if(r) recipeNames[rid]=r.name;}
+  return JSON.stringify({
+    _meta:{version:DB_VERSION,exported_at:new Date().toISOString(),app:'KF Portionsrechner',type:'actions',action_count:targetActions.length},
+    _recipe_names:recipeNames,
+    actions:targetActions,
+    cooking_days:targetDays,
+    meal_slots:targetSlots,
+    assignments:targetAssignments
+  },null,2);
+}
+
+// Importiert Aktionen additiv: bestehende Aktionen bleiben, importierte bekommen neue IDs.
+// Remapping: alte ID → neue ID für actions, cooking_days, meal_slots; Assignments bekommen die neuen slot_ids.
+// recipe_id bleibt unverändert → wenn das Rezept nicht existiert, warnen wir.
+async function importActions(json){
+  const data=JSON.parse(json);
+  if(!data._meta||data._meta.type!=='actions') throw new Error('Keine gültige Aktions-Datei (erwartet: type="actions")');
+  const actionMap={},dayMap={},slotMap={};
+  for(const action of (data.actions||[])){
+    const oldId=action.id;const {id,...rest}=action;
+    const newId=await dbAdd('actions',rest);
+    actionMap[oldId]=newId;
+  }
+  for(const day of (data.cooking_days||[])){
+    const oldId=day.id;const {id,...rest}=day;
+    rest.action_id=actionMap[rest.action_id];
+    if(!rest.action_id) continue;
+    const newId=await dbAdd('cooking_days',rest);
+    dayMap[oldId]=newId;
+  }
+  for(const slot of (data.meal_slots||[])){
+    const oldId=slot.id;const {id,...rest}=slot;
+    rest.cooking_day_id=dayMap[rest.cooking_day_id];
+    if(!rest.cooking_day_id) continue;
+    const newId=await dbAdd('meal_slots',rest);
+    slotMap[oldId]=newId;
+  }
+  const myRecipes=await dbGetAll('recipes');
+  const myRecipeIds=new Set(myRecipes.map(r=>r.id));
+  const missingRecipes=new Set();
+  let importedAssignments=0,skippedAssignments=0;
+  for(const asn of (data.assignments||[])){
+    const {id,...rest}=asn;
+    rest.meal_slot_id=slotMap[rest.meal_slot_id];
+    if(!rest.meal_slot_id){skippedAssignments++;continue;}
+    if(rest.recipe_id&&!myRecipeIds.has(rest.recipe_id)){
+      const name=(data._recipe_names||{})[rest.recipe_id]||`Rezept-ID ${rest.recipe_id}`;
+      missingRecipes.add(name);
+    }
+    await dbAdd('assignments',rest);
+    importedAssignments++;
+  }
+  return{
+    actions:Object.keys(actionMap).length,
+    days:Object.keys(dayMap).length,
+    slots:Object.keys(slotMap).length,
+    assignments:importedAssignments,
+    assignmentsSkipped:skippedAssignments,
+    missingRecipes:[...missingRecipes]
+  };
+}
+
 // stores=null → alle Stores überschreiben (klassischer Import)
 // stores=Array → nur angegebene Stores überschreiben, Rest bleibt unberührt
 async function importFullDatabase(json,stores=null){
