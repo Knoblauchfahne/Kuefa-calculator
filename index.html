@@ -3044,6 +3044,54 @@ async function renderDatabasePage(container){
   defaultCard.appendChild(defaultStatus);
   body.appendChild(defaultCard);
 
+  // Action share export/import
+  const shareCard=h('div',{class:'card',style:{marginBottom:'16px'}});
+  shareCard.appendChild(h('div',{style:{fontWeight:'700',fontSize:'14px',marginBottom:'8px'}},'🤝  Kochaktionen teilen'));
+  shareCard.appendChild(h('div',{style:{fontSize:'13px',color:'var(--text-muted)',marginBottom:'12px'}},'Exportiere eine einzelne oder alle Kochaktionen (inkl. Kochtage, Mahlzeit-Slots und Rezept-Zuweisungen) als JSON-Datei, um sie mit anderen Teammitgliedern zu teilen. Beim Import werden die Aktionen zu deinen vorhandenen hinzugefügt — nichts wird überschrieben. Damit die Rezept-Zuweisungen funktionieren, sollten beide Seiten den gleichen Rezept-Bestand haben (z.B. über „Standard-Daten laden").'));
+  const allActionsForShare=await getActions();
+  const actionSel=h('select',{class:'form-input',style:{width:'100%',marginBottom:'8px'}});
+  actionSel.appendChild(h('option',{value:'all'},`Alle Kochaktionen (${allActionsForShare.length})`));
+  allActionsForShare.forEach(a=>actionSel.appendChild(h('option',{value:String(a.id)},a.name)));
+  const shareBtnRow=h('div',{style:{display:'flex',gap:'8px',flexWrap:'wrap'}});
+  shareBtnRow.appendChild(h('button',{class:'btn btn-accent',onClick:async()=>{
+    if(!allActionsForShare.length){alert('Keine Kochaktionen zum Exportieren vorhanden.');return;}
+    const v=actionSel.value;
+    const ids=(v==='all')?null:[parseInt(v)];
+    try{
+      const json=await exportActions(ids);
+      const date=new Date().toISOString().slice(0,10);
+      let fname;
+      if(v==='all'){fname=`KF_Aktionen_${date}.json`;}
+      else{const a=allActionsForShare.find(x=>String(x.id)===v);const safeName=(a?a.name:'Aktion').replace(/[^a-zA-Z0-9äöüÄÖÜß_-]+/g,'_');fname=`KF_Aktion_${safeName}_${date}.json`;}
+      downloadFile(fname,json,'application/json');
+    }catch(e){alert('Fehler beim Export: '+e.message);}
+  }},'⬇  Exportieren'));
+  const shareStatus=h('div',{style:{marginTop:'8px',fontSize:'13px'}});
+  shareBtnRow.appendChild(h('button',{class:'btn btn-surface',onClick:()=>{
+    const input=document.createElement('input');input.type='file';input.accept='.json';
+    input.onchange=async()=>{
+      if(!input.files.length) return;
+      try{
+        const text=await input.files[0].text();
+        const result=await importActions(text);
+        let msg=`✓ Import abgeschlossen: ${result.actions} Aktion${result.actions===1?'':'en'}, ${result.days} Tag${result.days===1?'':'e'}, ${result.slots} Slots, ${result.assignments} Zuweisungen`;
+        if(result.assignmentsSkipped) msg+=` — ${result.assignmentsSkipped} Zuweisungen übersprungen`;
+        if(result.missingRecipes.length) msg+=` — ⚠ ${result.missingRecipes.length} Rezept(e) fehlen in deiner Datenbank: ${result.missingRecipes.slice(0,5).join(', ')}${result.missingRecipes.length>5?' …':''}`;
+        shareStatus.style.color=result.missingRecipes.length?'var(--accent)':'var(--green-light)';
+        shareStatus.textContent=msg;
+        setTimeout(()=>location.reload(),result.missingRecipes.length?4000:1500);
+      }catch(e){
+        shareStatus.style.color='var(--accent)';
+        shareStatus.textContent='✕ Fehler: '+e.message;
+      }
+    };
+    input.click();
+  }},'📂  Importieren'));
+  shareCard.appendChild(actionSel);
+  shareCard.appendChild(shareBtnRow);
+  shareCard.appendChild(shareStatus);
+  body.appendChild(shareCard);
+
   // Database info
   const infoCard=h('div',{class:'card',style:{marginBottom:'16px'}});
   infoCard.appendChild(h('div',{style:{fontWeight:'700',fontSize:'14px',marginBottom:'12px'}},'📊  Datenbank-Übersicht'));
@@ -3405,7 +3453,7 @@ function renderHelpPage(container){
     {title:'📄  Einkaufsliste nach Rezept',text:'Hier weist du den Mahlzeit-Slots konkrete Rezepte, Beilagen und Allergie-Essen zu. Die Einkaufsliste wird dann auf Zutatenebene berechnet. Bei mehreren Rezepten pro Slot werden die Portionen automatisch gleichmäßig aufgeteilt, genau so mit den Beilagen. Du kannst die Aufteilung aber auch manuell anpassen. Eine Summenanzeige warnt dich, wenn die Teilportionen nicht mit der definierten Gesamtzahl übereinstimmen. Allergie-Essen werden separat mit eigenen Portionszahlen verwaltet (Empfehlung: ca. 1% der Gesamtportionen). Über die Bestellgruppen-Leiste oben kannst du Kochtage verschiedenen Bestellungen zuordnen (z.B. Bestellung 1 für Tag 1–4, Bestellung 2 für Tag 5–8). Beim Generieren werden separate Einkaufslisten pro Bestellgruppe erzeugt. Über den Rezepte Drucken Button kann eine PDF-Datei erzeugt werden, welche die Rezepte für jede einzelne Mahlzeit ausgibt.'},
     {title:'📖  Rezeptbuch',text:'Deine Rezeptsammlung. Jedes Rezept enthält Zutaten (mit Menge pro Person und Verarbeitungsmethode), Zubereitungsschritte, Hinweise und optional Zeitangaben. Beim Erstellen kannst du angeben, für wie viele Portionen deine Mengenangaben gelten — die App rechnet automatisch auf 1 Person herunter. Zutaten können als optional markiert werden; diese erscheinen in der Einkaufsliste mit dem Label „(optional)". Rezepte können als „Allergieessen" markiert werden, damit sie beim Zuweisen von Allergie-Essen zur Auswahl stehen. Rezepte werden den gleichen Mahlzeitkategorien zugeordnet wie die Standardmahlzeiten (z.B. Frühstück, Mittagessen). Dadurch werden in der Einkaufsliste nur passende Rezepte pro Mahlzeit angeboten. Du kannst Rezepte als .txt-Datei importieren und exportieren, duplizieren oder über eine Maske neu erstellen.'},
     {title:'📦  Zutaten',text:'Die Zutatendatenbank. Jede Zutat hat einen Namen, eine Einheit (kg, l, etc.), einen Preis pro Einheit als Referenz, eine Kategorie, einen Abschnitt-Wert (% Verlust beim Schälen/Schneiden), einen Kochfaktor (Gewichtsänderung beim Kochen), Verarbeitungs- und Lagerhinweise sowie zugeordnete Allergene. Der Abschnitt-Wert wird bei der Bestellmengenberechnung automatisch aufgeschlagen und im Rezept als Netto-Menge angezeigt. Der Kochfaktor ist ein Multiplikator (1 = unverändert, 2.6 = trockene Kichererbsen werden gekocht 2,6-fach schwerer, 0.15 = Spinat schrumpft beim Garen auf 15%) und wird in Rezept und PDF als Gekocht-Spalte dargestellt – rein informativ, damit der Koch weiß, wie viel am Ende auf dem Teller landet. Die Einheit wird automatisch in die Rezepte übernommen. Zutaten lassen sich als .csv oder .txt exportieren und importieren.'},
-    {title:'💾  Datenbank',text:'Backup & Verwaltung. Hier kannst du die gesamte Datenbank als JSON-Datei exportieren (Backup) oder eine zuvor exportierte Datei importieren. Einzelne Tabellen können separat gelöscht werden. Nützlich für Datensicherung, Übertragung auf andere Rechner oder Browser. Achtung: Beim Import werden alle aktuellen Daten überschrieben. Die Datenbank-Übersicht zeigt dir, wie viele Einträge in jeder Tabelle gespeichert sind. Über „Standard-Daten laden" kannst du den mitgelieferten Basis-Datenbestand direkt aus dem Repo holen — dabei werden nur Rezepte, Zutaten und Stammdaten überschrieben, deine Kochaktionen, Kochtage, Mahlzeit-Slots und Rezept-Zuweisungen bleiben erhalten.'},
+    {title:'💾  Datenbank',text:'Backup & Verwaltung. Hier kannst du die gesamte Datenbank als JSON-Datei exportieren (Backup) oder eine zuvor exportierte Datei importieren. Einzelne Tabellen können separat gelöscht werden. Nützlich für Datensicherung, Übertragung auf andere Rechner oder Browser. Achtung: Beim Import werden alle aktuellen Daten überschrieben. Die Datenbank-Übersicht zeigt dir, wie viele Einträge in jeder Tabelle gespeichert sind. Über „Standard-Daten laden" kannst du den mitgelieferten Basis-Datenbestand direkt aus dem Repo holen — dabei werden nur Rezepte, Zutaten und Stammdaten überschrieben, deine Kochaktionen, Kochtage, Mahlzeit-Slots und Rezept-Zuweisungen bleiben erhalten. Über „Kochaktionen teilen" kannst du einzelne Aktionen samt ihrer Rezept-Zuweisungen als JSON an andere Teammitglieder weitergeben — beim Import werden die Aktionen additiv hinzugefügt, nichts wird überschrieben.'},
     {title:'🗓  Saisonkalender',text:'Übersicht, welches Obst, Gemüse und welche Kräuter in welchen Monaten in Deutschland Saison haben. Grün = Frisch/Freiland, Gelb = aus Lager verfügbar, Grau = nicht in Saison. Der aktuelle Monat wird farblich markiert. Mit Suche und Filtern kannst du gezielt nach saisonalen Zutaten für deine Rezeptplanung suchen.'},
     {title:'⚠  Allergene',text:'Auf dieser Seite findest du eine Übersicht der 14 EU-Hauptallergene, häufige Unverträglichkeiten und praktische Hinweise für die Küche. Im Rezeptbuch kannst du jedem Rezept Allergene zuordnen — automatisch aus den Zutaten oder manuell. Rezepte, die als „Allergieessen" markiert sind, stehen in der Einkaufsliste als Allergie-Alternative zur Verfügung.'},
     {title:'Allgemeine Hinweise',items:[
