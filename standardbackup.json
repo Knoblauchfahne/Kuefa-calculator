@@ -1,10 +1,17 @@
 {
   "_meta": {
     "version": 4,
-    "exported_at": "2026-04-15T14:14:23.290Z",
+    "exported_at": "2026-04-15T14:32:59.358Z",
     "app": "KF Portionsrechner"
   },
-  "actions": [],
+  "actions": [
+    {
+      "name": "Sommercamp",
+      "description": "",
+      "created_at": "2026-04-15T14:22:43.749Z",
+      "id": 11
+    }
+  ],
   "cooking_days": [],
   "meal_slots": [],
   "ingredients": [
