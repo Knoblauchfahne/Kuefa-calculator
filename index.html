@@ -3114,6 +3114,27 @@ function renderHelpPage(container){
 }
 
 // ══════════════════════════════════════════════════════════════
+//  SERVICE WORKER (Offline-Unterstützung)
+// ══════════════════════════════════════════════════════════════
+function showUpdateBanner(){
+  if(document.getElementById('sw-update-banner')) return;
+  const banner=h('div',{id:'sw-update-banner',style:{position:'fixed',left:'50%',transform:'translateX(-50%)',bottom:'20px',background:'var(--accent)',color:'#fff',padding:'10px 16px',borderRadius:'8px',boxShadow:'0 4px 12px rgba(0,0,0,.3)',zIndex:'9999',display:'flex',gap:'12px',alignItems:'center',fontSize:'13px',maxWidth:'90vw'}},
+    h('span',{},'Neue Version verfügbar'),
+    h('button',{class:'btn btn-sm',style:{background:'#fff',color:'var(--accent)',border:'none'},onClick:()=>location.reload()},'Neu laden'),
+    h('button',{class:'btn btn-sm',style:{background:'transparent',color:'#fff',border:'1px solid #fff'},onClick:()=>banner.remove()},'Später')
+  );
+  document.body.appendChild(banner);
+}
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('sw.js').catch(err=>console.warn('SW-Registrierung fehlgeschlagen:',err));
+    navigator.serviceWorker.addEventListener('message',(e)=>{
+      if(e.data&&e.data.type==='SW_UPDATE_AVAILABLE') showUpdateBanner();
+    });
+  });
+}
+
+// ══════════════════════════════════════════════════════════════
 //  INIT
 // ══════════════════════════════════════════════════════════════
 async function init(){
