@@ -857,6 +857,7 @@ const NAV_ITEMS=[
   {key:'ingredients',label:'📦  Zutaten'},
   null,
   {key:'database',label:'💾  Datenbank'},
+  {key:'season_calendar',label:'🗓  Saisonkalender'},
   {key:'allergen_info',label:'⚠  Allergene'},
   {key:'help',label:'❓  Hilfe'},
 ];
@@ -885,6 +886,7 @@ function showPage(name){
     case 'special_order':renderSpecialOrderPage(content);break;
 
     case 'database':renderDatabasePage(content);break;
+    case 'season_calendar':renderSeasonCalendarPage(content);break;
     case 'allergen_info':renderAllergenInfoPage(content);break;
     case 'help':renderHelpPage(content);break;
   }
@@ -2979,6 +2981,190 @@ async function renderDatabasePage(container){
 }
 
 // ══════════════════════════════════════════════════════════════
+//  SAISONKALENDER PAGE
+// ══════════════════════════════════════════════════════════════
+// Monatsangaben: 0 = nicht verfügbar, 1 = aus Lager, 2 = frisch/Freiland
+// Reihenfolge: [Jan,Feb,Mär,Apr,Mai,Jun,Jul,Aug,Sep,Okt,Nov,Dez]
+const SEASON_DATA=[
+  // ── Gemüse ──
+  {name:'Blumenkohl',cat:'Gemüse',months:[0,0,0,0,2,2,2,2,2,2,2,0]},
+  {name:'Bohnen (grün)',cat:'Gemüse',months:[0,0,0,0,0,0,2,2,2,2,0,0]},
+  {name:'Brokkoli',cat:'Gemüse',months:[0,0,0,0,0,2,2,2,2,2,2,0]},
+  {name:'Champignons',cat:'Gemüse',months:[2,2,2,2,2,2,2,2,2,2,2,2]},
+  {name:'Chicorée',cat:'Gemüse',months:[1,1,1,1,0,0,0,0,0,2,2,2]},
+  {name:'Eisbergsalat',cat:'Gemüse',months:[0,0,0,0,0,2,2,2,2,2,0,0]},
+  {name:'Erbsen',cat:'Gemüse',months:[0,0,0,0,0,2,2,2,0,0,0,0]},
+  {name:'Feldsalat',cat:'Gemüse',months:[2,2,2,2,0,0,0,0,2,2,2,2]},
+  {name:'Fenchel',cat:'Gemüse',months:[0,0,0,0,0,2,2,2,2,2,2,0]},
+  {name:'Grünkohl',cat:'Gemüse',months:[2,2,2,0,0,0,0,0,0,0,2,2]},
+  {name:'Gurke (Salat)',cat:'Gemüse',months:[0,0,0,0,2,2,2,2,2,2,0,0]},
+  {name:'Kartoffeln (neu)',cat:'Gemüse',months:[0,0,0,0,0,2,2,2,2,0,0,0]},
+  {name:'Kartoffeln (Lager)',cat:'Gemüse',months:[1,1,1,1,1,0,0,0,0,2,1,1]},
+  {name:'Knoblauch',cat:'Gemüse',months:[1,1,1,1,1,2,2,2,2,1,1,1]},
+  {name:'Kohlrabi',cat:'Gemüse',months:[0,0,0,0,2,2,2,2,2,2,0,0]},
+  {name:'Kürbis',cat:'Gemüse',months:[1,1,0,0,0,0,0,2,2,2,2,1]},
+  {name:'Lauch / Porree',cat:'Gemüse',months:[2,2,2,2,0,0,2,2,2,2,2,2]},
+  {name:'Mangold',cat:'Gemüse',months:[0,0,0,0,2,2,2,2,2,2,0,0]},
+  {name:'Möhren / Karotten',cat:'Gemüse',months:[1,1,1,1,2,2,2,2,2,2,1,1]},
+  {name:'Paprika',cat:'Gemüse',months:[0,0,0,0,0,0,2,2,2,2,0,0]},
+  {name:'Pastinake',cat:'Gemüse',months:[1,1,1,0,0,0,0,0,2,2,2,1]},
+  {name:'Radieschen',cat:'Gemüse',months:[0,0,0,2,2,2,2,2,2,2,0,0]},
+  {name:'Rettich',cat:'Gemüse',months:[1,1,0,0,2,2,2,2,2,2,2,1]},
+  {name:'Rosenkohl',cat:'Gemüse',months:[2,2,0,0,0,0,0,0,0,2,2,2]},
+  {name:'Rote Bete',cat:'Gemüse',months:[1,1,1,1,0,0,2,2,2,2,2,1]},
+  {name:'Rotkohl',cat:'Gemüse',months:[1,1,1,1,1,0,0,2,2,2,2,2]},
+  {name:'Rucola',cat:'Gemüse',months:[0,0,0,2,2,2,2,2,2,2,0,0]},
+  {name:'Sellerie (Knolle)',cat:'Gemüse',months:[1,1,1,1,0,0,2,2,2,2,2,1]},
+  {name:'Spargel',cat:'Gemüse',months:[0,0,0,2,2,2,0,0,0,0,0,0]},
+  {name:'Spinat',cat:'Gemüse',months:[0,0,2,2,2,2,2,2,2,2,0,0]},
+  {name:'Tomaten',cat:'Gemüse',months:[0,0,0,0,0,2,2,2,2,2,0,0]},
+  {name:'Weißkohl',cat:'Gemüse',months:[1,1,1,1,1,0,2,2,2,2,2,2]},
+  {name:'Wirsing',cat:'Gemüse',months:[2,2,0,0,0,2,2,2,2,2,2,2]},
+  {name:'Zucchini',cat:'Gemüse',months:[0,0,0,0,0,2,2,2,2,2,0,0]},
+  {name:'Zuckermais',cat:'Gemüse',months:[0,0,0,0,0,0,2,2,2,0,0,0]},
+  {name:'Zwiebeln',cat:'Gemüse',months:[1,1,1,1,1,1,2,2,2,2,1,1]},
+  // ── Obst ──
+  {name:'Apfel',cat:'Obst',months:[1,1,1,1,1,0,0,2,2,2,2,1]},
+  {name:'Aprikose',cat:'Obst',months:[0,0,0,0,0,0,2,2,0,0,0,0]},
+  {name:'Birne',cat:'Obst',months:[1,1,1,0,0,0,0,2,2,2,2,1]},
+  {name:'Brombeere',cat:'Obst',months:[0,0,0,0,0,0,2,2,2,0,0,0]},
+  {name:'Erdbeere',cat:'Obst',months:[0,0,0,0,2,2,2,2,0,0,0,0]},
+  {name:'Heidelbeere',cat:'Obst',months:[0,0,0,0,0,2,2,2,2,0,0,0]},
+  {name:'Himbeere',cat:'Obst',months:[0,0,0,0,0,2,2,2,2,0,0,0]},
+  {name:'Johannisbeere',cat:'Obst',months:[0,0,0,0,0,2,2,2,0,0,0,0]},
+  {name:'Kirsche',cat:'Obst',months:[0,0,0,0,2,2,2,0,0,0,0,0]},
+  {name:'Mirabelle',cat:'Obst',months:[0,0,0,0,0,0,2,2,2,0,0,0]},
+  {name:'Pfirsich / Nektarine',cat:'Obst',months:[0,0,0,0,0,0,2,2,2,0,0,0]},
+  {name:'Pflaume',cat:'Obst',months:[0,0,0,0,0,0,2,2,2,2,0,0]},
+  {name:'Quitte',cat:'Obst',months:[0,0,0,0,0,0,0,0,2,2,2,0]},
+  {name:'Rhabarber',cat:'Obst',months:[0,0,0,2,2,2,0,0,0,0,0,0]},
+  {name:'Stachelbeere',cat:'Obst',months:[0,0,0,0,0,2,2,2,0,0,0,0]},
+  {name:'Weintraube',cat:'Obst',months:[0,0,0,0,0,0,0,0,2,2,0,0]},
+  {name:'Zwetschge',cat:'Obst',months:[0,0,0,0,0,0,0,2,2,2,0,0]},
+  // ── Kräuter ──
+  {name:'Bärlauch',cat:'Kräuter',months:[0,0,2,2,2,0,0,0,0,0,0,0]},
+  {name:'Basilikum',cat:'Kräuter',months:[0,0,0,0,0,2,2,2,2,0,0,0]},
+  {name:'Dill',cat:'Kräuter',months:[0,0,0,0,2,2,2,2,2,0,0,0]},
+  {name:'Kerbel',cat:'Kräuter',months:[0,0,0,2,2,2,2,2,2,0,0,0]},
+  {name:'Petersilie',cat:'Kräuter',months:[0,0,0,2,2,2,2,2,2,2,2,0]},
+  {name:'Rosmarin',cat:'Kräuter',months:[1,1,1,1,2,2,2,2,2,2,1,1]},
+  {name:'Schnittlauch',cat:'Kräuter',months:[0,0,0,2,2,2,2,2,2,2,0,0]},
+  {name:'Thymian',cat:'Kräuter',months:[1,1,1,1,2,2,2,2,2,2,1,1]},
+];
+const SEASON_MONTHS=['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
+
+function renderSeasonCalendarPage(container){
+  const header=h('div',{class:'page-header'},h('h1',{},'Saisonkalender'));
+  const body=h('div',{class:'page-body'});
+  container.append(header,body);
+
+  const currentMonth=new Date().getMonth(); // 0-11
+
+  // Legend + controls
+  const topCard=h('div',{class:'card',style:{marginBottom:'16px'}});
+  const topRow=h('div',{style:{display:'flex',gap:'12px',alignItems:'center',flexWrap:'wrap',marginBottom:'12px'}});
+  const searchInput=h('input',{type:'text',class:'search-input',placeholder:'Suche nach Obst/Gemüse/Kraut...',style:{flex:'1',minWidth:'200px'}});
+  const catFilter=h('select',{class:'form-input',style:{width:'auto',minWidth:'140px'}},
+    h('option',{value:''},'Alle Kategorien'),
+    h('option',{value:'Gemüse'},'Nur Gemüse'),
+    h('option',{value:'Obst'},'Nur Obst'),
+    h('option',{value:'Kräuter'},'Nur Kräuter')
+  );
+  const seasonFilter=h('select',{class:'form-input',style:{width:'auto',minWidth:'160px'}},
+    h('option',{value:''},'Alle Einträge'),
+    h('option',{value:'current'},'Aktuell in Saison'),
+    h('option',{value:'fresh'},'Nur Freiland-Saison')
+  );
+  topRow.append(searchInput,catFilter,seasonFilter);
+  topCard.appendChild(topRow);
+
+  // Legend
+  const legend=h('div',{style:{display:'flex',gap:'16px',flexWrap:'wrap',fontSize:'12px',color:'var(--text-muted)'}});
+  legend.appendChild(h('div',{style:{display:'flex',alignItems:'center',gap:'6px'}},
+    h('span',{style:{display:'inline-block',width:'18px',height:'14px',background:'#2d6a4f',borderRadius:'3px'}}),
+    h('span',{},'Frisch / Freiland')));
+  legend.appendChild(h('div',{style:{display:'flex',alignItems:'center',gap:'6px'}},
+    h('span',{style:{display:'inline-block',width:'18px',height:'14px',background:'#b08d3b',borderRadius:'3px'}}),
+    h('span',{},'Aus Lager')));
+  legend.appendChild(h('div',{style:{display:'flex',alignItems:'center',gap:'6px'}},
+    h('span',{style:{display:'inline-block',width:'18px',height:'14px',background:'var(--surface3)',borderRadius:'3px',border:'1px solid var(--border)'}}),
+    h('span',{},'Nicht verfügbar')));
+  legend.appendChild(h('div',{style:{display:'flex',alignItems:'center',gap:'6px'}},
+    h('span',{style:{display:'inline-block',width:'18px',height:'14px',background:'transparent',border:'2px solid var(--accent)',borderRadius:'3px'}}),
+    h('span',{},`Aktueller Monat (${SEASON_MONTHS[currentMonth]})`)));
+  topCard.appendChild(legend);
+  body.appendChild(topCard);
+
+  // Table card
+  const tableCard=h('div',{class:'card',style:{padding:'0',overflow:'auto'}});
+  body.appendChild(tableCard);
+
+  function buildRow(item){
+    const row=h('div',{class:'season-row',style:{display:'flex',alignItems:'center',borderBottom:'1px solid var(--border)',minHeight:'32px'}});
+    const nameCell=h('div',{style:{width:'170px',minWidth:'170px',padding:'6px 10px',fontSize:'13px',fontWeight:'500',position:'sticky',left:'0',background:'var(--surface)',zIndex:'1',borderRight:'1px solid var(--border)'}},item.name);
+    row.appendChild(nameCell);
+    for(let m=0;m<12;m++){
+      const state=item.months[m];
+      const bg=state===2?'#2d6a4f':state===1?'#b08d3b':'transparent';
+      const cell=h('div',{style:{
+        flex:'1',minWidth:'36px',height:'28px',margin:'2px',borderRadius:'3px',
+        background:bg,
+        border:state===0?'1px solid var(--border)':'none',
+        boxShadow:m===currentMonth?'0 0 0 2px var(--accent)':'none',
+        cursor:'default'
+      },title:`${item.name} – ${SEASON_MONTHS[m]}: ${state===2?'Frisch':state===1?'Aus Lager':'Nicht verfügbar'}`});
+      row.appendChild(cell);
+    }
+    return row;
+  }
+
+  function renderTable(){
+    tableCard.innerHTML='';
+    // Header row
+    const hdr=h('div',{style:{display:'flex',alignItems:'center',borderBottom:'2px solid var(--border)',position:'sticky',top:'0',background:'var(--surface)',zIndex:'2'}});
+    hdr.appendChild(h('div',{style:{width:'170px',minWidth:'170px',padding:'8px 10px',fontSize:'12px',fontWeight:'700',color:'var(--text-muted)',position:'sticky',left:'0',background:'var(--surface)',zIndex:'1',borderRight:'1px solid var(--border)'}},'Name'));
+    SEASON_MONTHS.forEach((m,i)=>{
+      hdr.appendChild(h('div',{style:{flex:'1',minWidth:'36px',textAlign:'center',padding:'6px 2px',fontSize:'11px',fontWeight:i===currentMonth?'700':'500',color:i===currentMonth?'var(--accent)':'var(--text-muted)'}},m));
+    });
+    tableCard.appendChild(hdr);
+
+    const q=searchInput.value.toLowerCase().trim();
+    const cat=catFilter.value;
+    const season=seasonFilter.value;
+    let groups={'Gemüse':[],'Obst':[],'Kräuter':[]};
+    SEASON_DATA.forEach(item=>{
+      if(q&&!item.name.toLowerCase().includes(q)) return;
+      if(cat&&item.cat!==cat) return;
+      if(season==='current'&&item.months[currentMonth]===0) return;
+      if(season==='fresh'&&item.months[currentMonth]!==2) return;
+      groups[item.cat].push(item);
+    });
+    let any=false;
+    for(const grp of ['Gemüse','Obst','Kräuter']){
+      if(!groups[grp].length) continue;
+      any=true;
+      const grpHdr=h('div',{style:{padding:'10px 12px 6px',fontSize:'12px',fontWeight:'700',color:'var(--accent)',background:'var(--surface2)',borderBottom:'1px solid var(--border)',textTransform:'uppercase',letterSpacing:'.5px'}},grp);
+      tableCard.appendChild(grpHdr);
+      groups[grp].forEach(item=>tableCard.appendChild(buildRow(item)));
+    }
+    if(!any){
+      tableCard.appendChild(h('div',{style:{padding:'20px',textAlign:'center',color:'var(--text-muted)'}},'Keine Einträge gefunden'));
+    }
+  }
+
+  searchInput.addEventListener('input',renderTable);
+  catFilter.addEventListener('change',renderTable);
+  seasonFilter.addEventListener('change',renderTable);
+  renderTable();
+
+  // Info box
+  const infoCard=h('div',{class:'card',style:{marginTop:'16px',fontSize:'12px',color:'var(--text-muted)',lineHeight:'1.5'}});
+  infoCard.appendChild(h('div',{style:{fontWeight:'700',marginBottom:'6px',color:'var(--text)'}},'ℹ  Hinweis'));
+  infoCard.appendChild(h('div',{},'Die Angaben beziehen sich auf Deutschland und mitteleuropäisches Klima. Regional und je nach Wetter können Zeiträume leicht abweichen. „Aus Lager" bedeutet meist aus heimischem Anbau, aber unter Kühlung/Lagerung verfügbar. Bei Frage nach bio-regionaler Verfügbarkeit immer kurz beim Lieferanten rückfragen.'));
+  body.appendChild(infoCard);
+}
+
+// ══════════════════════════════════════════════════════════════
 //  ALLERGEN INFO PAGE
 // ══════════════════════════════════════════════════════════════
 function renderAllergenInfoPage(container){
@@ -3109,7 +3295,8 @@ function renderHelpPage(container){
     {title:'📄  Einkaufsliste nach Rezept',text:'Hier weist du den Mahlzeit-Slots konkrete Rezepte, Beilagen und Allergie-Essen zu. Die Einkaufsliste wird dann auf Zutatenebene berechnet. Bei mehreren Rezepten pro Slot werden die Portionen automatisch gleichmäßig aufgeteilt, genau so mit den Beilagen. Du kannst die Aufteilung aber auch manuell anpassen. Eine Summenanzeige warnt dich, wenn die Teilportionen nicht mit der definierten Gesamtzahl übereinstimmen. Allergie-Essen werden separat mit eigenen Portionszahlen verwaltet (Empfehlung: ca. 1% der Gesamtportionen). Über die Bestellgruppen-Leiste oben kannst du Kochtage verschiedenen Bestellungen zuordnen (z.B. Bestellung 1 für Tag 1–4, Bestellung 2 für Tag 5–8). Beim Generieren werden separate Einkaufslisten pro Bestellgruppe erzeugt. Über den Rezepte Drucken Button kann eine PDF-Datei erzeugt werden, welche die Rezepte für jede einzelne Mahlzeit ausgibt.'},
     {title:'📖  Rezeptbuch',text:'Deine Rezeptsammlung. Jedes Rezept enthält Zutaten (mit Menge pro Person und Verarbeitungsmethode), Zubereitungsschritte, Hinweise und optional Zeitangaben. Beim Erstellen kannst du angeben, für wie viele Portionen deine Mengenangaben gelten — die App rechnet automatisch auf 1 Person herunter. Zutaten können als optional markiert werden; diese erscheinen in der Einkaufsliste mit dem Label „(optional)". Rezepte können als „Allergieessen" markiert werden, damit sie beim Zuweisen von Allergie-Essen zur Auswahl stehen. Rezepte werden den gleichen Mahlzeitkategorien zugeordnet wie die Standardmahlzeiten (z.B. Frühstück, Mittagessen). Dadurch werden in der Einkaufsliste nur passende Rezepte pro Mahlzeit angeboten. Du kannst Rezepte als .txt-Datei importieren und exportieren, duplizieren oder über eine Maske neu erstellen.'},
     {title:'📦  Zutaten',text:'Die Zutatendatenbank. Jede Zutat hat einen Namen, eine Einheit (kg, l, etc.), einen Preis pro Einheit als Referenz, eine Kategorie, einen Abschnitt-Wert (% Verlust beim Schälen/Schneiden), Verarbeitungs- und Lagerhinweise sowie zugeordnete Allergene. Der Abschnitt-Wert wird bei der Bestellmengenberechnung automatisch aufgeschlagen und im Rezept als Netto-Menge angezeigt. Die Einheit wird automatisch in die Rezepte übernommen. Zutaten lassen sich als .csv oder .txt exportieren und importieren. Beim Import können bestehende Zutaten optional überschrieben werden.'},
-    {title:'💾  Datenbank',text:'Backup & Verwaltung. Hier kannst du die gesamte Datenbank als JSON-Datei exportieren (Backup) oder eine zuvor exportierte Datei importieren. Einzelne Tabellen können separat gelöscht werden. Nützlich für Datensicherung, Übertragung auf andere Rechner oder Browser. Achtung: Beim Import werden alle aktuellen Daten überschrieben. Die Datenbank-Übersicht zeigt dir, wie viele Einträge in jeder Tabelle gespeichert sind.'},
+    {title:'💾  Datenbank',text:'Backup & Verwaltung. Hier kannst du die gesamte Datenbank als JSON-Datei exportieren (Backup) oder eine zuvor exportierte Datei importieren. Einzelne Tabellen können separat gelöscht werden. Nützlich für Datensicherung, Übertragung auf andere Rechner oder Browser. Achtung: Beim Import werden alle aktuellen Daten überschrieben. Die Datenbank-Übersicht zeigt dir, wie viele Einträge in jeder Tabelle gespeichert sind. Über „Standard-Daten laden" kannst du den mitgelieferten Basis-Datenbestand direkt aus dem Repo holen.'},
+    {title:'🗓  Saisonkalender',text:'Übersicht, welches Obst, Gemüse und welche Kräuter in welchen Monaten in Deutschland Saison haben. Grün = Frisch/Freiland, Gelb = aus Lager verfügbar, Grau = nicht in Saison. Der aktuelle Monat wird farblich markiert. Mit Suche und Filtern kannst du gezielt nach saisonalen Zutaten für deine Rezeptplanung suchen.'},
     {title:'⚠  Allergene',text:'Auf dieser Seite findest du eine Übersicht der 14 EU-Hauptallergene, häufige Unverträglichkeiten und praktische Hinweise für die Küche. Im Rezeptbuch kannst du jedem Rezept Allergene zuordnen — automatisch aus den Zutaten oder manuell. Rezepte, die als „Allergieessen" markiert sind, stehen in der Einkaufsliste als Allergie-Alternative zur Verfügung.'},
     {title:'Allgemeine Hinweise',items:[
       'Alle Daten werden lokal in deinem Browser gespeichert (IndexedDB). Andere Browser oder Rechner haben keinen Zugriff auf diese Daten.',
