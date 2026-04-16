@@ -234,6 +234,9 @@ label.checkbox input{accent-color:var(--accent);width:16px;height:16px}
   .assign-recipe input[type=number]{width:50px!important;font-size:11px;padding:4px}
   /* List items */
   .list-item{padding:8px 10px}
+  /* Recipe detail top: stack title & buttons */
+  .recipe-detail-top{flex-direction:column!important;align-items:flex-start!important;gap:8px!important}
+  .recipe-detail-btns{flex-wrap:wrap!important;gap:6px!important;width:100%}
   /* Modals */
   .modal{width:95vw;padding:14px;padding-bottom:24px;margin-bottom:env(safe-area-inset-bottom,0)}
   .modal-lg{width:95vw}
@@ -2194,7 +2197,7 @@ async function renderRecipeBookPage(container){
     if(!recipes.length){listDiv.appendChild(h('div',{class:'empty-msg'},'Keine Rezepte'));return;}
     recipes.forEach(r=>{
       const isSel=r.id===recipeSelectedId;
-      const item=h('div',{class:`list-item ${isSel?'active':''}`,onClick:()=>{recipeSelectedId=r.id;renderList();renderDetail();}});
+      const item=h('div',{class:`list-item ${isSel?'active':''}`,onClick:()=>{recipeSelectedId=r.id;renderList();renderDetail().then(()=>{if(window.innerWidth<=768) detailDiv.scrollIntoView({behavior:'smooth',block:'start'});});}});
       const nameRow=h('div',{style:{display:'flex',alignItems:'center',gap:'6px'}});
       nameRow.appendChild(h('span',{class:'item-name'},r.name));
       if(r.is_allergy_friendly) nameRow.appendChild(h('span',{style:{fontSize:'10px',padding:'1px 6px',borderRadius:'8px',background:'var(--green)',color:'#fff',fontWeight:'600',whiteSpace:'nowrap'}},'Allergieessen'));
@@ -2212,17 +2215,22 @@ async function renderRecipeBookPage(container){
     const recipe=recipes.find(r=>r.id===recipeSelectedId);
     if(!recipe){detailDiv.appendChild(h('div',{class:'empty-msg'},'Wähle ein Rezept aus'));return;}
 
+    // Mobile: Zurück-zur-Liste Button
+    if(window.innerWidth<=768){
+      detailDiv.appendChild(h('button',{class:'btn btn-ghost btn-sm',style:{marginBottom:'8px'},onClick:()=>{leftCol.scrollIntoView({behavior:'smooth',block:'start'});}},'← Zurück zur Liste'));
+    }
+
     const card=h('div',{class:'card'});
-    const top=h('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'4px'}});
-    const titleRow=h('div',{style:{display:'flex',alignItems:'center',gap:'8px'}});
+    const top=h('div',{class:'recipe-detail-top',style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'4px'}});
+    const titleRow=h('div',{style:{display:'flex',alignItems:'center',gap:'8px',flexWrap:'wrap'}});
     titleRow.appendChild(h('span',{style:{fontSize:'18px',fontWeight:'700'}},recipe.name));
     if(recipe.is_allergy_friendly) titleRow.appendChild(h('span',{style:{fontSize:'11px',padding:'2px 8px',borderRadius:'10px',background:'var(--green)',color:'#fff',fontWeight:'600'}},'Allergieessen'));
     top.appendChild(titleRow);
-    const topBtns=h('div',{style:{display:'flex',gap:'8px'}});
-    topBtns.appendChild(h('button',{class:'btn btn-surface btn-sm',onClick:()=>recipeDialog(recipe)},'Bearbeiten'));
-    topBtns.appendChild(h('button',{class:'btn btn-surface btn-sm',onClick:()=>duplicateRecipe(recipe)},'Duplizieren'));
-    topBtns.appendChild(h('button',{class:'btn btn-surface btn-sm',onClick:()=>exportRecipe(recipe)},'Export'));
-    topBtns.appendChild(h('button',{class:'btn btn-danger btn-sm',onClick:async()=>{if(confirm('Rezept löschen?')){await deleteRecipe(recipe.id);recipeSelectedId=null;renderList();renderDetail();}}},'Löschen'));
+    const topBtns=h('div',{class:'recipe-detail-btns',style:{display:'flex',gap:'8px'}});
+    topBtns.appendChild(h('button',{class:'btn btn-surface btn-sm',onClick:()=>recipeDialog(recipe)},'✎ Bearbeiten'));
+    topBtns.appendChild(h('button',{class:'btn btn-surface btn-sm',onClick:()=>duplicateRecipe(recipe)},'⧉ Duplizieren'));
+    topBtns.appendChild(h('button',{class:'btn btn-surface btn-sm',onClick:()=>exportRecipe(recipe)},'⬇ Export'));
+    topBtns.appendChild(h('button',{class:'btn btn-danger btn-sm',onClick:async()=>{if(confirm('Rezept löschen?')){await deleteRecipe(recipe.id);recipeSelectedId=null;renderList();renderDetail();}}},'✕ Löschen'));
     top.appendChild(topBtns);
     card.appendChild(top);
 
