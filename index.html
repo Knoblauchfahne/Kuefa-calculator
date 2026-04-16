@@ -810,6 +810,7 @@ de: {
 
   // tag input
   tag_create: '+ "{0}" erstellen',
+  btn_manage_tags: '🏷 Tags',
   tag_manage_title: 'Tags verwalten',
   tag_manage_desc: 'Tags umbenennen, löschen oder neue anlegen. Ein Tag-Löschung entfernt ihn auch aus allen Rezepten und Zutaten.',
   tag_rename: 'Umbenennen',
@@ -1320,6 +1321,7 @@ en: {
 
   // tag input
   tag_create: '+ Create "{0}"',
+  btn_manage_tags: '🏷 Tags',
   tag_manage_title: 'Manage Tags',
   tag_manage_desc: 'Rename, delete or create tags. Deleting a tag also removes it from all recipes and ingredients.',
   tag_rename: 'Rename',
@@ -1687,6 +1689,58 @@ function createTagFilterInput(onChange){
   wrap.addEventListener('click',()=>{if(selId===null)input.focus();});
   wrap.appendChild(input);
   return wrap;
+}
+
+// Tag management modal — callable from any page
+function showTagManager(){
+  const content=h('div',{style:{minWidth:'300px',maxWidth:'460px',width:'100%'}});
+  content.appendChild(h('h2',{},t('tag_manage_title')));
+  content.appendChild(h('div',{style:{fontSize:'13px',color:'var(--text-muted)',marginBottom:'12px'}},t('tag_manage_desc')));
+  const tagListDiv=h('div',{style:{maxHeight:'55vh',overflowY:'auto'}});
+  content.appendChild(tagListDiv);
+  content.appendChild(h('div',{class:'modal-buttons',style:{justifyContent:'flex-end',marginTop:'16px'}},
+    h('button',{class:'btn btn-surface',onClick:()=>closeModal(modal)},t('btn_close'))
+  ));
+  const modal=showModal(content);
+
+  async function refreshTagList(){
+    tagListDiv.innerHTML='';
+    const allTags=await getAllTags();
+    const allRTs=await dbGetAll('recipe_tags');
+    const allITs=await dbGetAll('ingredient_tags');
+    if(!allTags.length){
+      tagListDiv.appendChild(h('div',{style:{fontSize:'13px',color:'var(--text-muted)',padding:'8px 0'}},t('tag_count_none')));
+    }else{
+      allTags.forEach(tag=>{
+        const rc=allRTs.filter(x=>x.tag_id===tag.id).length;
+        const ic=allITs.filter(x=>x.tag_id===tag.id).length;
+        const row=h('div',{style:{display:'flex',alignItems:'center',gap:'8px',padding:'6px 0',borderBottom:'1px solid var(--border)',flexWrap:'wrap'}});
+        row.appendChild(h('span',{class:'tag-chip',style:{margin:0,flexShrink:0}},tag.name));
+        row.appendChild(h('span',{style:{fontSize:'12px',color:'var(--text-muted)',flex:1}},
+          `${t('tag_used_recipes',rc)}, ${t('tag_used_ingredients',ic)}`));
+        row.appendChild(h('button',{class:'btn btn-surface btn-sm',style:{fontSize:'11px',padding:'2px 10px',flexShrink:0},onClick:async()=>{
+          const nv=prompt(t('tag_rename_prompt',tag.name),tag.name);
+          if(!nv||nv.trim()===tag.name) return;
+          await renameTag(tag.id,nv.trim());refreshTagList();
+        }},t('tag_rename')));
+        row.appendChild(h('button',{class:'btn btn-danger btn-sm',style:{fontSize:'11px',padding:'2px 8px',flexShrink:0},onClick:async()=>{
+          if(!confirm(t('msg_confirm_delete_tag',tag.name,rc,ic))) return;
+          await deleteTag(tag.id);refreshTagList();
+        }},'🗑'));
+        tagListDiv.appendChild(row);
+      });
+    }
+    const addRow=h('div',{style:{display:'flex',gap:'8px',marginTop:'12px',paddingRight:'4px'}});
+    const newTagInput=h('input',{type:'text',class:'form-input',placeholder:t('ph_tag_add'),style:{flex:1,fontSize:'13px'}});
+    const addBtn=h('button',{class:'btn btn-accent btn-sm',onClick:async()=>{
+      const name=newTagInput.value.trim();if(!name)return;
+      await createTag(name);newTagInput.value='';refreshTagList();
+    }},t('tag_add'));
+    newTagInput.addEventListener('keydown',(e)=>{if(e.key==='Enter')addBtn.click();});
+    addRow.append(newTagInput,addBtn);
+    tagListDiv.appendChild(addRow);
+  }
+  refreshTagList();
 }
 
 async function getIngredients(){
@@ -2415,6 +2469,7 @@ async function renderIngredientsPage(container){
       h('button',{class:'btn btn-surface',onClick:importIngredients},t('btn_import')),
       h('button',{class:'btn btn-surface',onClick:manageSubcategories},t('btn_manage_categories')),
       h('button',{class:'btn btn-surface',onClick:manageAllergens},t('btn_manage_allergens')),
+      h('button',{class:'btn btn-surface',onClick:showTagManager},t('btn_manage_tags')),
       h('button',{class:'btn btn-accent',onClick:()=>ingredientDialog(null)},t('btn_add_ingredient'))
     )
   );
@@ -3250,6 +3305,7 @@ async function renderRecipeBookPage(container){
       h('button',{class:'btn btn-surface',onClick:importRecipes},t('btn_import')),
       h('button',{class:'btn btn-surface',onClick:()=>showMealTypeCatsDialog(()=>{renderList();renderDetail();})},t('btn_categories')),
       h('button',{class:'btn btn-surface',onClick:managePreparationMethods},t('btn_processing')),
+      h('button',{class:'btn btn-surface',onClick:showTagManager},t('btn_manage_tags')),
       h('button',{class:'btn btn-accent',onClick:()=>recipeDialog(null)},t('btn_new_recipe'))
     )
   );
@@ -4628,54 +4684,13 @@ async function renderDatabasePage(container){
   infoCard.appendChild(infoTable);
   body.appendChild(infoCard);
 
-  // Tag management
-  const tagMgmtCard=h('div',{class:'card',style:{marginBottom:'16px'}});
-  tagMgmtCard.appendChild(h('div',{style:{fontWeight:'700',fontSize:'14px',marginBottom:'4px'}},t('tag_manage_title')));
-  tagMgmtCard.appendChild(h('div',{style:{fontSize:'13px',color:'var(--text-muted)',marginBottom:'12px'}},t('tag_manage_desc')));
-  const tagListDiv=h('div');
-  tagMgmtCard.appendChild(tagListDiv);
-
-  async function refreshTagList(){
-    tagListDiv.innerHTML='';
-    const allTags=await getAllTags();
-    const allRTs=await dbGetAll('recipe_tags');
-    const allITs=await dbGetAll('ingredient_tags');
-    if(!allTags.length){
-      tagListDiv.appendChild(h('div',{style:{fontSize:'13px',color:'var(--text-muted)',padding:'8px 0'}},t('tag_count_none')));
-    }else{
-      allTags.forEach(tag=>{
-        const rc=allRTs.filter(x=>x.tag_id===tag.id).length;
-        const ic=allITs.filter(x=>x.tag_id===tag.id).length;
-        const row=h('div',{style:{display:'flex',alignItems:'center',gap:'8px',padding:'5px 0',borderBottom:'1px solid var(--border)',flexWrap:'wrap'}});
-        row.appendChild(h('span',{class:'tag-chip',style:{margin:0,flexShrink:0}},tag.name));
-        row.appendChild(h('span',{style:{fontSize:'12px',color:'var(--text-muted)',flex:1}},
-          `${t('tag_used_recipes',rc)}, ${t('tag_used_ingredients',ic)}`));
-        row.appendChild(h('button',{class:'btn btn-surface btn-sm',style:{fontSize:'11px',padding:'2px 10px',flexShrink:0},onClick:async()=>{
-          const nv=prompt(t('tag_rename_prompt',tag.name),tag.name);
-          if(!nv||nv.trim()===tag.name) return;
-          await renameTag(tag.id,nv.trim());
-          refreshTagList();
-        }},t('tag_rename')));
-        row.appendChild(h('button',{class:'btn btn-danger btn-sm',style:{fontSize:'11px',padding:'2px 8px',flexShrink:0},onClick:async()=>{
-          if(!confirm(t('msg_confirm_delete_tag',tag.name,rc,ic))) return;
-          await deleteTag(tag.id);
-          refreshTagList();
-        }},'🗑'));
-        tagListDiv.appendChild(row);
-      });
-    }
-    // Add new tag row
-    const addRow=h('div',{style:{display:'flex',gap:'8px',marginTop:'12px'}});
-    const newTagInput=h('input',{type:'text',class:'form-input',placeholder:t('ph_tag_add'),style:{flex:1,fontSize:'13px'}});
-    const addBtn=h('button',{class:'btn btn-accent btn-sm',onClick:async()=>{
-      const name=newTagInput.value.trim();if(!name)return;
-      await createTag(name);newTagInput.value='';refreshTagList();
-    }},t('tag_add'));
-    newTagInput.addEventListener('keydown',(e)=>{if(e.key==='Enter')addBtn.click();});
-    addRow.append(newTagInput,addBtn);
-    tagListDiv.appendChild(addRow);
-  }
-  await refreshTagList();
+  // Tag management — compact shortcut card
+  const tagMgmtCard=h('div',{class:'card',style:{marginBottom:'16px',display:'flex',alignItems:'center',gap:'16px',flexWrap:'wrap'}});
+  tagMgmtCard.appendChild(h('div',{style:{flex:1}},
+    h('div',{style:{fontWeight:'700',fontSize:'14px',marginBottom:'2px'}},t('tag_manage_title')),
+    h('div',{style:{fontSize:'13px',color:'var(--text-muted)'}},t('tag_manage_desc'))
+  ));
+  tagMgmtCard.appendChild(h('button',{class:'btn btn-surface',onClick:showTagManager},t('btn_manage_tags')));
   body.appendChild(tagMgmtCard);
 
   // Danger zone
