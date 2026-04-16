@@ -137,6 +137,13 @@ label.checkbox input{accent-color:var(--accent);width:16px;height:16px}
 
 /* ── Category Chips ───────────────────────────────────────── */
 .chip{display:inline-block;padding:2px 10px;background:var(--surface3);border-radius:12px;font-size:11px;color:var(--text-muted);margin-right:4px;margin-bottom:4px}
+.tag-chip{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;font-size:11px;color:var(--text-muted);margin-right:4px;margin-bottom:4px}
+.tag-chip .tag-remove{cursor:pointer;opacity:.6;font-size:10px}.tag-chip .tag-remove:hover{opacity:1;color:var(--accent)}
+.tag-input-wrap{position:relative;display:flex;flex-wrap:wrap;align-items:center;gap:4px;padding:4px 8px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;min-height:34px;cursor:text}
+.tag-input-wrap input{border:none;background:transparent;color:var(--text);outline:none;font-size:12px;min-width:80px;flex:1;padding:2px 0}
+.tag-autocomplete{position:absolute;top:100%;left:0;right:0;background:var(--surface);border:1px solid var(--border);border-radius:6px;max-height:160px;overflow-y:auto;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.tag-autocomplete-item{padding:6px 12px;font-size:12px;cursor:pointer;color:var(--text)}.tag-autocomplete-item:hover,.tag-autocomplete-item.active{background:var(--surface2)}
+.tag-autocomplete-new{color:var(--green-light);font-style:italic}
 
 /* ── Assignment Slot ──────────────────────────────────────── */
 .assign-slot{background:var(--surface2);border-radius:8px;padding:10px;margin:4px 0}
@@ -310,7 +317,7 @@ label.checkbox input{accent-color:var(--accent);width:16px;height:16px}
 //  DATABASE (IndexedDB)
 // ══════════════════════════════════════════════════════════════
 const DB_NAME = 'kf_portionsrechner';
-const DB_VERSION = 4;
+const DB_VERSION = 5;
 let db;
 
 const UNITS = ["kg","g","L","ml","Stück","Bund","Dose(n)","Packung","Becher","EL","TL"];
@@ -344,6 +351,9 @@ function openDB(){
       if(!d.objectStoreNames.contains('allergens')){const s=d.createObjectStore('allergens',{keyPath:'id',autoIncrement:true});s.createIndex('name','name',{unique:true});}
       if(!d.objectStoreNames.contains('ingredient_allergens')){const s=d.createObjectStore('ingredient_allergens',{keyPath:'id',autoIncrement:true});s.createIndex('ingredient_id','ingredient_id');}
       if(!d.objectStoreNames.contains('recipe_allergens')){const s=d.createObjectStore('recipe_allergens',{keyPath:'id',autoIncrement:true});s.createIndex('recipe_id','recipe_id');}
+      if(!d.objectStoreNames.contains('tags')){const s=d.createObjectStore('tags',{keyPath:'id',autoIncrement:true});s.createIndex('name','name',{unique:true});}
+      if(!d.objectStoreNames.contains('recipe_tags')){const s=d.createObjectStore('recipe_tags',{keyPath:'id',autoIncrement:true});s.createIndex('recipe_id','recipe_id');s.createIndex('tag_id','tag_id');}
+      if(!d.objectStoreNames.contains('ingredient_tags')){const s=d.createObjectStore('ingredient_tags',{keyPath:'id',autoIncrement:true});s.createIndex('ingredient_id','ingredient_id');s.createIndex('tag_id','tag_id');}
     };
     req.onsuccess = e => {db=e.target.result;resolve(db);};
     req.onerror = e => reject(e);
@@ -449,10 +459,115 @@ async function setRecipeAllergens(recipeId,allergenIds){
   for(const aid of allergenIds) await dbAdd('recipe_allergens',{ingredient_id:recipeId,recipe_id:recipeId,allergen_id:aid});
 }
 
+// Tags
+async function getAllTags(){return (await dbGetAll('tags')).sort((a,b)=>a.name.localeCompare(b.name));}
+async function createTag(name){return dbAdd('tags',{name});}
+async function deleteTag(id){
+  const its=await dbGetAll('ingredient_tags');for(const it of its){if(it.tag_id===id) await dbDel('ingredient_tags',it.id);}
+  const rts=await dbGetAll('recipe_tags');for(const rt of rts){if(rt.tag_id===id) await dbDel('recipe_tags',rt.id);}
+  await dbDel('tags',id);
+}
+async function getIngredientTags(ingredientId){
+  const its=await dbGetByIndex('ingredient_tags','ingredient_id',ingredientId);
+  const result=[];for(const it of its){const t=await dbGet('tags',it.tag_id);if(t) result.push(t);}
+  return result;
+}
+async function setIngredientTags(ingredientId,tagIds){
+  const existing=await dbGetByIndex('ingredient_tags','ingredient_id',ingredientId);
+  for(const e of existing) await dbDel('ingredient_tags',e.id);
+  for(const tid of tagIds) await dbAdd('ingredient_tags',{ingredient_id:ingredientId,tag_id:tid});
+}
+async function getRecipeTags(recipeId){
+  const rts=await dbGetByIndex('recipe_tags','recipe_id',recipeId);
+  const result=[];for(const rt of rts){const t=await dbGet('tags',rt.tag_id);if(t) result.push(t);}
+  return result;
+}
+async function setRecipeTags(recipeId,tagIds){
+  const existing=await dbGetByIndex('recipe_tags','recipe_id',recipeId);
+  for(const e of existing) await dbDel('recipe_tags',e.id);
+  for(const tid of tagIds) await dbAdd('recipe_tags',{recipe_id:recipeId,tag_id:tid});
+}
+
+function createTagInput(existingTagIds,onChange){
+  let selectedIds=[...existingTagIds];
+  const wrap=h('div',{class:'tag-input-wrap'});
+  const input=h('input',{type:'text',placeholder:'Tag hinzufügen...'});
+  const dropdown=h('div',{class:'tag-autocomplete',style:{display:'none'}});
+  wrap.append(dropdown);
+  let activeIdx=-1;
+
+  function renderChips(){
+    wrap.querySelectorAll('.tag-chip').forEach(c=>c.remove());
+    getAllTags().then(allTags=>{
+      const before=input;
+      selectedIds.forEach(tid=>{
+        const tag=allTags.find(t=>t.id===tid);if(!tag) return;
+        const chip=h('span',{class:'tag-chip'},tag.name,h('span',{class:'tag-remove',onClick:(e)=>{e.stopPropagation();selectedIds=selectedIds.filter(x=>x!==tid);renderChips();onChange(selectedIds);}},'✕'));
+        wrap.insertBefore(chip,before);
+      });
+    });
+  }
+
+  async function showDropdown(){
+    const q=input.value.trim().toLowerCase();
+    const allTags=await getAllTags();
+    const avail=allTags.filter(t=>!selectedIds.includes(t.id));
+    const filtered=q?avail.filter(t=>t.name.toLowerCase().includes(q)):avail;
+    dropdown.innerHTML='';activeIdx=-1;
+    filtered.forEach((t,i)=>{
+      const item=h('div',{class:'tag-autocomplete-item',onMousedown:(e)=>{e.preventDefault();selectTag(t.id);}}
+      ,t.name);
+      dropdown.appendChild(item);
+    });
+    if(q&&!allTags.find(t=>t.name.toLowerCase()===q)){
+      const newItem=h('div',{class:'tag-autocomplete-item tag-autocomplete-new',onMousedown:async(e)=>{
+        e.preventDefault();
+        try{const id=await createTag(q);selectedIds.push(id);input.value='';renderChips();onChange(selectedIds);dropdown.style.display='none';}catch(ex){
+          const existing=await getAllTags();const found=existing.find(t=>t.name.toLowerCase()===q);
+          if(found&&!selectedIds.includes(found.id)){selectedIds.push(found.id);input.value='';renderChips();onChange(selectedIds);}
+          dropdown.style.display='none';
+        }
+      }},`+ "${q}" erstellen`);
+      dropdown.appendChild(newItem);
+    }
+    dropdown.style.display=(dropdown.children.length)?'block':'none';
+  }
+
+  function selectTag(tid){
+    if(!selectedIds.includes(tid)) selectedIds.push(tid);
+    input.value='';renderChips();onChange(selectedIds);dropdown.style.display='none';
+  }
+
+  input.addEventListener('input',showDropdown);
+  input.addEventListener('focus',showDropdown);
+  input.addEventListener('blur',()=>{setTimeout(()=>{dropdown.style.display='none';},150);});
+  input.addEventListener('keydown',async(e)=>{
+    const items=dropdown.querySelectorAll('.tag-autocomplete-item');
+    if(e.key==='ArrowDown'){e.preventDefault();activeIdx=Math.min(activeIdx+1,items.length-1);items.forEach((it,i)=>it.classList.toggle('active',i===activeIdx));}
+    else if(e.key==='ArrowUp'){e.preventDefault();activeIdx=Math.max(activeIdx-1,0);items.forEach((it,i)=>it.classList.toggle('active',i===activeIdx));}
+    else if(e.key==='Enter'){
+      e.preventDefault();
+      if(activeIdx>=0&&items[activeIdx]){items[activeIdx].dispatchEvent(new Event('mousedown'));}
+      else if(input.value.trim()){
+        const q=input.value.trim().toLowerCase();
+        const allTags=await getAllTags();const found=allTags.find(t=>t.name.toLowerCase()===q);
+        if(found&&!selectedIds.includes(found.id)){selectTag(found.id);}
+        else if(!found){try{const id=await createTag(input.value.trim());selectedIds.push(id);input.value='';renderChips();onChange(selectedIds);dropdown.style.display='none';}catch(ex){}}
+      }
+    }
+    else if(e.key==='Backspace'&&!input.value&&selectedIds.length){selectedIds.pop();renderChips();onChange(selectedIds);}
+  });
+  wrap.addEventListener('click',()=>input.focus());
+  wrap.appendChild(input);
+  renderChips();
+  return wrap;
+}
+
 async function getIngredients(){
   const ings=(await dbGetAll('ingredients')).sort((a,b)=>a.name.localeCompare(b.name));
   for(const ing of ings){
     ing.allergens=await getIngredientAllergens(ing.id);
+    ing.tags=await getIngredientTags(ing.id);
     // Migration: alte 'note' in neue Felder übernehmen
     if(ing.note&&!ing.verarbeitungshinweis&&!ing.lagerhinweis){ing.verarbeitungshinweis=ing.note;delete ing.note;await dbPut('ingredients',ing);}
     ing.verarbeitungshinweis=ing.verarbeitungshinweis||'';
@@ -466,6 +581,7 @@ async function createIngredient(name,unit,price=0,subcat='',verarbeitungshinweis
 async function updateIngredient(id,name,unit,price=0,subcat='',verarbeitungshinweis='',lagerhinweis='',abschnitt=0,kochfaktor=1){await dbPut('ingredients',{id,name,unit,price,subcategory:subcat,verarbeitungshinweis,lagerhinweis,abschnitt,kochfaktor});}
 async function deleteIngredient(id){
   await setIngredientAllergens(id,[]);
+  await setIngredientTags(id,[]);
   await dbDel('ingredients',id);
 }
 async function getPreparationMethods(){return (await dbGetAll('preparation_methods')).sort((a,b)=>a.name.localeCompare(b.name));}
@@ -536,6 +652,7 @@ async function getRecipes(){
     r.allergens=[];r.autoAllergenIds=[...autoAllergenIds];r.manualAllergenIds=manualIds;
     for(const aid of allIds){const a=await dbGet('allergens',aid);if(a) r.allergens.push(a);}
     r.allergens.sort((a,b)=>a.name.localeCompare(b.name));
+    r.tags=await getRecipeTags(r.id);
   }
   return recipes;
 }
@@ -544,6 +661,7 @@ async function createRecipe(name,desc,catIds,ingsData,extra={}){
   for(const cid of catIds) await dbAdd('recipe_categories',{recipe_id:id,category_id:cid});
   for(const i of ingsData) await dbAdd('recipe_ingredients',{recipe_id:id,ingredient_id:i.ingredient_id,quantity_per_person:i.quantity_per_person,unit:i.unit,preparation:i.preparation||'',optional:i.optional||false});
   if(extra.allergenIds) await setRecipeAllergens(id,extra.allergenIds);
+  if(extra.tagIds) await setRecipeTags(id,extra.tagIds);
   return id;
 }
 async function updateRecipe(id,name,desc,catIds,ingsData,extra={}){
@@ -554,11 +672,13 @@ async function updateRecipe(id,name,desc,catIds,ingsData,extra={}){
   for(const cid of catIds) await dbAdd('recipe_categories',{recipe_id:id,category_id:cid});
   for(const i of ingsData) await dbAdd('recipe_ingredients',{recipe_id:id,ingredient_id:i.ingredient_id,quantity_per_person:i.quantity_per_person,unit:i.unit,preparation:i.preparation||'',optional:i.optional||false});
   if(extra.allergenIds!==undefined) await setRecipeAllergens(id,extra.allergenIds);
+  if(extra.tagIds!==undefined) await setRecipeTags(id,extra.tagIds);
 }
 async function deleteRecipe(id){
   await dbDelByIndex('recipe_categories','recipe_id',id);
   await dbDelByIndex('recipe_ingredients','recipe_id',id);
   await setRecipeAllergens(id,[]);
+  await setRecipeTags(id,[]);
   // Remove assignments
   const allAssign=await dbGetAll('assignments');
   for(const a of allAssign){if(a.recipe_id===id) await dbDel('assignments',a.id);}
@@ -574,6 +694,7 @@ function exportRecipeToText(recipe){
   if(recipe.allergens&&recipe.allergens.length) t+=`Allergene: ${recipe.allergens.map(a=>a.name).join(', ')}\n`;
   if(recipe.allergen_hinweis) t+=`Allergen-Hinweis: ${recipe.allergen_hinweis}\n`;
   if(recipe.is_allergy_friendly) t+=`Allergieessen: ja\n`;
+  if(recipe.tags&&recipe.tags.length) t+=`Tags: ${recipe.tags.map(t=>t.name).join(', ')}\n`;
   t+="\n--- ZUTATEN (pro Person) ---\n";
   for(const i of recipe.ingredients) t+=`${i.ingredient_name}; ${i.preparation||''}; ${i.quantity_per_person}; ${i.unit}${i.optional?'; optional':''}\n`;
   if(recipe.zubereitung){t+="\n--- ZUBEREITUNG ---\n";t+=recipe.zubereitung+"\n";}
@@ -587,7 +708,7 @@ async function importRecipeFromText(content,overwrite=false){
   for(let block of blocks){
     block=block.trim();if(!block) continue;
     block=block.replace(/===\s*ENDE\s*===/g,'').trim();
-    const r={name:'',description:'',categories:[],ingredients:[],zubereitung_zeit:'',garzeit:'',zubereitung:'',hinweis:'',allergens:[],allergen_hinweis:'',is_allergy_friendly:false};
+    const r={name:'',description:'',categories:[],ingredients:[],zubereitung_zeit:'',garzeit:'',zubereitung:'',hinweis:'',allergens:[],allergen_hinweis:'',is_allergy_friendly:false,tags:[]};
 
     const sections=block.split(/^---\s+/m);
     const headerLines=sections[0].split('\n');
@@ -601,6 +722,7 @@ async function importRecipeFromText(content,overwrite=false){
       else if(l.startsWith('Allergene:')) r.allergens=l.slice(10).split(',').map(a=>a.trim()).filter(Boolean);
       else if(l.startsWith('Allergen-Hinweis:')) r.allergen_hinweis=l.slice(17).trim();
       else if(l.startsWith('Allergieessen:')) r.is_allergy_friendly=l.slice(14).trim().toLowerCase()==='ja';
+      else if(l.startsWith('Tags:')) r.tags=l.slice(5).split(',').map(t=>t.trim()).filter(Boolean);
     }
 
     for(let si=1;si<sections.length;si++){
@@ -641,7 +763,12 @@ async function importRecipeFromText(content,overwrite=false){
       let allAllergens=await getAllergens();let al=allAllergens.find(a=>a.name===an);
       if(!al){const aid=await createAllergen(an);allergenIds.push(aid);}else allergenIds.push(al.id);
     }
-    const extra={zubereitung_zeit:r.zubereitung_zeit,garzeit:r.garzeit,zubereitung:r.zubereitung,hinweis:r.hinweis,allergen_hinweis:r.allergen_hinweis,is_allergy_friendly:r.is_allergy_friendly,allergenIds};
+    const tagIds=[];
+    for(const tn of (r.tags||[])){
+      let allTags=await getAllTags();let tag=allTags.find(t=>t.name===tn);
+      if(!tag){const tid=await createTag(tn);tagIds.push(tid);}else tagIds.push(tag.id);
+    }
+    const extra={zubereitung_zeit:r.zubereitung_zeit,garzeit:r.garzeit,zubereitung:r.zubereitung,hinweis:r.hinweis,allergen_hinweis:r.allergen_hinweis,is_allergy_friendly:r.is_allergy_friendly,allergenIds,tagIds};
     if(existing){
       await updateRecipe(existing.id,r.name,r.description,catIds,ingData,extra);
       updated++;
@@ -1148,7 +1275,10 @@ async function renderIngredientsPage(container){
   catFilter.appendChild(h('option',{value:''},'Alle Kategorien'));
   catFilter.appendChild(h('option',{value:'__none__'},'Ohne Kategorie'));
   (await getSubcategories()).forEach(s=>catFilter.appendChild(h('option',{value:s.name},s.name)));
-  filterRow.append(searchInput,catFilter);
+  const tagFilter=h('select',{style:{minWidth:'140px'}});
+  tagFilter.appendChild(h('option',{value:''},'Alle Tags'));
+  (await getAllTags()).forEach(t=>tagFilter.appendChild(h('option',{value:String(t.id)},t.name)));
+  filterRow.append(searchInput,catFilter,tagFilter);
   body.appendChild(filterRow);
 
   const tableContainer=h('div',{class:'card',style:{marginTop:'12px'}});
@@ -1156,6 +1286,14 @@ async function renderIngredientsPage(container){
 
   searchInput.addEventListener('input',renderTable);
   catFilter.addEventListener('change',renderTable);
+  tagFilter.addEventListener('change',renderTable);
+
+  async function refreshTagFilter(){
+    const val=tagFilter.value;tagFilter.innerHTML='';
+    tagFilter.appendChild(h('option',{value:''},'Alle Tags'));
+    (await getAllTags()).forEach(t=>tagFilter.appendChild(h('option',{value:String(t.id)},t.name)));
+    tagFilter.value=val;
+  }
 
   async function renderTable(){
     tableContainer.innerHTML='';
@@ -1165,9 +1303,11 @@ async function renderIngredientsPage(container){
     const cf=catFilter.value;
     if(cf==='__none__') ings=ings.filter(i=>!i.subcategory);
     else if(cf) ings=ings.filter(i=>i.subcategory===cf);
+    const tf=tagFilter.value;
+    if(tf) ings=ings.filter(i=>(i.tags||[]).some(t=>t.id===parseInt(tf)));
 
     const hdr=h('div',{class:'table-header'});
-    [['Name',150],['Einheit',55],['Preis',60],['Kategorie',100],['Abschn.',55],['Kochfaktor',70],['Verarb.-Hinweis',130],['Lager-Hinweis',120]].forEach(([t,w])=>hdr.appendChild(h('span',{style:{width:w+'px',flexShrink:0}},t)));
+    [['Name',150],['Einheit',55],['Preis',60],['Kategorie',100],['Abschn.',55],['Kochfaktor',70],['Verarb.-Hinweis',130],['Lager-Hinweis',120],['Tags',150]].forEach(([t,w])=>hdr.appendChild(h('span',{style:{width:w+'px',flexShrink:0}},t)));
     hdr.appendChild(h('span',{style:{flex:1}}));
     tableContainer.appendChild(hdr);
 
@@ -1184,6 +1324,10 @@ async function renderIngredientsPage(container){
       row.appendChild(h('span',{style:{width:'70px',flexShrink:0,color:(kf!==1)?'var(--green-light)':'var(--text-muted)'}},(kf!==1)?`×${kf}`:'—'));
       row.appendChild(h('span',{style:{width:'130px',flexShrink:0,color:'var(--text-muted)',fontSize:'12px'}},ing.verarbeitungshinweis||'—'));
       row.appendChild(h('span',{style:{width:'120px',flexShrink:0,color:'var(--text-muted)',fontSize:'12px'}},ing.lagerhinweis||'—'));
+      const tagCell=h('span',{style:{width:'150px',flexShrink:0}});
+      (ing.tags||[]).forEach(t=>tagCell.appendChild(h('span',{class:'tag-chip',style:{border:'none',margin:'1px 2px'}},t.name)));
+      if(!(ing.tags||[]).length) tagCell.appendChild(h('span',{style:{color:'var(--text-muted)'}},'—'));
+      row.appendChild(tagCell);
       const btns=h('span',{style:{marginLeft:'auto',display:'flex',gap:'4px'}});
       btns.appendChild(h('button',{class:'btn-icon btn-ghost',onClick:()=>ingredientDialog(ing)},'✎'));
       btns.appendChild(h('button',{class:'btn-icon btn-danger',onClick:async()=>{if(confirm(`"${ing.name}" wirklich löschen?`)){await deleteIngredient(ing.id);renderTable();}}},'✕'));
@@ -1217,6 +1361,10 @@ async function renderIngredientsPage(container){
     });
     if(!allergens.length) allergenFrame.appendChild(h('span',{style:{fontSize:'12px',color:'var(--text-muted)'}},'Keine Allergene definiert'));
 
+    // Tag input
+    let selectedTagIds=ing?(ing.tags||[]).map(t=>t.id):[];
+    const tagInput=createTagInput(selectedTagIds,(ids)=>{selectedTagIds=ids;});
+
     const modal=showModal(h('div',{},
       h('h2',{},ing?'Zutat bearbeiten':'Neue Zutat'),
       h('div',{class:'form-group'},h('label',{class:'form-label'},'Name'),nameInput),
@@ -1232,6 +1380,7 @@ async function renderIngredientsPage(container){
       h('div',{class:'form-group'},h('label',{class:'form-label'},'Verarbeitungshinweis'),verarbHinweisInput),
       h('div',{class:'form-group'},h('label',{class:'form-label'},'Lagerhinweis'),lagerHinweisInput),
       h('div',{class:'form-group'},h('label',{class:'form-label'},'Allergene'),allergenFrame),
+      h('div',{class:'form-group'},h('label',{class:'form-label'},'Tags'),tagInput),
       h('div',{class:'modal-buttons'},
         h('button',{class:'btn btn-surface',onClick:()=>closeModal(modal)},'Abbrechen'),
         h('button',{class:'btn btn-accent',onClick:async()=>{
@@ -1246,6 +1395,7 @@ async function renderIngredientsPage(container){
           }catch(e){alert('Zutat existiert bereits');return;}
           const selAllergenIds=Object.entries(allergenVars).filter(([_,cb])=>cb.checked).map(([id])=>parseInt(id));
           await setIngredientAllergens(ing.id,selAllergenIds);
+          await setIngredientTags(ing.id,selectedTagIds);
           closeModal(modal);renderTable();
         }},'Speichern')
       )
@@ -1330,11 +1480,12 @@ async function renderIngredientsPage(container){
     const ings=await getIngredients();
     if(!ings.length){alert('Keine Zutaten vorhanden');return;}
     // CSV
-    let csv='\uFEFFName;Einheit;Preis;Kategorie;Abschnitt(%);Kochfaktor;Verarbeitungshinweis;Lagerhinweis;Allergene\n';
+    let csv='\uFEFFName;Einheit;Preis;Kategorie;Abschnitt(%);Kochfaktor;Verarbeitungshinweis;Lagerhinweis;Allergene;Tags\n';
     ings.forEach(i=>{
       const allergenStr=(i.allergens||[]).map(a=>a.name).join(', ');
+      const tagStr=(i.tags||[]).map(t=>t.name).join(', ');
       const kfStr=(i.kochfaktor&&i.kochfaktor!==1)?String(i.kochfaktor).replace('.',','):'';
-      csv+=`${i.name};${i.unit};${i.price?String(i.price).replace('.',','):''};${i.subcategory||''};${i.abschnitt||''};${kfStr};${i.verarbeitungshinweis||''};${i.lagerhinweis||''};${allergenStr}\n`;
+      csv+=`${i.name};${i.unit};${i.price?String(i.price).replace('.',','):''};${i.subcategory||''};${i.abschnitt||''};${kfStr};${i.verarbeitungshinweis||''};${i.lagerhinweis||''};${allergenStr};${tagStr}\n`;
     });
     // TXT
     let txt='=== ZUTATENLISTE ===\n';
@@ -1350,6 +1501,7 @@ async function renderIngredientsPage(container){
         if(i.verarbeitungshinweis) txt+=`  [V: ${i.verarbeitungshinweis}]`;
         if(i.lagerhinweis) txt+=`  [L: ${i.lagerhinweis}]`;
         if(i.allergens&&i.allergens.length) txt+=`  ⚠ ${i.allergens.map(a=>a.name).join(', ')}`;
+        if(i.tags&&i.tags.length) txt+=`  🏷 ${i.tags.map(t=>t.name).join(', ')}`;
         txt+='\n';
       });
       txt+='\n';
@@ -1405,6 +1557,7 @@ async function renderIngredientsPage(container){
         const verarbHinweis=isNewFormat?(parts[6]||''):(parts[5]||'');
         const lagerHinweis=isNewFormat?(parts[7]||''):(parts[6]||'');
         const allergenStr=isNewFormat?(parts[8]||''):(parts[7]||'');
+        const tagStr=isNewFormat?(parts[9]||''):'';
         if(subcat){
           const subs=await getSubcategories();
           if(!subs.find(s=>s.name===subcat)){try{await createSubcategory(subcat);}catch(e){}}
@@ -1423,15 +1576,28 @@ async function renderIngredientsPage(container){
             if(allergenIds.length) await setIngredientAllergens(ingId,allergenIds);
           }
         }
+        async function assignTags(ingId){
+          if(tagStr){
+            const tagNames=tagStr.split(',').map(t=>t.trim()).filter(Boolean);
+            const tIds=[];
+            for(const tn of tagNames){
+              let allT=await getAllTags();let tag=allT.find(t=>t.name===tn);
+              if(!tag){const tid=await createTag(tn);tIds.push(tid);}else tIds.push(tag.id);
+            }
+            if(tIds.length) await setIngredientTags(ingId,tIds);
+          }
+        }
 
         try{
           if(existing){
             await updateIngredient(existing.id,name,unit,price,subcat,verarbHinweis,lagerHinweis,abschnitt,kochfaktor);
             await assignAllergens(existing.id);
+            await assignTags(existing.id);
             updated++;
           }else{
             const newId=await createIngredient(name,unit,price,subcat,verarbHinweis,lagerHinweis,abschnitt,kochfaktor);
             await assignAllergens(newId);
+            await assignTags(newId);
             existingMap[name.toLowerCase()]={id:newId};
             added++;
           }
@@ -1955,7 +2121,10 @@ async function renderRecipeBookPage(container){
   recipeCatFilter.appendChild(h('option',{value:''},'Alle Kategorien'));
   recipeCatFilter.appendChild(h('option',{value:'__none__'},'Ohne Kategorie'));
   (await getMealTypeCategories()).forEach(c=>recipeCatFilter.appendChild(h('option',{value:String(c.id)},c.name)));
-  leftCol.append(searchInput,recipeCatFilter);
+  const recipeTagFilter=h('select',{style:{width:'100%',marginBottom:'8px'}});
+  recipeTagFilter.appendChild(h('option',{value:''},'Alle Tags'));
+  (await getAllTags()).forEach(t=>recipeTagFilter.appendChild(h('option',{value:String(t.id)},t.name)));
+  leftCol.append(searchInput,recipeCatFilter,recipeTagFilter);
   const listDiv=h('div',{style:{overflowY:'auto',flex:1}});
   leftCol.appendChild(listDiv);
   const detailDiv=h('div',{class:'col-right'});
@@ -1964,6 +2133,7 @@ async function renderRecipeBookPage(container){
 
   searchInput.addEventListener('input',renderList);
   recipeCatFilter.addEventListener('change',renderList);
+  recipeTagFilter.addEventListener('change',renderList);
 
   async function renderList(){
     listDiv.innerHTML='';
@@ -1973,6 +2143,8 @@ async function renderRecipeBookPage(container){
     const cf=recipeCatFilter.value;
     if(cf==='__none__') recipes=recipes.filter(r=>!r.categories.length);
     else if(cf) recipes=recipes.filter(r=>r.categories.some(c=>c.id===parseInt(cf)));
+    const rtf=recipeTagFilter.value;
+    if(rtf) recipes=recipes.filter(r=>(r.tags||[]).some(t=>t.id===parseInt(rtf)));
     if(!recipes.length){listDiv.appendChild(h('div',{class:'empty-msg'},'Keine Rezepte'));return;}
     recipes.forEach(r=>{
       const isSel=r.id===recipeSelectedId;
@@ -1982,6 +2154,7 @@ async function renderRecipeBookPage(container){
       if(r.is_allergy_friendly) nameRow.appendChild(h('span',{style:{fontSize:'10px',padding:'1px 6px',borderRadius:'8px',background:'var(--green)',color:'#fff',fontWeight:'600',whiteSpace:'nowrap'}},'Allergieessen'));
       item.appendChild(nameRow);
       if(r.categories.length) item.appendChild(h('div',{class:'item-meta'},r.categories.map(c=>c.name).join(', ')));
+      if((r.tags||[]).length){const tagRow=h('div',{style:{display:'flex',flexWrap:'wrap',gap:'2px',marginTop:'2px'}});r.tags.forEach(t=>tagRow.appendChild(h('span',{class:'tag-chip',style:{border:'none',fontSize:'10px',padding:'1px 6px',margin:0}},t.name)));item.appendChild(tagRow);}
       item.appendChild(h('div',{class:'item-meta'},`${r.ingredients.length} Zutaten`));
       listDiv.appendChild(item);
     });
@@ -2012,6 +2185,11 @@ async function renderRecipeBookPage(container){
       const chips=h('div',{style:{marginBottom:'8px'}});
       recipe.categories.forEach(c=>chips.appendChild(h('span',{class:'chip'},c.name)));
       card.appendChild(chips);
+    }
+    if((recipe.tags||[]).length){
+      const tagChips=h('div',{style:{marginBottom:'8px'}});
+      recipe.tags.forEach(t=>tagChips.appendChild(h('span',{class:'tag-chip'},t.name)));
+      card.appendChild(tagChips);
     }
 
     // Time info
@@ -2235,12 +2413,12 @@ async function renderRecipeBookPage(container){
       function render(){
         resultsDiv.innerHTML='';
         const q=searchInput.value.toLowerCase();
-        const filtered=q?allIngs.filter(i=>i.name.toLowerCase().includes(q)):allIngs;
+        const filtered=q?allIngs.filter(i=>i.name.toLowerCase().includes(q)||(i.tags||[]).some(t=>t.name.toLowerCase().includes(q))):allIngs;
         if(!filtered.length){resultsDiv.appendChild(h('div',{class:'empty-msg',style:{padding:'12px'}},'Keine Zutaten gefunden'));return;}
         filtered.forEach(ing=>{
           resultsDiv.appendChild(h('button',{class:'ing-search-item',onClick:()=>{
             ingIdRef.value=ing.id;display.textContent=ing.name;display.classList.add('has-value');unitRef.value=ing.unit;unitLabel.textContent=ing.unit;closeModal(popup);
-          }},`${ing.name} (${ing.unit})${ing.subcategory?' — '+ing.subcategory:''}${ing.abschnitt?' ['+ing.abschnitt+'% Abschn.]':''}`));
+          }},`${ing.name} (${ing.unit})${ing.subcategory?' — '+ing.subcategory:''}${ing.abschnitt?' ['+ing.abschnitt+'% Abschn.]':''}${(ing.tags||[]).length?' 🏷'+ing.tags.map(t=>t.name).join(', '):''}`));
         });
       }
       searchInput.addEventListener('input',render);
@@ -2269,6 +2447,11 @@ async function renderRecipeBookPage(container){
       h('label',{class:'form-label'},'Allergene (zusätzlich zu automatisch erkannten aus Zutaten)'),allergenFrame));
     content.appendChild(h('div',{class:'form-group'},h('label',{class:'form-label'},'Allergen-Hinweis'),allergenHinweisInput));
 
+    // Tags
+    let selectedRecipeTagIds=recipe?(recipe.tags||[]).map(t=>t.id):[];
+    const recipeTagInput=createTagInput(selectedRecipeTagIds,(ids)=>{selectedRecipeTagIds=ids;});
+    content.appendChild(h('div',{class:'form-group',style:{marginTop:'16px'}},h('label',{class:'form-label'},'Tags'),recipeTagInput));
+
     // Zubereitung (steps)
     const zubereitungArea=h('textarea',{placeholder:'Zubereitungsschritte...',style:{width:'100%',minHeight:'120px',resize:'vertical'}});
     if(recipe?.zubereitung) zubereitungArea.value=recipe.zubereitung;
@@ -2287,7 +2470,7 @@ async function renderRecipeBookPage(container){
         const portDiv=parseFloat(portionenInput.value)||1;
         const ingsData=ingRows.filter(r=>r.ingId.value&&parseFloat(r.qtyInput.value)>0).map(r=>({ingredient_id:r.ingId.value,quantity_per_person:Math.round((parseFloat(r.qtyInput.value)/portDiv)*10000)/10000,unit:r.unitRef.value,preparation:r.prepSel.value||'',optional:r.optionalRef.value||false}));
         const selAllergenIds=Object.entries(allergenVars).filter(([_,cb])=>cb.checked).map(([id])=>parseInt(id));
-        const extra={zubereitung_zeit:zubereitungZeitInput.value.trim(),garzeit:garzeitInput.value.trim(),zubereitung:zubereitungArea.value.trim(),hinweis:hinweisArea.value.trim(),allergen_hinweis:allergenHinweisInput.value.trim(),is_allergy_friendly:allergyFriendlyCb.checked,allergenIds:selAllergenIds};
+        const extra={zubereitung_zeit:zubereitungZeitInput.value.trim(),garzeit:garzeitInput.value.trim(),zubereitung:zubereitungArea.value.trim(),hinweis:hinweisArea.value.trim(),allergen_hinweis:allergenHinweisInput.value.trim(),is_allergy_friendly:allergyFriendlyCb.checked,allergenIds:selAllergenIds,tagIds:selectedRecipeTagIds};
         if(recipe){await updateRecipe(recipe.id,n,descInput.value.trim(),catIds,ingsData,extra);recipeSelectedId=recipe.id;}
         else{const id=await createRecipe(n,descInput.value.trim(),catIds,ingsData,extra);recipeSelectedId=id;}
         closeModal(modal);renderList();renderDetail();
@@ -2380,7 +2563,7 @@ async function renderRecipeBookPage(container){
   async function duplicateRecipe(recipe){
     const catIds=recipe.categories.map(c=>c.id);
     const ingsData=recipe.ingredients.map(i=>({ingredient_id:i.ingredient_id,quantity_per_person:i.quantity_per_person,unit:i.unit,preparation:i.preparation||'',optional:i.optional||false}));
-    const extra={zubereitung_zeit:recipe.zubereitung_zeit||'',garzeit:recipe.garzeit||'',zubereitung:recipe.zubereitung||'',hinweis:recipe.hinweis||'',allergen_hinweis:recipe.allergen_hinweis||'',is_allergy_friendly:recipe.is_allergy_friendly||false,allergenIds:recipe.manualAllergenIds||[]};
+    const extra={zubereitung_zeit:recipe.zubereitung_zeit||'',garzeit:recipe.garzeit||'',zubereitung:recipe.zubereitung||'',hinweis:recipe.hinweis||'',allergen_hinweis:recipe.allergen_hinweis||'',is_allergy_friendly:recipe.is_allergy_friendly||false,allergenIds:recipe.manualAllergenIds||[],tagIds:(recipe.tags||[]).map(t=>t.id)};
     const newId=await createRecipe(recipe.name+' (Kopie)',recipe.description||'',catIds,ingsData,extra);
     recipeSelectedId=newId;
     renderList();renderDetail();
@@ -2866,7 +3049,7 @@ tr:nth-child(even){background:#fafafa}
 // ══════════════════════════════════════════════════════════════
 //  DATABASE PAGE
 // ══════════════════════════════════════════════════════════════
-const ALL_STORES=['actions','cooking_days','meal_slots','ingredients','subcategories','standard_meals','meal_components','categories','recipes','recipe_categories','recipe_ingredients','assignments','preparation_methods','meal_type_categories','allergens','ingredient_allergens','recipe_allergens'];
+const ALL_STORES=['actions','cooking_days','meal_slots','ingredients','subcategories','standard_meals','meal_components','categories','recipes','recipe_categories','recipe_ingredients','assignments','preparation_methods','meal_type_categories','allergens','ingredient_allergens','recipe_allergens','tags','recipe_tags','ingredient_tags'];
 // Stores, die zu konkreten Kochaktionen / Planungen gehören und beim Laden des Standard-Datenbestands bewahrt werden sollen
 const ACTION_STORES=['actions','cooking_days','meal_slots','assignments'];
 
@@ -3123,7 +3306,7 @@ async function renderDatabasePage(container){
   const infoCard=h('div',{class:'card',style:{marginBottom:'16px'}});
   infoCard.appendChild(h('div',{style:{fontWeight:'700',fontSize:'14px',marginBottom:'12px'}},'📊  Datenbank-Übersicht'));
   const infoTable=h('div',{});
-  const storeLabels={actions:'Kochaktionen',cooking_days:'Kochtage',meal_slots:'Mahlzeit-Slots',ingredients:'Zutaten',subcategories:'Kategorien',standard_meals:'Standardmahlzeiten',meal_components:'Mahlzeit-Komponenten',categories:'Rezept-Kategorien',recipes:'Rezepte',recipe_categories:'Rezept-Kategorie-Zuordnungen',recipe_ingredients:'Rezept-Zutaten',assignments:'Rezeptzuweisungen',preparation_methods:'Verarbeitungsmethoden',meal_type_categories:'Mahlzeit-Typen',allergens:'Allergene',ingredient_allergens:'Zutaten-Allergene',recipe_allergens:'Rezept-Allergene'};
+  const storeLabels={actions:'Kochaktionen',cooking_days:'Kochtage',meal_slots:'Mahlzeit-Slots',ingredients:'Zutaten',subcategories:'Kategorien',standard_meals:'Standardmahlzeiten',meal_components:'Mahlzeit-Komponenten',categories:'Rezept-Kategorien',recipes:'Rezepte',recipe_categories:'Rezept-Kategorie-Zuordnungen',recipe_ingredients:'Rezept-Zutaten',assignments:'Rezeptzuweisungen',preparation_methods:'Verarbeitungsmethoden',meal_type_categories:'Mahlzeit-Typen',allergens:'Allergene',ingredient_allergens:'Zutaten-Allergene',recipe_allergens:'Rezept-Allergene',tags:'Tags',recipe_tags:'Rezept-Tags',ingredient_tags:'Zutaten-Tags'};
   async function refreshInfoTable(){
     infoTable.innerHTML='';
     for(const store of ALL_STORES){
@@ -3478,8 +3661,8 @@ function renderHelpPage(container){
     {title:'📅  Kalender',text:'Hier verwaltest du deine Kochaktionen oder Veranstaltungen. Links siehst du eine Sidebar-Liste aller angelegten Kochaktionen — klicke auf eine Aktion, um sie auszuwählen. Innerhalb einer Kochaktion legst du Kochtage fest, indem du auf Tage im Kalender klickst, und definierst pro Tag die Mahlzeiten (z.B. Mittagessen, 200 Portionen). Die Mahlzeitkategorien kannst du frei definieren.'},
     {title:'📋  Grundbedarfe',text:'Zeigt den Grundbedarf an Lebensmittelkategorien basierend auf vorher definierten Standardmahlzeiten. Die Berechnung erfolgt automatisch anhand der definierten Kochtage und Portionszahlen. Oben siehst du eine Portionsübersicht pro Mahlzeitkategorie. Die Standardmahlzeiten erreichst du über den gleichnamigen Button. Dort definierst du, welche Kategorien (z.B. Gemüse, Brot) in welcher Menge pro 100 Portionen benötigt werden. Es können mehrere Variationen von Standardmahlzeiten festgelegt werden, je nach Art der Aktion, welche über die Checkbox aus oder abgewählt werden können.'},
     {title:'📄  Einkaufsliste nach Rezept',text:'Hier weist du den Mahlzeit-Slots konkrete Rezepte, Beilagen und Allergie-Essen zu. Die Einkaufsliste wird dann auf Zutatenebene berechnet. Bei mehreren Rezepten pro Slot werden die Portionen automatisch gleichmäßig aufgeteilt, genau so mit den Beilagen. Du kannst die Aufteilung aber auch manuell anpassen. Eine Summenanzeige warnt dich, wenn die Teilportionen nicht mit der definierten Gesamtzahl übereinstimmen. Allergie-Essen werden separat mit eigenen Portionszahlen verwaltet (Empfehlung: ca. 1% der Gesamtportionen). Über die Bestellgruppen-Leiste oben kannst du Kochtage verschiedenen Bestellungen zuordnen (z.B. Bestellung 1 für Tag 1–4, Bestellung 2 für Tag 5–8). Beim Generieren werden separate Einkaufslisten pro Bestellgruppe erzeugt. Über den Rezepte Drucken Button kann eine PDF-Datei erzeugt werden, welche die Rezepte für jede einzelne Mahlzeit ausgibt.'},
-    {title:'📖  Rezeptbuch',text:'Deine Rezeptsammlung. Jedes Rezept enthält Zutaten (mit Menge pro Person und Verarbeitungsmethode), Zubereitungsschritte, Hinweise und optional Zeitangaben. Beim Erstellen kannst du angeben, für wie viele Portionen deine Mengenangaben gelten — die App rechnet automatisch auf 1 Person herunter. Zutaten können als optional markiert werden; diese erscheinen in der Einkaufsliste mit dem Label „(optional)". Rezepte können als „Allergieessen" markiert werden, damit sie beim Zuweisen von Allergie-Essen zur Auswahl stehen. Rezepte werden den gleichen Mahlzeitkategorien zugeordnet wie die Standardmahlzeiten (z.B. Frühstück, Mittagessen). Dadurch werden in der Einkaufsliste nur passende Rezepte pro Mahlzeit angeboten. Du kannst Rezepte als .txt-Datei importieren und exportieren, duplizieren oder über eine Maske neu erstellen.'},
-    {title:'📦  Zutaten',text:'Die Zutatendatenbank. Jede Zutat hat einen Namen, eine Einheit (kg, l, etc.), einen Preis pro Einheit als Referenz, eine Kategorie, einen Abschnitt-Wert (% Verlust beim Schälen/Schneiden), einen Kochfaktor (Gewichtsänderung beim Kochen), Verarbeitungs- und Lagerhinweise sowie zugeordnete Allergene. Der Abschnitt-Wert wird bei der Bestellmengenberechnung automatisch aufgeschlagen und im Rezept als Netto-Menge angezeigt. Der Kochfaktor ist ein Multiplikator (1 = unverändert, 2.6 = trockene Kichererbsen werden gekocht 2,6-fach schwerer, 0.15 = Spinat schrumpft beim Garen auf 15%) und wird in Rezept und PDF als Gekocht-Spalte dargestellt – rein informativ, damit der Koch weiß, wie viel am Ende auf dem Teller landet. Die Einheit wird automatisch in die Rezepte übernommen. Zutaten lassen sich als .csv oder .txt exportieren und importieren.'},
+    {title:'📖  Rezeptbuch',text:'Deine Rezeptsammlung. Jedes Rezept enthält Zutaten (mit Menge pro Person und Verarbeitungsmethode), Zubereitungsschritte, Hinweise und optional Zeitangaben. Beim Erstellen kannst du angeben, für wie viele Portionen deine Mengenangaben gelten — die App rechnet automatisch auf 1 Person herunter. Zutaten können als optional markiert werden; diese erscheinen in der Einkaufsliste mit dem Label „(optional)". Rezepte können als „Allergieessen" markiert werden, damit sie beim Zuweisen von Allergie-Essen zur Auswahl stehen. Rezepte werden den gleichen Mahlzeitkategorien zugeordnet wie die Standardmahlzeiten (z.B. Frühstück, Mittagessen). Dadurch werden in der Einkaufsliste nur passende Rezepte pro Mahlzeit angeboten. Zusätzlich können Rezepte mit frei definierbaren Tags versehen werden, um sie flexibel zu kategorisieren und zu filtern (z.B. „vegan", „schnell", „Sommer"). Du kannst Rezepte als .txt-Datei importieren und exportieren, duplizieren oder über eine Maske neu erstellen.'},
+    {title:'📦  Zutaten',text:'Die Zutatendatenbank. Jede Zutat hat einen Namen, eine Einheit (kg, l, etc.), einen Preis pro Einheit als Referenz, eine Kategorie, einen Abschnitt-Wert (% Verlust beim Schälen/Schneiden), einen Kochfaktor (Gewichtsänderung beim Kochen), Verarbeitungs- und Lagerhinweise, zugeordnete Allergene sowie frei definierbare Tags (z.B. „bio", „regional", „TK"). Tags helfen beim Filtern und bei der Suche nach Zutaten — auch innerhalb der Rezeptbearbeitung. Der Abschnitt-Wert wird bei der Bestellmengenberechnung automatisch aufgeschlagen und im Rezept als Netto-Menge angezeigt. Der Kochfaktor ist ein Multiplikator (1 = unverändert, 2.6 = trockene Kichererbsen werden gekocht 2,6-fach schwerer, 0.15 = Spinat schrumpft beim Garen auf 15%) und wird in Rezept und PDF als Gekocht-Spalte dargestellt – rein informativ, damit der Koch weiß, wie viel am Ende auf dem Teller landet. Die Einheit wird automatisch in die Rezepte übernommen. Zutaten lassen sich als .csv oder .txt exportieren und importieren.'},
     {title:'💾  Datenbank',text:'Backup & Verwaltung. Hier kannst du die gesamte Datenbank als JSON-Datei exportieren (Backup) oder eine zuvor exportierte Datei importieren. Einzelne Tabellen können separat gelöscht werden. Nützlich für Datensicherung, Übertragung auf andere Rechner oder Browser. Achtung: Beim Import werden alle aktuellen Daten überschrieben. Die Datenbank-Übersicht zeigt dir, wie viele Einträge in jeder Tabelle gespeichert sind. Über „Standard-Daten laden" kannst du den mitgelieferten Basis-Datenbestand direkt aus dem Repo holen — dabei werden nur Rezepte, Zutaten und Stammdaten überschrieben, deine Kochaktionen, Kochtage, Mahlzeit-Slots und Rezept-Zuweisungen bleiben erhalten. Über „Kochaktionen teilen" kannst du einzelne Aktionen samt ihrer Rezept-Zuweisungen als JSON an andere Teammitglieder weitergeben — beim Import werden die Aktionen additiv hinzugefügt, nichts wird überschrieben.'},
     {title:'🗓  Saisonkalender',text:'Übersicht, welches Obst, Gemüse und welche Kräuter in welchen Monaten in Deutschland Saison haben. Grün = Frisch/Freiland, Gelb = aus Lager verfügbar, Grau = nicht in Saison. Der aktuelle Monat wird farblich markiert. Mit Suche und Filtern kannst du gezielt nach saisonalen Zutaten für deine Rezeptplanung suchen.'},
     {title:'⚠  Allergene',text:'Auf dieser Seite findest du eine Übersicht der 14 EU-Hauptallergene, häufige Unverträglichkeiten und praktische Hinweise für die Küche. Im Rezeptbuch kannst du jedem Rezept Allergene zuordnen — automatisch aus den Zutaten oder manuell. Rezepte, die als „Allergieessen" markiert sind, stehen in der Einkaufsliste als Allergie-Alternative zur Verfügung.'},
@@ -3488,7 +3671,7 @@ function renderHelpPage(container){
       'Alle Daten werden lokal in deinem Browser gespeichert (IndexedDB). Andere Browser oder Rechner haben keinen Zugriff auf diese Daten.',
       'Erstelle regelmäßig ein Backup über die Datenbank-Seite, insbesondere vor Browser-Updates oder dem Löschen von Browserdaten, da sonst deine Datenbank verloren gehen könnte.',
       'Die App funktioniert vollständig offline. Einmal geladen, ist keine Internetverbindung mehr nötig — außer zum Prüfen auf neue Versionen oder zum Laden des Standard-Datenbestands.',
-      'Rezept-Import unterstützt das .txt-Format mit den Abschnitten === REZEPT ===, --- ZUTATEN ---, --- ZUBEREITUNG --- und --- HINWEIS ---. Optionale Zutaten werden mit „; optional" am Zeilenende markiert.',
+      'Rezept-Import unterstützt das .txt-Format mit den Abschnitten === REZEPT ===, --- ZUTATEN ---, --- ZUBEREITUNG --- und --- HINWEIS ---. Optionale Zutaten werden mit „; optional" am Zeilenende markiert. Tags werden im Header als „Tags: tag1, tag2" exportiert und beim Import automatisch erstellt.',
       'Du kannst zwischen Hell- und Dunkel-Theme wechseln über den Button oben rechts.',
     ]}
   ];
