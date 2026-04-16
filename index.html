@@ -144,6 +144,7 @@ label.checkbox input{accent-color:var(--accent);width:16px;height:16px}
 .tag-autocomplete{position:absolute;top:100%;left:0;right:0;background:var(--surface);border:1px solid var(--border);border-radius:6px;max-height:160px;overflow-y:auto;z-index:100;box-shadow:0 4px 12px rgba(0,0,0,.3)}
 .tag-autocomplete-item{padding:6px 12px;font-size:12px;cursor:pointer;color:var(--text)}.tag-autocomplete-item:hover,.tag-autocomplete-item.active{background:var(--surface2)}
 .tag-autocomplete-new{color:var(--green-light);font-style:italic}
+.tag-filter-wrap{min-height:32px;padding:2px 8px;cursor:pointer;flex-shrink:0}
 
 /* ── Assignment Slot ──────────────────────────────────────── */
 .assign-slot{background:var(--surface2);border-radius:8px;padding:10px;margin:4px 0}
@@ -806,6 +807,15 @@ de: {
 
   // tag input
   tag_create: '+ "{0}" erstellen',
+  tag_manage_title: 'Tags verwalten',
+  tag_manage_desc: 'Tags umbenennen, löschen oder neue anlegen. Ein Tag-Löschung entfernt ihn auch aus allen Rezepten und Zutaten.',
+  tag_rename: 'Umbenennen',
+  tag_add: '+ Tag erstellen',
+  tag_count_none: 'Noch keine Tags vorhanden.',
+  tag_rename_prompt: 'Neuer Name für „{0}":',
+  msg_confirm_delete_tag: 'Tag „{0}" wirklich löschen?\nEr wird von {1} Rezept(en) und {2} Zutat(en) genutzt.',
+  tag_used_recipes: '{0} Rezept(en)',
+  tag_used_ingredients: '{0} Zutat(en)',
 
   // misc
   misc_optional: 'optional',
@@ -1307,6 +1317,15 @@ en: {
 
   // tag input
   tag_create: '+ Create "{0}"',
+  tag_manage_title: 'Manage Tags',
+  tag_manage_desc: 'Rename, delete or create tags. Deleting a tag also removes it from all recipes and ingredients.',
+  tag_rename: 'Rename',
+  tag_add: '+ Create tag',
+  tag_count_none: 'No tags yet.',
+  tag_rename_prompt: 'New name for "{0}":',
+  msg_confirm_delete_tag: 'Really delete tag "{0}"?\nIt is used by {1} recipe(s) and {2} ingredient(s).',
+  tag_used_recipes: '{0} recipe(s)',
+  tag_used_ingredients: '{0} ingredient(s)',
 
   // misc
   misc_optional: 'optional',
@@ -1502,6 +1521,7 @@ async function deleteTag(id){
   const rts=await dbGetAll('recipe_tags');for(const rt of rts){if(rt.tag_id===id) await dbDel('recipe_tags',rt.id);}
   await dbDel('tags',id);
 }
+async function renameTag(id,newName){const tag=await dbGet('tags',id);if(tag){tag.name=newName.trim();await dbPut('tags',tag);}}
 async function getIngredientTags(ingredientId){
   const its=await dbGetByIndex('ingredient_tags','ingredient_id',ingredientId);
   const result=[];for(const it of its){const t=await dbGet('tags',it.tag_id);if(t) result.push(t);}
@@ -1614,6 +1634,55 @@ function createTagInput(existingTagIds,onChange){
   wrap.addEventListener('click',()=>input.focus());
   wrap.appendChild(input);
   renderChips();
+  return wrap;
+}
+
+// Single-select tag filter with autocomplete — for filter bars
+function createTagFilterInput(onChange){
+  let selId=null,selName='';
+  const wrap=h('div',{class:'tag-input-wrap tag-filter-wrap'});
+  const input=h('input',{type:'text',placeholder:t('filter_all_tags')});
+  const dropdown=h('div',{class:'tag-autocomplete',style:{display:'none'}});
+  wrap.append(dropdown);
+  let activeIdx=-1;
+  function renderChip(){
+    wrap.querySelectorAll('.tag-chip').forEach(c=>c.remove());
+    if(selId!==null){
+      wrap.insertBefore(h('span',{class:'tag-chip'},selName,
+        h('span',{class:'tag-remove',onClick:(e)=>{
+          e.stopPropagation();selId=null;selName='';
+          input.style.display='';input.placeholder=t('filter_all_tags');
+          renderChip();onChange(null);dropdown.style.display='none';
+          setTimeout(()=>input.focus(),0);
+        }},'✕')),input);
+      input.style.display='none';
+    }else{input.style.display='';}
+  }
+  async function showDropdown(){
+    const q=input.value.trim().toLowerCase();
+    const allTags=await getAllTags();
+    const filtered=q?allTags.filter(tg=>tg.name.toLowerCase().includes(q)):allTags;
+    dropdown.innerHTML='';activeIdx=-1;
+    filtered.forEach(tg=>{
+      dropdown.appendChild(h('div',{class:'tag-autocomplete-item',onMousedown:(e)=>{
+        e.preventDefault();selId=tg.id;selName=tg.name;input.value='';
+        renderChip();onChange(tg.id);dropdown.style.display='none';
+      }},tg.name));
+    });
+    dropdown.style.display=filtered.length?'block':'none';
+  }
+  input.addEventListener('input',showDropdown);
+  input.addEventListener('focus',showDropdown);
+  input.addEventListener('blur',()=>setTimeout(()=>{dropdown.style.display='none';},150));
+  input.addEventListener('keydown',(e)=>{
+    const items=dropdown.querySelectorAll('.tag-autocomplete-item');
+    if(e.key==='ArrowDown'){e.preventDefault();activeIdx=Math.min(activeIdx+1,items.length-1);items.forEach((it,i)=>it.classList.toggle('active',i===activeIdx));}
+    else if(e.key==='ArrowUp'){e.preventDefault();activeIdx=Math.max(activeIdx-1,0);items.forEach((it,i)=>it.classList.toggle('active',i===activeIdx));}
+    else if(e.key==='Enter'){e.preventDefault();if(activeIdx>=0&&items[activeIdx])items[activeIdx].dispatchEvent(new Event('mousedown'));}
+    else if(e.key==='Escape'){input.blur();dropdown.style.display='none';}
+  });
+  wrap.addEventListener('click',()=>{if(selId===null)input.focus();});
+  wrap.appendChild(input);
   return wrap;
 }
 
@@ -2355,10 +2424,9 @@ async function renderIngredientsPage(container){
   catFilter.appendChild(h('option',{value:''},t('filter_all_categories')));
   catFilter.appendChild(h('option',{value:'__none__'},t('filter_no_category')));
   (await getSubcategories()).forEach(s=>catFilter.appendChild(h('option',{value:s.name},s.name)));
-  const tagFilter=h('select',{style:{minWidth:'140px'}});
-  tagFilter.appendChild(h('option',{value:''},t('filter_all_tags')));
-  (await getAllTags()).forEach(t=>tagFilter.appendChild(h('option',{value:String(t.id)},t.name)));
-  filterRow.append(searchInput,catFilter,tagFilter);
+  let ingTagFilterId=null;
+  const tagFilterEl=createTagFilterInput((id)=>{ingTagFilterId=id;renderTable();});
+  filterRow.append(searchInput,catFilter,tagFilterEl);
   body.appendChild(filterRow);
 
   const tableContainer=h('div',{class:'card',style:{marginTop:'12px'}});
@@ -2366,14 +2434,6 @@ async function renderIngredientsPage(container){
 
   searchInput.addEventListener('input',renderTable);
   catFilter.addEventListener('change',renderTable);
-  tagFilter.addEventListener('change',renderTable);
-
-  async function refreshTagFilter(){
-    const val=tagFilter.value;tagFilter.innerHTML='';
-    tagFilter.appendChild(h('option',{value:''},'Alle Tags'));
-    (await getAllTags()).forEach(t=>tagFilter.appendChild(h('option',{value:String(t.id)},t.name)));
-    tagFilter.value=val;
-  }
 
   async function renderTable(){
     tableContainer.innerHTML='';
@@ -2383,8 +2443,7 @@ async function renderIngredientsPage(container){
     const cf=catFilter.value;
     if(cf==='__none__') ings=ings.filter(i=>!i.subcategory);
     else if(cf) ings=ings.filter(i=>i.subcategory===cf);
-    const tf=tagFilter.value;
-    if(tf) ings=ings.filter(i=>(i.tags||[]).some(t=>t.id===parseInt(tf)));
+    if(ingTagFilterId) ings=ings.filter(i=>(i.tags||[]).some(tg=>tg.id===ingTagFilterId));
 
     const hdr=h('div',{class:'table-header'});
     [[t('col_name'),150],[t('col_unit'),55],[t('col_price'),60],[t('col_category'),100],[t('col_trim'),55],[t('col_cook_factor'),70],[t('col_processing_hint'),130],[t('col_storage_hint'),120],[t('col_tags'),150]].forEach(([lbl,w])=>hdr.appendChild(h('span',{style:{width:w+'px',flexShrink:0}},lbl)));
@@ -3201,10 +3260,10 @@ async function renderRecipeBookPage(container){
   recipeCatFilter.appendChild(h('option',{value:''},t('filter_all_categories')));
   recipeCatFilter.appendChild(h('option',{value:'__none__'},t('filter_no_category')));
   (await getMealTypeCategories()).forEach(c=>recipeCatFilter.appendChild(h('option',{value:String(c.id)},c.name)));
-  const recipeTagFilter=h('select',{style:{width:'100%',marginBottom:'8px'}});
-  recipeTagFilter.appendChild(h('option',{value:''},t('filter_all_tags')));
-  (await getAllTags()).forEach(t=>recipeTagFilter.appendChild(h('option',{value:String(t.id)},t.name)));
-  leftCol.append(searchInput,recipeCatFilter,recipeTagFilter);
+  let recipeTagFilterId=null;
+  const recipeTagFilterEl=createTagFilterInput((id)=>{recipeTagFilterId=id;renderList();});
+  recipeTagFilterEl.style.marginBottom='8px';
+  leftCol.append(searchInput,recipeCatFilter,recipeTagFilterEl);
   const listDiv=h('div',{style:{overflowY:'auto',flex:1}});
   leftCol.appendChild(listDiv);
   const detailDiv=h('div',{class:'col-right'});
@@ -3213,7 +3272,6 @@ async function renderRecipeBookPage(container){
 
   searchInput.addEventListener('input',renderList);
   recipeCatFilter.addEventListener('change',renderList);
-  recipeTagFilter.addEventListener('change',renderList);
 
   async function renderList(){
     listDiv.innerHTML='';
@@ -3223,8 +3281,7 @@ async function renderRecipeBookPage(container){
     const cf=recipeCatFilter.value;
     if(cf==='__none__') recipes=recipes.filter(r=>!r.categories.length);
     else if(cf) recipes=recipes.filter(r=>r.categories.some(c=>c.id===parseInt(cf)));
-    const rtf=recipeTagFilter.value;
-    if(rtf) recipes=recipes.filter(r=>(r.tags||[]).some(t=>t.id===parseInt(rtf)));
+    if(recipeTagFilterId) recipes=recipes.filter(r=>(r.tags||[]).some(tg=>tg.id===recipeTagFilterId));
     if(!recipes.length){listDiv.appendChild(h('div',{class:'empty-msg'},t('empty_no_recipes')));return;}
     recipes.forEach(r=>{
       const isSel=r.id===recipeSelectedId;
@@ -4567,6 +4624,56 @@ async function renderDatabasePage(container){
   await refreshInfoTable();
   infoCard.appendChild(infoTable);
   body.appendChild(infoCard);
+
+  // Tag management
+  const tagMgmtCard=h('div',{class:'card',style:{marginBottom:'16px'}});
+  tagMgmtCard.appendChild(h('div',{style:{fontWeight:'700',fontSize:'14px',marginBottom:'4px'}},t('tag_manage_title')));
+  tagMgmtCard.appendChild(h('div',{style:{fontSize:'13px',color:'var(--text-muted)',marginBottom:'12px'}},t('tag_manage_desc')));
+  const tagListDiv=h('div');
+  tagMgmtCard.appendChild(tagListDiv);
+
+  async function refreshTagList(){
+    tagListDiv.innerHTML='';
+    const allTags=await getAllTags();
+    const allRTs=await dbGetAll('recipe_tags');
+    const allITs=await dbGetAll('ingredient_tags');
+    if(!allTags.length){
+      tagListDiv.appendChild(h('div',{style:{fontSize:'13px',color:'var(--text-muted)',padding:'8px 0'}},t('tag_count_none')));
+    }else{
+      allTags.forEach(tag=>{
+        const rc=allRTs.filter(x=>x.tag_id===tag.id).length;
+        const ic=allITs.filter(x=>x.tag_id===tag.id).length;
+        const row=h('div',{style:{display:'flex',alignItems:'center',gap:'8px',padding:'5px 0',borderBottom:'1px solid var(--border)',flexWrap:'wrap'}});
+        row.appendChild(h('span',{class:'tag-chip',style:{margin:0,flexShrink:0}},tag.name));
+        row.appendChild(h('span',{style:{fontSize:'12px',color:'var(--text-muted)',flex:1}},
+          `${t('tag_used_recipes',rc)}, ${t('tag_used_ingredients',ic)}`));
+        row.appendChild(h('button',{class:'btn btn-surface btn-sm',style:{fontSize:'11px',padding:'2px 10px',flexShrink:0},onClick:async()=>{
+          const nv=prompt(t('tag_rename_prompt',tag.name),tag.name);
+          if(!nv||nv.trim()===tag.name) return;
+          await renameTag(tag.id,nv.trim());
+          refreshTagList();
+        }},t('tag_rename')));
+        row.appendChild(h('button',{class:'btn btn-danger btn-sm',style:{fontSize:'11px',padding:'2px 8px',flexShrink:0},onClick:async()=>{
+          if(!confirm(t('msg_confirm_delete_tag',tag.name,rc,ic))) return;
+          await deleteTag(tag.id);
+          refreshTagList();
+        }},'🗑'));
+        tagListDiv.appendChild(row);
+      });
+    }
+    // Add new tag row
+    const addRow=h('div',{style:{display:'flex',gap:'8px',marginTop:'12px'}});
+    const newTagInput=h('input',{type:'text',class:'form-input',placeholder:t('ph_tag_add'),style:{flex:1,fontSize:'13px'}});
+    const addBtn=h('button',{class:'btn btn-accent btn-sm',onClick:async()=>{
+      const name=newTagInput.value.trim();if(!name)return;
+      await createTag(name);newTagInput.value='';refreshTagList();
+    }},t('tag_add'));
+    newTagInput.addEventListener('keydown',(e)=>{if(e.key==='Enter')addBtn.click();});
+    addRow.append(newTagInput,addBtn);
+    tagListDiv.appendChild(addRow);
+  }
+  await refreshTagList();
+  body.appendChild(tagMgmtCard);
 
   // Danger zone
   const dangerCard=h('div',{class:'card',style:{borderColor:'var(--accent)'}});
