@@ -118,7 +118,8 @@
       "verarbeitungshinweis": "2,5-fache Wassermenge,  20 min kochen, wird klebrig",
       "lagerhinweis": "Trocken: kühl/dunkel 1 Jahr,  gekocht: Kühlschrank 3 Tage",
       "abschnitt": 0,
-      "kochfaktor": 2.7
+      "kochfaktor": 2.7,
+      "name_en": "Amaranth"
     },
     {
       "id": 502,
@@ -164,7 +165,8 @@
       "subcategory": "Obst",
       "verarbeitungshinweis": "einweichen macht sie weicher (30 min)",
       "lagerhinweis": "Kühl/trocken/luftdicht 6-12 Monate",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Dried Apricots"
     },
     {
       "id": 506,
@@ -174,7 +176,8 @@
       "subcategory": "Mehl",
       "verarbeitungshinweis": "In kalter Flüssigkeit anrühren, bindet beim Erhitzen, neutral im Geschmack",
       "lagerhinweis": "Kühl/trocken/luftdicht 2 Jahre",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Arrowroot Flour"
     },
     {
       "id": 507,
@@ -184,7 +187,8 @@
       "subcategory": "Konserven oder Schläuche",
       "verarbeitungshinweis": "",
       "lagerhinweis": "geöffnet: Kühlschrank 3-4 Tage",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Aubergine (Canned)"
     },
     {
       "id": 508,
@@ -195,7 +199,8 @@
       "verarbeitungshinweis": "Salzen und 30 min ziehen lassen reduziert Bitterstoffe",
       "lagerhinweis": "Kühlschrank 5-7 Tage,  nicht neben Tomaten lagern",
       "abschnitt": 8,
-      "kochfaktor": 0.7
+      "kochfaktor": 0.7,
+      "name_en": "Aubergines"
     },
     {
       "id": 509,
@@ -205,7 +210,8 @@
       "subcategory": "Gemüse",
       "verarbeitungshinweis": "Fruchtfleisch oxidiert schnell (Zitronensaft hilft)",
       "lagerhinweis": "Reif: Kühlschrank 2-3 Tage",
-      "abschnitt": 25
+      "abschnitt": 25,
+      "name_en": "Avocado"
     },
     {
       "id": 510,
@@ -216,7 +222,8 @@
       "verarbeitungshinweis": "12 Stunden einweichen, Einweichwasser wegschütten",
       "lagerhinweis": "Trocken: kühl/dunkel 1-2 Jahre",
       "abschnitt": 0,
-      "kochfaktor": 2.4
+      "kochfaktor": 2.4,
+      "name_en": "Adzuki Beans"
     },
     {
       "id": 511,
@@ -226,7 +233,8 @@
       "subcategory": "Backzutaten",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühl/trocken/luftdicht 1 Jahr, verliert offen an wirkung,  nach Öffnen 3 Monate",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Baking Powder"
     },
     {
       "id": 512,
@@ -236,7 +244,8 @@
       "subcategory": "Essig",
       "verarbeitungshinweis": "nicht erhitzen (verliert Aroma)",
       "lagerhinweis": "Kühl und dunkel",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Balsamic Vinegar"
     },
     {
       "id": 513,
@@ -246,7 +255,8 @@
       "subcategory": "Obst",
       "verarbeitungshinweis": "",
       "lagerhinweis": "nicht kühlen (Schale schwärzt)",
-      "abschnitt": 12
+      "abschnitt": 12,
+      "name_en": "Bananas"
     },
     {
       "id": 514,
@@ -258,7 +268,8 @@
       "lagerhinweis": "",
       "abschnitt": 20,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Basil"
     },
     {
       "id": 515,
@@ -270,7 +281,8 @@
       "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
       "abschnitt": 0,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Basil (dried)"
     },
     {
       "id": 516,
@@ -281,7 +293,8 @@
       "verarbeitungshinweis": "2-fache Wassermenge, 10-12 min kochen, Waschen bis Wasser klar",
       "lagerhinweis": "gekocht: Kühlschrank 3 Tage",
       "abschnitt": 0,
-      "kochfaktor": 2.9
+      "kochfaktor": 2.9,
+      "name_en": "Basmati Rice"
     },
     {
       "id": 517,
@@ -292,7 +305,8 @@
       "verarbeitungshinweis": "Kein Einweichen nötig,  2-fache Wassermenge, 25-30 min kochen",
       "lagerhinweis": "Trocken: kühl/dunkel 1-2 Jahre,  gekocht: Kühlschrank 3-4 Tage",
       "abschnitt": 0,
-      "kochfaktor": 2.3
+      "kochfaktor": 2.3,
+      "name_en": "Beluga Lentils"
     },
     {
       "id": 518,
@@ -302,7 +316,8 @@
       "subcategory": "Obst",
       "verarbeitungshinweis": "",
       "lagerhinweis": "unreif bei Raumtemperatur nachreifen lassen",
-      "abschnitt": 10
+      "abschnitt": 10,
+      "name_en": "Pears"
     },
     {
       "id": 519,
@@ -312,7 +327,8 @@
       "subcategory": "Obst",
       "verarbeitungshinweis": "Waschen vor Gebrauch",
       "lagerhinweis": "Kühlschrank 5-7 Tage",
-      "abschnitt": 3
+      "abschnitt": 3,
+      "name_en": "Blueberries"
     },
     {
       "id": 520,
@@ -323,7 +339,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "Wenn in Plastikfolie, diese zum Lagern entfernen, Kühlschrank 5-7 Tage",
       "abschnitt": 30,
-      "kochfaktor": 0.8
+      "kochfaktor": 0.8,
+      "name_en": "Cauliflower"
     },
     {
       "id": 521,
@@ -334,7 +351,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank 3-4 Tage, trocken lagern",
       "abschnitt": 5,
-      "kochfaktor": 0.95
+      "kochfaktor": 0.95,
+      "name_en": "Bean Sprouts"
     },
     {
       "id": 522,
@@ -344,7 +362,8 @@
       "subcategory": "Essig",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühl/dunkel",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Spirit Vinegar"
     },
     {
       "id": 523,
@@ -354,7 +373,8 @@
       "subcategory": "Gemüse",
       "verarbeitungshinweis": "Stiel schälen und verwenden",
       "lagerhinweis": "Kühlschrank 5-7 Tage",
-      "abschnitt": 25
+      "abschnitt": 25,
+      "name_en": "Broccoli"
     },
     {
       "id": 524,
@@ -365,7 +385,8 @@
       "verarbeitungshinweis": "Wasserverhältniss 1:2, 6-8 Min Kochen, dann Quellen lassen",
       "lagerhinweis": "gequollen: Kühlschrank 3 Tage",
       "abschnitt": 0,
-      "kochfaktor": 2.2
+      "kochfaktor": 2.2,
+      "name_en": "Bulgur Wheat"
     },
     {
       "id": 525,
@@ -375,7 +396,8 @@
       "subcategory": "Nüsse und Samen",
       "verarbeitungshinweis": "eingeweicht für Saucen/Cremes 2-4 Std.",
       "lagerhinweis": "Kühl/dunkel/luftdicht 3-6 Monate",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Cashews"
     },
     {
       "id": 526,
@@ -392,7 +414,8 @@
           "id": 65
         }
       ],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Cayenne Pepper"
     },
     {
       "id": 527,
@@ -403,7 +426,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank 5-7 Tage in Papiertüte",
       "abschnitt": 10,
-      "kochfaktor": 0.7
+      "kochfaktor": 0.7,
+      "name_en": "Mushrooms"
     },
     {
       "id": 528,
@@ -413,7 +437,8 @@
       "subcategory": "Mehl",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühl/trocken/luftdicht 6 Monate",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Chapati Flour"
     },
     {
       "id": 529,
@@ -423,7 +448,8 @@
       "subcategory": "Nüsse und Samen",
       "verarbeitungshinweis": "10-15 min in Flüssigkeit quellen lassen (bilden Gel)",
       "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Chia Seeds"
     },
     {
       "id": 530,
@@ -433,7 +459,8 @@
       "subcategory": "Salat",
       "verarbeitungshinweis": "Bittere Spitze entfernen",
       "lagerhinweis": "Kühlschrank 1 Woche,  dunkel lagern (kein Licht - wird bitter)",
-      "abschnitt": 15
+      "abschnitt": 15,
+      "name_en": "Chicory"
     },
     {
       "id": 531,
@@ -450,7 +477,8 @@
           "id": 65
         }
       ],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Chilli Flakes"
     },
     {
       "id": 532,
@@ -467,7 +495,8 @@
           "id": 65
         }
       ],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Chilli Powder"
     },
     {
       "id": 533,
@@ -478,7 +507,8 @@
       "verarbeitungshinweis": "Äußere Blätter entfernen",
       "lagerhinweis": "Kühlschrank 1-2 Wochen",
       "abschnitt": 10,
-      "kochfaktor": 0.8
+      "kochfaktor": 0.8,
+      "name_en": "Chinese Cabbage"
     },
     {
       "id": 534,
@@ -495,7 +525,8 @@
           "id": 65
         }
       ],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Chipotle"
     },
     {
       "id": 535,
@@ -506,7 +537,8 @@
       "verarbeitungshinweis": "Gleiche Menge kochendes Wasser/Brühe,  5 min quellen lassen",
       "lagerhinweis": "Trocken: kühl/dunkel 1 Jahr, gequollen 3 Tage",
       "abschnitt": 0,
-      "kochfaktor": 2
+      "kochfaktor": 2,
+      "name_en": "Couscous"
     },
     {
       "id": 536,
@@ -516,7 +548,8 @@
       "subcategory": "Obst",
       "verarbeitungshinweis": "oft Gesüßt",
       "lagerhinweis": "Kühl/trocken/luftdicht 1 Jahr",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Dried Cranberries"
     },
     {
       "id": 537,
@@ -528,7 +561,8 @@
       "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
       "abschnitt": 0,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Cumin"
     },
     {
       "id": 538,
@@ -540,7 +574,8 @@
       "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
       "abschnitt": 0,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Cumin (ground)"
     },
     {
       "id": 539,
@@ -557,7 +592,8 @@
           "id": 10
         }
       ],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Curry Powder"
     },
     {
       "id": 540,
@@ -574,7 +610,8 @@
           "id": 10
         }
       ],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Curry Powder"
     },
     {
       "id": 541,
@@ -584,7 +621,8 @@
       "subcategory": "Obst",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühl/dunkel 6-12 Monate",
-      "abschnitt": 8
+      "abschnitt": 8,
+      "name_en": "Dates"
     },
     {
       "id": 542,
@@ -596,7 +634,8 @@
       "lagerhinweis": "Frisch: Kühlschrank 5-7 Tage",
       "abschnitt": 20,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Dill"
     },
     {
       "id": 543,
@@ -606,7 +645,8 @@
       "subcategory": "Salat",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank 5-7 Tage",
-      "abschnitt": 15
+      "abschnitt": 15,
+      "name_en": "Iceberg Lettuce"
     },
     {
       "id": 544,
@@ -616,7 +656,8 @@
       "subcategory": "Obst",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank 2-3 Tage",
-      "abschnitt": 5
+      "abschnitt": 5,
+      "name_en": "Strawberries"
     },
     {
       "id": 545,
@@ -626,7 +667,8 @@
       "subcategory": "Nüsse und Samen",
       "verarbeitungshinweis": "rösten intensiviert Aroma",
       "lagerhinweis": "Kühl/dunkel/luftdicht 3-6 Monate, mag keine Feuchtigkeit",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Peanuts"
     },
     {
       "id": 546,
@@ -636,7 +678,8 @@
       "subcategory": "Essig",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühl/dunkel",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "White Wine Vinegar"
     },
     {
       "id": 547,
@@ -648,7 +691,8 @@
       "lagerhinweis": "Frisch: Kühlschrank 5 Tage",
       "abschnitt": 20,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Tarragon"
     },
     {
       "id": 548,
@@ -658,7 +702,8 @@
       "subcategory": "Gemüse",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank 5-7 Tage",
-      "abschnitt": 20
+      "abschnitt": 20,
+      "name_en": "Fennel"
     },
     {
       "id": 549,
@@ -670,7 +715,8 @@
       "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
       "abschnitt": 0,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Fennel Seeds"
     },
     {
       "id": 550,
@@ -680,7 +726,8 @@
       "subcategory": "Nüsse und Samen",
       "verarbeitungshinweis": "Mit viel Wasser verwenden (1 TL auf 200ml),  als Bindemittel",
       "lagerhinweis": "Kühl/trocken/luftdicht 2 Jahre",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Psyllium Husks"
     },
     {
       "id": 551,
@@ -691,7 +738,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank 1-2 Wochen",
       "abschnitt": 15,
-      "kochfaktor": 0.8
+      "kochfaktor": 0.8,
+      "name_en": "Spring Onions"
     },
     {
       "id": 552,
@@ -703,7 +751,8 @@
       "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
       "abschnitt": 0,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Garam Masala"
     },
     {
       "id": 553,
@@ -714,7 +763,8 @@
       "verarbeitungshinweis": "Kein Einweichen nötig,  2-fache Wassermenge, 15 min kochen",
       "lagerhinweis": "gekocht: Kühlschrank 3-4 Tage",
       "abschnitt": 0,
-      "kochfaktor": 2
+      "kochfaktor": 2,
+      "name_en": "Yellow Lentils"
     },
     {
       "id": 554,
@@ -724,7 +774,8 @@
       "subcategory": "Saucen & Pasten",
       "verarbeitungshinweis": "20g pro 1l Wasser",
       "lagerhinweis": "",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Vegetable Bouillon Paste"
     },
     {
       "id": 555,
@@ -745,7 +796,8 @@
           "id": 26
         }
       ],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Vegetable Stock"
     },
     {
       "id": 556,
@@ -766,7 +818,8 @@
           "id": 26
         }
       ],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Vegetable Stock Powder"
     },
     {
       "id": 557,
@@ -777,7 +830,8 @@
       "verarbeitungshinweis": "30-60 min in warmem Wasser einweichen,  Einweichwasser als Fond nutzbar",
       "lagerhinweis": "eingeweicht: Kühlschrank 3 Tage",
       "abschnitt": 0,
-      "kochfaktor": 3.5
+      "kochfaktor": 3.5,
+      "name_en": "Dried Shiitake"
     },
     {
       "id": 558,
@@ -787,7 +841,8 @@
       "subcategory": "Obst",
       "verarbeitungshinweis": "unter Wasser einfacher zu entkernen",
       "lagerhinweis": "Raumtemperatur 1-2 Wochen",
-      "abschnitt": 55
+      "abschnitt": 55,
+      "name_en": "Pomegranate"
     },
     {
       "id": 559,
@@ -797,7 +852,8 @@
       "subcategory": "Konserven oder Schläuche",
       "verarbeitungshinweis": "",
       "lagerhinweis": "geöffnet: Kühlschrank 3-4 Tage",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Green Peas (Canned)"
     },
     {
       "id": 560,
@@ -807,7 +863,8 @@
       "subcategory": "Gemüse",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank 5-7 Tage,  nicht neben Tomaten lagern",
-      "abschnitt": 5
+      "abschnitt": 5,
+      "name_en": "Cucumbers"
     },
     {
       "id": 561,
@@ -817,7 +874,8 @@
       "subcategory": "Haferflocken und Zerialien",
       "verarbeitungshinweis": "Mit heißem Wasser/Milch kochen 5-10 min oder über Nacht einweichen",
       "lagerhinweis": "Kühl/trocken/luftdicht 6-12 Monate",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Rolled Oats (coarse)"
     },
     {
       "id": 562,
@@ -827,7 +885,8 @@
       "subcategory": "Haferflocken und Zerialien",
       "verarbeitungshinweis": "Direkt mit heißem Wasser/Milch übergießen 3-5 min oder kalt einweichen",
       "lagerhinweis": "Kühl/trocken/luftdicht 6-12 Monate",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Rolled Oats (fine)"
     },
     {
       "id": 563,
@@ -837,7 +896,8 @@
       "subcategory": "Pflanzendrink",
       "verarbeitungshinweis": "Gut schütteln",
       "lagerhinweis": "Ungeöffnet: Raumtemperatur,  geöffnet: Kühlschrank 5-7 Tage",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Oat Milk"
     },
     {
       "id": 564,
@@ -847,7 +907,8 @@
       "subcategory": "Pflanzendrink",
       "verarbeitungshinweis": "Gut schütteln",
       "lagerhinweis": "Ungeöffnet: Raumtemperatur,  geöffnet: Kühlschrank 5-7 Tage",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Oat Cream"
     },
     {
       "id": 565,
@@ -857,7 +918,8 @@
       "subcategory": "Nüsse und Samen",
       "verarbeitungshinweis": "rösten verbessert das Aroma",
       "lagerhinweis": "Kühl/dunkel/luftdicht 3-6 Monate",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Hazelnuts"
     },
     {
       "id": 566,
@@ -869,7 +931,8 @@
       "lagerhinweis": "Kühl/dunkel/luftdicht 1 Jahr",
       "abschnitt": 0,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Nutritional Yeast"
     },
     {
       "id": 567,
@@ -879,7 +942,8 @@
       "subcategory": "Obst",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank 1-2 Tage",
-      "abschnitt": 5
+      "abschnitt": 5,
+      "name_en": "Raspberries"
     },
     {
       "id": 568,
@@ -889,7 +953,8 @@
       "subcategory": "Haferflocken und Zerialien",
       "verarbeitungshinweis": "Mit heißem Wasser/Milch übergießen,  5 min quellen lassen",
       "lagerhinweis": "Kühl/trocken/luftdicht 6-12 Monate",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Millet Flakes"
     },
     {
       "id": 569,
@@ -899,7 +964,8 @@
       "subcategory": "Gemüse",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank 3 Wochen",
-      "abschnitt": 15
+      "abschnitt": 15,
+      "name_en": "Ginger"
     },
     {
       "id": 570,
@@ -910,7 +976,8 @@
       "verarbeitungshinweis": "1,5-fache Wassermenge,  10 min kochen",
       "lagerhinweis": "gekocht: Kühlschrank 3 Tage",
       "abschnitt": 0,
-      "kochfaktor": 2.8
+      "kochfaktor": 2.8,
+      "name_en": "Jasmine Rice"
     },
     {
       "id": 571,
@@ -920,7 +987,8 @@
       "subcategory": "Getränke",
       "verarbeitungshinweis": "Temperatur 90-96°C für optimale Extraktion",
       "lagerhinweis": "Luftdicht/kühl/dunkel,  2-4 Wochen nach Öffnen",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Ground Coffee"
     },
     {
       "id": 572,
@@ -930,7 +998,8 @@
       "subcategory": "Backzutaten",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühl/trocken/luftdicht 1-2 Jahre",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Cocoa Powder"
     },
     {
       "id": 573,
@@ -942,7 +1011,8 @@
       "lagerhinweis": "Kühl/dunkel/luftdicht (ganze Kapseln) 2-3 Jahre",
       "abschnitt": 0,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Green Cardamom"
     },
     {
       "id": 574,
@@ -953,7 +1023,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank 3-4 Wochen,  von Obst getrennt lagern",
       "abschnitt": 15,
-      "kochfaktor": 0.85
+      "kochfaktor": 0.85,
+      "name_en": "Carrots"
     },
     {
       "id": 575,
@@ -963,7 +1034,8 @@
       "subcategory": "Kartoffeln",
       "verarbeitungshinweis": "grüne Stellen enthalten Solanin (entfernen)",
       "lagerhinweis": "Kühl/dunkel/trocken",
-      "abschnitt": 15
+      "abschnitt": 15,
+      "name_en": "Potatoes"
     },
     {
       "id": 576,
@@ -973,7 +1045,8 @@
       "subcategory": "Saucen & Pasten",
       "verarbeitungshinweis": "",
       "lagerhinweis": "geöffnet: Kühlschrank 3 Monate",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Ketchup"
     },
     {
       "id": 577,
@@ -984,7 +1057,8 @@
       "verarbeitungshinweis": "12 Std. einweichen,  60-90 min kochen bis weich",
       "lagerhinweis": "Trocken: kühl/dunkel 1-2 Jahre,  gekocht: Kühlschrank 4-5 Tage",
       "abschnitt": 0,
-      "kochfaktor": 2.6
+      "kochfaktor": 2.6,
+      "name_en": "Chickpeas"
     },
     {
       "id": 578,
@@ -995,7 +1069,8 @@
       "verarbeitungshinweis": "Aquafaba (Dosenflüssigkeit) als Ei-Ersatz nutzbar",
       "lagerhinweis": "geöffnet: Kühlschrank 3-4 Tage",
       "abschnitt": 0,
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Chickpeas (Canned, drained)"
     },
     {
       "id": 579,
@@ -1005,7 +1080,8 @@
       "subcategory": "Mehl",
       "verarbeitungshinweis": "Roh bitter - immer verarbeiten/garen,  gut als Bindemittel",
       "lagerhinweis": "Kühl/trocken/luftdicht 6-12 Monate",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Chickpea Flour"
     },
     {
       "id": 580,
@@ -1016,7 +1092,8 @@
       "verarbeitungshinweis": "12 Std. einweichen,  mind. 10 min sprudelnd kochen (Lektine!),  dann 45-60 min weich kochen",
       "lagerhinweis": "gekocht: Kühlschrank 3-4 Tage",
       "abschnitt": 0,
-      "kochfaktor": 2.6
+      "kochfaktor": 2.6,
+      "name_en": "Kidney Beans"
     },
     {
       "id": 581,
@@ -1026,7 +1103,8 @@
       "subcategory": "Obst",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank 3-5 Tage",
-      "abschnitt": 10
+      "abschnitt": 10,
+      "name_en": "Cherries"
     },
     {
       "id": 582,
@@ -1036,7 +1114,8 @@
       "subcategory": "Obst",
       "verarbeitungshinweis": "nicht für Gelatinespeisen geeignet (Enzym Actinidin)",
       "lagerhinweis": "Kühlschrank reif 5-7 Tage",
-      "abschnitt": 15
+      "abschnitt": 15,
+      "name_en": "Kiwi"
     },
     {
       "id": 583,
@@ -1046,7 +1125,8 @@
       "subcategory": "Gemüse",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Trocken/kühl/dunkel 3-6 Monate,  nicht kühlen",
-      "abschnitt": 20
+      "abschnitt": 20,
+      "name_en": "Garlic"
     },
     {
       "id": 584,
@@ -1057,7 +1137,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank 1-2 Wochen",
       "abschnitt": 25,
-      "kochfaktor": 0.8
+      "kochfaktor": 0.8,
+      "name_en": "Kohlrabi"
     },
     {
       "id": 585,
@@ -1067,7 +1148,8 @@
       "subcategory": "Zucker",
       "verarbeitungshinweis": "1:1 Ersatz für Zucker,  karamelliges Aroma",
       "lagerhinweis": "Kühl/trocken/luftdicht 2 Jahre",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Coconut Blossom Sugar"
     },
     {
       "id": 586,
@@ -1077,7 +1159,8 @@
       "subcategory": "Pflanzendrink",
       "verarbeitungshinweis": "",
       "lagerhinweis": "geöffnet: Kühlschrank 3-4 Tage",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Coconut Milk"
     },
     {
       "id": 587,
@@ -1087,7 +1170,8 @@
       "subcategory": "Öle & Fette",
       "verarbeitungshinweis": "Rauchpunkt ca. 200°C raffiniert",
       "lagerhinweis": "Kühl/dunkel",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Coconut Oil"
     },
     {
       "id": 588,
@@ -1097,7 +1181,8 @@
       "subcategory": "Nüsse und Samen",
       "verarbeitungshinweis": "trocken rösten für mehr Aroma",
       "lagerhinweis": "Kühl/trocken/luftdicht 6 Monate",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Desiccated Coconut"
     },
     {
       "id": 589,
@@ -1109,7 +1194,8 @@
       "lagerhinweis": "Frisch: Kühlschrank 5-7 Tage",
       "abschnitt": 20,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Coriander"
     },
     {
       "id": 590,
@@ -1121,7 +1207,8 @@
       "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
       "abschnitt": 0,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Cumin"
     },
     {
       "id": 591,
@@ -1133,7 +1220,8 @@
       "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
       "abschnitt": 0,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Caraway Seeds"
     },
     {
       "id": 592,
@@ -1144,7 +1232,8 @@
       "verarbeitungshinweis": "Schale bei Hokaido essbar",
       "lagerhinweis": "Ganz: kühl/dunkel 2-3 Monate,  geschnitten: Kühlschrank 3-4 Tage",
       "abschnitt": 10,
-      "kochfaktor": 0.85
+      "kochfaktor": 0.85,
+      "name_en": "Hokkaido Pumpkin"
     },
     {
       "id": 593,
@@ -1156,7 +1245,8 @@
       "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
       "abschnitt": 0,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Turmeric"
     },
     {
       "id": 594,
@@ -1167,7 +1257,8 @@
       "verarbeitungshinweis": "2-fache Wassermenge,  15 min kochen, 5 min Dämpfen",
       "lagerhinweis": "gekocht: Kühlschrank 3 Tage",
       "abschnitt": 0,
-      "kochfaktor": 2.7
+      "kochfaktor": 2.7,
+      "name_en": "Long-grain Rice"
     },
     {
       "id": 595,
@@ -1178,7 +1269,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank 1-2 Wochen",
       "abschnitt": 25,
-      "kochfaktor": 0.8
+      "kochfaktor": 0.8,
+      "name_en": "Leek"
     },
     {
       "id": 596,
@@ -1189,7 +1281,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank 1-2 Wochen",
       "abschnitt": 15,
-      "kochfaktor": 0.8
+      "kochfaktor": 0.8,
+      "name_en": "Spring Onions"
     },
     {
       "id": 597,
@@ -1199,7 +1292,8 @@
       "subcategory": "Nüsse und Samen",
       "verarbeitungshinweis": "eingeweicht als Ei-Ersatz (1 EL + 3 EL Wasser)",
       "lagerhinweis": "Ganz: kühl/dunkel 1 Jahr",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Linseeds"
     },
     {
       "id": 598,
@@ -1209,7 +1303,8 @@
       "subcategory": "Zitrusfrüchte",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank 2-3 Wochen",
-      "abschnitt": 30
+      "abschnitt": 30,
+      "name_en": "Limes"
     },
     {
       "id": 599,
@@ -1219,7 +1314,8 @@
       "subcategory": "Saft",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank nach Öffnen 5-7 Tage",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Lime Juice"
     },
     {
       "id": 600,
@@ -1230,7 +1326,8 @@
       "verarbeitungshinweis": "2-fache Wassermenge,  20-25 min kochen",
       "lagerhinweis": "gekocht: Kühlschrank 3-4 Tage",
       "abschnitt": 0,
-      "kochfaktor": 2.3
+      "kochfaktor": 2.3,
+      "name_en": "Green Lentils"
     },
     {
       "id": 601,
@@ -1242,7 +1339,8 @@
       "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
       "abschnitt": 0,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Bay Leaves"
     },
     {
       "id": 602,
@@ -1252,7 +1350,8 @@
       "subcategory": "Konserven oder Schläuche",
       "verarbeitungshinweis": "",
       "lagerhinweis": "geöffnet: Kühlschrank 3-4 Tage",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Corn"
     },
     {
       "id": 603,
@@ -1262,7 +1361,8 @@
       "subcategory": "Gemüse",
       "verarbeitungshinweis": "10-15 min kochen oder grillen",
       "lagerhinweis": "Kühlschrank 3-5 Tage in Schale",
-      "abschnitt": 20
+      "abschnitt": 20,
+      "name_en": "Corn on the Cob"
     },
     {
       "id": 604,
@@ -1272,7 +1372,8 @@
       "subcategory": "Mehl",
       "verarbeitungshinweis": "In kalter Flüssigkeit anrühren,  bindet beim Erhitzen,  glutenfrei",
       "lagerhinweis": "Kühl/trocken/luftdicht 2 Jahre",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Cornstarch"
     },
     {
       "id": 605,
@@ -1284,7 +1385,8 @@
       "lagerhinweis": "",
       "abschnitt": 20,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Marjoram"
     },
     {
       "id": 606,
@@ -1294,7 +1396,8 @@
       "subcategory": "Mehl",
       "verarbeitungshinweis": "kein Gluten",
       "lagerhinweis": "Kühl/trocken/luftdicht 3-6 Monate",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Almond Flour"
     },
     {
       "id": 607,
@@ -1304,7 +1407,8 @@
       "subcategory": "Pflanzendrink",
       "verarbeitungshinweis": "",
       "lagerhinweis": "geöffnet: Kühlschrank 5-7 Tage",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Almond Milk"
     },
     {
       "id": 608,
@@ -1314,7 +1418,8 @@
       "subcategory": "Nüsse und Samen",
       "verarbeitungshinweis": "blanchieren: kurz in kochendes Wasser, Haut abziehen",
       "lagerhinweis": "Kühl/dunkel/luftdicht 6-12 Monate",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Almonds"
     },
     {
       "id": 609,
@@ -1324,7 +1429,8 @@
       "subcategory": "Nüsse und Samen",
       "verarbeitungshinweis": "Trocken rösten für mehr Aroma",
       "lagerhinweis": "Kühl/dunkel/luftdicht 3-6 Monate",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Flaked Almonds"
     },
     {
       "id": 610,
@@ -1334,7 +1440,8 @@
       "subcategory": "Zitrusfrüchte",
       "verarbeitungshinweis": "Häute sind bei Mandarinen essbar",
       "lagerhinweis": "Kühlschrank 1-2 Wochen",
-      "abschnitt": 20
+      "abschnitt": 20,
+      "name_en": "Mandarin"
     },
     {
       "id": 611,
@@ -1344,7 +1451,8 @@
       "subcategory": "Obst",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Reif: Kühlschrank 3-5 Tage",
-      "abschnitt": 30
+      "abschnitt": 30,
+      "name_en": "Mango"
     },
     {
       "id": 612,
@@ -1354,7 +1462,8 @@
       "subcategory": "Gemüse",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank 3-5 Tage",
-      "abschnitt": 15
+      "abschnitt": 15,
+      "name_en": "Swiss Chard"
     },
     {
       "id": 613,
@@ -1364,7 +1473,8 @@
       "subcategory": "Öle & Fette",
       "verarbeitungshinweis": "",
       "lagerhinweis": "nach Öffnen 2-3 Wochen",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Margarine"
     },
     {
       "id": 614,
@@ -1374,7 +1484,8 @@
       "subcategory": "Saucen & Pasten",
       "verarbeitungshinweis": "",
       "lagerhinweis": "geöffnet: Kühlschrank 4-6 Wochen",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Jam"
     },
     {
       "id": 615,
@@ -1384,7 +1495,8 @@
       "subcategory": "Milchreis",
       "verarbeitungshinweis": "5-fache Flüssigkeitsmenge,  25-30 min bei niedriger Hitze unter Rühren köcheln",
       "lagerhinweis": "gekocht: Kühlschrank 2-3 Tage",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Pudding Rice"
     },
     {
       "id": 616,
@@ -1401,7 +1513,8 @@
           "id": 22
         }
       ],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Mint"
     },
     {
       "id": 617,
@@ -1411,7 +1524,8 @@
       "subcategory": "Saucen & Pasten",
       "verarbeitungshinweis": "Nicht kochen (zerstört probiotische Kulturen),  am Ende einrühren",
       "lagerhinweis": "Kühlschrank",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Miso Paste (dark)"
     },
     {
       "id": 618,
@@ -1421,7 +1535,8 @@
       "subcategory": "Saucen & Pasten",
       "verarbeitungshinweis": "Nicht kochen,  am Ende einrühren",
       "lagerhinweis": "Kühlschrank",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Miso Paste (light)"
     },
     {
       "id": 619,
@@ -1432,7 +1547,8 @@
       "verarbeitungshinweis": "Kein Einweichen nötig (optional 4 Std.), 2,5-fache Wassermenge,  20-25 min kochen",
       "lagerhinweis": "gekocht: Kühlschrank 3-4 Tage",
       "abschnitt": 0,
-      "kochfaktor": 2.4
+      "kochfaktor": 2.4,
+      "name_en": "Mung Beans"
     },
     {
       "id": 620,
@@ -1444,7 +1560,8 @@
       "lagerhinweis": "gemahlen: 1 Jahr",
       "abschnitt": 0,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Nutmeg"
     },
     {
       "id": 621,
@@ -1456,7 +1573,8 @@
       "lagerhinweis": "Kühl/trocken/luftdicht 2 Jahre",
       "abschnitt": 0,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Bicarbonate of Soda"
     },
     {
       "id": 622,
@@ -1473,7 +1591,8 @@
           "id": 22
         }
       ],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Cloves"
     },
     {
       "id": 623,
@@ -1483,7 +1602,8 @@
       "subcategory": "Sonstiges",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühl/trocken/luftdicht",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Nori Sheets"
     },
     {
       "id": 624,
@@ -1500,7 +1620,8 @@
           "name": "Glutenhaltiges Getreide",
           "id": 1
         }
-      ]
+      ],
+      "name_en": "Pasta"
     },
     {
       "id": 625,
@@ -1510,7 +1631,8 @@
       "subcategory": "Öle & Fette",
       "verarbeitungshinweis": "nicht zu stark erhitzen (Rauchpunkt ca. 180°C)",
       "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre nach Öffnen",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Olive Oil"
     },
     {
       "id": 626,
@@ -1520,7 +1642,8 @@
       "subcategory": "Öle & Fette",
       "verarbeitungshinweis": "nicht zu stark erhitzen (Rauchpunkt ca. 180°C)",
       "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre nach Öffnen",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Extra Virgin Olive Oil"
     },
     {
       "id": 627,
@@ -1530,7 +1653,8 @@
       "subcategory": "Zitrusfrüchte",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank 2-3 Wochen",
-      "abschnitt": 25
+      "abschnitt": 25,
+      "name_en": "Oranges"
     },
     {
       "id": 628,
@@ -1542,7 +1666,8 @@
       "lagerhinweis": "",
       "abschnitt": 20,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Oregano"
     },
     {
       "id": 629,
@@ -1552,7 +1677,8 @@
       "subcategory": "Gemüse",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank 3-5 Tage",
-      "abschnitt": 10
+      "abschnitt": 10,
+      "name_en": "Pak Choi"
     },
     {
       "id": 630,
@@ -1563,7 +1689,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank 1-2 Wochen",
       "abschnitt": 15,
-      "kochfaktor": 0.7
+      "kochfaktor": 0.7,
+      "name_en": "Bell Pepper"
     },
     {
       "id": 631,
@@ -1574,7 +1701,8 @@
       "verarbeitungshinweis": "bitterer als rot/gelb",
       "lagerhinweis": "Kühlschrank 1-2 Wochen",
       "abschnitt": 15,
-      "kochfaktor": 0.7
+      "kochfaktor": 0.7,
+      "name_en": "Green Bell Pepper"
     },
     {
       "id": 632,
@@ -1585,7 +1713,8 @@
       "verarbeitungshinweis": "süßer als grün",
       "lagerhinweis": "Kühlschrank 1-2 Wochen",
       "abschnitt": 15,
-      "kochfaktor": 0.7
+      "kochfaktor": 0.7,
+      "name_en": "Red Bell Pepper"
     },
     {
       "id": 633,
@@ -1597,7 +1726,8 @@
       "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
       "abschnitt": 0,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Smoked Paprika"
     },
     {
       "id": 634,
@@ -1609,7 +1739,8 @@
       "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
       "abschnitt": 0,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Sweet Paprika"
     },
     {
       "id": 635,
@@ -1626,7 +1757,8 @@
           "id": 65
         }
       ],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Hot Paprika"
     },
     {
       "id": 636,
@@ -1637,7 +1769,8 @@
       "verarbeitungshinweis": "2-fache Wassermenge,  15-20 min kochen. Nimmt wenig Wasser auf, da vorgegart",
       "lagerhinweis": "gekocht: Kühlschrank 3 Tage",
       "abschnitt": 0,
-      "kochfaktor": 2.6
+      "kochfaktor": 2.6,
+      "name_en": "Parboiled Rice"
     },
     {
       "id": 637,
@@ -1648,7 +1781,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank 2-3 Wochen",
       "abschnitt": 15,
-      "kochfaktor": 0.85
+      "kochfaktor": 0.85,
+      "name_en": "Parsnips"
     },
     {
       "id": 638,
@@ -1660,7 +1794,8 @@
       "lagerhinweis": "",
       "abschnitt": 10,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Parsley"
     },
     {
       "id": 639,
@@ -1677,7 +1812,8 @@
           "id": 16
         }
       ],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Pepper"
     },
     {
       "id": 640,
@@ -1694,7 +1830,8 @@
           "id": 16
         }
       ],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Black Pepper"
     },
     {
       "id": 641,
@@ -1711,7 +1848,8 @@
           "id": 16
         }
       ],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "White Pepper"
     },
     {
       "id": 642,
@@ -1721,7 +1859,8 @@
       "subcategory": "Obst",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank reif 3-5 Tage",
-      "abschnitt": 10
+      "abschnitt": 10,
+      "name_en": "Peach"
     },
     {
       "id": 643,
@@ -1733,7 +1872,8 @@
       "lagerhinweis": "Kühl/dunkel/luftdicht 2-3 Jahre",
       "abschnitt": 0,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Allspice"
     },
     {
       "id": 644,
@@ -1743,7 +1883,8 @@
       "subcategory": "Nüsse und Samen",
       "verarbeitungshinweis": "Trocken rösten für mehr Aroma - verbrennt aber schnell",
       "lagerhinweis": "Kühl/dunkel/luftdicht 1-3 Monate",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Pine Nuts"
     },
     {
       "id": 645,
@@ -1754,7 +1895,8 @@
       "verarbeitungshinweis": "12 Std. einweichen,  60-90 min kochen",
       "lagerhinweis": "gekocht: Kühlschrank 3-4 Tage",
       "abschnitt": 0,
-      "kochfaktor": 2.5
+      "kochfaktor": 2.5,
+      "name_en": "Pinto Beans"
     },
     {
       "id": 646,
@@ -1764,7 +1906,8 @@
       "subcategory": "Nüsse und Samen",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühl/dunkel/luftdicht 3-6 Monate",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Pistachios"
     },
     {
       "id": 647,
@@ -1775,7 +1918,8 @@
       "verarbeitungshinweis": "4-5-fache Wassermenge,  30-40 min unter Rühren kochen",
       "lagerhinweis": "gekocht: Kühlschrank 3 Tage",
       "abschnitt": 0,
-      "kochfaktor": 4
+      "kochfaktor": 4,
+      "name_en": "Polenta"
     },
     {
       "id": 648,
@@ -1786,7 +1930,8 @@
       "verarbeitungshinweis": "trocken abbürsten",
       "lagerhinweis": "Kühlschrank 5-7 Tage in Papiertüte",
       "abschnitt": 10,
-      "kochfaktor": 0.7
+      "kochfaktor": 0.7,
+      "name_en": "Portobello Mushrooms"
     },
     {
       "id": 649,
@@ -1797,7 +1942,8 @@
       "verarbeitungshinweis": "2-fache Wassermenge,  15 min kochen,  5 min quellen lassen",
       "lagerhinweis": "gekocht: Kühlschrank 4-5 Tage",
       "abschnitt": 0,
-      "kochfaktor": 2.7
+      "kochfaktor": 2.7,
+      "name_en": "Quinoa"
     },
     {
       "id": 650,
@@ -1807,7 +1953,8 @@
       "subcategory": "Öle & Fette",
       "verarbeitungshinweis": "Für Braten und Backen geeignet (Rauchpunkt ca. 200°C raffiniert)",
       "lagerhinweis": "Kühl/dunkel/luftdicht 1 Jahr nach Öffnen",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Rapeseed Oil"
     },
     {
       "id": 651,
@@ -1819,7 +1966,8 @@
       "lagerhinweis": "gegart: Kühlschrank 2-3 Tage",
       "abschnitt": 0,
       "kochfaktor": 2,
-      "allergens": []
+      "allergens": [],
+      "name_en": "Rice Noodles"
     },
     {
       "id": 652,
@@ -1829,7 +1977,8 @@
       "subcategory": "Essig",
       "verarbeitungshinweis": "",
       "lagerhinweis": "",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Rice Vinegar"
     },
     {
       "id": 653,
@@ -1839,7 +1988,8 @@
       "subcategory": "Pflanzendrink",
       "verarbeitungshinweis": "Gut schütteln",
       "lagerhinweis": "geöffnet: Kühlschrank 5-7 Tage",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Rice Milk"
     },
     {
       "id": 654,
@@ -1849,7 +1999,8 @@
       "subcategory": "Brot und Teigwaren",
       "verarbeitungshinweis": "nach Öffnen 1-2 Wochen",
       "lagerhinweis": "",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Rice Cakes"
     },
     {
       "id": 655,
@@ -1859,7 +2010,8 @@
       "subcategory": "Obst",
       "verarbeitungshinweis": "einweichen macht sie weicher (30 min)",
       "lagerhinweis": "Kühl/trocken/luftdicht 6-12 Monate",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Raisins"
     },
     {
       "id": 656,
@@ -1876,7 +2028,8 @@
           "id": 22
         }
       ],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Rosemary"
     },
     {
       "id": 657,
@@ -1887,7 +2040,8 @@
       "verarbeitungshinweis": "Schälen (Handschuhe empfohlen!),  45-60 min kochen oder 40 min bei 200°C backen",
       "lagerhinweis": "gekocht 5 Tage",
       "abschnitt": 15,
-      "kochfaktor": 0.9
+      "kochfaktor": 0.9,
+      "name_en": "Beetroot"
     },
     {
       "id": 658,
@@ -1898,7 +2052,8 @@
       "verarbeitungshinweis": "Kein Einweichen nötig,  2-fache Wassermenge,  15 min kochen",
       "lagerhinweis": "gekocht: Kühlschrank 3-4 Tage",
       "abschnitt": 0,
-      "kochfaktor": 2
+      "kochfaktor": 2,
+      "name_en": "Red Lentils"
     },
     {
       "id": 659,
@@ -1908,7 +2063,8 @@
       "subcategory": "Konserven oder Schläuche",
       "verarbeitungshinweis": "",
       "lagerhinweis": "geöffnet: Kühlschrank 3-4 Tage",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Red Bell Pepper (Canned)"
     },
     {
       "id": 660,
@@ -1919,7 +2075,8 @@
       "verarbeitungshinweis": "Essig stabilisiert Farbe",
       "lagerhinweis": "Kühlschrank,  geschnitten 5-7 Tage",
       "abschnitt": 15,
-      "kochfaktor": 0.8
+      "kochfaktor": 0.8,
+      "name_en": "Red Cabbage"
     },
     {
       "id": 661,
@@ -1929,7 +2086,8 @@
       "subcategory": "Essig",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühl/dunkel",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Red Wine Vinegar"
     },
     {
       "id": 662,
@@ -1939,7 +2097,8 @@
       "subcategory": "Salat",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank 3-5 Tage",
-      "abschnitt": 10
+      "abschnitt": 10,
+      "name_en": "Rocket"
     },
     {
       "id": 663,
@@ -1950,7 +2109,8 @@
       "verarbeitungshinweis": "1,5-fache Wassermenge,  15-18 min kochen",
       "lagerhinweis": "gekocht: Kühlschrank 3 Tage",
       "abschnitt": 0,
-      "kochfaktor": 2.5
+      "kochfaktor": 2.5,
+      "name_en": "Round-grain Rice"
     },
     {
       "id": 664,
@@ -1962,7 +2122,8 @@
       "lagerhinweis": "Kühl/dunkel/luftdicht 2-3 Jahre",
       "abschnitt": 0,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Saffron"
     },
     {
       "id": 665,
@@ -1972,7 +2133,8 @@
       "subcategory": "Salz",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Trocken/luftdicht",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Salt"
     },
     {
       "id": 666,
@@ -1983,7 +2145,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühl/dunkel/trocken 1-2 Monate,  nicht kühlen",
       "abschnitt": 15,
-      "kochfaktor": 0.8
+      "kochfaktor": 0.8,
+      "name_en": "Shallots"
     },
     {
       "id": 667,
@@ -1993,7 +2156,8 @@
       "subcategory": "Backzutaten",
       "verarbeitungshinweis": "Temperatur max. 50°C",
       "lagerhinweis": "Kühl/trocken/dunkel 1 Jahr,  nicht im Kühlschrank (Reif)",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Dark Chocolate"
     },
     {
       "id": 668,
@@ -2004,7 +2168,8 @@
       "verarbeitungshinweis": "12 Std. einweichen,  60-90 min kochen",
       "lagerhinweis": "gekocht: Kühlschrank 3-4 Tage",
       "abschnitt": 0,
-      "kochfaktor": 2.6
+      "kochfaktor": 2.6,
+      "name_en": "Black Beans"
     },
     {
       "id": 669,
@@ -2016,7 +2181,8 @@
       "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
       "abschnitt": 0,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Nigella Seeds"
     },
     {
       "id": 670,
@@ -2026,7 +2192,8 @@
       "subcategory": "Mehl",
       "verarbeitungshinweis": "Mit Wasser verkneten (ca. 50% Wasser),  30-40 min köcheln lassen",
       "lagerhinweis": "Trocken: kühl/dunkel 1 Jahr,  zubereitet: Kühlschrank 5 Tage",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Seitan Powder"
     },
     {
       "id": 671,
@@ -2037,7 +2204,8 @@
       "verarbeitungshinweis": "oxidiert geschählt schnell (Zitronenwasser),  15-20 min kochen",
       "lagerhinweis": "Kühlschrank 2-3 Wochen",
       "abschnitt": 25,
-      "kochfaktor": 0.85
+      "kochfaktor": 0.85,
+      "name_en": "Celeriac"
     },
     {
       "id": 672,
@@ -2047,7 +2215,8 @@
       "subcategory": "Saucen & Pasten",
       "verarbeitungshinweis": "beim Kochen verfliegt Aroma - am Ende hinzufügen",
       "lagerhinweis": "geöffnet: Kühlschrank 1 Jahr",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Mustard"
     },
     {
       "id": 673,
@@ -2064,7 +2233,8 @@
           "id": 10
         }
       ],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Mustard Seeds"
     },
     {
       "id": 674,
@@ -2081,7 +2251,8 @@
           "id": 11
         }
       ],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Sesame Seeds"
     },
     {
       "id": 675,
@@ -2098,7 +2269,8 @@
           "id": 11
         }
       ],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Black Sesame Seeds"
     },
     {
       "id": 676,
@@ -2108,7 +2280,8 @@
       "subcategory": "Öle & Fette",
       "verarbeitungshinweis": "Nicht zum Braten (niedrigen Rauchpunkt)",
       "lagerhinweis": "Kühl/dunkel  nach Öffnen 6 Monate",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Sesame Oil"
     },
     {
       "id": 677,
@@ -2125,7 +2298,8 @@
           "name": "Glutenhaltiges Getreide",
           "id": 1
         }
-      ]
+      ],
+      "name_en": "Soba Noodles"
     },
     {
       "id": 678,
@@ -2135,7 +2309,8 @@
       "subcategory": "Tofu und Soja",
       "verarbeitungshinweis": "15-20 min in heißem Wasser/Brühe einweichen,  gut ausdrücken,  dann braten",
       "lagerhinweis": "eingeweicht: Kühlschrank 3 Tage",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Soy Mince"
     },
     {
       "id": 679,
@@ -2145,7 +2320,8 @@
       "subcategory": "Tofu und Soja",
       "verarbeitungshinweis": "Muss nicht eingeweicht werden",
       "lagerhinweis": "eingeweicht: Kühlschrank 3 Tage",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Soy Granules"
     },
     {
       "id": 680,
@@ -2155,7 +2331,8 @@
       "subcategory": "Pflanzendrink",
       "verarbeitungshinweis": "nicht kochen",
       "lagerhinweis": "Kühlschrank,  MHD beachten",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Soy Yogurt"
     },
     {
       "id": 681,
@@ -2165,7 +2342,8 @@
       "subcategory": "Pflanzendrink",
       "verarbeitungshinweis": "",
       "lagerhinweis": "geöffnet: Kühlschrank 5-7 Tage",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Soy Milk (unsweetened)"
     },
     {
       "id": 682,
@@ -2175,7 +2353,8 @@
       "subcategory": "Saucen & Pasten",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank nach Öffnen",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Soy Sauce"
     },
     {
       "id": 683,
@@ -2185,7 +2364,8 @@
       "subcategory": "Öle & Fette",
       "verarbeitungshinweis": "Für Braten geeignet (Rauchpunkt ca. 225°C raffiniert)",
       "lagerhinweis": "Kühl/dunkel/luftdicht 1 Jahr nach Öffnen",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Sunflower Oil"
     },
     {
       "id": 684,
@@ -2196,7 +2376,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank 3-5 Tage aufrecht in feuchtem Tuch",
       "abschnitt": 10,
-      "kochfaktor": 0.7
+      "kochfaktor": 0.7,
+      "name_en": "Green Asparagus"
     },
     {
       "id": 685,
@@ -2206,7 +2387,8 @@
       "subcategory": "Gemüse",
       "verarbeitungshinweis": "10-15 min in leicht gesalzenem Wasser kochen",
       "lagerhinweis": "Kühlschrank 3-5 Tage in feuchtem Tuch",
-      "abschnitt": 20
+      "abschnitt": 20,
+      "name_en": "White Asparagus"
     },
     {
       "id": 686,
@@ -2217,7 +2399,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "Frisch: Kühlschrank 3-5 Tage",
       "abschnitt": 20,
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Spinach"
     },
     {
       "id": 687,
@@ -2227,7 +2410,8 @@
       "subcategory": "Saucen & Pasten",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank nach Öffnen",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Sriracha Sauce"
     },
     {
       "id": 688,
@@ -2237,7 +2421,8 @@
       "subcategory": "Mehl",
       "verarbeitungshinweis": "In kalter Flüssigkeit anrühren,  bindet beim Erhitzen",
       "lagerhinweis": "",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Starch"
     },
     {
       "id": 689,
@@ -2249,7 +2434,8 @@
       "lagerhinweis": "Kühl/dunkel/luftdicht 2-3 Jahre",
       "abschnitt": 0,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Star Anise"
     },
     {
       "id": 690,
@@ -2261,7 +2447,8 @@
       "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
       "abschnitt": 0,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Sumac"
     },
     {
       "id": 691,
@@ -2271,7 +2458,8 @@
       "subcategory": "Kartoffeln",
       "verarbeitungshinweis": "20-25 min kochen oder 30-40 min backen",
       "lagerhinweis": "Kühl/dunkel/trocken 2-3 Wochen,  nicht kühlen",
-      "abschnitt": 10
+      "abschnitt": 10,
+      "name_en": "Sweet Potatoes"
     },
     {
       "id": 692,
@@ -2283,7 +2471,8 @@
       "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
       "abschnitt": 0,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Sichuan Pepper"
     },
     {
       "id": 693,
@@ -2293,7 +2482,8 @@
       "subcategory": "Essig",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühl/dunkel",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Table Vinegar"
     },
     {
       "id": 694,
@@ -2303,7 +2493,8 @@
       "subcategory": "Saucen & Pasten",
       "verarbeitungshinweis": "Gut umrühren (Öl setzt sich ab)",
       "lagerhinweis": "Kühlschrank nach Öffnen",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Tahini"
     },
     {
       "id": 695,
@@ -2313,7 +2504,8 @@
       "subcategory": "Saucen & Pasten",
       "verarbeitungshinweis": "Wie Sojasauce verwenden,  meist glutenfrei - Etikett prüfen",
       "lagerhinweis": "Kühlschrank nach Öffnen",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Tamari"
     },
     {
       "id": 696,
@@ -2323,7 +2515,8 @@
       "subcategory": "Saucen & Pasten",
       "verarbeitungshinweis": "Mit Wasser verdünnen,  intensiv säuerlich-süß",
       "lagerhinweis": "Kühlschrank nach Öffnen 3-6 Monate",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Tamarind Paste"
     },
     {
       "id": 697,
@@ -2333,7 +2526,8 @@
       "subcategory": "Getränke",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Tea"
     },
     {
       "id": 698,
@@ -2344,7 +2538,8 @@
       "verarbeitungshinweis": "Kein Einweichen nötig,  2-fache Wassermenge,  25-30 min kochen",
       "lagerhinweis": "gekocht: Kühlschrank 4-5 Tage",
       "abschnitt": 0,
-      "kochfaktor": 2.4
+      "kochfaktor": 2.4,
+      "name_en": "Brown Lentils"
     },
     {
       "id": 699,
@@ -2354,7 +2549,8 @@
       "subcategory": "Tofu und Soja",
       "verarbeitungshinweis": "10-15 min braten,  Marinieren empfohlen",
       "lagerhinweis": "Kühlschrank 7-10 Tage",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Tempeh"
     },
     {
       "id": 700,
@@ -2366,7 +2562,8 @@
       "lagerhinweis": "Frisch: Kühlschrank 1-2 Wochen",
       "abschnitt": 20,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Thyme"
     },
     {
       "id": 701,
@@ -2376,7 +2573,8 @@
       "subcategory": "Tofu und Soja",
       "verarbeitungshinweis": "Ausdrücken mind. 30 min unter Gewicht",
       "lagerhinweis": "Kühlschrank in Wasser",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Tofu"
     },
     {
       "id": 702,
@@ -2387,7 +2585,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "Raumtemperatur (nie kühlen - verlieren Aroma), reif 3-5 Tage",
       "abschnitt": 5,
-      "kochfaktor": 0.7
+      "kochfaktor": 0.7,
+      "name_en": "Tomatoes"
     },
     {
       "id": 703,
@@ -2397,7 +2596,8 @@
       "subcategory": "Konserven oder Schläuche",
       "verarbeitungshinweis": "",
       "lagerhinweis": "geöffnet: Kühlschrank 3-4 Tage",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Sieved Tomatoes"
     },
     {
       "id": 704,
@@ -2408,7 +2608,8 @@
       "verarbeitungshinweis": "In Öl eingelegt direkt verwenden,  trocken: 30 min in warmem Wasser einweichen",
       "lagerhinweis": "",
       "abschnitt": 0,
-      "kochfaktor": 1.8
+      "kochfaktor": 1.8,
+      "name_en": "Sun-dried Tomatoes"
     },
     {
       "id": 705,
@@ -2418,7 +2619,8 @@
       "subcategory": "Konserven oder Schläuche",
       "verarbeitungshinweis": "",
       "lagerhinweis": "geöffnet: Kühlschrank 3-4 Tage",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Tomato Passata"
     },
     {
       "id": 706,
@@ -2428,7 +2630,8 @@
       "subcategory": "Konserven oder Schläuche",
       "verarbeitungshinweis": "2-3 min in Öl anrösten (Röstaromen)",
       "lagerhinweis": "geöffnet: Kühlschrank 3-5 Tage",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Tomato Paste"
     },
     {
       "id": 707,
@@ -2439,7 +2642,8 @@
       "verarbeitungshinweis": "roh oder 15-20 min kochen/rösten",
       "lagerhinweis": "Kühlschrank 1-2 Wochen",
       "abschnitt": 10,
-      "kochfaktor": 0.85
+      "kochfaktor": 0.85,
+      "name_en": "Jerusalem Artichoke"
     },
     {
       "id": 708,
@@ -2451,7 +2655,8 @@
       "lagerhinweis": "Kühl/dunkel/luftdicht 2 Jahre,  nicht einfrieren",
       "abschnitt": 0,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Vanilla"
     },
     {
       "id": 709,
@@ -2468,7 +2673,8 @@
           "name": "Glutenhaltiges Getreide",
           "id": 1
         }
-      ]
+      ],
+      "name_en": "Wholemeal Pasta"
     },
     {
       "id": 710,
@@ -2480,7 +2686,8 @@
       "lagerhinweis": "Kühl/dunkel/luftdicht 2-3 Jahre",
       "abschnitt": 0,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Juniper Berries"
     },
     {
       "id": 711,
@@ -2490,7 +2697,8 @@
       "subcategory": "Nüsse und Samen",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühl/dunkel/luftdicht 3-6 Monate",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Walnuts"
     },
     {
       "id": 712,
@@ -2500,7 +2708,8 @@
       "subcategory": "Sonstiges",
       "verarbeitungshinweis": "",
       "lagerhinweis": "",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Water"
     },
     {
       "id": 713,
@@ -2511,7 +2720,8 @@
       "verarbeitungshinweis": "12 Std. einweichen,  60-90 min kochen",
       "lagerhinweis": "gekocht: Kühlschrank 3-4 Tage",
       "abschnitt": 0,
-      "kochfaktor": 2.7
+      "kochfaktor": 2.7,
+      "name_en": "White Beans"
     },
     {
       "id": 714,
@@ -2522,7 +2732,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank 2-3 Wochen (ganz)",
       "abschnitt": 15,
-      "kochfaktor": 0.8
+      "kochfaktor": 0.8,
+      "name_en": "White Cabbage"
     },
     {
       "id": 715,
@@ -2532,7 +2743,8 @@
       "subcategory": "Sonstiges",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank nach Öffnen",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "White Wine (for cooking)"
     },
     {
       "id": 716,
@@ -2542,7 +2754,8 @@
       "subcategory": "Essig",
       "verarbeitungshinweis": "",
       "lagerhinweis": "",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "White Wine Vinegar"
     },
     {
       "id": 717,
@@ -2552,7 +2765,8 @@
       "subcategory": "Mehl",
       "verarbeitungshinweis": "",
       "lagerhinweis": "",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Wheat Flour T550"
     },
     {
       "id": 718,
@@ -2563,7 +2777,8 @@
       "verarbeitungshinweis": "3-fache Wassermenge,  40-50 min kochen",
       "lagerhinweis": "gekocht: Kühlschrank 4 Tage",
       "abschnitt": 0,
-      "kochfaktor": 3.2
+      "kochfaktor": 3.2,
+      "name_en": "Wild Rice"
     },
     {
       "id": 719,
@@ -2573,7 +2788,8 @@
       "subcategory": "Saucen & Pasten",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank nach Öffnen",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Worcestershire Sauce"
     },
     {
       "id": 720,
@@ -2583,7 +2799,8 @@
       "subcategory": "Brot und Teigwaren",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühl/trocken 1-2 Wochen",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Wraps"
     },
     {
       "id": 721,
@@ -2593,7 +2810,8 @@
       "subcategory": "Brot und Teigwaren",
       "verarbeitungshinweis": "",
       "lagerhinweis": "nach dem Auftauen im Kühlschrank 2-3 Tage",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Yufka / Filo Pastry"
     },
     {
       "id": 722,
@@ -2610,7 +2828,8 @@
           "id": 22
         }
       ],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Cinnamon"
     },
     {
       "id": 723,
@@ -2620,7 +2839,8 @@
       "subcategory": "Zitrusfrüchte",
       "verarbeitungshinweis": "bio für Schale bevorzugen",
       "lagerhinweis": "Kühlschrank 3-4 Wochen",
-      "abschnitt": 25
+      "abschnitt": 25,
+      "name_en": "Lemons"
     },
     {
       "id": 724,
@@ -2632,7 +2852,8 @@
       "lagerhinweis": "Kühlschrank 2-3 Wochen",
       "abschnitt": 30,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Lemongrass"
     },
     {
       "id": 725,
@@ -2642,7 +2863,8 @@
       "subcategory": "Saft",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank nach Öffnen 5-7 Tage",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Lemon Juice"
     },
     {
       "id": 726,
@@ -2653,7 +2875,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühlschrank 5-7 Tage",
       "abschnitt": 5,
-      "kochfaktor": 0.7
+      "kochfaktor": 0.7,
+      "name_en": "Courgette"
     },
     {
       "id": 727,
@@ -2663,7 +2886,8 @@
       "subcategory": "Zucker",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Trocken/luftdicht",
-      "abschnitt": 0
+      "abschnitt": 0,
+      "name_en": "Sugar"
     },
     {
       "id": 728,
@@ -2674,7 +2898,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühl/dunkel/trocken 1-2 Monate,  nicht kühlen",
       "abschnitt": 10,
-      "kochfaktor": 0.7
+      "kochfaktor": 0.7,
+      "name_en": "Onions"
     },
     {
       "id": 729,
@@ -2685,7 +2910,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühl/dunkel/trocken 1-2 Monate,  nicht kühlen",
       "abschnitt": 10,
-      "kochfaktor": 0.7
+      "kochfaktor": 0.7,
+      "name_en": "Red Onions"
     },
     {
       "id": 730,
@@ -2696,7 +2922,8 @@
       "verarbeitungshinweis": "besser verträglich bei Histaminintoleranz",
       "lagerhinweis": "Kühl/dunkel/trocken 1-2 Monate,  nicht kühlen",
       "abschnitt": 10,
-      "kochfaktor": 0.7
+      "kochfaktor": 0.7,
+      "name_en": "White Onions"
     },
     {
       "id": 731,
@@ -2708,7 +2935,8 @@
       "lagerhinweis": "",
       "abschnitt": 0,
       "kochfaktor": 1,
-      "allergens": []
+      "allergens": [],
+      "name_en": "Sweet Paprika (mild)"
     },
     {
       "id": 732,
@@ -2720,7 +2948,8 @@
       "lagerhinweis": "",
       "abschnitt": 0,
       "kochfaktor": 1,
-      "allergens": []
+      "allergens": [],
+      "name_en": "Caraway Seeds (ground)"
     },
     {
       "id": 733,
@@ -2731,7 +2960,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "",
       "abschnitt": 0,
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Sunflower Oil"
     },
     {
       "id": 736,
@@ -2743,7 +2973,8 @@
       "lagerhinweis": "",
       "abschnitt": 0,
       "kochfaktor": 1,
-      "allergens": []
+      "allergens": [],
+      "name_en": "Oregano (dried)"
     },
     {
       "id": 737,
@@ -2755,7 +2986,8 @@
       "lagerhinweis": "",
       "abschnitt": 0,
       "kochfaktor": 1,
-      "allergens": []
+      "allergens": [],
+      "name_en": "Lemon Zest"
     },
     {
       "id": 738,
@@ -2766,7 +2998,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "",
       "abschnitt": 0,
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "White Wine"
     },
     {
       "id": 739,
@@ -2777,7 +3010,8 @@
       "verarbeitungshinweis": "10-15 min kochzeit, Zucker reduziert die bitterkeit",
       "lagerhinweis": "Gekühlt 4-5 Tage",
       "abschnitt": 15,
-      "kochfaktor": 0.8
+      "kochfaktor": 0.8,
+      "name_en": "Brussels Sprouts"
     },
     {
       "name": "Paniermehl",
@@ -2787,7 +3021,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "",
       "abschnitt": 0,
-      "id": 740
+      "id": 740,
+      "name_en": "Breadcrumbs"
     },
     {
       "name": "Vegane Butter",
@@ -2797,7 +3032,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "",
       "abschnitt": 0,
-      "id": 741
+      "id": 741,
+      "name_en": "Vegan Butter"
     },
     {
       "name": "Kala Namak",
@@ -2814,7 +3050,8 @@
           "id": 13
         }
       ],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Kala Namak"
     },
     {
       "name": "Hartweizengrieß",
@@ -2824,7 +3061,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "",
       "abschnitt": 0,
-      "id": 743
+      "id": 743,
+      "name_en": "Durum Wheat Semolina"
     },
     {
       "name": "Späzlemehl",
@@ -2834,7 +3072,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "",
       "abschnitt": 0,
-      "id": 744
+      "id": 744,
+      "name_en": "Spaetzle Flour"
     },
     {
       "name": "Paprikamark",
@@ -2844,7 +3083,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "",
       "abschnitt": 0,
-      "id": 745
+      "id": 745,
+      "name_en": "Pepper Paste"
     },
     {
       "name": "Dunkles Bier",
@@ -2854,7 +3094,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "",
       "abschnitt": 0,
-      "id": 746
+      "id": 746,
+      "name_en": "Dark Beer"
     },
     {
       "name": "Haferflocken (Glutenfrei)",
@@ -2864,7 +3105,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "",
       "abschnitt": 0,
-      "id": 747
+      "id": 747,
+      "name_en": "Oats (Gluten-free)"
     },
     {
       "name": "Räuchertofu",
@@ -2874,7 +3116,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "",
       "abschnitt": 0,
-      "id": 748
+      "id": 748,
+      "name_en": "Smoked Tofu"
     },
     {
       "id": 749,
@@ -2885,7 +3128,8 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "",
       "abschnitt": 0,
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Mountain Lentils"
     },
     {
       "id": 750,
@@ -2896,7 +3140,8 @@
       "verarbeitungshinweis": "3-fache Wassermenge, da viel verdampft. ca. 20 min kochzeit",
       "lagerhinweis": "gekocht: Kühlschrank 3 Tage",
       "abschnitt": 0,
-      "kochfaktor": 2.4
+      "kochfaktor": 2.4,
+      "name_en": "Risotto Rice"
     },
     {
       "id": 751,
@@ -2917,7 +3162,8 @@
           "id": 68
         }
       ],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Cumin Seeds"
     },
     {
       "name": "Koriandergrün",
@@ -2929,7 +3175,8 @@
       "abschnitt": 5,
       "id": 752,
       "allergens": [],
-      "kochfaktor": 1
+      "kochfaktor": 1,
+      "name_en": "Fresh Coriander"
     },
     {
       "name": "Sojabohnen",
@@ -2940,7 +3187,8 @@
       "lagerhinweis": "",
       "abschnitt": 0,
       "kochfaktor": 2.3,
-      "id": 753
+      "id": 753,
+      "name_en": "Soybeans"
     },
     {
       "id": 754,
@@ -2951,7 +3199,8 @@
       "verarbeitungshinweis": "12-24h einweichen, Wasser mehrfach wechseln. 90 min Kochzeit",
       "lagerhinweis": "",
       "abschnitt": 0,
-      "kochfaktor": 2.6
+      "kochfaktor": 2.6,
+      "name_en": "Lupin Beans"
     },
     {
       "name": "Sushireis",
@@ -2962,7 +3211,8 @@
       "lagerhinweis": "gekocht: Kühlschrank 3 Tage",
       "abschnitt": 0,
       "kochfaktor": 2.3,
-      "id": 755
+      "id": 755,
+      "name_en": "Sushi Rice"
     },
     {
       "id": 756,
@@ -2973,7 +3223,8 @@
       "verarbeitungshinweis": "2-fache Wassermenge, 35 min Kochzeit und 10 min Dämpfen",
       "lagerhinweis": "",
       "abschnitt": 0,
-      "kochfaktor": 2.5
+      "kochfaktor": 2.5,
+      "name_en": "Brown Rice"
     },
     {
       "id": 757,
@@ -2984,7 +3235,8 @@
       "verarbeitungshinweis": "2-fache Wassermenge, 40 min kochzeit und  5 min dämpfen",
       "lagerhinweis": "",
       "abschnitt": 0,
-      "kochfaktor": 2.7
+      "kochfaktor": 2.7,
+      "name_en": "Black Rice"
     },
     {
       "id": 758,
@@ -2995,7 +3247,8 @@
       "verarbeitungshinweis": "5 - 10 min einweichen",
       "lagerhinweis": "gekocht: Kühlschrank 2 Tage",
       "abschnitt": 0,
-      "kochfaktor": 3.5
+      "kochfaktor": 3.5,
+      "name_en": "Glass Noodles"
     }
   ],
   "subcategories": [
