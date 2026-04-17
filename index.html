@@ -1476,7 +1476,7 @@ const UNITS = ["kg","g","L","ml","Stück","Bund","Dose(n)","Packung","Becher","E
 // meal type categories are now dynamic from DB
 async function getMealTypeCategories(){return (await dbGetAll('meal_type_categories')).sort((a,b)=>a.sort_order-b.sort_order||a.name.localeCompare(b.name));}
 async function createMealTypeCategory(name){const all=await getMealTypeCategories();const order=all.length?Math.max(...all.map(c=>c.sort_order||0))+1:1;return dbAdd('meal_type_categories',{name,sort_order:order});}
-async function updateMealTypeCategory(id,name,sortOrder){const c=await dbGet('meal_type_categories',id);if(c){c.name=name;if(sortOrder!==undefined)c.sort_order=sortOrder;await dbPut('meal_type_categories',c);}}
+async function updateMealTypeCategory(id,name,sortOrder,name_en){const c=await dbGet('meal_type_categories',id);if(c){c.name=name;if(sortOrder!==undefined)c.sort_order=sortOrder;if(name_en!==undefined)c.name_en=name_en;await dbPut('meal_type_categories',c);}}
 async function deleteMealTypeCategory(id){await dbDel('meal_type_categories',id);}
 async function getMealTypeNames(){return (await getMealTypeCategories()).map(c=>c.name);}
 const DEFAULT_SUBCATS = ["Gemüse","Obst","Milchprodukte","Fleisch","Fisch","Getreide","Gewürze","Öle & Fette","Konserven","Getränke","Backzutaten","Hülsenfrüchte","Tiefkühl","Sonstiges"];
@@ -1586,6 +1586,7 @@ async function deleteMealSlot(id){await dbDelByIndex('assignments','meal_slot_id
 // Allergens
 async function getAllergens(){return (await dbGetAll('allergens')).sort((a,b)=>a.name.localeCompare(b.name));}
 async function createAllergen(name){return dbAdd('allergens',{name});}
+async function updateAllergen(id,name,name_en=''){const a=await dbGet('allergens',id);if(a){a.name=name;a.name_en=name_en;await dbPut('allergens',a);}}
 async function deleteAllergen(id){
   const ias=await dbGetAll('ingredient_allergens');for(const ia of ias){if(ia.allergen_id===id) await dbDel('ingredient_allergens',ia.id);}
   const ras=await dbGetAll('recipe_allergens');for(const ra of ras){if(ra.allergen_id===id) await dbDel('recipe_allergens',ra.id);}
@@ -1839,6 +1840,10 @@ function showTagManager(){
 
 function ingDisplayName(ing){return LANG==='en'&&ing.name_en?ing.name_en:ing.name;}
 function riDisplayName(ri){return LANG==='en'&&ri.ingredient_name_en?ri.ingredient_name_en:ri.ingredient_name;}
+function allergenDisplayName(a){return LANG==='en'&&a.name_en?a.name_en:a.name;}
+function subcatDisplayName(s){return LANG==='en'&&s.name_en?s.name_en:s.name;}
+function prepMethodDisplayName(m){return LANG==='en'&&m.name_en?m.name_en:m.name;}
+function mealTypeCatDisplayName(c){return LANG==='en'&&c.name_en?c.name_en:c.name;}
 async function getIngredients(){
   const ings=(await dbGetAll('ingredients')).sort((a,b)=>a.name.localeCompare(b.name));
   for(const ing of ings){
@@ -1863,26 +1868,28 @@ async function deleteIngredient(id){
 }
 async function getPreparationMethods(){return (await dbGetAll('preparation_methods')).sort((a,b)=>a.name.localeCompare(b.name));}
 async function createPreparationMethod(name){return dbAdd('preparation_methods',{name});}
-async function updatePreparationMethod(id,newName){
+async function updatePreparationMethod(id,newName,name_en=''){
   const m=await dbGet('preparation_methods',id);if(!m) return;
-  const oldName=m.name;m.name=newName;await dbPut('preparation_methods',m);
-  // Update recipe_ingredients that use this method
-  const ris=await dbGetAll('recipe_ingredients');
-  for(const ri of ris){if(ri.preparation===oldName){ri.preparation=newName;await dbPut('recipe_ingredients',ri);}}
+  const oldName=m.name;m.name=newName;m.name_en=name_en;await dbPut('preparation_methods',m);
+  if(oldName!==newName){
+    const ris=await dbGetAll('recipe_ingredients');
+    for(const ri of ris){if(ri.preparation===oldName){ri.preparation=newName;await dbPut('recipe_ingredients',ri);}}
+  }
 }
 async function deletePreparationMethod(id){await dbDel('preparation_methods',id);}
 
 async function getSubcategories(){return (await dbGetAll('subcategories')).sort((a,b)=>a.name.localeCompare(b.name));}
 async function createSubcategory(name){return dbAdd('subcategories',{name});}
-async function updateSubcategory(id,newName){
+async function updateSubcategory(id,newName,name_en=''){
   const s=await dbGet('subcategories',id);
   if(!s) return;
-  const oldName=s.name;s.name=newName;await dbPut('subcategories',s);
-  // Update ingredients
-  const ings=await getIngredients();
-  for(const i of ings){if(i.subcategory===oldName){i.subcategory=newName;await dbPut('ingredients',i);}}
-  const comps=await dbGetAll('meal_components');
-  for(const c of comps){if(c.subcategory===oldName){c.subcategory=newName;await dbPut('meal_components',c);}}
+  const oldName=s.name;s.name=newName;s.name_en=name_en;await dbPut('subcategories',s);
+  if(oldName!==newName){
+    const ings=await getIngredients();
+    for(const i of ings){if(i.subcategory===oldName){i.subcategory=newName;await dbPut('ingredients',i);}}
+    const comps=await dbGetAll('meal_components');
+    for(const c of comps){if(c.subcategory===oldName){c.subcategory=newName;await dbPut('meal_components',c);}}
+  }
 }
 async function deleteSubcategory(id){await dbDel('subcategories',id);}
 
@@ -2578,7 +2585,7 @@ async function renderIngredientsPage(container){
   const catFilter=h('select',{style:{minWidth:'160px'}});
   catFilter.appendChild(h('option',{value:''},t('filter_all_categories')));
   catFilter.appendChild(h('option',{value:'__none__'},t('filter_no_category')));
-  (await getSubcategories()).forEach(s=>catFilter.appendChild(h('option',{value:s.name},s.name)));
+  (await getSubcategories()).forEach(s=>catFilter.appendChild(h('option',{value:s.name},subcatDisplayName(s))));
   let ingTagFilterId=null;
   const tagFilterEl=createTagFilterInput((id)=>{ingTagFilterId=id;renderTable();});
   filterRow.append(searchInput,catFilter,tagFilterEl);
@@ -2593,6 +2600,8 @@ async function renderIngredientsPage(container){
   async function renderTable(){
     tableContainer.innerHTML='';
     let ings=await getIngredients();
+    const subcatEnMap={};
+    if(LANG==='en'){(await getSubcategories()).forEach(s=>{if(s.name_en) subcatEnMap[s.name]=s.name_en;});}
     const q=searchInput.value.toLowerCase();
     if(q) ings=ings.filter(i=>i.name.toLowerCase().includes(q)||(i.subcategory||'').toLowerCase().includes(q));
     const cf=catFilter.value;
@@ -2612,7 +2621,8 @@ async function renderIngredientsPage(container){
       row.appendChild(h('span',{style:{width:'150px',flexShrink:0,fontSize:'13px'}},ingDisplayName(ing)));
       row.appendChild(h('span',{style:{width:'55px',flexShrink:0,color:'var(--text-muted)'}},ing.unit));
       row.appendChild(h('span',{style:{width:'60px',flexShrink:0,color:'var(--text-muted)'}},ing.price?`${ing.price.toFixed(2)} €`:'—'));
-      row.appendChild(h('span',{style:{width:'100px',flexShrink:0,color:ing.subcategory?'var(--green-light)':'var(--text-muted)'}},ing.subcategory||'—'));
+      const subcatLabel=ing.subcategory?(LANG==='en'?(subcatEnMap[ing.subcategory]||ing.subcategory):ing.subcategory):'—';
+      row.appendChild(h('span',{style:{width:'100px',flexShrink:0,color:ing.subcategory?'var(--green-light)':'var(--text-muted)'}},subcatLabel));
       row.appendChild(h('span',{style:{width:'55px',flexShrink:0,color:ing.abschnitt?'var(--accent)':'var(--text-muted)'}},ing.abschnitt?`${ing.abschnitt}%`:'—'));
       const kf=ing.kochfaktor||1;
       row.appendChild(h('span',{style:{width:'70px',flexShrink:0,color:(kf!==1)?'var(--green-light)':'var(--text-muted)'}},(kf!==1)?`×${kf}`:'—'));
@@ -2640,7 +2650,7 @@ async function renderIngredientsPage(container){
     const priceInput=h('input',{type:'number',placeholder:t('ph_price'),value:ing?.price||'',style:{width:'100%'},step:'0.01'});
     const subcatSel=h('select',{style:{width:'100%'}});
     subcatSel.appendChild(h('option',{value:''},'—'));
-    subcats.forEach(s=>{const o=h('option',{value:s.name},s.name);if(s.name===(ing?.subcategory||''))o.selected=true;subcatSel.appendChild(o);});
+    subcats.forEach(s=>{const o=h('option',{value:s.name},subcatDisplayName(s));if(s.name===(ing?.subcategory||''))o.selected=true;subcatSel.appendChild(o);});
     const abschnittInput=h('input',{type:'number',placeholder:t('ph_trim'),value:ing?.abschnitt||'',style:{width:'100%'},step:'1',min:'0',max:'100'});
     const kochfaktorInput=h('input',{type:'number',placeholder:t('ph_cook_factor'),value:(ing&&ing.kochfaktor!==undefined&&ing.kochfaktor!==1)?ing.kochfaktor:'',style:{width:'100%'},step:'0.01',min:'0'});
     const verarbHinweisInput=h('input',{type:'text',placeholder:t('ph_processing_hint'),value:ing?.verarbeitungshinweis||'',style:{width:'100%'}});
@@ -2720,11 +2730,25 @@ async function renderIngredientsPage(container){
       const subs=await getSubcategories();
       subs.forEach(s=>{
         const row=h('div',{class:'subcat-row'});
-        row.appendChild(h('span',{style:{fontSize:'13px'}},s.name));
+        const nameEl=h('span',{style:{fontSize:'13px'}},subcatDisplayName(s));
+        if(s.name_en) nameEl.appendChild(h('span',{style:{color:'var(--text-muted)',fontSize:'11px',marginLeft:'6px'}},'('+s.name_en+')'));
+        row.appendChild(nameEl);
         const btns=h('span',{style:{display:'flex',gap:'4px'}});
-        btns.appendChild(h('button',{class:'btn-icon btn-ghost',onClick:async()=>{
-          const newName=prompt(t('misc_new_name'),s.name);
-          if(newName&&newName!==s.name){await updateSubcategory(s.id,newName);refresh();}
+        btns.appendChild(h('button',{class:'btn-icon btn-ghost',onClick:()=>{
+          const nameIn=h('input',{type:'text',value:s.name,style:{width:'100%'}});
+          const nameEnIn=h('input',{type:'text',placeholder:t('ph_name_en'),value:s.name_en||'',style:{width:'100%'}});
+          const sub=showModal(h('div',{},
+            h('h2',{},t('btn_edit')),
+            h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_name')),nameIn),
+            h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_name_en')),nameEnIn),
+            h('div',{class:'modal-buttons'},
+              h('button',{class:'btn btn-accent',onClick:async()=>{
+                const n=nameIn.value.trim();if(!n) return;
+                await updateSubcategory(s.id,n,nameEnIn.value.trim());closeModal(sub);refresh();await refreshCatFilter();renderTable();
+              }},t('btn_save')),
+              h('button',{class:'btn btn-surface',onClick:()=>closeModal(sub)},t('btn_cancel'))
+            )
+          ));
         }},'✎'));
         btns.appendChild(h('button',{class:'btn-icon btn-danger',onClick:async()=>{if(confirm(t('msg_confirm_delete_subcategory',s.name))){await deleteSubcategory(s.id);refresh();}}},'✕'));
         row.appendChild(btns);
@@ -2755,8 +2779,28 @@ async function renderIngredientsPage(container){
       const allergens=await getAllergens();
       allergens.forEach(a=>{
         const row=h('div',{class:'subcat-row'});
-        row.appendChild(h('span',{style:{fontSize:'13px'}},a.name));
-        row.appendChild(h('button',{class:'btn-icon btn-danger',onClick:async()=>{if(confirm(t('msg_confirm_delete_allergen',a.name))){await deleteAllergen(a.id);refresh();}}},'✕'));
+        const nameEl=h('span',{style:{fontSize:'13px'}},allergenDisplayName(a));
+        if(a.name_en) nameEl.appendChild(h('span',{style:{color:'var(--text-muted)',fontSize:'11px',marginLeft:'6px'}},'('+a.name_en+')'));
+        row.appendChild(nameEl);
+        const btns=h('span',{style:{display:'flex',gap:'4px'}});
+        btns.appendChild(h('button',{class:'btn-icon btn-ghost',onClick:()=>{
+          const nameIn=h('input',{type:'text',value:a.name,style:{width:'100%'}});
+          const nameEnIn=h('input',{type:'text',placeholder:t('ph_name_en'),value:a.name_en||'',style:{width:'100%'}});
+          const sub=showModal(h('div',{},
+            h('h2',{},t('btn_edit')),
+            h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_name')),nameIn),
+            h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_name_en')),nameEnIn),
+            h('div',{class:'modal-buttons'},
+              h('button',{class:'btn btn-accent',onClick:async()=>{
+                const n=nameIn.value.trim();if(!n) return;
+                await updateAllergen(a.id,n,nameEnIn.value.trim());closeModal(sub);refresh();
+              }},t('btn_save')),
+              h('button',{class:'btn btn-surface',onClick:()=>closeModal(sub)},t('btn_cancel'))
+            )
+          ));
+        }},'✎'));
+        btns.appendChild(h('button',{class:'btn-icon btn-danger',onClick:async()=>{if(confirm(t('msg_confirm_delete_allergen',a.name))){await deleteAllergen(a.id);refresh();}}},'✕'));
+        row.appendChild(btns);
         listDiv.appendChild(row);
       });
     }
@@ -2768,7 +2812,7 @@ async function renderIngredientsPage(container){
     catFilter.innerHTML='';
     catFilter.appendChild(h('option',{value:''},t('filter_all_categories')));
     catFilter.appendChild(h('option',{value:'__none__'},t('filter_no_category')));
-    (await getSubcategories()).forEach(s=>catFilter.appendChild(h('option',{value:s.name},s.name)));
+    (await getSubcategories()).forEach(s=>catFilter.appendChild(h('option',{value:s.name},subcatDisplayName(s))));
     if([...catFilter.options].some(o=>o.value===cur)) catFilter.value=cur;
   }
 
@@ -2951,12 +2995,26 @@ function showMealTypeCatsDialog(onClose){
         await updateMealTypeCategory(next.id,next.name,tmpOrder);
         refreshList();
       }},'▼'));
-      leftPart.append(arrows,h('span',{style:{fontSize:'13px',fontWeight:'600'}},c.name));
+      const nameEl=h('span',{style:{fontSize:'13px',fontWeight:'600'}},mealTypeCatDisplayName(c));
+      if(c.name_en) nameEl.appendChild(h('span',{style:{color:'var(--text-muted)',fontSize:'11px',fontWeight:'400',marginLeft:'6px'}},'('+c.name_en+')'));
+      leftPart.append(arrows,nameEl);
       row.appendChild(leftPart);
       const btns=h('div',{style:{display:'flex',gap:'4px'}});
-      btns.appendChild(h('button',{class:'btn-icon btn-ghost',onClick:async()=>{
-        const newName=prompt(t('misc_new_name'),c.name);
-        if(newName&&newName.trim()&&newName.trim()!==c.name){await updateMealTypeCategory(c.id,newName.trim(),c.sort_order);refreshList();}
+      btns.appendChild(h('button',{class:'btn-icon btn-ghost',onClick:()=>{
+        const nameIn=h('input',{type:'text',value:c.name,style:{width:'100%'}});
+        const nameEnIn=h('input',{type:'text',placeholder:t('ph_name_en'),value:c.name_en||'',style:{width:'100%'}});
+        const sub=showModal(h('div',{},
+          h('h2',{},t('btn_edit')),
+          h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_name')),nameIn),
+          h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_name_en')),nameEnIn),
+          h('div',{class:'modal-buttons'},
+            h('button',{class:'btn btn-accent',onClick:async()=>{
+              const n=nameIn.value.trim();if(!n) return;
+              await updateMealTypeCategory(c.id,n,c.sort_order,nameEnIn.value.trim());closeModal(sub);refreshList();
+            }},t('btn_save')),
+            h('button',{class:'btn btn-surface',onClick:()=>closeModal(sub)},t('btn_cancel'))
+          )
+        ));
       }},'✎'));
       btns.appendChild(h('button',{class:'btn-icon btn-danger',onClick:async()=>{
         if(confirm(t('msg_confirm_delete_subcategory',c.name))){await deleteMealTypeCategory(c.id);refreshList();}
@@ -2997,7 +3055,7 @@ async function renderStandardMealsPage(container){
     // Group meals by meal_type category
     mealTypeCats.forEach(cat=>{
       const catMeals=meals.filter(m=>m.meal_type===cat.name);
-      const groupHeader=h('div',{style:{fontWeight:'700',fontSize:'13px',color:'var(--accent)',padding:'10px 12px 4px',borderBottom:'1px solid var(--border)'}},cat.name);
+      const groupHeader=h('div',{style:{fontWeight:'700',fontSize:'13px',color:'var(--accent)',padding:'10px 12px 4px',borderBottom:'1px solid var(--border)'}},mealTypeCatDisplayName(cat));
       listDiv.appendChild(groupHeader);
 
       if(!catMeals.length){
@@ -3417,7 +3475,7 @@ async function renderRecipeBookPage(container){
   const recipeCatFilter=h('select',{style:{width:'100%',marginBottom:'8px'}});
   recipeCatFilter.appendChild(h('option',{value:''},t('filter_all_categories')));
   recipeCatFilter.appendChild(h('option',{value:'__none__'},t('filter_no_category')));
-  (await getMealTypeCategories()).forEach(c=>recipeCatFilter.appendChild(h('option',{value:String(c.id)},c.name)));
+  (await getMealTypeCategories()).forEach(c=>recipeCatFilter.appendChild(h('option',{value:String(c.id)},mealTypeCatDisplayName(c))));
   let recipeTagFilterId=null;
   const recipeTagFilterEl=createTagFilterInput((id)=>{recipeTagFilterId=id;renderList();});
   recipeTagFilterEl.style.marginBottom='8px';
@@ -3448,7 +3506,7 @@ async function renderRecipeBookPage(container){
       nameRow.appendChild(h('span',{class:'item-name'},r.name));
       if(r.is_allergy_friendly) nameRow.appendChild(h('span',{style:{fontSize:'10px',padding:'1px 6px',borderRadius:'8px',background:'var(--green)',color:'#fff',fontWeight:'600',whiteSpace:'nowrap'}},t('recipe_allergy_badge')));
       item.appendChild(nameRow);
-      if(r.categories.length) item.appendChild(h('div',{class:'item-meta'},r.categories.map(c=>c.name).join(', ')));
+      if(r.categories.length) item.appendChild(h('div',{class:'item-meta'},r.categories.map(c=>mealTypeCatDisplayName(c)).join(', ')));
       if((r.tags||[]).length){const tagRow=h('div',{style:{display:'flex',flexWrap:'wrap',gap:'2px',marginTop:'2px'}});r.tags.forEach(t=>tagRow.appendChild(h('span',{class:'tag-chip',style:{border:'none',fontSize:'10px',padding:'1px 6px',margin:0}},t.name)));item.appendChild(tagRow);}
       item.appendChild(h('div',{class:'item-meta'},`${r.ingredients.length} Zutaten`));
       listDiv.appendChild(item);
@@ -3571,7 +3629,7 @@ async function renderRecipeBookPage(container){
         const chips=h('div',{style:{marginBottom:'4px'}});
         recipe.allergens.forEach(a=>{
           const isAuto=recipe.autoAllergenIds.includes(a.id);
-          chips.appendChild(h('span',{class:'chip',style:{background:isAuto?'var(--accent-dim)':'var(--surface3)',color:isAuto?'var(--accent)':'var(--text-muted)'}},a.name+(isAuto?t('recipe_allergy_from_ing'):'')));
+          chips.appendChild(h('span',{class:'chip',style:{background:isAuto?'var(--accent-dim)':'var(--surface3)',color:isAuto?'var(--accent)':'var(--text-muted)'}},allergenDisplayName(a)+(isAuto?t('recipe_allergy_from_ing'):'')));
         });
         card.appendChild(chips);
       }
@@ -3995,11 +4053,25 @@ async function renderRecipeBookPage(container){
       listDiv2.innerHTML='';
       (await getPreparationMethods()).forEach(m=>{
         const row=h('div',{class:'subcat-row'});
-        row.appendChild(h('span',{style:{fontSize:'13px'}},m.name));
+        const nameEl=h('span',{style:{fontSize:'13px'}},prepMethodDisplayName(m));
+        if(m.name_en) nameEl.appendChild(h('span',{style:{color:'var(--text-muted)',fontSize:'11px',marginLeft:'6px'}},'('+m.name_en+')'));
+        row.appendChild(nameEl);
         const btns=h('span',{style:{display:'flex',gap:'4px'}});
-        btns.appendChild(h('button',{class:'btn-icon btn-ghost',onClick:async()=>{
-          const newName=prompt(t('misc_new_name'),m.name);
-          if(newName&&newName.trim()&&newName.trim()!==m.name){await updatePreparationMethod(m.id,newName.trim());refresh();}
+        btns.appendChild(h('button',{class:'btn-icon btn-ghost',onClick:()=>{
+          const nameIn=h('input',{type:'text',value:m.name,style:{width:'100%'}});
+          const nameEnIn=h('input',{type:'text',placeholder:t('ph_name_en'),value:m.name_en||'',style:{width:'100%'}});
+          const sub=showModal(h('div',{},
+            h('h2',{},t('btn_edit')),
+            h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_name')),nameIn),
+            h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_name_en')),nameEnIn),
+            h('div',{class:'modal-buttons'},
+              h('button',{class:'btn btn-accent',onClick:async()=>{
+                const n=nameIn.value.trim();if(!n) return;
+                await updatePreparationMethod(m.id,n,nameEnIn.value.trim());closeModal(sub);refresh();
+              }},t('btn_save')),
+              h('button',{class:'btn btn-surface',onClick:()=>closeModal(sub)},t('btn_cancel'))
+            )
+          ));
         }},'✎'));
         btns.appendChild(h('button',{class:'btn-icon btn-danger',onClick:async()=>{if(confirm(t('msg_confirm_delete_method',m.name))){await deletePreparationMethod(m.id);refresh();}}},'✕'));
         row.appendChild(btns);
