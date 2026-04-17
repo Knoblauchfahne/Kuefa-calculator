@@ -3295,7 +3295,7 @@
     },
     {
       "name": "Kopfsalat",
-      "name_en": "",
+      "name_en": "butter lettuce",
       "unit": "kg",
       "price": 2.5,
       "subcategory": "Salat",
@@ -3307,7 +3307,7 @@
     },
     {
       "name": "Feldsalat",
-      "name_en": "",
+      "name_en": "lamb's lettuce",
       "unit": "kg",
       "price": 10,
       "subcategory": "Salat",
@@ -3320,7 +3320,7 @@
     {
       "id": 761,
       "name": "Lollo Rosso/ Lollo Bionda",
-      "name_en": "",
+      "name_en": "Lollo Rosso / Lollo Bionda",
       "unit": "kg",
       "price": 3,
       "subcategory": "Salat",
@@ -3331,7 +3331,7 @@
     },
     {
       "name": "Romanasalat",
-      "name_en": "",
+      "name_en": "romaine lettuce",
       "unit": "kg",
       "price": 3,
       "subcategory": "Salat",
@@ -3343,7 +3343,7 @@
     },
     {
       "name": "Endiviensalat",
-      "name_en": "",
+      "name_en": "endive",
       "unit": "kg",
       "price": 3.5,
       "subcategory": "Salat",
@@ -3355,7 +3355,7 @@
     },
     {
       "name": "Babyspinat",
-      "name_en": "",
+      "name_en": "baby spinach",
       "unit": "kg",
       "price": 6,
       "subcategory": "Salat",
@@ -3367,7 +3367,7 @@
     },
     {
       "name": "Weizen Vollkornmehl",
-      "name_en": "",
+      "name_en": "whole wheat flour",
       "unit": "kg",
       "price": 1.5,
       "subcategory": "Mehl",
@@ -3379,7 +3379,7 @@
     },
     {
       "name": "Vanillezucker",
-      "name_en": "",
+      "name_en": "vanilla sugar",
       "unit": "kg",
       "price": 8,
       "subcategory": "Backzutaten",
@@ -3391,7 +3391,7 @@
     },
     {
       "name": "Apfelmus",
-      "name_en": "",
+      "name_en": "apple sauce",
       "unit": "kg",
       "price": 2.5,
       "subcategory": "Konserven oder Schläuche",
@@ -3403,7 +3403,7 @@
     },
     {
       "name": "Weizenbrot",
-      "name_en": "",
+      "name_en": "wheat bread",
       "unit": "kg",
       "price": 2.5,
       "subcategory": "Brot und Teigwaren",
@@ -3415,7 +3415,7 @@
     },
     {
       "name": "Vollkornbrot",
-      "name_en": "",
+      "name_en": "wholemeal bread",
       "unit": "kg",
       "price": 3.5,
       "subcategory": "Brot und Teigwaren",
@@ -3427,7 +3427,7 @@
     },
     {
       "name": "Roggenbrot",
-      "name_en": "",
+      "name_en": "rye bread",
       "unit": "kg",
       "price": 3.5,
       "subcategory": "Brot und Teigwaren",
@@ -3439,7 +3439,7 @@
     },
     {
       "name": "Baguette",
-      "name_en": "",
+      "name_en": "baguette",
       "unit": "kg",
       "price": 2,
       "subcategory": "Brot und Teigwaren",
@@ -3452,7 +3452,7 @@
     {
       "id": 772,
       "name": "Fladenbrot",
-      "name_en": "",
+      "name_en": "flatbread",
       "unit": "kg",
       "price": 3,
       "subcategory": "Brot und Teigwaren",
@@ -3464,7 +3464,7 @@
     {
       "id": 773,
       "name": "Toastbrot",
-      "name_en": "",
+      "name_en": "toast bread",
       "unit": "kg",
       "price": 2.5,
       "subcategory": "Brot und Teigwaren",
@@ -3476,7 +3476,7 @@
     {
       "id": 774,
       "name": "Glutenfreies Brot",
-      "name_en": "",
+      "name_en": "gluten-free bread",
       "unit": "kg",
       "price": 6,
       "subcategory": "Brot und Teigwaren",
@@ -3487,7 +3487,7 @@
     },
     {
       "name": "Knäckebrot",
-      "name_en": "",
+      "name_en": "crispbread",
       "unit": "kg",
       "price": 4,
       "subcategory": "Brot und Teigwaren",
@@ -3499,7 +3499,7 @@
     },
     {
       "name": "Rotwein",
-      "name_en": "",
+      "name_en": "red wine",
       "unit": "kg",
       "price": 8,
       "subcategory": "Getränke",
@@ -3511,7 +3511,7 @@
     },
     {
       "name": "Kartoffeln (mehligkochend)",
-      "name_en": "",
+      "name_en": "floury potatoes",
       "unit": "kg",
       "price": 2,
       "subcategory": "Kartoffeln",
@@ -3524,7 +3524,7 @@
     {
       "id": 778,
       "name": "Orangensaft",
-      "name_en": "",
+      "name_en": "orange juice",
       "unit": "kg",
       "price": 4,
       "subcategory": "Saft",
