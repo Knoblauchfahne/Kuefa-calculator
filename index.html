@@ -400,6 +400,8 @@ de: {
   btn_update_reload: 'Neu laden',
   btn_update_later: 'Später',
   btn_delete_all_data: '🗑  Alle Daten löschen',
+  btn_import_en_names: '🌐  Englische Namen importieren',
+  msg_en_names_imported: '{0} englische Namen importiert.',
 
   // form labels
   lbl_name: 'Name',
@@ -960,6 +962,8 @@ en: {
   btn_update_reload: 'Reload',
   btn_update_later: 'Later',
   btn_delete_all_data: '🗑  Delete all data',
+  btn_import_en_names: '🌐  Import English names',
+  msg_en_names_imported: '{0} English names imported.',
 
   // form labels
   lbl_name: 'Name',
@@ -4805,6 +4809,37 @@ async function renderDatabasePage(container){
   }},t('btn_load_default')));
   defaultCard.appendChild(defaultStatus);
   body.appendChild(defaultCard);
+
+  // Import English names from standard data
+  const enNamesCard=h('div',{class:'card',style:{marginBottom:'16px'}});
+  enNamesCard.appendChild(h('div',{style:{fontWeight:'700',fontSize:'14px',marginBottom:'8px'}},t('btn_import_en_names')));
+  const enNamesStatus=h('div',{style:{marginTop:'8px',fontSize:'13px'}});
+  enNamesCard.appendChild(h('button',{class:'btn btn-surface',onClick:async()=>{
+    try{
+      const resp=await fetch('./standardbackup.json',{cache:'no-store'});
+      if(!resp.ok) throw new Error('HTTP '+resp.status);
+      const data=JSON.parse(await resp.text());
+      const stdIngs=(data.ingredients||[]);
+      const nameMap=new Map(stdIngs.map(i=>[i.name,i.name_en||'']));
+      const ings=await getIngredients();
+      let count=0;
+      for(const ing of ings){
+        if(ing.name_en) continue;
+        const en=nameMap.get(ing.name);
+        if(en){
+          await updateIngredient(ing.id,ing.name,ing.unit,ing.price||0,ing.subcategory||'',ing.verarbeitungshinweis||'',ing.lagerhinweis||'',ing.abschnitt||0,ing.kochfaktor||1,en);
+          count++;
+        }
+      }
+      enNamesStatus.style.color='var(--green-light)';
+      enNamesStatus.textContent=t('msg_en_names_imported',count);
+    }catch(e){
+      enNamesStatus.style.color='var(--accent)';
+      enNamesStatus.textContent=t('status_import_error',e.message);
+    }
+  }},t('btn_import_en_names')));
+  enNamesCard.appendChild(enNamesStatus);
+  body.appendChild(enNamesCard);
 
   // Action share export/import
   const shareCard=h('div',{class:'card',style:{marginBottom:'16px'}});
