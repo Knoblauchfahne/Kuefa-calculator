@@ -683,6 +683,8 @@ de: {
   pdf_days_count: '{0} Kochtag{1}',
   pdf_recipe_assignments: '{0} Rezeptzuweisungen',
   pdf_total_portions: '{0} Portionen gesamt',
+  pdf_instead_of: 'statt',
+  misc_uncategorized: 'Sonstiges',
 
   // filter dropdowns
   filter_all_categories: 'Alle Kategorien',
@@ -1241,6 +1243,8 @@ en: {
   pdf_days_count: '{0} cooking day{1}',
   pdf_recipe_assignments: '{0} recipe assignments',
   pdf_total_portions: '{0} servings total',
+  pdf_instead_of: 'instead of',
+  misc_uncategorized: 'Other',
 
   // filter dropdowns
   filter_all_categories: 'All categories',
@@ -2143,6 +2147,8 @@ async function updateAssignmentPortions(id,portions){
 
 async function generateGeneralOrder(dayIds){
   const items={};
+  const subcatEnMap={};
+  (await getSubcategories()).forEach(s=>{if(s.name_en) subcatEnMap[s.name]=s.name_en;});
   for(const did of dayIds){
     const slots=await getMealSlots(did);
     for(const slot of slots){
@@ -2150,11 +2156,11 @@ async function generateGeneralOrder(dayIds){
       const meal=meals.find(m=>m.meal_type===slot.meal_type&&m.is_active);
       if(!meal) continue;
       for(const comp of meal.components){
-        const subcat=comp.subcategory||'Sonstiges';
+        const subcat=comp.subcategory||t('misc_uncategorized');
         const qty=comp.quantity_per_100*(slot.portion_count/100);
         const ppu=comp.price_per_unit||0;
         const key=`${subcat}_${comp.unit}`;
-        if(!items[key]) items[key]={name:subcat,quantity:0,unit:comp.unit,subcategory:subcat,total_cost:0,price_per_unit:ppu};
+        if(!items[key]) items[key]={name:subcat,quantity:0,unit:comp.unit,subcategory:subcat,subcategory_en:subcatEnMap[subcat]||'',total_cost:0,price_per_unit:ppu};
         items[key].quantity+=qty;
         items[key].total_cost+=qty*ppu;
       }
@@ -2165,6 +2171,8 @@ async function generateGeneralOrder(dayIds){
 
 async function generateSpecialOrder(dayIds){
   const items={};
+  const subcatEnMap={};
+  (await getSubcategories()).forEach(s=>{if(s.name_en) subcatEnMap[s.name]=s.name_en;});
   for(const did of dayIds){
     const slots=await getMealSlots(did);
     for(const slot of slots){
@@ -2181,10 +2189,10 @@ async function generateSpecialOrder(dayIds){
           const rawQty=useQty*portions;
           const abschnitt=ing.abschnitt||0;
           const qty=rawQty*(1+abschnitt/100);
-          const subcat=ing.subcategory||'Sonstiges';
+          const subcat=ing.subcategory||t('misc_uncategorized');
           const isOpt=ri.optional||false;
           const key=`${useIngId}_${useUnit}_${isOpt?'opt':'req'}`;
-          if(!items[key]) items[key]={ingredient_id:useIngId,name:ing.name,quantity:0,unit:useUnit,subcategory:subcat,price:ing.price||0,abschnitt,optional:isOpt};
+          if(!items[key]) items[key]={ingredient_id:useIngId,name:ing.name,name_en:ing.name_en||'',quantity:0,unit:useUnit,subcategory:subcat,subcategory_en:subcatEnMap[subcat]||'',price:ing.price||0,abschnitt,optional:isOpt};
           items[key].quantity+=qty;
         }
       }
@@ -3324,9 +3332,10 @@ function renderGeneralOrderList(parent,items){
   Object.keys(groups).sort().forEach(cat=>{
     const catItems=groups[cat];
     const catTotal=catItems.reduce((s,i)=>s+i.total_cost,0);
+    const catLabel=LANG==='en'?(catItems[0].subcategory_en||cat):cat;
     const grp=h('div',{class:'cat-group'});
     const ghdr=h('div',{style:{display:'flex',justifyContent:'space-between',marginBottom:'4px'}});
-    ghdr.appendChild(h('span',{class:'cat-name'},cat));
+    ghdr.appendChild(h('span',{class:'cat-name'},catLabel));
     ghdr.appendChild(h('span',{class:'cat-meta'},`${catTotal.toFixed(2)} €`));
     grp.appendChild(ghdr);
     catItems.forEach(item=>{
@@ -3354,15 +3363,16 @@ function renderOrderList(parent,items){
   Object.keys(groups).sort().forEach(cat=>{
     const catItems=groups[cat];
     const catTotal=catItems.reduce((s,i)=>s+i.quantity*i.price,0);
+    const catLabel=LANG==='en'?(catItems[0].subcategory_en||cat):cat;
     const grp=h('div',{class:'cat-group'});
     const ghdr=h('div',{style:{display:'flex',justifyContent:'space-between',marginBottom:'4px'}});
-    ghdr.appendChild(h('span',{class:'cat-name'},cat));
+    ghdr.appendChild(h('span',{class:'cat-name'},catLabel));
     ghdr.appendChild(h('span',{class:'cat-meta'},t('order_articles_cost',catItems.length,catTotal.toFixed(2))));
     grp.appendChild(ghdr);
     catItems.forEach(item=>{
       const row=h('div',{style:{display:'flex',alignItems:'center',padding:'2px 0',opacity:item.optional?'0.6':'1',fontStyle:item.optional?'italic':'normal'}});
       const nameEl=h('span',{style:{width:'200px',fontSize:'13px'}});
-      nameEl.appendChild(document.createTextNode(item.name));
+      nameEl.appendChild(document.createTextNode(LANG==='en'?(item.name_en||item.name):item.name));
       if(item.optional) nameEl.appendChild(h('span',{style:{fontSize:'10px',marginLeft:'6px',color:'var(--accent)',fontWeight:'600'}},'('+t('misc_optional')+')'));
       row.appendChild(nameEl);
       row.appendChild(h('span',{style:{width:'80px'}},String(round2(item.quantity))));
@@ -3375,16 +3385,17 @@ function renderOrderList(parent,items){
 }
 
 function exportGeneralOrderTxt(items,actionName){
-  let t='=== GRUNDBEDARFE ===\n';
-  if(actionName) t+=`Veranstaltung: ${actionName}\n`;
+  let t=`=== ${LANG==='en'?'BASIC NEEDS':'GRUNDBEDARFE'} ===\n`;
+  if(actionName) t+=`${LANG==='en'?'Event':'Veranstaltung'}: ${actionName}\n`;
   const total=items.reduce((s,i)=>s+i.total_cost,0);
-  t+=`Gesamt: ${total.toFixed(2)} €\n\n`;
+  t+=`${LANG==='en'?'Total':'Gesamt'}: ${total.toFixed(2)} €\n\n`;
   const groups={};
-  items.forEach(i=>{const cat=i.subcategory||'Sonstiges';(groups[cat]=groups[cat]||[]).push(i);});
+  items.forEach(i=>{const cat=i.subcategory||(LANG==='en'?'Other':'Sonstiges');(groups[cat]=groups[cat]||[]).push(i);});
   Object.keys(groups).sort().forEach(cat=>{
     const catItems=groups[cat];
     const catTotal=catItems.reduce((s,i)=>s+i.total_cost,0);
-    t+=`--- ${cat} (${catTotal.toFixed(2)} €) ---\n`;
+    const catLabel=LANG==='en'?(catItems[0].subcategory_en||cat):cat;
+    t+=`--- ${catLabel} (${catTotal.toFixed(2)} €) ---\n`;
     catItems.forEach(i=>{
       t+=`  ${round2(i.quantity)} ${i.unit}`;
       if(i.total_cost) t+=`  —  ${i.total_cost.toFixed(2)} €`;
@@ -3392,50 +3403,68 @@ function exportGeneralOrderTxt(items,actionName){
     });
     t+='\n';
   });
-  t+='=== ENDE ===\n';
+  t+=`=== ${LANG==='en'?'END':'ENDE'} ===\n`;
   return t;
 }
 
 function exportSpecialOrderTxt(items,actionName){
-  let t='=== EINKAUFSLISTE NACH REZEPT ===\n';
-  if(actionName) t+=`Veranstaltung: ${actionName}\n`;
+  let t=`=== ${LANG==='en'?'SHOPPING LIST BY RECIPE':'EINKAUFSLISTE NACH REZEPT'} ===\n`;
+  if(actionName) t+=`${LANG==='en'?'Event':'Veranstaltung'}: ${actionName}\n`;
   const total=items.reduce((s,i)=>s+i.quantity*(i.price||0),0);
-  t+=`Gesamt: ${total.toFixed(2)} €\n\n`;
+  t+=`${LANG==='en'?'Total':'Gesamt'}: ${total.toFixed(2)} €\n\n`;
   const groups={};
-  items.forEach(i=>{const cat=i.subcategory||'Sonstiges';(groups[cat]=groups[cat]||[]).push(i);});
+  items.forEach(i=>{const cat=i.subcategory||(LANG==='en'?'Other':'Sonstiges');(groups[cat]=groups[cat]||[]).push(i);});
   Object.keys(groups).sort().forEach(cat=>{
     const catItems=groups[cat];
     const catTotal=catItems.reduce((s,i)=>s+i.quantity*(i.price||0),0);
-    t+=`--- ${cat} (${catTotal.toFixed(2)} €) ---\n`;
+    const catLabel=LANG==='en'?(catItems[0].subcategory_en||cat):cat;
+    t+=`--- ${catLabel} (${catTotal.toFixed(2)} €) ---\n`;
     catItems.forEach(i=>{
-      t+=`  ${i.name}; ${round2(i.quantity)} ${i.unit}`;
+      const iName=LANG==='en'?(i.name_en||i.name):i.name;
+      t+=`  ${iName}; ${round2(i.quantity)} ${i.unit}`;
       if(i.price) t+=`  —  ${(i.quantity*i.price).toFixed(2)} €`;
       t+='\n';
     });
     t+='\n';
   });
-  t+='=== ENDE ===\n';
+  t+=`=== ${LANG==='en'?'END':'ENDE'} ===\n`;
   return t;
 }
 
 function exportGeneralOrderCsv(items,actionName){
-  let t='\uFEFFVeranstaltung;Kategorie;Menge;Einheit;Preis\n';
+  const hEv=LANG==='en'?'Event':'Veranstaltung';
+  const hCat=LANG==='en'?'Category':'Kategorie';
+  const hQty=LANG==='en'?'Quantity':'Menge';
+  const hUnit=LANG==='en'?'Unit':'Einheit';
+  const hCost=LANG==='en'?'Cost':'Preis';
+  const hTotal=LANG==='en'?'Total':'Gesamt';
+  let t=`\uFEFF${hEv};${hCat};${hQty};${hUnit};${hCost}\n`;
   items.forEach(i=>{
-    t+=`${actionName||''};${i.subcategory||'Sonstiges'};${String(round2(i.quantity)).replace('.',',')};${i.unit};${i.total_cost?String(i.total_cost.toFixed(2)).replace('.',','):''}\n`;
+    const catLabel=LANG==='en'?(i.subcategory_en||i.subcategory||(LANG==='en'?'Other':'Sonstiges')):(i.subcategory||'Sonstiges');
+    t+=`${actionName||''};${catLabel};${String(round2(i.quantity)).replace('.',',')};${i.unit};${i.total_cost?String(i.total_cost.toFixed(2)).replace('.',','):''}\n`;
   });
   const total=items.reduce((s,i)=>s+i.total_cost,0);
-  t+=`;;Gesamt;;${String(total.toFixed(2)).replace('.',',')}\n`;
+  t+=`;;${hTotal};;${String(total.toFixed(2)).replace('.',',')}\n`;
   return t;
 }
 
 function exportSpecialOrderCsv(items,actionName){
-  let t='\uFEFFVeranstaltung;Kategorie;Zutat;Menge;Einheit;Preis\n';
+  const hEv=LANG==='en'?'Event':'Veranstaltung';
+  const hCat=LANG==='en'?'Category':'Kategorie';
+  const hIng=LANG==='en'?'Ingredient':'Zutat';
+  const hQty=LANG==='en'?'Quantity':'Menge';
+  const hUnit=LANG==='en'?'Unit':'Einheit';
+  const hCost=LANG==='en'?'Cost':'Preis';
+  const hTotal=LANG==='en'?'Total':'Gesamt';
+  let t=`\uFEFF${hEv};${hCat};${hIng};${hQty};${hUnit};${hCost}\n`;
   items.forEach(i=>{
+    const iName=LANG==='en'?(i.name_en||i.name):i.name;
+    const catLabel=LANG==='en'?(i.subcategory_en||i.subcategory||'Other'):(i.subcategory||'Sonstiges');
     const cost=i.quantity*(i.price||0);
-    t+=`${actionName||''};${i.subcategory||'Sonstiges'};${i.name};${String(round2(i.quantity)).replace('.',',')};${i.unit};${cost?String(cost.toFixed(2)).replace('.',','):''}\n`;
+    t+=`${actionName||''};${catLabel};${iName};${String(round2(i.quantity)).replace('.',',')};${i.unit};${cost?String(cost.toFixed(2)).replace('.',','):''}\n`;
   });
   const total=items.reduce((s,i)=>s+i.quantity*(i.price||0),0);
-  t+=`;;;Gesamt;;${String(total.toFixed(2)).replace('.',',')}\n`;
+  t+=`;;;${hTotal};;${String(total.toFixed(2)).replace('.',',')}\n`;
   return t;
 }
 
@@ -3518,6 +3547,13 @@ async function renderRecipeBookPage(container){
     const recipes=await getRecipes();
     const recipe=recipes.find(r=>r.id===recipeSelectedId);
     if(!recipe){detailDiv.appendChild(h('div',{class:'empty-msg'},t('empty_select_recipe')));return;}
+    // Build EN lookup maps for preparation methods and subcategories
+    const prepNameEnMap={};
+    const subcatNameEnMap={};
+    if(LANG==='en'){
+      (await getPreparationMethods()).forEach(m=>{if(m.name_en) prepNameEnMap[m.name]=m.name_en;});
+      (await getSubcategories()).forEach(s=>{if(s.name_en) subcatNameEnMap[s.name]=s.name_en;});
+    }
 
     // Mobile: Zurück-zur-Liste Button
     if(window.innerWidth<=768){
@@ -3541,7 +3577,7 @@ async function renderRecipeBookPage(container){
     if(recipe.description) card.appendChild(h('div',{style:{fontSize:'12px',color:'var(--text-muted)',marginBottom:'8px'}},recipe.description));
     if(recipe.categories.length){
       const chips=h('div',{style:{marginBottom:'8px'}});
-      recipe.categories.forEach(c=>chips.appendChild(h('span',{class:'chip'},c.name)));
+      recipe.categories.forEach(c=>chips.appendChild(h('span',{class:'chip'},mealTypeCatDisplayName(c))));
       card.appendChild(chips);
     }
     if((recipe.tags||[]).length){
@@ -3581,7 +3617,8 @@ async function renderRecipeBookPage(container){
         ings.forEach(i=>{
           const row=h('div',{class:'table-row'});
           row.appendChild(h('span',{style:{width:'150px',flexShrink:0}},riDisplayName(i)));
-          row.appendChild(h('span',{style:{width:'110px',flexShrink:0,color:'var(--text-muted)',fontStyle:i.preparation?'normal':'italic'}},i.preparation||'—'));
+          const prepLabel=i.preparation?(LANG==='en'?(prepNameEnMap[i.preparation]||i.preparation):i.preparation):'—';
+          row.appendChild(h('span',{style:{width:'110px',flexShrink:0,color:'var(--text-muted)',fontStyle:i.preparation?'normal':'italic'}},prepLabel));
           row.appendChild(h('span',{style:{width:'70px',flexShrink:0}},String(i.quantity_per_person)));
           row.appendChild(h('span',{style:{width:'60px',flexShrink:0,color:'var(--text-muted)'}},i.unit));
           const ab=i.ingredient_abschnitt||0;
@@ -3594,7 +3631,8 @@ async function renderRecipeBookPage(container){
             const cooked=round2(netto*kf);
             row.appendChild(h('span',{style:{width:'80px',flexShrink:0,color:kf!==1?'var(--green-light)':'var(--text-muted)'}},kf!==1?`${cooked} ${i.unit}`:'—'));
           }
-          row.appendChild(h('span',{style:{width:'110px',flexShrink:0,color:'var(--text-muted)'}},i.ingredient_subcategory||'—'));
+          const subcatLabel=i.ingredient_subcategory?(LANG==='en'?(subcatNameEnMap[i.ingredient_subcategory]||i.ingredient_subcategory):i.ingredient_subcategory):'—';
+          row.appendChild(h('span',{style:{width:'110px',flexShrink:0,color:'var(--text-muted)'}},subcatLabel));
           const cost=i.quantity_per_person*(i.ingredient_price||0);
           row.appendChild(h('span',{style:{width:'70px',flexShrink:0,color:'var(--text-muted)'}},i.ingredient_price?`${cost.toFixed(2)} €`:'—'));
           parent.appendChild(row);
@@ -3602,12 +3640,14 @@ async function renderRecipeBookPage(container){
             i.substitutes.forEach(sub=>{
               const sRow=h('div',{class:'table-row',style:{paddingLeft:'20px',background:'var(--surface2)',fontSize:'12px',opacity:'0.85'}});
               sRow.appendChild(h('span',{style:{width:'150px',flexShrink:0,color:'var(--text-muted)'}},`↳ ${t('misc_or')}: ${riDisplayName(sub)}`));
-              sRow.appendChild(h('span',{style:{width:'110px',flexShrink:0,color:'var(--text-muted)',fontStyle:sub.preparation?'normal':'italic'}},sub.preparation||'—'));
+              const subPrepLabel=sub.preparation?(LANG==='en'?(prepNameEnMap[sub.preparation]||sub.preparation):sub.preparation):'—';
+              sRow.appendChild(h('span',{style:{width:'110px',flexShrink:0,color:'var(--text-muted)',fontStyle:sub.preparation?'normal':'italic'}},subPrepLabel));
               sRow.appendChild(h('span',{style:{width:'70px',flexShrink:0,color:'var(--text-muted)'}},String(sub.quantity_per_person)));
               sRow.appendChild(h('span',{style:{width:'60px',flexShrink:0,color:'var(--text-muted)'}},sub.unit));
               if(hasAbschnitt) sRow.appendChild(h('span',{style:{width:'80px',flexShrink:0,color:'var(--text-muted)'}},'—'));
               if(hasKochfaktor) sRow.appendChild(h('span',{style:{width:'80px',flexShrink:0,color:'var(--text-muted)'}},'—'));
-              sRow.appendChild(h('span',{style:{width:'110px',flexShrink:0,color:'var(--text-muted)'}},sub.ingredient_subcategory||'—'));
+              const subSubcatLabel=sub.ingredient_subcategory?(LANG==='en'?(subcatNameEnMap[sub.ingredient_subcategory]||sub.ingredient_subcategory):sub.ingredient_subcategory):'—';
+              sRow.appendChild(h('span',{style:{width:'110px',flexShrink:0,color:'var(--text-muted)'}},subSubcatLabel));
               const sCost=sub.quantity_per_person*(sub.ingredient_price||0);
               sRow.appendChild(h('span',{style:{width:'70px',flexShrink:0,color:'var(--text-muted)'}},sub.ingredient_price?`${sCost.toFixed(2)} €`:'—'));
               parent.appendChild(sRow);
@@ -4121,6 +4161,13 @@ async function renderSpecialOrderPage(container){
     const actionDesc=action?action.description||'':'';
     const allRecipes=await getRecipes();
     const slots=await getAllMealSlotsForDays(dayIds);
+    // Build EN lookup maps for PDF
+    const pdfPrepEnMap={};
+    const pdfMealTypeEnMap={};
+    if(LANG==='en'){
+      (await getPreparationMethods()).forEach(m=>{if(m.name_en) pdfPrepEnMap[m.name]=m.name_en;});
+      (await getMealTypeCategories()).forEach(c=>{if(c.name_en) pdfMealTypeEnMap[c.name]=c.name_en;});
+    }
 
     // === PAGE 1: Overview ===
     let overviewRows='';
@@ -4138,7 +4185,7 @@ async function renderSpecialOrderPage(container){
       lastDate=dateStr;
       overviewRows+=`<tr>
         <td style="font-weight:${showDate?'700':'400'};border-top:${showDate?'2px solid #ccc':'1px solid #ddd'}">${showDate?dateStr:''}</td>
-        <td style="border-top:${showDate?'2px solid #ccc':'1px solid #ddd'}">${slot.meal_type}</td>
+        <td style="border-top:${showDate?'2px solid #ccc':'1px solid #ddd'}">${pdfMealTypeEnMap[slot.meal_type]||slot.meal_type}</td>
         <td style="text-align:center;font-weight:700;border-top:${showDate?'2px solid #ccc':'1px solid #ddd'}">${slot.portion_count}</td>
         <td style="border-top:${showDate?'2px solid #ccc':'1px solid #ddd'}">${recipeNames||`<span style="color:#aaa">${t('order_not_assigned')}</span>`}</td>
       </tr>`;
@@ -4147,7 +4194,7 @@ async function renderSpecialOrderPage(container){
     const totalRecipes=assignments.length;
     const overviewPage=`<div class="recipe-page">
       <div class="page-top">
-        <div class="recipe-title">${actionName||'Kochaktion'}</div>
+        <div class="recipe-title">${actionName||(LANG==='en'?'Cooking Event':'Kochaktion')}</div>
         <div class="meta-row">${actionDesc?`<span>${actionDesc}</span>`:''}<span>${t('pdf_days_count',dayIds.length,dayIds.length!==1?'e':'')}</span><span>${t('pdf_recipe_assignments',totalRecipes)}</span><span class="portions-badge">${t('pdf_total_portions',totalPortions)}</span></div>
       </div>
       <div style="font-weight:700;font-size:14px;margin:12px 0 8px">${t('pdf_overview_title')}</div>
@@ -4180,14 +4227,18 @@ async function renderSpecialOrderPage(container){
         if(hasAb){const nettoR=Math.round(netto*100)/100;const nettoStr=String(nettoR).replace('.',',');nettoTd=ab>0?`<td style="text-align:right;color:#2d6a4f">${nettoStr} ${ing.unit}</td>`:`<td style="text-align:right;color:#aaa">—</td>`;}
         let kfTd='';
         if(hasKf){const kf=ing.ingredient_kochfaktor||1;const cooked=Math.round(netto*kf*100)/100;const cookedStr=String(cooked).replace('.',',');kfTd=kf!==1?`<td style="text-align:right;color:#40916c">${cookedStr} ${ing.unit}</td>`:`<td style="text-align:right;color:#aaa">—</td>`;}
-        return `<tr${style}><td>${ing.ingredient_name}</td><td>${ing.preparation||'—'}</td><td style="text-align:right">${perPStr} ${ing.unit}</td><td style="text-align:right;font-weight:700">${totalStr} ${ing.unit}</td>${nettoTd}${kfTd}</tr>`;
+        const pdfIngName=LANG==='en'?(ing.ingredient_name_en||ing.ingredient_name):ing.ingredient_name;
+        const pdfPrep=ing.preparation?(LANG==='en'?(pdfPrepEnMap[ing.preparation]||ing.preparation):ing.preparation):'—';
+        return `<tr${style}><td>${pdfIngName}</td><td>${pdfPrep}</td><td style="text-align:right">${perPStr} ${ing.unit}</td><td style="text-align:right;font-weight:700">${totalStr} ${ing.unit}</td>${nettoTd}${kfTd}</tr>`;
       }
       const aSubs=a.substitutions||{};
       function ingTrWithSub(ing,style=''){
         const subChoice=aSubs[String(ing.id)];
         if(subChoice&&subChoice.ingredient_name){
-          let row=ingTr({...ing,ingredient_name:subChoice.ingredient_name,quantity_per_person:subChoice.quantity_per_person,unit:subChoice.unit||ing.unit,preparation:subChoice.preparation||ing.preparation},style);
-          row+=`<tr${style}><td colspan="${colSpan}" style="font-size:9px;color:#888;padding:2px 10px;font-style:italic">⇄ statt ${ing.ingredient_name}</td></tr>`;
+          const subIngObj={...ing,ingredient_name:subChoice.ingredient_name,ingredient_name_en:subChoice.ingredient_name_en||'',quantity_per_person:subChoice.quantity_per_person,unit:subChoice.unit||ing.unit,preparation:subChoice.preparation||ing.preparation};
+          let row=ingTr(subIngObj,style);
+          const origName=LANG==='en'?(ing.ingredient_name_en||ing.ingredient_name):ing.ingredient_name;
+          row+=`<tr${style}><td colspan="${colSpan}" style="font-size:9px;color:#888;padding:2px 10px;font-style:italic">⇄ ${t('pdf_instead_of')} ${origName}</td></tr>`;
           return row;
         }
         return ingTr(ing,style);
@@ -4206,7 +4257,7 @@ async function renderSpecialOrderPage(container){
       pages+=`<div class="recipe-page">
         <div class="page-top">
           <div class="recipe-title">${recipe.name}</div>
-          <div class="meta-row">${actionName?`<span>${t('pdf_cooking_action',actionName)}</span>`:''}${dateStr?`<span>${dateStr}</span>`:''}<span>${a.meal_type} — ${typeLabel}</span><span class="portions-badge">${portions} ${t('cal_portionen_unit')}</span></div>
+          <div class="meta-row">${actionName?`<span>${t('pdf_cooking_action',actionName)}</span>`:''}${dateStr?`<span>${dateStr}</span>`:''}<span>${pdfMealTypeEnMap[a.meal_type]||a.meal_type} — ${typeLabel}</span><span class="portions-badge">${portions} ${t('cal_portionen_unit')}</span></div>
         </div>
         <div class="fill-fields">
           <div class="fill-line"><strong>${t('pdf_cooking_team')}</strong> <span class="line-blank"></span></div>
@@ -4223,7 +4274,7 @@ async function renderSpecialOrderPage(container){
           <thead><tr><th>${t('col_ingredient')}</th><th>${t('col_processing')}</th><th>${t('col_qty_per_person')}</th><th>${t('col_total_qty')}</th>${hasAb?`<th>${t('col_netto')}</th>`:''}${hasKf?`<th>${t('col_cooked')}</th>`:''}</tr></thead>
           <tbody>${ingRows}</tbody>
         </table>
-        ${recipe.allergens.length||recipe.allergen_hinweis?`<div class="section"><div class="section-title">${t('pdf_allergens_section')}</div><div class="section-body">${recipe.allergens.map(a=>`<span style="display:inline-block;background:#fce4e4;color:#c0392b;padding:2px 10px;border-radius:10px;font-size:11px;margin:2px 4px 2px 0">${a.name}</span>`).join('')}${recipe.allergen_hinweis?`<div style="margin-top:4px;font-style:italic;font-size:11px;color:#666">${recipe.allergen_hinweis}</div>`:''}</div></div>`:''}
+        ${recipe.allergens.length||recipe.allergen_hinweis?`<div class="section"><div class="section-title">${t('pdf_allergens_section')}</div><div class="section-body">${recipe.allergens.map(a=>`<span style="display:inline-block;background:#fce4e4;color:#c0392b;padding:2px 10px;border-radius:10px;font-size:11px;margin:2px 4px 2px 0">${allergenDisplayName(a)}</span>`).join('')}${recipe.allergen_hinweis?`<div style="margin-top:4px;font-style:italic;font-size:11px;color:#666">${recipe.allergen_hinweis}</div>`:''}</div></div>`:''}
         ${recipe.zubereitung?`<div class="section"><div class="section-title">${t('pdf_preparation_section')}</div><div class="section-body">${recipe.zubereitung.replace(/\n/g,'<br>')}</div></div>`:''}
         ${recipe.hinweis?`<div class="section"><div class="section-title">${t('pdf_note_section')}</div><div class="section-body">${recipe.hinweis.replace(/\n/g,'<br>')}</div></div>`:''}
         <div class="notes-box">
@@ -4232,7 +4283,7 @@ async function renderSpecialOrderPage(container){
         </div>
       </div>`;
     }
-    const printHTML=`<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><title>Rezepte — ${actionName}</title>
+    const printHTML=`<!DOCTYPE html><html lang="${LANG}"><head><meta charset="UTF-8"><title>${LANG==='en'?'Recipes':'Rezepte'} — ${actionName}</title>
 <style>
 @page{size:A4;margin:0}
 *{box-sizing:border-box;margin:0;padding:0}
