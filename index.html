@@ -704,6 +704,9 @@ de: {
   season_fresh: 'Frisch',
   season_lager: 'Aus Lager',
   season_tooltip: '{0} – {1}: {2}',
+  season_cat_veg: 'Gemüse',
+  season_cat_fruit: 'Obst',
+  season_cat_herbs: 'Kräuter',
   season_info_title: 'ℹ  Hinweis',
   season_info_body: 'Die Angaben beziehen sich auf Deutschland und mitteleuropäisches Klima. Regional und je nach Wetter können Zeiträume leicht abweichen. „Aus Lager" bedeutet meist aus heimischem Anbau, aber unter Kühlung/Lagerung verfügbar. Bei Frage nach bio-regionaler Verfügbarkeit immer kurz beim Lieferanten rückfragen.',
 
@@ -837,6 +840,9 @@ de: {
   misc_choose_recipe: '— Rezept wählen —',
   misc_choose_allergy: '— Allergieessen wählen —',
   misc_original_label: 'Original',
+  lbl_name_en: 'Englischer Name (optional)',
+  ph_name_en: 'z.B. Potatoes',
+  misc_or: 'oder',
 },
 en: {
   // nav
@@ -1215,6 +1221,9 @@ en: {
   season_fresh: 'Fresh',
   season_lager: 'From storage',
   season_tooltip: '{0} – {1}: {2}',
+  season_cat_veg: 'Vegetables',
+  season_cat_fruit: 'Fruit',
+  season_cat_herbs: 'Herbs',
   season_info_title: 'ℹ  Note',
   season_info_body: 'Data refers to Germany and central European climate. Depending on region and weather, periods may vary slightly. "From storage" usually means domestic produce kept in cold storage. For organic/regional availability, always check with your supplier.',
 
@@ -1348,6 +1357,9 @@ en: {
   misc_choose_recipe: '— Select recipe —',
   misc_choose_allergy: '— Select allergy meal —',
   misc_original_label: 'Original',
+  lbl_name_en: 'English name (optional)',
+  ph_name_en: 'e.g. Potatoes',
+  misc_or: 'or',
 }
 };
 let LANG = localStorage.getItem('kuefa-lang') || 'de';
@@ -1553,7 +1565,7 @@ async function getSubstitutes(recipeIngredientId){
   const subs=await dbGetByIndex('recipe_ingredient_substitutes','recipe_ingredient_id',recipeIngredientId);
   for(const s of subs){
     const ing=await dbGet('ingredients',s.ingredient_id);
-    if(ing){s.ingredient_name=ing.name;s.ingredient_unit=ing.unit;s.ingredient_price=ing.price||0;s.ingredient_subcategory=ing.subcategory||'';s.ingredient_abschnitt=ing.abschnitt||0;s.ingredient_kochfaktor=(ing.kochfaktor===undefined||ing.kochfaktor===null)?1:Number(ing.kochfaktor);}
+    if(ing){s.ingredient_name=ing.name;s.ingredient_name_en=ing.name_en||'';s.ingredient_unit=ing.unit;s.ingredient_price=ing.price||0;s.ingredient_subcategory=ing.subcategory||'';s.ingredient_abschnitt=ing.abschnitt||0;s.ingredient_kochfaktor=(ing.kochfaktor===undefined||ing.kochfaktor===null)?1:Number(ing.kochfaktor);}
   }
   return subs;
 }
@@ -1743,6 +1755,8 @@ function showTagManager(){
   refreshTagList();
 }
 
+function ingDisplayName(ing){return LANG==='en'&&ing.name_en?ing.name_en:ing.name;}
+function riDisplayName(ri){return LANG==='en'&&ri.ingredient_name_en?ri.ingredient_name_en:ri.ingredient_name;}
 async function getIngredients(){
   const ings=(await dbGetAll('ingredients')).sort((a,b)=>a.name.localeCompare(b.name));
   for(const ing of ings){
@@ -1754,11 +1768,12 @@ async function getIngredients(){
     ing.lagerhinweis=ing.lagerhinweis||'';
     ing.abschnitt=ing.abschnitt||0;
     ing.kochfaktor=(ing.kochfaktor===undefined||ing.kochfaktor===null||ing.kochfaktor==='')?1:Number(ing.kochfaktor);
+    ing.name_en=ing.name_en||'';
   }
   return ings;
 }
-async function createIngredient(name,unit,price=0,subcat='',verarbeitungshinweis='',lagerhinweis='',abschnitt=0,kochfaktor=1){return dbAdd('ingredients',{name,unit,price,subcategory:subcat,verarbeitungshinweis,lagerhinweis,abschnitt,kochfaktor});}
-async function updateIngredient(id,name,unit,price=0,subcat='',verarbeitungshinweis='',lagerhinweis='',abschnitt=0,kochfaktor=1){await dbPut('ingredients',{id,name,unit,price,subcategory:subcat,verarbeitungshinweis,lagerhinweis,abschnitt,kochfaktor});}
+async function createIngredient(name,unit,price=0,subcat='',verarbeitungshinweis='',lagerhinweis='',abschnitt=0,kochfaktor=1,name_en=''){return dbAdd('ingredients',{name,name_en,unit,price,subcategory:subcat,verarbeitungshinweis,lagerhinweis,abschnitt,kochfaktor});}
+async function updateIngredient(id,name,unit,price=0,subcat='',verarbeitungshinweis='',lagerhinweis='',abschnitt=0,kochfaktor=1,name_en=''){await dbPut('ingredients',{id,name,name_en,unit,price,subcategory:subcat,verarbeitungshinweis,lagerhinweis,abschnitt,kochfaktor});}
 async function deleteIngredient(id){
   await setIngredientAllergens(id,[]);
   await setIngredientTags(id,[]);
@@ -1819,7 +1834,7 @@ async function getRecipes(){
     for(const rc of rcs){const c=await dbGet('meal_type_categories',rc.category_id);if(c) r.categories.push(c);}
     const ris=await dbGetByIndex('recipe_ingredients','recipe_id',r.id);
     r.ingredients=[];
-    for(const ri of ris){const ing=await dbGet('ingredients',ri.ingredient_id);if(ing){r.ingredients.push({...ri,optional:ri.optional||false,ingredient_name:ing.name,ingredient_unit:ing.unit,ingredient_price:ing.price||0,ingredient_subcategory:ing.subcategory||'',ingredient_abschnitt:ing.abschnitt||0,ingredient_verarbeitungshinweis:ing.verarbeitungshinweis||'',ingredient_lagerhinweis:ing.lagerhinweis||'',ingredient_kochfaktor:(ing.kochfaktor===undefined||ing.kochfaktor===null||ing.kochfaktor==='')?1:Number(ing.kochfaktor)});}}
+    for(const ri of ris){const ing=await dbGet('ingredients',ri.ingredient_id);if(ing){r.ingredients.push({...ri,optional:ri.optional||false,ingredient_name:ing.name,ingredient_name_en:ing.name_en||'',ingredient_unit:ing.unit,ingredient_price:ing.price||0,ingredient_subcategory:ing.subcategory||'',ingredient_abschnitt:ing.abschnitt||0,ingredient_verarbeitungshinweis:ing.verarbeitungshinweis||'',ingredient_lagerhinweis:ing.lagerhinweis||'',ingredient_kochfaktor:(ing.kochfaktor===undefined||ing.kochfaktor===null||ing.kochfaktor==='')?1:Number(ing.kochfaktor)});}}
     // Allergens: auto from ingredients + manually assigned
     const autoAllergenIds=new Set();
     for(const ri of r.ingredients){
@@ -2512,7 +2527,7 @@ async function renderIngredientsPage(container){
 
     ings.forEach(ing=>{
       const row=h('div',{class:'table-row'});
-      row.appendChild(h('span',{style:{width:'150px',flexShrink:0,fontSize:'13px'}},ing.name));
+      row.appendChild(h('span',{style:{width:'150px',flexShrink:0,fontSize:'13px'}},ingDisplayName(ing)));
       row.appendChild(h('span',{style:{width:'55px',flexShrink:0,color:'var(--text-muted)'}},ing.unit));
       row.appendChild(h('span',{style:{width:'60px',flexShrink:0,color:'var(--text-muted)'}},ing.price?`${ing.price.toFixed(2)} €`:'—'));
       row.appendChild(h('span',{style:{width:'100px',flexShrink:0,color:ing.subcategory?'var(--green-light)':'var(--text-muted)'}},ing.subcategory||'—'));
@@ -2538,6 +2553,7 @@ async function renderIngredientsPage(container){
     const allergens=await getAllergens();
     const ingAllergenIds=ing?ing.allergens.map(a=>a.id):[];
     const nameInput=h('input',{type:'text',placeholder:t('ph_ingredient_name'),value:ing?.name||'',style:{width:'100%'}});
+    const nameEnInput=h('input',{type:'text',placeholder:t('ph_name_en'),value:ing?.name_en||'',style:{width:'100%'}});
     const unitSel=unitSelect(ing?.unit||'kg');unitSel.style.width='100%';
     const priceInput=h('input',{type:'number',placeholder:t('ph_price'),value:ing?.price||'',style:{width:'100%'},step:'0.01'});
     const subcatSel=h('select',{style:{width:'100%'}});
@@ -2565,6 +2581,7 @@ async function renderIngredientsPage(container){
     const modal=showModal(h('div',{},
       h('h2',{},ing?t('dlg_edit_ingredient'):t('dlg_new_ingredient')),
       h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_name')),nameInput),
+      h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_name_en')),nameEnInput),
       h('div',{class:'form-row'},
         h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_unit')),unitSel),
         h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_price_per_unit')),priceInput)
@@ -2587,8 +2604,8 @@ async function renderIngredientsPage(container){
             const absch=parseFloat(abschnittInput.value)||0;
             const kf=parseFloat(kochfaktorInput.value);
             const kfVal=(isNaN(kf)||kf<=0)?1:kf;
-            if(ing) await updateIngredient(ing.id,n,unitSel.value,p,subcatSel.value,verarbHinweisInput.value.trim(),lagerHinweisInput.value.trim(),absch,kfVal);
-            else{ing={id:await createIngredient(n,unitSel.value,p,subcatSel.value,verarbHinweisInput.value.trim(),lagerHinweisInput.value.trim(),absch,kfVal)};}
+            if(ing) await updateIngredient(ing.id,n,unitSel.value,p,subcatSel.value,verarbHinweisInput.value.trim(),lagerHinweisInput.value.trim(),absch,kfVal,nameEnInput.value.trim());
+            else{ing={id:await createIngredient(n,unitSel.value,p,subcatSel.value,verarbHinweisInput.value.trim(),lagerHinweisInput.value.trim(),absch,kfVal,nameEnInput.value.trim())};}
           }catch(e){alert(t('msg_ingredient_exists'));return;}
           const selAllergenIds=Object.entries(allergenVars).filter(([_,cb])=>cb.checked).map(([id])=>parseInt(id));
           await setIngredientAllergens(ing.id,selAllergenIds);
@@ -3423,7 +3440,7 @@ async function renderRecipeBookPage(container){
         parent.appendChild(tHdr);
         ings.forEach(i=>{
           const row=h('div',{class:'table-row'});
-          row.appendChild(h('span',{style:{width:'150px',flexShrink:0}},i.ingredient_name));
+          row.appendChild(h('span',{style:{width:'150px',flexShrink:0}},riDisplayName(i)));
           row.appendChild(h('span',{style:{width:'110px',flexShrink:0,color:'var(--text-muted)',fontStyle:i.preparation?'normal':'italic'}},i.preparation||'—'));
           row.appendChild(h('span',{style:{width:'70px',flexShrink:0}},String(i.quantity_per_person)));
           row.appendChild(h('span',{style:{width:'60px',flexShrink:0,color:'var(--text-muted)'}},i.unit));
@@ -3444,7 +3461,7 @@ async function renderRecipeBookPage(container){
           if(i.substitutes&&i.substitutes.length){
             i.substitutes.forEach(sub=>{
               const sRow=h('div',{class:'table-row',style:{paddingLeft:'20px',background:'var(--surface2)',fontSize:'12px',opacity:'0.85'}});
-              sRow.appendChild(h('span',{style:{width:'150px',flexShrink:0,color:'var(--text-muted)'}},`↳ oder: ${sub.ingredient_name}`));
+              sRow.appendChild(h('span',{style:{width:'150px',flexShrink:0,color:'var(--text-muted)'}},`↳ ${t('misc_or')}: ${riDisplayName(sub)}`));
               sRow.appendChild(h('span',{style:{width:'110px',flexShrink:0,color:'var(--text-muted)',fontStyle:sub.preparation?'normal':'italic'}},sub.preparation||'—'));
               sRow.appendChild(h('span',{style:{width:'70px',flexShrink:0,color:'var(--text-muted)'}},String(sub.quantity_per_person)));
               sRow.appendChild(h('span',{style:{width:'60px',flexShrink:0,color:'var(--text-muted)'}},sub.unit));
@@ -3653,9 +3670,9 @@ async function renderRecipeBookPage(container){
           filtered.forEach(ing=>{
             resultsDiv2.appendChild(h('button',{class:'ing-search-item',onClick:()=>{
               sub.ingredient_id=ing.id;sub.ingredient_name=ing.name;sub.unit=ing.unit;
-              sDisplay.textContent=ing.name;sDisplay.classList.add('has-value');
+              sDisplay.textContent=ingDisplayName(ing);sDisplay.classList.add('has-value');
               closeModal(popup2);renderSubPanel();
-            }},`${ing.name} (${ing.unit})${ing.subcategory?' — '+ing.subcategory:''}`));
+            }},`${ingDisplayName(ing)} (${ing.unit})${ing.subcategory?' — '+ing.subcategory:''}`));
           });
         }
         searchInput2.addEventListener('input',render2);
@@ -3697,8 +3714,8 @@ async function renderRecipeBookPage(container){
         if(!filtered.length){resultsDiv.appendChild(h('div',{class:'empty-msg',style:{padding:'12px'}},t('empty_no_ingredients_found')));return;}
         filtered.forEach(ing=>{
           resultsDiv.appendChild(h('button',{class:'ing-search-item',onClick:()=>{
-            ingIdRef.value=ing.id;display.textContent=ing.name;display.classList.add('has-value');unitRef.value=ing.unit;unitLabel.textContent=ing.unit;closeModal(popup);
-          }},`${ing.name} (${ing.unit})${ing.subcategory?' — '+ing.subcategory:''}${ing.abschnitt?' ['+ing.abschnitt+'% Abschn.]':''}${(ing.tags||[]).length?' 🏷'+ing.tags.map(t=>t.name).join(', '):''}`));
+            ingIdRef.value=ing.id;display.textContent=ingDisplayName(ing);display.classList.add('has-value');unitRef.value=ing.unit;unitLabel.textContent=ing.unit;closeModal(popup);
+          }},`${ingDisplayName(ing)} (${ing.unit})${ing.subcategory?' — '+ing.subcategory:''}${ing.abschnitt?' ['+ing.abschnitt+'% Abschn.]':''}${(ing.tags||[]).length?' 🏷'+ing.tags.map(t=>t.name).join(', '):''}`));
         });
       }
       searchInput.addEventListener('input',render);
@@ -4716,69 +4733,69 @@ async function renderDatabasePage(container){
 // Reihenfolge: [Jan,Feb,Mär,Apr,Mai,Jun,Jul,Aug,Sep,Okt,Nov,Dez]
 const SEASON_DATA=[
   // ── Gemüse ──
-  {name:'Blumenkohl',cat:'Gemüse',months:[0,0,0,0,2,2,2,2,2,2,2,0]},
-  {name:'Bohnen (grün)',cat:'Gemüse',months:[0,0,0,0,0,0,2,2,2,2,0,0]},
-  {name:'Brokkoli',cat:'Gemüse',months:[0,0,0,0,0,2,2,2,2,2,2,0]},
-  {name:'Champignons',cat:'Gemüse',months:[2,2,2,2,2,2,2,2,2,2,2,2]},
-  {name:'Chicorée',cat:'Gemüse',months:[1,1,1,1,0,0,0,0,0,2,2,2]},
-  {name:'Eisbergsalat',cat:'Gemüse',months:[0,0,0,0,0,2,2,2,2,2,0,0]},
-  {name:'Erbsen',cat:'Gemüse',months:[0,0,0,0,0,2,2,2,0,0,0,0]},
-  {name:'Feldsalat',cat:'Gemüse',months:[2,2,2,2,0,0,0,0,2,2,2,2]},
-  {name:'Fenchel',cat:'Gemüse',months:[0,0,0,0,0,2,2,2,2,2,2,0]},
-  {name:'Grünkohl',cat:'Gemüse',months:[2,2,2,0,0,0,0,0,0,0,2,2]},
-  {name:'Gurke (Salat)',cat:'Gemüse',months:[0,0,0,0,2,2,2,2,2,2,0,0]},
-  {name:'Kartoffeln (neu)',cat:'Gemüse',months:[0,0,0,0,0,2,2,2,2,0,0,0]},
-  {name:'Kartoffeln (Lager)',cat:'Gemüse',months:[1,1,1,1,1,0,0,0,0,2,1,1]},
-  {name:'Knoblauch',cat:'Gemüse',months:[1,1,1,1,1,2,2,2,2,1,1,1]},
-  {name:'Kohlrabi',cat:'Gemüse',months:[0,0,0,0,2,2,2,2,2,2,0,0]},
-  {name:'Kürbis',cat:'Gemüse',months:[1,1,0,0,0,0,0,2,2,2,2,1]},
-  {name:'Lauch / Porree',cat:'Gemüse',months:[2,2,2,2,0,0,2,2,2,2,2,2]},
-  {name:'Mangold',cat:'Gemüse',months:[0,0,0,0,2,2,2,2,2,2,0,0]},
-  {name:'Möhren / Karotten',cat:'Gemüse',months:[1,1,1,1,2,2,2,2,2,2,1,1]},
-  {name:'Paprika',cat:'Gemüse',months:[0,0,0,0,0,0,2,2,2,2,0,0]},
-  {name:'Pastinake',cat:'Gemüse',months:[1,1,1,0,0,0,0,0,2,2,2,1]},
-  {name:'Radieschen',cat:'Gemüse',months:[0,0,0,2,2,2,2,2,2,2,0,0]},
-  {name:'Rettich',cat:'Gemüse',months:[1,1,0,0,2,2,2,2,2,2,2,1]},
-  {name:'Rosenkohl',cat:'Gemüse',months:[2,2,0,0,0,0,0,0,0,2,2,2]},
-  {name:'Rote Bete',cat:'Gemüse',months:[1,1,1,1,0,0,2,2,2,2,2,1]},
-  {name:'Rotkohl',cat:'Gemüse',months:[1,1,1,1,1,0,0,2,2,2,2,2]},
-  {name:'Rucola',cat:'Gemüse',months:[0,0,0,2,2,2,2,2,2,2,0,0]},
-  {name:'Sellerie (Knolle)',cat:'Gemüse',months:[1,1,1,1,0,0,2,2,2,2,2,1]},
-  {name:'Spargel',cat:'Gemüse',months:[0,0,0,2,2,2,0,0,0,0,0,0]},
-  {name:'Spinat',cat:'Gemüse',months:[0,0,2,2,2,2,2,2,2,2,0,0]},
-  {name:'Tomaten',cat:'Gemüse',months:[0,0,0,0,0,2,2,2,2,2,0,0]},
-  {name:'Weißkohl',cat:'Gemüse',months:[1,1,1,1,1,0,2,2,2,2,2,2]},
-  {name:'Wirsing',cat:'Gemüse',months:[2,2,0,0,0,2,2,2,2,2,2,2]},
-  {name:'Zucchini',cat:'Gemüse',months:[0,0,0,0,0,2,2,2,2,2,0,0]},
-  {name:'Zuckermais',cat:'Gemüse',months:[0,0,0,0,0,0,2,2,2,0,0,0]},
-  {name:'Zwiebeln',cat:'Gemüse',months:[1,1,1,1,1,1,2,2,2,2,1,1]},
+  {name:'Blumenkohl',name_en:'Cauliflower',cat:'Gemüse',months:[0,0,0,0,2,2,2,2,2,2,2,0]},
+  {name:'Bohnen (grün)',name_en:'Green Beans',cat:'Gemüse',months:[0,0,0,0,0,0,2,2,2,2,0,0]},
+  {name:'Brokkoli',name_en:'Broccoli',cat:'Gemüse',months:[0,0,0,0,0,2,2,2,2,2,2,0]},
+  {name:'Champignons',name_en:'Mushrooms',cat:'Gemüse',months:[2,2,2,2,2,2,2,2,2,2,2,2]},
+  {name:'Chicorée',name_en:'Chicory',cat:'Gemüse',months:[1,1,1,1,0,0,0,0,0,2,2,2]},
+  {name:'Eisbergsalat',name_en:'Iceberg Lettuce',cat:'Gemüse',months:[0,0,0,0,0,2,2,2,2,2,0,0]},
+  {name:'Erbsen',name_en:'Peas',cat:'Gemüse',months:[0,0,0,0,0,2,2,2,0,0,0,0]},
+  {name:'Feldsalat',name_en:"Lamb's Lettuce",cat:'Gemüse',months:[2,2,2,2,0,0,0,0,2,2,2,2]},
+  {name:'Fenchel',name_en:'Fennel',cat:'Gemüse',months:[0,0,0,0,0,2,2,2,2,2,2,0]},
+  {name:'Grünkohl',name_en:'Kale',cat:'Gemüse',months:[2,2,2,0,0,0,0,0,0,0,2,2]},
+  {name:'Gurke (Salat)',name_en:'Cucumber',cat:'Gemüse',months:[0,0,0,0,2,2,2,2,2,2,0,0]},
+  {name:'Kartoffeln (neu)',name_en:'Potatoes (new)',cat:'Gemüse',months:[0,0,0,0,0,2,2,2,2,0,0,0]},
+  {name:'Kartoffeln (Lager)',name_en:'Potatoes (stored)',cat:'Gemüse',months:[1,1,1,1,1,0,0,0,0,2,1,1]},
+  {name:'Knoblauch',name_en:'Garlic',cat:'Gemüse',months:[1,1,1,1,1,2,2,2,2,1,1,1]},
+  {name:'Kohlrabi',name_en:'Kohlrabi',cat:'Gemüse',months:[0,0,0,0,2,2,2,2,2,2,0,0]},
+  {name:'Kürbis',name_en:'Pumpkin',cat:'Gemüse',months:[1,1,0,0,0,0,0,2,2,2,2,1]},
+  {name:'Lauch / Porree',name_en:'Leek',cat:'Gemüse',months:[2,2,2,2,0,0,2,2,2,2,2,2]},
+  {name:'Mangold',name_en:'Swiss Chard',cat:'Gemüse',months:[0,0,0,0,2,2,2,2,2,2,0,0]},
+  {name:'Möhren / Karotten',name_en:'Carrots',cat:'Gemüse',months:[1,1,1,1,2,2,2,2,2,2,1,1]},
+  {name:'Paprika',name_en:'Bell Pepper',cat:'Gemüse',months:[0,0,0,0,0,0,2,2,2,2,0,0]},
+  {name:'Pastinake',name_en:'Parsnip',cat:'Gemüse',months:[1,1,1,0,0,0,0,0,2,2,2,1]},
+  {name:'Radieschen',name_en:'Radishes',cat:'Gemüse',months:[0,0,0,2,2,2,2,2,2,2,0,0]},
+  {name:'Rettich',name_en:'Daikon Radish',cat:'Gemüse',months:[1,1,0,0,2,2,2,2,2,2,2,1]},
+  {name:'Rosenkohl',name_en:'Brussels Sprouts',cat:'Gemüse',months:[2,2,0,0,0,0,0,0,0,2,2,2]},
+  {name:'Rote Bete',name_en:'Beetroot',cat:'Gemüse',months:[1,1,1,1,0,0,2,2,2,2,2,1]},
+  {name:'Rotkohl',name_en:'Red Cabbage',cat:'Gemüse',months:[1,1,1,1,1,0,0,2,2,2,2,2]},
+  {name:'Rucola',name_en:'Rocket / Arugula',cat:'Gemüse',months:[0,0,0,2,2,2,2,2,2,2,0,0]},
+  {name:'Sellerie (Knolle)',name_en:'Celeriac',cat:'Gemüse',months:[1,1,1,1,0,0,2,2,2,2,2,1]},
+  {name:'Spargel',name_en:'Asparagus',cat:'Gemüse',months:[0,0,0,2,2,2,0,0,0,0,0,0]},
+  {name:'Spinat',name_en:'Spinach',cat:'Gemüse',months:[0,0,2,2,2,2,2,2,2,2,0,0]},
+  {name:'Tomaten',name_en:'Tomatoes',cat:'Gemüse',months:[0,0,0,0,0,2,2,2,2,2,0,0]},
+  {name:'Weißkohl',name_en:'White Cabbage',cat:'Gemüse',months:[1,1,1,1,1,0,2,2,2,2,2,2]},
+  {name:'Wirsing',name_en:'Savoy Cabbage',cat:'Gemüse',months:[2,2,0,0,0,2,2,2,2,2,2,2]},
+  {name:'Zucchini',name_en:'Courgette',cat:'Gemüse',months:[0,0,0,0,0,2,2,2,2,2,0,0]},
+  {name:'Zuckermais',name_en:'Sweetcorn',cat:'Gemüse',months:[0,0,0,0,0,0,2,2,2,0,0,0]},
+  {name:'Zwiebeln',name_en:'Onions',cat:'Gemüse',months:[1,1,1,1,1,1,2,2,2,2,1,1]},
   // ── Obst ──
-  {name:'Apfel',cat:'Obst',months:[1,1,1,1,1,0,0,2,2,2,2,1]},
-  {name:'Aprikose',cat:'Obst',months:[0,0,0,0,0,0,2,2,0,0,0,0]},
-  {name:'Birne',cat:'Obst',months:[1,1,1,0,0,0,0,2,2,2,2,1]},
-  {name:'Brombeere',cat:'Obst',months:[0,0,0,0,0,0,2,2,2,0,0,0]},
-  {name:'Erdbeere',cat:'Obst',months:[0,0,0,0,2,2,2,2,0,0,0,0]},
-  {name:'Heidelbeere',cat:'Obst',months:[0,0,0,0,0,2,2,2,2,0,0,0]},
-  {name:'Himbeere',cat:'Obst',months:[0,0,0,0,0,2,2,2,2,0,0,0]},
-  {name:'Johannisbeere',cat:'Obst',months:[0,0,0,0,0,2,2,2,0,0,0,0]},
-  {name:'Kirsche',cat:'Obst',months:[0,0,0,0,2,2,2,0,0,0,0,0]},
-  {name:'Mirabelle',cat:'Obst',months:[0,0,0,0,0,0,2,2,2,0,0,0]},
-  {name:'Pfirsich / Nektarine',cat:'Obst',months:[0,0,0,0,0,0,2,2,2,0,0,0]},
-  {name:'Pflaume',cat:'Obst',months:[0,0,0,0,0,0,2,2,2,2,0,0]},
-  {name:'Quitte',cat:'Obst',months:[0,0,0,0,0,0,0,0,2,2,2,0]},
-  {name:'Rhabarber',cat:'Obst',months:[0,0,0,2,2,2,0,0,0,0,0,0]},
-  {name:'Stachelbeere',cat:'Obst',months:[0,0,0,0,0,2,2,2,0,0,0,0]},
-  {name:'Weintraube',cat:'Obst',months:[0,0,0,0,0,0,0,0,2,2,0,0]},
-  {name:'Zwetschge',cat:'Obst',months:[0,0,0,0,0,0,0,2,2,2,0,0]},
+  {name:'Apfel',name_en:'Apple',cat:'Obst',months:[1,1,1,1,1,0,0,2,2,2,2,1]},
+  {name:'Aprikose',name_en:'Apricot',cat:'Obst',months:[0,0,0,0,0,0,2,2,0,0,0,0]},
+  {name:'Birne',name_en:'Pear',cat:'Obst',months:[1,1,1,0,0,0,0,2,2,2,2,1]},
+  {name:'Brombeere',name_en:'Blackberry',cat:'Obst',months:[0,0,0,0,0,0,2,2,2,0,0,0]},
+  {name:'Erdbeere',name_en:'Strawberry',cat:'Obst',months:[0,0,0,0,2,2,2,2,0,0,0,0]},
+  {name:'Heidelbeere',name_en:'Blueberry',cat:'Obst',months:[0,0,0,0,0,2,2,2,2,0,0,0]},
+  {name:'Himbeere',name_en:'Raspberry',cat:'Obst',months:[0,0,0,0,0,2,2,2,2,0,0,0]},
+  {name:'Johannisbeere',name_en:'Redcurrant',cat:'Obst',months:[0,0,0,0,0,2,2,2,0,0,0,0]},
+  {name:'Kirsche',name_en:'Cherry',cat:'Obst',months:[0,0,0,0,2,2,2,0,0,0,0,0]},
+  {name:'Mirabelle',name_en:'Mirabelle Plum',cat:'Obst',months:[0,0,0,0,0,0,2,2,2,0,0,0]},
+  {name:'Pfirsich / Nektarine',name_en:'Peach / Nectarine',cat:'Obst',months:[0,0,0,0,0,0,2,2,2,0,0,0]},
+  {name:'Pflaume',name_en:'Plum',cat:'Obst',months:[0,0,0,0,0,0,2,2,2,2,0,0]},
+  {name:'Quitte',name_en:'Quince',cat:'Obst',months:[0,0,0,0,0,0,0,0,2,2,2,0]},
+  {name:'Rhabarber',name_en:'Rhubarb',cat:'Obst',months:[0,0,0,2,2,2,0,0,0,0,0,0]},
+  {name:'Stachelbeere',name_en:'Gooseberry',cat:'Obst',months:[0,0,0,0,0,2,2,2,0,0,0,0]},
+  {name:'Weintraube',name_en:'Grape',cat:'Obst',months:[0,0,0,0,0,0,0,0,2,2,0,0]},
+  {name:'Zwetschge',name_en:'Damson Plum',cat:'Obst',months:[0,0,0,0,0,0,0,2,2,2,0,0]},
   // ── Kräuter ──
-  {name:'Bärlauch',cat:'Kräuter',months:[0,0,2,2,2,0,0,0,0,0,0,0]},
-  {name:'Basilikum',cat:'Kräuter',months:[0,0,0,0,0,2,2,2,2,0,0,0]},
-  {name:'Dill',cat:'Kräuter',months:[0,0,0,0,2,2,2,2,2,0,0,0]},
-  {name:'Kerbel',cat:'Kräuter',months:[0,0,0,2,2,2,2,2,2,0,0,0]},
-  {name:'Petersilie',cat:'Kräuter',months:[0,0,0,2,2,2,2,2,2,2,2,0]},
-  {name:'Rosmarin',cat:'Kräuter',months:[1,1,1,1,2,2,2,2,2,2,1,1]},
-  {name:'Schnittlauch',cat:'Kräuter',months:[0,0,0,2,2,2,2,2,2,2,0,0]},
-  {name:'Thymian',cat:'Kräuter',months:[1,1,1,1,2,2,2,2,2,2,1,1]},
+  {name:'Bärlauch',name_en:'Wild Garlic',cat:'Kräuter',months:[0,0,2,2,2,0,0,0,0,0,0,0]},
+  {name:'Basilikum',name_en:'Basil',cat:'Kräuter',months:[0,0,0,0,0,2,2,2,2,0,0,0]},
+  {name:'Dill',name_en:'Dill',cat:'Kräuter',months:[0,0,0,0,2,2,2,2,2,0,0,0]},
+  {name:'Kerbel',name_en:'Chervil',cat:'Kräuter',months:[0,0,0,2,2,2,2,2,2,0,0,0]},
+  {name:'Petersilie',name_en:'Parsley',cat:'Kräuter',months:[0,0,0,2,2,2,2,2,2,2,2,0]},
+  {name:'Rosmarin',name_en:'Rosemary',cat:'Kräuter',months:[1,1,1,1,2,2,2,2,2,2,1,1]},
+  {name:'Schnittlauch',name_en:'Chives',cat:'Kräuter',months:[0,0,0,2,2,2,2,2,2,2,0,0]},
+  {name:'Thymian',name_en:'Thyme',cat:'Kräuter',months:[1,1,1,1,2,2,2,2,2,2,1,1]},
 ];
 const SEASON_MONTHS=['Jan','Feb','Mär','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
 
@@ -4788,6 +4805,8 @@ function renderSeasonCalendarPage(container){
   container.append(header,body);
 
   const currentMonth=new Date().getMonth(); // 0-11
+  const seasonMonths=[t('month_jan'),t('month_feb'),t('month_mar'),t('month_apr'),t('month_may'),t('month_jun'),t('month_jul'),t('month_aug'),t('month_sep'),t('month_oct'),t('month_nov'),t('month_dec')].map(m=>m.slice(0,3));
+  const grpLabels={'Gemüse':t('season_cat_veg'),'Obst':t('season_cat_fruit'),'Kräuter':t('season_cat_herbs')};
 
   // Legend + controls
   const topCard=h('div',{class:'card',style:{marginBottom:'16px'}});
@@ -4820,7 +4839,7 @@ function renderSeasonCalendarPage(container){
     h('span',{},t('season_unavailable'))));
   legend.appendChild(h('div',{style:{display:'flex',alignItems:'center',gap:'6px'}},
     h('span',{style:{display:'inline-block',width:'18px',height:'14px',background:'transparent',border:'2px solid var(--accent)',borderRadius:'3px'}}),
-    h('span',{},t('season_current_month',SEASON_MONTHS[currentMonth]))));
+    h('span',{},t('season_current_month',seasonMonths[currentMonth]))));
   topCard.appendChild(legend);
   body.appendChild(topCard);
 
@@ -4830,7 +4849,7 @@ function renderSeasonCalendarPage(container){
 
   function buildRow(item){
     const row=h('div',{class:'season-row',style:{display:'flex',alignItems:'center',borderBottom:'1px solid var(--border)',minHeight:'32px'}});
-    const nameCell=h('div',{style:{width:'170px',minWidth:'170px',padding:'6px 10px',fontSize:'13px',fontWeight:'500',position:'sticky',left:'0',background:'var(--surface)',zIndex:'1',borderRight:'1px solid var(--border)'}},item.name);
+    const nameCell=h('div',{style:{width:'170px',minWidth:'170px',padding:'6px 10px',fontSize:'13px',fontWeight:'500',position:'sticky',left:'0',background:'var(--surface)',zIndex:'1',borderRight:'1px solid var(--border)'}},LANG==='en'?(item.name_en||item.name):item.name);
     row.appendChild(nameCell);
     for(let m=0;m<12;m++){
       const state=item.months[m];
@@ -4841,7 +4860,7 @@ function renderSeasonCalendarPage(container){
         border:state===0?'1px solid var(--border)':'none',
         boxShadow:m===currentMonth?'0 0 0 2px var(--accent)':'none',
         cursor:'default'
-      },title:t('season_tooltip',item.name,SEASON_MONTHS[m],state===2?t('season_fresh'):state===1?t('season_lager'):t('season_unavailable'))});
+      },title:t('season_tooltip',LANG==='en'?(item.name_en||item.name):item.name,seasonMonths[m],state===2?t('season_fresh'):state===1?t('season_lager'):t('season_unavailable'))});
       row.appendChild(cell);
     }
     return row;
@@ -4852,7 +4871,7 @@ function renderSeasonCalendarPage(container){
     // Header row
     const hdr=h('div',{style:{display:'flex',alignItems:'center',borderBottom:'2px solid var(--border)',position:'sticky',top:'0',background:'var(--surface)',zIndex:'2'}});
     hdr.appendChild(h('div',{style:{width:'170px',minWidth:'170px',padding:'8px 10px',fontSize:'12px',fontWeight:'700',color:'var(--text-muted)',position:'sticky',left:'0',background:'var(--surface)',zIndex:'1',borderRight:'1px solid var(--border)'}},t('col_season_name')));
-    SEASON_MONTHS.forEach((m,i)=>{
+    seasonMonths.forEach((m,i)=>{
       hdr.appendChild(h('div',{style:{flex:'1',minWidth:'36px',textAlign:'center',padding:'6px 2px',fontSize:'11px',fontWeight:i===currentMonth?'700':'500',color:i===currentMonth?'var(--accent)':'var(--text-muted)'}},m));
     });
     tableCard.appendChild(hdr);
@@ -4862,7 +4881,7 @@ function renderSeasonCalendarPage(container){
     const season=seasonFilter.value;
     let groups={'Gemüse':[],'Obst':[],'Kräuter':[]};
     SEASON_DATA.forEach(item=>{
-      if(q&&!item.name.toLowerCase().includes(q)) return;
+      if(q&&!item.name.toLowerCase().includes(q)&&!(item.name_en||'').toLowerCase().includes(q)) return;
       if(cat&&item.cat!==cat) return;
       if(season==='current'&&item.months[currentMonth]===0) return;
       if(season==='fresh'&&item.months[currentMonth]!==2) return;
@@ -4872,7 +4891,7 @@ function renderSeasonCalendarPage(container){
     for(const grp of ['Gemüse','Obst','Kräuter']){
       if(!groups[grp].length) continue;
       any=true;
-      const grpHdr=h('div',{style:{padding:'10px 12px 6px',fontSize:'12px',fontWeight:'700',color:'var(--accent)',background:'var(--surface2)',borderBottom:'1px solid var(--border)',textTransform:'uppercase',letterSpacing:'.5px'}},grp);
+      const grpHdr=h('div',{style:{padding:'10px 12px 6px',fontSize:'12px',fontWeight:'700',color:'var(--accent)',background:'var(--surface2)',borderBottom:'1px solid var(--border)',textTransform:'uppercase',letterSpacing:'.5px'}},grpLabels[grp]||grp);
       tableCard.appendChild(grpHdr);
       groups[grp].forEach(item=>tableCard.appendChild(buildRow(item)));
     }
