@@ -784,6 +784,47 @@ de: {
   ai_sec4_title: '4. Allergieessen in dieser App',
   ai_sec4_desc: 'Diese App unterstützt die Planung von Allergie-Alternativen auf mehreren Ebenen:',
   ai_disclaimer: 'Diese Übersicht dient als Orientierungshilfe und ersetzt keine professionelle Ernährungsberatung oder rechtliche Beratung zur Lebensmittelkennzeichnung.',
+  ai_allergen_list: [
+    ['Glutenhaltiges Getreide','z.\u202FB. Weizen, Roggen, Gerste, Hafer, Dinkel, Kamut'],
+    ['Krebstiere','z.\u202FB. Garnelen, Krabben, Hummer'],
+    ['Eier','und daraus gewonnene Erzeugnisse'],
+    ['Fisch','und daraus gewonnene Erzeugnisse'],
+    ['Erdnüsse','und daraus gewonnene Erzeugnisse'],
+    ['Soja','und daraus gewonnene Erzeugnisse'],
+    ['Milch','einschließlich Laktose'],
+    ['Schalenfrüchte','z.\u202FB. Mandeln, Haselnüsse, Walnüsse, Cashewkerne, Pistazien'],
+    ['Sellerie','und daraus gewonnene Erzeugnisse'],
+    ['Senf','und daraus gewonnene Erzeugnisse'],
+    ['Sesamsamen','und daraus gewonnene Erzeugnisse'],
+    ['Schwefeldioxid und Sulfite','ab 10\u202Fmg/kg oder 10\u202Fmg/l'],
+    ['Lupinen','und daraus gewonnene Erzeugnisse'],
+    ['Weichtiere','z.\u202FB. Muscheln, Schnecken, Tintenfisch']
+  ],
+  ai_intolerances: [
+    ['Laktoseintoleranz','Laktose ist der in Milch enthaltene Zucker. Bei einer Unverträglichkeit fehlt das Enzym Laktase zur Verdauung, was zu Blähungen, Bauchschmerzen und Durchfall führen kann. Betrifft schätzungsweise 15–20\u202F% der Bevölkerung in Deutschland.'],
+    ['Fruktosemalabsorption','Fruktose (Fruchtzucker) kommt in Obst, Honig, Agavendicksaft und vielen verarbeiteten Lebensmitteln vor. Bei einer Malabsorption kann der Dünndarm Fruktose nur eingeschränkt aufnehmen.'],
+    ['Sorbit-Unverträglichkeit','Sorbit (E\u202F420) wird häufig als Zuckeraustauschstoff in Diät- und Light-Produkten verwendet, kommt aber auch natürlich in Steinobst (Pflaumen, Kirschen, Äpfel) vor.'],
+    ['Gluten / Zöliakie','Gluten ist ein Klebereiweiß in Weizen, Roggen, Gerste und verwandten Getreidesorten. Bei Zöliakie (Autoimmunerkrankung) muss Gluten strikt vermieden werden — bereits kleinste Mengen können die Dünndarmschleimhaut schädigen.'],
+    ['FODMAPs','FODMAPs (fermentierbare Oligo-, Di-, Monosaccharide und Polyole) sind schwer verdauliche Kohlenhydrate, die im Dickdarm fermentieren und bei empfindlichen Personen Blähungen, Krämpfe und Durchfall verursachen können.'],
+    ['Histaminintoleranz','Histamin kommt vor allem in gereiften, fermentierten oder lange gelagerten Lebensmitteln vor (z.\u202FB. Käse, Wein, Sauerkraut, geräucherter Fisch). Bei einer Intoleranz wird Histamin im Körper nicht ausreichend abgebaut.']
+  ],
+  ai_kitchen_tips: [
+    ['Zutatenlisten prüfen','Alle verwendeten Produkte und Fertigzutaten auf versteckte Allergene kontrollieren. Auch bei scheinbar einfachen Zutaten wie Brühe, Soßen oder Gewürzmischungen können Allergene enthalten sein.'],
+    ['Kreuzkontamination vermeiden','Separate Schneidebretter, Messer und Kochgeschirr für allergenfreie Gerichte verwenden. Arbeitsflächen gründlich reinigen. Frittieröl nicht gemeinsam nutzen.'],
+    ['Im Zweifel weglassen','Wenn die Zusammensetzung einer Zutat nicht sicher bekannt ist, diese nicht verwenden oder als potenziell allergenhaltig kennzeichnen.'],
+    ['Gerichte klar kennzeichnen','Jedes Gericht mit einer gut sichtbaren Zutatenliste und Allergen-Kennzeichnung versehen. Ideal: Schilder direkt am Ausgabeplatz.'],
+    ['Kommunikation im Team','Klare Kommunikation, wer für allergiearmes Essen verantwortlich ist, und gute Informationsweitergabe, wenn es um allergierelevante Themen geht.'],
+    ['Auf Rückfragen vorbereitet sein','Gäste mit Allergien oder Unverträglichkeiten werden nachfragen. Das Küchenteam sollte jederzeit Auskunft über die verwendeten Zutaten geben können.'],
+    ['Separate Zubereitung','Allergenfreie Gerichte möglichst zuerst und separat zubereiten, bevor mit allergenhaltigen Zutaten gearbeitet wird.']
+  ],
+  ai_app_tips: [
+    ['Rezepte als Allergieessen markieren','Im Rezeptbuch kannst du Rezepte über die Checkbox „Allergieessen" als allergiegerechte Alternative kennzeichnen. Diese Rezepte stehen dann beim Zuweisen von Allergie-Essen zur Verfügung.'],
+    ['Allergene pro Zutat und Rezept','Jeder Zutat können Allergene zugeordnet werden (unter Zutaten → Allergene verwalten). Rezepte erkennen automatisch die Allergene ihrer Zutaten. Zusätzlich können manuell Allergene am Rezept ergänzt werden.'],
+    ['Allergie-Essen zuweisen','In der Einkaufsliste nach Rezept gibt es pro Mahlzeit den Button „+ Allergie-Essen". Dort werden nur Rezepte angeboten, die als Allergieessen markiert sind und die passende Mahlzeitkategorie haben.'],
+    ['1%-Faustregel','Als Richtwert werden ca. 1% der Gesamtportionen als Allergie-Portionen vorgeschlagen (aufgerundet, mindestens 1). Der Wert ist frei anpassbar.'],
+    ['Separate Portionsverwaltung','Allergie-Essen haben eine eigene, unabhängige Portionszählung. Sie erscheinen in der Einkaufsliste und im PDF-Export mit dem Label „Allergie-Essen".'],
+    ['PDF-Export','Im gedruckten Rezeptbuch werden Allergie-Rezepte als „Allergie-Essen" gekennzeichnet, damit das Kochteam sie klar von den regulären Mahlzeiten unterscheiden kann.']
+  ],
 
   // help page sections
   help_calendar_title: '📅  Kalender',
@@ -1301,6 +1342,47 @@ en: {
   ai_sec4_title: '4. Allergy meals in this app',
   ai_sec4_desc: 'This app supports planning allergy alternatives on several levels:',
   ai_disclaimer: 'This overview serves as a general guide and does not replace professional nutritional or legal advice on food labelling.',
+  ai_allergen_list: [
+    ['Gluten-containing cereals','e.g. wheat, rye, barley, oats, spelt, kamut'],
+    ['Crustaceans','e.g. shrimps, crabs, lobster'],
+    ['Eggs','and products thereof'],
+    ['Fish','and products thereof'],
+    ['Peanuts','and products thereof'],
+    ['Soya','and products thereof'],
+    ['Milk','including lactose'],
+    ['Tree nuts','e.g. almonds, hazelnuts, walnuts, cashews, pistachios'],
+    ['Celery','and products thereof'],
+    ['Mustard','and products thereof'],
+    ['Sesame seeds','and products thereof'],
+    ['Sulphur dioxide and sulphites','at concentrations of more than 10\u202Fmg/kg or 10\u202Fmg/l'],
+    ['Lupin','and products thereof'],
+    ['Molluscs','e.g. mussels, snails, squid']
+  ],
+  ai_intolerances: [
+    ['Lactose intolerance','Lactose is the sugar found in milk. With intolerance, the enzyme lactase needed for digestion is absent, which can lead to bloating, stomach pain and diarrhoea. Affects an estimated 15–20% of the population in northern Europe.'],
+    ['Fructose malabsorption','Fructose (fruit sugar) is found in fruit, honey, agave syrup and many processed foods. With malabsorption, the small intestine can only absorb fructose to a limited extent.'],
+    ['Sorbitol intolerance','Sorbitol (E\u202F420) is commonly used as a sugar substitute in diet and light products, but also occurs naturally in stone fruits (plums, cherries, apples).'],
+    ['Gluten / Coeliac disease','Gluten is a protein found in wheat, rye, barley and related grains. With coeliac disease (an autoimmune condition) gluten must be strictly avoided — even tiny amounts can damage the lining of the small intestine.'],
+    ['FODMAPs','FODMAPs (fermentable oligosaccharides, disaccharides, monosaccharides and polyols) are poorly digestible carbohydrates that ferment in the large intestine and can cause bloating, cramps and diarrhoea in sensitive individuals.'],
+    ['Histamine intolerance','Histamine is found mainly in aged, fermented or long-stored foods (e.g. cheese, wine, sauerkraut, smoked fish). With intolerance, histamine is not broken down sufficiently in the body.']
+  ],
+  ai_kitchen_tips: [
+    ['Check ingredient lists','Check all products and ready-made ingredients for hidden allergens. Even seemingly simple ingredients such as stock, sauces or spice blends may contain allergens.'],
+    ['Avoid cross-contamination','Use separate chopping boards, knives and cookware for allergen-free dishes. Clean work surfaces thoroughly. Do not share frying oil.'],
+    ['When in doubt, leave it out','If the composition of an ingredient is not clearly known, do not use it or label it as potentially containing allergens.'],
+    ['Label dishes clearly','Provide each dish with a clearly visible ingredient list and allergen labelling. Ideally: signs directly at the serving point.'],
+    ['Team communication','Clear communication about who is responsible for allergy-safe food, and good information sharing when allergen-relevant topics arise.'],
+    ['Be prepared for questions','Guests with allergies or intolerances will ask. The kitchen team should be able to provide information about the ingredients used at any time.'],
+    ['Prepare separately','Prepare allergen-free dishes first and separately, before working with allergen-containing ingredients.']
+  ],
+  ai_app_tips: [
+    ['Mark recipes as allergy meals','In the recipe book you can mark recipes as allergy-friendly alternatives using the "Allergy meal" checkbox. These recipes will then be available when assigning allergy meals.'],
+    ['Allergens per ingredient and recipe','Allergens can be assigned to each ingredient (under Ingredients → Manage allergens). Recipes automatically detect the allergens of their ingredients. Additional allergens can also be added manually to a recipe.'],
+    ['Assign allergy meals','In the recipe-based shopping list, each meal has an "+ Allergy meal" button. Only recipes marked as allergy meals with the matching meal category are shown.'],
+    ['1% rule of thumb','As a guide, approx. 1% of total portions are suggested as allergy portions (rounded up, minimum 1). The value can be adjusted freely.'],
+    ['Separate portion management','Allergy meals have their own independent portion count. They appear in the shopping list and PDF export with the label "Allergy meal".'],
+    ['PDF export','In the printed recipe book, allergy recipes are marked as "Allergy meal" so the kitchen team can clearly distinguish them from regular meals.']
+  ],
 
   // help page sections
   help_calendar_title: '📅  Calendar',
@@ -4929,22 +5011,7 @@ function renderAllergenInfoPage(container){
   const sec1=h('div',{class:'card',style:{marginBottom:'12px'}});
   sec1.appendChild(h('div',{style:{fontWeight:'700',fontSize:'14px',marginBottom:'8px',color:'var(--accent)'}},t('ai_sec1_title')));
   sec1.appendChild(h('div',{style:{fontSize:'13px',color:'var(--text-muted)',marginBottom:'8px',lineHeight:'1.6'}},t('ai_sec1_desc')));
-  const allergenList=[
-    ['Glutenhaltiges Getreide','z.\u202FB. Weizen, Roggen, Gerste, Hafer, Dinkel, Kamut'],
-    ['Krebstiere','z.\u202FB. Garnelen, Krabben, Hummer'],
-    ['Eier','und daraus gewonnene Erzeugnisse'],
-    ['Fisch','und daraus gewonnene Erzeugnisse'],
-    ['Erdnüsse','und daraus gewonnene Erzeugnisse'],
-    ['Soja','und daraus gewonnene Erzeugnisse'],
-    ['Milch','einschließlich Laktose'],
-    ['Schalenfrüchte','z.\u202FB. Mandeln, Haselnüsse, Walnüsse, Cashewkerne, Pistazien'],
-    ['Sellerie','und daraus gewonnene Erzeugnisse'],
-    ['Senf','und daraus gewonnene Erzeugnisse'],
-    ['Sesamsamen','und daraus gewonnene Erzeugnisse'],
-    ['Schwefeldioxid und Sulfite','ab 10\u202Fmg/kg oder 10\u202Fmg/l'],
-    ['Lupinen','und daraus gewonnene Erzeugnisse'],
-    ['Weichtiere','z.\u202FB. Muscheln, Schnecken, Tintenfisch']
-  ];
+  const allergenList=t('ai_allergen_list');
   const listEl=h('div',{style:{marginBottom:'8px'}});
   allergenList.forEach((item,i)=>{
     const row=h('div',{style:{display:'flex',gap:'8px',padding:'6px 8px',background:i%2===0?'var(--surface2)':'transparent',borderRadius:'4px',fontSize:'12px'}});
@@ -4960,14 +5027,7 @@ function renderAllergenInfoPage(container){
   // Section 2: Unverträglichkeiten
   const sec2=h('div',{class:'card',style:{marginBottom:'12px'}});
   sec2.appendChild(h('div',{style:{fontWeight:'700',fontSize:'14px',marginBottom:'8px',color:'var(--accent)'}},t('ai_sec2_title')));
-  const intolerances=[
-    ['Laktoseintoleranz','Laktose ist der in Milch enthaltene Zucker. Bei einer Unverträglichkeit fehlt das Enzym Laktase zur Verdauung, was zu Blähungen, Bauchschmerzen und Durchfall führen kann. Betrifft schätzungsweise 15–20\u202F% der Bevölkerung in Deutschland.'],
-    ['Fruktosemalabsorption','Fruktose (Fruchtzucker) kommt in Obst, Honig, Agavendicksaft und vielen verarbeiteten Lebensmitteln vor. Bei einer Malabsorption kann der Dünndarm Fruktose nur eingeschränkt aufnehmen.'],
-    ['Sorbit-Unverträglichkeit','Sorbit (E\u202F420) wird häufig als Zuckeraustauschstoff in Diät- und Light-Produkten verwendet, kommt aber auch natürlich in Steinobst (Pflaumen, Kirschen, Äpfel) vor.'],
-    ['Gluten / Zöliakie','Gluten ist ein Klebereiweiß in Weizen, Roggen, Gerste und verwandten Getreidesorten. Bei Zöliakie (Autoimmunerkrankung) muss Gluten strikt vermieden werden — bereits kleinste Mengen können die Dünndarmschleimhaut schädigen.'],
-    ['FODMAPs','FODMAPs (fermentierbare Oligo-, Di-, Monosaccharide und Polyole) sind schwer verdauliche Kohlenhydrate, die im Dickdarm fermentieren und bei empfindlichen Personen Blähungen, Krämpfe und Durchfall verursachen können.'],
-    ['Histaminintoleranz','Histamin kommt vor allem in gereiften, fermentierten oder lange gelagerten Lebensmitteln vor (z.\u202FB. Käse, Wein, Sauerkraut, geräucherter Fisch). Bei einer Intoleranz wird Histamin im Körper nicht ausreichend abgebaut.']
-  ];
+  const intolerances=t('ai_intolerances');
   intolerances.forEach(item=>{
     const block=h('div',{style:{marginBottom:'10px'}});
     block.appendChild(h('div',{style:{fontWeight:'700',fontSize:'13px',marginBottom:'2px'}},item[0]));
@@ -4979,15 +5039,7 @@ function renderAllergenInfoPage(container){
   // Section 3: Praktische Hinweise
   const sec3=h('div',{class:'card',style:{marginBottom:'12px'}});
   sec3.appendChild(h('div',{style:{fontWeight:'700',fontSize:'14px',marginBottom:'8px',color:'var(--accent)'}},t('ai_sec3_title')));
-  const tips=[
-    ['Zutatenlisten prüfen','Alle verwendeten Produkte und Fertigzutaten auf versteckte Allergene kontrollieren. Auch bei scheinbar einfachen Zutaten wie Brühe, Soßen oder Gewürzmischungen können Allergene enthalten sein.'],
-    ['Kreuzkontamination vermeiden','Separate Schneidebretter, Messer und Kochgeschirr für allergenfreie Gerichte verwenden. Arbeitsflächen gründlich reinigen. Frittieröl nicht gemeinsam nutzen.'],
-    ['Im Zweifel weglassen','Wenn die Zusammensetzung einer Zutat nicht sicher bekannt ist, diese nicht verwenden oder als potenziell allergenhaltig kennzeichnen.'],
-    ['Gerichte klar kennzeichnen','Jedes Gericht mit einer gut sichtbaren Zutatenliste und Allergen-Kennzeichnung versehen. Ideal: Schilder direkt am Ausgabeplatz.'],
-    ['Kommunikation im Team','Klare Kommunikation, wer für allergiearmes Essen verantwortlich ist, und gute Informationsweitergabe, wenn es um allergierelevante Themen geht.'],
-    ['Auf Rückfragen vorbereitet sein','Gäste mit Allergien oder Unverträglichkeiten werden nachfragen. Das Küchenteam sollte jederzeit Auskunft über die verwendeten Zutaten geben können.'],
-    ['Separate Zubereitung','Allergenfreie Gerichte möglichst zuerst und separat zubereiten, bevor mit allergenhaltigen Zutaten gearbeitet wird.']
-  ];
+  const tips=t('ai_kitchen_tips');
   tips.forEach(item=>{
     const row=h('div',{style:{display:'flex',gap:'8px',marginBottom:'8px'}});
     row.appendChild(h('span',{style:{color:'var(--accent)',flexShrink:0}},'•'));
@@ -5003,14 +5055,7 @@ function renderAllergenInfoPage(container){
   const sec4=h('div',{class:'card',style:{marginBottom:'12px'}});
   sec4.appendChild(h('div',{style:{fontWeight:'700',fontSize:'14px',marginBottom:'8px',color:'var(--green)'}},t('ai_sec4_title')));
   sec4.appendChild(h('div',{style:{fontSize:'12px',color:'var(--text-muted)',lineHeight:'1.6',marginBottom:'10px'}},t('ai_sec4_desc')));
-  const appTips=[
-    ['Rezepte als Allergieessen markieren','Im Rezeptbuch kannst du Rezepte über die Checkbox „Allergieessen" als allergiegerechte Alternative kennzeichnen. Diese Rezepte stehen dann beim Zuweisen von Allergie-Essen zur Verfügung.'],
-    ['Allergene pro Zutat und Rezept','Jeder Zutat können Allergene zugeordnet werden (unter Zutaten → Allergene verwalten). Rezepte erkennen automatisch die Allergene ihrer Zutaten. Zusätzlich können manuell Allergene am Rezept ergänzt werden.'],
-    ['Allergie-Essen zuweisen','In der Einkaufsliste nach Rezept gibt es pro Mahlzeit den Button „+ Allergie-Essen". Dort werden nur Rezepte angeboten, die als Allergieessen markiert sind und die passende Mahlzeitkategorie haben.'],
-    ['1%-Faustregel','Als Richtwert werden ca. 1% der Gesamtportionen als Allergie-Portionen vorgeschlagen (aufgerundet, mindestens 1). Der Wert ist frei anpassbar.'],
-    ['Separate Portionsverwaltung','Allergie-Essen haben eine eigene, unabhängige Portionszählung. Sie erscheinen in der Einkaufsliste und im PDF-Export mit dem Label „Allergie-Essen".'],
-    ['PDF-Export','Im gedruckten Rezeptbuch werden Allergie-Rezepte als „Allergie-Essen" gekennzeichnet, damit das Kochteam sie klar von den regulären Mahlzeiten unterscheiden kann.']
-  ];
+  const appTips=t('ai_app_tips');
   appTips.forEach(item=>{
     const row=h('div',{style:{display:'flex',gap:'8px',marginBottom:'8px'}});
     row.appendChild(h('span',{style:{color:'var(--green)',flexShrink:0}},'•'));
