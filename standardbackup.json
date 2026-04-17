@@ -1,7 +1,7 @@
 {
   "_meta": {
     "version": 6,
-    "exported_at": "2026-04-17T13:03:48.951Z",
+    "exported_at": "2026-04-17T14:47:46.032Z",
     "app": "KF Portionsrechner"
   },
   "actions": [
@@ -239,13 +239,14 @@
     {
       "id": 511,
       "name": "Backpulver",
+      "name_en": "Baking Powder",
       "unit": "kg",
-      "price": 5,
+      "price": 3,
       "subcategory": "Backzutaten",
-      "verarbeitungshinweis": "",
+      "verarbeitungshinweis": "reagiert mit Flüssigkeit",
       "lagerhinweis": "Kühl/trocken/luftdicht 1 Jahr, verliert offen an wirkung,  nach Öffnen 3 Monate",
       "abschnitt": 0,
-      "name_en": "Baking Powder"
+      "kochfaktor": 1
     },
     {
       "id": 512,
@@ -464,14 +465,15 @@
     },
     {
       "id": 530,
-      "name": "Chicoree",
+      "name": "Chicorée",
+      "name_en": "Chicory",
       "unit": "kg",
       "price": 4,
       "subcategory": "Salat",
-      "verarbeitungshinweis": "Bittere Spitze entfernen",
+      "verarbeitungshinweis": "Kann auch angebraten werden, bittere Spitze entfernen",
       "lagerhinweis": "Kühlschrank 1 Woche,  dunkel lagern (kein Licht - wird bitter)",
       "abschnitt": 15,
-      "name_en": "Chicory"
+      "kochfaktor": 1
     },
     {
       "id": 531,
@@ -651,13 +653,14 @@
     {
       "id": 543,
       "name": "Eisbergsalat",
+      "name_en": "Iceberg Lettuce",
       "unit": "kg",
       "price": 3,
       "subcategory": "Salat",
-      "verarbeitungshinweis": "",
+      "verarbeitungshinweis": "Zupfen statt schneiden",
       "lagerhinweis": "Kühlschrank 5-7 Tage",
       "abschnitt": 15,
-      "name_en": "Iceberg Lettuce"
+      "kochfaktor": 1
     },
     {
       "id": 544,
@@ -1023,13 +1026,14 @@
     {
       "id": 572,
       "name": "Kakaopulver",
+      "name_en": "Cocoa Powder",
       "unit": "kg",
-      "price": 8,
+      "price": 10,
       "subcategory": "Backzutaten",
       "verarbeitungshinweis": "",
-      "lagerhinweis": "Kühl/trocken/luftdicht 1-2 Jahre",
+      "lagerhinweis": "Kühl/trocken/luftdicht",
       "abschnitt": 0,
-      "name_en": "Cocoa Powder"
+      "kochfaktor": 1
     },
     {
       "id": 573,
@@ -1058,14 +1062,15 @@
     },
     {
       "id": 575,
-      "name": "Kartoffeln",
+      "name": "Kartoffeln (festkochend)",
+      "name_en": "Potatoes",
       "unit": "kg",
       "price": 2,
       "subcategory": "Kartoffeln",
       "verarbeitungshinweis": "grüne Stellen enthalten Solanin (entfernen)",
       "lagerhinweis": "Kühl/dunkel/trocken",
       "abschnitt": 15,
-      "name_en": "Potatoes"
+      "kochfaktor": 1
     },
     {
       "id": 576,
@@ -1397,13 +1402,14 @@
     {
       "id": 604,
       "name": "Maisstärke",
+      "name_en": "Cornstarch",
       "unit": "kg",
-      "price": 3,
+      "price": 2,
       "subcategory": "Mehl",
-      "verarbeitungshinweis": "In kalter Flüssigkeit anrühren,  bindet beim Erhitzen,  glutenfrei",
+      "verarbeitungshinweis": "In kalter Flüssigkeit anrühren,  bindet beim Erhitzen",
       "lagerhinweis": "Kühl/trocken/luftdicht 2 Jahre",
       "abschnitt": 0,
-      "name_en": "Cornstarch"
+      "kochfaktor": 1
     },
     {
       "id": 605,
@@ -1498,13 +1504,14 @@
     {
       "id": 613,
       "name": "Margarine",
+      "name_en": "Margarine",
       "unit": "kg",
       "price": 3,
       "subcategory": "Öle & Fette",
       "verarbeitungshinweis": "",
       "lagerhinweis": "nach Öffnen 2-3 Wochen",
       "abschnitt": 0,
-      "name_en": "Margarine"
+      "kochfaktor": 1
     },
     {
       "id": 614,
@@ -1596,15 +1603,14 @@
     {
       "id": 621,
       "name": "Natron",
+      "name_en": "Bicarbonate of Soda",
       "unit": "kg",
-      "price": 6,
-      "subcategory": "Gewürze und Kräuter",
+      "price": 3,
+      "subcategory": "Backzutaten",
       "verarbeitungshinweis": "Nur mit Säure (Zitrone, Essig) als Triebmittel",
-      "lagerhinweis": "Kühl/trocken/luftdicht 2 Jahre",
+      "lagerhinweis": "Kühl/trocken/luftdicht",
       "abschnitt": 0,
-      "allergens": [],
-      "kochfaktor": 1,
-      "name_en": "Bicarbonate of Soda"
+      "kochfaktor": 1
     },
     {
       "id": 622,
@@ -2122,13 +2128,14 @@
     {
       "id": 662,
       "name": "Rukola",
+      "name_en": "Rocket",
       "unit": "kg",
       "price": 8,
       "subcategory": "Salat",
-      "verarbeitungshinweis": "",
+      "verarbeitungshinweis": "leicht scharf",
       "lagerhinweis": "Kühlschrank 3-5 Tage",
       "abschnitt": 10,
-      "name_en": "Rocket"
+      "kochfaktor": 1
     },
     {
       "id": 663,
@@ -2790,13 +2797,14 @@
     {
       "id": 717,
       "name": "Weizenmehl T550",
+      "name_en": "Wheat Flour T550",
       "unit": "kg",
       "price": 0.7,
       "subcategory": "Mehl",
       "verarbeitungshinweis": "",
-      "lagerhinweis": "",
+      "lagerhinweis": "trocken und luftdicht lagern",
       "abschnitt": 0,
-      "name_en": "Wheat Flour T550"
+      "kochfaktor": 1
     },
     {
       "id": 718,
@@ -2824,13 +2832,14 @@
     {
       "id": 720,
       "name": "Wraps",
+      "name_en": "Wraps",
       "unit": "kg",
-      "price": 6,
+      "price": 4.5,
       "subcategory": "Brot und Teigwaren",
       "verarbeitungshinweis": "",
-      "lagerhinweis": "Kühl/trocken 1-2 Wochen",
+      "lagerhinweis": "Kühl/trocken 4-5 Tage",
       "abschnitt": 0,
-      "name_en": "Wraps"
+      "kochfaktor": 1
     },
     {
       "id": 721,
@@ -2911,13 +2920,14 @@
     {
       "id": 727,
       "name": "Zucker",
+      "name_en": "Sugar",
       "unit": "kg",
       "price": 0.8,
       "subcategory": "Zucker",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Trocken/luftdicht",
       "abschnitt": 0,
-      "name_en": "Sugar"
+      "kochfaktor": 1
     },
     {
       "id": 728,
@@ -3282,6 +3292,246 @@
       "abschnitt": 0,
       "kochfaktor": 3.5,
       "name_en": "Glass Noodles"
+    },
+    {
+      "name": "Kopfsalat",
+      "name_en": "",
+      "unit": "kg",
+      "price": 2.5,
+      "subcategory": "Salat",
+      "verarbeitungshinweis": "Vergleichsweise empfindlich, vorsicht beim Waschen",
+      "lagerhinweis": "2-3 Tage haltbar, feucht lagern",
+      "abschnitt": 10,
+      "kochfaktor": 1,
+      "id": 759
+    },
+    {
+      "name": "Feldsalat",
+      "name_en": "",
+      "unit": "kg",
+      "price": 10,
+      "subcategory": "Salat",
+      "verarbeitungshinweis": "Wurzelansatz entfernen und gründlich waschen",
+      "lagerhinweis": "1-2 Tage haltbar",
+      "abschnitt": 10,
+      "kochfaktor": 1,
+      "id": 760
+    },
+    {
+      "id": 761,
+      "name": "Lollo Rosso/ Lollo Bionda",
+      "name_en": "",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Salat",
+      "verarbeitungshinweis": "leicht bitter",
+      "lagerhinweis": "Kühlschrank 3-5 Tage",
+      "abschnitt": 10,
+      "kochfaktor": 1
+    },
+    {
+      "name": "Romanasalat",
+      "name_en": "",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Salat",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Kühlschrank 4-6 Tage",
+      "abschnitt": 10,
+      "kochfaktor": 1,
+      "id": 762
+    },
+    {
+      "name": "Endiviensalat",
+      "name_en": "",
+      "unit": "kg",
+      "price": 3.5,
+      "subcategory": "Salat",
+      "verarbeitungshinweis": "leicht bitter, gut mit süßem Dressing",
+      "lagerhinweis": "Kühlschrank 3-5 Tage",
+      "abschnitt": 10,
+      "kochfaktor": 1,
+      "id": 763
+    },
+    {
+      "name": "Babyspinat",
+      "name_en": "",
+      "unit": "kg",
+      "price": 6,
+      "subcategory": "Salat",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "2-3 Tage",
+      "abschnitt": 5,
+      "kochfaktor": 1,
+      "id": 764
+    },
+    {
+      "name": "Weizen Vollkornmehl",
+      "name_en": "",
+      "unit": "kg",
+      "price": 1.5,
+      "subcategory": "Mehl",
+      "verarbeitungshinweis": "mehr Flüssigkeit nötig als bei Weißmehl",
+      "lagerhinweis": "kühl und dunkel lagern",
+      "abschnitt": 0,
+      "kochfaktor": 1,
+      "id": 765
+    },
+    {
+      "name": "Vanillezucker",
+      "name_en": "",
+      "unit": "kg",
+      "price": 8,
+      "subcategory": "Backzutaten",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "trocken lagern",
+      "abschnitt": 0,
+      "kochfaktor": 1,
+      "id": 766
+    },
+    {
+      "name": "Apfelmus",
+      "name_en": "",
+      "unit": "kg",
+      "price": 2.5,
+      "subcategory": "Konserven oder Schläuche",
+      "verarbeitungshinweis": "bindet, kann als Ei ersatz verwendet werden",
+      "lagerhinweis": "nach Öffnung gekühlt lagern",
+      "abschnitt": 0,
+      "kochfaktor": 1,
+      "id": 767
+    },
+    {
+      "name": "Weizenbrot",
+      "name_en": "",
+      "unit": "kg",
+      "price": 2.5,
+      "subcategory": "Brot und Teigwaren",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "2-4 Tage",
+      "abschnitt": 0,
+      "kochfaktor": 1,
+      "id": 768
+    },
+    {
+      "name": "Vollkornbrot",
+      "name_en": "",
+      "unit": "kg",
+      "price": 3.5,
+      "subcategory": "Brot und Teigwaren",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "3-6 Tage",
+      "abschnitt": 0,
+      "kochfaktor": 1,
+      "id": 769
+    },
+    {
+      "name": "Roggenbrot",
+      "name_en": "",
+      "unit": "kg",
+      "price": 3.5,
+      "subcategory": "Brot und Teigwaren",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "4-6 Tage",
+      "abschnitt": 0,
+      "kochfaktor": 1,
+      "id": 770
+    },
+    {
+      "name": "Baguette",
+      "name_en": "",
+      "unit": "kg",
+      "price": 2,
+      "subcategory": "Brot und Teigwaren",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "1-2 Tage",
+      "abschnitt": 0,
+      "kochfaktor": 1,
+      "id": 771
+    },
+    {
+      "id": 772,
+      "name": "Fladenbrot",
+      "name_en": "",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Brot und Teigwaren",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "2-3 Tage",
+      "abschnitt": 0,
+      "kochfaktor": 1
+    },
+    {
+      "id": 773,
+      "name": "Toastbrot",
+      "name_en": "",
+      "unit": "kg",
+      "price": 2.5,
+      "subcategory": "Brot und Teigwaren",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "4-6 Tage",
+      "abschnitt": 0,
+      "kochfaktor": 1
+    },
+    {
+      "id": 774,
+      "name": "Glutenfreies Brot",
+      "name_en": "",
+      "unit": "kg",
+      "price": 6,
+      "subcategory": "Brot und Teigwaren",
+      "verarbeitungshinweis": "Trocket oft schnell",
+      "lagerhinweis": "",
+      "abschnitt": 0,
+      "kochfaktor": 1
+    },
+    {
+      "name": "Knäckebrot",
+      "name_en": "",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Brot und Teigwaren",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Monate haltbar",
+      "abschnitt": 0,
+      "kochfaktor": 1,
+      "id": 775
+    },
+    {
+      "name": "Rotwein",
+      "name_en": "",
+      "unit": "kg",
+      "price": 8,
+      "subcategory": "Getränke",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "geöffnet 2-4 Tage im Kühlschrank",
+      "abschnitt": 0,
+      "kochfaktor": 1,
+      "id": 776
+    },
+    {
+      "name": "Kartoffeln (mehligkochend)",
+      "name_en": "",
+      "unit": "kg",
+      "price": 2,
+      "subcategory": "Kartoffeln",
+      "verarbeitungshinweis": "Zerfallen leicht",
+      "lagerhinweis": "kühl, dunkel, trocken",
+      "abschnitt": 15,
+      "kochfaktor": 1,
+      "id": 777
+    },
+    {
+      "name": "Orangensaft",
+      "name_en": "",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Saft",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "abschnitt": 0,
+      "kochfaktor": 1,
+      "id": 778
     }
   ],
   "subcategories": [
@@ -7706,6 +7956,10 @@
       "name": "Typ IV-Kontacktallergen",
       "id": 68,
       "name_en": "Type IV contact allergen"
+    },
+    {
+      "name": "raffinierter Zucker",
+      "id": 69
     }
   ],
   "ingredient_allergens": [
@@ -7813,11 +8067,6 @@
       "ingredient_id": 528,
       "allergen_id": 1,
       "id": 548
-    },
-    {
-      "ingredient_id": 530,
-      "allergen_id": 23,
-      "id": 549
     },
     {
       "ingredient_id": 531,
@@ -7993,16 +8242,6 @@
       "ingredient_id": 571,
       "allergen_id": 24,
       "id": 588
-    },
-    {
-      "ingredient_id": 572,
-      "allergen_id": 16,
-      "id": 589
-    },
-    {
-      "ingredient_id": 572,
-      "allergen_id": 22,
-      "id": 590
     },
     {
       "ingredient_id": 576,
@@ -8285,11 +8524,6 @@
       "id": 654
     },
     {
-      "ingredient_id": 662,
-      "allergen_id": 22,
-      "id": 655
-    },
-    {
       "ingredient_id": 667,
       "allergen_id": 16,
       "id": 658
@@ -8490,16 +8724,6 @@
       "id": 711
     },
     {
-      "ingredient_id": 717,
-      "allergen_id": 20,
-      "id": 712
-    },
-    {
-      "ingredient_id": 717,
-      "allergen_id": 1,
-      "id": 713
-    },
-    {
       "ingredient_id": 719,
       "allergen_id": 4,
       "id": 714
@@ -8520,11 +8744,6 @@
       "id": 717
     },
     {
-      "ingredient_id": 720,
-      "allergen_id": 1,
-      "id": 718
-    },
-    {
       "ingredient_id": 721,
       "allergen_id": 1,
       "id": 719
@@ -8543,11 +8762,6 @@
       "ingredient_id": 723,
       "allergen_id": 22,
       "id": 722
-    },
-    {
-      "ingredient_id": 727,
-      "allergen_id": 18,
-      "id": 724
     },
     {
       "ingredient_id": 725,
@@ -8858,6 +9072,161 @@
       "ingredient_id": 504,
       "allergen_id": 16,
       "id": 801
+    },
+    {
+      "ingredient_id": 662,
+      "allergen_id": 22,
+      "id": 802
+    },
+    {
+      "ingredient_id": 530,
+      "allergen_id": 23,
+      "id": 804
+    },
+    {
+      "ingredient_id": 717,
+      "allergen_id": 1,
+      "id": 805
+    },
+    {
+      "ingredient_id": 717,
+      "allergen_id": 20,
+      "id": 806
+    },
+    {
+      "ingredient_id": 765,
+      "allergen_id": 1,
+      "id": 807
+    },
+    {
+      "ingredient_id": 765,
+      "allergen_id": 20,
+      "id": 808
+    },
+    {
+      "ingredient_id": 727,
+      "allergen_id": 69,
+      "id": 809
+    },
+    {
+      "ingredient_id": 572,
+      "allergen_id": 16,
+      "id": 810
+    },
+    {
+      "ingredient_id": 572,
+      "allergen_id": 22,
+      "id": 811
+    },
+    {
+      "ingredient_id": 613,
+      "allergen_id": 6,
+      "id": 812
+    },
+    {
+      "ingredient_id": 767,
+      "allergen_id": 13,
+      "id": 813
+    },
+    {
+      "ingredient_id": 767,
+      "allergen_id": 17,
+      "id": 814
+    },
+    {
+      "ingredient_id": 767,
+      "allergen_id": 18,
+      "id": 815
+    },
+    {
+      "ingredient_id": 768,
+      "allergen_id": 1,
+      "id": 816
+    },
+    {
+      "ingredient_id": 768,
+      "allergen_id": 20,
+      "id": 817
+    },
+    {
+      "ingredient_id": 769,
+      "allergen_id": 1,
+      "id": 818
+    },
+    {
+      "ingredient_id": 769,
+      "allergen_id": 20,
+      "id": 819
+    },
+    {
+      "ingredient_id": 770,
+      "allergen_id": 1,
+      "id": 820
+    },
+    {
+      "ingredient_id": 770,
+      "allergen_id": 20,
+      "id": 821
+    },
+    {
+      "ingredient_id": 771,
+      "allergen_id": 1,
+      "id": 822
+    },
+    {
+      "ingredient_id": 771,
+      "allergen_id": 20,
+      "id": 823
+    },
+    {
+      "ingredient_id": 720,
+      "allergen_id": 1,
+      "id": 826
+    },
+    {
+      "ingredient_id": 720,
+      "allergen_id": 20,
+      "id": 827
+    },
+    {
+      "ingredient_id": 773,
+      "allergen_id": 1,
+      "id": 830
+    },
+    {
+      "ingredient_id": 773,
+      "allergen_id": 20,
+      "id": 831
+    },
+    {
+      "ingredient_id": 775,
+      "allergen_id": 1,
+      "id": 832
+    },
+    {
+      "ingredient_id": 775,
+      "allergen_id": 20,
+      "id": 833
+    },
+    {
+      "ingredient_id": 776,
+      "allergen_id": 13,
+      "id": 834
+    },
+    {
+      "ingredient_id": 778,
+      "allergen_id": 18,
+      "id": 835
+    },
+    {
+      "ingredient_id": 772,
+      "allergen_id": 1,
+      "id": 836
+    },
+    {
+      "ingredient_id": 772,
+      "allergen_id": 20,
+      "id": 837
     }
   ],
   "recipe_allergens": [
@@ -9086,6 +9455,10 @@
     {
       "name": "dal",
       "id": 9
+    },
+    {
+      "name": "glutenfrei",
+      "id": 10
     }
   ],
   "recipe_tags": [
@@ -9160,6 +9533,12 @@
       "id": 40
     }
   ],
-  "ingredient_tags": [],
+  "ingredient_tags": [
+    {
+      "ingredient_id": 774,
+      "tag_id": 10,
+      "id": 1
+    }
+  ],
   "recipe_ingredient_substitutes": []
 }
