@@ -422,8 +422,11 @@ de: {
   lbl_cook_time: 'Garzeit',
   lbl_allergens_extra: 'Allergene (zusätzlich zu automatisch erkannten aus Zutaten)',
   lbl_allergen_note: 'Allergen-Hinweis',
+  lbl_allergen_note_en: 'Allergen-Hinweis (Englisch, optional)',
   lbl_preparation: 'Zubereitung',
+  lbl_preparation_en: 'Zubereitung (Englisch, optional)',
   lbl_note: 'Hinweis',
+  lbl_note_en: 'Hinweis (Englisch, optional)',
   lbl_portions: 'Portionen',
   lbl_meal_category: 'Mahlzeitkategorie',
   lbl_qty_per_100: 'Menge / 100 Personen',
@@ -986,8 +989,11 @@ en: {
   lbl_cook_time: 'Cook time',
   lbl_allergens_extra: 'Allergens (in addition to those auto-detected from ingredients)',
   lbl_allergen_note: 'Allergen note',
+  lbl_allergen_note_en: 'Allergen note (English, optional)',
   lbl_preparation: 'Preparation',
+  lbl_preparation_en: 'Preparation (English, optional)',
   lbl_note: 'Notes',
+  lbl_note_en: 'Notes (English, optional)',
   lbl_portions: 'Servings',
   lbl_meal_category: 'Meal category',
   lbl_qty_per_100: 'Quantity / 100 people',
@@ -1954,7 +1960,7 @@ async function getRecipes(){
   return recipes;
 }
 async function createRecipe(name,desc,catIds,ingsData,extra={}){
-  const id=await dbAdd('recipes',{name,description:desc,name_en:extra.name_en||'',description_en:extra.description_en||'',zubereitung_zeit:extra.zubereitung_zeit||'',garzeit:extra.garzeit||'',zubereitung:extra.zubereitung||'',hinweis:extra.hinweis||'',allergen_hinweis:extra.allergen_hinweis||'',is_allergy_friendly:extra.is_allergy_friendly||false,created_at:new Date().toISOString()});
+  const id=await dbAdd('recipes',{name,description:desc,name_en:extra.name_en||'',description_en:extra.description_en||'',zubereitung_zeit:extra.zubereitung_zeit||'',garzeit:extra.garzeit||'',zubereitung:extra.zubereitung||'',zubereitung_en:extra.zubereitung_en||'',hinweis:extra.hinweis||'',hinweis_en:extra.hinweis_en||'',allergen_hinweis:extra.allergen_hinweis||'',allergen_hinweis_en:extra.allergen_hinweis_en||'',is_allergy_friendly:extra.is_allergy_friendly||false,created_at:new Date().toISOString()});
   for(const cid of catIds) await dbAdd('recipe_categories',{recipe_id:id,category_id:cid});
   for(const i of ingsData){const riId=await dbAdd('recipe_ingredients',{recipe_id:id,ingredient_id:i.ingredient_id,quantity_per_person:i.quantity_per_person,unit:i.unit,preparation:i.preparation||'',optional:i.optional||false});if(i.substitutes&&i.substitutes.length) await setSubstitutes(riId,i.substitutes);}
   if(extra.allergenIds) await setRecipeAllergens(id,extra.allergenIds);
@@ -1963,7 +1969,7 @@ async function createRecipe(name,desc,catIds,ingsData,extra={}){
 }
 async function updateRecipe(id,name,desc,catIds,ingsData,extra={}){
   const existing=await dbGet('recipes',id);
-  await dbPut('recipes',{id,name,description:desc,name_en:extra.name_en||'',description_en:extra.description_en||'',zubereitung_zeit:extra.zubereitung_zeit||'',garzeit:extra.garzeit||'',zubereitung:extra.zubereitung||'',hinweis:extra.hinweis||'',allergen_hinweis:extra.allergen_hinweis||'',is_allergy_friendly:extra.is_allergy_friendly||false,created_at:existing?.created_at||'',updated_at:new Date().toISOString()});
+  await dbPut('recipes',{id,name,description:desc,name_en:extra.name_en||'',description_en:extra.description_en||'',zubereitung_zeit:extra.zubereitung_zeit||'',garzeit:extra.garzeit||'',zubereitung:extra.zubereitung||'',zubereitung_en:extra.zubereitung_en||'',hinweis:extra.hinweis||'',hinweis_en:extra.hinweis_en||'',allergen_hinweis:extra.allergen_hinweis||'',allergen_hinweis_en:extra.allergen_hinweis_en||'',is_allergy_friendly:extra.is_allergy_friendly||false,created_at:existing?.created_at||'',updated_at:new Date().toISOString()});
   await dbDelByIndex('recipe_categories','recipe_id',id);
   await deleteSubstitutesForRecipeIngredients(id);
   await dbDelByIndex('recipe_ingredients','recipe_id',id);
@@ -3686,23 +3692,24 @@ async function renderRecipeBookPage(container){
         });
         card.appendChild(chips);
       }
-      if(recipe.allergen_hinweis){
-        card.appendChild(h('div',{style:{fontSize:'12px',color:'var(--text-muted)',fontStyle:'italic',marginTop:'4px'}},recipe.allergen_hinweis));
+      const displayAllergenHinweis=(LANG==='en'&&recipe.allergen_hinweis_en)?recipe.allergen_hinweis_en:recipe.allergen_hinweis;
+      if(displayAllergenHinweis){
+        card.appendChild(h('div',{style:{fontSize:'12px',color:'var(--text-muted)',fontStyle:'italic',marginTop:'4px'}},displayAllergenHinweis));
       }
     }
 
     // Zubereitung
-    if(recipe.zubereitung){
+    const displayZubereitung=(LANG==='en'&&recipe.zubereitung_en)?recipe.zubereitung_en:recipe.zubereitung;
+    if(displayZubereitung){
       card.appendChild(h('div',{style:{fontWeight:'700',fontSize:'13px',margin:'16px 0 8px',color:'var(--accent)'}},t('recipe_preparation_label')));
-      const zubereitungDiv=h('div',{style:{fontSize:'13px',lineHeight:'1.6',color:'var(--text-muted)',whiteSpace:'pre-wrap'}},recipe.zubereitung);
-      card.appendChild(zubereitungDiv);
+      card.appendChild(h('div',{style:{fontSize:'13px',lineHeight:'1.6',color:'var(--text-muted)',whiteSpace:'pre-wrap'}},displayZubereitung));
     }
 
     // Hinweis
-    if(recipe.hinweis){
+    const displayHinweis=(LANG==='en'&&recipe.hinweis_en)?recipe.hinweis_en:recipe.hinweis;
+    if(displayHinweis){
       card.appendChild(h('div',{style:{fontWeight:'700',fontSize:'13px',margin:'16px 0 8px',color:'var(--accent)'}},t('recipe_note_label')));
-      const hinweisDiv=h('div',{style:{fontSize:'13px',lineHeight:'1.6',color:'var(--text-muted)',whiteSpace:'pre-wrap',background:'var(--surface2)',borderRadius:'8px',padding:'12px'}},recipe.hinweis);
-      card.appendChild(hinweisDiv);
+      card.appendChild(h('div',{style:{fontSize:'13px',lineHeight:'1.6',color:'var(--text-muted)',whiteSpace:'pre-wrap',background:'var(--surface2)',borderRadius:'8px',padding:'12px'}},displayHinweis));
     }
 
     detailDiv.appendChild(card);
@@ -3940,6 +3947,8 @@ async function renderRecipeBookPage(container){
     content.appendChild(h('div',{class:'form-group',style:{marginTop:'16px'}},
       h('label',{class:'form-label'},t('lbl_allergens_extra')),allergenFrame));
     content.appendChild(h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_allergen_note')),allergenHinweisInput));
+    const allergenHinweisEnInput=h('input',{type:'text',placeholder:t('ph_allergen_hint'),value:recipe?.allergen_hinweis_en||'',style:{width:'100%'}});
+    content.appendChild(h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_allergen_note_en')),allergenHinweisEnInput));
 
     // Tags
     let selectedRecipeTagIds=recipe?(recipe.tags||[]).map(t=>t.id):[];
@@ -3950,11 +3959,17 @@ async function renderRecipeBookPage(container){
     const zubereitungArea=h('textarea',{placeholder:t('ph_preparation_steps'),style:{width:'100%',minHeight:'120px',resize:'vertical'}});
     if(recipe?.zubereitung) zubereitungArea.value=recipe.zubereitung;
     content.appendChild(h('div',{class:'form-group',style:{marginTop:'16px'}},h('label',{class:'form-label'},t('lbl_preparation')),zubereitungArea));
+    const zubereitungEnArea=h('textarea',{placeholder:t('ph_preparation_steps'),style:{width:'100%',minHeight:'120px',resize:'vertical'}});
+    if(recipe?.zubereitung_en) zubereitungEnArea.value=recipe.zubereitung_en;
+    content.appendChild(h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_preparation_en')),zubereitungEnArea));
 
     // Hinweis
     const hinweisArea=h('textarea',{placeholder:t('ph_hints_variations'),style:{width:'100%',minHeight:'80px',resize:'vertical'}});
     if(recipe?.hinweis) hinweisArea.value=recipe.hinweis;
     content.appendChild(h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_note')),hinweisArea));
+    const hinweisEnArea=h('textarea',{placeholder:t('ph_hints_variations'),style:{width:'100%',minHeight:'80px',resize:'vertical'}});
+    if(recipe?.hinweis_en) hinweisEnArea.value=recipe.hinweis_en;
+    content.appendChild(h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_note_en')),hinweisEnArea));
 
     content.appendChild(h('div',{class:'modal-buttons'},
       h('button',{class:'btn btn-surface',onClick:()=>closeModal(modal)},t('btn_cancel')),
@@ -3964,7 +3979,7 @@ async function renderRecipeBookPage(container){
         const portDiv=parseFloat(portionenInput.value)||1;
         const ingsData=ingRows.filter(r=>r.ingId.value&&parseFloat(r.qtyInput.value)>0).map(r=>({ingredient_id:r.ingId.value,quantity_per_person:Math.round((parseFloat(r.qtyInput.value)/portDiv)*10000)/10000,unit:r.unitRef.value,preparation:r.prepSel.value||'',optional:r.optionalRef.value||false,substitutes:(r.subsArr||[]).filter(s=>s.ingredient_id&&s.quantity_per_person>0).map(s=>({ingredient_id:s.ingredient_id,quantity_per_person:Math.round((s.quantity_per_person/portDiv)*10000)/10000,unit:s.unit,preparation:s.preparation||''}))}));
         const selAllergenIds=Object.entries(allergenVars).filter(([_,cb])=>cb.checked).map(([id])=>parseInt(id));
-        const extra={name_en:nameEnInput.value.trim(),description_en:descEnInput.value.trim(),zubereitung_zeit:zubereitungZeitInput.value.trim(),garzeit:garzeitInput.value.trim(),zubereitung:zubereitungArea.value.trim(),hinweis:hinweisArea.value.trim(),allergen_hinweis:allergenHinweisInput.value.trim(),is_allergy_friendly:allergyFriendlyCb.checked,allergenIds:selAllergenIds,tagIds:selectedRecipeTagIds};
+        const extra={name_en:nameEnInput.value.trim(),description_en:descEnInput.value.trim(),zubereitung_zeit:zubereitungZeitInput.value.trim(),garzeit:garzeitInput.value.trim(),zubereitung:zubereitungArea.value.trim(),zubereitung_en:zubereitungEnArea.value.trim(),hinweis:hinweisArea.value.trim(),hinweis_en:hinweisEnArea.value.trim(),allergen_hinweis:allergenHinweisInput.value.trim(),allergen_hinweis_en:allergenHinweisEnInput.value.trim(),is_allergy_friendly:allergyFriendlyCb.checked,allergenIds:selAllergenIds,tagIds:selectedRecipeTagIds};
         if(recipe){await updateRecipe(recipe.id,n,descInput.value.trim(),catIds,ingsData,extra);recipeSelectedId=recipe.id;}
         else{const id=await createRecipe(n,descInput.value.trim(),catIds,ingsData,extra);recipeSelectedId=id;}
         closeModal(modal);renderList();renderDetail();
@@ -4057,7 +4072,7 @@ async function renderRecipeBookPage(container){
   async function duplicateRecipe(recipe){
     const catIds=recipe.categories.map(c=>c.id);
     const ingsData=recipe.ingredients.map(i=>({ingredient_id:i.ingredient_id,quantity_per_person:i.quantity_per_person,unit:i.unit,preparation:i.preparation||'',optional:i.optional||false,substitutes:(i.substitutes||[]).map(s=>({ingredient_id:s.ingredient_id,quantity_per_person:s.quantity_per_person,unit:s.unit,preparation:s.preparation||''}))}));
-    const extra={name_en:recipe.name_en||'',description_en:recipe.description_en||'',zubereitung_zeit:recipe.zubereitung_zeit||'',garzeit:recipe.garzeit||'',zubereitung:recipe.zubereitung||'',hinweis:recipe.hinweis||'',allergen_hinweis:recipe.allergen_hinweis||'',is_allergy_friendly:recipe.is_allergy_friendly||false,allergenIds:recipe.manualAllergenIds||[],tagIds:(recipe.tags||[]).map(t=>t.id)};
+    const extra={name_en:recipe.name_en||'',description_en:recipe.description_en||'',zubereitung_zeit:recipe.zubereitung_zeit||'',garzeit:recipe.garzeit||'',zubereitung:recipe.zubereitung||'',zubereitung_en:recipe.zubereitung_en||'',hinweis:recipe.hinweis||'',hinweis_en:recipe.hinweis_en||'',allergen_hinweis:recipe.allergen_hinweis||'',allergen_hinweis_en:recipe.allergen_hinweis_en||'',is_allergy_friendly:recipe.is_allergy_friendly||false,allergenIds:recipe.manualAllergenIds||[],tagIds:(recipe.tags||[]).map(t=>t.id)};
     const newId=await createRecipe(recipe.name+t('recipe_copy_suffix'),recipe.description||'',catIds,ingsData,extra);
     recipeSelectedId=newId;
     renderList();renderDetail();
@@ -4280,7 +4295,7 @@ async function renderSpecialOrderPage(container){
           <div class="fill-line"><strong>${t('pdf_cooking_team')}</strong> <span class="line-blank"></span></div>
           <div class="fill-line"><strong>${t('pdf_schedule')}</strong> <span class="line-blank-short"></span> <strong>${t('pdf_ready_by')}</strong> <span class="line-blank-short"></span></div>
         </div>
-        ${recipe.description?`<div class="desc-block"><strong>${t('pdf_description')}</strong> ${recipe.description}</div>`:''}
+        ${(()=>{const d=(LANG==='en'&&recipe.description_en)?recipe.description_en:recipe.description;return d?`<div class="desc-block"><strong>${t('pdf_description')}</strong> ${d}</div>`:''})()}
         <div class="info-grid">
           ${recipe.zubereitung_zeit?`<div class="info-item"><span class="info-label">${t('pdf_prep_time_label')}</span><span>${recipe.zubereitung_zeit}</span></div>`:''}
           ${recipe.garzeit?`<div class="info-item"><span class="info-label">${t('pdf_cook_time_label')}</span><span>${recipe.garzeit}</span></div>`:''}
@@ -4291,9 +4306,9 @@ async function renderSpecialOrderPage(container){
           <thead><tr><th>${t('col_ingredient')}</th><th>${t('col_processing')}</th><th>${t('col_qty_per_person')}</th><th>${t('col_total_qty')}</th>${hasAb?`<th>${t('col_netto')}</th>`:''}${hasKf?`<th>${t('col_cooked')}</th>`:''}</tr></thead>
           <tbody>${ingRows}</tbody>
         </table>
-        ${recipe.allergens.length||recipe.allergen_hinweis?`<div class="section"><div class="section-title">${t('pdf_allergens_section')}</div><div class="section-body">${recipe.allergens.map(a=>`<span style="display:inline-block;background:#fce4e4;color:#c0392b;padding:2px 10px;border-radius:10px;font-size:11px;margin:2px 4px 2px 0">${allergenDisplayName(a)}</span>`).join('')}${recipe.allergen_hinweis?`<div style="margin-top:4px;font-style:italic;font-size:11px;color:#666">${recipe.allergen_hinweis}</div>`:''}</div></div>`:''}
-        ${recipe.zubereitung?`<div class="section"><div class="section-title">${t('pdf_preparation_section')}</div><div class="section-body">${recipe.zubereitung.replace(/\n/g,'<br>')}</div></div>`:''}
-        ${recipe.hinweis?`<div class="section"><div class="section-title">${t('pdf_note_section')}</div><div class="section-body">${recipe.hinweis.replace(/\n/g,'<br>')}</div></div>`:''}
+        ${(()=>{const ah=(LANG==='en'&&recipe.allergen_hinweis_en)?recipe.allergen_hinweis_en:recipe.allergen_hinweis;return recipe.allergens.length||ah?`<div class="section"><div class="section-title">${t('pdf_allergens_section')}</div><div class="section-body">${recipe.allergens.map(a=>`<span style="display:inline-block;background:#fce4e4;color:#c0392b;padding:2px 10px;border-radius:10px;font-size:11px;margin:2px 4px 2px 0">${allergenDisplayName(a)}</span>`).join('')}${ah?`<div style="margin-top:4px;font-style:italic;font-size:11px;color:#666">${ah}</div>`:''}</div></div>`:''})()}
+        ${(()=>{const z=(LANG==='en'&&recipe.zubereitung_en)?recipe.zubereitung_en:recipe.zubereitung;return z?`<div class="section"><div class="section-title">${t('pdf_preparation_section')}</div><div class="section-body">${z.replace(/\n/g,'<br>')}</div></div>`:''})()}
+        ${(()=>{const hn=(LANG==='en'&&recipe.hinweis_en)?recipe.hinweis_en:recipe.hinweis;return hn?`<div class="section"><div class="section-title">${t('pdf_note_section')}</div><div class="section-body">${hn.replace(/\n/g,'<br>')}</div></div>`:''})()}
         <div class="notes-box">
           <div class="notes-title">${t('pdf_notes_box')}</div>
           <div class="notes-lines"><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div></div>
@@ -4873,14 +4888,15 @@ async function renderDatabasePage(container){
       }
 
       // Recipes
-      const recipeNameEnMap=new Map((data.recipes||[]).map(r=>[r.name,{name_en:r.name_en||'',description_en:r.description_en||''}]));
+      const recipeEnMap=new Map((data.recipes||[]).map(r=>[r.name,{name_en:r.name_en||'',description_en:r.description_en||'',zubereitung_en:r.zubereitung_en||'',hinweis_en:r.hinweis_en||'',allergen_hinweis_en:r.allergen_hinweis_en||''}]));
       for(const r of await getRecipes()){
-        if(r.name_en&&r.description_en) continue;
-        const tr=recipeNameEnMap.get(r.name);
-        if(tr&&(tr.name_en||tr.description_en)){
+        const tr=recipeEnMap.get(r.name);
+        if(!tr) continue;
+        const needsUpdate=(!r.name_en&&tr.name_en)||(!r.description_en&&tr.description_en)||(!r.zubereitung_en&&tr.zubereitung_en)||(!r.hinweis_en&&tr.hinweis_en)||(!r.allergen_hinweis_en&&tr.allergen_hinweis_en);
+        if(needsUpdate){
           const catIds=r.categories.map(c=>c.id);
           const ingsData=r.ingredients.map(i=>({ingredient_id:i.ingredient_id,quantity_per_person:i.quantity_per_person,unit:i.unit,preparation:i.preparation||'',optional:i.optional||false,substitutes:(i.substitutes||[]).map(s=>({ingredient_id:s.ingredient_id,quantity_per_person:s.quantity_per_person,unit:s.unit,preparation:s.preparation||''}))}));
-          const extra={name_en:r.name_en||tr.name_en,description_en:r.description_en||tr.description_en,zubereitung_zeit:r.zubereitung_zeit||'',garzeit:r.garzeit||'',zubereitung:r.zubereitung||'',hinweis:r.hinweis||'',allergen_hinweis:r.allergen_hinweis||'',is_allergy_friendly:r.is_allergy_friendly||false,allergenIds:r.manualAllergenIds||[],tagIds:(r.tags||[]).map(tg=>tg.id)};
+          const extra={name_en:r.name_en||tr.name_en,description_en:r.description_en||tr.description_en,zubereitung_zeit:r.zubereitung_zeit||'',garzeit:r.garzeit||'',zubereitung:r.zubereitung||'',zubereitung_en:r.zubereitung_en||tr.zubereitung_en,hinweis:r.hinweis||'',hinweis_en:r.hinweis_en||tr.hinweis_en,allergen_hinweis:r.allergen_hinweis||'',allergen_hinweis_en:r.allergen_hinweis_en||tr.allergen_hinweis_en,is_allergy_friendly:r.is_allergy_friendly||false,allergenIds:r.manualAllergenIds||[],tagIds:(r.tags||[]).map(tg=>tg.id)};
           await updateRecipe(r.id,r.name,r.description||'',catIds,ingsData,extra);
           count++;
         }

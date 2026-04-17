@@ -3758,7 +3758,10 @@
       "created_at": "2026-04-09T15:18:19.407Z",
       "id": 90,
       "name_en": "Bulgur Side Dish",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "",
+      "hinweis_en": "",
+      "allergen_hinweis_en": ""
     },
     {
       "id": 91,
@@ -3773,7 +3776,10 @@
       "created_at": "2026-04-09T15:18:20.222Z",
       "updated_at": "2026-04-16T13:56:06.052Z",
       "name_en": "Chana Masala",
-      "description_en": "Chana, meaning chickpeas, are the star of this popular curry."
+      "description_en": "Chana, meaning chickpeas, are the star of this popular curry.",
+      "zubereitung_en": "1. Soak the chickpeas overnight and cook in the morning. Dice the vegetables - the shape does not matter much as everything will be blended. Make a paste from peeled garlic and ginger with oil and salt.\n2. Mix the spices. Toast two-thirds of them in hot oil in the pot. Add the onions and the ginger-garlic paste and saute until translucent. Add the tomatoes and let simmer. Blend everything once cooked through.\n4. Add the chickpeas and remaining spices and bring to a boil again. Chop fresh coriander and serve on the side.",
+      "hinweis_en": "Serve without a separate side - typically with basmati rice.\nThe sauce can also be thickened with chickpea water (aquafaba).",
+      "allergen_hinweis_en": ""
     },
     {
       "id": 92,
@@ -3788,7 +3794,10 @@
       "created_at": "2026-04-09T15:18:21.171Z",
       "updated_at": "2026-04-16T13:55:43.856Z",
       "name_en": "Chili",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "1. Soak the beans in water for at least 12 hours and pre-cook.\n2. Dice the vegetables and fry (add garlic last). Prepare the side dish in parallel.\n3. Add the spices and let them toast briefly in the pot before adding the beans and tomatoes.\n4. Simmer and add water if needed. Season to taste.",
+      "hinweis_en": "Optional spices: bay leaves, oregano, sugar",
+      "allergen_hinweis_en": ""
     },
     {
       "name": "Couscous-Pfanne",
@@ -3801,7 +3810,10 @@
       "created_at": "2026-04-09T15:18:26.432Z",
       "id": 93,
       "name_en": "Couscous Pan",
-      "description_en": "Quick, colourful couscous pan with chickpeas and fresh vegetables. Perfect when time is short."
+      "description_en": "Quick, colourful couscous pan with chickpeas and fresh vegetables. Perfect when time is short.",
+      "zubereitung_en": "1. Bring vegetable stock to a boil and pour over the couscous. Cover and leave to swell for 5 minutes, then fluff with a fork.\n2. Saute onions and garlic in olive oil.\n3. Add courgette and peppers and fry for 5 minutes.\n4. Add chickpeas, tomatoes, cumin and turmeric and fry for 3 minutes.\n5. Fold in the couscous and season with lemon juice, salt and pepper.",
+      "hinweis_en": "Couscous only needs hot water and no cooking time at all - ideal when fuel is scarce. Can also be served cold as a salad.",
+      "allergen_hinweis_en": ""
     },
     {
       "name": "Couscousbeilage",
@@ -3814,7 +3826,10 @@
       "created_at": "2026-04-09T15:18:27.186Z",
       "id": 94,
       "name_en": "Couscous Side Dish",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "",
+      "hinweis_en": "",
+      "allergen_hinweis_en": ""
     },
     {
       "id": 95,
@@ -3828,7 +3843,10 @@
       "created_at": "2026-04-09T15:18:27.673Z",
       "updated_at": "2026-04-13T16:57:27.354Z",
       "name_en": "Potato Side Dish",
-      "description_en": "Boiled potatoes"
+      "description_en": "Boiled potatoes",
+      "zubereitung_en": "",
+      "hinweis_en": "",
+      "allergen_hinweis_en": ""
     },
     {
       "name": "Kartoffelgulasch",
@@ -3841,7 +3859,10 @@
       "created_at": "2026-04-09T15:18:33.231Z",
       "id": 96,
       "name_en": "Potato Goulash",
-      "description_en": "Hearty stew with potatoes and peppers. Simple, warming and ideal for cool evenings at camp."
+      "description_en": "Hearty stew with potatoes and peppers. Simple, warming and ideal for cool evenings at camp.",
+      "zubereitung_en": "1. Saute onions and garlic in olive oil until translucent.\n2. Stir in tomato paste and let it caramelise briefly.\n3. Add sweet and smoked paprika powder and caraway, toast briefly.\n4. Add the pepper pieces and fry for 3 minutes.\n5. Add the diced potatoes, pour over the crushed tomatoes and vegetable stock.\n6. Simmer for approx. 25-30 minutes until the potatoes are cooked through.\n7. Season with salt and pepper. For a thicker consistency, crush a few potatoes.",
+      "hinweis_en": "Gets even better the next day! Keeps well in large pots on low heat. Optionally serve with bread.",
+      "allergen_hinweis_en": ""
     },
     {
       "name": "Krautsalat",
@@ -3854,7 +3875,10 @@
       "created_at": "2026-04-09T15:18:35.260Z",
       "id": 97,
       "name_en": "Coleslaw",
-      "description_en": "Fresh, crunchy coleslaw. Can be prepared in advance and gets even better as it marinates."
+      "description_en": "Fresh, crunchy coleslaw. Can be prepared in advance and gets even better as it marinates.",
+      "zubereitung_en": "1. Shred the white cabbage into fine strips (a mandoline slicer is recommended for large quantities).\n2. Coarsely grate the carrots and add to the cabbage.\n3. Mix a dressing from vinegar, oil, sugar, salt and pepper.\n4. Pour the dressing over the salad and knead vigorously so the cabbage softens.\n5. Leave to marinate for at least 30 minutes - 2-3 hours is better.",
+      "hinweis_en": "Preparing the day before is ideal! The salad improves as it marinates and takes up less volume. For large quantities, shred the cabbage with a bread slicer or mandoline.",
+      "allergen_hinweis_en": ""
     },
     {
       "id": 98,
@@ -3869,7 +3893,10 @@
       "created_at": "2026-04-09T15:18:38.342Z",
       "updated_at": "2026-04-16T14:06:44.357Z",
       "name_en": "Lentil Dal",
-      "description_en": "Creamy Indian lentil dish with coconut milk and spices. Filling, affordable and perfect for large groups."
+      "description_en": "Creamy Indian lentil dish with coconut milk and spices. Filling, affordable and perfect for large groups.",
+      "zubereitung_en": "",
+      "hinweis_en": "Red lentils do not need soaking. For large quantities, use a little more water as the lentils absorb a lot of liquid. Keeps well in a pot on low heat.",
+      "allergen_hinweis_en": ""
     },
     {
       "name": "Nudeln mit Ketchup",
@@ -3882,7 +3909,10 @@
       "created_at": "2026-04-09T15:18:39.066Z",
       "id": 99,
       "name_en": "Pasta with Ketchup",
-      "description_en": "Classic student cooking"
+      "description_en": "Classic student cooking",
+      "zubereitung_en": "",
+      "hinweis_en": "",
+      "allergen_hinweis_en": ""
     },
     {
       "name": "Overnight Oats",
@@ -3895,7 +3925,10 @@
       "created_at": "2026-04-09T15:18:40.627Z",
       "id": 100,
       "name_en": "Overnight Oats",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "Soak the oats overnight in a closed container. In the morning, slice some apples or other fruit (optional) and serve on the side.",
+      "hinweis_en": "There will always be people who want a version without sugar or without cinnamon.",
+      "allergen_hinweis_en": ""
     },
     {
       "name": "Pad Thai mit Tofu",
@@ -3908,7 +3941,10 @@
       "created_at": "2026-04-09T15:18:47.315Z",
       "id": 101,
       "name_en": "Pad Thai with Tofu",
-      "description_en": "A great Pad Thai is just amazing! Make sure not to soak the rice noodles for too long – they should still have a bite when they hit the wok."
+      "description_en": "A great Pad Thai is just amazing! Make sure not to soak the rice noodles for too long – they should still have a bite when they hit the wok.",
+      "zubereitung_en": "1. Soak the rice noodles: bring a pot of water to a boil, then remove from the heat. Soak the noodles for 4-7 minutes until they turn translucent white. They should be pliable but not soft. Drain, rinse under cold running water and drain thoroughly. Set aside.\n\n2. Mix chickpea flour, salt and 0.03 l water until lump-free. Heat a little oil in a wok or deep pan. Fry the chickpea mixture over medium-high heat for about 2 minutes, then stir with a spatula and cook for another 5-6 minutes until the mixture starts to set. Break up any large lumps. Set aside.\n\n3. Pad Thai sauce: whisk together tamarind paste, soy sauce, sugar, lime juice and sriracha.\n\n4. Wipe out the wok and heat again over medium heat. Fry garlic and shallots for 4-5 minutes until soft. Stir in the vegetables, Pad Thai sauce and tofu. Add the noodles; if still too firm, add about 0.015 l of water. Stir-fry for 3-4 minutes until noodles and vegetables are cooked but still have a bite.\n\n5. Garnish with peanuts, lime wedges, a handful of bean sprouts and some chopped coriander.",
+      "hinweis_en": "For those with more time: soak the noodles in cold water for 40-60 minutes until white, soft and pliable but still with a bite. Drain well. Use immediately or store in a plastic bag in the fridge for up to 2 days.\nTip: soy sauce can be replaced with tamari (gluten-free).",
+      "allergen_hinweis_en": ""
     },
     {
       "id": 102,
@@ -3923,7 +3959,10 @@
       "created_at": "2026-04-09T15:18:51.110Z",
       "updated_at": "2026-04-13T21:53:13.049Z",
       "name_en": "Pasta Bolognese",
-      "description_en": "Classic Bolognese with soy mince instead of ground meat. Almost indistinguishable from the original."
+      "description_en": "Classic Bolognese with soy mince instead of ground meat. Almost indistinguishable from the original.",
+      "zubereitung_en": "1. Soak the soy mince in hot water for 10 minutes, then drain well.\n2. Saute onions, garlic and carrots in olive oil.\n3. Add the soy mince and fry briefly.\n4. Stir in the tomato paste and let it caramelise.\n5. Add the crushed tomatoes and season with oregano, basil, sugar, salt and pepper.\n6. Simmer over medium heat for about 20 minutes, stirring occasionally.\n7. Cook the pasta al dente in a separate pot of salted water.\n8. Season the sauce and serve with the pasta.",
+      "hinweis_en": "Soy mince absorbs the flavour of the sauce well. Alternatively, green or brown lentils can be used as a meat substitute - they just need a little longer. For large quantities, cook the pasta in batches.",
+      "allergen_hinweis_en": ""
     },
     {
       "name": "Pastabeilage",
@@ -3936,7 +3975,10 @@
       "created_at": "2026-04-09T15:18:52.097Z",
       "id": 103,
       "name_en": "Pasta Side Dish",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "",
+      "hinweis_en": "",
+      "allergen_hinweis_en": ""
     },
     {
       "name": "Rattatuille",
@@ -3949,7 +3991,10 @@
       "created_at": "2026-04-09T15:18:55.098Z",
       "id": 104,
       "name_en": "Ratatouille",
-      "description_en": "The star of Provençal cuisine – an aromatic braised dish of summer vegetables."
+      "description_en": "The star of Provençal cuisine – an aromatic braised dish of summer vegetables.",
+      "zubereitung_en": "1. Dice all vegetables into approx. 1x1 to 2x2 cm cubes.\n2. Add the diced vegetables with salt and oil to a preheated pot and fry until they develop some colour.\n3. Stir in tomato paste and deglaze with vinegar after a short time.\n4. Add the passata and spices and simmer until the desired consistency is reached.",
+      "hinweis_en": "Often also made with sugar, bay leaves or allspice.",
+      "allergen_hinweis_en": ""
     },
     {
       "id": 105,
@@ -3964,7 +4009,10 @@
       "created_at": "2026-04-09T15:18:56.203Z",
       "updated_at": "2026-04-13T21:43:06.798Z",
       "name_en": "Rice Side Dish (Basmati)",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "",
+      "hinweis_en": "",
+      "allergen_hinweis_en": ""
     },
     {
       "id": 106,
@@ -3979,7 +4027,10 @@
       "created_at": "2026-04-09T15:18:56.691Z",
       "updated_at": "2026-04-13T21:44:06.479Z",
       "name_en": "Rice Side Dish (Jasmine Rice)",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "",
+      "hinweis_en": "",
+      "allergen_hinweis_en": ""
     },
     {
       "id": 107,
@@ -3994,7 +4045,10 @@
       "created_at": "2026-04-09T15:18:57.149Z",
       "updated_at": "2026-04-13T21:43:54.347Z",
       "name_en": "Rice Side Dish (Long Grain Rice)",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "",
+      "hinweis_en": "",
+      "allergen_hinweis_en": ""
     },
     {
       "id": 108,
@@ -4009,7 +4063,10 @@
       "created_at": "2026-04-09T15:18:57.653Z",
       "updated_at": "2026-04-13T21:43:42.859Z",
       "name_en": "Rice Side Dish (Parboiled)",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "",
+      "hinweis_en": "",
+      "allergen_hinweis_en": ""
     },
     {
       "name": "Soja Gyros",
@@ -4022,7 +4079,10 @@
       "created_at": "2026-04-09T15:18:59.545Z",
       "id": 109,
       "name_en": "Soy Gyros",
-      "description_en": "Addictive vegan gyros made from soy chunks – marinated, seasoned and pan-fried. Served with potatoes, tzatziki and coleslaw."
+      "description_en": "Addictive vegan gyros made from soy chunks – marinated, seasoned and pan-fried. Served with potatoes, tzatziki and coleslaw.",
+      "zubereitung_en": "1. Briefly boil the water, soy chunks, soy sauce and vegetable stock powder together. Let the chunks absorb the liquid.\n\n2. Meanwhile, mix a marinade paste from lemon juice, garlic, oil, paprika powder, cumin and salt.\n\n3. Let the chunks cool. Mix with the paste, oregano and marjoram. Add the remaining oil.\n\n4. Leave everything to marinate thoroughly.\n\n5. Fry over high heat just before serving.",
+      "hinweis_en": "Serve complete with potatoes, tzatziki and coleslaw.",
+      "allergen_hinweis_en": ""
     },
     {
       "id": 110,
@@ -4037,7 +4097,10 @@
       "created_at": "2026-04-09T15:19:00.698Z",
       "updated_at": "2026-04-13T21:43:18.490Z",
       "name_en": "Wild Rice Side Dish",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "",
+      "hinweis_en": "",
+      "allergen_hinweis_en": ""
     },
     {
       "id": 111,
@@ -4052,7 +4115,10 @@
       "created_at": "2026-04-09T15:36:31.767Z",
       "updated_at": "2026-04-16T13:58:33.748Z",
       "name_en": "Lemon Risotto",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "1. Dice the vegetables and saute the onions in oil until translucent. Then add the garlic.\n2. Sweat the rice and toast for 1-2 minutes; optionally deglaze with white wine.\n3. Gradually stir in the stock. After 20 minutes, add the lemon juice.\n4. Season with salt, pepper, nutritional yeast and herbs.",
+      "hinweis_en": "Do not add all the stock at once - stir frequently.",
+      "allergen_hinweis_en": ""
     },
     {
       "name": "Rote Bete Salat Beilage",
@@ -4065,7 +4131,10 @@
       "created_at": "2026-04-09T15:43:29.889Z",
       "id": 112,
       "name_en": "Beetroot Salad",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "1. Slice the beetroot, apples (optional) and onions (optional). Briefly soak the onions in water.\n2. Make a dressing with lemon juice, oil, salt, pepper and optionally sugar.\n3. Leave to marinate for at least 10 minutes and fold in the herbs.",
+      "hinweis_en": "Serve chilled.",
+      "allergen_hinweis_en": ""
     },
     {
       "id": 113,
@@ -4080,7 +4149,10 @@
       "created_at": "2026-04-09T19:55:07.330Z",
       "updated_at": "2026-04-14T16:07:10.077Z",
       "name_en": "Aubergine Schnitzel with Carrot Purée and Brussels Sprouts",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "1. Peel and dice the potatoes and carrots. Cover both with water in a pot and bring to a boil. For the Brussels sprouts, trim the stalks, remove outer leaves if necessary and halve. Bring a separate pot of water to a boil and cook the Brussels sprouts for 3-4 minutes (adding sugar or lemon juice to the water reduces bitterness). The cooking water may optionally be reused for the potatoes.\n2. Slice the aubergines into 1 cm thick rounds, salt and leave to draw out moisture, then pat dry. Meanwhile, prepare the breading station.\n2.1 Prepare a wet batter from flour, plant milk, oil, salt and optionally paprika powder. Set out breadcrumbs as the second station and have several GN trays ready to store the breaded slices.\n2.2 Dip the aubergine slices first into the wet batter, then into the breadcrumbs. Optionally store between layers of kitchen paper in GN trays.\n3. Fry the pre-cooked Brussels sprouts in a paella pan with oil until well browned, then season with salt and pepper.\n4. Mash or puree the cooked potatoes and carrots with vegan butter (or oil) and plant milk. Season with salt and pepper.\n5. Fill a paella pan with approx. 2-4 cm of oil for frying. Once the oil has reached temperature, fry the aubergine slices and store in shallow GN trays or transfer directly for serving.\n6. Optionally offer pomegranate seeds or herbs.",
+      "hinweis_en": "",
+      "allergen_hinweis_en": ""
     },
     {
       "id": 114,
@@ -4095,7 +4167,10 @@
       "created_at": "2026-04-09T19:56:25.128Z",
       "updated_at": "2026-04-16T13:02:00.286Z",
       "name_en": "Palak Tofu",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "",
+      "hinweis_en": "",
+      "allergen_hinweis_en": ""
     },
     {
       "name": "Schokopancakes",
@@ -4108,7 +4183,10 @@
       "created_at": "2026-04-09T19:59:08.927Z",
       "id": 115,
       "name_en": "Chocolate Pancakes",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "",
+      "hinweis_en": "",
+      "allergen_hinweis_en": ""
     },
     {
       "id": 116,
@@ -4122,7 +4200,10 @@
       "created_at": "2026-04-13T17:02:36.439Z",
       "updated_at": "2026-04-13T19:05:42.884Z",
       "name_en": "Soy Goulash",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "Best prepared the day before to allow the flavours to develop.\n1. Caramelise the onions; once cooked through, add the pepper paste and toast briefly.\n2. Deglaze with dark beer and reduce, then add caraway, allspice and bay leaves.\n3. Pour in half the stock and stir in the soy chunks. Stir well and leave to marinate overnight.\nOn the day of cooking:\n1. Dice the peppers into bite-sized pieces and sear. At the same time, heat up the goulash base from the day before and add the peppers.\n2. Bring the mixture to the desired consistency with the remaining stock and season to taste.",
+      "hinweis_en": "",
+      "allergen_hinweis_en": ""
     },
     {
       "name": "Kartoffelbreibeilage",
@@ -4135,7 +4216,10 @@
       "created_at": "2026-04-13T17:03:23.519Z",
       "id": 117,
       "name_en": "Mashed Potato Side Dish",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "",
+      "hinweis_en": "",
+      "allergen_hinweis_en": ""
     },
     {
       "id": 118,
@@ -4150,7 +4234,10 @@
       "created_at": "2026-04-13T17:03:38.909Z",
       "updated_at": "2026-04-14T16:37:10.480Z",
       "name_en": "Spätzle Side Dish",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "1. First mix all the dry ingredients, then add all the wet ingredients.\n2. Beat the batter with a wooden spoon until it forms bubbles.\n3. Leave to rest for 15-60 minutes.\n4. Press through a Spaetzle slicer or perforated GN tray into a pot of boiling water, then rinse with cold water.",
+      "hinweis_en": "Exactly 5 kg of Spaetzle flour fits into a standard white tub, yielding a corresponding amount of Spaetzle.",
+      "allergen_hinweis_en": ""
     },
     {
       "id": 119,
@@ -4165,7 +4252,10 @@
       "created_at": "2026-04-13T21:32:13.576Z",
       "updated_at": "2026-04-16T14:04:14.610Z",
       "name_en": "Mild Rice and Vegetables",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "1. Cook the rice with twice the amount of water and prepare the vegetables. Use separate chopping boards.\n2. Steam or braise the vegetables with a little oil over low heat using a small amount of water.\n3. Mix the rice and vegetables and season to taste.",
+      "hinweis_en": "",
+      "allergen_hinweis_en": "Do not use iodised salt."
     },
     {
       "id": 120,
@@ -4180,7 +4270,10 @@
       "created_at": "2026-04-13T21:39:56.764Z",
       "updated_at": "2026-04-16T13:56:46.757Z",
       "name_en": "Potato and Vegetable Pan",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "1. Dice the potatoes and pre-cook for 10 minutes.\n2. Slice the remaining vegetables and fry gently in oil, then salt.",
+      "hinweis_en": "",
+      "allergen_hinweis_en": "Avoid using iodised salt if possible."
     },
     {
       "id": 121,
@@ -4195,7 +4288,10 @@
       "created_at": "2026-04-13T21:42:41.175Z",
       "updated_at": "2026-04-16T13:59:28.731Z",
       "name_en": "Sweet Potato Purée",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "1. Cook the sweet potatoes.\n2. Mash and stir in oil and salt.",
+      "hinweis_en": "",
+      "allergen_hinweis_en": ""
     },
     {
       "id": 122,
@@ -4210,7 +4306,10 @@
       "created_at": "2026-04-13T21:52:30.882Z",
       "updated_at": "2026-04-16T13:58:12.384Z",
       "name_en": "Carrot and Ginger Soup",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "Chop everything, cook until soft and blend. Season to taste.",
+      "hinweis_en": "",
+      "allergen_hinweis_en": ""
     },
     {
       "id": 123,
@@ -4225,7 +4324,10 @@
       "created_at": "2026-04-13T21:55:58.942Z",
       "updated_at": "2026-04-16T13:57:50.661Z",
       "name_en": "Potato Soup",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "1. Peel the potatoes, chop roughly and cook.\n2. Blend with oil and salt and season to taste.",
+      "hinweis_en": "",
+      "allergen_hinweis_en": ""
     },
     {
       "id": 124,
@@ -4240,7 +4342,10 @@
       "created_at": "2026-04-13T22:00:22.930Z",
       "updated_at": "2026-04-16T10:52:18.348Z",
       "name_en": "Overnight Oats",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "Slice the bananas, mix everything together and leave in the fridge overnight.",
+      "hinweis_en": "",
+      "allergen_hinweis_en": ""
     },
     {
       "name": "Bananen Reisbrei",
@@ -4254,7 +4359,10 @@
       "created_at": "2026-04-13T22:02:07.354Z",
       "id": 125,
       "name_en": "Banana Rice Porridge",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "Cook the rice, mash the bananas and mix in.",
+      "hinweis_en": "",
+      "allergen_hinweis_en": ""
     },
     {
       "id": 126,
@@ -4269,7 +4377,10 @@
       "created_at": "2026-04-14T16:09:56.675Z",
       "updated_at": "2026-04-16T13:52:17.342Z",
       "name_en": "Brown Lentil Stew with Smoked Tofu",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "1. Prepare the vegetables, then fry in a large pot until cooked through and lightly browned, then stir in the tomato paste and toast briefly.\n2. Add the lentils together with the potatoes, salt and bay leaf, bring to a boil and simmer until cooked through.\n3. Meanwhile, fry the tofu separately and keep ready as a topping, or stir in.",
+      "hinweis_en": "Without tofu, the dish is soy-free.",
+      "allergen_hinweis_en": ""
     },
     {
       "id": 127,
@@ -4284,7 +4395,10 @@
       "created_at": "2026-04-15T11:43:02.787Z",
       "updated_at": "2026-04-15T12:02:30.959Z",
       "name_en": "Cauliflower Risotto",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "1. Break the cauliflower into half florets, peel the garlic and fry with a little oil until golden. Add the garlic, steam with a little water until soft, then blend to a smooth puree and stir in the nutritional yeast.\n2. Finely dice the onions and bring a pot of stock to a boil. Saute the onions in a large pot until translucent. Add the risotto rice and heat with a little oil. Optionally deglaze with white wine. Gradually stir in the stock until the risotto rice is cooked.\n3. Stir the cauliflower mixture into the risotto, season and taste.",
+      "hinweis_en": "",
+      "allergen_hinweis_en": ""
     },
     {
       "id": 128,
@@ -4299,7 +4413,10 @@
       "created_at": "2026-04-16T10:52:32.524Z",
       "updated_at": "2026-04-16T13:01:52.191Z",
       "name_en": "Porridge",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "",
+      "hinweis_en": "",
+      "allergen_hinweis_en": ""
     },
     {
       "id": 129,
@@ -4314,7 +4431,10 @@
       "created_at": "2026-04-16T13:08:26.648Z",
       "updated_at": "2026-04-16T13:51:00.563Z",
       "name_en": "Carrot and Lentil Spread",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "",
+      "hinweis_en": "",
+      "allergen_hinweis_en": ""
     },
     {
       "id": 130,
@@ -4329,7 +4449,10 @@
       "created_at": "2026-04-16T13:47:03.665Z",
       "updated_at": "2026-04-16T13:50:49.951Z",
       "name_en": "Aubergine Spread",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "",
+      "hinweis_en": "",
+      "allergen_hinweis_en": ""
     },
     {
       "id": 131,
@@ -4344,7 +4467,10 @@
       "created_at": "2026-04-16T13:47:28.206Z",
       "updated_at": "2026-04-16T13:51:08.641Z",
       "name_en": "Potato and Onion Spread",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "",
+      "hinweis_en": "",
+      "allergen_hinweis_en": ""
     },
     {
       "id": 132,
@@ -4359,7 +4485,10 @@
       "created_at": "2026-04-16T13:48:14.936Z",
       "updated_at": "2026-04-16T13:51:20.838Z",
       "name_en": "Onion Chutney",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "",
+      "hinweis_en": "",
+      "allergen_hinweis_en": ""
     },
     {
       "name": "Schoko-Aufstrich",
@@ -4373,7 +4502,10 @@
       "created_at": "2026-04-16T14:09:45.660Z",
       "id": 133,
       "name_en": "Chocolate Spread",
-      "description_en": ""
+      "description_en": "",
+      "zubereitung_en": "",
+      "hinweis_en": "",
+      "allergen_hinweis_en": ""
     }
   ],
   "recipe_categories": [
