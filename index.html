@@ -887,6 +887,8 @@ de: {
   misc_original_label: 'Original',
   lbl_name_en: 'Englischer Name (optional)',
   ph_name_en: 'z.B. Potatoes',
+  lbl_description_en: 'Englische Beschreibung (optional)',
+  ph_recipe_desc_en: 'z.B. A hearty tomato soup',
   misc_or: 'oder',
 },
 en: {
@@ -1449,6 +1451,8 @@ en: {
   misc_original_label: 'Original',
   lbl_name_en: 'English name (optional)',
   ph_name_en: 'e.g. Potatoes',
+  lbl_description_en: 'English description (optional)',
+  ph_recipe_desc_en: 'e.g. A hearty tomato soup',
   misc_or: 'or',
 }
 };
@@ -1950,7 +1954,7 @@ async function getRecipes(){
   return recipes;
 }
 async function createRecipe(name,desc,catIds,ingsData,extra={}){
-  const id=await dbAdd('recipes',{name,description:desc,zubereitung_zeit:extra.zubereitung_zeit||'',garzeit:extra.garzeit||'',zubereitung:extra.zubereitung||'',hinweis:extra.hinweis||'',allergen_hinweis:extra.allergen_hinweis||'',is_allergy_friendly:extra.is_allergy_friendly||false,created_at:new Date().toISOString()});
+  const id=await dbAdd('recipes',{name,description:desc,name_en:extra.name_en||'',description_en:extra.description_en||'',zubereitung_zeit:extra.zubereitung_zeit||'',garzeit:extra.garzeit||'',zubereitung:extra.zubereitung||'',hinweis:extra.hinweis||'',allergen_hinweis:extra.allergen_hinweis||'',is_allergy_friendly:extra.is_allergy_friendly||false,created_at:new Date().toISOString()});
   for(const cid of catIds) await dbAdd('recipe_categories',{recipe_id:id,category_id:cid});
   for(const i of ingsData){const riId=await dbAdd('recipe_ingredients',{recipe_id:id,ingredient_id:i.ingredient_id,quantity_per_person:i.quantity_per_person,unit:i.unit,preparation:i.preparation||'',optional:i.optional||false});if(i.substitutes&&i.substitutes.length) await setSubstitutes(riId,i.substitutes);}
   if(extra.allergenIds) await setRecipeAllergens(id,extra.allergenIds);
@@ -1959,7 +1963,7 @@ async function createRecipe(name,desc,catIds,ingsData,extra={}){
 }
 async function updateRecipe(id,name,desc,catIds,ingsData,extra={}){
   const existing=await dbGet('recipes',id);
-  await dbPut('recipes',{id,name,description:desc,zubereitung_zeit:extra.zubereitung_zeit||'',garzeit:extra.garzeit||'',zubereitung:extra.zubereitung||'',hinweis:extra.hinweis||'',allergen_hinweis:extra.allergen_hinweis||'',is_allergy_friendly:extra.is_allergy_friendly||false,created_at:existing?.created_at||'',updated_at:new Date().toISOString()});
+  await dbPut('recipes',{id,name,description:desc,name_en:extra.name_en||'',description_en:extra.description_en||'',zubereitung_zeit:extra.zubereitung_zeit||'',garzeit:extra.garzeit||'',zubereitung:extra.zubereitung||'',hinweis:extra.hinweis||'',allergen_hinweis:extra.allergen_hinweis||'',is_allergy_friendly:extra.is_allergy_friendly||false,created_at:existing?.created_at||'',updated_at:new Date().toISOString()});
   await dbDelByIndex('recipe_categories','recipe_id',id);
   await deleteSubstitutesForRecipeIngredients(id);
   await dbDelByIndex('recipe_ingredients','recipe_id',id);
@@ -3530,7 +3534,7 @@ async function renderRecipeBookPage(container){
     listDiv.innerHTML='';
     let recipes=await getRecipes();
     const q=searchInput.value.toLowerCase();
-    if(q) recipes=recipes.filter(r=>r.name.toLowerCase().includes(q)||(r.description||'').toLowerCase().includes(q));
+    if(q) recipes=recipes.filter(r=>r.name.toLowerCase().includes(q)||(r.name_en||'').toLowerCase().includes(q)||(r.description||'').toLowerCase().includes(q)||(r.description_en||'').toLowerCase().includes(q));
     const cf=recipeCatFilter.value;
     if(cf==='__none__') recipes=recipes.filter(r=>!r.categories.length);
     else if(cf) recipes=recipes.filter(r=>r.categories.some(c=>c.id===parseInt(cf)));
@@ -3540,7 +3544,7 @@ async function renderRecipeBookPage(container){
       const isSel=r.id===recipeSelectedId;
       const item=h('div',{class:`list-item ${isSel?'active':''}`,onClick:()=>{recipeSelectedId=r.id;renderList();renderDetail().then(()=>{if(window.innerWidth<=768) detailDiv.scrollIntoView({behavior:'smooth',block:'start'});});}});
       const nameRow=h('div',{style:{display:'flex',alignItems:'center',gap:'6px'}});
-      nameRow.appendChild(h('span',{class:'item-name'},r.name));
+      nameRow.appendChild(h('span',{class:'item-name'},(LANG==='en'&&r.name_en)?r.name_en:r.name));
       if(r.is_allergy_friendly) nameRow.appendChild(h('span',{style:{fontSize:'10px',padding:'1px 6px',borderRadius:'8px',background:'var(--green)',color:'#fff',fontWeight:'600',whiteSpace:'nowrap'}},t('recipe_allergy_badge')));
       item.appendChild(nameRow);
       if(r.categories.length) item.appendChild(h('div',{class:'item-meta'},r.categories.map(c=>mealTypeCatDisplayName(c)).join(', ')));
@@ -3571,7 +3575,7 @@ async function renderRecipeBookPage(container){
     const card=h('div',{class:'card'});
     const top=h('div',{class:'recipe-detail-top',style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'4px'}});
     const titleRow=h('div',{style:{display:'flex',alignItems:'center',gap:'8px',flexWrap:'wrap'}});
-    titleRow.appendChild(h('span',{style:{fontSize:'18px',fontWeight:'700'}},recipe.name));
+    titleRow.appendChild(h('span',{style:{fontSize:'18px',fontWeight:'700'}},(LANG==='en'&&recipe.name_en)?recipe.name_en:recipe.name));
     if(recipe.is_allergy_friendly) titleRow.appendChild(h('span',{style:{fontSize:'11px',padding:'2px 8px',borderRadius:'10px',background:'var(--green)',color:'#fff',fontWeight:'600'}},t('recipe_allergy_badge')));
     top.appendChild(titleRow);
     const topBtns=h('div',{class:'recipe-detail-btns',style:{display:'flex',gap:'8px'}});
@@ -3582,7 +3586,8 @@ async function renderRecipeBookPage(container){
     top.appendChild(topBtns);
     card.appendChild(top);
 
-    if(recipe.description) card.appendChild(h('div',{style:{fontSize:'12px',color:'var(--text-muted)',marginBottom:'8px'}},recipe.description));
+    const displayDesc=(LANG==='en'&&recipe.description_en)?recipe.description_en:recipe.description;
+    if(displayDesc) card.appendChild(h('div',{style:{fontSize:'12px',color:'var(--text-muted)',marginBottom:'8px'}},displayDesc));
     if(recipe.categories.length){
       const chips=h('div',{style:{marginBottom:'8px'}});
       recipe.categories.forEach(c=>chips.appendChild(h('span',{class:'chip'},mealTypeCatDisplayName(c))));
@@ -3710,9 +3715,13 @@ async function renderRecipeBookPage(container){
     const content=h('div',{});
     content.appendChild(h('h2',{},recipe?t('dlg_edit_recipe'):t('dlg_new_recipe')));
     const nameInput=h('input',{type:'text',placeholder:t('ph_recipe_name'),value:recipe?.name||'',style:{width:'100%'}});
+    const nameEnInput=h('input',{type:'text',placeholder:t('ph_name_en'),value:recipe?.name_en||'',style:{width:'100%'}});
     const descInput=h('input',{type:'text',placeholder:t('ph_recipe_desc'),value:recipe?.description||'',style:{width:'100%'}});
+    const descEnInput=h('input',{type:'text',placeholder:t('ph_recipe_desc_en'),value:recipe?.description_en||'',style:{width:'100%'}});
     content.appendChild(h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_name')),nameInput));
+    content.appendChild(h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_name_en')),nameEnInput));
     content.appendChild(h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_description')),descInput));
+    content.appendChild(h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_description_en')),descEnInput));
 
     // Categories
     const catFrame=h('div',{style:{display:'flex',flexWrap:'wrap',gap:'4px',marginBottom:'12px'}});
@@ -3955,7 +3964,7 @@ async function renderRecipeBookPage(container){
         const portDiv=parseFloat(portionenInput.value)||1;
         const ingsData=ingRows.filter(r=>r.ingId.value&&parseFloat(r.qtyInput.value)>0).map(r=>({ingredient_id:r.ingId.value,quantity_per_person:Math.round((parseFloat(r.qtyInput.value)/portDiv)*10000)/10000,unit:r.unitRef.value,preparation:r.prepSel.value||'',optional:r.optionalRef.value||false,substitutes:(r.subsArr||[]).filter(s=>s.ingredient_id&&s.quantity_per_person>0).map(s=>({ingredient_id:s.ingredient_id,quantity_per_person:Math.round((s.quantity_per_person/portDiv)*10000)/10000,unit:s.unit,preparation:s.preparation||''}))}));
         const selAllergenIds=Object.entries(allergenVars).filter(([_,cb])=>cb.checked).map(([id])=>parseInt(id));
-        const extra={zubereitung_zeit:zubereitungZeitInput.value.trim(),garzeit:garzeitInput.value.trim(),zubereitung:zubereitungArea.value.trim(),hinweis:hinweisArea.value.trim(),allergen_hinweis:allergenHinweisInput.value.trim(),is_allergy_friendly:allergyFriendlyCb.checked,allergenIds:selAllergenIds,tagIds:selectedRecipeTagIds};
+        const extra={name_en:nameEnInput.value.trim(),description_en:descEnInput.value.trim(),zubereitung_zeit:zubereitungZeitInput.value.trim(),garzeit:garzeitInput.value.trim(),zubereitung:zubereitungArea.value.trim(),hinweis:hinweisArea.value.trim(),allergen_hinweis:allergenHinweisInput.value.trim(),is_allergy_friendly:allergyFriendlyCb.checked,allergenIds:selAllergenIds,tagIds:selectedRecipeTagIds};
         if(recipe){await updateRecipe(recipe.id,n,descInput.value.trim(),catIds,ingsData,extra);recipeSelectedId=recipe.id;}
         else{const id=await createRecipe(n,descInput.value.trim(),catIds,ingsData,extra);recipeSelectedId=id;}
         closeModal(modal);renderList();renderDetail();
@@ -4048,7 +4057,7 @@ async function renderRecipeBookPage(container){
   async function duplicateRecipe(recipe){
     const catIds=recipe.categories.map(c=>c.id);
     const ingsData=recipe.ingredients.map(i=>({ingredient_id:i.ingredient_id,quantity_per_person:i.quantity_per_person,unit:i.unit,preparation:i.preparation||'',optional:i.optional||false,substitutes:(i.substitutes||[]).map(s=>({ingredient_id:s.ingredient_id,quantity_per_person:s.quantity_per_person,unit:s.unit,preparation:s.preparation||''}))}));
-    const extra={zubereitung_zeit:recipe.zubereitung_zeit||'',garzeit:recipe.garzeit||'',zubereitung:recipe.zubereitung||'',hinweis:recipe.hinweis||'',allergen_hinweis:recipe.allergen_hinweis||'',is_allergy_friendly:recipe.is_allergy_friendly||false,allergenIds:recipe.manualAllergenIds||[],tagIds:(recipe.tags||[]).map(t=>t.id)};
+    const extra={name_en:recipe.name_en||'',description_en:recipe.description_en||'',zubereitung_zeit:recipe.zubereitung_zeit||'',garzeit:recipe.garzeit||'',zubereitung:recipe.zubereitung||'',hinweis:recipe.hinweis||'',allergen_hinweis:recipe.allergen_hinweis||'',is_allergy_friendly:recipe.is_allergy_friendly||false,allergenIds:recipe.manualAllergenIds||[],tagIds:(recipe.tags||[]).map(t=>t.id)};
     const newId=await createRecipe(recipe.name+t('recipe_copy_suffix'),recipe.description||'',catIds,ingsData,extra);
     recipeSelectedId=newId;
     renderList();renderDetail();
@@ -4264,7 +4273,7 @@ async function renderSpecialOrderPage(container){
 
       pages+=`<div class="recipe-page">
         <div class="page-top">
-          <div class="recipe-title">${recipe.name}</div>
+          <div class="recipe-title">${(LANG==='en'&&recipe.name_en)?recipe.name_en:recipe.name}</div>
           <div class="meta-row">${actionName?`<span>${t('pdf_cooking_action',actionName)}</span>`:''}${dateStr?`<span>${dateStr}</span>`:''}<span>${pdfMealTypeEnMap[a.meal_type]||a.meal_type} — ${typeLabel}</span><span class="portions-badge">${portions} ${t('cal_portionen_unit')}</span></div>
         </div>
         <div class="fill-fields">
@@ -4483,8 +4492,9 @@ tr:nth-child(even){background:#fafafa}
     function fillSelect(){
       while(recipeSel.options.length>1) recipeSel.remove(1);
       const q=searchInput.value.toLowerCase();
-      recipes.filter(r=>!q||r.name.toLowerCase().includes(q)).forEach(r=>{
-        recipeSel.appendChild(h('option',{value:String(r.id)},`${r.name} (${t('recipe_ing_count',r.ingredients.length)})`));
+      recipes.filter(r=>!q||r.name.toLowerCase().includes(q)||(r.name_en||'').toLowerCase().includes(q)).forEach(r=>{
+        const dName=(LANG==='en'&&r.name_en)?r.name_en:r.name;
+        recipeSel.appendChild(h('option',{value:String(r.id)},`${dName} (${t('recipe_ing_count',r.ingredients.length)})`));
       });
     }
     fillSelect();
@@ -4561,8 +4571,9 @@ tr:nth-child(even){background:#fafafa}
     function fillSelect(){
       while(recipeSel.options.length>1) recipeSel.remove(1);
       const q=searchInput.value.toLowerCase();
-      recipes.filter(r=>!q||r.name.toLowerCase().includes(q)).forEach(r=>{
-        recipeSel.appendChild(h('option',{value:String(r.id)},`${r.name} (${r.ingredients.length} Zutaten)`));
+      recipes.filter(r=>!q||r.name.toLowerCase().includes(q)||(r.name_en||'').toLowerCase().includes(q)).forEach(r=>{
+        const dName=(LANG==='en'&&r.name_en)?r.name_en:r.name;
+        recipeSel.appendChild(h('option',{value:String(r.id)},`${dName} (${r.ingredients.length} ${t('col_ingredient')})`));
       });
     }
     fillSelect();
