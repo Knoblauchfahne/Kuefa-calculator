@@ -4830,18 +4830,48 @@ async function renderDatabasePage(container){
       const resp=await fetch('./standardbackup.json',{cache:'no-store'});
       if(!resp.ok) throw new Error('HTTP '+resp.status);
       const data=JSON.parse(await resp.text());
-      const stdIngs=(data.ingredients||[]);
-      const nameMap=new Map(stdIngs.map(i=>[i.name,i.name_en||'']));
-      const ings=await getIngredients();
       let count=0;
-      for(const ing of ings){
+
+      // Ingredients
+      const ingMap=new Map((data.ingredients||[]).map(i=>[i.name,i.name_en||'']));
+      for(const ing of await getIngredients()){
         if(ing.name_en) continue;
-        const en=nameMap.get(ing.name);
-        if(en){
-          await updateIngredient(ing.id,ing.name,ing.unit,ing.price||0,ing.subcategory||'',ing.verarbeitungshinweis||'',ing.lagerhinweis||'',ing.abschnitt||0,ing.kochfaktor||1,en);
-          count++;
-        }
+        const en=ingMap.get(ing.name);
+        if(en){await updateIngredient(ing.id,ing.name,ing.unit,ing.price||0,ing.subcategory||'',ing.verarbeitungshinweis||'',ing.lagerhinweis||'',ing.abschnitt||0,ing.kochfaktor||1,en);count++;}
       }
+
+      // Subcategories
+      const subcatMap=new Map((data.subcategories||[]).map(s=>[s.name,s.name_en||'']));
+      for(const s of await getSubcategories()){
+        if(s.name_en) continue;
+        const en=subcatMap.get(s.name);
+        if(en){await updateSubcategory(s.id,s.name,en);count++;}
+      }
+
+      // Allergens
+      const allergenMap=new Map((data.allergens||[]).map(a=>[a.name,a.name_en||'']));
+      for(const a of await getAllergens()){
+        if(a.name_en) continue;
+        const en=allergenMap.get(a.name);
+        if(en){await updateAllergen(a.id,a.name,en);count++;}
+      }
+
+      // Preparation methods
+      const prepMap=new Map((data.preparation_methods||[]).map(m=>[m.name,m.name_en||'']));
+      for(const m of await getPreparationMethods()){
+        if(m.name_en) continue;
+        const en=prepMap.get(m.name);
+        if(en){await updatePreparationMethod(m.id,m.name,en);count++;}
+      }
+
+      // Meal type categories
+      const mealCatMap=new Map((data.meal_type_categories||[]).map(c=>[c.name,c.name_en||'']));
+      for(const c of await getMealTypeCategories()){
+        if(c.name_en) continue;
+        const en=mealCatMap.get(c.name);
+        if(en){await updateMealTypeCategory(c.id,c.name,undefined,en);count++;}
+      }
+
       enNamesStatus.style.color='var(--green-light)';
       enNamesStatus.textContent=t('msg_en_names_imported',count);
     }catch(e){
