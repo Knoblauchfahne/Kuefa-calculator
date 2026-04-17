@@ -1,7 +1,7 @@
 {
   "_meta": {
     "version": 6,
-    "exported_at": "2026-04-17T14:47:46.032Z",
+    "exported_at": "2026-04-17T17:22:17.398Z",
     "app": "KF Portionsrechner"
   },
   "actions": [
@@ -3522,6 +3522,7 @@
       "id": 777
     },
     {
+      "id": 778,
       "name": "Orangensaft",
       "name_en": "",
       "unit": "kg",
@@ -3530,8 +3531,7 @@
       "verarbeitungshinweis": "",
       "lagerhinweis": "",
       "abschnitt": 0,
-      "kochfaktor": 1,
-      "id": 778
+      "kochfaktor": 1
     }
   ],
   "subcategories": [
@@ -9222,19 +9222,19 @@
       "id": 834
     },
     {
-      "ingredient_id": 778,
-      "allergen_id": 18,
-      "id": 835
-    },
-    {
       "ingredient_id": 772,
       "allergen_id": 1,
-      "id": 836
+      "id": 838
     },
     {
       "ingredient_id": 772,
       "allergen_id": 20,
-      "id": 837
+      "id": 839
+    },
+    {
+      "ingredient_id": 778,
+      "allergen_id": 18,
+      "id": 840
     }
   ],
   "recipe_allergens": [
