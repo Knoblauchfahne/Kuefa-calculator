@@ -1,7 +1,7 @@
 {
   "_meta": {
     "version": 6,
-    "exported_at": "2026-04-17T08:16:23.857Z",
+    "exported_at": "2026-04-17T09:36:22.414Z",
     "app": "KF Portionsrechner"
   },
   "actions": [
@@ -38,6 +38,11 @@
       "action_id": 12,
       "date": "2026-05-17",
       "id": 44
+    },
+    {
+      "action_id": 11,
+      "date": "2026-04-17",
+      "id": 45
     }
   ],
   "meal_slots": [
@@ -871,22 +876,38 @@
       "name": "Haferflocken kernig",
       "unit": "kg",
       "price": 0.8,
-      "subcategory": "Haferflocken und Zerialien",
+      "subcategory": "Haferflocken und Cerealien",
       "verarbeitungshinweis": "Mit heißem Wasser/Milch kochen 5-10 min oder über Nacht einweichen",
       "lagerhinweis": "Kühl/trocken/luftdicht 6-12 Monate",
       "abschnitt": 0,
-      "name_en": "Rolled Oats (coarse)"
+      "name_en": "Rolled Oats (coarse)",
+      "allergens": [
+        {
+          "name": "Glutenhaltiges Getreide",
+          "id": 1
+        }
+      ],
+      "tags": [],
+      "kochfaktor": 1
     },
     {
       "id": 562,
       "name": "Haferflocken zart",
       "unit": "kg",
       "price": 0.8,
-      "subcategory": "Haferflocken und Zerialien",
+      "subcategory": "Haferflocken und Cerealien",
       "verarbeitungshinweis": "Direkt mit heißem Wasser/Milch übergießen 3-5 min oder kalt einweichen",
       "lagerhinweis": "Kühl/trocken/luftdicht 6-12 Monate",
       "abschnitt": 0,
-      "name_en": "Rolled Oats (fine)"
+      "name_en": "Rolled Oats (fine)",
+      "allergens": [
+        {
+          "name": "Glutenhaltiges Getreide",
+          "id": 1
+        }
+      ],
+      "tags": [],
+      "kochfaktor": 1
     },
     {
       "id": 563,
@@ -950,11 +971,14 @@
       "name": "Hirseflocken",
       "unit": "kg",
       "price": 4,
-      "subcategory": "Haferflocken und Zerialien",
+      "subcategory": "Haferflocken und Cerealien",
       "verarbeitungshinweis": "Mit heißem Wasser/Milch übergießen,  5 min quellen lassen",
       "lagerhinweis": "Kühl/trocken/luftdicht 6-12 Monate",
       "abschnitt": 0,
-      "name_en": "Millet Flakes"
+      "name_en": "Millet Flakes",
+      "allergens": [],
+      "tags": [],
+      "kochfaktor": 1
     },
     {
       "id": 569,
@@ -3101,12 +3125,15 @@
       "name": "Haferflocken (Glutenfrei)",
       "unit": "kg",
       "price": 4,
-      "subcategory": "Haferflocken und Zerialien",
+      "subcategory": "Haferflocken und Cerealien",
       "verarbeitungshinweis": "",
       "lagerhinweis": "",
       "abschnitt": 0,
       "id": 747,
-      "name_en": "Oats (Gluten-free)"
+      "name_en": "Oats (Gluten-free)",
+      "allergens": [],
+      "tags": [],
+      "kochfaktor": 1
     },
     {
       "name": "Räuchertofu",
@@ -3254,111 +3281,138 @@
   "subcategories": [
     {
       "name": "Gemüse",
-      "id": 1
+      "id": 1,
+      "name_en": "Vegetables"
     },
     {
       "name": "Obst",
-      "id": 2
+      "id": 2,
+      "name_en": "Fruit"
     },
     {
       "name": "Salz",
-      "id": 7
+      "id": 7,
+      "name_en": "Salt"
     },
     {
       "name": "Öle & Fette",
-      "id": 8
+      "id": 8,
+      "name_en": "Oils & Fats"
     },
     {
       "name": "Konserven oder Schläuche",
-      "id": 9
+      "id": 9,
+      "name_en": "Canned goods or pouches"
     },
     {
       "name": "Getränke",
-      "id": 10
+      "id": 10,
+      "name_en": "Bevarage"
     },
     {
       "name": "Backzutaten",
-      "id": 11
+      "id": 11,
+      "name_en": "Baking ingredients"
     },
     {
       "name": "Sonstiges",
-      "id": 14
+      "id": 14,
+      "name_en": "Other"
     },
     {
       "name": "Kartoffeln",
-      "id": 15
+      "id": 15,
+      "name_en": "Potatoes"
     },
     {
       "name": "Reis",
-      "id": 16
+      "id": 16,
+      "name_en": "Rice"
     },
     {
       "name": "Pasta und Nudeln",
-      "id": 17
+      "id": 17,
+      "name_en": "Pasta and noodles"
     },
     {
       "name": "Zwiebeln",
-      "id": 18
+      "id": 18,
+      "name_en": "Onions"
     },
     {
-      "name": "Haferflocken und Zerialien",
-      "id": 19
+      "name": "Haferflocken und Cerealien",
+      "id": 19,
+      "name_en": "Oatmeal and cereals"
     },
     {
       "name": "Brot und Teigwaren",
-      "id": 20
+      "id": 20,
+      "name_en": "Bread"
     },
     {
       "name": "Milchreis",
-      "id": 21
+      "id": 21,
+      "name_en": "Rice pudding"
     },
     {
       "name": "Pflanzendrink",
-      "id": 22
+      "id": 22,
+      "name_en": "Plant drink"
     },
     {
       "name": "Zucker",
-      "id": 23
+      "id": 23,
+      "name_en": "Sugar"
     },
     {
       "name": "Gewürze und Kräuter",
-      "id": 24
+      "id": 24,
+      "name_en": "Spices and herbs"
     },
     {
       "name": "Nüsse und Samen",
-      "id": 25
+      "id": 25,
+      "name_en": "Nuts and seeds"
     },
     {
       "name": "Saucen & Pasten",
-      "id": 26
+      "id": 26,
+      "name_en": "Sauces and pastes"
     },
     {
       "name": "Mehl",
-      "id": 27
+      "id": 27,
+      "name_en": "Flour"
     },
     {
       "name": "Zitrusfrüchte",
-      "id": 28
+      "id": 28,
+      "name_en": "Citrus fruits"
     },
     {
       "name": "Saft",
-      "id": 29
+      "id": 29,
+      "name_en": "Juice"
     },
     {
       "name": "Tofu und Soja",
-      "id": 30
+      "id": 30,
+      "name_en": "Tofu and soy"
     },
     {
       "name": "Salat",
-      "id": 31
+      "id": 31,
+      "name_en": "Lettuce"
     },
     {
       "name": "Essig",
-      "id": 32
+      "id": 32,
+      "name_en": "Vinegar"
     },
     {
       "name": "Hülsenfrüchte und Trockenwaren",
-      "id": 34
+      "id": 34,
+      "name_en": "Pulses and dried goods"
     }
   ],
   "standard_meals": [
@@ -3561,7 +3615,7 @@
       "ingredient_id": 0,
       "quantity_per_100": 2.5,
       "unit": "kg",
-      "subcategory": "Haferflocken und Zerialien",
+      "subcategory": "Haferflocken und Cerealien",
       "id": 20,
       "price_per_unit": 1
     },
@@ -6975,27 +7029,33 @@
   "preparation_methods": [
     {
       "name": "achtel",
-      "id": 1
+      "id": 1,
+      "name_en": "eighth"
     },
     {
       "name": "hacken",
-      "id": 2
+      "id": 2,
+      "name_en": "chop"
     },
     {
       "name": "pressen",
-      "id": 3
+      "id": 3,
+      "name_en": "press"
     },
     {
       "name": "fein würfeln",
-      "id": 4
+      "id": 4,
+      "name_en": "dice finely"
     },
     {
       "name": "trocken",
-      "id": 7
+      "id": 7,
+      "name_en": "dry"
     },
     {
       "name": "kleingeschnitten",
-      "id": 8
+      "id": 8,
+      "name_en": "chopped into small pieces"
     },
     {
       "name": "julienne",
@@ -7003,31 +7063,38 @@
     },
     {
       "name": "würfeln 1x1",
-      "id": 10
+      "id": 10,
+      "name_en": "dice 1x1"
     },
     {
       "name": "pürieren",
-      "id": 11
+      "id": 11,
+      "name_en": "puree"
     },
     {
       "name": "einweichen",
-      "id": 12
+      "id": 12,
+      "name_en": "soaking"
     },
     {
       "name": "paste",
-      "id": 13
+      "id": 13,
+      "name_en": ""
     },
     {
       "name": "reiben",
-      "id": 14
+      "id": 14,
+      "name_en": "grate"
     },
     {
       "name": "würfeln 2x2",
-      "id": 15
+      "id": 15,
+      "name_en": "dice 2x2"
     },
     {
       "name": "würfeln",
-      "id": 16
+      "id": 16,
+      "name_en": "dice"
     },
     {
       "name": "brunoise",
@@ -7051,149 +7118,183 @@
     },
     {
       "name": "fein hacken",
-      "id": 22
+      "id": 22,
+      "name_en": "chop finely"
     },
     {
       "name": "abrieb",
-      "id": 23
+      "id": 23,
+      "name_en": "abrasion"
     },
     {
       "name": "gekocht",
-      "id": 24
+      "id": 24,
+      "name_en": "cooked"
     },
     {
       "name": "in Wasser eingeweicht",
-      "id": 25
+      "id": 25,
+      "name_en": "soaked in water"
     },
     {
       "name": "Scheiben",
-      "id": 26
+      "id": 26,
+      "name_en": "slices"
     },
     {
       "name": "Kerne",
-      "id": 27
+      "id": 27,
+      "name_en": "seed"
     },
     {
       "name": "grob würfeln",
-      "id": 28
+      "id": 28,
+      "name_en": "dice roughly"
     },
     {
       "name": "halbiert",
-      "id": 29
+      "id": 29,
+      "name_en": "halved"
     }
   ],
   "meal_type_categories": [
     {
       "name": "Frühstück",
       "sort_order": 1,
-      "id": 1
+      "id": 1,
+      "name_en": "Breakfast"
     },
     {
       "name": "Mittagessen",
       "sort_order": 3,
-      "id": 2
+      "id": 2,
+      "name_en": "Lunch"
     },
     {
       "name": "Abendessen",
       "sort_order": 5,
-      "id": 3
+      "id": 3,
+      "name_en": "Dinner"
     },
     {
       "name": "Zwischenmahlzeit",
       "sort_order": 7,
-      "id": 5
+      "id": 5,
+      "name_en": "Snack"
     },
     {
       "name": "Nachspeise",
       "sort_order": 8,
-      "id": 9
+      "id": 9,
+      "name_en": "Dessert"
     },
     {
       "name": "Beilage",
       "sort_order": 9,
-      "id": 10
+      "id": 10,
+      "name_en": "Side Dish"
     }
   ],
   "allergens": [
     {
       "name": "Glutenhaltiges Getreide",
-      "id": 1
+      "id": 1,
+      "name_en": "Cereals containing gluten"
     },
     {
       "name": "Krebstiere",
-      "id": 2
+      "id": 2,
+      "name_en": "Crustaceans"
     },
     {
       "name": "Fisch",
-      "id": 4
+      "id": 4,
+      "name_en": "Fish"
     },
     {
       "name": "Erdnüsse",
-      "id": 5
+      "id": 5,
+      "name_en": "Peanuts"
     },
     {
       "name": "Soja",
-      "id": 6
+      "id": 6,
+      "name_en": "Soy"
     },
     {
       "name": "Milch (Laktose)",
-      "id": 7
+      "id": 7,
+      "name_en": "Milk (lactose)"
     },
     {
       "name": "Schalenfrüchte (Nüsse)",
-      "id": 8
+      "id": 8,
+      "name_en": "Tree nuts (nuts)"
     },
     {
       "name": "Sellerie",
-      "id": 9
+      "id": 9,
+      "name_en": "celery"
     },
     {
       "name": "Senf",
-      "id": 10
+      "id": 10,
+      "name_en": "Mustard"
     },
     {
       "name": "Sesamsamen",
-      "id": 11
+      "id": 11,
+      "name_en": "Sesame seeds"
     },
     {
       "name": "Schwefeldioxid & Sulfite",
-      "id": 13
+      "id": 13,
+      "name_en": "Sulfur dioxide & sulfites"
     },
     {
       "name": "Lupinen",
-      "id": 14
+      "id": 14,
+      "name_en": "Lupins"
     },
     {
       "name": "Weichtiere",
-      "id": 15
+      "id": 15,
+      "name_en": "Molluscs"
     },
     {
       "name": "Histermin",
-      "id": 16
+      "id": 16,
+      "name_en": "Histamine"
     },
     {
       "name": "Zusatzstoffe (Farbstoffe etc.)",
-      "id": 17
+      "id": 17,
+      "name_en": "Additives (dyes, etc.)"
     },
     {
       "name": "Fruktose",
-      "id": 18
+      "id": 18,
+      "name_en": "Fructose"
     },
     {
       "name": "Laktose",
-      "id": 19
+      "id": 19,
+      "name_en": "Lactose"
     },
     {
       "name": "Gluten",
-      "id": 20
+      "id": 20,
+      "name_en": "Gluten"
     },
     {
       "name": "Sorbit",
-      "id": 21
+      "id": 21,
+      "name_en": "Sorbitol"
     },
     {
       "name": "Salicylate",
-      "id": 22
+      "id": 22,
+      "name_en": "Salicylates"
     },
     {
       "name": "FODMAPs",
@@ -7201,35 +7302,43 @@
     },
     {
       "name": "Koffein",
-      "id": 24
+      "id": 24,
+      "name_en": "Caffeinated"
     },
     {
       "name": "Glutamat",
-      "id": 26
+      "id": 26,
+      "name_en": "Glutamate"
     },
     {
       "name": "glutenfrei",
-      "id": 44
+      "id": 44,
+      "name_en": "Gluten free"
     },
     {
       "name": "Eier",
-      "id": 64
+      "id": 64,
+      "name_en": "Eggs"
     },
     {
       "name": "Capsaicin",
-      "id": 65
+      "id": 65,
+      "name_en": ""
     },
     {
       "name": "Jod",
-      "id": 66
+      "id": 66,
+      "name_en": "Iodine"
     },
     {
       "name": "Typ-I-Allergen",
-      "id": 67
+      "id": 67,
+      "name_en": "Type I allergen"
     },
     {
       "name": "Typ IV-Kontacktallergen",
-      "id": 68
+      "id": 68,
+      "name_en": "Type IV contact allergen"
     }
   ],
   "ingredient_allergens": [
