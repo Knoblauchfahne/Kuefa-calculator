@@ -4872,6 +4872,20 @@ async function renderDatabasePage(container){
         if(en){await updateMealTypeCategory(c.id,c.name,undefined,en);count++;}
       }
 
+      // Recipes
+      const recipeNameEnMap=new Map((data.recipes||[]).map(r=>[r.name,{name_en:r.name_en||'',description_en:r.description_en||''}]));
+      for(const r of await getRecipes()){
+        if(r.name_en&&r.description_en) continue;
+        const tr=recipeNameEnMap.get(r.name);
+        if(tr&&(tr.name_en||tr.description_en)){
+          const catIds=r.categories.map(c=>c.id);
+          const ingsData=r.ingredients.map(i=>({ingredient_id:i.ingredient_id,quantity_per_person:i.quantity_per_person,unit:i.unit,preparation:i.preparation||'',optional:i.optional||false,substitutes:(i.substitutes||[]).map(s=>({ingredient_id:s.ingredient_id,quantity_per_person:s.quantity_per_person,unit:s.unit,preparation:s.preparation||''}))}));
+          const extra={name_en:r.name_en||tr.name_en,description_en:r.description_en||tr.description_en,zubereitung_zeit:r.zubereitung_zeit||'',garzeit:r.garzeit||'',zubereitung:r.zubereitung||'',hinweis:r.hinweis||'',allergen_hinweis:r.allergen_hinweis||'',is_allergy_friendly:r.is_allergy_friendly||false,allergenIds:r.manualAllergenIds||[],tagIds:(r.tags||[]).map(tg=>tg.id)};
+          await updateRecipe(r.id,r.name,r.description||'',catIds,ingsData,extra);
+          count++;
+        }
+      }
+
       enNamesStatus.style.color='var(--green-light)';
       enNamesStatus.textContent=t('msg_en_names_imported',count);
     }catch(e){

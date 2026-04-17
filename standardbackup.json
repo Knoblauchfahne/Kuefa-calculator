@@ -3756,7 +3756,9 @@
       "hinweis": "",
       "allergen_hinweis": "",
       "created_at": "2026-04-09T15:18:19.407Z",
-      "id": 90
+      "id": 90,
+      "name_en": "Bulgur Side Dish",
+      "description_en": ""
     },
     {
       "id": 91,
@@ -3769,7 +3771,9 @@
       "allergen_hinweis": "",
       "is_allergy_friendly": false,
       "created_at": "2026-04-09T15:18:20.222Z",
-      "updated_at": "2026-04-16T13:56:06.052Z"
+      "updated_at": "2026-04-16T13:56:06.052Z",
+      "name_en": "Chana Masala",
+      "description_en": "Chana, meaning chickpeas, are the star of this popular curry."
     },
     {
       "id": 92,
@@ -3782,7 +3786,9 @@
       "allergen_hinweis": "",
       "is_allergy_friendly": false,
       "created_at": "2026-04-09T15:18:21.171Z",
-      "updated_at": "2026-04-16T13:55:43.856Z"
+      "updated_at": "2026-04-16T13:55:43.856Z",
+      "name_en": "Chili",
+      "description_en": ""
     },
     {
       "name": "Couscous-Pfanne",
@@ -3793,7 +3799,9 @@
       "hinweis": "Couscous braucht nur heißes Wasser und gar keine Kochzeit — ideal, wenn wenig Brennstoff vorhanden ist. Kann auch kalt als Salat serviert werden.",
       "allergen_hinweis": "",
       "created_at": "2026-04-09T15:18:26.432Z",
-      "id": 93
+      "id": 93,
+      "name_en": "Couscous Pan",
+      "description_en": "Quick, colourful couscous pan with chickpeas and fresh vegetables. Perfect when time is short."
     },
     {
       "name": "Couscousbeilage",
@@ -3804,7 +3812,9 @@
       "hinweis": "",
       "allergen_hinweis": "",
       "created_at": "2026-04-09T15:18:27.186Z",
-      "id": 94
+      "id": 94,
+      "name_en": "Couscous Side Dish",
+      "description_en": ""
     },
     {
       "id": 95,
@@ -3816,7 +3826,9 @@
       "hinweis": "",
       "allergen_hinweis": "",
       "created_at": "2026-04-09T15:18:27.673Z",
-      "updated_at": "2026-04-13T16:57:27.354Z"
+      "updated_at": "2026-04-13T16:57:27.354Z",
+      "name_en": "Potato Side Dish",
+      "description_en": "Boiled potatoes"
     },
     {
       "name": "Kartoffelgulasch",
@@ -3827,7 +3839,9 @@
       "hinweis": "Wird am nächsten Tag noch besser! Lässt sich gut in großen Töpfen warmhalten. Optional mit Brot servieren.",
       "allergen_hinweis": "",
       "created_at": "2026-04-09T15:18:33.231Z",
-      "id": 96
+      "id": 96,
+      "name_en": "Potato Goulash",
+      "description_en": "Hearty stew with potatoes and peppers. Simple, warming and ideal for cool evenings at camp."
     },
     {
       "name": "Krautsalat",
@@ -3838,7 +3852,9 @@
       "hinweis": "Am Vortag zubereiten ist ideal! Der Salat wird durch das Ziehen noch besser und nimmt weniger Platz ein. Bei großen Mengen den Kohl am besten mit einer Brotschneidemaschine oder einem Gemüsehobel schneiden.",
       "allergen_hinweis": "",
       "created_at": "2026-04-09T15:18:35.260Z",
-      "id": 97
+      "id": 97,
+      "name_en": "Coleslaw",
+      "description_en": "Fresh, crunchy coleslaw. Can be prepared in advance and gets even better as it marinates."
     },
     {
       "id": 98,
@@ -3851,7 +3867,9 @@
       "allergen_hinweis": "",
       "is_allergy_friendly": false,
       "created_at": "2026-04-09T15:18:38.342Z",
-      "updated_at": "2026-04-16T14:06:44.357Z"
+      "updated_at": "2026-04-16T14:06:44.357Z",
+      "name_en": "Lentil Dal",
+      "description_en": "Creamy Indian lentil dish with coconut milk and spices. Filling, affordable and perfect for large groups."
     },
     {
       "name": "Nudeln mit Ketchup",
@@ -3862,7 +3880,9 @@
       "hinweis": "",
       "allergen_hinweis": "",
       "created_at": "2026-04-09T15:18:39.066Z",
-      "id": 99
+      "id": 99,
+      "name_en": "Pasta with Ketchup",
+      "description_en": "Classic student cooking"
     },
     {
       "name": "Overnight Oats",
@@ -3873,7 +3893,9 @@
       "hinweis": "Es gibt immer Menschen die eine Variante ohne Zucker oder ohne Zimt wollen.",
       "allergen_hinweis": "",
       "created_at": "2026-04-09T15:18:40.627Z",
-      "id": 100
+      "id": 100,
+      "name_en": "Overnight Oats",
+      "description_en": ""
     },
     {
       "name": "Pad Thai mit Tofu",
@@ -3884,7 +3906,9 @@
       "hinweis": "Wer mehr Zeit hat, kann die Nudeln auf thailändische Art 40-60 Minuten in kaltem Wasser einweichen, bis sie weiß, weich und biegsam sind, aber noch Biss haben. Gut abtropfen lassen. Entweder sofort weiterverarbeiten oder in einem Plastikbeutel bis zu 2 Tagen im Kühlschrank aufbewahren.\nTipp: Sojasauce kann durch Tamari ersetzt werden (glutenfrei).",
       "allergen_hinweis": "",
       "created_at": "2026-04-09T15:18:47.315Z",
-      "id": 101
+      "id": 101,
+      "name_en": "Pad Thai with Tofu",
+      "description_en": "A great Pad Thai is just amazing! Make sure not to soak the rice noodles for too long – they should still have a bite when they hit the wok."
     },
     {
       "id": 102,
@@ -3897,7 +3921,9 @@
       "allergen_hinweis": "",
       "is_allergy_friendly": false,
       "created_at": "2026-04-09T15:18:51.110Z",
-      "updated_at": "2026-04-13T21:53:13.049Z"
+      "updated_at": "2026-04-13T21:53:13.049Z",
+      "name_en": "Pasta Bolognese",
+      "description_en": "Classic Bolognese with soy mince instead of ground meat. Almost indistinguishable from the original."
     },
     {
       "name": "Pastabeilage",
@@ -3908,7 +3934,9 @@
       "hinweis": "",
       "allergen_hinweis": "",
       "created_at": "2026-04-09T15:18:52.097Z",
-      "id": 103
+      "id": 103,
+      "name_en": "Pasta Side Dish",
+      "description_en": ""
     },
     {
       "name": "Rattatuille",
@@ -3919,7 +3947,9 @@
       "hinweis": "Es wird auch oft mit Zucker, Lorbeer oder Piment gearbeitet.",
       "allergen_hinweis": "",
       "created_at": "2026-04-09T15:18:55.098Z",
-      "id": 104
+      "id": 104,
+      "name_en": "Ratatouille",
+      "description_en": "The star of Provençal cuisine – an aromatic braised dish of summer vegetables."
     },
     {
       "id": 105,
@@ -3932,7 +3962,9 @@
       "allergen_hinweis": "",
       "is_allergy_friendly": true,
       "created_at": "2026-04-09T15:18:56.203Z",
-      "updated_at": "2026-04-13T21:43:06.798Z"
+      "updated_at": "2026-04-13T21:43:06.798Z",
+      "name_en": "Rice Side Dish (Basmati)",
+      "description_en": ""
     },
     {
       "id": 106,
@@ -3945,7 +3977,9 @@
       "allergen_hinweis": "",
       "is_allergy_friendly": true,
       "created_at": "2026-04-09T15:18:56.691Z",
-      "updated_at": "2026-04-13T21:44:06.479Z"
+      "updated_at": "2026-04-13T21:44:06.479Z",
+      "name_en": "Rice Side Dish (Jasmine Rice)",
+      "description_en": ""
     },
     {
       "id": 107,
@@ -3958,7 +3992,9 @@
       "allergen_hinweis": "",
       "is_allergy_friendly": true,
       "created_at": "2026-04-09T15:18:57.149Z",
-      "updated_at": "2026-04-13T21:43:54.347Z"
+      "updated_at": "2026-04-13T21:43:54.347Z",
+      "name_en": "Rice Side Dish (Long Grain Rice)",
+      "description_en": ""
     },
     {
       "id": 108,
@@ -3971,7 +4007,9 @@
       "allergen_hinweis": "",
       "is_allergy_friendly": true,
       "created_at": "2026-04-09T15:18:57.653Z",
-      "updated_at": "2026-04-13T21:43:42.859Z"
+      "updated_at": "2026-04-13T21:43:42.859Z",
+      "name_en": "Rice Side Dish (Parboiled)",
+      "description_en": ""
     },
     {
       "name": "Soja Gyros",
@@ -3982,7 +4020,9 @@
       "hinweis": "Komplett mit Kartoffeln, Zaziki und Krautsalat servieren.",
       "allergen_hinweis": "",
       "created_at": "2026-04-09T15:18:59.545Z",
-      "id": 109
+      "id": 109,
+      "name_en": "Soy Gyros",
+      "description_en": "Addictive vegan gyros made from soy chunks – marinated, seasoned and pan-fried. Served with potatoes, tzatziki and coleslaw."
     },
     {
       "id": 110,
@@ -3995,7 +4035,9 @@
       "allergen_hinweis": "",
       "is_allergy_friendly": true,
       "created_at": "2026-04-09T15:19:00.698Z",
-      "updated_at": "2026-04-13T21:43:18.490Z"
+      "updated_at": "2026-04-13T21:43:18.490Z",
+      "name_en": "Wild Rice Side Dish",
+      "description_en": ""
     },
     {
       "id": 111,
@@ -4008,7 +4050,9 @@
       "allergen_hinweis": "",
       "is_allergy_friendly": false,
       "created_at": "2026-04-09T15:36:31.767Z",
-      "updated_at": "2026-04-16T13:58:33.748Z"
+      "updated_at": "2026-04-16T13:58:33.748Z",
+      "name_en": "Lemon Risotto",
+      "description_en": ""
     },
     {
       "name": "Rote Bete Salat Beilage",
@@ -4019,7 +4063,9 @@
       "hinweis": "Kühl servieren",
       "allergen_hinweis": "",
       "created_at": "2026-04-09T15:43:29.889Z",
-      "id": 112
+      "id": 112,
+      "name_en": "Beetroot Salad",
+      "description_en": ""
     },
     {
       "id": 113,
@@ -4032,7 +4078,9 @@
       "allergen_hinweis": "",
       "is_allergy_friendly": false,
       "created_at": "2026-04-09T19:55:07.330Z",
-      "updated_at": "2026-04-14T16:07:10.077Z"
+      "updated_at": "2026-04-14T16:07:10.077Z",
+      "name_en": "Aubergine Schnitzel with Carrot Purée and Brussels Sprouts",
+      "description_en": ""
     },
     {
       "id": 114,
@@ -4045,7 +4093,9 @@
       "allergen_hinweis": "",
       "is_allergy_friendly": false,
       "created_at": "2026-04-09T19:56:25.128Z",
-      "updated_at": "2026-04-16T13:02:00.286Z"
+      "updated_at": "2026-04-16T13:02:00.286Z",
+      "name_en": "Palak Tofu",
+      "description_en": ""
     },
     {
       "name": "Schokopancakes",
@@ -4056,7 +4106,9 @@
       "hinweis": "",
       "allergen_hinweis": "",
       "created_at": "2026-04-09T19:59:08.927Z",
-      "id": 115
+      "id": 115,
+      "name_en": "Chocolate Pancakes",
+      "description_en": ""
     },
     {
       "id": 116,
@@ -4068,7 +4120,9 @@
       "hinweis": "",
       "allergen_hinweis": "",
       "created_at": "2026-04-13T17:02:36.439Z",
-      "updated_at": "2026-04-13T19:05:42.884Z"
+      "updated_at": "2026-04-13T19:05:42.884Z",
+      "name_en": "Soy Goulash",
+      "description_en": ""
     },
     {
       "name": "Kartoffelbreibeilage",
@@ -4079,7 +4133,9 @@
       "hinweis": "",
       "allergen_hinweis": "",
       "created_at": "2026-04-13T17:03:23.519Z",
-      "id": 117
+      "id": 117,
+      "name_en": "Mashed Potato Side Dish",
+      "description_en": ""
     },
     {
       "id": 118,
@@ -4092,7 +4148,9 @@
       "allergen_hinweis": "",
       "is_allergy_friendly": false,
       "created_at": "2026-04-13T17:03:38.909Z",
-      "updated_at": "2026-04-14T16:37:10.480Z"
+      "updated_at": "2026-04-14T16:37:10.480Z",
+      "name_en": "Spätzle Side Dish",
+      "description_en": ""
     },
     {
       "id": 119,
@@ -4105,7 +4163,9 @@
       "allergen_hinweis": "Kein Jod Salz verwenden",
       "is_allergy_friendly": true,
       "created_at": "2026-04-13T21:32:13.576Z",
-      "updated_at": "2026-04-16T14:04:14.610Z"
+      "updated_at": "2026-04-16T14:04:14.610Z",
+      "name_en": "Mild Rice and Vegetables",
+      "description_en": ""
     },
     {
       "id": 120,
@@ -4118,7 +4178,9 @@
       "allergen_hinweis": "Evtl. darauf achten kein Jodsalz zu verwenden",
       "is_allergy_friendly": true,
       "created_at": "2026-04-13T21:39:56.764Z",
-      "updated_at": "2026-04-16T13:56:46.757Z"
+      "updated_at": "2026-04-16T13:56:46.757Z",
+      "name_en": "Potato and Vegetable Pan",
+      "description_en": ""
     },
     {
       "id": 121,
@@ -4131,7 +4193,9 @@
       "allergen_hinweis": "",
       "is_allergy_friendly": true,
       "created_at": "2026-04-13T21:42:41.175Z",
-      "updated_at": "2026-04-16T13:59:28.731Z"
+      "updated_at": "2026-04-16T13:59:28.731Z",
+      "name_en": "Sweet Potato Purée",
+      "description_en": ""
     },
     {
       "id": 122,
@@ -4144,7 +4208,9 @@
       "allergen_hinweis": "",
       "is_allergy_friendly": true,
       "created_at": "2026-04-13T21:52:30.882Z",
-      "updated_at": "2026-04-16T13:58:12.384Z"
+      "updated_at": "2026-04-16T13:58:12.384Z",
+      "name_en": "Carrot and Ginger Soup",
+      "description_en": ""
     },
     {
       "id": 123,
@@ -4157,7 +4223,9 @@
       "allergen_hinweis": "",
       "is_allergy_friendly": true,
       "created_at": "2026-04-13T21:55:58.942Z",
-      "updated_at": "2026-04-16T13:57:50.661Z"
+      "updated_at": "2026-04-16T13:57:50.661Z",
+      "name_en": "Potato Soup",
+      "description_en": ""
     },
     {
       "id": 124,
@@ -4170,7 +4238,9 @@
       "allergen_hinweis": "",
       "is_allergy_friendly": true,
       "created_at": "2026-04-13T22:00:22.930Z",
-      "updated_at": "2026-04-16T10:52:18.348Z"
+      "updated_at": "2026-04-16T10:52:18.348Z",
+      "name_en": "Overnight Oats",
+      "description_en": ""
     },
     {
       "name": "Bananen Reisbrei",
@@ -4182,7 +4252,9 @@
       "allergen_hinweis": "",
       "is_allergy_friendly": true,
       "created_at": "2026-04-13T22:02:07.354Z",
-      "id": 125
+      "id": 125,
+      "name_en": "Banana Rice Porridge",
+      "description_en": ""
     },
     {
       "id": 126,
@@ -4195,7 +4267,9 @@
       "allergen_hinweis": "",
       "is_allergy_friendly": false,
       "created_at": "2026-04-14T16:09:56.675Z",
-      "updated_at": "2026-04-16T13:52:17.342Z"
+      "updated_at": "2026-04-16T13:52:17.342Z",
+      "name_en": "Brown Lentil Stew with Smoked Tofu",
+      "description_en": ""
     },
     {
       "id": 127,
@@ -4208,7 +4282,9 @@
       "allergen_hinweis": "",
       "is_allergy_friendly": false,
       "created_at": "2026-04-15T11:43:02.787Z",
-      "updated_at": "2026-04-15T12:02:30.959Z"
+      "updated_at": "2026-04-15T12:02:30.959Z",
+      "name_en": "Cauliflower Risotto",
+      "description_en": ""
     },
     {
       "id": 128,
@@ -4221,7 +4297,9 @@
       "allergen_hinweis": "",
       "is_allergy_friendly": false,
       "created_at": "2026-04-16T10:52:32.524Z",
-      "updated_at": "2026-04-16T13:01:52.191Z"
+      "updated_at": "2026-04-16T13:01:52.191Z",
+      "name_en": "Porridge",
+      "description_en": ""
     },
     {
       "id": 129,
@@ -4234,7 +4312,9 @@
       "allergen_hinweis": "",
       "is_allergy_friendly": false,
       "created_at": "2026-04-16T13:08:26.648Z",
-      "updated_at": "2026-04-16T13:51:00.563Z"
+      "updated_at": "2026-04-16T13:51:00.563Z",
+      "name_en": "Carrot and Lentil Spread",
+      "description_en": ""
     },
     {
       "id": 130,
@@ -4247,7 +4327,9 @@
       "allergen_hinweis": "",
       "is_allergy_friendly": false,
       "created_at": "2026-04-16T13:47:03.665Z",
-      "updated_at": "2026-04-16T13:50:49.951Z"
+      "updated_at": "2026-04-16T13:50:49.951Z",
+      "name_en": "Aubergine Spread",
+      "description_en": ""
     },
     {
       "id": 131,
@@ -4260,7 +4342,9 @@
       "allergen_hinweis": "",
       "is_allergy_friendly": false,
       "created_at": "2026-04-16T13:47:28.206Z",
-      "updated_at": "2026-04-16T13:51:08.641Z"
+      "updated_at": "2026-04-16T13:51:08.641Z",
+      "name_en": "Potato and Onion Spread",
+      "description_en": ""
     },
     {
       "id": 132,
@@ -4273,7 +4357,9 @@
       "allergen_hinweis": "",
       "is_allergy_friendly": false,
       "created_at": "2026-04-16T13:48:14.936Z",
-      "updated_at": "2026-04-16T13:51:20.838Z"
+      "updated_at": "2026-04-16T13:51:20.838Z",
+      "name_en": "Onion Chutney",
+      "description_en": ""
     },
     {
       "name": "Schoko-Aufstrich",
@@ -4285,7 +4371,9 @@
       "allergen_hinweis": "",
       "is_allergy_friendly": false,
       "created_at": "2026-04-16T14:09:45.660Z",
-      "id": 133
+      "id": 133,
+      "name_en": "Chocolate Spread",
+      "description_en": ""
     }
   ],
   "recipe_categories": [
