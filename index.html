@@ -2492,13 +2492,15 @@ async function renderCalendarPage(container){
     mCard.appendChild(h('div',{style:{fontWeight:'700',fontSize:'15px',marginBottom:'12px'}},t('cal_meals_header',formatDate(calSelectedDate))));
     const slots=await getMealSlots(day.id);
     const slotMap={};slots.forEach(s=>slotMap[s.meal_type]=s);
-    const mealTypes=await getMealTypeNames();
+    const mealTypeCatsForCal=await getMealTypeCategories();
+    const mealTypes=mealTypeCatsForCal.map(c=>c.name);
+    const mealTypeEnMap={};if(LANG==='en'){mealTypeCatsForCal.forEach(c=>{if(c.name_en) mealTypeEnMap[c.name]=c.name_en;});}
     if(!mealTypes.length){mCard.appendChild(h('div',{class:'empty-msg'},t('empty_no_meal_cats')));mealPanel.appendChild(mCard);return;}
 
     mealTypes.forEach(mt=>{
       const slot=slotMap[mt];
       const row=h('div',{class:'meal-row'});
-      row.appendChild(h('span',{class:'meal-type'},mt));
+      row.appendChild(h('span',{class:'meal-type'},mealTypeEnMap[mt]||mt));
       const input=h('input',{type:'number',placeholder:'0',value:slot?slot.portion_count:''});
       row.appendChild(input);
       row.appendChild(h('span',{class:'unit-label'},t('cal_portionen_unit')));
@@ -3053,6 +3055,7 @@ async function renderStandardMealsPage(container){
   async function refresh(){
     listDiv.innerHTML='';detailDiv.innerHTML='';
     const mealTypeCats=await getMealTypeCategories();
+    const mealTypeEnMap={};if(LANG==='en'){mealTypeCats.forEach(c=>{if(c.name_en) mealTypeEnMap[c.name]=c.name_en;});}
     const meals=await getStandardMeals();
 
     if(!mealTypeCats.length){
@@ -3128,7 +3131,7 @@ async function renderStandardMealsPage(container){
     topBtns.appendChild(h('button',{class:'btn btn-danger btn-sm',onClick:async()=>{if(confirm(t('msg_confirm_delete_standard_meal'))){await deleteStandardMeal(meal.id);stdMealSelectedId=null;refresh();}}},t('btn_delete')));
     top.appendChild(topBtns);
     card.appendChild(top);
-    card.appendChild(h('div',{style:{fontSize:'12px',color:'var(--text-muted)',marginBottom:'12px'}},t('std_meal_detail_meta',meal.meal_type,meal.is_active?t('std_meal_active_suffix'):'')));
+    card.appendChild(h('div',{style:{fontSize:'12px',color:'var(--text-muted)',marginBottom:'12px'}},t('std_meal_detail_meta',mealTypeEnMap[meal.meal_type]||meal.meal_type,meal.is_active?t('std_meal_active_suffix'):'')));
 
     if(!meal.components.length){card.appendChild(h('div',{class:'empty-msg'},t('empty_no_std_meal_components')));}
     else {
@@ -3299,11 +3302,12 @@ async function renderGeneralOrderPage(container){
 
   // Portion summary
   const ps=await getPortionSummary(dayIds);
+  const mealTypeEnMap={};if(LANG==='en'){(await getMealTypeCategories()).forEach(c=>{if(c.name_en) mealTypeEnMap[c.name]=c.name_en;});}
   const summaryCard=h('div',{class:'card',style:{marginBottom:'12px'}});
   const summaryTop=h('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',flexWrap:'wrap',gap:'8px'}});
   const portionChips=h('div',{style:{display:'flex',gap:'8px',flexWrap:'wrap'}});
   Object.entries(ps.byType).sort().forEach(([type,count])=>{
-    portionChips.appendChild(h('span',{class:'chip',style:{fontSize:'12px'}},`${type}: ${count} Port.`));
+    portionChips.appendChild(h('span',{class:'chip',style:{fontSize:'12px'}},`${mealTypeEnMap[type]||type}: ${count} Port.`));
   });
   portionChips.appendChild(h('span',{style:{fontWeight:'700',fontSize:'13px',marginLeft:'4px'}},t('order_total_portions',ps.total)));
   summaryTop.appendChild(portionChips);
@@ -4387,6 +4391,7 @@ tr:nth-child(even){background:#fafafa}
     const slots=await getAllMealSlotsForDays(dayIds);
     if(!slots.length){assignDiv.appendChild(h('div',{class:'empty-msg'},t('empty_no_meals_assign')));return;}
     const assignments=await getAssignments(dayIds);
+    const mealTypeEnMap={};if(LANG==='en'){(await getMealTypeCategories()).forEach(c=>{if(c.name_en) mealTypeEnMap[c.name]=c.name_en;});}
 
     const byDate={};slots.forEach(s=>(byDate[s.date]=byDate[s.date]||[]).push(s));
 
@@ -4395,7 +4400,7 @@ tr:nth-child(even){background:#fafafa}
       byDate[dt].forEach(slot=>{
         const slotDiv=h('div',{class:'assign-slot'});
         const slotHdr=h('div',{class:'slot-header'});
-        slotHdr.appendChild(h('span',{class:'type'},slot.meal_type));
+        slotHdr.appendChild(h('span',{class:'type'},mealTypeEnMap[slot.meal_type]||slot.meal_type));
         slotHdr.appendChild(h('span',{class:'portions'},`${slot.portion_count} ${t('order_portions_port')}`));
         slotDiv.appendChild(slotHdr);
 
