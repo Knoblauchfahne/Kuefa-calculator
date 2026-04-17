@@ -7676,7 +7676,8 @@
     },
     {
       "name": "julienne",
-      "id": 9
+      "id": 9,
+      "name_en": "julienne"
     },
     {
       "name": "würfeln 1x1",
@@ -7696,7 +7697,7 @@
     {
       "name": "paste",
       "id": 13,
-      "name_en": ""
+      "name_en": "paste"
     },
     {
       "name": "reiben",
@@ -7715,23 +7716,28 @@
     },
     {
       "name": "brunoise",
-      "id": 17
+      "id": 17,
+      "name_en": "brunoise"
     },
     {
       "name": "batonnet",
-      "id": 18
+      "id": 18,
+      "name_en": "batonnet"
     },
     {
       "name": "chiffonade",
-      "id": 19
+      "id": 19,
+      "name_en": "chiffonade"
     },
     {
       "name": "rondelle",
-      "id": 20
+      "id": 20,
+      "name_en": "rondelle"
     },
     {
       "name": "pasanne",
-      "id": 21
+      "id": 21,
+      "name_en": "paysanne"
     },
     {
       "name": "fein hacken",
@@ -7915,7 +7921,8 @@
     },
     {
       "name": "FODMAPs",
-      "id": 23
+      "id": 23,
+      "name_en": "FODMAPs"
     },
     {
       "name": "Koffein",
@@ -7940,7 +7947,7 @@
     {
       "name": "Capsaicin",
       "id": 65,
-      "name_en": ""
+      "name_en": "Capsaicin"
     },
     {
       "name": "Jod",
@@ -7959,7 +7966,8 @@
     },
     {
       "name": "raffinierter Zucker",
-      "id": 69
+      "id": 69,
+      "name_en": "refined sugar"
     }
   ],
   "ingredient_allergens": [

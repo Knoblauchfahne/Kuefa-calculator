@@ -400,8 +400,9 @@ de: {
   btn_update_reload: 'Neu laden',
   btn_update_later: 'Später',
   btn_delete_all_data: '🗑  Alle Daten löschen',
-  btn_import_en_names: '🌐  Englische Namen importieren',
-  msg_en_names_imported: '{0} englische Namen importiert.',
+  btn_import_en_names: '🌐  Englische Übersetzung importieren',
+  msg_en_names_imported: '{0} Felder mit englischen Übersetzungen befüllt.',
+  lbl_import_en_desc: 'Füllt fehlende englische Übersetzungen aus den Standarddaten. Bestehende Einträge werden nicht überschrieben. Abgedeckt: Zutaten (258), Unterkategorien (27), Allergene (30), Verarbeitungsmethoden (27), Mahlzeit-Typen (6) sowie Rezeptnamen, Beschreibungen, Zubereitung und Hinweise.',
 
   // form labels
   lbl_name: 'Name',
@@ -967,8 +968,9 @@ en: {
   btn_update_reload: 'Reload',
   btn_update_later: 'Later',
   btn_delete_all_data: '🗑  Delete all data',
-  btn_import_en_names: '🌐  Import English names',
-  msg_en_names_imported: '{0} English names imported.',
+  btn_import_en_names: '🌐  Import English translations',
+  msg_en_names_imported: '{0} fields filled with English translations.',
+  lbl_import_en_desc: 'Fills in missing English translations from the standard data. Existing entries are not overwritten. Covered: ingredients (258), subcategories (27), allergens (30), preparation methods (27), meal types (6), plus recipe names, descriptions, preparation steps and notes.',
 
   // form labels
   lbl_name: 'Name',
@@ -4836,9 +4838,10 @@ async function renderDatabasePage(container){
   defaultCard.appendChild(defaultStatus);
   body.appendChild(defaultCard);
 
-  // Import English names from standard data
+  // Import English translations from standard data
   const enNamesCard=h('div',{class:'card',style:{marginBottom:'16px'}});
-  enNamesCard.appendChild(h('div',{style:{fontWeight:'700',fontSize:'14px',marginBottom:'8px'}},t('btn_import_en_names')));
+  enNamesCard.appendChild(h('div',{style:{fontWeight:'700',fontSize:'14px',marginBottom:'6px'}},t('btn_import_en_names')));
+  enNamesCard.appendChild(h('div',{style:{fontSize:'12px',color:'var(--text-muted)',marginBottom:'12px',lineHeight:'1.5'}},t('lbl_import_en_desc')));
   const enNamesStatus=h('div',{style:{marginTop:'8px',fontSize:'13px'}});
   enNamesCard.appendChild(h('button',{class:'btn btn-surface',onClick:async()=>{
     try{
