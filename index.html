@@ -400,9 +400,6 @@ de: {
   btn_update_reload: 'Neu laden',
   btn_update_later: 'Später',
   btn_delete_all_data: '🗑  Alle Daten löschen',
-  btn_import_en_names: '🌐  Englische Übersetzung importieren',
-  msg_en_names_imported: '{0} Felder mit englischen Übersetzungen befüllt.',
-  lbl_import_en_desc: 'Ergänzt ausschließlich die in den Standard-Daten hinterlegten Übersetzungen. Ausschließlich lokal gespeicherte Daten werden nicht ergänzt.',
 
   // form labels
   lbl_name: 'Name',
@@ -974,9 +971,6 @@ en: {
   btn_update_reload: 'Reload',
   btn_update_later: 'Later',
   btn_delete_all_data: '🗑  Delete all data',
-  btn_import_en_names: '🌐  Import English translations',
-  msg_en_names_imported: '{0} fields filled with English translations.',
-  lbl_import_en_desc: 'Only fills in translations that are stored in the standard data. Data that exists only locally will not be translated.',
 
   // form labels
   lbl_name: 'Name',
@@ -4867,91 +4861,6 @@ async function renderDatabasePage(container){
   }},t('btn_load_default')));
   defaultCard.appendChild(defaultStatus);
   body.appendChild(defaultCard);
-
-  // Import English translations from standard data
-  const enNamesCard=h('div',{class:'card',style:{marginBottom:'16px'}});
-  enNamesCard.appendChild(h('div',{style:{fontWeight:'700',fontSize:'14px',marginBottom:'6px'}},t('btn_import_en_names')));
-  enNamesCard.appendChild(h('div',{style:{fontSize:'12px',color:'var(--text-muted)',marginBottom:'12px',lineHeight:'1.5'}},t('lbl_import_en_desc')));
-  const enNamesStatus=h('div',{style:{marginTop:'8px',fontSize:'13px'}});
-  enNamesCard.appendChild(h('button',{class:'btn btn-surface',onClick:async()=>{
-    try{
-      const resp=await fetch('./standardbackup.json',{cache:'no-store'});
-      if(!resp.ok) throw new Error('HTTP '+resp.status);
-      const data=JSON.parse(await resp.text());
-      let count=0;
-
-      // Ingredients
-      const ingMap=new Map((data.ingredients||[]).map(i=>[i.name,{name_en:i.name_en||'',verarbeitungshinweis_en:i.verarbeitungshinweis_en||'',lagerhinweis_en:i.lagerhinweis_en||''}]));
-      for(const ing of await getIngredients()){
-        const bk=ingMap.get(ing.name);if(!bk) continue;
-        const needsUpdate=(!ing.name_en&&bk.name_en)||(!ing.verarbeitungshinweis_en&&bk.verarbeitungshinweis_en)||(!ing.lagerhinweis_en&&bk.lagerhinweis_en);
-        if(needsUpdate){await updateIngredient(ing.id,ing.name,ing.unit,ing.price||0,ing.subcategory||'',ing.verarbeitungshinweis||'',ing.lagerhinweis||'',ing.abschnitt||0,ing.kochfaktor||1,ing.name_en||bk.name_en,ing.verarbeitungshinweis_en||bk.verarbeitungshinweis_en,ing.lagerhinweis_en||bk.lagerhinweis_en);count++;}
-      }
-
-      // Subcategories
-      const subcatMap=new Map((data.subcategories||[]).map(s=>[s.name,s.name_en||'']));
-      for(const s of await getSubcategories()){
-        if(s.name_en) continue;
-        const en=subcatMap.get(s.name);
-        if(en){await updateSubcategory(s.id,s.name,en);count++;}
-      }
-
-      // Allergens
-      const allergenMap=new Map((data.allergens||[]).map(a=>[a.name,a.name_en||'']));
-      for(const a of await getAllergens()){
-        if(a.name_en) continue;
-        const en=allergenMap.get(a.name);
-        if(en){await updateAllergen(a.id,a.name,en);count++;}
-      }
-
-      // Preparation methods
-      const prepMap=new Map((data.preparation_methods||[]).map(m=>[m.name,m.name_en||'']));
-      for(const m of await getPreparationMethods()){
-        if(m.name_en) continue;
-        const en=prepMap.get(m.name);
-        if(en){await updatePreparationMethod(m.id,m.name,en);count++;}
-      }
-
-      // Meal type categories
-      const mealCatMap=new Map((data.meal_type_categories||[]).map(c=>[c.name,c.name_en||'']));
-      for(const c of await getMealTypeCategories()){
-        if(c.name_en) continue;
-        const en=mealCatMap.get(c.name);
-        if(en){await updateMealTypeCategory(c.id,c.name,undefined,en);count++;}
-      }
-
-      // Recipes
-      const recipeEnMap=new Map((data.recipes||[]).map(r=>[r.name,{name_en:r.name_en||'',description_en:r.description_en||'',zubereitung_en:r.zubereitung_en||'',hinweis_en:r.hinweis_en||'',allergen_hinweis_en:r.allergen_hinweis_en||''}]));
-      for(const r of await getRecipes()){
-        const tr=recipeEnMap.get(r.name);
-        if(!tr) continue;
-        const needsUpdate=(!r.name_en&&tr.name_en)||(!r.description_en&&tr.description_en)||(!r.zubereitung_en&&tr.zubereitung_en)||(!r.hinweis_en&&tr.hinweis_en)||(!r.allergen_hinweis_en&&tr.allergen_hinweis_en);
-        if(needsUpdate){
-          const catIds=r.categories.map(c=>c.id);
-          const ingsData=r.ingredients.map(i=>({ingredient_id:i.ingredient_id,quantity_per_person:i.quantity_per_person,unit:i.unit,preparation:i.preparation||'',optional:i.optional||false,substitutes:(i.substitutes||[]).map(s=>({ingredient_id:s.ingredient_id,quantity_per_person:s.quantity_per_person,unit:s.unit,preparation:s.preparation||''}))}));
-          const extra={name_en:r.name_en||tr.name_en,description_en:r.description_en||tr.description_en,zubereitung_zeit:r.zubereitung_zeit||'',garzeit:r.garzeit||'',zubereitung:r.zubereitung||'',zubereitung_en:r.zubereitung_en||tr.zubereitung_en,hinweis:r.hinweis||'',hinweis_en:r.hinweis_en||tr.hinweis_en,allergen_hinweis:r.allergen_hinweis||'',allergen_hinweis_en:r.allergen_hinweis_en||tr.allergen_hinweis_en,is_allergy_friendly:r.is_allergy_friendly||false,allergenIds:r.manualAllergenIds||[],tagIds:(r.tags||[]).map(tg=>tg.id)};
-          await updateRecipe(r.id,r.name,r.description||'',catIds,ingsData,extra);
-          count++;
-        }
-      }
-
-      // Tags
-      const tagEnMap=new Map((data.tags||[]).map(tg=>[tg.name,tg.name_en||'']));
-      for(const tg of await getAllTags()){
-        if(tg.name_en) continue;
-        const en=tagEnMap.get(tg.name);
-        if(en){await renameTag(tg.id,tg.name,en);count++;}
-      }
-
-      enNamesStatus.style.color='var(--green-light)';
-      enNamesStatus.textContent=t('msg_en_names_imported',count);
-    }catch(e){
-      enNamesStatus.style.color='var(--accent)';
-      enNamesStatus.textContent=t('status_import_error',e.message);
-    }
-  }},t('btn_import_en_names')));
-  enNamesCard.appendChild(enNamesStatus);
-  body.appendChild(enNamesCard);
 
   // Action share export/import
   const shareCard=h('div',{class:'card',style:{marginBottom:'16px'}});
