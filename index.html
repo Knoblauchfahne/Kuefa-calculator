@@ -428,6 +428,16 @@ de: {
   lbl_season_category: 'Saison-Kategorie',
   lbl_season_none: 'Keine (nicht saisonal)',
   lbl_season_hint: 'Klick: leer → Lager → frisch → leer',
+  btn_edit_season: 'Saison bearbeiten',
+  btn_add_to_season: 'In Saisonkalender aufnehmen',
+  btn_season_all_fresh: 'Alle: frisch',
+  btn_season_all_storage: 'Alle: Lager',
+  btn_season_clear: 'Alle leeren',
+  btn_remove_from_season: 'Aus Kalender entfernen',
+  dlg_quick_season: 'Saisonalität — {0}',
+  dlg_quick_season_hint: 'Kategorie wählen und die Monate anklicken, in denen die Zutat saisonal verfügbar ist.',
+  msg_confirm_remove_from_season: 'Diese Zutat aus dem Saisonkalender entfernen?',
+  msg_season_pick_at_least_one: 'Bitte mindestens einen Monat markieren oder die Kategorie auf "Keine" stellen.',
   lbl_allergens: 'Allergene',
   lbl_tags: 'Tags',
   lbl_categories: 'Kategorien',
@@ -1006,6 +1016,16 @@ en: {
   lbl_season_category: 'Season category',
   lbl_season_none: 'None (not seasonal)',
   lbl_season_hint: 'Click: empty → storage → fresh → empty',
+  btn_edit_season: 'Edit seasonality',
+  btn_add_to_season: 'Add to season calendar',
+  btn_season_all_fresh: 'All: fresh',
+  btn_season_all_storage: 'All: storage',
+  btn_season_clear: 'Clear all',
+  btn_remove_from_season: 'Remove from calendar',
+  dlg_quick_season: 'Seasonality — {0}',
+  dlg_quick_season_hint: 'Pick a category and click the months when this ingredient is in season.',
+  msg_confirm_remove_from_season: 'Remove this ingredient from the season calendar?',
+  msg_season_pick_at_least_one: 'Please mark at least one month or set the category to "None".',
   lbl_allergens: 'Allergens',
   lbl_tags: 'Tags',
   lbl_categories: 'Categories',
@@ -2708,6 +2728,8 @@ async function renderIngredientsPage(container){
       row.appendChild(tagCell);
       const btns=h('span',{class:'ct-actions',style:{marginLeft:'auto',display:'flex',gap:'4px'}});
       btns.appendChild(h('button',{class:'btn-icon btn-ghost',onClick:()=>ingredientDialog(ing)},'✎'));
+      const inCal=!!ing.season_category&&Array.isArray(ing.months)&&ing.months.some(v=>v>0);
+      btns.appendChild(h('button',{class:'btn-icon btn-ghost',title:inCal?t('btn_edit_season'):t('btn_add_to_season'),style:{opacity:inCal?'1':'0.5'},onClick:()=>seasonDialog(ing)},'📅'));
       btns.appendChild(h('button',{class:'btn-icon btn-danger',onClick:async()=>{if(confirm(t('msg_confirm_delete_ingredient',ing.name))){await deleteIngredient(ing.id);renderTable();}}},'✕'));
       row.appendChild(btns);
       tableContainer.appendChild(row);
@@ -2811,6 +2833,56 @@ async function renderIngredientsPage(container){
       )
     ));
     nameInput.focus();
+  }
+
+  // Kompakter Dialog nur für Saison (Kategorie + Monate)
+  async function seasonDialog(ing){
+    const monthNames=[t('month_jan'),t('month_feb'),t('month_mar'),t('month_apr'),t('month_may'),t('month_jun'),t('month_jul'),t('month_aug'),t('month_sep'),t('month_oct'),t('month_nov'),t('month_dec')].map(m=>m.slice(0,3));
+    const monthState=(Array.isArray(ing.months)&&ing.months.length===12)?ing.months.slice():[0,0,0,0,0,0,0,0,0,0,0,0];
+    const seasonCatSel=h('select',{style:{width:'100%'}});
+    [['',t('lbl_season_none')],['Gemüse',t('season_cat_veg')],['Obst',t('season_cat_fruit')],['Kräuter',t('season_cat_herbs')]].forEach(([v,l])=>{
+      const o=h('option',{value:v},l);if((ing.season_category||'')===v)o.selected=true;seasonCatSel.appendChild(o);
+    });
+    const monthGrid=h('div',{style:{display:'grid',gridTemplateColumns:'repeat(12,1fr)',gap:'3px',marginTop:'4px'}});
+    for(let m=0;m<12;m++){
+      const cell=h('div',{style:{cursor:'pointer',textAlign:'center',fontSize:'11px',fontWeight:'600',padding:'6px 2px',borderRadius:'4px',userSelect:'none'}},monthNames[m]);
+      const paint=()=>{
+        const s=monthState[m];
+        cell.style.background=s===2?'#2d6a4f':s===1?'#b08d3b':'var(--surface3)';
+        cell.style.color=s===0?'var(--text-muted)':'#fff';
+        cell.style.border=s===0?'1px solid var(--border)':'none';
+      };
+      cell.addEventListener('click',()=>{monthState[m]=(monthState[m]+1)%3;paint();});
+      paint();monthGrid.appendChild(cell);
+    }
+    // Quick-Fill Buttons
+    const quickRow=h('div',{style:{display:'flex',gap:'6px',flexWrap:'wrap',marginTop:'6px'}});
+    const setAll=(val)=>{for(let i=0;i<12;i++)monthState[i]=val;monthGrid.querySelectorAll('div').forEach((c,i)=>{const s=monthState[i];c.style.background=s===2?'#2d6a4f':s===1?'#b08d3b':'var(--surface3)';c.style.color=s===0?'var(--text-muted)':'#fff';c.style.border=s===0?'1px solid var(--border)':'none';});};
+    quickRow.appendChild(h('button',{class:'btn btn-surface btn-sm',type:'button',onClick:()=>setAll(2)},t('btn_season_all_fresh')));
+    quickRow.appendChild(h('button',{class:'btn btn-surface btn-sm',type:'button',onClick:()=>setAll(1)},t('btn_season_all_storage')));
+    quickRow.appendChild(h('button',{class:'btn btn-surface btn-sm',type:'button',onClick:()=>setAll(0)},t('btn_season_clear')));
+
+    const modal=showModal(h('div',{},
+      h('h2',{},t('dlg_quick_season',ingDisplayName(ing))),
+      h('div',{style:{fontSize:'12px',color:'var(--text-muted)',marginBottom:'10px'}},t('dlg_quick_season_hint')),
+      h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_season_category')),seasonCatSel),
+      h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_seasonality')),monthGrid,quickRow,
+        h('div',{style:{fontSize:'11px',color:'var(--text-muted)',marginTop:'4px'}},t('lbl_season_hint'))),
+      h('div',{class:'modal-buttons'},
+        h('button',{class:'btn btn-surface',onClick:()=>closeModal(modal)},t('btn_cancel')),
+        h('button',{class:'btn btn-danger',onClick:async()=>{
+          if(!confirm(t('msg_confirm_remove_from_season'))) return;
+          await updateIngredient(ing.id,ing.name,ing.unit,ing.price||0,ing.subcategory||'',ing.verarbeitungshinweis||'',ing.lagerhinweis||'',ing.abschnitt||0,ing.kochfaktor||1,ing.name_en||'',ing.verarbeitungshinweis_en||'',ing.lagerhinweis_en||'',[0,0,0,0,0,0,0,0,0,0,0,0],'');
+          closeModal(modal);renderTable();
+        }},t('btn_remove_from_season')),
+        h('button',{class:'btn btn-accent',onClick:async()=>{
+          const cat=seasonCatSel.value;
+          if(cat&&!monthState.some(v=>v>0)){alert(t('msg_season_pick_at_least_one'));return;}
+          await updateIngredient(ing.id,ing.name,ing.unit,ing.price||0,ing.subcategory||'',ing.verarbeitungshinweis||'',ing.lagerhinweis||'',ing.abschnitt||0,ing.kochfaktor||1,ing.name_en||'',ing.verarbeitungshinweis_en||'',ing.lagerhinweis_en||'',monthState.slice(),cat);
+          closeModal(modal);renderTable();
+        }},t('btn_save'))
+      )
+    ));
   }
 
   async function manageSubcategories(){

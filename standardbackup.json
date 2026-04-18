@@ -246,7 +246,22 @@
       "kochfaktor": 0.7,
       "name_en": "Aubergines",
       "verarbeitungshinweis_en": "salting and leaving for 30 min reduces bitterness",
-      "lagerhinweis_en": "fridge 5–7 days, do not store next to tomatoes"
+      "lagerhinweis_en": "fridge 5–7 days, do not store next to tomatoes",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 509,
@@ -358,7 +373,22 @@
       "kochfaktor": 1,
       "name_en": "Basil (dried)",
       "verarbeitungshinweis_en": "grind in mortar to intensify aroma, suitable for cooking",
-      "lagerhinweis_en": "cool/dark/airtight 1–2 years"
+      "lagerhinweis_en": "cool/dark/airtight 1–2 years",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0
+      ],
+      "season_category": "Kräuter"
     },
     {
       "id": 516,
@@ -711,7 +741,22 @@
       "kochfaktor": 0.8,
       "name_en": "Chinese Cabbage",
       "verarbeitungshinweis_en": "remove outer leaves",
-      "lagerhinweis_en": "fridge 1–2 weeks"
+      "lagerhinweis_en": "fridge 1–2 weeks",
+      "months": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 534,
@@ -969,7 +1014,22 @@
       "kochfaktor": 1,
       "name_en": "Tarragon",
       "verarbeitungshinweis_en": "add fresh at the end",
-      "lagerhinweis_en": "fresh: fridge 5 days"
+      "lagerhinweis_en": "fresh: fridge 5 days",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0
+      ],
+      "season_category": "Kräuter"
     },
     {
       "id": 548,
@@ -1039,7 +1099,22 @@
       "kochfaktor": 0.8,
       "name_en": "Spring Onions",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "fridge 1–2 weeks"
+      "lagerhinweis_en": "fridge 1–2 weeks",
+      "months": [
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 552,
@@ -1156,7 +1231,22 @@
       "abschnitt": 55,
       "name_en": "Pomegranate",
       "verarbeitungshinweis_en": "easier to deseed under water",
-      "lagerhinweis_en": "room temperature 1–2 weeks"
+      "lagerhinweis_en": "room temperature 1–2 weeks",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        0
+      ],
+      "season_category": "Obst"
     },
     {
       "id": 559,
@@ -1573,7 +1663,22 @@
       "abschnitt": 15,
       "name_en": "Kiwi",
       "verarbeitungshinweis_en": "not suitable for gelatine dishes (enzyme actinidin)",
-      "lagerhinweis_en": "ripe: fridge 5–7 days"
+      "lagerhinweis_en": "ripe: fridge 5–7 days",
+      "months": [
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        1
+      ],
+      "season_category": "Obst"
     },
     {
       "id": 583,
@@ -1828,7 +1933,22 @@
       "kochfaktor": 0.8,
       "name_en": "Spring Onions",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "fridge 1–2 weeks"
+      "lagerhinweis_en": "fridge 1–2 weeks",
+      "months": [
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 597,
@@ -1981,7 +2101,22 @@
       "kochfaktor": 1,
       "name_en": "Marjoram",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": ""
+      "lagerhinweis_en": "",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0
+      ],
+      "season_category": "Kräuter"
     },
     {
       "id": 606,
@@ -2046,7 +2181,22 @@
       "abschnitt": 20,
       "name_en": "Mandarin",
       "verarbeitungshinweis_en": "membranes are edible",
-      "lagerhinweis_en": "fridge 1–2 weeks"
+      "lagerhinweis_en": "fridge 1–2 weeks",
+      "months": [
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2
+      ],
+      "season_category": "Obst"
     },
     {
       "id": 611,
@@ -2147,7 +2297,22 @@
       "kochfaktor": 1,
       "name_en": "Mint",
       "verarbeitungshinweis_en": "pick leaves, do not cook",
-      "lagerhinweis_en": "fresh: glass of water at room temperature 5–7 days"
+      "lagerhinweis_en": "fresh: glass of water at room temperature 5–7 days",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0
+      ],
+      "season_category": "Kräuter"
     },
     {
       "id": 617,
@@ -2308,7 +2473,22 @@
       "abschnitt": 25,
       "name_en": "Oranges",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "fridge 2–3 weeks"
+      "lagerhinweis_en": "fridge 2–3 weeks",
+      "months": [
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2
+      ],
+      "season_category": "Obst"
     },
     {
       "id": 628,
@@ -2323,7 +2503,22 @@
       "kochfaktor": 1,
       "name_en": "Oregano",
       "verarbeitungshinweis_en": "dried is stronger than fresh, suitable for cooking, add at the start",
-      "lagerhinweis_en": ""
+      "lagerhinweis_en": "",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0
+      ],
+      "season_category": "Kräuter"
     },
     {
       "id": 629,
@@ -2336,7 +2531,22 @@
       "abschnitt": 10,
       "name_en": "Pak Choi",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "fridge 3–5 days"
+      "lagerhinweis_en": "fridge 3–5 days",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 630,
@@ -3029,7 +3239,22 @@
       "kochfaktor": 0.8,
       "name_en": "Shallots",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "cool/dark/dry 1–2 months, do not refrigerate"
+      "lagerhinweis_en": "cool/dark/dry 1–2 months, do not refrigerate",
+      "months": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 667,
@@ -3698,7 +3923,22 @@
       "kochfaktor": 0.85,
       "name_en": "Jerusalem Artichoke",
       "verarbeitungshinweis_en": "eat raw or cook/roast for 15–20 min",
-      "lagerhinweis_en": "fridge 1–2 weeks"
+      "lagerhinweis_en": "fridge 1–2 weeks",
+      "months": [
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 708,
@@ -4413,7 +4653,22 @@
       "kochfaktor": 1,
       "name_en": "Fresh Coriander",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": ""
+      "lagerhinweis_en": "",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0
+      ],
+      "season_category": "Kräuter"
     },
     {
       "name": "Sojabohnen",
@@ -4511,7 +4766,22 @@
       "kochfaktor": 1,
       "id": 759,
       "verarbeitungshinweis_en": "relatively delicate, handle carefully when washing",
-      "lagerhinweis_en": "keeps 2–3 days, store moist"
+      "lagerhinweis_en": "keeps 2–3 days, store moist",
+      "months": [
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0
+      ],
+      "season_category": "Gemüse"
     },
     {
       "name": "Feldsalat",
@@ -4554,7 +4824,22 @@
       "abschnitt": 10,
       "kochfaktor": 1,
       "verarbeitungshinweis_en": "slightly bitter",
-      "lagerhinweis_en": "fridge 3–5 days"
+      "lagerhinweis_en": "fridge 3–5 days",
+      "months": [
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0
+      ],
+      "season_category": "Gemüse"
     },
     {
       "name": "Romanasalat",
@@ -4568,7 +4853,22 @@
       "kochfaktor": 1,
       "id": 762,
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "fridge 4–6 days"
+      "lagerhinweis_en": "fridge 4–6 days",
+      "months": [
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0
+      ],
+      "season_category": "Gemüse"
     },
     {
       "name": "Endiviensalat",
@@ -4582,7 +4882,22 @@
       "kochfaktor": 1,
       "id": 763,
       "verarbeitungshinweis_en": "slightly bitter, pairs well with sweet dressing",
-      "lagerhinweis_en": "fridge 3–5 days"
+      "lagerhinweis_en": "fridge 3–5 days",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0
+      ],
+      "season_category": "Gemüse"
     },
     {
       "name": "Babyspinat",
@@ -4822,7 +5137,22 @@
       "abschnitt": 0,
       "kochfaktor": 1,
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": ""
+      "lagerhinweis_en": "",
+      "months": [
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2
+      ],
+      "season_category": "Obst"
     }
   ],
   "subcategories": [
