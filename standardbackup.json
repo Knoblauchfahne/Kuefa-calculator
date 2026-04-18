@@ -164,7 +164,22 @@
       "abschnitt": 8,
       "kochfaktor": 1,
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "fridge up to 4 weeks, room temperature 1–2 weeks"
+      "lagerhinweis_en": "fridge up to 4 weeks, room temperature 1–2 weeks",
+      "months": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
+      "season_category": "Obst"
     },
     {
       "id": 504,
@@ -313,7 +328,22 @@
       "kochfaktor": 1,
       "name_en": "Basil",
       "verarbeitungshinweis_en": "add fresh at the end, do not cook",
-      "lagerhinweis_en": ""
+      "lagerhinweis_en": "",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0
+      ],
+      "season_category": "Kräuter"
     },
     {
       "id": 515,
@@ -369,7 +399,22 @@
       "abschnitt": 10,
       "name_en": "Pears",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "leave unripe to ripen at room temperature"
+      "lagerhinweis_en": "leave unripe to ripen at room temperature",
+      "months": [
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
+      "season_category": "Obst"
     },
     {
       "id": 519,
@@ -382,7 +427,22 @@
       "abschnitt": 3,
       "name_en": "Blueberries",
       "verarbeitungshinweis_en": "rinse before use",
-      "lagerhinweis_en": "fridge 5–7 days"
+      "lagerhinweis_en": "fridge 5–7 days",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0
+      ],
+      "season_category": "Obst"
     },
     {
       "id": 520,
@@ -396,7 +456,22 @@
       "kochfaktor": 0.8,
       "name_en": "Cauliflower",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "if wrapped in plastic, remove for storage, fridge 5–7 days"
+      "lagerhinweis_en": "if wrapped in plastic, remove for storage, fridge 5–7 days",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 521,
@@ -436,7 +511,22 @@
       "abschnitt": 25,
       "name_en": "Broccoli",
       "verarbeitungshinweis_en": "peel and use the stalk",
-      "lagerhinweis_en": "fridge 5–7 days"
+      "lagerhinweis_en": "fridge 5–7 days",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 524,
@@ -497,7 +587,22 @@
       "kochfaktor": 0.7,
       "name_en": "Mushrooms",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "fridge 5–7 days in paper bag"
+      "lagerhinweis_en": "fridge 5–7 days in paper bag",
+      "months": [
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 528,
@@ -537,7 +642,22 @@
       "abschnitt": 15,
       "kochfaktor": 1,
       "verarbeitungshinweis_en": "can also be fried, remove bitter tip",
-      "lagerhinweis_en": "fridge 1 week, store in the dark (no light – turns bitter)"
+      "lagerhinweis_en": "fridge 1 week, store in the dark (no light – turns bitter)",
+      "months": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 531,
@@ -736,7 +856,22 @@
       "kochfaktor": 1,
       "name_en": "Dill",
       "verarbeitungshinweis_en": "do not cook, add at the end",
-      "lagerhinweis_en": "fresh: fridge 5–7 days"
+      "lagerhinweis_en": "fresh: fridge 5–7 days",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0
+      ],
+      "season_category": "Kräuter"
     },
     {
       "id": 543,
@@ -750,7 +885,22 @@
       "abschnitt": 15,
       "kochfaktor": 1,
       "verarbeitungshinweis_en": "tear rather than cut",
-      "lagerhinweis_en": "fridge 5–7 days"
+      "lagerhinweis_en": "fridge 5–7 days",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 544,
@@ -763,7 +913,22 @@
       "abschnitt": 5,
       "name_en": "Strawberries",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "fridge 2–3 days"
+      "lagerhinweis_en": "fridge 2–3 days",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": "Obst"
     },
     {
       "id": 545,
@@ -817,7 +982,22 @@
       "abschnitt": 20,
       "name_en": "Fennel",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "fridge 5–7 days"
+      "lagerhinweis_en": "fridge 5–7 days",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 549,
@@ -1002,7 +1182,22 @@
       "abschnitt": 5,
       "name_en": "Cucumbers",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "fridge 5–7 days, do not store next to tomatoes"
+      "lagerhinweis_en": "fridge 5–7 days, do not store next to tomatoes",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 561,
@@ -1111,7 +1306,22 @@
       "abschnitt": 5,
       "name_en": "Raspberries",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "fridge 1–2 days"
+      "lagerhinweis_en": "fridge 1–2 days",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0
+      ],
+      "season_category": "Obst"
     },
     {
       "id": 568,
@@ -1210,7 +1420,22 @@
       "kochfaktor": 0.85,
       "name_en": "Carrots",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "fridge 3–4 weeks, store away from fruit"
+      "lagerhinweis_en": "fridge 3–4 weeks, store away from fruit",
+      "months": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 575,
@@ -1224,7 +1449,22 @@
       "abschnitt": 15,
       "kochfaktor": 1,
       "verarbeitungshinweis_en": "green spots contain solanine (remove)",
-      "lagerhinweis_en": "cool/dark/dry"
+      "lagerhinweis_en": "cool/dark/dry",
+      "months": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 576,
@@ -1305,7 +1545,22 @@
       "abschnitt": 10,
       "name_en": "Cherries",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "fridge 3–5 days"
+      "lagerhinweis_en": "fridge 3–5 days",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": "Obst"
     },
     {
       "id": 582,
@@ -1331,7 +1586,22 @@
       "abschnitt": 20,
       "name_en": "Garlic",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "dry/cool/dark 3–6 months, do not refrigerate"
+      "lagerhinweis_en": "dry/cool/dark 3–6 months, do not refrigerate",
+      "months": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 584,
@@ -1345,7 +1615,22 @@
       "kochfaktor": 0.8,
       "name_en": "Kohlrabi",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "fridge 1–2 weeks"
+      "lagerhinweis_en": "fridge 1–2 weeks",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 585,
@@ -1456,7 +1741,22 @@
       "kochfaktor": 0.85,
       "name_en": "Hokkaido Pumpkin",
       "verarbeitungshinweis_en": "skin of Hokkaido is edible",
-      "lagerhinweis_en": "whole: cool/dark 2–3 months, cut: fridge 3–4 days"
+      "lagerhinweis_en": "whole: cool/dark 2–3 months, cut: fridge 3–4 days",
+      "months": [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 593,
@@ -1499,7 +1799,22 @@
       "kochfaktor": 0.8,
       "name_en": "Leek",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "fridge 1–2 weeks"
+      "lagerhinweis_en": "fridge 1–2 weeks",
+      "months": [
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 596,
@@ -1594,7 +1909,22 @@
       "abschnitt": 0,
       "name_en": "Corn",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "opened: fridge 3–4 days"
+      "lagerhinweis_en": "opened: fridge 3–4 days",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 603,
@@ -1607,7 +1937,22 @@
       "abschnitt": 20,
       "name_en": "Corn on the Cob",
       "verarbeitungshinweis_en": "cook 10–15 min or grill",
-      "lagerhinweis_en": "fridge 3–5 days in husk"
+      "lagerhinweis_en": "fridge 3–5 days in husk",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 604,
@@ -1727,7 +2072,22 @@
       "abschnitt": 15,
       "name_en": "Swiss Chard",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "fridge 3–5 days"
+      "lagerhinweis_en": "fridge 3–5 days",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 613,
@@ -1990,7 +2350,22 @@
       "kochfaktor": 0.7,
       "name_en": "Bell Pepper",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "fridge 1–2 weeks"
+      "lagerhinweis_en": "fridge 1–2 weeks",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 631,
@@ -2004,7 +2379,22 @@
       "kochfaktor": 0.7,
       "name_en": "Green Bell Pepper",
       "verarbeitungshinweis_en": "more bitter than red/yellow",
-      "lagerhinweis_en": "fridge 1–2 weeks"
+      "lagerhinweis_en": "fridge 1–2 weeks",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 632,
@@ -2018,7 +2408,22 @@
       "kochfaktor": 0.7,
       "name_en": "Red Bell Pepper",
       "verarbeitungshinweis_en": "sweeter than green",
-      "lagerhinweis_en": "fridge 1–2 weeks"
+      "lagerhinweis_en": "fridge 1–2 weeks",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 633,
@@ -2096,7 +2501,22 @@
       "kochfaktor": 0.85,
       "name_en": "Parsnips",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "fridge 2–3 weeks"
+      "lagerhinweis_en": "fridge 2–3 weeks",
+      "months": [
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        1
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 638,
@@ -2111,7 +2531,22 @@
       "kochfaktor": 1,
       "name_en": "Parsley",
       "verarbeitungshinweis_en": "add at the end (preserves vitamins)",
-      "lagerhinweis_en": ""
+      "lagerhinweis_en": "",
+      "months": [
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0
+      ],
+      "season_category": "Kräuter"
     },
     {
       "id": 639,
@@ -2184,7 +2619,22 @@
       "abschnitt": 10,
       "name_en": "Peach",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "ripe: fridge 3–5 days"
+      "lagerhinweis_en": "ripe: fridge 3–5 days",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0
+      ],
+      "season_category": "Obst"
     },
     {
       "id": 643,
@@ -2381,7 +2831,22 @@
       "kochfaktor": 1,
       "name_en": "Rosemary",
       "verarbeitungshinweis_en": "can be cooked with, add early",
-      "lagerhinweis_en": ""
+      "lagerhinweis_en": "",
+      "months": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1
+      ],
+      "season_category": "Kräuter"
     },
     {
       "id": 657,
@@ -2395,7 +2860,22 @@
       "kochfaktor": 0.9,
       "name_en": "Beetroot",
       "verarbeitungshinweis_en": "peel (gloves recommended!), cook 45–60 min or bake at 200°C for 40 min",
-      "lagerhinweis_en": "cooked: fridge 5 days"
+      "lagerhinweis_en": "cooked: fridge 5 days",
+      "months": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 658,
@@ -2436,7 +2916,22 @@
       "kochfaktor": 0.8,
       "name_en": "Red Cabbage",
       "verarbeitungshinweis_en": "vinegar stabilises colour",
-      "lagerhinweis_en": "fridge, cut: 5–7 days"
+      "lagerhinweis_en": "fridge, cut: 5–7 days",
+      "months": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 661,
@@ -2463,7 +2958,22 @@
       "abschnitt": 10,
       "kochfaktor": 1,
       "verarbeitungshinweis_en": "slightly peppery",
-      "lagerhinweis_en": "fridge 3–5 days"
+      "lagerhinweis_en": "fridge 3–5 days",
+      "months": [
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 663,
@@ -2588,7 +3098,22 @@
       "kochfaktor": 0.85,
       "name_en": "Celeriac",
       "verarbeitungshinweis_en": "oxidises quickly once peeled (lemon water), cook 15–20 min",
-      "lagerhinweis_en": "fridge 2–3 weeks"
+      "lagerhinweis_en": "fridge 2–3 weeks",
+      "months": [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 672,
@@ -2786,7 +3311,22 @@
       "kochfaktor": 0.7,
       "name_en": "Green Asparagus",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "fridge 3–5 days upright in damp cloth"
+      "lagerhinweis_en": "fridge 3–5 days upright in damp cloth",
+      "months": [
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 685,
@@ -2799,7 +3339,22 @@
       "abschnitt": 20,
       "name_en": "White Asparagus",
       "verarbeitungshinweis_en": "cook 10–15 min in lightly salted water",
-      "lagerhinweis_en": "fridge 3–5 days in damp cloth"
+      "lagerhinweis_en": "fridge 3–5 days in damp cloth",
+      "months": [
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 686,
@@ -2813,7 +3368,22 @@
       "kochfaktor": 1,
       "name_en": "Spinach",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "fresh: fridge 3–5 days"
+      "lagerhinweis_en": "fresh: fridge 3–5 days",
+      "months": [
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 687,
@@ -3004,7 +3574,22 @@
       "kochfaktor": 1,
       "name_en": "Thyme",
       "verarbeitungshinweis_en": "tolerates long cooking",
-      "lagerhinweis_en": "fresh: fridge 1–2 weeks"
+      "lagerhinweis_en": "fresh: fridge 1–2 weeks",
+      "months": [
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1
+      ],
+      "season_category": "Kräuter"
     },
     {
       "id": 701,
@@ -3031,7 +3616,22 @@
       "kochfaktor": 0.7,
       "name_en": "Tomatoes",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "room temperature (never refrigerate – loses aroma), ripe: 3–5 days"
+      "lagerhinweis_en": "room temperature (never refrigerate – loses aroma), ripe: 3–5 days",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 703,
@@ -3202,7 +3802,22 @@
       "kochfaktor": 0.8,
       "name_en": "White Cabbage",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "fridge, whole: 2–3 weeks"
+      "lagerhinweis_en": "fridge, whole: 2–3 weeks",
+      "months": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 715,
@@ -3371,7 +3986,22 @@
       "kochfaktor": 0.7,
       "name_en": "Courgette",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "fridge 5–7 days"
+      "lagerhinweis_en": "fridge 5–7 days",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 727,
@@ -3399,7 +4029,22 @@
       "kochfaktor": 0.7,
       "name_en": "Onions",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "cool/dark/dry 1–2 months, do not refrigerate"
+      "lagerhinweis_en": "cool/dark/dry 1–2 months, do not refrigerate",
+      "months": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 729,
@@ -3413,7 +4058,22 @@
       "kochfaktor": 0.7,
       "name_en": "Red Onions",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "cool/dark/dry 1–2 months, do not refrigerate"
+      "lagerhinweis_en": "cool/dark/dry 1–2 months, do not refrigerate",
+      "months": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 730,
@@ -3427,7 +4087,22 @@
       "kochfaktor": 0.7,
       "name_en": "White Onions",
       "verarbeitungshinweis_en": "better tolerated with histamine intolerance",
-      "lagerhinweis_en": "cool/dark/dry 1–2 months, do not refrigerate"
+      "lagerhinweis_en": "cool/dark/dry 1–2 months, do not refrigerate",
+      "months": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 731,
@@ -3529,7 +4204,22 @@
       "kochfaktor": 0.8,
       "name_en": "Brussels Sprouts",
       "verarbeitungshinweis_en": "cook 10–15 min, sugar reduces bitterness",
-      "lagerhinweis_en": "fridge 4–5 days"
+      "lagerhinweis_en": "fridge 4–5 days",
+      "months": [
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2
+      ],
+      "season_category": "Gemüse"
     },
     {
       "name": "Paniermehl",
@@ -3835,7 +4525,22 @@
       "kochfaktor": 1,
       "id": 760,
       "verarbeitungshinweis_en": "remove root end and wash thoroughly",
-      "lagerhinweis_en": "keeps 1–2 days"
+      "lagerhinweis_en": "keeps 1–2 days",
+      "months": [
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 761,
@@ -3891,7 +4596,22 @@
       "kochfaktor": 1,
       "id": 764,
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "2–3 days"
+      "lagerhinweis_en": "2–3 days",
+      "months": [
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0
+      ],
+      "season_category": "Gemüse"
     },
     {
       "name": "Weizen Vollkornmehl",
@@ -4073,7 +4793,22 @@
       "kochfaktor": 1,
       "id": 777,
       "verarbeitungshinweis_en": "breaks down easily",
-      "lagerhinweis_en": "cool, dark, dry"
+      "lagerhinweis_en": "cool, dark, dry",
+      "months": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1
+      ],
+      "season_category": "Gemüse"
     },
     {
       "id": 778,
