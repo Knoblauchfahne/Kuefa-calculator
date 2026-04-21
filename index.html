@@ -397,9 +397,44 @@ label.checkbox input{accent-color:var(--accent);width:16px;height:16px}
 // ══════════════════════════════════════════════════════════════
 //  INTERNATIONALISIERUNG (i18n)
 // ══════════════════════════════════════════════════════════════
+//
+//  Struktur pro Sprache (DE und EN gespiegelt, gleiche Abschnitte):
+//
+//    ── nav ──                Sidebar-Navigation
+//    ── page titles ──        Seiten-Überschriften
+//    ── subtitle / hints ──   Untertitel, Tagline-Hinweise
+//    ── buttons ──            alle `btn_…`-Keys
+//    ── form labels ──        `lbl_…` für Formularfelder
+//    ── placeholders ──       `ph_…` für Input-Placeholders
+//    ── column headers ──     `col_…` für Tabellen-Header
+//    ── alert/confirm messages ──  `msg_…` für alert() / confirm()
+//    ── empty states ──       „Keine Einträge"-Texte
+//    ── status messages ──    Lade-/Fortschritts-Statusmeldungen
+//    ── month names ──        Jan…Dez / Jan…Dec
+//    ── calendar UI ──        Kalender-spezifische Texte
+//    ── action dialogs ──     Dialoge für Aktionen (Kochevents)
+//    ── ingredient dialogs ── Zutat-Bearbeiten, Saison-Quick
+//    ── recipe dialogs ──     Rezept-Bearbeiten, Substitutionen
+//    ── recipe detail labels ──  Detailansicht-Labels
+//    ── order / assignment UI ── Einkaufsliste / Zuweisungen
+//    ── PDF/print strings ──  Rezeptdruck, Listen-PDF
+//    ── filter dropdowns ──   Filter-Optionen
+//    ── season calendar ──    Saisonkalender-UI
+//    ── database page ──      Backup / Restore / Import
+//    ── store labels ──       Anzeigenamen der IndexedDB-Stores
+//    ── general order export ── Grundbedarf-Export
+//    ── standard meal detail ── Standardmahlzeit-Detail
+//    ── recipe detail times ── Vorbereitungs-/Kochzeit
+//    ── allergen info page ── statische Inhalte der Allergen-Seite
+//    ── help page sections ── Hilfetexte
+//    ── tag input ──          Tag-Picker / Tag-Verwaltung
+//    ── misc ──               Rest (Dubletten beim Aufräumen mergen)
+//
+//  Springen: Ctrl+F auf „── name ──" (genau so inkl. Spaces).
+// ──────────────────────────────────────────────────────────────
 const I18N = {
 de: {
-  // nav
+  // ── nav ────────────────────────────────────────
   nav_calendar: '📅  Kalender',
   nav_general_order: '📋  Grundbedarfe',
   nav_special_order: '📄  Einkaufsliste nach Rezept',
@@ -410,7 +445,7 @@ de: {
   nav_allergen_info: '⚠  Allergene',
   nav_help: '❓  Hilfe',
 
-  // page titles
+  // ── page titles ────────────────────────────────────────
   page_calendar: 'Kalender',
   page_general_order: 'Grundbedarfe',
   page_special_order: 'Einkaufsliste nach Rezept',
@@ -422,10 +457,10 @@ de: {
   page_help: 'Hilfe',
   page_standard_meals: 'Standardmahlzeiten',
 
-  // subtitle / hints
+  // ── subtitle / hints ────────────────────────────────────────
   hint_calendar_subtitle: 'Wähle eine Kochaktion und lege Kochtage mit Mahlzeiten fest',
 
-  // buttons
+  // ── buttons ────────────────────────────────────────
   btn_new: '+  Neu',
   btn_edit: 'Bearbeiten',
   btn_delete: 'Löschen',
@@ -475,7 +510,7 @@ de: {
   btn_update_later: 'Später',
   btn_delete_all_data: '🗑  Alle Daten löschen',
 
-  // form labels
+  // ── form labels ────────────────────────────────────────
   lbl_name: 'Name',
   lbl_description: 'Beschreibung',
   lbl_unit: 'Einheit',
@@ -525,7 +560,7 @@ de: {
   lbl_converter: 'Umrechner',
   lbl_quantity: 'Menge',
 
-  // placeholders
+  // ── placeholders ────────────────────────────────────────
   ph_search: 'Suche...',
   ph_action_name: 'z.B. Sommercamp',
   ph_action_desc: 'Optionale Beschreibung',
@@ -560,7 +595,7 @@ de: {
   ph_season_search: 'Suche nach Obst/Gemüse/Kraut...',
   ph_sub_search: 'Zutat suchen...',
 
-  // column headers
+  // ── column headers ────────────────────────────────────────
   col_name: 'Name',
   col_unit: 'Einheit',
   col_price: 'Preis',
@@ -586,7 +621,7 @@ de: {
   col_assigned_recipes: 'Zugewiesene Rezepte',
   col_season_name: 'Name',
 
-  // alert/confirm messages
+  // ── alert/confirm messages ────────────────────────────────────────
   msg_confirm_delete_action: 'Kochaktion "{0}" und alle zugehörigen Kochtage wirklich löschen?',
   msg_confirm_delete_ingredient: '"{0}" wirklich löschen?',
   msg_confirm_delete_subcategory: '"{0}" löschen?',
@@ -630,7 +665,7 @@ de: {
   msg_no_allergens_defined_hint: 'Keine Allergene definiert — erstelle sie unter Zutaten → Allergene verwalten',
   msg_please_enter_name: 'Bitte Namen eingeben',
 
-  // empty states
+  // ── empty states ────────────────────────────────────────
   empty_no_actions: 'Noch keine Aktionen',
   empty_no_cooking_days: 'Noch keine Kochtage',
   empty_no_meal_cats: 'Bitte zuerst Mahlzeitkategorien unter "Standardmahlzeiten" anlegen',
@@ -657,7 +692,7 @@ de: {
   empty_no_entries: 'Keine Einträge gefunden',
   empty_no_recipe_ings: 'Noch keine Zutaten',
 
-  // status messages
+  // ── status messages ────────────────────────────────────────
   status_import_success: '✓ Import erfolgreich! Seite wird neu geladen...',
   status_import_error: '✕ Fehler: {0}',
   status_default_loaded: '✓ Standard-Daten geladen! Seite wird neu geladen …',
@@ -670,7 +705,7 @@ de: {
   status_all_deleted: '✓ Alle Daten gelöscht',
   status_update_available: 'Neue Version verfügbar',
 
-  // month names (long form for calendar nav)
+  // ── month names (long form for calendar nav) ─────────────
   month_jan: 'Januar',
   month_feb: 'Februar',
   month_mar: 'März',
@@ -684,18 +719,18 @@ de: {
   month_nov: 'November',
   month_dec: 'Dezember',
 
-  // calendar UI
+  // ── calendar UI ────────────────────────────────────────
   cal_cooking_actions: 'Kochaktionen',
   cal_cooking_days: 'Kochtage',
   cal_days_count: '{0} Tage',
   cal_meals_header: 'Mahlzeiten — {0}',
   cal_portionen_unit: 'Portionen',
 
-  // action dialogs
+  // ── action dialogs ────────────────────────────────────────
   dlg_new_action: 'Neue Kochaktion',
   dlg_edit_action: 'Kochaktion bearbeiten',
 
-  // ingredient dialogs
+  // ── ingredient dialogs ────────────────────────────────────────
   dlg_new_ingredient: 'Neue Zutat',
   dlg_edit_ingredient: 'Zutat bearbeiten',
   dlg_manage_subcats: 'Kategorien verwalten',
@@ -705,7 +740,7 @@ de: {
   dlg_import_how: 'Wie sollen bestehende Zutaten (gleicher Name) behandelt werden?',
   dlg_ingredients_export_count: '{0} Zutaten werden exportiert.',
 
-  // recipe dialogs
+  // ── recipe dialogs ────────────────────────────────────────
   dlg_new_recipe: 'Neues Rezept',
   dlg_edit_recipe: 'Rezept bearbeiten',
   dlg_import_recipes: 'Rezepte importieren',
@@ -727,7 +762,7 @@ de: {
   dlg_add_component: 'Kategorie hinzufügen',
   dlg_edit_component: 'Kategorie bearbeiten',
 
-  // recipe detail labels
+  // ── recipe detail labels ────────────────────────────────────────
   recipe_ings_per_person: 'Zutaten pro Person (netto) — {0} — Kosten: {1} €',
   recipe_season_in: '✅ Alle saisonalen Zutaten sind aktuell in Saison',
   recipe_season_out: '⚠ Aktuell nicht in Saison: {0}',
@@ -742,7 +777,7 @@ de: {
   recipe_no_cat: 'Ohne Kategorie',
   recipe_copy_suffix: ' (Kopie)',
 
-  // order / assignment UI
+  // ── order / assignment UI ────────────────────────────────────────
   order_split_label: 'Bestellungen aufteilen',
   order_split_hint: 'Klick: +1 / Rechtsklick: -1',
   order_group_label: 'Bestellung {0}',
@@ -764,7 +799,7 @@ de: {
   order_allergy_label: 'Allergie-Essen',
   order_not_assigned: '— nicht zugewiesen —',
 
-  // PDF/print strings
+  // ── PDF/print strings ────────────────────────────────────────
   pdf_overview_title: 'Übersicht aller Mahlzeiten',
   pdf_cooking_team: 'Kochteam:',
   pdf_schedule: 'Zeitplan — Start:',
@@ -786,12 +821,12 @@ de: {
   pdf_instead_of: 'statt',
   misc_uncategorized: 'Sonstiges',
 
-  // filter dropdowns
+  // ── filter dropdowns ────────────────────────────────────────
   filter_all_categories: 'Alle Kategorien',
   filter_no_category: 'Ohne Kategorie',
   filter_all_tags: 'Alle Tags',
 
-  // season calendar
+  // ── season calendar ────────────────────────────────────────
   season_all_cats: 'Alle Kategorien',
   season_only_veg: 'Nur Gemüse',
   season_only_fruit: 'Nur Obst',
@@ -812,7 +847,7 @@ de: {
   season_info_title: 'ℹ  Hinweis',
   season_info_body: 'Die Angaben beziehen sich auf Deutschland und mitteleuropäisches Klima. Regional und je nach Wetter können Zeiträume leicht abweichen. „Aus Lager" bedeutet meist aus heimischem Anbau, aber unter Kühlung/Lagerung verfügbar. Bei Frage nach bio-regionaler Verfügbarkeit immer kurz beim Lieferanten rückfragen.',
 
-  // database page
+  // ── database page ────────────────────────────────────────
   db_backup_title: '💾  Backup exportieren',
   db_backup_desc: 'Exportiert alle Daten (Zutaten, Rezepte, Kochaktionen, Standardmahlzeiten, etc.) als JSON-Datei. Diese Datei kannst du als Backup speichern oder auf einen anderen Rechner übertragen.',
   db_import_title: '📂  Datenbank importieren',
@@ -832,7 +867,7 @@ de: {
   db_share_skipped: ' — {0} Zuweisungen übersprungen',
   db_share_missing: ' — ⚠ {0} Rezept(e) fehlen in deiner Datenbank: {1}',
 
-  // storeLabels
+  // ── store labels ────────────────────────────────────────
   store_actions: 'Kochaktionen',
   store_cooking_days: 'Kochtage',
   store_meal_slots: 'Mahlzeit-Slots',
@@ -855,7 +890,7 @@ de: {
   store_ingredient_tags: 'Zutaten-Tags',
   store_recipe_ingredient_substitutes: 'Rezept-Substitutionen',
 
-  // general order export
+  // ── general order export ────────────────────────────────────────
   export_general_header: '=== GRUNDBEDARFE ===',
   export_special_header: '=== EINKAUFSLISTE NACH REZEPT ===',
   export_event: 'Veranstaltung: {0}',
@@ -865,18 +900,18 @@ de: {
   export_no_category: 'Ohne Kategorie',
   export_trim_label: 'Abschnitt:',
 
-  // std meal detail
+  // ── standard meal detail ────────────────────────────────────────
   std_meal_detail_meta: '{0} — Mengen pro Kategorie für 100 Personen{1}',
   std_meal_active_suffix: ' — ✓ Aktiv',
   std_meal_orphaned: 'Ohne Kategorie',
   std_meal_cat_missing: '⚠ {0} (Kategorie fehlt)',
 
-  // recipe detail times
+  // ── recipe detail times ────────────────────────────────────────
   recipe_prep_time_display: '⏱ Zubereitung: {0}',
   recipe_cook_time_display: '🍳 Garzeit: {0}',
   recipe_ing_count: '{0} Zutaten',
 
-  // allergen info page (hardcoded content)
+  // ── allergen info page (hardcoded content) ────────────────
   ai_intro: 'Beim Kochen für viele Menschen ist es wichtig, auch verschiedene Bedürfnisse im Blick zu behalten. Bei der Zubereitung von Essen ist in diesen Fällen besondere Sorgfalt im Umgang mit Allergenen und Unverträglichkeiten erforderlich. Neben den gesetzlich vorgeschriebenen Kennzeichnungen sollten auch häufige Unverträglichkeiten berücksichtigt werden, um ein sicheres und verträgliches Essen für alle zu ermöglichen.',
   ai_sec1_title: '1. Gesetzlich vorgeschriebene Allergene (EU)',
   ai_sec1_desc: 'Folgende 14 Hauptallergene müssen laut EU-Lebensmittelrecht (Verordnung Nr. 1169/2011) bei der Verwendung in Speisen eindeutig kenntlich gemacht werden:',
@@ -928,7 +963,7 @@ de: {
     ['PDF-Export','Im gedruckten Rezeptbuch werden Allergie-Rezepte als „Allergie-Essen" gekennzeichnet, damit das Kochteam sie klar von den regulären Mahlzeiten unterscheiden kann.']
   ],
 
-  // help page sections
+  // ── help page sections ────────────────────────────────────────
   help_calendar_title: '📅  Kalender',
   help_calendar_text: 'Hier verwaltest du deine Kochaktionen oder Veranstaltungen. Links siehst du eine Sidebar-Liste aller angelegten Kochaktionen — klicke auf eine Aktion, um sie auszuwählen. Innerhalb einer Kochaktion legst du Kochtage fest, indem du auf Tage im Kalender klickst, und definierst pro Tag die Mahlzeiten (z.B. Mittagessen, 200 Portionen). Die Mahlzeitkategorien kannst du frei definieren.',
   help_general_title: '📋  Grundbedarfe',
@@ -954,7 +989,7 @@ de: {
   help_hint_import_format: 'Rezept-Import unterstützt das .txt-Format mit den Abschnitten === REZEPT ===, --- ZUTATEN ---, --- ZUBEREITUNG --- und --- HINWEIS ---. Optionale Zutaten werden mit „; optional" am Zeilenende markiert. Tags werden im Header als „Tags: tag1, tag2" exportiert und beim Import automatisch erstellt. Zutaten-Substitutionen werden als eingerückte Zeilen „→ Substitut: Name; Menge; Einheit; Verarbeitung" unter der jeweiligen Zutat exportiert und importiert.',
   help_hint_theme: 'Du kannst zwischen Hell- und Dunkel-Theme wechseln über den Button oben rechts.',
 
-  // tag input
+  // ── tag input ────────────────────────────────────────
   tag_create: '+ "{0}" erstellen',
   btn_manage_tags: '🏷 Tags',
   tag_manage_title: 'Tags verwalten',
@@ -967,7 +1002,7 @@ de: {
   tag_used_recipes: '{0} Rezept(en)',
   tag_used_ingredients: '{0} Zutat(en)',
 
-  // misc
+  // ── misc ────────────────────────────────────────
   misc_optional: 'optional',
   misc_new_prep_method: 'Neue Verarbeitungsmethode:',
   misc_new_name: 'Neuer Name:',
@@ -990,7 +1025,7 @@ de: {
   misc_or: 'oder',
 },
 en: {
-  // nav
+  // ── nav ────────────────────────────────────────
   nav_calendar: '📅  Calendar',
   nav_general_order: '📋  Basic Needs',
   nav_special_order: '📄  Shopping List by Recipe',
@@ -1001,7 +1036,7 @@ en: {
   nav_allergen_info: '⚠  Allergens',
   nav_help: '❓  Help',
 
-  // page titles
+  // ── page titles ────────────────────────────────────────
   page_calendar: 'Calendar',
   page_general_order: 'Basic Needs',
   page_special_order: 'Shopping List by Recipe',
@@ -1013,10 +1048,10 @@ en: {
   page_help: 'Help',
   page_standard_meals: 'Standard Meals',
 
-  // subtitle / hints
+  // ── subtitle / hints ────────────────────────────────────────
   hint_calendar_subtitle: 'Select a cooking event and set cooking days with meals',
 
-  // buttons
+  // ── buttons ────────────────────────────────────────
   btn_new: '+  New',
   btn_edit: 'Edit',
   btn_delete: 'Delete',
@@ -1066,7 +1101,7 @@ en: {
   btn_update_later: 'Later',
   btn_delete_all_data: '🗑  Delete all data',
 
-  // form labels
+  // ── form labels ────────────────────────────────────────
   lbl_name: 'Name',
   lbl_description: 'Description',
   lbl_unit: 'Unit',
@@ -1116,7 +1151,7 @@ en: {
   lbl_converter: 'Converter',
   lbl_quantity: 'Quantity',
 
-  // placeholders
+  // ── placeholders ────────────────────────────────────────
   ph_search: 'Search...',
   ph_action_name: 'e.g. Summer camp',
   ph_action_desc: 'Optional description',
@@ -1151,7 +1186,7 @@ en: {
   ph_season_search: 'Search fruit/vegetable/herb...',
   ph_sub_search: 'Search ingredient...',
 
-  // column headers
+  // ── column headers ────────────────────────────────────────
   col_name: 'Name',
   col_unit: 'Unit',
   col_price: 'Price',
@@ -1177,7 +1212,7 @@ en: {
   col_assigned_recipes: 'Assigned recipes',
   col_season_name: 'Name',
 
-  // alert/confirm messages
+  // ── alert/confirm messages ────────────────────────────────────────
   msg_confirm_delete_action: 'Really delete cooking event "{0}" and all related cooking days?',
   msg_confirm_delete_ingredient: 'Really delete "{0}"?',
   msg_confirm_delete_subcategory: 'Delete "{0}"?',
@@ -1221,7 +1256,7 @@ en: {
   msg_no_allergens_defined_hint: 'No allergens defined — create them under Ingredients → Manage allergens',
   msg_please_enter_name: 'Please enter a name',
 
-  // empty states
+  // ── empty states ────────────────────────────────────────
   empty_no_actions: 'No events yet',
   empty_no_cooking_days: 'No cooking days yet',
   empty_no_meal_cats: 'Please create meal categories under "Standard meals" first',
@@ -1248,7 +1283,7 @@ en: {
   empty_no_entries: 'No entries found',
   empty_no_recipe_ings: 'No ingredients yet',
 
-  // status messages
+  // ── status messages ────────────────────────────────────────
   status_import_success: '✓ Import successful! Reloading...',
   status_import_error: '✕ Error: {0}',
   status_default_loaded: '✓ Default data loaded! Reloading …',
@@ -1261,7 +1296,7 @@ en: {
   status_all_deleted: '✓ All data deleted',
   status_update_available: 'New version available',
 
-  // month names
+  // ── month names ────────────────────────────────────────
   month_jan: 'January',
   month_feb: 'February',
   month_mar: 'March',
@@ -1275,18 +1310,18 @@ en: {
   month_nov: 'November',
   month_dec: 'December',
 
-  // calendar UI
+  // ── calendar UI ────────────────────────────────────────
   cal_cooking_actions: 'Cooking events',
   cal_cooking_days: 'Cooking days',
   cal_days_count: '{0} days',
   cal_meals_header: 'Meals — {0}',
   cal_portionen_unit: 'Servings',
 
-  // action dialogs
+  // ── action dialogs ────────────────────────────────────────
   dlg_new_action: 'New cooking event',
   dlg_edit_action: 'Edit cooking event',
 
-  // ingredient dialogs
+  // ── ingredient dialogs ────────────────────────────────────────
   dlg_new_ingredient: 'New ingredient',
   dlg_edit_ingredient: 'Edit ingredient',
   dlg_manage_subcats: 'Manage categories',
@@ -1296,7 +1331,7 @@ en: {
   dlg_import_how: 'How should existing ingredients (same name) be handled?',
   dlg_ingredients_export_count: '{0} ingredients will be exported.',
 
-  // recipe dialogs
+  // ── recipe dialogs ────────────────────────────────────────
   dlg_new_recipe: 'New recipe',
   dlg_edit_recipe: 'Edit recipe',
   dlg_import_recipes: 'Import recipes',
@@ -1318,7 +1353,7 @@ en: {
   dlg_add_component: 'Add category',
   dlg_edit_component: 'Edit category',
 
-  // recipe detail labels
+  // ── recipe detail labels ────────────────────────────────────────
   recipe_ings_per_person: 'Ingredients per person (net) — {0} — Cost: {1} €',
   recipe_season_in: '✅ All seasonal ingredients are currently in season',
   recipe_season_out: '⚠ Currently not in season: {0}',
@@ -1333,7 +1368,7 @@ en: {
   recipe_no_cat: 'No category',
   recipe_copy_suffix: ' (copy)',
 
-  // order / assignment UI
+  // ── order / assignment UI ────────────────────────────────────────
   order_split_label: 'Split orders',
   order_split_hint: 'Click: +1 / Right-click: -1',
   order_group_label: 'Order {0}',
@@ -1355,7 +1390,7 @@ en: {
   order_allergy_label: 'Allergy meal',
   order_not_assigned: '— not assigned —',
 
-  // PDF/print strings
+  // ── PDF/print strings ────────────────────────────────────────
   pdf_overview_title: 'Overview of all meals',
   pdf_cooking_team: 'Cooking team:',
   pdf_schedule: 'Schedule — Start:',
@@ -1377,12 +1412,12 @@ en: {
   pdf_instead_of: 'instead of',
   misc_uncategorized: 'Other',
 
-  // filter dropdowns
+  // ── filter dropdowns ────────────────────────────────────────
   filter_all_categories: 'All categories',
   filter_no_category: 'No category',
   filter_all_tags: 'All tags',
 
-  // season calendar
+  // ── season calendar ────────────────────────────────────────
   season_all_cats: 'All categories',
   season_only_veg: 'Vegetables only',
   season_only_fruit: 'Fruit only',
@@ -1403,7 +1438,7 @@ en: {
   season_info_title: 'ℹ  Note',
   season_info_body: 'Data refers to Germany and central European climate. Depending on region and weather, periods may vary slightly. "From storage" usually means domestic produce kept in cold storage. For organic/regional availability, always check with your supplier.',
 
-  // database page
+  // ── database page ────────────────────────────────────────
   db_backup_title: '💾  Export backup',
   db_backup_desc: 'Exports all data (ingredients, recipes, cooking events, standard meals, etc.) as a JSON file. Save it as a backup or transfer it to another device.',
   db_import_title: '📂  Import database',
@@ -1423,7 +1458,7 @@ en: {
   db_share_skipped: ' — {0} assignments skipped',
   db_share_missing: ' — ⚠ {0} recipe(s) missing in your database: {1}',
 
-  // storeLabels
+  // ── store labels ────────────────────────────────────────
   store_actions: 'Cooking events',
   store_cooking_days: 'Cooking days',
   store_meal_slots: 'Meal slots',
@@ -1446,7 +1481,7 @@ en: {
   store_ingredient_tags: 'Ingredient tags',
   store_recipe_ingredient_substitutes: 'Recipe substitutions',
 
-  // general order export
+  // ── general order export ────────────────────────────────────────
   export_general_header: '=== BASIC NEEDS ===',
   export_special_header: '=== SHOPPING LIST BY RECIPE ===',
   export_event: 'Event: {0}',
@@ -1456,18 +1491,18 @@ en: {
   export_no_category: 'No category',
   export_trim_label: 'Trim:',
 
-  // std meal detail
+  // ── standard meal detail ────────────────────────────────────────
   std_meal_detail_meta: '{0} — quantities per category for 100 people{1}',
   std_meal_active_suffix: ' — ✓ Active',
   std_meal_orphaned: 'No category',
   std_meal_cat_missing: '⚠ {0} (category missing)',
 
-  // recipe detail times
+  // ── recipe detail times ────────────────────────────────────────
   recipe_prep_time_display: '⏱ Prep: {0}',
   recipe_cook_time_display: '🍳 Cook time: {0}',
   recipe_ing_count: '{0} ingredients',
 
-  // allergen info page
+  // ── allergen info page ────────────────────────────────────────
   ai_intro: 'When cooking for many people, it is important to keep different needs in mind. Special care is required when handling allergens and intolerances. In addition to legally required labelling, common intolerances should also be considered to ensure safe and well-tolerated food for everyone.',
   ai_sec1_title: '1. Legally required allergens (EU)',
   ai_sec1_desc: 'The following 14 major allergens must be clearly labelled according to EU food law (Regulation No. 1169/2011) when used in dishes:',
@@ -1519,7 +1554,7 @@ en: {
     ['PDF export','In the printed recipe book, allergy recipes are marked as "Allergy meal" so the kitchen team can clearly distinguish them from regular meals.']
   ],
 
-  // help page sections
+  // ── help page sections ────────────────────────────────────────
   help_calendar_title: '📅  Calendar',
   help_calendar_text: 'Manage your cooking events or occasions here. On the left you see a sidebar list of all created cooking events — click one to select it. Within a cooking event, set cooking days by clicking days in the calendar and define meals per day (e.g. Lunch, 200 servings). Meal categories can be freely defined.',
   help_general_title: '📋  Basic Needs',
@@ -1545,7 +1580,7 @@ en: {
   help_hint_import_format: 'Recipe import supports the .txt format with sections === RECIPE ===, --- INGREDIENTS ---, --- PREPARATION --- and --- NOTES ---. Optional ingredients are marked with "; optional" at the end of the line. Tags are exported in the header as "Tags: tag1, tag2" and created automatically on import. Ingredient substitutions are exported as indented lines "→ Substitute: Name; Quantity; Unit; Processing" under the respective ingredient and imported accordingly.',
   help_hint_theme: 'Switch between light and dark theme using the button at the top right.',
 
-  // tag input
+  // ── tag input ────────────────────────────────────────
   tag_create: '+ Create "{0}"',
   btn_manage_tags: '🏷 Tags',
   tag_manage_title: 'Manage Tags',
@@ -1558,7 +1593,7 @@ en: {
   tag_used_recipes: '{0} recipe(s)',
   tag_used_ingredients: '{0} ingredient(s)',
 
-  // misc
+  // ── misc ────────────────────────────────────────
   misc_optional: 'optional',
   misc_new_prep_method: 'New processing method:',
   misc_new_name: 'New name:',
