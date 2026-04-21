@@ -1,4 +1,24 @@
 <!DOCTYPE html>
+<!--
+════════════════════════════════════════════════════════════════════════════════
+ KF PORTIONSRECHNER — index.html
+════════════════════════════════════════════════════════════════════════════════
+
+ Single-HTML-PWA zur Portions-/Einkaufsplanung für Koch-Aktionen.
+ Daten liegen in IndexedDB, offline-fähig über Service Worker (sw.js).
+
+ ─── FILE MAP (grobe Orientierung — Details siehe README.md) ─────────────────
+   HEAD-Block     Meta-Tags, PWA-Manifest (base64), SVG-Favicon (data-URI)
+   STYLE-Block    Design-Tokens, Base, Komponenten, Responsive (Ctrl+F
+                  nach "── Reset & Base ──", "── Components ──" etc.)
+   BODY-Block     statisches Grundgerüst (sidebar, content area)
+   SCRIPT-Block   komplette App-Logik (siehe SCRIPT MAP unten im Skript)
+ ─────────────────────────────────────────────────────────────────────────────
+
+ Navigation: Ctrl+F nach den Header-Bannern (beginnen alle mit "//  ").
+ Konventionen und Architektur: README.md
+════════════════════════════════════════════════════════════════════════════════
+-->
 <html lang="de">
 <head>
 <meta charset="UTF-8">
@@ -333,6 +353,47 @@ label.checkbox input{accent-color:var(--accent);width:16px;height:16px}
 <div id="modal-root"></div>
 
 <script>
+/* ══════════════════════════════════════════════════════════════════════════
+   SCRIPT MAP — Orientierungshilfe für diese ~5500 Zeilen
+   --------------------------------------------------------------------------
+   Alle Abschnitte beginnen mit einem Banner-Kommentar wie
+       //  ═══ NAME ═══
+   Zum Springen einfach Ctrl+F auf den Abschnittsnamen.
+
+   1. INTERNATIONALISIERUNG (i18n)          — I18N (de/en) + t(), toggleLang()
+   2. DATABASE (IndexedDB)                  — DB_VERSION, openDB, CRUD-Helper,
+                                              Entity-Funktionen (Ingredients,
+                                              Recipes, Allergens, Tags, …)
+   3. APP STATE                             — globale `let`-Variablen
+   4. HELPERS                               — h() (DOM-builder), showModal,
+                                              closeModal, downloadFile, …
+   5. THEME TOGGLE / MOBILE SIDEBAR / NAV   — Chrome-Elemente
+   6. CALENDAR PAGE                         — Aktionen / Kochtage / Mahlzeiten
+   7. INGREDIENTS PAGE                      — Zutaten-CRUD, Import/Export,
+                                              Saison-Quick-Dialog
+   8. STANDARD MEALS PAGE                   — vordefinierte Mahlzeiten
+   9. GENERAL ORDER PAGE                    — Einkaufsliste (Grundbedarfe)
+  10. RECIPE BOOK PAGE                      — Rezeptverwaltung, Detailansicht,
+                                              Saisonalitäts-Check, PDF-Druck
+  11. SPECIAL ORDER PAGE                    — Einkaufsliste nach Rezept,
+                                              TXT/CSV/PDF-Export, Rezept-Druck
+  12. DATABASE PAGE                         — Backup/Restore, Standard laden,
+                                              Update-Check
+  13. SAISONKALENDER PAGE                   — liest Zutaten mit
+                                              season_category + months
+  14. ALLERGEN INFO PAGE                    — statische Info-Seite
+  15. HELP PAGE                             — Hilfetexte
+  16. SERVICE WORKER                        — Update-Banner, Aktualisierung
+  17. INIT                                  — bootstrap (openDB, render, SW)
+
+   Konventionen:
+   • `async`/`await` durchgängig, keine Callbacks
+   • DOM-Erzeugung via `h(tag, attrs, ...children)` (siehe HELPERS)
+   • Modale via `showModal(node)` / `closeModal(modal)`
+   • Texte immer durch `t('key', ...args)` — nie hardcoded
+   • Seitenwechsel via `NAV_ITEMS[].id` → renderXxxPage(container)
+   ══════════════════════════════════════════════════════════════════════════ */
+
 // ══════════════════════════════════════════════════════════════
 //  INTERNATIONALISIERUNG (i18n)
 // ══════════════════════════════════════════════════════════════
