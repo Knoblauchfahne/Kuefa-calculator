@@ -2433,6 +2433,124 @@ function unitSelect(val='kg'){
   return sel;
 }
 
+// ── openFormDialog — kleines Form-Dialog-Helper ──────────────────
+//
+// Für einfache Create/Edit-Dialoge (2–5 Felder). Größere Spezial-
+// Dialoge (Zutat, Rezept, Saison-Picker) bauen weiter von Hand.
+//
+//   openFormDialog({
+//     title: t('dlg_...'),
+//     fields: [
+//       {key, label, type, value?, placeholder?, required?, hint?, ...}
+//     ],
+//     rows?:  ['name', ['qty','unit'], 'price']   // optional Gruppierung
+//     saveLabel?: t('btn_create'),                // default: btn_save
+//     cancelLabel?: ...                           // default: btn_cancel
+//     onSave: async (values) => { ... }           // return false → Dialog bleibt offen
+//   });
+//
+// Feld-Typen: 'text' | 'number' | 'textarea' | 'select' | 'unit' | 'custom'
+//   'select':  options = ['a','b'] | [[v,l],…] | [{value,label},…]
+//   'unit':    nutzt die globale UNITS-Liste
+//   'custom':  build: ()=>HTMLElement — Wert wird via el.value gelesen
+//
+function openFormDialog({title,fields,rows,onSave,saveLabel,cancelLabel}){
+  const inputs={};
+  const fieldMap=Object.fromEntries(fields.map(f=>[f.key,f]));
+
+  function makeInput(f){
+    let el;
+    if(f.type==='textarea'){
+      el=h('textarea',{style:{width:'100%'},rows:String(f.rows||3)});
+      if(f.value!=null) el.value=f.value;
+    }else if(f.type==='select'||f.type==='unit'){
+      el=h('select',{style:{width:'100%'}});
+      const opts=f.type==='unit'?UNITS.map(u=>[u,u]):(f.options||[]);
+      opts.forEach(o=>{
+        let v,l;
+        if(Array.isArray(o)){[v,l]=o;}
+        else if(o&&typeof o==='object'){v=o.value;l=o.label??String(v);}
+        else{v=l=o;}
+        const opt=h('option',{value:String(v)},String(l));
+        if(f.value!=null&&String(f.value)===String(v)) opt.selected=true;
+        el.appendChild(opt);
+      });
+    }else if(f.type==='custom'){
+      el=f.build();
+    }else{
+      const attrs={type:f.type||'text',style:{width:'100%'}};
+      if(f.placeholder!=null) attrs.placeholder=f.placeholder;
+      if(f.step!=null) attrs.step=String(f.step);
+      if(f.min!=null) attrs.min=String(f.min);
+      if(f.max!=null) attrs.max=String(f.max);
+      el=h('input',attrs);
+      if(f.value!=null) el.value=f.value;
+    }
+    inputs[f.key]=el;
+    return el;
+  }
+
+  function makeGroup(f){
+    const children=[h('label',{class:'form-label'},f.label),makeInput(f)];
+    if(f.hint) children.push(h('div',{style:{fontSize:'11px',color:'var(--text-muted)',marginTop:'4px'}},f.hint));
+    return h('div',{class:'form-group'},...children);
+  }
+
+  const groupSpecs=rows||fields.map(f=>f.key);
+  const groupNodes=groupSpecs.map(g=>{
+    const keys=Array.isArray(g)?g:[g];
+    if(keys.length===1) return makeGroup(fieldMap[keys[0]]);
+    return h('div',{class:'form-row'},...keys.map(k=>makeGroup(fieldMap[k])));
+  });
+
+  const collect=()=>{
+    const out={};
+    for(const f of fields){
+      const el=inputs[f.key];let v=el.value;
+      if(f.type==='number'){const n=parseFloat(v);v=isNaN(n)?null:n;}
+      else if(typeof v==='string'){v=v.trim();}
+      out[f.key]=v;
+    }
+    return out;
+  };
+
+  const validate=(values)=>{
+    for(const f of fields){
+      if(f.required){
+        const v=values[f.key];
+        if(v===''||v==null){
+          alert(t('msg_please_name'));
+          if(inputs[f.key].focus) inputs[f.key].focus();
+          return false;
+        }
+      }
+    }
+    return true;
+  };
+
+  let modal;
+  modal=showModal(h('div',{},
+    h('h2',{},title),
+    ...groupNodes,
+    h('div',{class:'modal-buttons'},
+      h('button',{class:'btn btn-surface',onClick:()=>closeModal(modal)},cancelLabel||t('btn_cancel')),
+      h('button',{class:'btn btn-accent',onClick:async()=>{
+        const values=collect();
+        if(!validate(values)) return;
+        try{
+          const res=await onSave(values);
+          if(res!==false) closeModal(modal);
+        }catch(e){console.error(e);}
+      }},saveLabel||t('btn_save'))
+    )
+  ));
+
+  const first=inputs[fields[0]?.key];
+  if(first&&first.focus) first.focus();
+
+  return {modal,inputs,getValues:collect};
+}
+
 function round2(n){return Math.round(n*100)/100;}
 
 async function getDayIds(){
@@ -2707,43 +2825,35 @@ async function renderCalendarPage(container){
   }
 
   async function newActionDialog(){
-    const nameInput=h('input',{type:'text',placeholder:t('ph_action_name'),style:{width:'100%'}});
-    const descInput=h('input',{type:'text',placeholder:t('ph_action_desc'),style:{width:'100%'}});
-    const modal=showModal(h('div',{},
-      h('h2',{},t('dlg_new_action')),
-      h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_name')),nameInput),
-      h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_description')),descInput),
-      h('div',{class:'modal-buttons'},
-        h('button',{class:'btn btn-surface',onClick:()=>closeModal(modal)},t('btn_cancel')),
-        h('button',{class:'btn btn-accent',onClick:async()=>{
-          if(!nameInput.value.trim()){alert(t('msg_please_name'));return;}
-          const id=await createAction(nameInput.value.trim(),descInput.value.trim());
-          selectedActionId=id;closeModal(modal);showPage('calendar');
-        }},t('btn_create'))
-      )
-    ));
-    nameInput.focus();
+    openFormDialog({
+      title:t('dlg_new_action'),
+      saveLabel:t('btn_create'),
+      fields:[
+        {key:'name',label:t('lbl_name'),type:'text',placeholder:t('ph_action_name'),required:true},
+        {key:'description',label:t('lbl_description'),type:'text',placeholder:t('ph_action_desc')}
+      ],
+      onSave:async({name,description})=>{
+        const id=await createAction(name,description);
+        selectedActionId=id;showPage('calendar');
+      }
+    });
   }
 
   async function editActionDialog(){
     if(!selectedActionId) return;
     const actions=await getActions();
     const action=actions.find(a=>a.id===selectedActionId);if(!action) return;
-    const nameInput=h('input',{type:'text',value:action.name,style:{width:'100%'}});
-    const descInput=h('input',{type:'text',value:action.description||'',style:{width:'100%'}});
-    const modal=showModal(h('div',{},
-      h('h2',{},t('dlg_edit_action')),
-      h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_name')),nameInput),
-      h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_description')),descInput),
-      h('div',{class:'modal-buttons'},
-        h('button',{class:'btn btn-surface',onClick:()=>closeModal(modal)},t('btn_cancel')),
-        h('button',{class:'btn btn-accent',onClick:async()=>{
-          if(!nameInput.value.trim()) return;
-          await updateAction(action.id,nameInput.value.trim(),descInput.value.trim());
-          closeModal(modal);showPage('calendar');
-        }},t('btn_save'))
-      )
-    ));
+    openFormDialog({
+      title:t('dlg_edit_action'),
+      fields:[
+        {key:'name',label:t('lbl_name'),type:'text',value:action.name,required:true},
+        {key:'description',label:t('lbl_description'),type:'text',value:action.description||''}
+      ],
+      onSave:async({name,description})=>{
+        await updateAction(action.id,name,description);
+        showPage('calendar');
+      }
+    });
   }
 
   async function deleteActionHandler(){
@@ -3427,99 +3537,73 @@ async function renderStandardMealsPage(container){
   async function addMealDialog(){
     const mealTypes=await getMealTypeNames();
     if(!mealTypes.length){alert(t('msg_please_add_meal_cats'));return;}
-    const nameInput=h('input',{type:'text',placeholder:t('ph_meal_name'),style:{width:'100%'}});
-    const typeSel=h('select',{style:{width:'100%'}});
-    mealTypes.forEach(mt=>typeSel.appendChild(h('option',{value:mt},mt)));
-    const modal=showModal(h('div',{},
-      h('h2',{},t('dlg_new_std_meal')),
-      h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_name')),nameInput),
-      h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_meal_category')),typeSel),
-      h('div',{class:'modal-buttons'},
-        h('button',{class:'btn btn-surface',onClick:()=>closeModal(modal)},t('btn_cancel')),
-        h('button',{class:'btn btn-accent',onClick:async()=>{
-          if(!nameInput.value.trim()) return;
-          const id=await createStandardMeal(typeSel.value,nameInput.value.trim());
-          stdMealSelectedId=id;closeModal(modal);refresh();
-        }},t('btn_create'))
-      )
-    ));
+    openFormDialog({
+      title:t('dlg_new_std_meal'),
+      saveLabel:t('btn_create'),
+      fields:[
+        {key:'name',label:t('lbl_name'),type:'text',placeholder:t('ph_meal_name'),required:true},
+        {key:'mealType',label:t('lbl_meal_category'),type:'select',options:mealTypes}
+      ],
+      onSave:async({name,mealType})=>{
+        const id=await createStandardMeal(mealType,name);
+        stdMealSelectedId=id;refresh();
+      }
+    });
   }
 
   async function editMealDialog(meal){
     const mealTypes=await getMealTypeNames();
-    const nameInput=h('input',{type:'text',value:meal.name,style:{width:'100%'}});
-    const typeSel=h('select',{style:{width:'100%'}});
-    mealTypes.forEach(mt=>{const o=h('option',{value:mt},mt);if(mt===meal.meal_type)o.selected=true;typeSel.appendChild(o);});
-    const modal=showModal(h('div',{},
-      h('h2',{},t('dlg_edit_std_meal')),
-      h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_name')),nameInput),
-      h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_meal_category')),typeSel),
-      h('div',{class:'modal-buttons'},
-        h('button',{class:'btn btn-surface',onClick:()=>closeModal(modal)},t('btn_cancel')),
-        h('button',{class:'btn btn-accent',onClick:async()=>{
-          if(!nameInput.value.trim()) return;
-          await updateStandardMeal(meal.id,nameInput.value.trim(),typeSel.value);
-          closeModal(modal);refresh();
-        }},t('btn_save'))
-      )
-    ));
+    openFormDialog({
+      title:t('dlg_edit_std_meal'),
+      fields:[
+        {key:'name',label:t('lbl_name'),type:'text',value:meal.name,required:true},
+        {key:'mealType',label:t('lbl_meal_category'),type:'select',options:mealTypes,value:meal.meal_type}
+      ],
+      onSave:async({name,mealType})=>{
+        await updateStandardMeal(meal.id,name,mealType);
+        refresh();
+      }
+    });
   }
 
   async function addComponentDialog(mealId){
     const subcats=await getSubcategories();
     if(!subcats.length){alert(t('msg_no_subcats'));return;}
-    const subcatSel=h('select',{style:{width:'100%'}});
-    subcats.forEach(s=>subcatSel.appendChild(h('option',{value:s.name},s.name)));
-    const qtyInput=h('input',{type:'number',placeholder:'z.B. 25',style:{width:'100%'}});
-    const uSel=unitSelect('kg');uSel.style.width='100%';
-    const priceInput=h('input',{type:'number',placeholder:'0.00',step:'0.01',style:{width:'100%'}});
-
-    const modal=showModal(h('div',{},
-      h('h2',{},t('dlg_add_component')),
-      h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_category')),subcatSel),
-      h('div',{class:'form-row'},
-        h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_qty_per_100')),qtyInput),
-        h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_unit')),uSel)
-      ),
-      h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_price_per_unit_euro')),priceInput),
-      h('div',{class:'modal-buttons'},
-        h('button',{class:'btn btn-surface',onClick:()=>closeModal(modal)},t('btn_cancel')),
-        h('button',{class:'btn btn-accent',onClick:async()=>{
-          const qty=parseFloat(qtyInput.value);if(!qty||qty<=0) return;
-          const ppu=parseFloat(priceInput.value)||0;
-          await addMealComponent(mealId,0,qty,uSel.value,subcatSel.value,ppu);
-          closeModal(modal);refresh();
-        }},t('btn_add'))
-      )
-    ));
+    openFormDialog({
+      title:t('dlg_add_component'),
+      saveLabel:t('btn_add'),
+      fields:[
+        {key:'subcategory',label:t('lbl_category'),type:'select',options:subcats.map(s=>s.name)},
+        {key:'qty',label:t('lbl_qty_per_100'),type:'number',placeholder:'z.B. 25'},
+        {key:'unit',label:t('lbl_unit'),type:'unit',value:'kg'},
+        {key:'price',label:t('lbl_price_per_unit_euro'),type:'number',placeholder:'0.00',step:0.01}
+      ],
+      rows:['subcategory',['qty','unit'],'price'],
+      onSave:async({subcategory,qty,unit,price})=>{
+        if(!qty||qty<=0) return false;
+        await addMealComponent(mealId,0,qty,unit,subcategory,price||0);
+        refresh();
+      }
+    });
   }
 
   async function editComponentDialog(comp){
     const subcats=await getSubcategories();
-    const subcatSel=h('select',{style:{width:'100%'}});
-    subcats.forEach(s=>{const o=h('option',{value:s.name},s.name);if(s.name===comp.subcategory)o.selected=true;subcatSel.appendChild(o);});
-    const qtyInput=h('input',{type:'number',value:comp.quantity_per_100,style:{width:'100%'}});
-    const uSel=unitSelect(comp.unit);uSel.style.width='100%';
-    const priceInput=h('input',{type:'number',value:comp.price_per_unit||'',placeholder:'0.00',step:'0.01',style:{width:'100%'}});
-
-    const modal=showModal(h('div',{},
-      h('h2',{},t('dlg_edit_component')),
-      h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_category')),subcatSel),
-      h('div',{class:'form-row'},
-        h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_qty_per_100')),qtyInput),
-        h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_unit')),uSel)
-      ),
-      h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_price_per_unit_euro')),priceInput),
-      h('div',{class:'modal-buttons'},
-        h('button',{class:'btn btn-surface',onClick:()=>closeModal(modal)},t('btn_cancel')),
-        h('button',{class:'btn btn-accent',onClick:async()=>{
-          const qty=parseFloat(qtyInput.value);if(!qty||qty<=0) return;
-          const ppu=parseFloat(priceInput.value)||0;
-          await updateMealComponent(comp.id,qty,uSel.value,subcatSel.value,ppu);
-          closeModal(modal);refresh();
-        }},t('btn_save'))
-      )
-    ));
+    openFormDialog({
+      title:t('dlg_edit_component'),
+      fields:[
+        {key:'subcategory',label:t('lbl_category'),type:'select',options:subcats.map(s=>s.name),value:comp.subcategory},
+        {key:'qty',label:t('lbl_qty_per_100'),type:'number',value:comp.quantity_per_100},
+        {key:'unit',label:t('lbl_unit'),type:'unit',value:comp.unit},
+        {key:'price',label:t('lbl_price_per_unit_euro'),type:'number',value:comp.price_per_unit||'',placeholder:'0.00',step:0.01}
+      ],
+      rows:['subcategory',['qty','unit'],'price'],
+      onSave:async({subcategory,qty,unit,price})=>{
+        if(!qty||qty<=0) return false;
+        await updateMealComponent(comp.id,qty,unit,subcategory,price||0);
+        refresh();
+      }
+    });
   }
 
   refresh();
