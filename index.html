@@ -3636,8 +3636,15 @@ async function renderGeneralOrderPage(container){
         const m=showModal(h('div',{},
           h('h2',{},t('dlg_export_general')),
           h('div',{class:'modal-buttons'},
-            h('button',{class:'btn btn-surface',onClick:()=>{downloadFile('Grundbedarfe.txt',exportGeneralOrderTxt(lastItems,aName));closeModal(m);}},t('btn_export_txt')),
-            h('button',{class:'btn btn-surface',onClick:()=>{downloadFile('Grundbedarfe.csv',exportGeneralOrderCsv(lastItems,aName),'text/csv');closeModal(m);}},t('btn_export_csv')),
+            h('button',{class:'btn btn-surface',onClick:()=>{
+              const title=LANG==='en'?'BASIC NEEDS':'GRUNDBEDARFE';
+              downloadFile('Grundbedarfe.txt',exportOrderTxt(lastItems,{title,actionName:aName,includeName:false}));
+              closeModal(m);
+            }},t('btn_export_txt')),
+            h('button',{class:'btn btn-surface',onClick:()=>{
+              downloadFile('Grundbedarfe.csv',exportOrderCsv(lastItems,{actionName:aName,includeName:false}),'text/csv');
+              closeModal(m);
+            }},t('btn_export_csv')),
             h('button',{class:'btn btn-surface',onClick:()=>closeModal(m)},t('btn_cancel'))
           )
         ));
@@ -3740,26 +3747,60 @@ function renderOrderList(parent,items){
   });
 }
 
-function exportGeneralOrderTxt(items,actionName){
-  let t=`=== ${LANG==='en'?'BASIC NEEDS':'GRUNDBEDARFE'} ===\n`;
-  if(actionName) t+=`${LANG==='en'?'Event':'Veranstaltung'}: ${actionName}\n`;
-  const total=items.reduce((s,i)=>s+i.total_cost,0);
-  t+=`${LANG==='en'?'Total':'Gesamt'}: ${total.toFixed(2)} €\n\n`;
-  const groups={};
-  items.forEach(i=>{const cat=i.subcategory||(LANG==='en'?'Other':'Sonstiges');(groups[cat]=groups[cat]||[]).push(i);});
-  Object.keys(groups).sort().forEach(cat=>{
-    const catItems=groups[cat];
-    const catTotal=catItems.reduce((s,i)=>s+i.total_cost,0);
-    const catLabel=LANG==='en'?(catItems[0].subcategory_en||cat):cat;
-    t+=`--- ${catLabel} (${catTotal.toFixed(2)} €) ---\n`;
-    catItems.forEach(i=>{
-      t+=`  ${round2(i.quantity)} ${i.unit}`;
-      if(i.total_cost) t+=`  —  ${i.total_cost.toFixed(2)} €`;
-      t+='\n';
-    });
-    t+='\n';
+// ── Gemeinsame Helper für TXT/CSV-Order-Exports ──────────────────
+// Item-Form (schlank):
+//   { quantity, unit, subcategory?, subcategory_en?,
+//     total_cost?,                                 // GO: vorkalkulierte Kosten
+//     name?, name_en?, price?, optional?           // SO: Preis * Menge = Kosten
+//   }
+// Die Kosten pro Item ergeben sich aus total_cost (falls gesetzt),
+// sonst aus quantity * price.
+function _orderItemCost(i){
+  return i.total_cost!=null ? i.total_cost : (i.quantity||0)*(i.price||0);
+}
+function _orderItemName(i){
+  return LANG==='en' ? (i.name_en||i.name) : i.name;
+}
+function _orderGroupBySubcat(items){
+  const other = LANG==='en'?'Other':'Sonstiges';
+  const groups = {};
+  items.forEach(i=>{
+    const cat = i.subcategory||other;
+    (groups[cat]=groups[cat]||[]).push(i);
   });
-  t+=`=== ${LANG==='en'?'END':'ENDE'} ===\n`;
+  return Object.keys(groups).sort().map(cat=>{
+    const catItems = groups[cat];
+    const catLabel = LANG==='en' ? (catItems[0].subcategory_en||cat) : cat;
+    const subtotal = catItems.reduce((s,i)=>s+_orderItemCost(i),0);
+    return {label:catLabel, items:catItems, subtotal};
+  });
+}
+
+// Einheitlicher TXT-Export. includeName=true → pro-Zeile Zutatname
+// (Special Order); false → nur Menge+Einheit pro Zeile (General Order).
+function exportOrderTxt(items, {title, actionName, includeName}){
+  const evL    = LANG==='en'?'Event':'Veranstaltung';
+  const totalL = LANG==='en'?'Total':'Gesamt';
+  const endL   = LANG==='en'?'END':'ENDE';
+
+  let t = `=== ${title} ===\n`;
+  if(actionName) t += `${evL}: ${actionName}\n`;
+  const grand = items.reduce((s,i)=>s+_orderItemCost(i),0);
+  t += `${totalL}: ${grand.toFixed(2)} €\n\n`;
+
+  for(const g of _orderGroupBySubcat(items)){
+    t += `--- ${g.label} (${g.subtotal.toFixed(2)} €) ---\n`;
+    for(const i of g.items){
+      const cost = _orderItemCost(i);
+      t += includeName
+        ? `  ${_orderItemName(i)}; ${round2(i.quantity)} ${i.unit}`
+        : `  ${round2(i.quantity)} ${i.unit}`;
+      if(cost) t += `  —  ${cost.toFixed(2)} €`;
+      t += '\n';
+    }
+    t += '\n';
+  }
+  t += `=== ${endL} ===\n`;
   return t;
 }
 
@@ -3836,64 +3877,37 @@ ${body}
   win.onload=()=>win.print();
 }
 
-function exportSpecialOrderTxt(items,actionName){
-  let t=`=== ${LANG==='en'?'SHOPPING LIST BY RECIPE':'EINKAUFSLISTE NACH REZEPT'} ===\n`;
-  if(actionName) t+=`${LANG==='en'?'Event':'Veranstaltung'}: ${actionName}\n`;
-  const total=items.reduce((s,i)=>s+i.quantity*(i.price||0),0);
-  t+=`${LANG==='en'?'Total':'Gesamt'}: ${total.toFixed(2)} €\n\n`;
-  const groups={};
-  items.forEach(i=>{const cat=i.subcategory||(LANG==='en'?'Other':'Sonstiges');(groups[cat]=groups[cat]||[]).push(i);});
-  Object.keys(groups).sort().forEach(cat=>{
-    const catItems=groups[cat];
-    const catTotal=catItems.reduce((s,i)=>s+i.quantity*(i.price||0),0);
-    const catLabel=LANG==='en'?(catItems[0].subcategory_en||cat):cat;
-    t+=`--- ${catLabel} (${catTotal.toFixed(2)} €) ---\n`;
-    catItems.forEach(i=>{
-      const iName=LANG==='en'?(i.name_en||i.name):i.name;
-      t+=`  ${iName}; ${round2(i.quantity)} ${i.unit}`;
-      if(i.price) t+=`  —  ${(i.quantity*i.price).toFixed(2)} €`;
-      t+='\n';
-    });
-    t+='\n';
-  });
-  t+=`=== ${LANG==='en'?'END':'ENDE'} ===\n`;
-  return t;
-}
+// Einheitlicher CSV-Export. includeName=true → mit Zutat-Spalte.
+function exportOrderCsv(items, {actionName, includeName}){
+  const evL  = LANG==='en'?'Event':'Veranstaltung';
+  const catL = LANG==='en'?'Category':'Kategorie';
+  const ingL = LANG==='en'?'Ingredient':'Zutat';
+  const qtyL = LANG==='en'?'Quantity':'Menge';
+  const unL  = LANG==='en'?'Unit':'Einheit';
+  const cL   = LANG==='en'?'Cost':'Preis';
+  const toL  = LANG==='en'?'Total':'Gesamt';
+  const otherL = LANG==='en'?'Other':'Sonstiges';
 
-function exportGeneralOrderCsv(items,actionName){
-  const hEv=LANG==='en'?'Event':'Veranstaltung';
-  const hCat=LANG==='en'?'Category':'Kategorie';
-  const hQty=LANG==='en'?'Quantity':'Menge';
-  const hUnit=LANG==='en'?'Unit':'Einheit';
-  const hCost=LANG==='en'?'Cost':'Preis';
-  const hTotal=LANG==='en'?'Total':'Gesamt';
-  let t=`\uFEFF${hEv};${hCat};${hQty};${hUnit};${hCost}\n`;
-  items.forEach(i=>{
-    const catLabel=LANG==='en'?(i.subcategory_en||i.subcategory||(LANG==='en'?'Other':'Sonstiges')):(i.subcategory||'Sonstiges');
-    t+=`${actionName||''};${catLabel};${String(round2(i.quantity)).replace('.',',')};${i.unit};${i.total_cost?String(i.total_cost.toFixed(2)).replace('.',','):''}\n`;
-  });
-  const total=items.reduce((s,i)=>s+i.total_cost,0);
-  t+=`;;${hTotal};;${String(total.toFixed(2)).replace('.',',')}\n`;
-  return t;
-}
+  let t = `\uFEFF${evL};${catL};`;
+  if(includeName) t += `${ingL};`;
+  t += `${qtyL};${unL};${cL}\n`;
 
-function exportSpecialOrderCsv(items,actionName){
-  const hEv=LANG==='en'?'Event':'Veranstaltung';
-  const hCat=LANG==='en'?'Category':'Kategorie';
-  const hIng=LANG==='en'?'Ingredient':'Zutat';
-  const hQty=LANG==='en'?'Quantity':'Menge';
-  const hUnit=LANG==='en'?'Unit':'Einheit';
-  const hCost=LANG==='en'?'Cost':'Preis';
-  const hTotal=LANG==='en'?'Total':'Gesamt';
-  let t=`\uFEFF${hEv};${hCat};${hIng};${hQty};${hUnit};${hCost}\n`;
   items.forEach(i=>{
-    const iName=LANG==='en'?(i.name_en||i.name):i.name;
-    const catLabel=LANG==='en'?(i.subcategory_en||i.subcategory||'Other'):(i.subcategory||'Sonstiges');
-    const cost=i.quantity*(i.price||0);
-    t+=`${actionName||''};${catLabel};${iName};${String(round2(i.quantity)).replace('.',',')};${i.unit};${cost?String(cost.toFixed(2)).replace('.',','):''}\n`;
+    const catLabel = LANG==='en'
+      ? (i.subcategory_en||i.subcategory||otherL)
+      : (i.subcategory||'Sonstiges');
+    const cost = _orderItemCost(i);
+    const qStr = String(round2(i.quantity)).replace('.',',');
+    const cStr = cost ? String(cost.toFixed(2)).replace('.',',') : '';
+    t += `${actionName||''};${catLabel};`;
+    if(includeName) t += `${_orderItemName(i)};`;
+    t += `${qStr};${i.unit};${cStr}\n`;
   });
-  const total=items.reduce((s,i)=>s+i.quantity*(i.price||0),0);
-  t+=`;;;${hTotal};;${String(total.toFixed(2)).replace('.',',')}\n`;
+
+  const grand = items.reduce((s,i)=>s+_orderItemCost(i),0);
+  t += includeName
+    ? `;;;${toL};;${String(grand.toFixed(2)).replace('.',',')}\n`
+    : `;;${toL};;${String(grand.toFixed(2)).replace('.',',')}\n`;
   return t;
 }
 
@@ -4614,8 +4628,15 @@ async function renderSpecialOrderPage(container){
           h('h2',{},t('dlg_export_special')),
           h('div',{class:'modal-buttons'},
             h('button',{class:'btn btn-accent',onClick:()=>{printSpecialOrderPDF(lastItems,aName);closeModal(m);}},t('btn_export_pdf')),
-            h('button',{class:'btn btn-surface',onClick:()=>{downloadFile('Einkaufsliste_nach_Rezept.txt',exportSpecialOrderTxt(lastItems,aName));closeModal(m);}},t('btn_export_txt')),
-            h('button',{class:'btn btn-surface',onClick:()=>{downloadFile('Einkaufsliste_nach_Rezept.csv',exportSpecialOrderCsv(lastItems,aName),'text/csv');closeModal(m);}},t('btn_export_csv')),
+            h('button',{class:'btn btn-surface',onClick:()=>{
+              const title=LANG==='en'?'SHOPPING LIST BY RECIPE':'EINKAUFSLISTE NACH REZEPT';
+              downloadFile('Einkaufsliste_nach_Rezept.txt',exportOrderTxt(lastItems,{title,actionName:aName,includeName:true}));
+              closeModal(m);
+            }},t('btn_export_txt')),
+            h('button',{class:'btn btn-surface',onClick:()=>{
+              downloadFile('Einkaufsliste_nach_Rezept.csv',exportOrderCsv(lastItems,{actionName:aName,includeName:true}),'text/csv');
+              closeModal(m);
+            }},t('btn_export_csv')),
             h('button',{class:'btn btn-surface',onClick:()=>closeModal(m)},t('btn_cancel'))
           )
         ));
