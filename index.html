@@ -3636,6 +3636,11 @@ async function renderGeneralOrderPage(container){
         const m=showModal(h('div',{},
           h('h2',{},t('dlg_export_general')),
           h('div',{class:'modal-buttons'},
+            h('button',{class:'btn btn-accent',onClick:()=>{
+              const title=LANG==='en'?'Basic needs':'Grundbedarfe';
+              printOrderPDF(lastItems,{title,actionName:aName,includeName:false});
+              closeModal(m);
+            }},t('btn_export_pdf')),
             h('button',{class:'btn btn-surface',onClick:()=>{
               const title=LANG==='en'?'BASIC NEEDS':'GRUNDBEDARFE';
               downloadFile('Grundbedarfe.txt',exportOrderTxt(lastItems,{title,actionName:aName,includeName:false}));
@@ -3804,40 +3809,52 @@ function exportOrderTxt(items, {title, actionName, includeName}){
   return t;
 }
 
-function printSpecialOrderPDF(items,actionName){
-  const title=LANG==='en'?'Shopping list by recipe':'Einkaufsliste nach Rezept';
-  const total=items.reduce((s,i)=>s+i.quantity*(i.price||0),0);
-  const groups={};
-  items.forEach(i=>{const cat=i.subcategory||(LANG==='en'?'Other':'Sonstiges');(groups[cat]=groups[cat]||[]).push(i);});
-  const dateStr=new Date().toLocaleDateString(LANG==='en'?'en-GB':'de-DE');
+// Einheitlicher PDF-Export (druckt in neuem Fenster). includeName=true
+// → Zutatname-Spalte befüllt (Einkaufsliste nach Rezept); false →
+// Zutatname-Spalte leer, Zeilen bleiben nach Subkategorie gruppiert
+// (Grundbedarfe).
+function printOrderPDF(items, {title, actionName, includeName=true}){
+  const dateStr = new Date().toLocaleDateString(LANG==='en'?'en-GB':'de-DE');
+  const groups  = _orderGroupBySubcat(items);
+  const grand   = items.reduce((s,i)=>s+_orderItemCost(i),0);
+
+  const qtyL   = LANG==='en'?'Quantity':'Menge';
+  const priceL = LANG==='en'?'Price':'Preis';
+  const subtL  = LANG==='en'?'Subtotal':'Zwischensumme';
+  const evL    = LANG==='en'?'Event':'Veranstaltung';
+  const dateL  = LANG==='en'?'Date':'Datum';
+  const totalL = LANG==='en'?'Total':'Gesamt';
+  const gtL    = LANG==='en'?'Grand total':'Gesamtsumme';
+  const optL   = LANG==='en'?'opt.':'opt.';
+
   let body='';
-  Object.keys(groups).sort().forEach(cat=>{
-    const catItems=groups[cat];
-    const catTotal=catItems.reduce((s,i)=>s+i.quantity*(i.price||0),0);
-    const catLabel=LANG==='en'?(catItems[0].subcategory_en||cat):cat;
-    body+=`<table class="cat-table">
+  for(const g of groups){
+    body += `<table class="cat-table">
       <thead><tr>
         <th class="col-check"></th>
-        <th class="col-name">${catLabel}</th>
-        <th class="col-qty">${LANG==='en'?'Quantity':'Menge'}</th>
-        <th class="col-price">${LANG==='en'?'Price':'Preis'}</th>
+        <th class="col-name">${g.label}</th>
+        <th class="col-qty">${qtyL}</th>
+        <th class="col-price">${priceL}</th>
       </tr></thead>
       <tbody>`;
-    catItems.forEach(i=>{
-      const iName=LANG==='en'?(i.name_en||i.name):i.name;
-      const qtyStr=String(round2(i.quantity)).replace('.',',');
-      const priceStr=i.price?((i.quantity*i.price).toFixed(2).replace('.',',')+' €'):'—';
-      body+=`<tr${i.optional?' class="opt"':''}>
+    for(const i of g.items){
+      const iName    = includeName ? _orderItemName(i) : '';
+      const qtyStr   = String(round2(i.quantity)).replace('.',',');
+      const cost     = _orderItemCost(i);
+      const priceStr = cost ? (cost.toFixed(2).replace('.',',')+' €') : '—';
+      const rowCls   = i.optional ? ' class="opt"' : '';
+      const optTag   = i.optional ? ` <span class="opt-tag">${optL}</span>` : '';
+      body += `<tr${rowCls}>
         <td class="col-check"><span class="box"></span></td>
-        <td class="col-name">${iName}${i.optional?' <span class="opt-tag">'+(LANG==='en'?'opt.':'opt.')+'</span>':''}</td>
+        <td class="col-name">${iName}${optTag}</td>
         <td class="col-qty">${qtyStr} ${i.unit}</td>
         <td class="col-price">${priceStr}</td>
       </tr>`;
-    });
-    body+=`<tr class="cat-sum"><td colspan="3">${LANG==='en'?'Subtotal':'Zwischensumme'}</td><td class="col-price">${catTotal.toFixed(2).replace('.',',')} €</td></tr>`;
-    body+=`</tbody></table>`;
-  });
-  const html=`<!DOCTYPE html><html lang="${LANG}"><head><meta charset="UTF-8"><title>${title}${actionName?' — '+actionName:''}</title>
+    }
+    body += `<tr class="cat-sum"><td colspan="3">${subtL}</td><td class="col-price">${g.subtotal.toFixed(2).replace('.',',')} €</td></tr>`;
+    body += `</tbody></table>`;
+  }
+  const html = `<!DOCTYPE html><html lang="${LANG}"><head><meta charset="UTF-8"><title>${title}${actionName?' — '+actionName:''}</title>
 <style>
 @page{size:A4;margin:15mm}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -3862,13 +3879,13 @@ body{font-family:'Segoe UI',system-ui,sans-serif;font-size:11px;color:#111}
 <div class="header">
   <div class="title">${title}</div>
   <div class="meta">
-    ${actionName?`<span><strong>${LANG==='en'?'Event':'Veranstaltung'}:</strong> ${actionName}</span>`:''}
-    <span><strong>${LANG==='en'?'Date':'Datum'}:</strong> ${dateStr}</span>
-    <span class="total-badge">${LANG==='en'?'Total':'Gesamt'}: ${total.toFixed(2).replace('.',',')} €</span>
+    ${actionName?`<span><strong>${evL}:</strong> ${actionName}</span>`:''}
+    <span><strong>${dateL}:</strong> ${dateStr}</span>
+    <span class="total-badge">${totalL}: ${grand.toFixed(2).replace('.',',')} €</span>
   </div>
 </div>
 ${body}
-<div class="footer"><span>${LANG==='en'?'Grand total':'Gesamtsumme'}</span><span>${total.toFixed(2).replace('.',',')} €</span></div>
+<div class="footer"><span>${gtL}</span><span>${grand.toFixed(2).replace('.',',')} €</span></div>
 </body></html>`;
   const win=window.open('','_blank');
   if(!win){alert(t('msg_popup_blocked'));return;}
@@ -4627,7 +4644,11 @@ async function renderSpecialOrderPage(container){
         const m=showModal(h('div',{},
           h('h2',{},t('dlg_export_special')),
           h('div',{class:'modal-buttons'},
-            h('button',{class:'btn btn-accent',onClick:()=>{printSpecialOrderPDF(lastItems,aName);closeModal(m);}},t('btn_export_pdf')),
+            h('button',{class:'btn btn-accent',onClick:()=>{
+              const title=LANG==='en'?'Shopping list by recipe':'Einkaufsliste nach Rezept';
+              printOrderPDF(lastItems,{title,actionName:aName,includeName:true});
+              closeModal(m);
+            }},t('btn_export_pdf')),
             h('button',{class:'btn btn-surface',onClick:()=>{
               const title=LANG==='en'?'SHOPPING LIST BY RECIPE':'EINKAUFSLISTE NACH REZEPT';
               downloadFile('Einkaufsliste_nach_Rezept.txt',exportOrderTxt(lastItems,{title,actionName:aName,includeName:true}));
