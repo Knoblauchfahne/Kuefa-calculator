@@ -6272,7 +6272,7 @@
     {
       "standard_meal_id": 3,
       "ingredient_id": 0,
-      "quantity_per_100": 1,
+      "quantity_per_100": 0.5,
       "unit": "kg",
       "subcategory": "Salz",
       "id": 8,
@@ -6344,7 +6344,7 @@
     {
       "standard_meal_id": 5,
       "ingredient_id": 0,
-      "quantity_per_100": 1,
+      "quantity_per_100": 0.5,
       "unit": "kg",
       "subcategory": "Salz",
       "id": 19,
