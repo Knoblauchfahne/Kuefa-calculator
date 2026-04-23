@@ -7278,6 +7278,24 @@
       "is_allergy_friendly": false,
       "created_at": "2026-04-16T14:09:45.660Z",
       "updated_at": "2026-04-17T13:01:33.737Z"
+    },
+    {
+      "id": 134,
+      "name": "Paprika Pesto",
+      "description": "",
+      "name_en": "Roasted Pepper Pesto",
+      "description_en": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "",
+      "zubereitung_en": "",
+      "hinweis": "",
+      "hinweis_en": "",
+      "allergen_hinweis": "",
+      "allergen_hinweis_en": "",
+      "is_allergy_friendly": false,
+      "created_at": "2026-04-23T12:00:00.000Z",
+      "updated_at": "2026-04-23T12:00:00.000Z"
     }
   ],
   "recipe_categories": [
@@ -7580,6 +7598,16 @@
       "recipe_id": 111,
       "category_id": 3,
       "id": 434
+    },
+    {
+      "recipe_id": 134,
+      "category_id": 2,
+      "id": 435
+    },
+    {
+      "recipe_id": 134,
+      "category_id": 3,
+      "id": 436
     }
   ],
   "recipe_ingredients": [
@@ -10030,6 +10058,78 @@
       "preparation": "",
       "optional": false,
       "id": 2274
+    },
+    {
+      "recipe_id": 134,
+      "ingredient_id": 787,
+      "quantity_per_person": 0.0167,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2275
+    },
+    {
+      "recipe_id": 134,
+      "ingredient_id": 555,
+      "quantity_per_person": 0.0167,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 2276
+    },
+    {
+      "recipe_id": 134,
+      "ingredient_id": 650,
+      "quantity_per_person": 0.0167,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 2277
+    },
+    {
+      "recipe_id": 134,
+      "ingredient_id": 741,
+      "quantity_per_person": 0.0083,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2278
+    },
+    {
+      "recipe_id": 134,
+      "ingredient_id": 632,
+      "quantity_per_person": 0.06,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2279
+    },
+    {
+      "recipe_id": 134,
+      "ingredient_id": 566,
+      "quantity_per_person": 0.0012,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2280
+    },
+    {
+      "recipe_id": 134,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.0007,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2281
+    },
+    {
+      "recipe_id": 134,
+      "ingredient_id": 640,
+      "quantity_per_person": 0.0005,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2282
     }
   ],
   "assignments": [
@@ -11948,6 +12048,42 @@
       "recipe_id": 104,
       "allergen_id": 23,
       "id": 49
+    },
+    {
+      "ingredient_id": 134,
+      "recipe_id": 134,
+      "allergen_id": 6,
+      "id": 50
+    },
+    {
+      "ingredient_id": 134,
+      "recipe_id": 134,
+      "allergen_id": 8,
+      "id": 51
+    },
+    {
+      "ingredient_id": 134,
+      "recipe_id": 134,
+      "allergen_id": 9,
+      "id": 52
+    },
+    {
+      "ingredient_id": 134,
+      "recipe_id": 134,
+      "allergen_id": 16,
+      "id": 53
+    },
+    {
+      "ingredient_id": 134,
+      "recipe_id": 134,
+      "allergen_id": 20,
+      "id": 54
+    },
+    {
+      "ingredient_id": 134,
+      "recipe_id": 134,
+      "allergen_id": 26,
+      "id": 55
     }
   ],
   "tags": [
