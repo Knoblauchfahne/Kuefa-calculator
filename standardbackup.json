@@ -6016,6 +6016,35 @@
         0
       ],
       "season_category": ""
+    },
+    {
+      "id": 811,
+      "name": "Eiswürfel",
+      "name_en": "Ice cubes",
+      "unit": "kg",
+      "price": 0,
+      "subcategory": "Sonstiges",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Tiefkühler",
+      "abschnitt": 0,
+      "kochfaktor": 1,
+      "verarbeitungshinweis_en": "",
+      "lagerhinweis_en": "Freezer",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": ""
     }
   ],
   "subcategories": [
@@ -7314,6 +7343,114 @@
       "is_allergy_friendly": false,
       "created_at": "2026-04-28T10:00:00.000Z",
       "updated_at": "2026-04-28T10:00:00.000Z"
+    },
+    {
+      "name": "Kichererbsencurry",
+      "description": "",
+      "name_en": "Chickpea Curry",
+      "description_en": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "1. Kichererbsen über Nacht einweichen und ca. 60 Minuten kochen, bis sie weich sind.\n2. Zwiebel, Knoblauch und Ingwer fein hacken und in Öl 5-7 Minuten anbraten.\n3. Currypulver, Garam Masala, Kreuzkümmel und Chili 1-2 Minuten mitrösten.\n4. Mit Tomaten und Kokosmilch ablöschen, mit Salz und Pfeffer abschmecken.\n5. Bei niedriger Hitze 10-15 Minuten köcheln lassen.\n6. Kichererbsen hinzugeben und weitere 10-15 Minuten eindicken lassen.\n7. Mit Limettensaft verfeinern und gehacktem Koriander servieren.",
+      "zubereitung_en": "",
+      "hinweis": "Schmeckt gut mit Reis oder Fladenbrot. Das Curry ist bewusst ohne Beilage in der Zutatenliste kalkuliert.",
+      "hinweis_en": "",
+      "allergen_hinweis": "",
+      "allergen_hinweis_en": "",
+      "is_allergy_friendly": false,
+      "id": 136,
+      "created_at": "2026-04-28T10:00:00.000Z",
+      "updated_at": "2026-04-28T10:00:00.000Z"
+    },
+    {
+      "name": "Kartoffelsalat",
+      "description": "",
+      "name_en": "Potato Salad",
+      "description_en": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "1. Kartoffeln waschen, 20-25 Minuten in Salzwasser kochen, anschließend schälen und in Scheiben schneiden.\n2. Zwiebeln fein würfeln und in Öl anschwitzen.\n3. Mit Gemüsebrühe und 2/3 des Essigs ablöschen und über die Kartoffelscheiben geben.\n4. Mit Senf, restlichem Essig, Salz, Pfeffer und Zucker abschmecken.\n5. Petersilie und Schnittlauch hacken und ggf. Radieschen und Gurken kleinschneiden und hinzugeben.\n6. Zum Schluss einen Schuss Öl unterrühren.\n7. Der Kartoffelsalat zieht sehr viel Flüssigkeit - bei Bedarf von Zeit zu Zeit etwas Essiggurken-Wasser oder Brühe beimischen.",
+      "zubereitung_en": "",
+      "hinweis": "Zieht beim Stehen viel Flüssigkeit - rechtzeitig vorbereiten und vor dem Servieren nochmals abschmecken. Weißweinessig als optionale Alternative zu Branntweinessig.",
+      "hinweis_en": "",
+      "allergen_hinweis": "",
+      "allergen_hinweis_en": "",
+      "is_allergy_friendly": false,
+      "id": 137,
+      "created_at": "2026-04-28T10:00:00.000Z",
+      "updated_at": "2026-04-28T10:00:00.000Z"
+    },
+    {
+      "name": "Kreuzkümmelragout",
+      "description": "",
+      "name_en": "Cumin Ragout",
+      "description_en": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "Gewürze toasten und zu einem Pulver verarbeiten. Grob geschnittenes Gemüse salzen und für eine Stunde unter gelegentlichem Durchheben beiseitestellen.\nGemüse ausdrücken und scharf anbraten, dann in einen Topf geben und mit den Gewürzen auf niedriger Flamme durchziehen lassen.",
+      "zubereitung_en": "",
+      "hinweis": "Originalrezept als Gesamtmenge für ca. 200 Portionen angegeben - Mengen entsprechend umgerechnet. Laut Originalnotiz: Lorbeerblätter als ganze Blätter verwenden.",
+      "hinweis_en": "",
+      "allergen_hinweis": "",
+      "allergen_hinweis_en": "",
+      "is_allergy_friendly": false,
+      "id": 138,
+      "created_at": "2026-04-28T10:00:00.000Z",
+      "updated_at": "2026-04-28T10:00:00.000Z"
+    },
+    {
+      "name": "Hummus",
+      "description": "",
+      "name_en": "Hummus",
+      "description_en": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "Kichererbsen über Nacht einweichen, mit Backnatron in Salzwasser kochen (nicht in Zutatenliste). Gekochte Kichererbsen abschöpfen und abkühlen lassen. Mit den restlichen Zutaten und Eiswürfeln vermengen und zu cremigem Hummus pürieren. Möglichst kurz pürieren, mit mehr Zitronensaft und Salz nach Bedarf abschmecken.",
+      "zubereitung_en": "",
+      "hinweis": "Tahin und Eiswürfel wurden laut Originalnotiz nachträglich ergänzt (Tahin 5 kg, Eiswürfel 10 kg für ca. 200 Portionen - umgerechnet). Bitte die Pfeffer-Menge vor Verwendung prüfen - 0,0455 kg/Person scheint ein Tippfehler zu sein.",
+      "hinweis_en": "",
+      "allergen_hinweis": "",
+      "allergen_hinweis_en": "",
+      "is_allergy_friendly": false,
+      "id": 139,
+      "created_at": "2026-04-28T10:00:00.000Z",
+      "updated_at": "2026-04-28T10:00:00.000Z"
+    },
+    {
+      "name": "Couscoussalat",
+      "description": "",
+      "name_en": "Couscous Salad",
+      "description_en": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "Gewürze toasten, mahlen und zusammen mit Gemüsebrühe am Boden der Behältnisse verteilen. Knoblauch kurz im Öl toasten und ebenfalls verteilen. Zwiebeln, Karotten und Paprika gut durchbraten und dazugeben. Den trockenen Couscous dazugeben und mit den Aromatika verreiben.\nKochendes Wasser Kelle für Kelle auf den Couscous geben, quellen lassen und durchheben, dann mit der nächsten Kelle fortfahren.\nUnter den abgekühlten Couscous Tomaten und Gurken unterheben und mit Zitronensaft und Salz abschmecken.",
+      "zubereitung_en": "",
+      "hinweis": "Laut Originalnotiz fehlt noch glutenfreier Maiscouscous als Zutat-Alternative - bitte bei Bedarf als eigene Zutat anlegen. Bulgur ist als glutenhaltige Alternative optional eingetragen.",
+      "hinweis_en": "",
+      "allergen_hinweis": "",
+      "allergen_hinweis_en": "",
+      "is_allergy_friendly": false,
+      "id": 140,
+      "created_at": "2026-04-28T10:00:00.000Z",
+      "updated_at": "2026-04-28T10:00:00.000Z"
+    },
+    {
+      "name": "Gurken-Minz-Salat",
+      "description": "",
+      "name_en": "Cucumber Mint Salad",
+      "description_en": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "Dressing aus Tahin, Zitronensaft, Sumach und Öl pürieren. Gurken würfeln. Kurz vor dem Servieren das Dressing über die Gurken geben und mit Minze und Sumach dekorieren.",
+      "zubereitung_en": "",
+      "hinweis": "Originalrezept als Gesamtmenge für ca. 200 Portionen angegeben - Mengen entsprechend umgerechnet. Tahin (3 kg / 200) laut Originalnotiz nachträglich ergänzt.",
+      "hinweis_en": "",
+      "allergen_hinweis": "",
+      "allergen_hinweis_en": "",
+      "is_allergy_friendly": false,
+      "id": 141,
+      "created_at": "2026-04-28T10:00:00.000Z",
+      "updated_at": "2026-04-28T10:00:00.000Z"
     }
   ],
   "recipe_categories": [
@@ -7636,6 +7773,71 @@
       "recipe_id": 135,
       "category_id": 3,
       "id": 438
+    },
+    {
+      "recipe_id": 136,
+      "category_id": 2,
+      "id": 439
+    },
+    {
+      "recipe_id": 136,
+      "category_id": 3,
+      "id": 440
+    },
+    {
+      "recipe_id": 137,
+      "category_id": 2,
+      "id": 441
+    },
+    {
+      "recipe_id": 137,
+      "category_id": 3,
+      "id": 442
+    },
+    {
+      "recipe_id": 137,
+      "category_id": 10,
+      "id": 443
+    },
+    {
+      "recipe_id": 138,
+      "category_id": 2,
+      "id": 444
+    },
+    {
+      "recipe_id": 138,
+      "category_id": 3,
+      "id": 445
+    },
+    {
+      "recipe_id": 139,
+      "category_id": 1,
+      "id": 446
+    },
+    {
+      "recipe_id": 139,
+      "category_id": 10,
+      "id": 447
+    },
+    {
+      "recipe_id": 140,
+      "category_id": 2,
+      "id": 448
+    },
+    {
+      "recipe_id": 140,
+      "category_id": 3,
+      "id": 449
+    },
+    {
+      "recipe_id": 140,
+      "category_id": 10,
+      "id": 450
+    },
+    {
+      "recipe_id": 141,
+      "category_id": 10,
+      "id": 451
     }
   ],
   "recipe_ingredients": [
@@ -10275,6 +10477,501 @@
       "preparation": "",
       "optional": true,
       "id": 2295
+    },
+    {
+      "recipe_id": 136,
+      "ingredient_id": 577,
+      "quantity_per_person": 0.125,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2296
+    },
+    {
+      "recipe_id": 136,
+      "ingredient_id": 703,
+      "quantity_per_person": 0.1,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2297
+    },
+    {
+      "recipe_id": 136,
+      "ingredient_id": 586,
+      "quantity_per_person": 0.1,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 2298
+    },
+    {
+      "recipe_id": 136,
+      "ingredient_id": 728,
+      "quantity_per_person": 0.15,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2299
+    },
+    {
+      "recipe_id": 136,
+      "ingredient_id": 569,
+      "quantity_per_person": 0.01,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2300
+    },
+    {
+      "recipe_id": 136,
+      "ingredient_id": 583,
+      "quantity_per_person": 0.01,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2301
+    },
+    {
+      "recipe_id": 136,
+      "ingredient_id": 540,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2302
+    },
+    {
+      "recipe_id": 136,
+      "ingredient_id": 531,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2303
+    },
+    {
+      "recipe_id": 136,
+      "ingredient_id": 778,
+      "quantity_per_person": 0.1,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 2304
+    },
+    {
+      "recipe_id": 136,
+      "ingredient_id": 752,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2305
+    },
+    {
+      "recipe_id": 136,
+      "ingredient_id": 590,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2306
+    },
+    {
+      "recipe_id": 136,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2307
+    },
+    {
+      "recipe_id": 136,
+      "ingredient_id": 640,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2308
+    },
+    {
+      "recipe_id": 137,
+      "ingredient_id": 575,
+      "quantity_per_person": 0.25,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2309
+    },
+    {
+      "recipe_id": 137,
+      "ingredient_id": 638,
+      "quantity_per_person": 0.015,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2310
+    },
+    {
+      "recipe_id": 137,
+      "ingredient_id": 728,
+      "quantity_per_person": 0.06,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2311
+    },
+    {
+      "recipe_id": 137,
+      "ingredient_id": 522,
+      "quantity_per_person": 0.01,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2312
+    },
+    {
+      "recipe_id": 137,
+      "ingredient_id": 716,
+      "quantity_per_person": 0.01,
+      "unit": "kg",
+      "preparation": "",
+      "optional": true,
+      "id": 2313
+    },
+    {
+      "recipe_id": 137,
+      "ingredient_id": 672,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2314
+    },
+    {
+      "recipe_id": 137,
+      "ingredient_id": 683,
+      "quantity_per_person": 0.01,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 2315
+    },
+    {
+      "recipe_id": 137,
+      "ingredient_id": 727,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2316
+    },
+    {
+      "recipe_id": 137,
+      "ingredient_id": 639,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2317
+    },
+    {
+      "recipe_id": 137,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2318
+    },
+    {
+      "recipe_id": 138,
+      "ingredient_id": 508,
+      "quantity_per_person": 0.3,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2319
+    },
+    {
+      "recipe_id": 138,
+      "ingredient_id": 726,
+      "quantity_per_person": 0.3,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2320
+    },
+    {
+      "recipe_id": 138,
+      "ingredient_id": 730,
+      "quantity_per_person": 0.15,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2321
+    },
+    {
+      "recipe_id": 138,
+      "ingredient_id": 683,
+      "quantity_per_person": 0.05,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 2322
+    },
+    {
+      "recipe_id": 138,
+      "ingredient_id": 590,
+      "quantity_per_person": 0.01,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2323
+    },
+    {
+      "recipe_id": 138,
+      "ingredient_id": 710,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2324
+    },
+    {
+      "recipe_id": 138,
+      "ingredient_id": 601,
+      "quantity_per_person": 0.001,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2325
+    },
+    {
+      "recipe_id": 139,
+      "ingredient_id": 577,
+      "quantity_per_person": 0.0109,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2326
+    },
+    {
+      "recipe_id": 139,
+      "ingredient_id": 694,
+      "quantity_per_person": 0.025,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2327
+    },
+    {
+      "recipe_id": 139,
+      "ingredient_id": 811,
+      "quantity_per_person": 0.05,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2328
+    },
+    {
+      "recipe_id": 139,
+      "ingredient_id": 725,
+      "quantity_per_person": 0.0009,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 2329
+    },
+    {
+      "recipe_id": 139,
+      "ingredient_id": 640,
+      "quantity_per_person": 0.0455,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2330
+    },
+    {
+      "recipe_id": 139,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.0001,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2331
+    },
+    {
+      "recipe_id": 140,
+      "ingredient_id": 535,
+      "quantity_per_person": 0.0545,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2332
+    },
+    {
+      "recipe_id": 140,
+      "ingredient_id": 524,
+      "quantity_per_person": 0.0545,
+      "unit": "kg",
+      "preparation": "",
+      "optional": true,
+      "id": 2333
+    },
+    {
+      "recipe_id": 140,
+      "ingredient_id": 560,
+      "quantity_per_person": 0.0182,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2334
+    },
+    {
+      "recipe_id": 140,
+      "ingredient_id": 729,
+      "quantity_per_person": 0.0182,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2335
+    },
+    {
+      "recipe_id": 140,
+      "ingredient_id": 583,
+      "quantity_per_person": 0.0001,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2336
+    },
+    {
+      "recipe_id": 140,
+      "ingredient_id": 632,
+      "quantity_per_person": 0.0091,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2337
+    },
+    {
+      "recipe_id": 140,
+      "ingredient_id": 574,
+      "quantity_per_person": 0.0091,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2338
+    },
+    {
+      "recipe_id": 140,
+      "ingredient_id": 725,
+      "quantity_per_person": 0.0027,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 2339
+    },
+    {
+      "recipe_id": 140,
+      "ingredient_id": 625,
+      "quantity_per_person": 0.0027,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 2340
+    },
+    {
+      "recipe_id": 140,
+      "ingredient_id": 556,
+      "quantity_per_person": 0.0005,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2341
+    },
+    {
+      "recipe_id": 140,
+      "ingredient_id": 590,
+      "quantity_per_person": 0.0001,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2342
+    },
+    {
+      "recipe_id": 140,
+      "ingredient_id": 589,
+      "quantity_per_person": 0.0001,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2343
+    },
+    {
+      "recipe_id": 140,
+      "ingredient_id": 593,
+      "quantity_per_person": 0.0001,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2344
+    },
+    {
+      "recipe_id": 141,
+      "ingredient_id": 560,
+      "quantity_per_person": 0.2,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2345
+    },
+    {
+      "recipe_id": 141,
+      "ingredient_id": 694,
+      "quantity_per_person": 0.015,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2346
+    },
+    {
+      "recipe_id": 141,
+      "ingredient_id": 616,
+      "quantity_per_person": 0.025,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2347
+    },
+    {
+      "recipe_id": 141,
+      "ingredient_id": 725,
+      "quantity_per_person": 0.01,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 2348
+    },
+    {
+      "recipe_id": 141,
+      "ingredient_id": 690,
+      "quantity_per_person": 0.002,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2349
+    },
+    {
+      "recipe_id": 141,
+      "ingredient_id": 683,
+      "quantity_per_person": 0.025,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 2350
     }
   ],
   "assignments": [
@@ -12259,6 +12956,132 @@
       "recipe_id": 135,
       "allergen_id": 20,
       "id": 60
+    },
+    {
+      "ingredient_id": 136,
+      "recipe_id": 136,
+      "allergen_id": 10,
+      "id": 61
+    },
+    {
+      "ingredient_id": 136,
+      "recipe_id": 136,
+      "allergen_id": 16,
+      "id": 62
+    },
+    {
+      "ingredient_id": 136,
+      "recipe_id": 136,
+      "allergen_id": 18,
+      "id": 63
+    },
+    {
+      "ingredient_id": 136,
+      "recipe_id": 136,
+      "allergen_id": 22,
+      "id": 64
+    },
+    {
+      "ingredient_id": 136,
+      "recipe_id": 136,
+      "allergen_id": 23,
+      "id": 65
+    },
+    {
+      "ingredient_id": 136,
+      "recipe_id": 136,
+      "allergen_id": 65,
+      "id": 66
+    },
+    {
+      "ingredient_id": 137,
+      "recipe_id": 137,
+      "allergen_id": 10,
+      "id": 67
+    },
+    {
+      "ingredient_id": 137,
+      "recipe_id": 137,
+      "allergen_id": 13,
+      "id": 68
+    },
+    {
+      "ingredient_id": 137,
+      "recipe_id": 137,
+      "allergen_id": 16,
+      "id": 69
+    },
+    {
+      "ingredient_id": 137,
+      "recipe_id": 137,
+      "allergen_id": 23,
+      "id": 70
+    },
+    {
+      "ingredient_id": 137,
+      "recipe_id": 137,
+      "allergen_id": 69,
+      "id": 71
+    },
+    {
+      "ingredient_id": 138,
+      "recipe_id": 138,
+      "allergen_id": 16,
+      "id": 72
+    },
+    {
+      "ingredient_id": 138,
+      "recipe_id": 138,
+      "allergen_id": 23,
+      "id": 73
+    },
+    {
+      "ingredient_id": 139,
+      "recipe_id": 139,
+      "allergen_id": 16,
+      "id": 74
+    },
+    {
+      "ingredient_id": 140,
+      "recipe_id": 140,
+      "allergen_id": 1,
+      "id": 75
+    },
+    {
+      "ingredient_id": 140,
+      "recipe_id": 140,
+      "allergen_id": 9,
+      "id": 76
+    },
+    {
+      "ingredient_id": 140,
+      "recipe_id": 140,
+      "allergen_id": 16,
+      "id": 77
+    },
+    {
+      "ingredient_id": 140,
+      "recipe_id": 140,
+      "allergen_id": 23,
+      "id": 78
+    },
+    {
+      "ingredient_id": 140,
+      "recipe_id": 140,
+      "allergen_id": 26,
+      "id": 79
+    },
+    {
+      "ingredient_id": 141,
+      "recipe_id": 141,
+      "allergen_id": 16,
+      "id": 80
+    },
+    {
+      "ingredient_id": 141,
+      "recipe_id": 141,
+      "allergen_id": 22,
+      "id": 81
     }
   ],
   "tags": [
@@ -12378,6 +13201,21 @@
       "recipe_id": 111,
       "tag_id": 8,
       "id": 40
+    },
+    {
+      "recipe_id": 136,
+      "tag_id": 3,
+      "id": 41
+    },
+    {
+      "recipe_id": 136,
+      "tag_id": 5,
+      "id": 42
+    },
+    {
+      "recipe_id": 139,
+      "tag_id": 1,
+      "id": 43
     }
   ],
   "ingredient_tags": [
