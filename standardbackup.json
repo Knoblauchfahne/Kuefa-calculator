@@ -7296,6 +7296,24 @@
       "is_allergy_friendly": false,
       "created_at": "2026-04-23T12:00:00.000Z",
       "updated_at": "2026-04-23T12:00:00.000Z"
+    },
+    {
+      "id": 135,
+      "name": "Auberginenschnitzel",
+      "description": "",
+      "name_en": "Aubergine Schnitzel",
+      "description_en": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "Auberginen in 1 cm dicke Scheiben schneiden, salzen und ziehen lassen, dann trocken tupfen. Währenddessen Panierstation vorbereiten.\nFür die erste Panierstation eine Nasspanade vorbereiten aus Mehl, Pflanzenmilch, Öl, Salz und optional Paprikapulver. Als zweite Station Paniermehl bereitstellen, und als letztes viele GN-Behälter bereithalten, um die panierten Auberginenscheiben zwischenlagern zu können.\nAuberginen erst in die Nasspanade, dann ins Paniermehl tauchen. Anschließend optional mit Küchenpapier in GNs zwischenlagern.\nDen vorgekochten Rosenkohl in einer Paellapfanne mit Öl anbraten bis er ordentlich Farbe bekommt, dann mit Salz und Pfeffer abschmecken.\nGargekochte Kartoffeln und Karotten mit veganer Butter (oder Öl) und Pflanzenmilch stampfen oder pürieren. Mit Salz und Pfeffer abschmecken.\nFürs Ausbacken eine Paellapfanne bereitstellen und ca. 2–4 cm hoch mit Öl befüllen. (Auf regensicheres Dach und Standfestigkeit prüfen.) Sobald das Öl die entsprechende Temperatur erreicht hat, die Auberginen ausbacken und in niedrigen GN-Behältern lagern bzw. zur Ausgabe bringen.\nOptional: Granatapfelkerne oder Kräuter anbieten.",
+      "zubereitung_en": "",
+      "hinweis": "Das Rezept ist Teil eines Menüs mit Stampfkartoffeln/-Karotten und Rosenkohl. Die Zubereitung bezieht sich auf alle drei Komponenten. Ölmenge für das Ausbacken (2–4 cm in der Pfanne) ist nicht in den Zutaten kalkuliert — separat einplanen.",
+      "hinweis_en": "",
+      "allergen_hinweis": "",
+      "allergen_hinweis_en": "",
+      "is_allergy_friendly": false,
+      "created_at": "2026-04-28T10:00:00.000Z",
+      "updated_at": "2026-04-28T10:00:00.000Z"
     }
   ],
   "recipe_categories": [
@@ -7608,6 +7626,16 @@
       "recipe_id": 134,
       "category_id": 3,
       "id": 436
+    },
+    {
+      "recipe_id": 135,
+      "category_id": 2,
+      "id": 437
+    },
+    {
+      "recipe_id": 135,
+      "category_id": 3,
+      "id": 438
     }
   ],
   "recipe_ingredients": [
@@ -10130,6 +10158,123 @@
       "preparation": "",
       "optional": false,
       "id": 2282
+    },
+    {
+      "recipe_id": 135,
+      "ingredient_id": 508,
+      "quantity_per_person": 0.125,
+      "unit": "kg",
+      "preparation": "Scheiben",
+      "optional": false,
+      "id": 2283
+    },
+    {
+      "recipe_id": 135,
+      "ingredient_id": 717,
+      "quantity_per_person": 0.025,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2284
+    },
+    {
+      "recipe_id": 135,
+      "ingredient_id": 681,
+      "quantity_per_person": 0.07,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 2285
+    },
+    {
+      "recipe_id": 135,
+      "ingredient_id": 740,
+      "quantity_per_person": 0.05,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2286
+    },
+    {
+      "recipe_id": 135,
+      "ingredient_id": 566,
+      "quantity_per_person": 0.01,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2287
+    },
+    {
+      "recipe_id": 135,
+      "ingredient_id": 634,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2288
+    },
+    {
+      "recipe_id": 135,
+      "ingredient_id": 639,
+      "quantity_per_person": 0.002,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2289
+    },
+    {
+      "recipe_id": 135,
+      "ingredient_id": 650,
+      "quantity_per_person": 0.015,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 2290
+    },
+    {
+      "recipe_id": 135,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2291
+    },
+    {
+      "recipe_id": 135,
+      "ingredient_id": 558,
+      "quantity_per_person": 0.005,
+      "unit": "kg",
+      "preparation": "Kerne",
+      "optional": true,
+      "id": 2292
+    },
+    {
+      "recipe_id": 135,
+      "ingredient_id": 741,
+      "quantity_per_person": 0.01,
+      "unit": "kg",
+      "preparation": "",
+      "optional": true,
+      "id": 2293
+    },
+    {
+      "recipe_id": 135,
+      "ingredient_id": 605,
+      "quantity_per_person": 0.002,
+      "unit": "kg",
+      "preparation": "",
+      "optional": true,
+      "id": 2294
+    },
+    {
+      "recipe_id": 135,
+      "ingredient_id": 736,
+      "quantity_per_person": 0.002,
+      "unit": "kg",
+      "preparation": "",
+      "optional": true,
+      "id": 2295
     }
   ],
   "assignments": [
@@ -12084,6 +12229,36 @@
       "recipe_id": 134,
       "allergen_id": 26,
       "id": 55
+    },
+    {
+      "ingredient_id": 135,
+      "recipe_id": 135,
+      "allergen_id": 1,
+      "id": 56
+    },
+    {
+      "ingredient_id": 135,
+      "recipe_id": 135,
+      "allergen_id": 6,
+      "id": 57
+    },
+    {
+      "ingredient_id": 135,
+      "recipe_id": 135,
+      "allergen_id": 8,
+      "id": 58
+    },
+    {
+      "ingredient_id": 135,
+      "recipe_id": 135,
+      "allergen_id": 16,
+      "id": 59
+    },
+    {
+      "ingredient_id": 135,
+      "recipe_id": 135,
+      "allergen_id": 20,
+      "id": 60
     }
   ],
   "tags": [
