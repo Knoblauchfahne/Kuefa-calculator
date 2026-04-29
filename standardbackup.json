@@ -7405,16 +7405,16 @@
       "description_en": "",
       "zubereitung_zeit": "",
       "garzeit": "",
-      "zubereitung": "Kichererbsen über Nacht einweichen, mit Backnatron in Salzwasser kochen (nicht in Zutatenliste). Gekochte Kichererbsen abschöpfen und abkühlen lassen. Mit den restlichen Zutaten und Eiswürfeln vermengen und zu cremigem Hummus pürieren. Möglichst kurz pürieren, mit mehr Zitronensaft und Salz nach Bedarf abschmecken.",
+      "zubereitung": "Kichererbsen über Nacht einweichen, mit Backnatron in Salzwasser kochen (nicht in Zutatenliste). Gekochte Kichererbsen abschöpfen und abkühlen lassen und im Wolf schonmal vor zerkleinern. Mit den restlichen Zutaten und Eiswürfeln vermengen und zu cremigem Hummus pürieren. Möglichst kurz pürieren, mit mehr Zitronensaft und Salz nach Bedarf abschmecken.",
       "zubereitung_en": "",
-      "hinweis": "Tahin und Eiswürfel wurden laut Originalnotiz nachträglich ergänzt (Tahin 5 kg, Eiswürfel 10 kg für ca. 200 Portionen - umgerechnet). Bitte die Pfeffer-Menge vor Verwendung prüfen - 0,0455 kg/Person scheint ein Tippfehler zu sein.",
+      "hinweis": "Das Zerkleinern der Kichererbsen im Wolf führt zu gleichmäßigerem Ergebnis und verhindert starke Belastung von Pürierstäben",
       "hinweis_en": "",
       "allergen_hinweis": "",
       "allergen_hinweis_en": "",
       "is_allergy_friendly": false,
       "id": 139,
       "created_at": "2026-04-28T10:00:00.000Z",
-      "updated_at": "2026-04-28T10:00:00.000Z"
+      "updated_at": "2026-04-29T10:00:00.000Z"
     },
     {
       "name": "Couscoussalat",
