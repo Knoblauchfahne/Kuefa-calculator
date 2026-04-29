@@ -7451,6 +7451,24 @@
       "id": 141,
       "created_at": "2026-04-28T10:00:00.000Z",
       "updated_at": "2026-04-28T10:00:00.000Z"
+    },
+    {
+      "id": 142,
+      "name": "Kartoffelpüree",
+      "description": "",
+      "name_en": "Mashed Potatoes",
+      "description_en": "",
+      "zubereitung_zeit": "",
+      "garzeit": "",
+      "zubereitung": "1. Kartoffeln kochen.\n2. Stampfen und Öl sowie Salz unterrühren.",
+      "zubereitung_en": "",
+      "hinweis": "",
+      "hinweis_en": "",
+      "allergen_hinweis": "",
+      "allergen_hinweis_en": "",
+      "is_allergy_friendly": true,
+      "created_at": "2026-04-29T10:00:00.000Z",
+      "updated_at": "2026-04-29T10:00:00.000Z"
     }
   ],
   "recipe_categories": [
@@ -7838,6 +7856,11 @@
       "recipe_id": 141,
       "category_id": 10,
       "id": 451
+    },
+    {
+      "recipe_id": 142,
+      "category_id": 10,
+      "id": 452
     }
   ],
   "recipe_ingredients": [
@@ -10972,6 +10995,33 @@
       "preparation": "",
       "optional": false,
       "id": 2350
+    },
+    {
+      "recipe_id": 142,
+      "ingredient_id": 777,
+      "quantity_per_person": 0.3,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2351
+    },
+    {
+      "recipe_id": 142,
+      "ingredient_id": 650,
+      "quantity_per_person": 0.01,
+      "unit": "L",
+      "preparation": "",
+      "optional": false,
+      "id": 2352
+    },
+    {
+      "recipe_id": 142,
+      "ingredient_id": 665,
+      "quantity_per_person": 0.003,
+      "unit": "kg",
+      "preparation": "",
+      "optional": false,
+      "id": 2353
     }
   ],
   "assignments": [
