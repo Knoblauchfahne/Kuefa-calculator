@@ -10810,7 +10810,7 @@
     {
       "recipe_id": 139,
       "ingredient_id": 640,
-      "quantity_per_person": 0.0455,
+      "quantity_per_person": 0.002,
       "unit": "kg",
       "preparation": "",
       "optional": false,
