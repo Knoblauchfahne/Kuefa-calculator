@@ -755,6 +755,9 @@ de: {
   dlg_allergy_recommended: 'Empfohlen: {0} Portion(en) (1% von {1})',
   dlg_export_general: 'Grundbedarfe exportieren',
   dlg_export_special: 'Einkaufsliste nach Rezept exportieren',
+  dlg_export_select_orders: 'Welche Bestellungen exportieren?',
+  dlg_export_all_orders: 'Alle Bestellungen',
+  btn_next: 'Weiter →',
   dlg_meal_type_cats: 'Mahlzeitkategorien',
   dlg_meal_type_cats_hint: 'Diese Kategorien werden sowohl für Standardmahlzeiten als auch für Rezepte verwendet.',
   dlg_new_std_meal: 'Neue Standardmahlzeit',
@@ -1346,6 +1349,9 @@ en: {
   dlg_allergy_recommended: 'Recommended: {0} serving(s) (1% of {1})',
   dlg_export_general: 'Export basic needs',
   dlg_export_special: 'Export shopping list by recipe',
+  dlg_export_select_orders: 'Which orders to export?',
+  dlg_export_all_orders: 'All orders',
+  btn_next: 'Next →',
   dlg_meal_type_cats: 'Meal categories',
   dlg_meal_type_cats_hint: 'These categories are used for both standard meals and recipes.',
   dlg_new_std_meal: 'New standard meal',
@@ -4653,29 +4659,83 @@ async function renderRecipeBookPage(container){
 // ══════════════════════════════════════════════════════════════
 async function renderSpecialOrderPage(container){
   let lastItems=[];
+  let lastItemsByGroup=[];   // [{num, label, dates, items}]
   const header=h('div',{class:'page-header'},h('h1',{},t('page_special_order')),
     h('div',{style:{display:'flex',gap:'8px'}},
       h('button',{class:'btn btn-surface',onClick:async()=>{
         if(!lastItems.length){alert(t('msg_no_list_yet'));return;}
         const action=await dbGet('actions',selectedActionId);
         const aName=action?action.name:'';
+        const groupColors=['var(--accent)','var(--green)','#d4a017','#7b2d8b','#2980b9','#c0392b','#16a085','#8e44ad'];
+
+        function openFormatDialog(items, suffix){
+          const title=LANG==='en'?'Shopping list by recipe':'Einkaufsliste nach Rezept';
+          const titleTxt=LANG==='en'?'SHOPPING LIST BY RECIPE':'EINKAUFSLISTE NACH REZEPT';
+          const fname='Einkaufsliste_nach_Rezept'+(suffix?'_'+suffix:'');
+          const m2=showModal(h('div',{},
+            h('h2',{},t('dlg_export_special')),
+            h('div',{class:'modal-buttons'},
+              h('button',{class:'btn btn-accent',onClick:()=>{
+                printOrderPDF(items,{title,actionName:aName,includeName:true});
+                closeModal(m2);
+              }},t('btn_export_pdf')),
+              h('button',{class:'btn btn-surface',onClick:()=>{
+                downloadFile(fname+'.txt',exportOrderTxt(items,{title:titleTxt,actionName:aName,includeName:true}));
+                closeModal(m2);
+              }},t('btn_export_txt')),
+              h('button',{class:'btn btn-surface',onClick:()=>{
+                downloadFile(fname+'.csv',exportOrderCsv(items,{actionName:aName,includeName:true}),'text/csv');
+                closeModal(m2);
+              }},t('btn_export_csv')),
+              h('button',{class:'btn btn-surface',onClick:()=>closeModal(m2)},t('btn_cancel'))
+            )
+          ));
+        }
+
+        // Single group → skip picker
+        if(lastItemsByGroup.length<=1){openFormatDialog(lastItems,'');return;}
+
+        // Multiple groups → show checkbox picker
+        const checks=[];
+        const checkboxBody=h('div',{style:{display:'flex',flexDirection:'column',gap:'8px',margin:'12px 0'}});
+
+        const allRow=h('label',{style:{display:'flex',alignItems:'center',gap:'8px',fontWeight:'600',cursor:'pointer'}});
+        const allCb=h('input',{type:'checkbox',checked:true});
+        allRow.append(allCb,h('span',{},t('dlg_export_all_orders')));
+        checkboxBody.appendChild(allRow);
+        checkboxBody.appendChild(h('hr',{style:{margin:'4px 0',border:'none',borderTop:'1px solid var(--border)'}}));
+
+        lastItemsByGroup.forEach((g,i)=>{
+          const row=h('label',{style:{display:'flex',alignItems:'center',gap:'8px',cursor:'pointer'}});
+          const cb=h('input',{type:'checkbox',checked:true});
+          const dot=h('span',{style:{display:'inline-block',width:'12px',height:'12px',borderRadius:'50%',background:groupColors[(g.num-1)%groupColors.length],flexShrink:0}});
+          row.append(cb,dot,h('span',{},`${g.label}  ·  ${g.dates.join(', ')}`));
+          checkboxBody.appendChild(row);
+          checks.push({cb,g});
+          cb.addEventListener('change',()=>{allCb.checked=checks.every(c=>c.cb.checked);});
+        });
+
+        allCb.addEventListener('change',()=>{checks.forEach(c=>c.cb.checked=allCb.checked);});
+
         const m=showModal(h('div',{},
-          h('h2',{},t('dlg_export_special')),
+          h('h2',{},t('dlg_export_select_orders')),
+          checkboxBody,
           h('div',{class:'modal-buttons'},
             h('button',{class:'btn btn-accent',onClick:()=>{
-              const title=LANG==='en'?'Shopping list by recipe':'Einkaufsliste nach Rezept';
-              printOrderPDF(lastItems,{title,actionName:aName,includeName:true});
+              const selected=checks.filter(c=>c.cb.checked);
+              if(!selected.length){alert(t('msg_no_list_yet'));return;}
+              const merged=[];
+              const key=i=>`${i.ingredient_id}|${i.unit}|${i.subcategory}`;
+              selected.forEach(({g})=>g.items.forEach(item=>{
+                const k=key(item);
+                const ex=merged.find(x=>key(x)===k);
+                if(ex){ex.quantity+=item.quantity;}
+                else merged.push({...item});
+              }));
+              const suffix=selected.length===lastItemsByGroup.length?'':`Bestellung_${selected.map(c=>c.g.num).join('_')}`;
               closeModal(m);
-            }},t('btn_export_pdf')),
-            h('button',{class:'btn btn-surface',onClick:()=>{
-              const title=LANG==='en'?'SHOPPING LIST BY RECIPE':'EINKAUFSLISTE NACH REZEPT';
-              downloadFile('Einkaufsliste_nach_Rezept.txt',exportOrderTxt(lastItems,{title,actionName:aName,includeName:true}));
-              closeModal(m);
-            }},t('btn_export_txt')),
-            h('button',{class:'btn btn-surface',onClick:()=>{
-              downloadFile('Einkaufsliste_nach_Rezept.csv',exportOrderCsv(lastItems,{actionName:aName,includeName:true}),'text/csv');
-              closeModal(m);
-            }},t('btn_export_csv')),
+              openFormatDialog(merged,suffix);
+            }},t('btn_next')),
             h('button',{class:'btn btn-surface',onClick:()=>closeModal(m)},t('btn_cancel'))
           )
         ));
@@ -5140,10 +5200,12 @@ tr:nth-child(even){background:#fafafa}
     if(!groupNums.length){resultDiv.appendChild(h('div',{class:'empty-msg'},t('empty_no_days_available')));return;}
     const groupColors=['var(--accent)','var(--green)','#d4a017','#7b2d8b','#2980b9','#c0392b','#16a085','#8e44ad'];
     lastItems=[];
+    lastItemsByGroup=[];
     for(const num of groupNums){
       const g=groups[num];
       const items=await generateSpecialOrder(g.dayIds);
       lastItems.push(...items);
+      lastItemsByGroup.push({num,label:t('order_group_label',num),dates:g.dates,items});
       const col=groupColors[(num-1)%groupColors.length];
       const groupHeader=h('div',{style:{display:'flex',alignItems:'center',gap:'8px',marginBottom:'8px',marginTop:num>groupNums[0]?'20px':'0'}});
       groupHeader.appendChild(h('span',{style:{display:'inline-flex',alignItems:'center',justifyContent:'center',width:'26px',height:'26px',borderRadius:'50%',background:col,color:'#fff',fontWeight:'700',fontSize:'13px'}},String(num)));
