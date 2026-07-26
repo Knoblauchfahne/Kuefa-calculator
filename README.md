@@ -32,6 +32,9 @@ Installation. Läuft auf GitHub Pages.
   benötigtes Material angeben (Anzahl + Notiz). Materialien können frei
   definierbare Eigenschaften tragen (z. B. Volumen in L), deren Werte im
   Lager ausgefüllt werden — Anzeige dann z. B. als „100 L Topf"
+- **Ausleihlisten** — situationsbedingte Listen pro Anlass (aus der
+  Materialliste oder frei eingetragen), Rückgabe per Häkchen,
+  A4-Druck mit Raus/Zurück-Spalten und Unterschriftszeilen
 - **Saisonkalender** — gespeist direkt aus den Zutaten
 - **DE/EN** durchgängig umschaltbar
 - **Offline** durch Service Worker; automatischer Update-Check
