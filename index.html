@@ -200,6 +200,9 @@ label.checkbox input{accent-color:var(--accent);width:16px;height:16px}
 .ing-row .ing-display{min-width:180px;font-size:12px;color:var(--text-muted);cursor:pointer;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:8px 12px}
 .ing-row .ing-display:hover{border-color:var(--text-muted)}
 .ing-row .ing-display.has-value{color:var(--text)}
+/* Standalone-Picker-Felder (Lager, Rezept-Material): leerer Zustand deutlich hervorgehoben */
+.ing-display{display:block;font-size:13px;font-weight:600;color:var(--accent);cursor:pointer;background:var(--accent-dim);border:1px dashed var(--accent);border-radius:6px;padding:9px 12px}
+.ing-display.has-value{color:var(--text);font-weight:400;background:var(--surface2);border:1px solid var(--border)}
 
 /* ── Hamburger Button (hidden on desktop) ────────────────── */
 /* ── Theme Toggle ─────────────────────────────────────────── */
@@ -857,8 +860,13 @@ de: {
   stock_attr_unit_ph: 'Einheit',
   stock_attr_primary: 'Primär',
   stock_attr_in_name: 'Im Namen',
-  stock_attr_hint: 'Wert ist optional (kann im Lager ausgefüllt werden). „Im Namen" setzt Wert und Einheit vor den Namen — z.B. „100 L Topf".',
+  stock_attr_hint: 'Primär = Eigenschaft mit Wert und Einheit (z.B. Volumen 100 L); der Wert ist optional und kann im Lager ausgefüllt werden. Nicht primär = Ja/Nein-Eigenschaft (z.B. Trinkwasserqualität), wird beim Einlagern als Checkbox abgefragt. „Im Namen" setzt Wert und Einheit bzw. den Eigenschaftsnamen vor den Namen — z.B. „100 L Topf".',
   stock_lbl_attr_values: 'Eigenschaften',
+  stock_matlist_export_title: 'Materialliste exportieren',
+  stock_btn_export_list: '⬇ Exportieren',
+  stock_btn_import_list: '📂 Importieren',
+  stock_import_result: '✓ {0} Materialien neu, {1} Kategorien neu, {2} übersprungen (schon vorhanden)',
+  msg_invalid_material_file: 'Ungültige Datei — keine Materialliste',
   order_group_label: 'Bestellung {0}',
   order_positions_count: '{0} Positionen',
   order_cat_positions_count: '{0} Kategorie-Positionen',
@@ -1057,7 +1065,7 @@ de: {
   help_ingredients_title: '📦  Zutaten',
   help_ingredients_text: 'Die Zutatendatenbank. Jede Zutat hat einen Namen, eine Einheit (kg, l, etc.), einen Preis pro Einheit als Referenz, eine Kategorie, einen Abschnitt-Wert (% Verlust beim Schälen/Schneiden), einen Kochfaktor (Gewichtsänderung beim Kochen), Verarbeitungs- und Lagerhinweise, zugeordnete Allergene sowie frei definierbare Tags (z.B. „bio", „regional", „TK"). Tags helfen beim Filtern und bei der Suche nach Zutaten — auch innerhalb der Rezeptbearbeitung. Der Abschnitt-Wert wird bei der Bestellmengenberechnung automatisch aufgeschlagen und im Rezept als Netto-Menge angezeigt. Der Kochfaktor ist ein Multiplikator (1 = unverändert, 2.6 = trockene Kichererbsen werden gekocht 2,6-fach schwerer, 0.15 = Spinat schrumpft beim Garen auf 15%) und wird in Rezept und PDF als Gekocht-Spalte dargestellt – rein informativ, damit der Koch weiß, wie viel am Ende auf dem Teller landet. Die Einheit wird automatisch in die Rezepte übernommen. Zutaten lassen sich als .csv oder .txt exportieren und importieren.',
   help_stock_title: '🗄  Lager',
-  help_stock_text: 'Erfasst, was schon vorhanden ist — getrennt nach Lebensmittellager und Materiallager. Lebensmittel-Einträge sind mit Zutaten aus der Datenbank verknüpft; dadurch zeigen beide Einkaufslisten automatisch einen Hinweis, wenn etwas davon lagert: mit Menge (z.B. „🥫 5 kg auf Lager") oder ohne Menge als „auf Lager — prüfen". Die Bestellmengen werden bewusst NICHT automatisch abgezogen — du entscheidest beim Prüfen der Liste selbst. Die Menge ist optional: Ohne Menge dient der Eintrag als Erinnerung, dass etwas da ist. Jeder Eintrag zeigt sein Einlagerungsdatum („eingelagert vor 3 Monaten"), damit alte Bestände nicht blind übernommen werden. Das Materiallager ist für Nicht-Lebensmittel gedacht (Müllbeutel, Alufolie, Gaskartuschen …). Grundlage dafür ist die Materialliste — der Katalog aller Materialien, unabhängig davon, ob sie gerade im Lager liegen. Materialien haben frei anlegbare Kategorien; neue Materialien und Kategorien lassen sich direkt aus jedem Auswahl-Dialog heraus anlegen. Zusätzlich kann jedes Material frei definierbare Eigenschaften haben (z.B. Volumen in L, Länge in m) — mit optionalem Default-Wert, Primär-Markierung und der Option, im Namen zu erscheinen: Ein „Topf" mit Eigenschaft Volumen wird im Lager mit ausgefülltem Wert dann als „100 L Topf" angezeigt. In Rezepten kann optional benötigtes Material angegeben werden (Anzahl + Notiz, z.B. „2× Topf groß — für die Sauce") — es erscheint in der Rezept-Ansicht. Lagerbestände und Materialliste bleiben beim Laden des Standard-Datenbestands erhalten und sind im Komplett-Backup enthalten.',
+  help_stock_text: 'Erfasst, was schon vorhanden ist — getrennt nach Lebensmittellager und Materiallager. Lebensmittel-Einträge sind mit Zutaten aus der Datenbank verknüpft; dadurch zeigen beide Einkaufslisten automatisch einen Hinweis, wenn etwas davon lagert: mit Menge (z.B. „🥫 5 kg auf Lager") oder ohne Menge als „auf Lager — prüfen". Die Bestellmengen werden bewusst NICHT automatisch abgezogen — du entscheidest beim Prüfen der Liste selbst. Die Menge ist optional: Ohne Menge dient der Eintrag als Erinnerung, dass etwas da ist. Jeder Eintrag zeigt sein Einlagerungsdatum („eingelagert vor 3 Monaten"), damit alte Bestände nicht blind übernommen werden. Das Materiallager ist für Nicht-Lebensmittel gedacht (Müllbeutel, Alufolie, Gaskartuschen …). Grundlage dafür ist die Materialliste — der Katalog aller Materialien, unabhängig davon, ob sie gerade im Lager liegen. Materialien haben frei anlegbare Kategorien; neue Materialien und Kategorien lassen sich direkt aus jedem Auswahl-Dialog heraus anlegen. Zusätzlich kann jedes Material frei definierbare Eigenschaften haben (z.B. Volumen in L, Länge in m) — mit optionalem Default-Wert, Primär-Markierung und der Option, im Namen zu erscheinen: Ein „Topf" mit Eigenschaft Volumen wird im Lager mit ausgefülltem Wert dann als „100 L Topf" angezeigt; primäre Eigenschaften tragen Wert und Einheit, nicht-primäre sind Ja/Nein-Eigenschaften (z.B. Trinkwasserqualität) und werden beim Einlagern als Checkbox abgefragt. Die Materialliste lässt sich gesondert exportieren (PDF, CSV, JSON) und als JSON additiv importieren — schon vorhandene Materialnamen werden dabei übersprungen. In Rezepten kann optional benötigtes Material angegeben werden (Anzahl + Notiz, z.B. „2× Topf groß — für die Sauce") — es erscheint in der Rezept-Ansicht. Lagerbestände und Materialliste bleiben beim Laden des Standard-Datenbestands erhalten und sind im Komplett-Backup enthalten.',
   help_database_title: '💾  Datenbank',
   help_database_text: 'Backup & Verwaltung. Hier kannst du die gesamte Datenbank als JSON-Datei exportieren (Backup) oder eine zuvor exportierte Datei importieren. Einzelne Tabellen können separat gelöscht werden. Nützlich für Datensicherung, Übertragung auf andere Rechner oder Browser. Achtung: Beim Import werden alle aktuellen Daten überschrieben. Die Datenbank-Übersicht zeigt dir, wie viele Einträge in jeder Tabelle gespeichert sind. Über „Standard-Daten laden" kannst du den mitgelieferten Basis-Datenbestand direkt aus dem Repo holen — dabei werden nur Rezepte, Zutaten und Stammdaten überschrieben, deine Kochaktionen, Kochtage, Mahlzeit-Slots und Rezept-Zuweisungen bleiben erhalten. Über „Kochaktionen teilen" kannst du einzelne Aktionen samt ihrer Rezept-Zuweisungen als JSON an andere Teammitglieder weitergeben — beim Import werden die Aktionen additiv hinzugefügt, nichts wird überschrieben.',
   help_season_title: '🗓  Saisonkalender',
@@ -1532,8 +1540,13 @@ en: {
   stock_attr_unit_ph: 'Unit',
   stock_attr_primary: 'Primary',
   stock_attr_in_name: 'In name',
-  stock_attr_hint: 'Value is optional (can be filled in storage). "In name" puts value and unit before the name — e.g. "100 L pot".',
+  stock_attr_hint: 'Primary = attribute with value and unit (e.g. volume 100 L); the value is optional and can be filled in storage. Non-primary = yes/no attribute (e.g. drinking water quality), asked as a checkbox when adding to storage. "In name" puts value and unit (or the attribute name) before the name — e.g. "100 L pot".',
   stock_lbl_attr_values: 'Attributes',
+  stock_matlist_export_title: 'Export material list',
+  stock_btn_export_list: '⬇ Export',
+  stock_btn_import_list: '📂 Import',
+  stock_import_result: '✓ {0} new materials, {1} new categories, {2} skipped (already existing)',
+  msg_invalid_material_file: 'Invalid file — not a material list',
   order_group_label: 'Order {0}',
   order_positions_count: '{0} positions',
   order_cat_positions_count: '{0} category positions',
@@ -1732,7 +1745,7 @@ en: {
   help_ingredients_title: '📦  Ingredients',
   help_ingredients_text: 'The ingredient database. Each ingredient has a name, a unit (kg, l, etc.), a reference price per unit, a category, a trim value (% loss during peeling/cutting), a cook factor (weight change during cooking), processing and storage notes, assigned allergens and freely definable tags (e.g. "organic", "regional", "frozen"). Tags help with filtering and searching for ingredients — including within recipe editing. The trim value is automatically added to order quantities and shown in recipes as the net quantity. The cook factor is a multiplier (1 = unchanged, 2.6 = dry chickpeas become 2.6× heavier when cooked, 0.15 = spinach shrinks to 15% when cooked) and is shown in recipes and PDFs as a "Cooked" column — purely informational so the chef knows how much ends up on the plate. The unit is automatically adopted into recipes. Ingredients can be exported and imported as .csv or .txt files.',
   help_stock_title: '🗄  Storage',
-  help_stock_text: 'Records what you already have — split into food storage and material storage. Food entries are linked to ingredients from the database; both shopping lists automatically show a hint when something is in stock: with a quantity (e.g. "🥫 5 kg in stock") or without one as "in stock — check". Order quantities are deliberately NOT deducted automatically — you decide yourself when reviewing the list. The quantity is optional: without one, the entry serves as a reminder that something is there. Each entry shows its storage date ("stored 3 months ago") so old stock is not trusted blindly. The material storage is for non-food items (bin bags, foil, gas cartridges …). It is based on the material list — the catalogue of all materials, regardless of whether they are currently in storage. Materials have freely creatable categories; new materials and categories can be created directly from any picker dialog. Each material can also have freely definable attributes (e.g. volume in L, length in m) — with an optional default value, a primary flag and the option to appear in the name: a "pot" with a volume attribute shows up in storage as "100 L pot" once the value is filled in. Recipes can optionally specify required equipment (count + note, e.g. "2× large pot — for the sauce") — it appears in the recipe view. Storage and material list are preserved when loading the default dataset and are included in the full backup.',
+  help_stock_text: 'Records what you already have — split into food storage and material storage. Food entries are linked to ingredients from the database; both shopping lists automatically show a hint when something is in stock: with a quantity (e.g. "🥫 5 kg in stock") or without one as "in stock — check". Order quantities are deliberately NOT deducted automatically — you decide yourself when reviewing the list. The quantity is optional: without one, the entry serves as a reminder that something is there. Each entry shows its storage date ("stored 3 months ago") so old stock is not trusted blindly. The material storage is for non-food items (bin bags, foil, gas cartridges …). It is based on the material list — the catalogue of all materials, regardless of whether they are currently in storage. Materials have freely creatable categories; new materials and categories can be created directly from any picker dialog. Each material can also have freely definable attributes (e.g. volume in L, length in m) — with an optional default value, a primary flag and the option to appear in the name: a "pot" with a volume attribute shows up in storage as "100 L pot" once the value is filled in; primary attributes carry value and unit, non-primary ones are yes/no attributes (e.g. drinking water quality) asked as a checkbox when adding to storage. The material list can be exported separately (PDF, CSV, JSON) and imported additively from JSON — existing material names are skipped. Recipes can optionally specify required equipment (count + note, e.g. "2× large pot — for the sauce") — it appears in the recipe view. Storage and material list are preserved when loading the default dataset and are included in the full backup.',
   help_database_title: '💾  Database',
   help_database_text: 'Backup & management. Export the entire database as a JSON file (backup) or import a previously exported file. Individual tables can be deleted separately. Useful for data backup, transfer to another computer or browser. Warning: import overwrites all current data. The database overview shows how many entries are stored in each table. Via "Load default data" you can fetch the built-in base dataset directly from the repo — only recipes, ingredients and master data are overwritten, your cooking events, cooking days, meal slots and recipe assignments remain. Via "Share cooking events" you can share individual events including recipe assignments as JSON with team members — on import, events are added additively, nothing is overwritten.',
   help_season_title: '🗓  Seasonal Calendar',
@@ -5936,23 +5949,27 @@ async function getMaterialCategories(){return (await dbGetAll('material_categori
 // Anzeigename eines Materials: „Im Namen"-Eigenschaften (Wert + Einheit)
 // werden vorangestellt — z.B. „100 L Topf". values (optional) überschreibt
 // die Katalog-Defaults, z.B. mit den Werten eines Lagereintrags.
+// Primäre Eigenschaften tragen Wert + Einheit („Volumen 100 L"),
+// nicht-primäre sind Ja/Nein-Eigenschaften („Trinkwasserqualität").
 function materialDisplayName(mat,values){
   if(!mat) return '?';
   const parts=(mat.attributes||[]).filter(a=>a.in_name).map(a=>{
     const v=(values&&values[a.name]!=null&&values[a.name]!=='')?values[a.name]:a.value;
-    return (v!=null&&v!=='')?`${v} ${a.unit||''}`.trim():null;
+    if(a.primary) return (v!=null&&v!=='')?`${v} ${a.unit||''}`.trim():null;
+    return v?a.name:null;
   }).filter(Boolean);
   return parts.length?`${parts.join(' ')} ${mat.name}`:mat.name;
 }
 
-// Kurze Zusammenfassung aller Eigenschaften („Volumen: 50 L · Länge: 10 m"),
+// Kurze Zusammenfassung aller Eigenschaften („Volumen: 50 L · Trinkwasser: ✓"),
 // primäre zuerst. values wie bei materialDisplayName.
 function materialAttrSummary(mat,values){
   const attrs=(mat&&mat.attributes)||[];
   if(!attrs.length) return '';
   return [...attrs].sort((a,b)=>(b.primary?1:0)-(a.primary?1:0)).map(a=>{
     const v=(values&&values[a.name]!=null&&values[a.name]!=='')?values[a.name]:a.value;
-    return `${a.name}: ${(v!=null&&v!=='')?v:'—'}${a.unit?' '+a.unit:''}`;
+    if(a.primary) return `${a.name}: ${(v!=null&&v!=='')?v:'—'}${a.unit?' '+a.unit:''}`;
+    return `${a.name}: ${v?'✓':'—'}`;
   }).join(' · ');
 }
 
@@ -6000,10 +6017,13 @@ async function openMaterialDialog(rec,onSaved){
     const nameInput=h('input',{type:'text',placeholder:t('stock_attr_name_ph'),style:{flex:'1',minWidth:'110px'}});
     if(data) nameInput.value=data.name;
     const valueInput=h('input',{type:'text',placeholder:t('stock_attr_value_ph'),style:{width:'60px'}});
-    if(data&&data.value!=null) valueInput.value=data.value;
+    if(data&&data.value!=null&&data.primary) valueInput.value=data.value;
     const unitInput=h('input',{type:'text',placeholder:t('stock_attr_unit_ph'),style:{width:'60px'}});
     if(data&&data.unit) unitInput.value=data.unit;
-    const primCb=h('input',{type:'checkbox'});primCb.checked=!!(data&&data.primary);
+    // Primär = Eigenschaft mit Wert + Einheit; sonst Ja/Nein-Eigenschaft
+    const primCb=h('input',{type:'checkbox'});primCb.checked=data?!!data.primary:true;
+    const syncPrim=()=>{const show=primCb.checked?'':'none';valueInput.style.display=show;unitInput.style.display=show;};
+    primCb.addEventListener('change',syncPrim);
     const nameCb=h('input',{type:'checkbox'});nameCb.checked=!!(data&&data.in_name);
     const rowEl=h('div',{style:{display:'flex',gap:'6px',alignItems:'center',marginBottom:'4px',flexWrap:'wrap'}});
     const rowObj={nameInput,valueInput,unitInput,primCb,nameCb,rowEl};
@@ -6011,6 +6031,7 @@ async function openMaterialDialog(rec,onSaved){
       h('label',{class:'checkbox',style:{fontSize:'11px',whiteSpace:'nowrap'}},primCb,t('stock_attr_primary')),
       h('label',{class:'checkbox',style:{fontSize:'11px',whiteSpace:'nowrap'}},nameCb,t('stock_attr_in_name')),
       h('button',{class:'btn-icon btn-danger',onClick:()=>{rowEl.remove();const i=attrRows.indexOf(rowObj);if(i>=0)attrRows.splice(i,1);}},'✕'));
+    syncPrim();
     attrRows.push(rowObj);attrRowsDiv.appendChild(rowEl);
   }
   ((rec&&rec.attributes)||[]).forEach(a=>addAttrRow(a));
@@ -6042,9 +6063,15 @@ async function openMaterialDialog(rec,onSaved){
       const attributes=attrRows
         .filter(r=>r.nameInput.value.trim())
         .map(r=>{
-          const raw=r.valueInput.value.trim();
-          const num=parseFloat(raw.replace(',','.'));
-          return {name:r.nameInput.value.trim(),value:raw===''?null:(String(num)===raw||!isNaN(num)&&/^[\d.,]+$/.test(raw)?num:raw),unit:r.unitInput.value.trim(),primary:r.primCb.checked,in_name:r.nameCb.checked};
+          const primary=r.primCb.checked;
+          let value=null,unit='';
+          if(primary){
+            const raw=r.valueInput.value.trim();
+            const num=parseFloat(raw.replace(',','.'));
+            value=raw===''?null:((!isNaN(num)&&/^[\d.,]+$/.test(raw))?num:raw);
+            unit=r.unitInput.value.trim();
+          }
+          return {name:r.nameInput.value.trim(),value,unit,primary,in_name:r.nameCb.checked};
         });
       let saved;
       if(rec){Object.assign(rec,{name,category,unit,note,attributes});await dbPut('materials',rec);saved=rec;}
@@ -6052,6 +6079,58 @@ async function openMaterialDialog(rec,onSaved){
       if(onSaved) await onSaved(saved);
     }
   });
+}
+
+// Materialliste als CSV (Excel-tauglich, mit BOM)
+function exportMatListCsv(mats){
+  const catL=LANG==='en'?'Category':'Kategorie', unitL=LANG==='en'?'Unit':'Einheit',
+        attrL=LANG==='en'?'Attributes':'Eigenschaften', noteL=LANG==='en'?'Note':'Notiz';
+  let s='\uFEFF'+`Name;${catL};${unitL};${attrL};${noteL}\n`;
+  mats.forEach(m=>{
+    const attrs=materialAttrSummary(m).split(';').join(',');
+    s+=`${m.name};${m.category||''};${m.unit||''};${attrs};${(m.note||'').split(';').join(',')}\n`;
+  });
+  return s;
+}
+
+// Materialliste als druckbares PDF (Print-Fenster, wie die Einkaufslisten)
+function printMaterialListPDF(mats){
+  const dateStr=new Date().toLocaleDateString(LANG==='en'?'en-GB':'de-DE');
+  const title=LANG==='en'?'Material list':'Materialliste';
+  const unitL=LANG==='en'?'Unit':'Einheit', attrL=LANG==='en'?'Attributes':'Eigenschaften',
+        noteL=LANG==='en'?'Note':'Notiz', dateL=LANG==='en'?'Date':'Datum',
+        otherL=LANG==='en'?'Other':'Sonstiges';
+  const groups={};
+  mats.forEach(m=>{const c=m.category||otherL;(groups[c]=groups[c]||[]).push(m);});
+  let body='';
+  Object.keys(groups).sort().forEach(cat=>{
+    body+=`<table class="cat-table"><thead><tr><th>${cat}</th><th style="width:70px">${unitL}</th><th>${attrL}</th><th>${noteL}</th></tr></thead><tbody>`;
+    groups[cat].forEach(m=>{
+      body+=`<tr><td>${m.name}</td><td>${m.unit||''}</td><td>${materialAttrSummary(m)}</td><td>${m.note||''}</td></tr>`;
+    });
+    body+='</tbody></table>';
+  });
+  const html=`<!DOCTYPE html><html lang="${LANG}"><head><meta charset="UTF-8"><title>${title}</title>
+<style>
+@page{size:A4;margin:15mm}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;font-size:11px;color:#111}
+.header{border-bottom:2px solid #e63946;padding-bottom:10px;margin-bottom:14px}
+.title{font-size:22px;font-weight:700;margin-bottom:4px}
+.meta{font-size:11px;color:#555}
+.cat-table{width:100%;border-collapse:collapse;margin-bottom:10px;break-inside:avoid;page-break-inside:avoid}
+.cat-table th{background:#e63946;color:#fff;padding:5px 8px;text-align:left;font-size:11px;border:1px solid #c0303c}
+.cat-table td{padding:4px 8px;border:1px solid #ddd;font-size:11px;vertical-align:middle}
+.cat-table tr:nth-child(even) td{background:#fafafa}
+</style></head><body>
+<div class="header"><div class="title">${title}</div><div class="meta">${dateL}: ${dateStr}</div></div>
+${body}
+</body></html>`;
+  const win=window.open('','_blank');
+  if(!win){alert(t('msg_popup_blocked'));return;}
+  win.document.write(html);
+  win.document.close();
+  win.onload=()=>win.print();
 }
 
 async function renderStockPage(container){
@@ -6067,6 +6146,8 @@ async function renderStockPage(container){
   const mkTab=(key,label)=>h('button',{class:`btn btn-sm ${stockTab===key?'btn-accent':'btn-surface'}`,onClick:()=>{stockTab=key;showPage('stock');}},label);
   tabRow.append(mkTab('food',t('stock_tab_food')),mkTab('material',t('stock_tab_material')),mkTab('matlist',t('stock_tab_matlist')));
   body.appendChild(tabRow);
+  const matlistToolbar=h('div',{style:{display:stockTab==='matlist'?'flex':'none',gap:'8px',marginBottom:'12px',alignItems:'center',flexWrap:'wrap'}});
+  body.appendChild(matlistToolbar);
   const listDiv=h('div',{});
   body.appendChild(listDiv);
 
@@ -6075,6 +6156,68 @@ async function renderStockPage(container){
   let materials=await getMaterials();
   let matById=new Map(materials.map(m=>[m.id,m]));
   async function reloadMaterials(){materials=await getMaterials();matById=new Map(materials.map(m=>[m.id,m]));}
+
+  // Export/Import der Materialliste (nur auf dem Materialliste-Tab sichtbar)
+  async function openMatListExportDialog(){
+    const cats=await getMaterialCategories();
+    const m=showModal(h('div',{},
+      h('h2',{},t('stock_matlist_export_title')),
+      h('div',{class:'modal-buttons'},
+        h('button',{class:'btn btn-accent',onClick:()=>{printMaterialListPDF(materials);closeModal(m);}},t('btn_export_pdf')),
+        h('button',{class:'btn btn-surface',onClick:()=>{downloadFile('Materialliste.csv',exportMatListCsv(materials),'text/csv');closeModal(m);}},t('btn_export_csv')),
+        h('button',{class:'btn btn-surface',onClick:()=>{
+          const data={_meta:{app:'KF Portionsrechner',type:'materials',exported_at:new Date().toISOString()},materials,material_categories:cats};
+          downloadFile('Materialliste.json',JSON.stringify(data,null,2),'application/json');
+          closeModal(m);
+        }},'JSON'),
+        h('button',{class:'btn btn-surface',onClick:()=>closeModal(m)},t('btn_cancel'))
+      )
+    ));
+  }
+
+  function importMatList(statusEl){
+    const inp=h('input',{type:'file',accept:'.json,application/json',style:{display:'none'}});
+    inp.addEventListener('change',async()=>{
+      const f=inp.files[0];
+      inp.remove();
+      if(!f) return;
+      try{
+        const data=JSON.parse(await f.text());
+        if(!data._meta||data._meta.type!=='materials'||!Array.isArray(data.materials)) throw new Error(t('msg_invalid_material_file'));
+        const existingCats=new Set((await getMaterialCategories()).map(c=>c.name));
+        let newCats=0;
+        const addCat=async(name)=>{if(name&&!existingCats.has(name)){await dbAdd('material_categories',{name});existingCats.add(name);newCats++;}};
+        for(const c of (data.material_categories||[])) await addCat(c.name);
+        // Additiv: vorhandene Materialnamen bleiben unangetastet
+        const existingNames=new Set(materials.map(x=>x.name.toLowerCase()));
+        let added=0,skipped=0;
+        for(const mat of data.materials){
+          if(!mat.name) continue;
+          if(existingNames.has(mat.name.toLowerCase())){skipped++;continue;}
+          await addCat(mat.category);
+          await dbAdd('materials',{name:mat.name,category:mat.category||'',unit:mat.unit||'Stück',note:mat.note||'',attributes:Array.isArray(mat.attributes)?mat.attributes:[]});
+          existingNames.add(mat.name.toLowerCase());added++;
+        }
+        await reloadMaterials();refresh();
+        statusEl.style.color='var(--green-light)';
+        statusEl.textContent=t('stock_import_result',added,newCats,skipped);
+      }catch(e){
+        statusEl.style.color='var(--accent)';
+        statusEl.textContent='✕ '+e.message;
+      }
+    });
+    document.body.appendChild(inp);
+    inp.click();
+  }
+
+  if(stockTab==='matlist'){
+    const importStatus=h('span',{style:{fontSize:'12px'}});
+    matlistToolbar.append(
+      h('button',{class:'btn btn-surface btn-sm',onClick:openMatListExportDialog},t('stock_btn_export_list')),
+      h('button',{class:'btn btn-surface btn-sm',onClick:()=>importMatList(importStatus)},t('stock_btn_import_list')),
+      importStatus
+    );
+  }
 
   // Anzeige-Feld, das per Klick einen Such-Picker öffnet (für Formulardialoge)
   function pickerField(initialLabel,placeholder,openPickerFn){
@@ -6159,12 +6302,21 @@ async function renderStockPage(container){
       const attrs=(mat&&mat.attributes)||[];
       if(!attrs.length){attrValuesDiv.appendChild(h('span',{style:{fontSize:'11px',color:'var(--text-muted)'}},'—'));return;}
       attrs.forEach(a=>{
-        const input=h('input',{type:'text',placeholder:(a.value!=null&&a.value!=='')?String(a.value):t('stock_attr_value_ph'),style:{width:'90px'}});
-        const v=values&&values[a.name]!=null?values[a.name]:'';
-        if(v!=='') input.value=v;
-        attrInputs[a.name]=input;
-        attrValuesDiv.appendChild(h('div',{style:{display:'flex',alignItems:'center',gap:'8px',marginBottom:'4px'}},
-          h('span',{style:{width:'150px',fontSize:'12px',fontWeight:a.primary?'600':'400'}},`${a.name}${a.unit?' ('+a.unit+')':''}`),input));
+        if(a.primary){
+          // Wert-Eigenschaft: Eingabefeld, Platzhalter zeigt Katalog-Default
+          const input=h('input',{type:'text',placeholder:(a.value!=null&&a.value!=='')?String(a.value):t('stock_attr_value_ph'),style:{width:'90px'}});
+          const v=values&&values[a.name]!=null?values[a.name]:'';
+          if(v!=='') input.value=v;
+          attrInputs[a.name]={kind:'value',el:input};
+          attrValuesDiv.appendChild(h('div',{style:{display:'flex',alignItems:'center',gap:'8px',marginBottom:'4px'}},
+            h('span',{style:{width:'150px',fontSize:'12px',fontWeight:'600'}},`${a.name}${a.unit?' ('+a.unit+')':''}`),input));
+        } else {
+          // Ja/Nein-Eigenschaft: Checkbox
+          const cb=h('input',{type:'checkbox'});
+          cb.checked=!!(values&&values[a.name]);
+          attrInputs[a.name]={kind:'flag',el:cb};
+          attrValuesDiv.appendChild(h('label',{class:'checkbox',style:{fontSize:'12px',display:'flex',gap:'8px',marginBottom:'4px'}},cb,a.name));
+        }
       });
     }
     renderAttrValueInputs(initMat,rec?rec.attr_values:null);
@@ -6186,9 +6338,13 @@ async function renderStockPage(container){
         if(!material_id) return false;
         const quantity=(qty==null||qty<=0)?null:qty;
         const attr_values={};
-        for(const [name,input] of Object.entries(attrInputs)){
-          const v=parseAttrValue(input.value);
-          if(v!=null) attr_values[name]=v;
+        for(const [name,entry] of Object.entries(attrInputs)){
+          if(entry.kind==='flag'){
+            if(entry.el.checked) attr_values[name]=true;
+          } else {
+            const v=parseAttrValue(entry.el.value);
+            if(v!=null) attr_values[name]=v;
+          }
         }
         if(rec){Object.assign(rec,{material_id,quantity,unit,note,attr_values});await dbPut('material_stock',rec);}
         else await dbAdd('material_stock',{material_id,quantity,unit,note,attr_values,stored_at:new Date().toISOString().slice(0,10)});
