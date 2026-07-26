@@ -24,6 +24,9 @@ Installation. Läuft auf GitHub Pages.
   - Export als TXT / CSV / PDF
 - **Rezept-Druck** als A4-PDF pro Rezept (Zutaten mit Brutto/Netto/gekocht,
   Zubereitungsanleitung, Platz für Notizen)
+- **Lager** — Lebensmittellager (zutatenbezogen) und Materiallager;
+  Bestände erscheinen als Hinweis in den Einkaufslisten („🥫 5 kg auf
+  Lager"), Mengen optional, kein automatischer Abzug
 - **Saisonkalender** — gespeist direkt aus den Zutaten
 - **DE/EN** durchgängig umschaltbar
 - **Offline** durch Service Worker; automatischer Update-Check
@@ -108,6 +111,11 @@ Grundbedarf-Berechnung; `meal_slots.standard_meal_id` hält die explizite
 Auswahl pro Mahlzeit, `-1` = „nicht einkaufen") und `general_order_edits`
 (manuelle Anpassungen der Grundbedarf-Liste pro Aktion: Mengen-Overrides,
 gestrichene Positionen, freie Zusatzpositionen, Konkretisierungen).
+
+Lager: `food_stock` (zutatenbezogen via `ingredient_id`, Menge optional,
+`stored_at`) und `material_stock` (freie Einträge). Beide zählen wie die
+Aktions-Stores zu den lokalen Daten und werden beim „Standard laden"
+nicht überschrieben.
 
 ### Saisonalität (seit Nov 2026)
 

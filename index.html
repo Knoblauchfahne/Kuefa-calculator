@@ -440,6 +440,7 @@ de: {
   nav_special_order: '📄  Einkaufsliste nach Rezept',
   nav_recipe_book: '📖  Rezeptbuch',
   nav_ingredients: '📦  Zutaten',
+  nav_stock: '🗄  Lager',
   nav_database: '💾  Datenbank',
   nav_season_calendar: '🗓  Saisonkalender',
   nav_allergen_info: '⚠  Allergene',
@@ -801,6 +802,31 @@ de: {
   go_split_no_ings: 'Keine Zutaten mit dieser Kategorie in der Datenbank — Name frei eingeben.',
   go_split_free_entry: '— Freie Eingabe —',
   go_unset_warning: '⚠ {0} Mahlzeit(en) ohne Auswahl — nicht in der Einkaufsliste enthalten',
+
+  // ── stock (Lager) ───────────────────────────────────────────
+  page_stock: 'Lager',
+  stock_tab_food: '🥫 Lebensmittellager',
+  stock_tab_material: '🧰 Materiallager',
+  stock_btn_add: '+ Eintrag',
+  stock_dlg_add_food: 'Lebensmittel einlagern',
+  stock_dlg_edit_food: 'Lagereintrag bearbeiten — {0}',
+  stock_dlg_add_material: 'Material einlagern',
+  stock_dlg_edit_material: 'Materialeintrag bearbeiten — {0}',
+  stock_lbl_ingredient: 'Zutat',
+  stock_lbl_qty_optional: 'Menge (optional)',
+  stock_lbl_note: 'Notiz',
+  stock_present: 'vorhanden',
+  stock_stored_today: 'heute eingelagert',
+  stock_stored_days: 'eingelagert vor {0} Tag(en)',
+  stock_stored_months: 'eingelagert vor {0} Monat(en)',
+  stock_empty_food: 'Noch keine Lebensmittel eingelagert. Über „+ Eintrag" legst du fest, was schon da ist.',
+  stock_empty_material: 'Noch kein Material eingelagert. Über „+ Eintrag" erfasst du z.B. Müllbeutel, Alufolie oder Gaskartuschen.',
+  stock_hint_qty: '🥫 {0} {1} auf Lager',
+  stock_hint_check: '🥫 auf Lager — prüfen',
+  stock_hint_desc: 'Bestände erscheinen als Hinweis in den Einkaufslisten — Mengen werden nicht automatisch abgezogen.',
+  msg_confirm_delete_stock: 'Lagereintrag löschen?',
+  store_food_stock: 'Lebensmittellager',
+  store_material_stock: 'Materiallager',
   order_group_label: 'Bestellung {0}',
   order_positions_count: '{0} Positionen',
   order_cat_positions_count: '{0} Kategorie-Positionen',
@@ -998,6 +1024,8 @@ de: {
   help_recipe_text: 'Deine Rezeptsammlung. Jedes Rezept enthält Zutaten (mit Menge pro Person und Verarbeitungsmethode), Zubereitungsschritte, Hinweise und optional Zeitangaben. Beim Erstellen kannst du angeben, für wie viele Portionen deine Mengenangaben gelten — die App rechnet automatisch auf 1 Person herunter. Zutaten können als optional markiert werden; diese erscheinen in der Einkaufsliste mit dem Label „(optional)". Jede Zutat kann ein oder mehrere Substitutionen (Ersatzzutaten) haben — klicke auf den ⇄-Button neben einer Zutat, um Substitutionen zu definieren. Diese werden im Rezeptdetail mit „↳ oder:" angezeigt und beim Export/Import als „→ Substitut:"-Zeilen übertragen. Rezepte können als „Allergieessen" markiert werden, damit sie beim Zuweisen von Allergie-Essen zur Auswahl stehen. Rezepte werden den gleichen Mahlzeitkategorien zugeordnet wie die Standardmahlzeiten (z.B. Frühstück, Mittagessen). Dadurch werden in der Einkaufsliste nur passende Rezepte pro Mahlzeit angeboten. Zusätzlich können Rezepte mit frei definierbaren Tags versehen werden, um sie flexibel zu kategorisieren und zu filtern (z.B. „vegan", „schnell", „Sommer"). Du kannst Rezepte als .txt-Datei importieren und exportieren, duplizieren oder über eine Maske neu erstellen.',
   help_ingredients_title: '📦  Zutaten',
   help_ingredients_text: 'Die Zutatendatenbank. Jede Zutat hat einen Namen, eine Einheit (kg, l, etc.), einen Preis pro Einheit als Referenz, eine Kategorie, einen Abschnitt-Wert (% Verlust beim Schälen/Schneiden), einen Kochfaktor (Gewichtsänderung beim Kochen), Verarbeitungs- und Lagerhinweise, zugeordnete Allergene sowie frei definierbare Tags (z.B. „bio", „regional", „TK"). Tags helfen beim Filtern und bei der Suche nach Zutaten — auch innerhalb der Rezeptbearbeitung. Der Abschnitt-Wert wird bei der Bestellmengenberechnung automatisch aufgeschlagen und im Rezept als Netto-Menge angezeigt. Der Kochfaktor ist ein Multiplikator (1 = unverändert, 2.6 = trockene Kichererbsen werden gekocht 2,6-fach schwerer, 0.15 = Spinat schrumpft beim Garen auf 15%) und wird in Rezept und PDF als Gekocht-Spalte dargestellt – rein informativ, damit der Koch weiß, wie viel am Ende auf dem Teller landet. Die Einheit wird automatisch in die Rezepte übernommen. Zutaten lassen sich als .csv oder .txt exportieren und importieren.',
+  help_stock_title: '🗄  Lager',
+  help_stock_text: 'Erfasst, was schon vorhanden ist — getrennt nach Lebensmittellager und Materiallager. Lebensmittel-Einträge sind mit Zutaten aus der Datenbank verknüpft; dadurch zeigen beide Einkaufslisten automatisch einen Hinweis, wenn etwas davon lagert: mit Menge (z.B. „🥫 5 kg auf Lager") oder ohne Menge als „auf Lager — prüfen". Die Bestellmengen werden bewusst NICHT automatisch abgezogen — du entscheidest beim Prüfen der Liste selbst. Die Menge ist optional: Ohne Menge dient der Eintrag als Erinnerung, dass etwas da ist. Jeder Eintrag zeigt sein Einlagerungsdatum („eingelagert vor 3 Monaten"), damit alte Bestände nicht blind übernommen werden. Das Materiallager ist für Nicht-Lebensmittel gedacht (Müllbeutel, Alufolie, Gaskartuschen …) und hat keine Verknüpfung zu den Einkaufslisten. Lagerbestände bleiben beim Laden des Standard-Datenbestands erhalten und sind im Komplett-Backup enthalten.',
   help_database_title: '💾  Datenbank',
   help_database_text: 'Backup & Verwaltung. Hier kannst du die gesamte Datenbank als JSON-Datei exportieren (Backup) oder eine zuvor exportierte Datei importieren. Einzelne Tabellen können separat gelöscht werden. Nützlich für Datensicherung, Übertragung auf andere Rechner oder Browser. Achtung: Beim Import werden alle aktuellen Daten überschrieben. Die Datenbank-Übersicht zeigt dir, wie viele Einträge in jeder Tabelle gespeichert sind. Über „Standard-Daten laden" kannst du den mitgelieferten Basis-Datenbestand direkt aus dem Repo holen — dabei werden nur Rezepte, Zutaten und Stammdaten überschrieben, deine Kochaktionen, Kochtage, Mahlzeit-Slots und Rezept-Zuweisungen bleiben erhalten. Über „Kochaktionen teilen" kannst du einzelne Aktionen samt ihrer Rezept-Zuweisungen als JSON an andere Teammitglieder weitergeben — beim Import werden die Aktionen additiv hinzugefügt, nichts wird überschrieben.',
   help_season_title: '🗓  Saisonkalender',
@@ -1055,6 +1083,7 @@ en: {
   nav_special_order: '📄  Shopping List by Recipe',
   nav_recipe_book: '📖  Recipe Book',
   nav_ingredients: '📦  Ingredients',
+  nav_stock: '🗄  Storage',
   nav_database: '💾  Database',
   nav_season_calendar: '🗓  Seasonal Calendar',
   nav_allergen_info: '⚠  Allergens',
@@ -1416,6 +1445,31 @@ en: {
   go_split_no_ings: 'No ingredients with this category in the database — enter a name manually.',
   go_split_free_entry: '— Free entry —',
   go_unset_warning: '⚠ {0} meal(s) without a selection — not included in the shopping list',
+
+  // ── stock (storage) ─────────────────────────────────────────
+  page_stock: 'Storage',
+  stock_tab_food: '🥫 Food storage',
+  stock_tab_material: '🧰 Material storage',
+  stock_btn_add: '+ Entry',
+  stock_dlg_add_food: 'Add food to storage',
+  stock_dlg_edit_food: 'Edit storage entry — {0}',
+  stock_dlg_add_material: 'Add material to storage',
+  stock_dlg_edit_material: 'Edit material entry — {0}',
+  stock_lbl_ingredient: 'Ingredient',
+  stock_lbl_qty_optional: 'Quantity (optional)',
+  stock_lbl_note: 'Note',
+  stock_present: 'in stock',
+  stock_stored_today: 'stored today',
+  stock_stored_days: 'stored {0} day(s) ago',
+  stock_stored_months: 'stored {0} month(s) ago',
+  stock_empty_food: 'No food in storage yet. Use "+ Entry" to record what you already have.',
+  stock_empty_material: 'No material in storage yet. Use "+ Entry" to record e.g. bin bags, foil or gas cartridges.',
+  stock_hint_qty: '🥫 {0} {1} in stock',
+  stock_hint_check: '🥫 in stock — check',
+  stock_hint_desc: 'Stock appears as a hint in the shopping lists — quantities are not deducted automatically.',
+  msg_confirm_delete_stock: 'Delete storage entry?',
+  store_food_stock: 'Food storage',
+  store_material_stock: 'Material storage',
   order_group_label: 'Order {0}',
   order_positions_count: '{0} positions',
   order_cat_positions_count: '{0} category positions',
@@ -1613,6 +1667,8 @@ en: {
   help_recipe_text: 'Your recipe collection. Each recipe contains ingredients (with quantity per person and processing method), preparation steps, notes and optional time information. When creating, you can specify how many servings your quantities are for — the app automatically divides down to 1 person. Ingredients can be marked as optional; these appear in the shopping list with the label "(optional)". Each ingredient can have one or more substitutions (alternative ingredients) — click the ⇄ button next to an ingredient to define substitutions. They are shown in the recipe detail as "↳ or:" and exported/imported as "→ Substitute:" lines. Recipes can be marked as "Allergy meal" so they appear as an allergy alternative during assignment. Recipes are assigned to the same meal categories as standard meals (e.g. Breakfast, Lunch). This ensures only matching recipes are offered per meal in the shopping list. Recipes can also be tagged with freely definable tags for flexible categorisation and filtering (e.g. "vegan", "quick", "summer"). You can import and export recipes as .txt files, duplicate them or create new ones via a form.',
   help_ingredients_title: '📦  Ingredients',
   help_ingredients_text: 'The ingredient database. Each ingredient has a name, a unit (kg, l, etc.), a reference price per unit, a category, a trim value (% loss during peeling/cutting), a cook factor (weight change during cooking), processing and storage notes, assigned allergens and freely definable tags (e.g. "organic", "regional", "frozen"). Tags help with filtering and searching for ingredients — including within recipe editing. The trim value is automatically added to order quantities and shown in recipes as the net quantity. The cook factor is a multiplier (1 = unchanged, 2.6 = dry chickpeas become 2.6× heavier when cooked, 0.15 = spinach shrinks to 15% when cooked) and is shown in recipes and PDFs as a "Cooked" column — purely informational so the chef knows how much ends up on the plate. The unit is automatically adopted into recipes. Ingredients can be exported and imported as .csv or .txt files.',
+  help_stock_title: '🗄  Storage',
+  help_stock_text: 'Records what you already have — split into food storage and material storage. Food entries are linked to ingredients from the database; both shopping lists automatically show a hint when something is in stock: with a quantity (e.g. "🥫 5 kg in stock") or without one as "in stock — check". Order quantities are deliberately NOT deducted automatically — you decide yourself when reviewing the list. The quantity is optional: without one, the entry serves as a reminder that something is there. Each entry shows its storage date ("stored 3 months ago") so old stock is not trusted blindly. The material storage is for non-food items (bin bags, foil, gas cartridges …) and is not linked to the shopping lists. Stock is preserved when loading the default dataset and is included in the full backup.',
   help_database_title: '💾  Database',
   help_database_text: 'Backup & management. Export the entire database as a JSON file (backup) or import a previously exported file. Individual tables can be deleted separately. Useful for data backup, transfer to another computer or browser. Warning: import overwrites all current data. The database overview shows how many entries are stored in each table. Via "Load default data" you can fetch the built-in base dataset directly from the repo — only recipes, ingredients and master data are overwritten, your cooking events, cooking days, meal slots and recipe assignments remain. Via "Share cooking events" you can share individual events including recipe assignments as JSON with team members — on import, events are added additively, nothing is overwritten.',
   help_season_title: '🗓  Seasonal Calendar',
@@ -1689,7 +1745,7 @@ document.addEventListener('DOMContentLoaded', () => {
 //  DATABASE (IndexedDB)
 // ══════════════════════════════════════════════════════════════
 const DB_NAME = 'kf_portionsrechner';
-const DB_VERSION = 7;
+const DB_VERSION = 8;
 let db;
 
 const UNITS = ["kg","g","L","ml","Stück","Bund","Dose(n)","Packung","Becher","EL","TL"];
@@ -1728,6 +1784,8 @@ function openDB(){
       if(!d.objectStoreNames.contains('ingredient_tags')){const s=d.createObjectStore('ingredient_tags',{keyPath:'id',autoIncrement:true});s.createIndex('ingredient_id','ingredient_id');s.createIndex('tag_id','tag_id');}
       if(!d.objectStoreNames.contains('recipe_ingredient_substitutes')){const s=d.createObjectStore('recipe_ingredient_substitutes',{keyPath:'id',autoIncrement:true});s.createIndex('recipe_ingredient_id','recipe_ingredient_id');}
       if(!d.objectStoreNames.contains('general_order_edits')){const s=d.createObjectStore('general_order_edits',{keyPath:'id',autoIncrement:true});s.createIndex('action_id','action_id');}
+      if(!d.objectStoreNames.contains('food_stock')){const s=d.createObjectStore('food_stock',{keyPath:'id',autoIncrement:true});s.createIndex('ingredient_id','ingredient_id');}
+      if(!d.objectStoreNames.contains('material_stock')){d.createObjectStore('material_stock',{keyPath:'id',autoIncrement:true});}
     };
     req.onsuccess = e => {db=e.target.result;resolve(db);};
     req.onerror = e => reject(e);
@@ -2679,6 +2737,7 @@ const NAV_ITEMS=[
   null,
   {key:'recipe_book',label:()=>t('nav_recipe_book')},
   {key:'ingredients',label:()=>t('nav_ingredients')},
+  {key:'stock',label:()=>t('nav_stock')},
   null,
   {key:'database',label:()=>t('nav_database')},
   {key:'season_calendar',label:()=>t('nav_season_calendar')},
@@ -2704,6 +2763,7 @@ function showPage(name){
   switch(name){
     case 'calendar':renderCalendarPage(content);break;
     case 'ingredients':renderIngredientsPage(content);break;
+    case 'stock':renderStockPage(content);break;
     case 'standard_meals':renderStandardMealsPage(content);break;
     case 'general_order':renderGeneralOrderPage(content);break;
     case 'recipe_book':renderRecipeBookPage(content);break;
@@ -3882,6 +3942,7 @@ async function renderGeneralOrderPage(container){
     lastItems=[];
     lastItemsByGroup=[];
     const allEdits=await dbGetByIndex('general_order_edits','action_id',selectedActionId);
+    const stockHints=await getFoodStockHints();
     const multi=groupNums.length>1;
     for(const num of groupNums){
       const g=groups[num];
@@ -3907,7 +3968,7 @@ async function renderGeneralOrderPage(container){
         let used=0;
         sp.parts.forEach((p,idx)=>{
           used+=p.quantity;
-          splitItems.push({name:p.name,name_en:p.name_en||'',quantity:p.quantity,unit:i.unit,subcategory:i.subcategory,subcategory_en:i.subcategory_en,price_per_unit:p.price_per_unit||0,total_cost:p.quantity*(p.price_per_unit||0),_splitPart:true,_splitId:sp.id,_partIndex:idx,_catItem:i});
+          splitItems.push({name:p.name,name_en:p.name_en||'',ingredient_id:p.ingredient_id||null,quantity:p.quantity,unit:i.unit,subcategory:i.subcategory,subcategory_en:i.subcategory_en,price_per_unit:p.price_per_unit||0,total_cost:p.quantity*(p.price_per_unit||0),_splitPart:true,_splitId:sp.id,_partIndex:idx,_catItem:i});
         });
         const rest=i.quantity-used;
         if(rest>0.004) splitItems.push({name:`${i.subcategory} (${t('go_lbl_rest')})`,name_en:i.subcategory_en?`${i.subcategory_en} (${t('go_lbl_rest')})`:'',quantity:rest,unit:i.unit,subcategory:i.subcategory,subcategory_en:i.subcategory_en,price_per_unit:i.price_per_unit||0,total_cost:rest*(i.price_per_unit||0),_splitRest:true,_splitId:sp.id,_catItem:i});
@@ -3933,6 +3994,7 @@ async function renderGeneralOrderPage(container){
 
       const listOpts={
         hasEdits:groupEdits.length>0,
+        stockHints,
         onSplit:async(item)=>{
           const cat=item._catItem||item;
           const rec=item._splitId
@@ -4032,7 +4094,7 @@ async function renderGeneralOrderPage(container){
 }
 
 // General order: category-level aggregation.
-// opts (optional): {hasEdits, onEditQty, onRemove, onAddExtra, onReset, onSplit}
+// opts (optional): {hasEdits, onEditQty, onRemove, onAddExtra, onReset, onSplit, stockHints}
 // → mit opts werden pro Zeile ✎/✕-Buttons und in der Summenzeile
 //   "+ Position" / "↺ Zurücksetzen" angeboten (Einkaufsliste nach Grundbedarf).
 function renderGeneralOrderList(parent,items,opts={}){
@@ -4074,6 +4136,14 @@ function renderGeneralOrderList(parent,items,opts={}){
       if(item._splitPart||item._splitRest){
         const pName=LANG==='en'?(item.name_en||item.name):item.name;
         row.appendChild(h('span',{style:{fontSize:'13px',marginLeft:'4px',color:item._splitRest?'var(--text-muted)':'var(--text)',fontStyle:item._splitRest?'italic':'normal'}},pName));
+      }
+      if(opts.stockHints&&!item._extraId&&!item._splitRest){
+        // Konkretisierte Zutaten matchen direkt, Kategorie-Zeilen über die Subkategorie
+        const rec=item._splitPart
+          ? (item.ingredient_id?opts.stockHints.byIngredient.get(item.ingredient_id):null)
+          : opts.stockHints.bySubcat.get(item.subcategory);
+        const badge=stockHintBadge(rec,item.unit);
+        if(badge) row.appendChild(badge);
       }
       row.appendChild(h('span',{style:{marginLeft:'auto',color:'var(--text-muted)'}},item.total_cost?`${item.total_cost.toFixed(2)} €`:'—'));
       if(opts.onEditQty){
@@ -4173,8 +4243,9 @@ async function openSplitDialog({catItem,rec,onSave}){
   ));
 }
 
-// Special order: ingredient-level detail
-function renderOrderList(parent,items){
+// Special order: ingredient-level detail.
+// stockHints (optional): Ergebnis von getFoodStockHints() → Lager-Badges.
+function renderOrderList(parent,items,stockHints=null){
   const total=items.reduce((s,i)=>s+i.quantity*i.price,0);
   const summary=h('div',{class:'card',style:{display:'flex',justifyContent:'space-between',alignItems:'center'}});
   summary.appendChild(h('span',{style:{color:'var(--text-muted)'}},t('order_positions_count',items.length)));
@@ -4198,6 +4269,10 @@ function renderOrderList(parent,items){
       const nameEl=h('span',{style:{width:'200px',fontSize:'13px'}});
       nameEl.appendChild(document.createTextNode(LANG==='en'?(item.name_en||item.name):item.name));
       if(item.optional) nameEl.appendChild(h('span',{style:{fontSize:'10px',marginLeft:'6px',color:'var(--accent)',fontWeight:'600'}},'('+t('misc_optional')+')'));
+      if(stockHints){
+        const badge=stockHintBadge(stockHints.byIngredient.get(item.ingredient_id),item.unit);
+        if(badge) nameEl.appendChild(badge);
+      }
       row.appendChild(nameEl);
       row.appendChild(h('span',{style:{width:'80px'}},String(round2(item.quantity))));
       row.appendChild(h('span',{style:{width:'60px',color:'var(--text-muted)'}},item.unit));
@@ -5651,6 +5726,7 @@ tr:nth-child(even){background:#fafafa}
     const groupColors=['var(--accent)','var(--green)','#d4a017','#7b2d8b','#2980b9','#c0392b','#16a085','#8e44ad'];
     lastItems=[];
     lastItemsByGroup=[];
+    const stockHints=await getFoodStockHints();
     for(const num of groupNums){
       const g=groups[num];
       const items=await generateSpecialOrder(g.dayIds);
@@ -5663,7 +5739,7 @@ tr:nth-child(even){background:#fafafa}
       groupHeader.appendChild(h('span',{style:{fontSize:'12px',color:'var(--text-muted)'}},g.dates.join(', ')));
       resultDiv.appendChild(groupHeader);
       if(!items.length){resultDiv.appendChild(h('div',{class:'empty-msg'},t('empty_no_positions_days')));continue;}
-      renderOrderList(resultDiv,items);
+      renderOrderList(resultDiv,items,stockHints);
     }
   }
 
@@ -5672,11 +5748,172 @@ tr:nth-child(even){background:#fafafa}
 
 
 // ══════════════════════════════════════════════════════════════
+//  STOCK PAGE (Lager: Lebensmittel + Material)
+// ══════════════════════════════════════════════════════════════
+let stockTab='food';
+
+function stockAgeLabel(dateStr){
+  if(!dateStr) return '';
+  const days=Math.floor((Date.now()-new Date(dateStr).getTime())/86400000);
+  if(days<=0) return t('stock_stored_today');
+  if(days<45) return t('stock_stored_days',days);
+  return t('stock_stored_months',Math.round(days/30));
+}
+
+// Lagerbestände für Einkaufslisten-Hinweise aggregieren.
+// byIngredient: ingredient_id → {qty:Map<unit,Summe>, check:bool}
+// bySubcat:     subcategory   → dito (über die Subkategorie der Zutat)
+// check=true, wenn Einträge ohne Menge existieren → „auf Lager — prüfen".
+async function getFoodStockHints(){
+  const byIngredient=new Map(),bySubcat=new Map();
+  const entries=await dbGetAll('food_stock');
+  if(!entries.length) return {byIngredient,bySubcat};
+  const ingById=new Map((await dbGetAll('ingredients')).map(i=>[i.id,i]));
+  const bump=(map,key,unit,qty)=>{
+    if(!map.has(key)) map.set(key,{qty:new Map(),check:false});
+    const rec=map.get(key);
+    if(qty!=null&&qty>0) rec.qty.set(unit,(rec.qty.get(unit)||0)+qty);
+    else rec.check=true;
+  };
+  for(const e of entries){
+    bump(byIngredient,e.ingredient_id,e.unit,e.quantity);
+    const ing=ingById.get(e.ingredient_id);
+    if(ing&&ing.subcategory) bump(bySubcat,ing.subcategory,e.unit,e.quantity);
+  }
+  return {byIngredient,bySubcat};
+}
+
+// Badge für eine Listen-Position: Menge bei passender Einheit, sonst
+// „prüfen"-Hinweis, wenn irgendetwas dieser Zutat/Kategorie lagert.
+function stockHintBadge(rec,unit){
+  if(!rec) return null;
+  const q=rec.qty.get(unit);
+  const txt=q?t('stock_hint_qty',round2(q),unit):((rec.check||rec.qty.size)?t('stock_hint_check'):null);
+  if(!txt) return null;
+  return h('span',{style:{fontSize:'10px',fontWeight:'600',color:'var(--green-light)',marginLeft:'8px',whiteSpace:'nowrap'}},txt);
+}
+
+async function renderStockPage(container){
+  const addBtn=h('button',{class:'btn btn-accent'},t('stock_btn_add'));
+  const header=h('div',{class:'page-header'},
+    h('div',{},h('h1',{},t('page_stock')),h('div',{class:'subtitle'},t('stock_hint_desc'))),
+    addBtn
+  );
+  const body=h('div',{class:'page-body'});
+  container.append(header,body);
+
+  const tabRow=h('div',{style:{display:'flex',gap:'8px',marginBottom:'12px'}});
+  const mkTab=(key,label)=>h('button',{class:`btn btn-sm ${stockTab===key?'btn-accent':'btn-surface'}`,onClick:()=>{stockTab=key;showPage('stock');}},label);
+  tabRow.append(mkTab('food',t('stock_tab_food')),mkTab('material',t('stock_tab_material')));
+  body.appendChild(tabRow);
+  const listDiv=h('div',{});
+  body.appendChild(listDiv);
+
+  const ings=await getIngredients();
+  const ingById=new Map(ings.map(i=>[i.id,i]));
+
+  function foodDialog(rec){
+    const dlg=openFormDialog({
+      title:rec?t('stock_dlg_edit_food',(ingById.get(rec.ingredient_id)||{}).name||''):t('stock_dlg_add_food'),
+      saveLabel:rec?t('btn_save'):t('btn_add'),
+      fields:[
+        {key:'ing',label:t('stock_lbl_ingredient'),type:'select',value:rec?rec.ingredient_id:null,
+         options:ings.map(i=>({value:i.id,label:`${ingDisplayName(i)} (${i.unit})${i.subcategory?' — '+i.subcategory:''}`}))},
+        {key:'qty',label:t('stock_lbl_qty_optional'),type:'number',value:rec&&rec.quantity!=null?rec.quantity:'',step:0.01,min:0},
+        {key:'unit',label:t('lbl_unit'),type:'unit',value:rec?rec.unit:'kg'},
+        {key:'note',label:t('stock_lbl_note'),type:'text',value:rec?(rec.note||''):''}
+      ],
+      rows:['ing',['qty','unit'],'note'],
+      onSave:async({ing,qty,unit,note})=>{
+        const ingredient_id=parseInt(ing);
+        if(!ingredient_id) return false;
+        const quantity=(qty==null||qty<=0)?null:qty;
+        if(rec){Object.assign(rec,{ingredient_id,quantity,unit,note});await dbPut('food_stock',rec);}
+        else await dbAdd('food_stock',{ingredient_id,quantity,unit,note,stored_at:new Date().toISOString().slice(0,10)});
+        refresh();
+      }
+    });
+    // Einheit der gewählten Zutat vorbelegen
+    dlg.inputs.ing.addEventListener('change',()=>{
+      const i=ingById.get(parseInt(dlg.inputs.ing.value));
+      if(i&&i.unit) dlg.inputs.unit.value=i.unit;
+    });
+  }
+
+  function materialDialog(rec){
+    openFormDialog({
+      title:rec?t('stock_dlg_edit_material',rec.name):t('stock_dlg_add_material'),
+      saveLabel:rec?t('btn_save'):t('btn_add'),
+      fields:[
+        {key:'name',label:t('lbl_name'),type:'text',value:rec?rec.name:'',required:true},
+        {key:'qty',label:t('stock_lbl_qty_optional'),type:'number',value:rec&&rec.quantity!=null?rec.quantity:'',step:0.01,min:0},
+        {key:'unit',label:t('lbl_unit'),type:'unit',value:rec?rec.unit:'Stück'},
+        {key:'note',label:t('stock_lbl_note'),type:'text',value:rec?(rec.note||''):''}
+      ],
+      rows:['name',['qty','unit'],'note'],
+      onSave:async({name,qty,unit,note})=>{
+        const quantity=(qty==null||qty<=0)?null:qty;
+        if(rec){Object.assign(rec,{name,quantity,unit,note});await dbPut('material_stock',rec);}
+        else await dbAdd('material_stock',{name,quantity,unit,note,stored_at:new Date().toISOString().slice(0,10)});
+        refresh();
+      }
+    });
+  }
+
+  addBtn.addEventListener('click',()=>stockTab==='food'?foodDialog():materialDialog());
+
+  function stockRow(label,e,store,editFn){
+    const row=h('div',{style:{display:'flex',alignItems:'center',gap:'8px',padding:'4px 0',flexWrap:'wrap'}});
+    row.appendChild(h('span',{style:{width:'200px',fontSize:'13px',fontWeight:'600'}},label));
+    row.appendChild(h('span',{style:{width:'110px',fontSize:'13px'}},e.quantity!=null?`${round2(e.quantity)} ${e.unit}`:t('stock_present')));
+    if(e.note) row.appendChild(h('span',{style:{fontSize:'12px',color:'var(--text-muted)'}},e.note));
+    row.appendChild(h('span',{style:{marginLeft:'auto',fontSize:'11px',color:'var(--text-muted)'}},stockAgeLabel(e.stored_at)));
+    const btns=h('span',{style:{display:'flex',gap:'4px',marginLeft:'8px'}});
+    btns.appendChild(h('button',{class:'btn-icon btn-ghost',title:t('btn_edit'),onClick:()=>editFn(e)},'✎'));
+    btns.appendChild(h('button',{class:'btn-icon btn-danger',title:t('btn_delete'),onClick:async()=>{
+      if(!confirm(t('msg_confirm_delete_stock'))) return;
+      await dbDel(store,e.id);refresh();
+    }},'✕'));
+    row.appendChild(btns);
+    return row;
+  }
+
+  async function refresh(){
+    listDiv.innerHTML='';
+    if(stockTab==='food'){
+      const entries=await dbGetAll('food_stock');
+      if(!entries.length){listDiv.appendChild(h('div',{class:'empty-msg'},t('stock_empty_food')));return;}
+      const groups={};
+      entries.forEach(e=>{
+        const ing=ingById.get(e.ingredient_id);
+        const cat=(ing&&ing.subcategory)||t('misc_uncategorized');
+        (groups[cat]=groups[cat]||[]).push({e,ing});
+      });
+      Object.keys(groups).sort().forEach(cat=>{
+        const grp=h('div',{class:'cat-group'});
+        grp.appendChild(h('div',{style:{marginBottom:'4px'}},h('span',{class:'cat-name'},cat)));
+        groups[cat].sort((a,b)=>((a.ing&&a.ing.name)||'').localeCompare((b.ing&&b.ing.name)||''))
+          .forEach(({e,ing})=>grp.appendChild(stockRow(ing?ingDisplayName(ing):('#'+e.ingredient_id),e,'food_stock',foodDialog)));
+        listDiv.appendChild(grp);
+      });
+    } else {
+      const entries=(await dbGetAll('material_stock')).sort((a,b)=>a.name.localeCompare(b.name));
+      if(!entries.length){listDiv.appendChild(h('div',{class:'empty-msg'},t('stock_empty_material')));return;}
+      const grp=h('div',{class:'cat-group'});
+      entries.forEach(e=>grp.appendChild(stockRow(e.name,e,'material_stock',materialDialog)));
+      listDiv.appendChild(grp);
+    }
+  }
+  await refresh();
+}
+
+
+// ══════════════════════════════════════════════════════════════
 //  DATABASE PAGE
 // ══════════════════════════════════════════════════════════════
-const ALL_STORES=['actions','cooking_days','meal_slots','ingredients','subcategories','standard_meals','meal_components','categories','recipes','recipe_categories','recipe_ingredients','assignments','preparation_methods','meal_type_categories','allergens','ingredient_allergens','recipe_allergens','tags','recipe_tags','ingredient_tags','recipe_ingredient_substitutes','general_order_edits'];
-// Stores, die zu konkreten Kochaktionen / Planungen gehören und beim Laden des Standard-Datenbestands bewahrt werden sollen
-const ACTION_STORES=['actions','cooking_days','meal_slots','assignments','general_order_edits'];
+const ALL_STORES=['actions','cooking_days','meal_slots','ingredients','subcategories','standard_meals','meal_components','categories','recipes','recipe_categories','recipe_ingredients','assignments','preparation_methods','meal_type_categories','allergens','ingredient_allergens','recipe_allergens','tags','recipe_tags','ingredient_tags','recipe_ingredient_substitutes','general_order_edits','food_stock','material_stock'];
+// Stores, die zu konkreten Kochaktionen / Planungen / lokalen Beständen gehören und beim Laden des Standard-Datenbestands bewahrt werden sollen
+const ACTION_STORES=['actions','cooking_days','meal_slots','assignments','general_order_edits','food_stock','material_stock'];
 
 async function exportFullDatabase(){
   const data={_meta:{version:DB_VERSION,exported_at:new Date().toISOString(),app:'KF Portionsrechner'}};
@@ -6219,6 +6456,7 @@ function renderHelpPage(container){
     {title:t('help_special_title'),text:t('help_special_text')},
     {title:t('help_recipe_title'),text:t('help_recipe_text')},
     {title:t('help_ingredients_title'),text:t('help_ingredients_text')},
+    {title:t('help_stock_title'),text:t('help_stock_text')},
     {title:t('help_database_title'),text:t('help_database_text')},
     {title:t('help_season_title'),text:t('help_season_text')},
     {title:t('help_allergen_title'),text:t('help_allergen_text')},
