@@ -848,6 +848,9 @@ de: {
   lbl_material_optional: 'Material (optional)',
   lbl_count: 'Anzahl',
   recipe_material_label: '🧰 Material',
+  btn_output_recipe: '🖨 Ausgeben',
+  dlg_output_recipe: 'Rezept ausgeben — {0}',
+  lbl_output_subs: 'Substitutionen',
   lbl_volume_optional: 'Volumen (optional)',
   lbl_volume_yield: 'Portionen ergeben',
   lbl_volume_hint: 'z.B. 100 Portionen ergeben 35 L — Grundlage für die Topf-Auswahl.',
@@ -1069,7 +1072,7 @@ de: {
   help_special_title: '📄  Einkaufsliste nach Rezept',
   help_special_text: 'Hier weist du den Mahlzeit-Slots konkrete Rezepte, Beilagen und Allergie-Essen zu. Die Einkaufsliste wird dann auf Zutatenebene berechnet. Bei mehreren Rezepten pro Slot werden die Portionen automatisch gleichmäßig aufgeteilt, genau so mit den Beilagen. Du kannst die Aufteilung aber auch manuell anpassen. Eine Summenanzeige warnt dich, wenn die Teilportionen nicht mit der definierten Gesamtzahl übereinstimmen. Allergie-Essen werden separat mit eigenen Portionszahlen verwaltet (Empfehlung: ca. 1% der Gesamtportionen). Über die Bestellgruppen-Leiste oben kannst du Kochtage verschiedenen Bestellungen zuordnen (z.B. Bestellung 1 für Tag 1–4, Bestellung 2 für Tag 5–8). Beim Generieren werden separate Einkaufslisten pro Bestellgruppe erzeugt. Über den Rezepte Drucken Button kann eine PDF-Datei erzeugt werden, welche die Rezepte für jede einzelne Mahlzeit ausgibt. Wenn ein Rezept Zutaten-Substitutionen enthält, erscheint beim Zuweisen ein Dialog, in dem du pro Zutat zwischen Original und Substitut wählen kannst. Die Einkaufsliste und das PDF verwenden dann automatisch die gewählten Substitutionen. Zuweisungen mit aktiven Substitutionen werden mit einem ⇄-Symbol gekennzeichnet.',
   help_recipe_title: '📖  Rezeptbuch',
-  help_recipe_text: 'Deine Rezeptsammlung. Jedes Rezept enthält Zutaten (mit Menge pro Person und Verarbeitungsmethode), Zubereitungsschritte, Hinweise und optional Zeitangaben. Beim Erstellen kannst du angeben, für wie viele Portionen deine Mengenangaben gelten — die App rechnet automatisch auf 1 Person herunter. Zutaten können als optional markiert werden; diese erscheinen in der Einkaufsliste mit dem Label „(optional)". Jede Zutat kann ein oder mehrere Substitutionen (Ersatzzutaten) haben — klicke auf den ⇄-Button neben einer Zutat, um Substitutionen zu definieren. Diese werden im Rezeptdetail mit „↳ oder:" angezeigt und beim Export/Import als „→ Substitut:"-Zeilen übertragen. Rezepte können als „Allergieessen" markiert werden, damit sie beim Zuweisen von Allergie-Essen zur Auswahl stehen. Rezepte werden den gleichen Mahlzeitkategorien zugeordnet wie die Standardmahlzeiten (z.B. Frühstück, Mittagessen). Dadurch werden in der Einkaufsliste nur passende Rezepte pro Mahlzeit angeboten. Zusätzlich können Rezepte mit frei definierbaren Tags versehen werden, um sie flexibel zu kategorisieren und zu filtern (z.B. „vegan", „schnell", „Sommer"). Du kannst Rezepte als .txt-Datei importieren und exportieren, duplizieren oder über eine Maske neu erstellen. Optional lassen sich benötigtes Material aus der Materialliste (Anzahl + Notiz) sowie das Volumen des fertigen Gerichts angeben („100 Portionen ergeben 35 L") — Grundlage für die Topf-Auswahl bei großen Aktionen.',
+  help_recipe_text: 'Deine Rezeptsammlung. Jedes Rezept enthält Zutaten (mit Menge pro Person und Verarbeitungsmethode), Zubereitungsschritte, Hinweise und optional Zeitangaben. Beim Erstellen kannst du angeben, für wie viele Portionen deine Mengenangaben gelten — die App rechnet automatisch auf 1 Person herunter. Zutaten können als optional markiert werden; diese erscheinen in der Einkaufsliste mit dem Label „(optional)". Jede Zutat kann ein oder mehrere Substitutionen (Ersatzzutaten) haben — klicke auf den ⇄-Button neben einer Zutat, um Substitutionen zu definieren. Diese werden im Rezeptdetail mit „↳ oder:" angezeigt und beim Export/Import als „→ Substitut:"-Zeilen übertragen. Rezepte können als „Allergieessen" markiert werden, damit sie beim Zuweisen von Allergie-Essen zur Auswahl stehen. Rezepte werden den gleichen Mahlzeitkategorien zugeordnet wie die Standardmahlzeiten (z.B. Frühstück, Mittagessen). Dadurch werden in der Einkaufsliste nur passende Rezepte pro Mahlzeit angeboten. Zusätzlich können Rezepte mit frei definierbaren Tags versehen werden, um sie flexibel zu kategorisieren und zu filtern (z.B. „vegan", „schnell", „Sommer"). Du kannst Rezepte als .txt-Datei importieren und exportieren, duplizieren oder über eine Maske neu erstellen. Optional lassen sich benötigtes Material aus der Materialliste (Anzahl + Notiz) sowie das Volumen des fertigen Gerichts angeben („100 Portionen ergeben 35 L") — Grundlage für die Topf-Auswahl bei großen Aktionen. Über „🖨 Ausgeben" lässt sich jedes Rezept auch ohne Kochaktion direkt für eine beliebige Portionszahl ausgeben — inkl. Substitutions-Auswahl, als dieselbe A4-Rezeptseite wie beim Einkaufen nach Rezept.',
   help_ingredients_title: '📦  Zutaten',
   help_ingredients_text: 'Die Zutatendatenbank. Jede Zutat hat einen Namen, eine Einheit (kg, l, etc.), einen Preis pro Einheit als Referenz, eine Kategorie, einen Abschnitt-Wert (% Verlust beim Schälen/Schneiden), einen Kochfaktor (Gewichtsänderung beim Kochen), Verarbeitungs- und Lagerhinweise, zugeordnete Allergene sowie frei definierbare Tags (z.B. „bio", „regional", „TK"). Tags helfen beim Filtern und bei der Suche nach Zutaten — auch innerhalb der Rezeptbearbeitung. Der Abschnitt-Wert wird bei der Bestellmengenberechnung automatisch aufgeschlagen und im Rezept als Netto-Menge angezeigt. Der Kochfaktor ist ein Multiplikator (1 = unverändert, 2.6 = trockene Kichererbsen werden gekocht 2,6-fach schwerer, 0.15 = Spinat schrumpft beim Garen auf 15%) und wird in Rezept und PDF als Gekocht-Spalte dargestellt – rein informativ, damit der Koch weiß, wie viel am Ende auf dem Teller landet. Die Einheit wird automatisch in die Rezepte übernommen. Zutaten lassen sich als .csv oder .txt exportieren und importieren.',
   help_stock_title: '🗄  Lager',
@@ -1536,6 +1539,9 @@ en: {
   lbl_material_optional: 'Equipment (optional)',
   lbl_count: 'Count',
   recipe_material_label: '🧰 Equipment',
+  btn_output_recipe: '🖨 Print',
+  dlg_output_recipe: 'Print recipe — {0}',
+  lbl_output_subs: 'Substitutions',
   lbl_volume_optional: 'Volume (optional)',
   lbl_volume_yield: 'servings yield',
   lbl_volume_hint: 'e.g. 100 servings yield 35 L — basis for pot selection.',
@@ -1757,7 +1763,7 @@ en: {
   help_special_title: '📄  Shopping List by Recipe',
   help_special_text: 'Assign specific recipes, side dishes and allergy meals to meal slots here. The shopping list is then calculated at ingredient level. For multiple recipes per slot, servings are automatically split evenly — same for side dishes. You can also adjust the split manually. A total display warns you when partial servings do not match the defined total. Allergy meals are managed separately with their own serving counts (recommendation: approx. 1% of total servings). Use the order group bar at the top to assign cooking days to different orders (e.g. Order 1 for days 1–4, Order 2 for days 5–8). When generating, separate shopping lists per order group are created. The Print Recipes button generates a PDF with recipes for each individual meal. If a recipe contains ingredient substitutions, a dialog appears on assignment letting you choose between original and substitute per ingredient. The shopping list and PDF then use the chosen substitutions automatically. Assignments with active substitutions are marked with a ⇄ symbol.',
   help_recipe_title: '📖  Recipe Book',
-  help_recipe_text: 'Your recipe collection. Each recipe contains ingredients (with quantity per person and processing method), preparation steps, notes and optional time information. When creating, you can specify how many servings your quantities are for — the app automatically divides down to 1 person. Ingredients can be marked as optional; these appear in the shopping list with the label "(optional)". Each ingredient can have one or more substitutions (alternative ingredients) — click the ⇄ button next to an ingredient to define substitutions. They are shown in the recipe detail as "↳ or:" and exported/imported as "→ Substitute:" lines. Recipes can be marked as "Allergy meal" so they appear as an allergy alternative during assignment. Recipes are assigned to the same meal categories as standard meals (e.g. Breakfast, Lunch). This ensures only matching recipes are offered per meal in the shopping list. Recipes can also be tagged with freely definable tags for flexible categorisation and filtering (e.g. "vegan", "quick", "summer"). You can import and export recipes as .txt files, duplicate them or create new ones via a form. Optionally, required equipment from the material list (count + note) and the volume of the finished dish can be specified ("100 servings yield 35 L") — the basis for pot selection at large events.',
+  help_recipe_text: 'Your recipe collection. Each recipe contains ingredients (with quantity per person and processing method), preparation steps, notes and optional time information. When creating, you can specify how many servings your quantities are for — the app automatically divides down to 1 person. Ingredients can be marked as optional; these appear in the shopping list with the label "(optional)". Each ingredient can have one or more substitutions (alternative ingredients) — click the ⇄ button next to an ingredient to define substitutions. They are shown in the recipe detail as "↳ or:" and exported/imported as "→ Substitute:" lines. Recipes can be marked as "Allergy meal" so they appear as an allergy alternative during assignment. Recipes are assigned to the same meal categories as standard meals (e.g. Breakfast, Lunch). This ensures only matching recipes are offered per meal in the shopping list. Recipes can also be tagged with freely definable tags for flexible categorisation and filtering (e.g. "vegan", "quick", "summer"). You can import and export recipes as .txt files, duplicate them or create new ones via a form. Optionally, required equipment from the material list (count + note) and the volume of the finished dish can be specified ("100 servings yield 35 L") — the basis for pot selection at large events. Via "🖨 Print", any recipe can be printed directly for any number of servings without a cooking event — including substitution selection, as the same A4 recipe page used in shopping by recipe.',
   help_ingredients_title: '📦  Ingredients',
   help_ingredients_text: 'The ingredient database. Each ingredient has a name, a unit (kg, l, etc.), a reference price per unit, a category, a trim value (% loss during peeling/cutting), a cook factor (weight change during cooking), processing and storage notes, assigned allergens and freely definable tags (e.g. "organic", "regional", "frozen"). Tags help with filtering and searching for ingredients — including within recipe editing. The trim value is automatically added to order quantities and shown in recipes as the net quantity. The cook factor is a multiplier (1 = unchanged, 2.6 = dry chickpeas become 2.6× heavier when cooked, 0.15 = spinach shrinks to 15% when cooked) and is shown in recipes and PDFs as a "Cooked" column — purely informational so the chef knows how much ends up on the plate. The unit is automatically adopted into recipes. Ingredients can be exported and imported as .csv or .txt files.',
   help_stock_title: '🗄  Storage',
@@ -4672,6 +4678,7 @@ async function renderRecipeBookPage(container){
     if(recipe.is_allergy_friendly) titleRow.appendChild(h('span',{style:{fontSize:'11px',padding:'2px 8px',borderRadius:'10px',background:'var(--green)',color:'#fff',fontWeight:'600'}},t('recipe_allergy_badge')));
     top.appendChild(titleRow);
     const topBtns=h('div',{class:'recipe-detail-btns',style:{display:'flex',gap:'8px'}});
+    topBtns.appendChild(h('button',{class:'btn btn-surface btn-sm',onClick:()=>recipeOutputDialog(recipe)},t('btn_output_recipe')));
     topBtns.appendChild(h('button',{class:'btn btn-surface btn-sm',onClick:()=>recipeDialog(recipe)},t('btn_edit_recipe')));
     topBtns.appendChild(h('button',{class:'btn btn-surface btn-sm',onClick:()=>duplicateRecipe(recipe)},t('btn_duplicate_recipe')));
     topBtns.appendChild(h('button',{class:'btn btn-surface btn-sm',onClick:()=>exportRecipe(recipe)},t('btn_export_recipe')));
@@ -4850,6 +4857,46 @@ async function renderRecipeBookPage(container){
     }
 
     detailDiv.appendChild(card);
+  }
+
+  // Rezept einzeln ausgeben (ohne Aktion): Portionszahl + Substitutions-
+  // Auswahl, dann dieselbe A4-Rezeptseite wie beim Einkaufen nach Rezept
+  async function recipeOutputDialog(recipe){
+    const portInput=h('input',{type:'number',min:'1',step:'1',value:'100',style:{width:'100px'}});
+    const subSelects=[];
+    const subsDiv=h('div',{});
+    recipe.ingredients.filter(i=>(i.substitutes||[]).length).forEach(ri=>{
+      const sel=h('select',{style:{flex:'1',minWidth:'160px'}});
+      sel.appendChild(h('option',{value:''},`${t('misc_original_label')}: ${riDisplayName(ri)}`));
+      ri.substitutes.forEach((s,idx)=>sel.appendChild(h('option',{value:String(idx)},`⇄ ${riDisplayName(s)}`)));
+      subSelects.push({ri,sel});
+      subsDiv.appendChild(h('div',{style:{display:'flex',alignItems:'center',gap:'8px',marginBottom:'4px',flexWrap:'wrap'}},
+        h('span',{style:{width:'150px',fontSize:'12px'}},riDisplayName(ri)),sel));
+    });
+    const m=showModal(h('div',{},
+      h('h2',{},t('dlg_output_recipe',(LANG==='en'&&recipe.name_en)?recipe.name_en:recipe.name)),
+      h('div',{class:'form-group'},h('label',{class:'form-label'},t('col_portions')),portInput),
+      subSelects.length?h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_output_subs')),subsDiv):null,
+      h('div',{class:'modal-buttons'},
+        h('button',{class:'btn btn-surface',onClick:()=>closeModal(m)},t('btn_cancel')),
+        h('button',{class:'btn btn-accent',onClick:async()=>{
+          const portions=parseInt(portInput.value);
+          if(!portions||portions<1) return;
+          const substitutions={};
+          subSelects.forEach(({ri,sel})=>{
+            if(sel.value==='') return;
+            const s=ri.substitutes[parseInt(sel.value)];
+            substitutions[String(ri.id)]={ingredient_id:s.ingredient_id,ingredient_name:s.ingredient_name,ingredient_name_en:s.ingredient_name_en||'',quantity_per_person:s.quantity_per_person,unit:s.unit||ri.unit,preparation:s.preparation||''};
+          });
+          const prepEnMap={};
+          if(LANG==='en'){(await getPreparationMethods()).forEach(x=>{if(x.name_en) prepEnMap[x.name]=x.name_en;});}
+          const dateStr=new Date().toLocaleDateString(LANG==='en'?'en-GB':'de-DE');
+          const page=buildRecipePrintPage(recipe,{portions,substitutions,metaSpans:[`<span>${dateStr}</span>`],prepEnMap});
+          openRecipePrintWindow(page,(LANG==='en'&&recipe.name_en)?recipe.name_en:recipe.name);
+          closeModal(m);
+        }},t('btn_export_pdf'))
+      )
+    ));
   }
 
   async function recipeDialog(recipe){
@@ -5374,6 +5421,126 @@ async function renderRecipeBookPage(container){
 // ══════════════════════════════════════════════════════════════
 //  SPECIAL ORDER PAGE
 // ══════════════════════════════════════════════════════════════
+// ── Rezept-Druck (A4) ─────────────────────────────────────────────
+// Baut EINE Rezeptseite als HTML. opts:
+//   portions       — Portionszahl für die Hochrechnung
+//   substitutions  — {recipe_ingredient_id: subChoice} wie bei Zuweisungen
+//   metaSpans      — zusätzliche <span>-Einträge für die Meta-Zeile
+//   prepEnMap      — EN-Übersetzungen der Verarbeitungsmethoden
+function buildRecipePrintPage(recipe,{portions,substitutions={},metaSpans=[],prepEnMap={}}={}){
+  const reqIngs=recipe.ingredients.filter(i=>!i.optional);
+  const optIngs=recipe.ingredients.filter(i=>i.optional);
+  const hasAb=recipe.ingredients.some(i=>(i.ingredient_abschnitt||0)>0);
+  const hasKf=recipe.ingredients.some(i=>(i.ingredient_kochfaktor||1)!==1);
+  const colSpan=4+(hasAb?1:0)+(hasKf?1:0);
+  function ingTr(ing,style=''){
+    const total=Math.round((ing.quantity_per_person||0)*portions*100)/100;
+    const totalStr=String(total).replace('.',',');
+    const perPStr=String(ing.quantity_per_person||0).replace('.',',');
+    const ab=ing.ingredient_abschnitt||0;
+    const netto=total*(1-ab/100);
+    let nettoTd='';
+    if(hasAb){const nettoR=Math.round(netto*100)/100;const nettoStr=String(nettoR).replace('.',',');nettoTd=ab>0?`<td style="text-align:right;color:#2d6a4f">${nettoStr} ${ing.unit}</td>`:`<td style="text-align:right;color:#aaa">—</td>`;}
+    let kfTd='';
+    if(hasKf){const kf=ing.ingredient_kochfaktor||1;const cooked=Math.round(netto*kf*100)/100;const cookedStr=String(cooked).replace('.',',');kfTd=kf!==1?`<td style="text-align:right;color:#40916c">${cookedStr} ${ing.unit}</td>`:`<td style="text-align:right;color:#aaa">—</td>`;}
+    const pdfIngName=LANG==='en'?(ing.ingredient_name_en||ing.ingredient_name):ing.ingredient_name;
+    const pdfPrep=ing.preparation?(LANG==='en'?(prepEnMap[ing.preparation]||ing.preparation):ing.preparation):'—';
+    return `<tr${style}><td>${pdfIngName}</td><td>${pdfPrep}</td><td style="text-align:right">${perPStr} ${ing.unit}</td><td style="text-align:right;font-weight:700">${totalStr} ${ing.unit}</td>${nettoTd}${kfTd}</tr>`;
+  }
+  function ingTrWithSub(ing,style=''){
+    const subChoice=substitutions[String(ing.id)];
+    if(subChoice&&subChoice.ingredient_name){
+      const subIngObj={...ing,ingredient_name:subChoice.ingredient_name,ingredient_name_en:subChoice.ingredient_name_en||'',quantity_per_person:subChoice.quantity_per_person,unit:subChoice.unit||ing.unit,preparation:subChoice.preparation||ing.preparation};
+      let row=ingTr(subIngObj,style);
+      const origName=LANG==='en'?(ing.ingredient_name_en||ing.ingredient_name):ing.ingredient_name;
+      row+=`<tr${style}><td colspan="${colSpan}" style="font-size:9px;color:#888;padding:2px 10px;font-style:italic">⇄ ${t('pdf_instead_of')} ${origName}</td></tr>`;
+      return row;
+    }
+    return ingTr(ing,style);
+  }
+  let ingRows='';
+  for(const ing of reqIngs) ingRows+=ingTrWithSub(ing);
+  if(optIngs.length){
+    ingRows+=`<tr><td colspan="${colSpan}" style="background:#f5f5f5;font-style:italic;font-size:10px;color:#888;padding:4px 10px">${t('pdf_optional_ings')}</td></tr>`;
+    for(const ing of optIngs) ingRows+=ingTrWithSub(ing,' style="opacity:0.7;font-style:italic"');
+  }
+  let totalCost=0;
+  for(const ing of recipe.ingredients){totalCost+=(ing.ingredient_price||0)*(ing.quantity_per_person||0)*portions;}
+  const costStr=totalCost.toFixed(2).replace('.',',')+' €';
+  const costPerP=(totalCost/portions).toFixed(2).replace('.',',')+' €';
+
+  return `<div class="recipe-page">
+    <div class="page-top">
+      <div class="recipe-title">${(LANG==='en'&&recipe.name_en)?recipe.name_en:recipe.name}</div>
+      <div class="meta-row">${metaSpans.join('')}<span class="portions-badge">${portions} ${t('cal_portionen_unit')}</span></div>
+    </div>
+    <div class="fill-fields">
+      <div class="fill-line"><strong>${t('pdf_cooking_team')}</strong> <span class="line-blank"></span></div>
+      <div class="fill-line"><strong>${t('pdf_schedule')}</strong> <span class="line-blank-short"></span> <strong>${t('pdf_ready_by')}</strong> <span class="line-blank-short"></span></div>
+    </div>
+    ${(()=>{const d=(LANG==='en'&&recipe.description_en)?recipe.description_en:recipe.description;return d?`<div class="desc-block"><strong>${t('pdf_description')}</strong> ${d}</div>`:''})()}
+    <div class="info-grid">
+      ${recipe.zubereitung_zeit?`<div class="info-item"><span class="info-label">${t('pdf_prep_time_label')}</span><span>${recipe.zubereitung_zeit}</span></div>`:''}
+      ${recipe.garzeit?`<div class="info-item"><span class="info-label">${t('pdf_cook_time_label')}</span><span>${recipe.garzeit}</span></div>`:''}
+      <div class="info-item"><span class="info-label">${t('pdf_total_cost')}</span><span>${costStr}</span></div>
+      <div class="info-item"><span class="info-label">${t('pdf_cost_per_portion')}</span><span>${costPerP}</span></div>
+      ${(recipe.volumen_liter&&recipe.volumen_portionen)?`<div class="info-item"><span class="info-label">${LANG==='en'?'Volume':'Volumen'}</span><span>≈ ${String(Math.round(recipe.volumen_liter/recipe.volumen_portionen*portions*10)/10).replace('.',',')} L</span></div>`:''}
+    </div>
+    <table>
+      <thead><tr><th>${t('col_ingredient')}</th><th>${t('col_processing')}</th><th>${t('col_qty_per_person')}</th><th>${t('col_total_qty')}</th>${hasAb?`<th>${t('col_netto')}</th>`:''}${hasKf?`<th>${t('col_cooked')}</th>`:''}</tr></thead>
+      <tbody>${ingRows}</tbody>
+    </table>
+    ${(()=>{const ah=(LANG==='en'&&recipe.allergen_hinweis_en)?recipe.allergen_hinweis_en:recipe.allergen_hinweis;return recipe.allergens.length||ah?`<div class="section"><div class="section-title">${t('pdf_allergens_section')}</div><div class="section-body">${recipe.allergens.map(a=>`<span style="display:inline-block;background:#fce4e4;color:#c0392b;padding:2px 10px;border-radius:10px;font-size:11px;margin:2px 4px 2px 0">${allergenDisplayName(a)}</span>`).join('')}${ah?`<div style="margin-top:4px;font-style:italic;font-size:11px;color:#666">${ah}</div>`:''}</div></div>`:''})()}
+    ${(()=>{const z=(LANG==='en'&&recipe.zubereitung_en)?recipe.zubereitung_en:recipe.zubereitung;return z?`<div class="section"><div class="section-title">${t('pdf_preparation_section')}</div><div class="section-body">${z.replace(/\n/g,'<br>')}</div></div>`:''})()}
+    ${(()=>{const hn=(LANG==='en'&&recipe.hinweis_en)?recipe.hinweis_en:recipe.hinweis;return hn?`<div class="section"><div class="section-title">${t('pdf_note_section')}</div><div class="section-body">${hn.replace(/\n/g,'<br>')}</div></div>`:''})()}
+    <div class="notes-box">
+      <div class="notes-title">${t('pdf_notes_box')}</div>
+      <div class="notes-lines"><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div></div>
+    </div>
+  </div>`;
+}
+
+// Öffnet das Druckfenster mit den übergebenen Rezeptseiten
+function openRecipePrintWindow(pagesHtml,title){
+  const printHTML=`<!DOCTYPE html><html lang="${LANG}"><head><meta charset="UTF-8"><title>${title}</title>
+<style>
+@page{size:A4;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,sans-serif;font-size:12px;color:#111}
+.recipe-page{page-break-after:always;padding:15mm}
+.recipe-page:last-child{page-break-after:auto}
+.page-top{border-bottom:2px solid #e63946;padding-bottom:10px;margin-bottom:12px}
+.recipe-title{font-size:22px;font-weight:700;margin-bottom:4px}
+.meta-row{display:flex;gap:16px;flex-wrap:wrap;font-size:11px;color:#555}
+.meta-row .portions-badge{background:#e63946;color:#fff;padding:2px 10px;border-radius:10px;font-weight:700}
+.fill-fields{margin-bottom:12px;padding:10px;border:1px solid #ddd;border-radius:6px;background:#fafafa}
+.fill-line{font-size:12px;margin-bottom:6px;display:flex;align-items:baseline;gap:4px}
+.fill-line:last-child{margin-bottom:0}
+.line-blank{flex:1;border-bottom:1px solid #999;min-width:100px;height:14px}
+.line-blank-short{width:120px;border-bottom:1px solid #999;height:14px;display:inline-block}
+.desc-block{background:#f5f5f5;border-radius:6px;padding:10px;margin-bottom:10px;font-size:12px;line-height:1.5}
+.info-grid{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.info-item{background:#f5f5f5;border-radius:6px;padding:8px 14px;font-size:12px}
+.info-label{display:block;font-size:10px;color:#888;margin-bottom:2px}
+table{width:100%;border-collapse:collapse;margin-bottom:12px;border:1px solid #ccc}
+th{background:#e63946;color:#fff;padding:6px 10px;text-align:left;font-size:11px;border:1px solid #c0303c}
+td{padding:5px 10px;border:1px solid #ddd;font-size:11px}
+tr:nth-child(even){background:#fafafa}
+.section{margin-bottom:12px}
+.section-title{font-size:13px;font-weight:700;color:#e63946;margin-bottom:4px;border-bottom:1px solid #ddd;padding-bottom:2px}
+.section-body{font-size:12px;line-height:1.6}
+.notes-box{border:2px solid #ddd;border-radius:8px;padding:12px;margin-top:16px}
+.notes-title{font-size:12px;font-weight:700;color:#888;margin-bottom:8px}
+.note-line{border-bottom:1px solid #ccc;height:20px}
+.section,.notes-box,.fill-fields,.desc-block,.info-grid,table{break-inside:avoid;page-break-inside:avoid}
+</style></head><body>${pagesHtml}</body></html>`;
+  const win=window.open('','_blank');
+  if(!win){alert(t('msg_popup_blocked'));return;}
+  win.document.write(printHTML);
+  win.document.close();
+  win.onload=()=>win.print();
+}
+
 async function renderSpecialOrderPage(container){
   let lastItems=[];
   let lastItemsByGroup=[];   // [{num, label, dates, items}]
@@ -5517,7 +5684,7 @@ async function renderSpecialOrderPage(container){
       </table>
     </div>`;
 
-    // === RECIPE PAGES ===
+    // === RECIPE PAGES === (gemeinsamer Seiten-Builder, s. buildRecipePrintPage)
     let pages=overviewPage;
     for(const a of assignments){
       const recipe=allRecipes.find(r=>r.id===a.recipe_id);
@@ -5525,113 +5692,14 @@ async function renderSpecialOrderPage(container){
       const portions=a.portion_override||a.portion_count;
       const dateStr=a.date?formatDate(a.date):'';
       const typeLabel=a.is_allergy?t('order_allergy_label'):a.is_side?t('order_side_label'):t('order_recipe_label');
-      const reqIngs=recipe.ingredients.filter(i=>!i.optional);
-      const optIngs=recipe.ingredients.filter(i=>i.optional);
-      const hasAb=recipe.ingredients.some(i=>(i.ingredient_abschnitt||0)>0);
-      const hasKf=recipe.ingredients.some(i=>(i.ingredient_kochfaktor||1)!==1);
-      const colSpan=4+(hasAb?1:0)+(hasKf?1:0);
-      function ingTr(ing,style=''){
-        const total=Math.round((ing.quantity_per_person||0)*portions*100)/100;
-        const totalStr=String(total).replace('.',',');
-        const perPStr=String(ing.quantity_per_person||0).replace('.',',');
-        const ab=ing.ingredient_abschnitt||0;
-        const netto=total*(1-ab/100);
-        let nettoTd='';
-        if(hasAb){const nettoR=Math.round(netto*100)/100;const nettoStr=String(nettoR).replace('.',',');nettoTd=ab>0?`<td style="text-align:right;color:#2d6a4f">${nettoStr} ${ing.unit}</td>`:`<td style="text-align:right;color:#aaa">—</td>`;}
-        let kfTd='';
-        if(hasKf){const kf=ing.ingredient_kochfaktor||1;const cooked=Math.round(netto*kf*100)/100;const cookedStr=String(cooked).replace('.',',');kfTd=kf!==1?`<td style="text-align:right;color:#40916c">${cookedStr} ${ing.unit}</td>`:`<td style="text-align:right;color:#aaa">—</td>`;}
-        const pdfIngName=LANG==='en'?(ing.ingredient_name_en||ing.ingredient_name):ing.ingredient_name;
-        const pdfPrep=ing.preparation?(LANG==='en'?(pdfPrepEnMap[ing.preparation]||ing.preparation):ing.preparation):'—';
-        return `<tr${style}><td>${pdfIngName}</td><td>${pdfPrep}</td><td style="text-align:right">${perPStr} ${ing.unit}</td><td style="text-align:right;font-weight:700">${totalStr} ${ing.unit}</td>${nettoTd}${kfTd}</tr>`;
-      }
-      const aSubs=a.substitutions||{};
-      function ingTrWithSub(ing,style=''){
-        const subChoice=aSubs[String(ing.id)];
-        if(subChoice&&subChoice.ingredient_name){
-          const subIngObj={...ing,ingredient_name:subChoice.ingredient_name,ingredient_name_en:subChoice.ingredient_name_en||'',quantity_per_person:subChoice.quantity_per_person,unit:subChoice.unit||ing.unit,preparation:subChoice.preparation||ing.preparation};
-          let row=ingTr(subIngObj,style);
-          const origName=LANG==='en'?(ing.ingredient_name_en||ing.ingredient_name):ing.ingredient_name;
-          row+=`<tr${style}><td colspan="${colSpan}" style="font-size:9px;color:#888;padding:2px 10px;font-style:italic">⇄ ${t('pdf_instead_of')} ${origName}</td></tr>`;
-          return row;
-        }
-        return ingTr(ing,style);
-      }
-      let ingRows='';
-      for(const ing of reqIngs) ingRows+=ingTrWithSub(ing);
-      if(optIngs.length){
-        ingRows+=`<tr><td colspan="${colSpan}" style="background:#f5f5f5;font-style:italic;font-size:10px;color:#888;padding:4px 10px">${t('pdf_optional_ings')}</td></tr>`;
-        for(const ing of optIngs) ingRows+=ingTrWithSub(ing,' style="opacity:0.7;font-style:italic"');
-      }
-      let totalCost=0;
-      for(const ing of recipe.ingredients){totalCost+=(ing.ingredient_price||0)*(ing.quantity_per_person||0)*portions;}
-      const costStr=totalCost.toFixed(2).replace('.',',')+' €';
-      const costPerP=(totalCost/portions).toFixed(2).replace('.',',')+' €';
-
-      pages+=`<div class="recipe-page">
-        <div class="page-top">
-          <div class="recipe-title">${(LANG==='en'&&recipe.name_en)?recipe.name_en:recipe.name}</div>
-          <div class="meta-row">${actionName?`<span>${t('pdf_cooking_action',actionName)}</span>`:''}${dateStr?`<span>${dateStr}</span>`:''}<span>${pdfMealTypeEnMap[a.meal_type]||a.meal_type} — ${typeLabel}</span><span class="portions-badge">${portions} ${t('cal_portionen_unit')}</span></div>
-        </div>
-        <div class="fill-fields">
-          <div class="fill-line"><strong>${t('pdf_cooking_team')}</strong> <span class="line-blank"></span></div>
-          <div class="fill-line"><strong>${t('pdf_schedule')}</strong> <span class="line-blank-short"></span> <strong>${t('pdf_ready_by')}</strong> <span class="line-blank-short"></span></div>
-        </div>
-        ${(()=>{const d=(LANG==='en'&&recipe.description_en)?recipe.description_en:recipe.description;return d?`<div class="desc-block"><strong>${t('pdf_description')}</strong> ${d}</div>`:''})()}
-        <div class="info-grid">
-          ${recipe.zubereitung_zeit?`<div class="info-item"><span class="info-label">${t('pdf_prep_time_label')}</span><span>${recipe.zubereitung_zeit}</span></div>`:''}
-          ${recipe.garzeit?`<div class="info-item"><span class="info-label">${t('pdf_cook_time_label')}</span><span>${recipe.garzeit}</span></div>`:''}
-          <div class="info-item"><span class="info-label">${t('pdf_total_cost')}</span><span>${costStr}</span></div>
-          <div class="info-item"><span class="info-label">${t('pdf_cost_per_portion')}</span><span>${costPerP}</span></div>
-        </div>
-        <table>
-          <thead><tr><th>${t('col_ingredient')}</th><th>${t('col_processing')}</th><th>${t('col_qty_per_person')}</th><th>${t('col_total_qty')}</th>${hasAb?`<th>${t('col_netto')}</th>`:''}${hasKf?`<th>${t('col_cooked')}</th>`:''}</tr></thead>
-          <tbody>${ingRows}</tbody>
-        </table>
-        ${(()=>{const ah=(LANG==='en'&&recipe.allergen_hinweis_en)?recipe.allergen_hinweis_en:recipe.allergen_hinweis;return recipe.allergens.length||ah?`<div class="section"><div class="section-title">${t('pdf_allergens_section')}</div><div class="section-body">${recipe.allergens.map(a=>`<span style="display:inline-block;background:#fce4e4;color:#c0392b;padding:2px 10px;border-radius:10px;font-size:11px;margin:2px 4px 2px 0">${allergenDisplayName(a)}</span>`).join('')}${ah?`<div style="margin-top:4px;font-style:italic;font-size:11px;color:#666">${ah}</div>`:''}</div></div>`:''})()}
-        ${(()=>{const z=(LANG==='en'&&recipe.zubereitung_en)?recipe.zubereitung_en:recipe.zubereitung;return z?`<div class="section"><div class="section-title">${t('pdf_preparation_section')}</div><div class="section-body">${z.replace(/\n/g,'<br>')}</div></div>`:''})()}
-        ${(()=>{const hn=(LANG==='en'&&recipe.hinweis_en)?recipe.hinweis_en:recipe.hinweis;return hn?`<div class="section"><div class="section-title">${t('pdf_note_section')}</div><div class="section-body">${hn.replace(/\n/g,'<br>')}</div></div>`:''})()}
-        <div class="notes-box">
-          <div class="notes-title">${t('pdf_notes_box')}</div>
-          <div class="notes-lines"><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div></div>
-        </div>
-      </div>`;
+      const metaSpans=[
+        actionName?`<span>${t('pdf_cooking_action',actionName)}</span>`:'',
+        dateStr?`<span>${dateStr}</span>`:'',
+        `<span>${pdfMealTypeEnMap[a.meal_type]||a.meal_type} — ${typeLabel}</span>`
+      ].filter(Boolean);
+      pages+=buildRecipePrintPage(recipe,{portions,substitutions:a.substitutions||{},metaSpans,prepEnMap:pdfPrepEnMap});
     }
-    const printHTML=`<!DOCTYPE html><html lang="${LANG}"><head><meta charset="UTF-8"><title>${LANG==='en'?'Recipes':'Rezepte'} — ${actionName}</title>
-<style>
-@page{size:A4;margin:0}
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',system-ui,sans-serif;font-size:12px;color:#111}
-.recipe-page{page-break-after:always;padding:15mm}
-.recipe-page:last-child{page-break-after:auto}
-.page-top{border-bottom:2px solid #e63946;padding-bottom:10px;margin-bottom:12px}
-.recipe-title{font-size:22px;font-weight:700;margin-bottom:4px}
-.meta-row{display:flex;gap:16px;flex-wrap:wrap;font-size:11px;color:#555}
-.meta-row .portions-badge{background:#e63946;color:#fff;padding:2px 10px;border-radius:10px;font-weight:700}
-.fill-fields{margin-bottom:12px;padding:10px;border:1px solid #ddd;border-radius:6px;background:#fafafa}
-.fill-line{font-size:12px;margin-bottom:6px;display:flex;align-items:baseline;gap:4px}
-.fill-line:last-child{margin-bottom:0}
-.line-blank{flex:1;border-bottom:1px solid #999;min-width:100px;height:14px}
-.line-blank-short{width:120px;border-bottom:1px solid #999;height:14px;display:inline-block}
-.desc-block{background:#f5f5f5;border-radius:6px;padding:10px;margin-bottom:10px;font-size:12px;line-height:1.5}
-.info-grid{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:12px}
-.info-item{background:#f5f5f5;border-radius:6px;padding:8px 14px;font-size:12px}
-.info-label{display:block;font-size:10px;color:#888;margin-bottom:2px}
-table{width:100%;border-collapse:collapse;margin-bottom:12px;border:1px solid #ccc}
-th{background:#e63946;color:#fff;padding:6px 10px;text-align:left;font-size:11px;border:1px solid #c0303c}
-td{padding:5px 10px;border:1px solid #ddd;font-size:11px}
-tr:nth-child(even){background:#fafafa}
-.section{margin-bottom:12px}
-.section-title{font-size:13px;font-weight:700;color:#e63946;margin-bottom:4px;border-bottom:1px solid #ddd;padding-bottom:2px}
-.section-body{font-size:12px;line-height:1.6}
-.notes-box{border:2px solid #ddd;border-radius:8px;padding:12px;margin-top:16px}
-.notes-title{font-size:12px;font-weight:700;color:#888;margin-bottom:8px}
-.note-line{border-bottom:1px solid #ccc;height:20px}
-.section,.notes-box,.fill-fields,.desc-block,.info-grid,table{break-inside:avoid;page-break-inside:avoid}
-</style></head><body>${pages}</body></html>`;
-    const win=window.open('','_blank');
-    win.document.write(printHTML);
-    win.document.close();
-    win.onload=()=>win.print();
+    openRecipePrintWindow(pages,`${LANG==='en'?'Recipes':'Rezepte'} — ${actionName}`);
   }
 
   // Day order groups
