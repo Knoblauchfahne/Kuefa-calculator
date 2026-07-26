@@ -27,6 +27,9 @@ Installation. Läuft auf GitHub Pages.
 - **Lager** — Lebensmittellager (zutatenbezogen) und Materiallager;
   Bestände erscheinen als Hinweis in den Einkaufslisten („🥫 5 kg auf
   Lager"), Mengen optional, kein automatischer Abzug
+- **Materialliste** — Katalog aller Materialien mit frei anlegbaren
+  Kategorien, unabhängig vom Lagerbestand; Rezepte können optional
+  benötigtes Material angeben (Anzahl + Notiz)
 - **Saisonkalender** — gespeist direkt aus den Zutaten
 - **DE/EN** durchgängig umschaltbar
 - **Offline** durch Service Worker; automatischer Update-Check
@@ -112,10 +115,12 @@ Auswahl pro Mahlzeit, `-1` = „nicht einkaufen") und `general_order_edits`
 (manuelle Anpassungen der Grundbedarf-Liste pro Aktion: Mengen-Overrides,
 gestrichene Positionen, freie Zusatzpositionen, Konkretisierungen).
 
-Lager: `food_stock` (zutatenbezogen via `ingredient_id`, Menge optional,
-`stored_at`) und `material_stock` (freie Einträge). Beide zählen wie die
-Aktions-Stores zu den lokalen Daten und werden beim „Standard laden"
-nicht überschrieben.
+Lager & Material: `materials` (Katalog, Kategorie via `material_categories`),
+`food_stock` (zutatenbezogen via `ingredient_id`, Menge optional, `stored_at`),
+`material_stock` (verweist via `material_id` auf den Katalog) und
+`recipe_materials` (optionales Material pro Rezept: Anzahl + Notiz).
+Alle zählen wie die Aktions-Stores zu den lokalen Daten und werden beim
+„Standard laden" nicht überschrieben.
 
 ### Saisonalität (seit Nov 2026)
 
