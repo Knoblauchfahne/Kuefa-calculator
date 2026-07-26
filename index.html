@@ -200,9 +200,9 @@ label.checkbox input{accent-color:var(--accent);width:16px;height:16px}
 .ing-row .ing-display{min-width:180px;font-size:12px;color:var(--text-muted);cursor:pointer;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:8px 12px}
 .ing-row .ing-display:hover{border-color:var(--text-muted)}
 .ing-row .ing-display.has-value{color:var(--text)}
-/* Standalone-Picker-Felder (Lager, Rezept-Material): leerer Zustand deutlich hervorgehoben */
-.ing-display{display:block;font-size:13px;font-weight:600;color:var(--accent);cursor:pointer;background:var(--accent-dim);border:1px dashed var(--accent);border-radius:6px;padding:9px 12px}
-.ing-display.has-value{color:var(--text);font-weight:400;background:var(--surface2);border:1px solid var(--border)}
+/* Standalone-Picker-Felder (Lager, Rezept-Material): leerer Zustand dezent hervorgehoben */
+.ing-display{display:block;font-size:13px;font-weight:600;color:var(--text);cursor:pointer;background:var(--surface2);border:1px dashed var(--text-muted);border-radius:6px;padding:9px 12px}
+.ing-display.has-value{font-weight:400;border:1px solid var(--border)}
 
 /* ── Hamburger Button (hidden on desktop) ────────────────── */
 /* ── Theme Toggle ─────────────────────────────────────────── */
@@ -848,6 +848,10 @@ de: {
   lbl_material_optional: 'Material (optional)',
   lbl_count: 'Anzahl',
   recipe_material_label: '🧰 Material',
+  lbl_volume_optional: 'Volumen (optional)',
+  lbl_volume_yield: 'Portionen ergeben',
+  lbl_volume_hint: 'z.B. 100 Portionen ergeben 35 L — Grundlage für die Topf-Auswahl.',
+  recipe_volume_display: '🍲 Volumen: ≈ {0} L pro {1} Portionen ({2} L pro Portion)',
   msg_material_in_use: 'Material wird noch verwendet (Materiallager oder Rezepte) — dort zuerst entfernen.',
   msg_confirm_delete_material: 'Material aus der Materialliste löschen?',
   picker_search_ph: 'Suchen …',
@@ -1061,7 +1065,7 @@ de: {
   help_special_title: '📄  Einkaufsliste nach Rezept',
   help_special_text: 'Hier weist du den Mahlzeit-Slots konkrete Rezepte, Beilagen und Allergie-Essen zu. Die Einkaufsliste wird dann auf Zutatenebene berechnet. Bei mehreren Rezepten pro Slot werden die Portionen automatisch gleichmäßig aufgeteilt, genau so mit den Beilagen. Du kannst die Aufteilung aber auch manuell anpassen. Eine Summenanzeige warnt dich, wenn die Teilportionen nicht mit der definierten Gesamtzahl übereinstimmen. Allergie-Essen werden separat mit eigenen Portionszahlen verwaltet (Empfehlung: ca. 1% der Gesamtportionen). Über die Bestellgruppen-Leiste oben kannst du Kochtage verschiedenen Bestellungen zuordnen (z.B. Bestellung 1 für Tag 1–4, Bestellung 2 für Tag 5–8). Beim Generieren werden separate Einkaufslisten pro Bestellgruppe erzeugt. Über den Rezepte Drucken Button kann eine PDF-Datei erzeugt werden, welche die Rezepte für jede einzelne Mahlzeit ausgibt. Wenn ein Rezept Zutaten-Substitutionen enthält, erscheint beim Zuweisen ein Dialog, in dem du pro Zutat zwischen Original und Substitut wählen kannst. Die Einkaufsliste und das PDF verwenden dann automatisch die gewählten Substitutionen. Zuweisungen mit aktiven Substitutionen werden mit einem ⇄-Symbol gekennzeichnet.',
   help_recipe_title: '📖  Rezeptbuch',
-  help_recipe_text: 'Deine Rezeptsammlung. Jedes Rezept enthält Zutaten (mit Menge pro Person und Verarbeitungsmethode), Zubereitungsschritte, Hinweise und optional Zeitangaben. Beim Erstellen kannst du angeben, für wie viele Portionen deine Mengenangaben gelten — die App rechnet automatisch auf 1 Person herunter. Zutaten können als optional markiert werden; diese erscheinen in der Einkaufsliste mit dem Label „(optional)". Jede Zutat kann ein oder mehrere Substitutionen (Ersatzzutaten) haben — klicke auf den ⇄-Button neben einer Zutat, um Substitutionen zu definieren. Diese werden im Rezeptdetail mit „↳ oder:" angezeigt und beim Export/Import als „→ Substitut:"-Zeilen übertragen. Rezepte können als „Allergieessen" markiert werden, damit sie beim Zuweisen von Allergie-Essen zur Auswahl stehen. Rezepte werden den gleichen Mahlzeitkategorien zugeordnet wie die Standardmahlzeiten (z.B. Frühstück, Mittagessen). Dadurch werden in der Einkaufsliste nur passende Rezepte pro Mahlzeit angeboten. Zusätzlich können Rezepte mit frei definierbaren Tags versehen werden, um sie flexibel zu kategorisieren und zu filtern (z.B. „vegan", „schnell", „Sommer"). Du kannst Rezepte als .txt-Datei importieren und exportieren, duplizieren oder über eine Maske neu erstellen.',
+  help_recipe_text: 'Deine Rezeptsammlung. Jedes Rezept enthält Zutaten (mit Menge pro Person und Verarbeitungsmethode), Zubereitungsschritte, Hinweise und optional Zeitangaben. Beim Erstellen kannst du angeben, für wie viele Portionen deine Mengenangaben gelten — die App rechnet automatisch auf 1 Person herunter. Zutaten können als optional markiert werden; diese erscheinen in der Einkaufsliste mit dem Label „(optional)". Jede Zutat kann ein oder mehrere Substitutionen (Ersatzzutaten) haben — klicke auf den ⇄-Button neben einer Zutat, um Substitutionen zu definieren. Diese werden im Rezeptdetail mit „↳ oder:" angezeigt und beim Export/Import als „→ Substitut:"-Zeilen übertragen. Rezepte können als „Allergieessen" markiert werden, damit sie beim Zuweisen von Allergie-Essen zur Auswahl stehen. Rezepte werden den gleichen Mahlzeitkategorien zugeordnet wie die Standardmahlzeiten (z.B. Frühstück, Mittagessen). Dadurch werden in der Einkaufsliste nur passende Rezepte pro Mahlzeit angeboten. Zusätzlich können Rezepte mit frei definierbaren Tags versehen werden, um sie flexibel zu kategorisieren und zu filtern (z.B. „vegan", „schnell", „Sommer"). Du kannst Rezepte als .txt-Datei importieren und exportieren, duplizieren oder über eine Maske neu erstellen. Optional lassen sich benötigtes Material aus der Materialliste (Anzahl + Notiz) sowie das Volumen des fertigen Gerichts angeben („100 Portionen ergeben 35 L") — Grundlage für die Topf-Auswahl bei großen Aktionen.',
   help_ingredients_title: '📦  Zutaten',
   help_ingredients_text: 'Die Zutatendatenbank. Jede Zutat hat einen Namen, eine Einheit (kg, l, etc.), einen Preis pro Einheit als Referenz, eine Kategorie, einen Abschnitt-Wert (% Verlust beim Schälen/Schneiden), einen Kochfaktor (Gewichtsänderung beim Kochen), Verarbeitungs- und Lagerhinweise, zugeordnete Allergene sowie frei definierbare Tags (z.B. „bio", „regional", „TK"). Tags helfen beim Filtern und bei der Suche nach Zutaten — auch innerhalb der Rezeptbearbeitung. Der Abschnitt-Wert wird bei der Bestellmengenberechnung automatisch aufgeschlagen und im Rezept als Netto-Menge angezeigt. Der Kochfaktor ist ein Multiplikator (1 = unverändert, 2.6 = trockene Kichererbsen werden gekocht 2,6-fach schwerer, 0.15 = Spinat schrumpft beim Garen auf 15%) und wird in Rezept und PDF als Gekocht-Spalte dargestellt – rein informativ, damit der Koch weiß, wie viel am Ende auf dem Teller landet. Die Einheit wird automatisch in die Rezepte übernommen. Zutaten lassen sich als .csv oder .txt exportieren und importieren.',
   help_stock_title: '🗄  Lager',
@@ -1528,6 +1532,10 @@ en: {
   lbl_material_optional: 'Equipment (optional)',
   lbl_count: 'Count',
   recipe_material_label: '🧰 Equipment',
+  lbl_volume_optional: 'Volume (optional)',
+  lbl_volume_yield: 'servings yield',
+  lbl_volume_hint: 'e.g. 100 servings yield 35 L — basis for pot selection.',
+  recipe_volume_display: '🍲 Volume: ≈ {0} L per {1} servings ({2} L per serving)',
   msg_material_in_use: 'Material is still in use (material storage or recipes) — remove it there first.',
   msg_confirm_delete_material: 'Delete material from the material list?',
   picker_search_ph: 'Search …',
@@ -1741,7 +1749,7 @@ en: {
   help_special_title: '📄  Shopping List by Recipe',
   help_special_text: 'Assign specific recipes, side dishes and allergy meals to meal slots here. The shopping list is then calculated at ingredient level. For multiple recipes per slot, servings are automatically split evenly — same for side dishes. You can also adjust the split manually. A total display warns you when partial servings do not match the defined total. Allergy meals are managed separately with their own serving counts (recommendation: approx. 1% of total servings). Use the order group bar at the top to assign cooking days to different orders (e.g. Order 1 for days 1–4, Order 2 for days 5–8). When generating, separate shopping lists per order group are created. The Print Recipes button generates a PDF with recipes for each individual meal. If a recipe contains ingredient substitutions, a dialog appears on assignment letting you choose between original and substitute per ingredient. The shopping list and PDF then use the chosen substitutions automatically. Assignments with active substitutions are marked with a ⇄ symbol.',
   help_recipe_title: '📖  Recipe Book',
-  help_recipe_text: 'Your recipe collection. Each recipe contains ingredients (with quantity per person and processing method), preparation steps, notes and optional time information. When creating, you can specify how many servings your quantities are for — the app automatically divides down to 1 person. Ingredients can be marked as optional; these appear in the shopping list with the label "(optional)". Each ingredient can have one or more substitutions (alternative ingredients) — click the ⇄ button next to an ingredient to define substitutions. They are shown in the recipe detail as "↳ or:" and exported/imported as "→ Substitute:" lines. Recipes can be marked as "Allergy meal" so they appear as an allergy alternative during assignment. Recipes are assigned to the same meal categories as standard meals (e.g. Breakfast, Lunch). This ensures only matching recipes are offered per meal in the shopping list. Recipes can also be tagged with freely definable tags for flexible categorisation and filtering (e.g. "vegan", "quick", "summer"). You can import and export recipes as .txt files, duplicate them or create new ones via a form.',
+  help_recipe_text: 'Your recipe collection. Each recipe contains ingredients (with quantity per person and processing method), preparation steps, notes and optional time information. When creating, you can specify how many servings your quantities are for — the app automatically divides down to 1 person. Ingredients can be marked as optional; these appear in the shopping list with the label "(optional)". Each ingredient can have one or more substitutions (alternative ingredients) — click the ⇄ button next to an ingredient to define substitutions. They are shown in the recipe detail as "↳ or:" and exported/imported as "→ Substitute:" lines. Recipes can be marked as "Allergy meal" so they appear as an allergy alternative during assignment. Recipes are assigned to the same meal categories as standard meals (e.g. Breakfast, Lunch). This ensures only matching recipes are offered per meal in the shopping list. Recipes can also be tagged with freely definable tags for flexible categorisation and filtering (e.g. "vegan", "quick", "summer"). You can import and export recipes as .txt files, duplicate them or create new ones via a form. Optionally, required equipment from the material list (count + note) and the volume of the finished dish can be specified ("100 servings yield 35 L") — the basis for pot selection at large events.',
   help_ingredients_title: '📦  Ingredients',
   help_ingredients_text: 'The ingredient database. Each ingredient has a name, a unit (kg, l, etc.), a reference price per unit, a category, a trim value (% loss during peeling/cutting), a cook factor (weight change during cooking), processing and storage notes, assigned allergens and freely definable tags (e.g. "organic", "regional", "frozen"). Tags help with filtering and searching for ingredients — including within recipe editing. The trim value is automatically added to order quantities and shown in recipes as the net quantity. The cook factor is a multiplier (1 = unchanged, 2.6 = dry chickpeas become 2.6× heavier when cooked, 0.15 = spinach shrinks to 15% when cooked) and is shown in recipes and PDFs as a "Cooked" column — purely informational so the chef knows how much ends up on the plate. The unit is automatically adopted into recipes. Ingredients can be exported and imported as .csv or .txt files.',
   help_stock_title: '🗄  Storage',
@@ -2361,7 +2369,7 @@ async function getRecipes(){
   return recipes;
 }
 async function createRecipe(name,desc,catIds,ingsData,extra={}){
-  const id=await dbAdd('recipes',{name,description:desc,name_en:extra.name_en||'',description_en:extra.description_en||'',zubereitung_zeit:extra.zubereitung_zeit||'',garzeit:extra.garzeit||'',zubereitung:extra.zubereitung||'',zubereitung_en:extra.zubereitung_en||'',hinweis:extra.hinweis||'',hinweis_en:extra.hinweis_en||'',allergen_hinweis:extra.allergen_hinweis||'',allergen_hinweis_en:extra.allergen_hinweis_en||'',is_allergy_friendly:extra.is_allergy_friendly||false,created_at:new Date().toISOString()});
+  const id=await dbAdd('recipes',{name,description:desc,name_en:extra.name_en||'',description_en:extra.description_en||'',zubereitung_zeit:extra.zubereitung_zeit||'',garzeit:extra.garzeit||'',zubereitung:extra.zubereitung||'',zubereitung_en:extra.zubereitung_en||'',hinweis:extra.hinweis||'',hinweis_en:extra.hinweis_en||'',allergen_hinweis:extra.allergen_hinweis||'',allergen_hinweis_en:extra.allergen_hinweis_en||'',is_allergy_friendly:extra.is_allergy_friendly||false,volumen_liter:extra.volumen_liter??null,volumen_portionen:extra.volumen_portionen??null,created_at:new Date().toISOString()});
   for(const cid of catIds) await dbAdd('recipe_categories',{recipe_id:id,category_id:cid});
   for(const i of ingsData){const riId=await dbAdd('recipe_ingredients',{recipe_id:id,ingredient_id:i.ingredient_id,quantity_per_person:i.quantity_per_person,unit:i.unit,preparation:i.preparation||'',optional:i.optional||false});if(i.substitutes&&i.substitutes.length) await setSubstitutes(riId,i.substitutes);}
   if(extra.allergenIds) await setRecipeAllergens(id,extra.allergenIds);
@@ -2370,7 +2378,7 @@ async function createRecipe(name,desc,catIds,ingsData,extra={}){
 }
 async function updateRecipe(id,name,desc,catIds,ingsData,extra={}){
   const existing=await dbGet('recipes',id);
-  await dbPut('recipes',{id,name,description:desc,name_en:extra.name_en||'',description_en:extra.description_en||'',zubereitung_zeit:extra.zubereitung_zeit||'',garzeit:extra.garzeit||'',zubereitung:extra.zubereitung||'',zubereitung_en:extra.zubereitung_en||'',hinweis:extra.hinweis||'',hinweis_en:extra.hinweis_en||'',allergen_hinweis:extra.allergen_hinweis||'',allergen_hinweis_en:extra.allergen_hinweis_en||'',is_allergy_friendly:extra.is_allergy_friendly||false,created_at:existing?.created_at||'',updated_at:new Date().toISOString()});
+  await dbPut('recipes',{id,name,description:desc,name_en:extra.name_en||'',description_en:extra.description_en||'',zubereitung_zeit:extra.zubereitung_zeit||'',garzeit:extra.garzeit||'',zubereitung:extra.zubereitung||'',zubereitung_en:extra.zubereitung_en||'',hinweis:extra.hinweis||'',hinweis_en:extra.hinweis_en||'',allergen_hinweis:extra.allergen_hinweis||'',allergen_hinweis_en:extra.allergen_hinweis_en||'',is_allergy_friendly:extra.is_allergy_friendly||false,volumen_liter:extra.volumen_liter??null,volumen_portionen:extra.volumen_portionen??null,created_at:existing?.created_at||'',updated_at:new Date().toISOString()});
   await dbDelByIndex('recipe_categories','recipe_id',id);
   await deleteSubstitutesForRecipeIngredients(id);
   await dbDelByIndex('recipe_ingredients','recipe_id',id);
@@ -4684,6 +4692,13 @@ async function renderRecipeBookPage(container){
       card.appendChild(timeRow);
     }
 
+    // Volumen-Angabe („100 Portionen ergeben 35 L")
+    if(recipe.volumen_liter&&recipe.volumen_portionen){
+      const perPortion=Math.round(recipe.volumen_liter/recipe.volumen_portionen*1000)/1000;
+      card.appendChild(h('div',{style:{marginBottom:'8px',fontSize:'12px',color:'var(--text-muted)'}},
+        t('recipe_volume_display',recipe.volumen_liter,recipe.volumen_portionen,String(perPortion).replace('.',','))));
+    }
+
     const totalCost=recipe.ingredients.reduce((s,i)=>s+i.quantity_per_person*(i.ingredient_price||0),0);
     const hasAbschnitt=recipe.ingredients.some(i=>i.ingredient_abschnitt>0);
     const hasKochfaktor=recipe.ingredients.some(i=>(i.ingredient_kochfaktor||1)!==1);
@@ -5079,6 +5094,22 @@ async function renderRecipeBookPage(container){
     content.appendChild(h('div',{class:'form-group',style:{marginTop:'16px'}},h('label',{class:'form-label'},t('lbl_material_optional')),matRowsDiv));
     content.appendChild(h('div',{style:{marginTop:'4px'}},h('button',{class:'btn btn-surface btn-sm',onClick:()=>addMatRow(null)},t('btn_add_material'))));
 
+    // Volumen (optional): „X Portionen ergeben Y L" — Basis für die Topf-Auswahl
+    const volPortInput=h('input',{type:'number',min:'1',step:'1',style:{width:'80px'}});
+    if(recipe?.volumen_portionen) volPortInput.value=recipe.volumen_portionen;
+    const volLiterInput=h('input',{type:'number',min:'0',step:'0.5',style:{width:'80px'}});
+    if(recipe?.volumen_liter) volLiterInput.value=recipe.volumen_liter;
+    content.appendChild(h('div',{class:'form-group',style:{marginTop:'16px'}},
+      h('label',{class:'form-label'},t('lbl_volume_optional')),
+      h('div',{style:{display:'flex',alignItems:'center',gap:'8px',flexWrap:'wrap'}},
+        volPortInput,
+        h('span',{style:{fontSize:'13px'}},t('lbl_volume_yield')),
+        volLiterInput,
+        h('span',{style:{fontSize:'13px'}},'L')
+      ),
+      h('div',{style:{fontSize:'11px',color:'var(--text-muted)',marginTop:'4px'}},t('lbl_volume_hint'))
+    ));
+
     // Allergene section
     const allAllergens=await getAllergens();
     const allergenVars={};
@@ -5126,7 +5157,10 @@ async function renderRecipeBookPage(container){
         const portDiv=parseFloat(portionenInput.value)||1;
         const ingsData=ingRows.filter(r=>r.ingId.value&&parseFloat(r.qtyInput.value)>0).map(r=>({ingredient_id:r.ingId.value,quantity_per_person:Math.round((parseFloat(r.qtyInput.value)/portDiv)*10000)/10000,unit:r.unitRef.value,preparation:r.prepSel.value||'',optional:r.optionalRef.value||false,substitutes:(r.subsArr||[]).filter(s=>s.ingredient_id&&s.quantity_per_person>0).map(s=>({ingredient_id:s.ingredient_id,quantity_per_person:Math.round((s.quantity_per_person/portDiv)*10000)/10000,unit:s.unit,preparation:s.preparation||''}))}));
         const selAllergenIds=Object.entries(allergenVars).filter(([_,cb])=>cb.checked).map(([id])=>parseInt(id));
-        const extra={name_en:nameEnInput.value.trim(),description_en:descEnInput.value.trim(),zubereitung_zeit:zubereitungZeitInput.value.trim(),garzeit:garzeitInput.value.trim(),zubereitung:zubereitungArea.value.trim(),zubereitung_en:zubereitungEnArea.value.trim(),hinweis:hinweisArea.value.trim(),hinweis_en:hinweisEnArea.value.trim(),allergen_hinweis:allergenHinweisInput.value.trim(),allergen_hinweis_en:allergenHinweisEnInput.value.trim(),is_allergy_friendly:allergyFriendlyCb.checked,allergenIds:selAllergenIds,tagIds:selectedRecipeTagIds};
+        // Volumen nur speichern, wenn beide Angaben vorhanden und > 0
+        const volL=parseFloat(volLiterInput.value),volP=parseFloat(volPortInput.value);
+        const hasVol=!isNaN(volL)&&volL>0&&!isNaN(volP)&&volP>0;
+        const extra={name_en:nameEnInput.value.trim(),description_en:descEnInput.value.trim(),zubereitung_zeit:zubereitungZeitInput.value.trim(),garzeit:garzeitInput.value.trim(),zubereitung:zubereitungArea.value.trim(),zubereitung_en:zubereitungEnArea.value.trim(),hinweis:hinweisArea.value.trim(),hinweis_en:hinweisEnArea.value.trim(),allergen_hinweis:allergenHinweisInput.value.trim(),allergen_hinweis_en:allergenHinweisEnInput.value.trim(),is_allergy_friendly:allergyFriendlyCb.checked,volumen_liter:hasVol?volL:null,volumen_portionen:hasVol?volP:null,allergenIds:selAllergenIds,tagIds:selectedRecipeTagIds};
         if(recipe){await updateRecipe(recipe.id,n,descInput.value.trim(),catIds,ingsData,extra);recipeSelectedId=recipe.id;}
         else{const id=await createRecipe(n,descInput.value.trim(),catIds,ingsData,extra);recipeSelectedId=id;}
         // Material-Zeilen ersetzen
@@ -5242,7 +5276,7 @@ async function renderRecipeBookPage(container){
   async function duplicateRecipe(recipe){
     const catIds=recipe.categories.map(c=>c.id);
     const ingsData=recipe.ingredients.map(i=>({ingredient_id:i.ingredient_id,quantity_per_person:i.quantity_per_person,unit:i.unit,preparation:i.preparation||'',optional:i.optional||false,substitutes:(i.substitutes||[]).map(s=>({ingredient_id:s.ingredient_id,quantity_per_person:s.quantity_per_person,unit:s.unit,preparation:s.preparation||''}))}));
-    const extra={name_en:recipe.name_en||'',description_en:recipe.description_en||'',zubereitung_zeit:recipe.zubereitung_zeit||'',garzeit:recipe.garzeit||'',zubereitung:recipe.zubereitung||'',zubereitung_en:recipe.zubereitung_en||'',hinweis:recipe.hinweis||'',hinweis_en:recipe.hinweis_en||'',allergen_hinweis:recipe.allergen_hinweis||'',allergen_hinweis_en:recipe.allergen_hinweis_en||'',is_allergy_friendly:recipe.is_allergy_friendly||false,allergenIds:recipe.manualAllergenIds||[],tagIds:(recipe.tags||[]).map(t=>t.id)};
+    const extra={name_en:recipe.name_en||'',description_en:recipe.description_en||'',zubereitung_zeit:recipe.zubereitung_zeit||'',garzeit:recipe.garzeit||'',zubereitung:recipe.zubereitung||'',zubereitung_en:recipe.zubereitung_en||'',hinweis:recipe.hinweis||'',hinweis_en:recipe.hinweis_en||'',allergen_hinweis:recipe.allergen_hinweis||'',allergen_hinweis_en:recipe.allergen_hinweis_en||'',is_allergy_friendly:recipe.is_allergy_friendly||false,volumen_liter:recipe.volumen_liter??null,volumen_portionen:recipe.volumen_portionen??null,allergenIds:recipe.manualAllergenIds||[],tagIds:(recipe.tags||[]).map(t=>t.id)};
     const newId=await createRecipe(recipe.name+t('recipe_copy_suffix'),recipe.description||'',catIds,ingsData,extra);
     // Material-Zeilen mitkopieren
     const srcMats=await dbGetByIndex('recipe_materials','recipe_id',recipe.id);
