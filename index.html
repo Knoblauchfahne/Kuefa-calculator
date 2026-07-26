@@ -3868,10 +3868,13 @@ async function renderGeneralOrderPage(container){
 
   async function generate(){
     resultDiv.innerHTML='';
-    // Mahlzeiten ohne explizite Auswahl werden nicht eingerechnet — warnen
+    // Mahlzeiten ohne explizite Auswahl werden nicht eingerechnet — warnen.
+    // Über resolveSlotMeal geprüft, damit auch verwaiste Verweise (Vorlage
+    // gelöscht/ersetzt) gezählt werden, nicht nur leere.
+    const allMeals=await getStandardMeals();
     let unsetCount=0;
     for(const d of days){
-      unsetCount+=(await getMealSlots(d.id)).filter(s=>!s.standard_meal_id).length;
+      unsetCount+=(await getMealSlots(d.id)).filter(s=>s.standard_meal_id!==-1&&!resolveSlotMeal(s,allMeals)).length;
     }
     if(unsetCount) resultDiv.appendChild(h('div',{class:'card',style:{color:'var(--accent)',fontSize:'13px',fontWeight:'600'}},t('go_unset_warning',unsetCount)));
     const groups=getOrderGroups();
