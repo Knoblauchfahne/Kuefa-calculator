@@ -6188,50 +6188,62 @@
     {
       "meal_type": "Frühstück",
       "name": "Frühstück 1",
-      "is_active": 1,
       "id": 1
     },
     {
       "meal_type": "Abendessen",
-      "name": "Abendessen",
-      "is_active": 1,
+      "name": "Abend gemischt",
       "id": 3
     },
     {
       "meal_type": "Zwischenmahlzeit",
       "name": "Action food",
-      "is_active": 0,
       "id": 4
     },
     {
       "meal_type": "Mittagessen",
-      "name": "Mittagessen",
-      "is_active": 1,
+      "name": "Mittag gemischt",
       "id": 5
     },
     {
       "meal_type": "Frühstück",
       "name": "Frühstück 2",
-      "is_active": 0,
       "id": 6
-    },
-    {
-      "meal_type": "Mittagessen",
-      "name": "Mittagessen Beilage",
-      "is_active": 0,
-      "id": 7
-    },
-    {
-      "meal_type": "Abendessen",
-      "name": "Abendessen Beilage",
-      "is_active": 0,
-      "id": 8
     },
     {
       "meal_type": "Zwischenmahlzeit",
       "name": "Actionfood 2",
-      "is_active": 1,
       "id": 9
+    },
+    {
+      "id": 10,
+      "meal_type": "Mittagessen",
+      "name": "Mittag mit Kartoffeln"
+    },
+    {
+      "id": 11,
+      "meal_type": "Mittagessen",
+      "name": "Mittag mit Nudeln"
+    },
+    {
+      "id": 12,
+      "meal_type": "Mittagessen",
+      "name": "Mittag mit Reis"
+    },
+    {
+      "id": 13,
+      "meal_type": "Abendessen",
+      "name": "Abend mit Kartoffeln"
+    },
+    {
+      "id": 14,
+      "meal_type": "Abendessen",
+      "name": "Abend mit Nudeln"
+    },
+    {
+      "id": 15,
+      "meal_type": "Abendessen",
+      "name": "Abend mit Reis"
     }
   ],
   "meal_components": [
@@ -6495,6 +6507,330 @@
       "subcategory": "Hülsenfrüchte und Trockenwaren ",
       "id": 33,
       "price_per_unit": 3
+    },
+    {
+      "standard_meal_id": 10,
+      "ingredient_id": 0,
+      "quantity_per_100": 30,
+      "unit": "kg",
+      "subcategory": "Kartoffeln",
+      "id": 34,
+      "price_per_unit": 1.5
+    },
+    {
+      "standard_meal_id": 10,
+      "ingredient_id": 0,
+      "quantity_per_100": 30,
+      "unit": "kg",
+      "subcategory": "Gemüse",
+      "id": 35,
+      "price_per_unit": 3
+    },
+    {
+      "standard_meal_id": 10,
+      "ingredient_id": 0,
+      "quantity_per_100": 5,
+      "unit": "kg",
+      "subcategory": "Hülsenfrüchte und Trockenwaren ",
+      "id": 36,
+      "price_per_unit": 3
+    },
+    {
+      "standard_meal_id": 10,
+      "ingredient_id": 0,
+      "quantity_per_100": 2,
+      "unit": "L",
+      "subcategory": "Öle & Fette",
+      "id": 37,
+      "price_per_unit": 2.5
+    },
+    {
+      "standard_meal_id": 10,
+      "ingredient_id": 0,
+      "quantity_per_100": 5,
+      "unit": "kg",
+      "subcategory": "Zwiebeln",
+      "id": 38,
+      "price_per_unit": 1.5
+    },
+    {
+      "standard_meal_id": 10,
+      "ingredient_id": 0,
+      "quantity_per_100": 0.5,
+      "unit": "kg",
+      "subcategory": "Salz",
+      "id": 39,
+      "price_per_unit": 0.5
+    },
+    {
+      "standard_meal_id": 11,
+      "ingredient_id": 0,
+      "quantity_per_100": 10.5,
+      "unit": "kg",
+      "subcategory": "Pasta und Nudeln",
+      "id": 40,
+      "price_per_unit": 2
+    },
+    {
+      "standard_meal_id": 11,
+      "ingredient_id": 0,
+      "quantity_per_100": 30,
+      "unit": "kg",
+      "subcategory": "Gemüse",
+      "id": 41,
+      "price_per_unit": 3
+    },
+    {
+      "standard_meal_id": 11,
+      "ingredient_id": 0,
+      "quantity_per_100": 5,
+      "unit": "kg",
+      "subcategory": "Hülsenfrüchte und Trockenwaren ",
+      "id": 42,
+      "price_per_unit": 3
+    },
+    {
+      "standard_meal_id": 11,
+      "ingredient_id": 0,
+      "quantity_per_100": 2,
+      "unit": "L",
+      "subcategory": "Öle & Fette",
+      "id": 43,
+      "price_per_unit": 2.5
+    },
+    {
+      "standard_meal_id": 11,
+      "ingredient_id": 0,
+      "quantity_per_100": 5,
+      "unit": "kg",
+      "subcategory": "Zwiebeln",
+      "id": 44,
+      "price_per_unit": 1.5
+    },
+    {
+      "standard_meal_id": 11,
+      "ingredient_id": 0,
+      "quantity_per_100": 0.5,
+      "unit": "kg",
+      "subcategory": "Salz",
+      "id": 45,
+      "price_per_unit": 0.5
+    },
+    {
+      "standard_meal_id": 12,
+      "ingredient_id": 0,
+      "quantity_per_100": 9,
+      "unit": "kg",
+      "subcategory": "Reis",
+      "id": 46,
+      "price_per_unit": 2
+    },
+    {
+      "standard_meal_id": 12,
+      "ingredient_id": 0,
+      "quantity_per_100": 30,
+      "unit": "kg",
+      "subcategory": "Gemüse",
+      "id": 47,
+      "price_per_unit": 3
+    },
+    {
+      "standard_meal_id": 12,
+      "ingredient_id": 0,
+      "quantity_per_100": 5,
+      "unit": "kg",
+      "subcategory": "Hülsenfrüchte und Trockenwaren ",
+      "id": 48,
+      "price_per_unit": 3
+    },
+    {
+      "standard_meal_id": 12,
+      "ingredient_id": 0,
+      "quantity_per_100": 2,
+      "unit": "L",
+      "subcategory": "Öle & Fette",
+      "id": 49,
+      "price_per_unit": 2.5
+    },
+    {
+      "standard_meal_id": 12,
+      "ingredient_id": 0,
+      "quantity_per_100": 5,
+      "unit": "kg",
+      "subcategory": "Zwiebeln",
+      "id": 50,
+      "price_per_unit": 1.5
+    },
+    {
+      "standard_meal_id": 12,
+      "ingredient_id": 0,
+      "quantity_per_100": 0.5,
+      "unit": "kg",
+      "subcategory": "Salz",
+      "id": 51,
+      "price_per_unit": 0.5
+    },
+    {
+      "standard_meal_id": 13,
+      "ingredient_id": 0,
+      "quantity_per_100": 27,
+      "unit": "kg",
+      "subcategory": "Kartoffeln",
+      "id": 52,
+      "price_per_unit": 1.5
+    },
+    {
+      "standard_meal_id": 13,
+      "ingredient_id": 0,
+      "quantity_per_100": 30,
+      "unit": "kg",
+      "subcategory": "Gemüse",
+      "id": 53,
+      "price_per_unit": 3
+    },
+    {
+      "standard_meal_id": 13,
+      "ingredient_id": 0,
+      "quantity_per_100": 6,
+      "unit": "kg",
+      "subcategory": "Hülsenfrüchte und Trockenwaren ",
+      "id": 54,
+      "price_per_unit": 3
+    },
+    {
+      "standard_meal_id": 13,
+      "ingredient_id": 0,
+      "quantity_per_100": 2,
+      "unit": "L",
+      "subcategory": "Öle & Fette",
+      "id": 55,
+      "price_per_unit": 2.5
+    },
+    {
+      "standard_meal_id": 13,
+      "ingredient_id": 0,
+      "quantity_per_100": 5,
+      "unit": "kg",
+      "subcategory": "Zwiebeln",
+      "id": 56,
+      "price_per_unit": 1.5
+    },
+    {
+      "standard_meal_id": 13,
+      "ingredient_id": 0,
+      "quantity_per_100": 0.5,
+      "unit": "kg",
+      "subcategory": "Salz",
+      "id": 57,
+      "price_per_unit": 0.5
+    },
+    {
+      "standard_meal_id": 14,
+      "ingredient_id": 0,
+      "quantity_per_100": 10.5,
+      "unit": "kg",
+      "subcategory": "Pasta und Nudeln",
+      "id": 58,
+      "price_per_unit": 2
+    },
+    {
+      "standard_meal_id": 14,
+      "ingredient_id": 0,
+      "quantity_per_100": 30,
+      "unit": "kg",
+      "subcategory": "Gemüse",
+      "id": 59,
+      "price_per_unit": 3
+    },
+    {
+      "standard_meal_id": 14,
+      "ingredient_id": 0,
+      "quantity_per_100": 6,
+      "unit": "kg",
+      "subcategory": "Hülsenfrüchte und Trockenwaren ",
+      "id": 60,
+      "price_per_unit": 3
+    },
+    {
+      "standard_meal_id": 14,
+      "ingredient_id": 0,
+      "quantity_per_100": 2,
+      "unit": "L",
+      "subcategory": "Öle & Fette",
+      "id": 61,
+      "price_per_unit": 2.5
+    },
+    {
+      "standard_meal_id": 14,
+      "ingredient_id": 0,
+      "quantity_per_100": 5,
+      "unit": "kg",
+      "subcategory": "Zwiebeln",
+      "id": 62,
+      "price_per_unit": 1.5
+    },
+    {
+      "standard_meal_id": 14,
+      "ingredient_id": 0,
+      "quantity_per_100": 0.5,
+      "unit": "kg",
+      "subcategory": "Salz",
+      "id": 63,
+      "price_per_unit": 0.5
+    },
+    {
+      "standard_meal_id": 15,
+      "ingredient_id": 0,
+      "quantity_per_100": 9,
+      "unit": "kg",
+      "subcategory": "Reis",
+      "id": 64,
+      "price_per_unit": 2
+    },
+    {
+      "standard_meal_id": 15,
+      "ingredient_id": 0,
+      "quantity_per_100": 30,
+      "unit": "kg",
+      "subcategory": "Gemüse",
+      "id": 65,
+      "price_per_unit": 3
+    },
+    {
+      "standard_meal_id": 15,
+      "ingredient_id": 0,
+      "quantity_per_100": 6,
+      "unit": "kg",
+      "subcategory": "Hülsenfrüchte und Trockenwaren ",
+      "id": 66,
+      "price_per_unit": 3
+    },
+    {
+      "standard_meal_id": 15,
+      "ingredient_id": 0,
+      "quantity_per_100": 2,
+      "unit": "L",
+      "subcategory": "Öle & Fette",
+      "id": 67,
+      "price_per_unit": 2.5
+    },
+    {
+      "standard_meal_id": 15,
+      "ingredient_id": 0,
+      "quantity_per_100": 5,
+      "unit": "kg",
+      "subcategory": "Zwiebeln",
+      "id": 68,
+      "price_per_unit": 1.5
+    },
+    {
+      "standard_meal_id": 15,
+      "ingredient_id": 0,
+      "quantity_per_100": 0.5,
+      "unit": "kg",
+      "subcategory": "Salz",
+      "id": 69,
+      "price_per_unit": 0.5
     }
   ],
   "categories": [
