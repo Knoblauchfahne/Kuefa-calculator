@@ -29,7 +29,9 @@ Installation. Läuft auf GitHub Pages.
   Lager"), Mengen optional, kein automatischer Abzug
 - **Materialliste** — Katalog aller Materialien mit frei anlegbaren
   Kategorien, unabhängig vom Lagerbestand; Rezepte können optional
-  benötigtes Material angeben (Anzahl + Notiz)
+  benötigtes Material angeben (Anzahl + Notiz). Materialien können frei
+  definierbare Eigenschaften tragen (z. B. Volumen in L), deren Werte im
+  Lager ausgefüllt werden — Anzeige dann z. B. als „100 L Topf"
 - **Saisonkalender** — gespeist direkt aus den Zutaten
 - **DE/EN** durchgängig umschaltbar
 - **Offline** durch Service Worker; automatischer Update-Check
