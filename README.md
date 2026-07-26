@@ -10,10 +10,17 @@ Installation. Läuft auf GitHub Pages.
 
 - **Kochaktionen planen** (Datum, Mahlzeiten, Portionszahlen)
 - **Rezeptbuch** mit Zutaten, Allergenen, Tags, Kochfaktor und Saisonalität
-- **Standardmahlzeiten** als Vorlagen
+- **Standardmahlzeiten** als Vorlagen — mit Varianten (z. B. „Mittag mit
+  Kartoffeln" / „Mittag mit Reis"), die pro Mahlzeit explizit gewählt
+  werden müssen; Mahlzeiten ohne Auswahl werden nicht eingerechnet und
+  als Warnung gezählt, „nicht einkaufen" schließt eine Mahlzeit bewusst aus
 - **Einkaufslisten** generieren
-  - Grundbedarfe (aggregiert)
+  - Grundbedarfe (aggregiert und bearbeitbar: Mengen anpassen, Positionen
+    streichen, freie Zusatzpositionen, Kategorien in konkrete Zutaten
+    konkretisieren — Anpassungen werden pro Aktion gespeichert)
   - Nach Rezept gruppiert
+  - Kochtage auf mehrere Bestellungen aufteilbar, Export wahlweise pro
+    Bestellung
   - Export als TXT / CSV / PDF
 - **Rezept-Druck** als A4-PDF pro Rezept (Zutaten mit Brutto/Netto/gekocht,
   Zubereitungsanleitung, Platz für Notizen)
@@ -95,6 +102,12 @@ subcategories ─ ingredients ─ ingredient_allergens   recipes
 
 Alle Stores mit `id` als Auto-Increment-Key. IDs aus dem Backup werden
 übernommen, neue Einträge bekommen frische IDs vom Browser.
+
+Daneben: `standard_meals` ─ `meal_components` (Varianten-Vorlagen für die
+Grundbedarf-Berechnung; `meal_slots.standard_meal_id` hält die explizite
+Auswahl pro Mahlzeit, `-1` = „nicht einkaufen") und `general_order_edits`
+(manuelle Anpassungen der Grundbedarf-Liste pro Aktion: Mengen-Overrides,
+gestrichene Positionen, freie Zusatzpositionen, Konkretisierungen).
 
 ### Saisonalität (seit Nov 2026)
 

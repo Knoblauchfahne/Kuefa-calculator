@@ -800,6 +800,7 @@ de: {
   go_split_rest_line: 'Noch nicht konkretisiert: {0} {1}',
   go_split_no_ings: 'Keine Zutaten mit dieser Kategorie in der Datenbank — Name frei eingeben.',
   go_split_free_entry: '— Freie Eingabe —',
+  go_unset_warning: '⚠ {0} Mahlzeit(en) ohne Auswahl — nicht in der Einkaufsliste enthalten',
   order_group_label: 'Bestellung {0}',
   order_positions_count: '{0} Positionen',
   order_cat_positions_count: '{0} Kategorie-Positionen',
@@ -923,9 +924,7 @@ de: {
 
   // ── standard meal detail ────────────────────────────────────────
   std_meal_detail_meta: '{0} — gemittelte Richtwerte pro Kategorie für 100 Personen{1}',
-  std_meal_active_suffix: ' — ✓ Standard-Variante',
-  std_meal_default_badge: '✓ Standard-Variante',
-  std_meal_default_tooltip: 'Standard-Variante dieser Mahlzeitkategorie',
+  std_meal_variant_unset: '— bitte wählen —',
   std_meal_variant_skip: '— nicht einkaufen —',
   std_meal_variant_missing: '⚠ Keine Standardmahlzeit für diese Kategorie',
   std_meal_orphaned: 'Ohne Kategorie',
@@ -992,7 +991,7 @@ de: {
   help_calendar_title: '📅  Kalender',
   help_calendar_text: 'Hier verwaltest du deine Kochaktionen oder Veranstaltungen. Links siehst du eine Sidebar-Liste aller angelegten Kochaktionen — klicke auf eine Aktion, um sie auszuwählen. Innerhalb einer Kochaktion legst du Kochtage fest, indem du auf Tage im Kalender klickst, und definierst pro Tag die Mahlzeiten (z.B. Mittagessen, 200 Portionen). Die Mahlzeitkategorien kannst du frei definieren.',
   help_general_title: '📋  Einkaufsliste nach Grundbedarf',
-  help_general_text: 'Erstellt eine Einkaufsliste auf Kategorie-Ebene basierend auf Standardmahlzeiten — ohne konkrete Rezepte. Die Berechnung erfolgt automatisch anhand der definierten Kochtage und Portionszahlen. Oben siehst du eine Portionsübersicht pro Mahlzeitkategorie. In der linken Spalte wählst du pro Mahlzeit die gewünschte Standardmahlzeit-Variante (z.B. „Mittag mit Kartoffeln" oder „Mittag mit Reis") — ohne Auswahl gilt die als Standard markierte Variante. Einzelne Mahlzeiten lassen sich auch komplett vom Einkauf ausschließen („nicht einkaufen"). Über „Bestellungen aufteilen" kannst du Kochtage verschiedenen Bestellungen zuordnen; die Liste wird dann pro Bestellung berechnet und der Export fragt, welche Bestellungen exportiert werden sollen. Die Standardmahlzeiten selbst pflegst du über den gleichnamigen Button: Dort definierst du, welche Kategorien (z.B. Gemüse, Brot) als gemittelter Richtwert pro 100 Portionen benötigt werden — die Werte stellen Erfahrungsdurchschnitte dar. Varianten können dupliziert und angepasst werden; die Checkbox markiert die Standard-Variante pro Mahlzeitkategorie. Die generierte Liste ist bearbeitbar: Mengen lassen sich anpassen (✎), Positionen streichen (✕) und freie Zusatzpositionen ergänzen („+ Position") — Anpassungen werden pro Aktion gespeichert und lassen sich zurücksetzen. Über ⊞ kannst du eine Kategorie-Position konkretisieren, d.h. in konkrete Zutaten aus der Datenbank aufsplitten (z.B. 30 kg Gemüse → 10 kg Karotten, 10 kg Zucchini …) — mit echten Zutatenpreisen; der nicht aufgeteilte Rest bleibt als eigene Zeile mit Kategorie-Schätzpreis stehen.',
+  help_general_text: 'Erstellt eine Einkaufsliste auf Kategorie-Ebene basierend auf Standardmahlzeiten — ohne konkrete Rezepte. Die Berechnung erfolgt automatisch anhand der definierten Kochtage und Portionszahlen. Oben siehst du eine Portionsübersicht pro Mahlzeitkategorie. In der linken Spalte wählst du pro Mahlzeit die gewünschte Standardmahlzeit-Variante (z.B. „Mittag mit Kartoffeln" oder „Mittag mit Reis") — jede Mahlzeit braucht eine explizite Auswahl: Ohne Auswahl („bitte wählen") wird sie nicht eingerechnet und oberhalb der Liste als Warnung gezählt. Einzelne Mahlzeiten lassen sich auch bewusst vom Einkauf ausschließen („nicht einkaufen"). Über „Bestellungen aufteilen" kannst du Kochtage verschiedenen Bestellungen zuordnen; die Liste wird dann pro Bestellung berechnet und der Export fragt, welche Bestellungen exportiert werden sollen. Die Standardmahlzeiten selbst pflegst du über den gleichnamigen Button: Dort definierst du, welche Kategorien (z.B. Gemüse, Brot) als gemittelter Richtwert pro 100 Portionen benötigt werden — die Werte stellen Erfahrungsdurchschnitte dar. Varianten können dupliziert und angepasst werden. Die generierte Liste ist bearbeitbar: Mengen lassen sich anpassen (✎), Positionen streichen (✕) und freie Zusatzpositionen ergänzen („+ Position") — Anpassungen werden pro Aktion gespeichert und lassen sich zurücksetzen. Über ⊞ kannst du eine Kategorie-Position konkretisieren, d.h. in konkrete Zutaten aus der Datenbank aufsplitten (z.B. 30 kg Gemüse → 10 kg Karotten, 10 kg Zucchini …) — mit echten Zutatenpreisen; der nicht aufgeteilte Rest bleibt als eigene Zeile mit Kategorie-Schätzpreis stehen.',
   help_special_title: '📄  Einkaufsliste nach Rezept',
   help_special_text: 'Hier weist du den Mahlzeit-Slots konkrete Rezepte, Beilagen und Allergie-Essen zu. Die Einkaufsliste wird dann auf Zutatenebene berechnet. Bei mehreren Rezepten pro Slot werden die Portionen automatisch gleichmäßig aufgeteilt, genau so mit den Beilagen. Du kannst die Aufteilung aber auch manuell anpassen. Eine Summenanzeige warnt dich, wenn die Teilportionen nicht mit der definierten Gesamtzahl übereinstimmen. Allergie-Essen werden separat mit eigenen Portionszahlen verwaltet (Empfehlung: ca. 1% der Gesamtportionen). Über die Bestellgruppen-Leiste oben kannst du Kochtage verschiedenen Bestellungen zuordnen (z.B. Bestellung 1 für Tag 1–4, Bestellung 2 für Tag 5–8). Beim Generieren werden separate Einkaufslisten pro Bestellgruppe erzeugt. Über den Rezepte Drucken Button kann eine PDF-Datei erzeugt werden, welche die Rezepte für jede einzelne Mahlzeit ausgibt. Wenn ein Rezept Zutaten-Substitutionen enthält, erscheint beim Zuweisen ein Dialog, in dem du pro Zutat zwischen Original und Substitut wählen kannst. Die Einkaufsliste und das PDF verwenden dann automatisch die gewählten Substitutionen. Zuweisungen mit aktiven Substitutionen werden mit einem ⇄-Symbol gekennzeichnet.',
   help_recipe_title: '📖  Rezeptbuch',
@@ -1416,6 +1415,7 @@ en: {
   go_split_rest_line: 'Not yet specified: {0} {1}',
   go_split_no_ings: 'No ingredients with this category in the database — enter a name manually.',
   go_split_free_entry: '— Free entry —',
+  go_unset_warning: '⚠ {0} meal(s) without a selection — not included in the shopping list',
   order_group_label: 'Order {0}',
   order_positions_count: '{0} positions',
   order_cat_positions_count: '{0} category positions',
@@ -1539,9 +1539,7 @@ en: {
 
   // ── standard meal detail ────────────────────────────────────────
   std_meal_detail_meta: '{0} — average reference values per category for 100 people{1}',
-  std_meal_active_suffix: ' — ✓ Default variant',
-  std_meal_default_badge: '✓ Default variant',
-  std_meal_default_tooltip: 'Default variant of this meal category',
+  std_meal_variant_unset: '— please select —',
   std_meal_variant_skip: '— do not shop —',
   std_meal_variant_missing: '⚠ No standard meal for this category',
   std_meal_orphaned: 'No category',
@@ -1608,7 +1606,7 @@ en: {
   help_calendar_title: '📅  Calendar',
   help_calendar_text: 'Manage your cooking events or occasions here. On the left you see a sidebar list of all created cooking events — click one to select it. Within a cooking event, set cooking days by clicking days in the calendar and define meals per day (e.g. Lunch, 200 servings). Meal categories can be freely defined.',
   help_general_title: '📋  Shopping List by Basic Needs',
-  help_general_text: 'Creates a category-level shopping list based on standard meals — without concrete recipes. The calculation happens automatically based on defined cooking days and serving counts. At the top you see a serving overview per meal category. In the left column you pick the standard meal variant per meal (e.g. "Lunch with potatoes" or "Lunch with rice") — without a selection, the variant marked as default is used. Individual meals can also be excluded from shopping entirely ("do not shop"). Via "Split orders" you can assign cooking days to different orders; the list is then calculated per order and the export asks which orders to export. Manage the standard meals themselves via the button of the same name: there you define which categories (e.g. vegetables, bread) are needed as an average reference value per 100 servings — the figures represent empirical averages. Variants can be duplicated and adjusted; the checkbox marks the default variant per meal category. The generated list is editable: adjust quantities (✎), remove positions (✕) and add free extra positions ("+ Position") — adjustments are stored per event and can be reset. Via ⊞ you can specify a category position, i.e. split it into concrete ingredients from the database (e.g. 30 kg vegetables → 10 kg carrots, 10 kg zucchini …) — with real ingredient prices; the unallocated rest remains as its own line with the category estimate price.',
+  help_general_text: 'Creates a category-level shopping list based on standard meals — without concrete recipes. The calculation happens automatically based on defined cooking days and serving counts. At the top you see a serving overview per meal category. In the left column you pick the standard meal variant per meal (e.g. "Lunch with potatoes" or "Lunch with rice") — every meal needs an explicit selection: without one ("please select") it is not counted and a warning above the list shows how many meals are unselected. Individual meals can also be deliberately excluded from shopping ("do not shop"). Via "Split orders" you can assign cooking days to different orders; the list is then calculated per order and the export asks which orders to export. Manage the standard meals themselves via the button of the same name: there you define which categories (e.g. vegetables, bread) are needed as an average reference value per 100 servings — the figures represent empirical averages. Variants can be duplicated and adjusted. The generated list is editable: adjust quantities (✎), remove positions (✕) and add free extra positions ("+ Position") — adjustments are stored per event and can be reset. Via ⊞ you can specify a category position, i.e. split it into concrete ingredients from the database (e.g. 30 kg vegetables → 10 kg carrots, 10 kg zucchini …) — with real ingredient prices; the unallocated rest remains as its own line with the category estimate price.',
   help_special_title: '📄  Shopping List by Recipe',
   help_special_text: 'Assign specific recipes, side dishes and allergy meals to meal slots here. The shopping list is then calculated at ingredient level. For multiple recipes per slot, servings are automatically split evenly — same for side dishes. You can also adjust the split manually. A total display warns you when partial servings do not match the defined total. Allergy meals are managed separately with their own serving counts (recommendation: approx. 1% of total servings). Use the order group bar at the top to assign cooking days to different orders (e.g. Order 1 for days 1–4, Order 2 for days 5–8). When generating, separate shopping lists per order group are created. The Print Recipes button generates a PDF with recipes for each individual meal. If a recipe contains ingredient substitutions, a dialog appears on assignment letting you choose between original and substitute per ingredient. The shopping list and PDF then use the chosen substitutions automatically. Assignments with active substitutions are marked with a ⇄ symbol.',
   help_recipe_title: '📖  Recipe Book',
@@ -2142,26 +2140,28 @@ async function getStandardMeals(){
   for(const m of meals){m.components=(await dbGetByIndex('meal_components','meal_id',m.id));}
   return meals;
 }
-async function createStandardMeal(mealType,name){return dbAdd('standard_meals',{meal_type:mealType,name,is_active:0});}
+async function createStandardMeal(mealType,name){return dbAdd('standard_meals',{meal_type:mealType,name});}
 async function updateStandardMeal(id,name,mealType){const m=await dbGet('standard_meals',id);if(m){m.name=name;m.meal_type=mealType;await dbPut('standard_meals',m);}}
 async function deleteStandardMeal(id){await dbDelByIndex('meal_components','meal_id',id);await dbDel('standard_meals',id);}
 async function duplicateStandardMeal(id){
   const m=await dbGet('standard_meals',id);
   if(!m) return null;
-  const newId=await dbAdd('standard_meals',{meal_type:m.meal_type,name:m.name+(LANG==='en'?' (copy)':' (Kopie)'),is_active:0});
+  const newId=await dbAdd('standard_meals',{meal_type:m.meal_type,name:m.name+(LANG==='en'?' (copy)':' (Kopie)')});
   const comps=await dbGetByIndex('meal_components','meal_id',id);
   for(const c of comps){await dbAdd('meal_components',{standard_meal_id:newId,ingredient_id:c.ingredient_id||0,quantity_per_100:c.quantity_per_100,unit:c.unit,subcategory:c.subcategory||'',price_per_unit:c.price_per_unit||0});}
   return newId;
 }
 // Variante eines Slots auflösen: explizite Auswahl (slot.standard_meal_id) vor
 // Default-Variante der Kategorie; -1 = Slot vom Einkauf ausgeschlossen.
+// Nur explizite Auswahl zählt: ohne gewählte Variante (oder bei
+// „nicht einkaufen" = -1) wird der Slot nicht eingerechnet.
 function resolveSlotMeal(slot,meals){
   if(slot.standard_meal_id===-1) return null;
   if(slot.standard_meal_id){
     const m=meals.find(x=>x.id===slot.standard_meal_id&&x.meal_type===slot.meal_type);
     if(m) return m;
   }
-  return meals.find(m=>m.meal_type===slot.meal_type&&m.is_active)||null;
+  return null;
 }
 async function setSlotStandardMeal(slotId,mealId){
   const s=await dbGet('meal_slots',slotId);
@@ -3526,31 +3526,8 @@ async function renderStandardMealsPage(container){
       } else {
         catMeals.forEach(m=>{
           const isSel=m.id===stdMealSelectedId;
-          const item=h('div',{class:`list-item ${isSel?'active':''}`,style:{display:'flex',alignItems:'center',gap:'8px'}});
-          const cb=h('input',{type:'checkbox',title:t('std_meal_default_tooltip')});
-          cb.checked=!!m.is_active;
-          cb.addEventListener('change',async(e)=>{
-            if(cb.checked){
-              // Deactivate all other meals in this category
-              for(const other of catMeals){
-                if(other.id!==m.id&&other.is_active){
-                  const rec=await dbGet('standard_meals',other.id);
-                  if(rec){rec.is_active=0;await dbPut('standard_meals',rec);}
-                }
-              }
-              const rec=await dbGet('standard_meals',m.id);
-              if(rec){rec.is_active=1;await dbPut('standard_meals',rec);}
-            } else {
-              const rec=await dbGet('standard_meals',m.id);
-              if(rec){rec.is_active=0;await dbPut('standard_meals',rec);}
-            }
-            refresh();
-          });
-          item.appendChild(cb);
-          const textDiv=h('div',{style:{flex:1,cursor:'pointer'},onClick:()=>{stdMealSelectedId=m.id;refresh();}});
-          textDiv.appendChild(h('div',{class:'item-name',style:{fontSize:'13px'}},m.name));
-          if(m.is_active) textDiv.appendChild(h('div',{style:{fontSize:'10px',color:'var(--green-light)',fontWeight:'600'}},t('std_meal_default_badge')));
-          item.appendChild(textDiv);
+          const item=h('div',{class:`list-item ${isSel?'active':''}`,onClick:()=>{stdMealSelectedId=m.id;refresh();}});
+          item.appendChild(h('div',{class:'item-name',style:{fontSize:'13px'}},m.name));
           listDiv.appendChild(item);
         });
       }
@@ -3584,7 +3561,7 @@ async function renderStandardMealsPage(container){
     topBtns.appendChild(h('button',{class:'btn btn-danger btn-sm',onClick:async()=>{if(confirm(t('msg_confirm_delete_standard_meal'))){await deleteStandardMeal(meal.id);stdMealSelectedId=null;refresh();}}},t('btn_delete')));
     top.appendChild(topBtns);
     card.appendChild(top);
-    card.appendChild(h('div',{style:{fontSize:'12px',color:'var(--text-muted)',marginBottom:'12px'}},t('std_meal_detail_meta',mealTypeEnMap[meal.meal_type]||meal.meal_type,meal.is_active?t('std_meal_active_suffix'):'')));
+    card.appendChild(h('div',{style:{fontSize:'12px',color:'var(--text-muted)',marginBottom:'12px'}},t('std_meal_detail_meta',mealTypeEnMap[meal.meal_type]||meal.meal_type,'')));
 
     if(!meal.components.length){card.appendChild(h('div',{class:'empty-msg'},t('empty_no_std_meal_components')));}
     else {
@@ -3869,15 +3846,17 @@ async function renderGeneralOrderPage(container){
           slotDiv.appendChild(h('div',{style:{fontSize:'12px',color:'var(--accent)',padding:'4px 0'}},t('std_meal_variant_missing')));
         } else {
           const sel=h('select',{style:{width:'100%',marginTop:'6px'}});
-          const def=variants.find(v=>v.is_active);
-          sel.appendChild(h('option',{value:''},def?`Standard: ${def.name}`:t('std_meal_variant_skip')));
+          sel.appendChild(h('option',{value:''},t('std_meal_variant_unset')));
           variants.forEach(v=>sel.appendChild(h('option',{value:String(v.id)},v.name)));
           sel.appendChild(h('option',{value:'-1'},t('std_meal_variant_skip')));
           sel.value=slot.standard_meal_id?String(slot.standard_meal_id):'';
           if(sel.selectedIndex<0) sel.value='';
+          const markUnset=()=>{sel.style.borderColor=sel.value===''?'var(--accent)':'';};
+          markUnset();
           sel.addEventListener('change',async()=>{
             const v=sel.value===''?null:parseInt(sel.value);
             await setSlotStandardMeal(slot.id,v);
+            markUnset();
             generate();
           });
           slotDiv.appendChild(sel);
@@ -3889,6 +3868,12 @@ async function renderGeneralOrderPage(container){
 
   async function generate(){
     resultDiv.innerHTML='';
+    // Mahlzeiten ohne explizite Auswahl werden nicht eingerechnet — warnen
+    let unsetCount=0;
+    for(const d of days){
+      unsetCount+=(await getMealSlots(d.id)).filter(s=>!s.standard_meal_id).length;
+    }
+    if(unsetCount) resultDiv.appendChild(h('div',{class:'card',style:{color:'var(--accent)',fontSize:'13px',fontWeight:'600'}},t('go_unset_warning',unsetCount)));
     const groups=getOrderGroups();
     const groupNums=Object.keys(groups).map(Number).sort((a,b)=>a-b);
     lastItems=[];
