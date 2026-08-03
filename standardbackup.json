@@ -13622,8 +13622,8 @@
         {
           "name": "Länge",
           "type": "value",
-          "unit": "Meter",
           "value": null,
+          "unit": "Meter",
           "in_name": "pre"
         }
       ],
@@ -13656,13 +13656,13 @@
       "name": "Bodenplatten",
       "category": "Zelte und Boden",
       "unit": "Stück",
-      "note": "Terraguide",
+      "note": "",
       "attributes": [
         {
           "name": "Fläche",
           "type": "value",
-          "unit": "qm",
           "value": null,
+          "unit": "qm",
           "in_name": "pre"
         }
       ],
@@ -13690,6 +13690,45 @@
         }
       ],
       "id": 28
+    },
+    {
+      "name": "Brotmesser",
+      "category": "Messer",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": ""
+        },
+        {
+          "name": "Länge",
+          "type": "value",
+          "value": null,
+          "unit": "cm",
+          "in_name": "pre"
+        }
+      ],
+      "id": 60
+    },
+    {
+      "name": "Dosenöffner",
+      "category": "Vorlegebesteck und Küchenwerkzeuge",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": ""
+        }
+      ],
+      "id": 47
     },
     {
       "name": "Frischwasserschlauch",
@@ -13932,6 +13971,84 @@
       "id": 45
     },
     {
+      "name": "Kartoffelstampfer",
+      "category": "Vorlegebesteck und Küchenwerkzeuge",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Länge",
+          "type": "value",
+          "value": null,
+          "unit": "cm",
+          "in_name": ""
+        },
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": ""
+        }
+      ],
+      "id": 48
+    },
+    {
+      "name": "Kochmesser",
+      "category": "Messer",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": "pre"
+        },
+        {
+          "name": "Länge",
+          "type": "value",
+          "value": null,
+          "unit": "cm",
+          "in_name": "post"
+        }
+      ],
+      "id": 63
+    },
+    {
+      "name": "Küchenpinsel",
+      "category": "Vorlegebesteck und Küchenwerkzeuge",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": ""
+        }
+      ],
+      "id": 52
+    },
+    {
+      "name": "Küchenpinzette",
+      "category": "Vorlegebesteck und Küchenwerkzeuge",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": ""
+        }
+      ],
+      "id": 51
+    },
+    {
       "name": "Löffel",
       "category": "Besteck",
       "unit": "Stück",
@@ -13978,22 +14095,6 @@
       "id": 24
     },
     {
-      "name": "Messer",
-      "category": "Schnippeln",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": "post"
-        }
-      ],
-      "id": 35
-    },
-    {
       "name": "Paellaringbrenner",
       "category": "Gas",
       "unit": "Stück",
@@ -14024,6 +14125,29 @@
       "id": 27
     },
     {
+      "name": "Pfannenwender",
+      "category": "Vorlegebesteck und Küchenwerkzeuge",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": ""
+        },
+        {
+          "name": "Länge",
+          "type": "value",
+          "value": null,
+          "unit": "cm",
+          "in_name": ""
+        }
+      ],
+      "id": 53
+    },
+    {
       "name": "Pürierstab",
       "category": "Elektrogeräte",
       "unit": "Stück",
@@ -14040,16 +14164,94 @@
       "id": 19
     },
     {
-      "name": "Schaumkelle",
-      "category": "Ausgabe- und Kochgeschirr",
+      "name": "Rührpaddel",
+      "category": "Vorlegebesteck und Küchenwerkzeuge",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Länge",
+          "type": "value",
+          "value": null,
+          "unit": "cm",
+          "in_name": ""
+        },
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": "pre"
+        }
+      ],
+      "id": 46
+    },
+    {
+      "name": "Santoku",
+      "category": "Messer",
       "unit": "Stück",
       "note": "",
       "attributes": [
         {
           "name": "Art",
           "type": "text",
-          "unit": "",
           "value": null,
+          "unit": "",
+          "in_name": ""
+        },
+        {
+          "name": "Länge",
+          "type": "value",
+          "value": null,
+          "unit": "cm",
+          "in_name": ""
+        }
+      ],
+      "id": 61
+    },
+    {
+      "name": "Schaber",
+      "category": "Vorlegebesteck und Küchenwerkzeuge",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": ""
+        }
+      ],
+      "id": 58
+    },
+    {
+      "name": "Schälmesser",
+      "category": "Messer",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": ""
+        }
+      ],
+      "id": 62
+    },
+    {
+      "name": "Schaumkelle",
+      "category": "Vorlegebesteck und Küchenwerkzeuge",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
           "in_name": "post"
         }
       ],
@@ -14070,6 +14272,29 @@
         }
       ],
       "id": 29
+    },
+    {
+      "name": "Schneebesen",
+      "category": "Vorlegebesteck und Küchenwerkzeuge",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": ""
+        },
+        {
+          "name": "Länge",
+          "type": "value",
+          "value": null,
+          "unit": "cm",
+          "in_name": "pre"
+        }
+      ],
+      "id": 54
     },
     {
       "name": "Schneidebrett",
@@ -14112,22 +14337,22 @@
     },
     {
       "name": "Schöpfkelle",
-      "category": "Ausgabe- und Kochgeschirr",
+      "category": "Vorlegebesteck und Küchenwerkzeuge",
       "unit": "Stück",
       "note": "",
       "attributes": [
         {
           "name": "Volumen",
           "type": "value",
-          "unit": "Liter",
           "value": null,
+          "unit": "Liter",
           "in_name": "pre"
         },
         {
           "name": "Art",
           "type": "text",
-          "unit": "",
           "value": null,
+          "unit": "",
           "in_name": "post"
         }
       ],
@@ -14140,6 +14365,61 @@
       "note": "",
       "attributes": [],
       "id": 41
+    },
+    {
+      "name": "Shamoji",
+      "category": "Vorlegebesteck und Küchenwerkzeuge",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": ""
+        }
+      ],
+      "id": 55
+    },
+    {
+      "name": "Silikonspatel",
+      "category": "Vorlegebesteck und Küchenwerkzeuge",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": ""
+        },
+        {
+          "name": "Länge",
+          "type": "value",
+          "value": null,
+          "unit": "cm",
+          "in_name": "pre"
+        }
+      ],
+      "id": 57
+    },
+    {
+      "name": "Sparschäler",
+      "category": "Schnippeln",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": ""
+        }
+      ],
+      "id": 56
     },
     {
       "name": "Spühllappen",
@@ -14322,6 +14602,38 @@
       "id": 32
     },
     {
+      "name": "Wetzstahl",
+      "category": "Messer",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": ""
+        }
+      ],
+      "id": 50
+    },
+    {
+      "name": "Zange",
+      "category": "Vorlegebesteck und Küchenwerkzeuge",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": ""
+        }
+      ],
+      "id": 49
+    },
+    {
       "name": "Zelt",
       "category": "Zelte und Boden",
       "unit": "Stück",
@@ -14336,6 +14648,22 @@
         }
       ],
       "id": 13
+    },
+    {
+      "name": "Zestenreißer",
+      "category": "Vorlegebesteck und Küchenwerkzeuge",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": ""
+        }
+      ],
+      "id": 59
     }
   ],
   "material_categories": [
@@ -14372,6 +14700,10 @@
       "id": 4
     },
     {
+      "name": "Messer",
+      "id": 18
+    },
+    {
       "name": "Schnippeln",
       "id": 12
     },
@@ -14390,6 +14722,10 @@
     {
       "name": "Töpfe",
       "id": 1
+    },
+    {
+      "name": "Vorlegebesteck und Küchenwerkzeuge",
+      "id": 17
     },
     {
       "name": "Zelte und Boden",
