@@ -1,4 +1,4 @@
-/* KF Portionsrechner — Service Worker
+/* KüFa Organizer — Service Worker
    Strategie: Stale-while-revalidate für die App-Shell.
    Daten liegen in IndexedDB (vom Browser eh offline verfügbar),
    der SW cacht nur die statischen Assets. */

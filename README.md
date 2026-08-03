@@ -1,4 +1,4 @@
-# KF Portionsrechner
+# KüFa Organizer
 
 Single-HTML-PWA zur Portions- und Einkaufsplanung für Kochaktionen der
 **Knoblauchfahne** (KüFa). Offline-fähig, browser-only, keine Backend-
