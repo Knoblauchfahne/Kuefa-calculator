@@ -1031,6 +1031,9 @@ de: {
 
   // ── standard meal detail ────────────────────────────────────────
   std_meal_detail_meta: '{0} — gemittelte Richtwerte pro Kategorie für 100 Personen{1}',
+  std_comp_pick_ph: 'Kategorie oder Zutat wählen …',
+  dlg_choose_component: 'Kategorie oder Zutat wählen',
+  std_comp_cat_suffix: 'Kategorie',
   std_meal_variant_unset: '— bitte wählen —',
   std_meal_variant_skip: '— nicht einkaufen —',
   std_meal_variant_missing: '⚠ Keine Standardmahlzeit für diese Kategorie',
@@ -1098,7 +1101,7 @@ de: {
   help_calendar_title: '📅  Kalender',
   help_calendar_text: 'Hier verwaltest du deine Kochaktionen oder Veranstaltungen. Links siehst du eine Sidebar-Liste aller angelegten Kochaktionen — klicke auf eine Aktion, um sie auszuwählen. Innerhalb einer Kochaktion legst du Kochtage fest, indem du auf Tage im Kalender klickst, und definierst pro Tag die Mahlzeiten (z.B. Mittagessen, 200 Portionen). Die Mahlzeitkategorien kannst du frei definieren.',
   help_general_title: '📋  Einkaufsliste nach Grundbedarf',
-  help_general_text: 'Erstellt eine Einkaufsliste auf Kategorie-Ebene basierend auf Standardmahlzeiten — ohne konkrete Rezepte. Die Berechnung erfolgt automatisch anhand der definierten Kochtage und Portionszahlen. Oben siehst du eine Portionsübersicht pro Mahlzeitkategorie. In der linken Spalte wählst du pro Mahlzeit die gewünschte Standardmahlzeit-Variante (z.B. „Mittag mit Kartoffeln" oder „Mittag mit Reis") — jede Mahlzeit braucht eine explizite Auswahl: Ohne Auswahl („bitte wählen") wird sie nicht eingerechnet und oberhalb der Liste als Warnung gezählt. Einzelne Mahlzeiten lassen sich auch bewusst vom Einkauf ausschließen („nicht einkaufen"). Über „Bestellungen aufteilen" kannst du Kochtage verschiedenen Bestellungen zuordnen; die Liste wird dann pro Bestellung berechnet und der Export fragt, welche Bestellungen exportiert werden sollen. Die Standardmahlzeiten selbst pflegst du über den gleichnamigen Button: Dort definierst du, welche Kategorien (z.B. Gemüse, Brot) als gemittelter Richtwert pro 100 Portionen benötigt werden — die Werte stellen Erfahrungsdurchschnitte dar. Varianten können dupliziert und angepasst werden. Die generierte Liste ist bearbeitbar: Mengen lassen sich anpassen (✎), Positionen streichen (✕) und freie Zusatzpositionen ergänzen („+ Position") — Anpassungen werden pro Aktion gespeichert und lassen sich zurücksetzen. Über ⊞ kannst du eine Kategorie-Position konkretisieren, d.h. in konkrete Zutaten aus der Datenbank aufsplitten (z.B. 30 kg Gemüse → 10 kg Karotten, 10 kg Zucchini …) — mit echten Zutatenpreisen; der nicht aufgeteilte Rest bleibt als eigene Zeile mit Kategorie-Schätzpreis stehen.',
+  help_general_text: 'Erstellt eine Einkaufsliste auf Kategorie-Ebene basierend auf Standardmahlzeiten — ohne konkrete Rezepte. Die Berechnung erfolgt automatisch anhand der definierten Kochtage und Portionszahlen. Oben siehst du eine Portionsübersicht pro Mahlzeitkategorie. In der linken Spalte wählst du pro Mahlzeit die gewünschte Standardmahlzeit-Variante (z.B. „Mittag mit Kartoffeln" oder „Mittag mit Reis") — jede Mahlzeit braucht eine explizite Auswahl: Ohne Auswahl („bitte wählen") wird sie nicht eingerechnet und oberhalb der Liste als Warnung gezählt. Einzelne Mahlzeiten lassen sich auch bewusst vom Einkauf ausschließen („nicht einkaufen"). Über „Bestellungen aufteilen" kannst du Kochtage verschiedenen Bestellungen zuordnen; die Liste wird dann pro Bestellung berechnet und der Export fragt, welche Bestellungen exportiert werden sollen. Die Standardmahlzeiten selbst pflegst du über den gleichnamigen Button: Dort definierst du, welche Kategorien (z.B. Gemüse, Brot) oder konkreten Zutaten als gemittelter Richtwert pro 100 Portionen benötigt werden — die Werte stellen Erfahrungsdurchschnitte dar. Kategorie-Komponenten lassen sich per ⊞ in konkrete Zutaten aufsplitten (wie auf der Grundbedarf-Liste, inkl. Rest); konkrete Zutaten ziehen Name und Preis live aus der Zutaten-Datenbank. Varianten können dupliziert und angepasst werden. Die generierte Liste ist bearbeitbar: Mengen lassen sich anpassen (✎), Positionen streichen (✕) und freie Zusatzpositionen ergänzen („+ Position") — Anpassungen werden pro Aktion gespeichert und lassen sich zurücksetzen. Über ⊞ kannst du eine Kategorie-Position konkretisieren, d.h. in konkrete Zutaten aus der Datenbank aufsplitten (z.B. 30 kg Gemüse → 10 kg Karotten, 10 kg Zucchini …) — mit echten Zutatenpreisen; der nicht aufgeteilte Rest bleibt als eigene Zeile mit Kategorie-Schätzpreis stehen.',
   help_special_title: '📄  Einkaufsliste nach Rezept',
   help_special_text: 'Hier weist du den Mahlzeit-Slots konkrete Rezepte, Beilagen und Allergie-Essen zu. Die Einkaufsliste wird dann auf Zutatenebene berechnet. Bei mehreren Rezepten pro Slot werden die Portionen automatisch gleichmäßig aufgeteilt, genau so mit den Beilagen. Du kannst die Aufteilung aber auch manuell anpassen. Eine Summenanzeige warnt dich, wenn die Teilportionen nicht mit der definierten Gesamtzahl übereinstimmen. Allergie-Essen werden separat mit eigenen Portionszahlen verwaltet (Empfehlung: ca. 1% der Gesamtportionen). Über die Bestellgruppen-Leiste oben kannst du Kochtage verschiedenen Bestellungen zuordnen (z.B. Bestellung 1 für Tag 1–4, Bestellung 2 für Tag 5–8). Beim Generieren werden separate Einkaufslisten pro Bestellgruppe erzeugt. Über den Rezepte Drucken Button kann eine PDF-Datei erzeugt werden, welche die Rezepte für jede einzelne Mahlzeit ausgibt. Wenn ein Rezept Zutaten-Substitutionen enthält, erscheint beim Zuweisen ein Dialog, in dem du pro Zutat zwischen Original und Substitut wählen kannst. Die Einkaufsliste und das PDF verwenden dann automatisch die gewählten Substitutionen. Zuweisungen mit aktiven Substitutionen werden mit einem ⇄-Symbol gekennzeichnet.',
   help_recipe_title: '📖  Rezeptbuch',
@@ -1752,6 +1755,9 @@ en: {
 
   // ── standard meal detail ────────────────────────────────────────
   std_meal_detail_meta: '{0} — average reference values per category for 100 people{1}',
+  std_comp_pick_ph: 'Choose category or ingredient …',
+  dlg_choose_component: 'Choose category or ingredient',
+  std_comp_cat_suffix: 'category',
   std_meal_variant_unset: '— please select —',
   std_meal_variant_skip: '— do not shop —',
   std_meal_variant_missing: '⚠ No standard meal for this category',
@@ -1819,7 +1825,7 @@ en: {
   help_calendar_title: '📅  Calendar',
   help_calendar_text: 'Manage your cooking events or occasions here. On the left you see a sidebar list of all created cooking events — click one to select it. Within a cooking event, set cooking days by clicking days in the calendar and define meals per day (e.g. Lunch, 200 servings). Meal categories can be freely defined.',
   help_general_title: '📋  Shopping List by Basic Needs',
-  help_general_text: 'Creates a category-level shopping list based on standard meals — without concrete recipes. The calculation happens automatically based on defined cooking days and serving counts. At the top you see a serving overview per meal category. In the left column you pick the standard meal variant per meal (e.g. "Lunch with potatoes" or "Lunch with rice") — every meal needs an explicit selection: without one ("please select") it is not counted and a warning above the list shows how many meals are unselected. Individual meals can also be deliberately excluded from shopping ("do not shop"). Via "Split orders" you can assign cooking days to different orders; the list is then calculated per order and the export asks which orders to export. Manage the standard meals themselves via the button of the same name: there you define which categories (e.g. vegetables, bread) are needed as an average reference value per 100 servings — the figures represent empirical averages. Variants can be duplicated and adjusted. The generated list is editable: adjust quantities (✎), remove positions (✕) and add free extra positions ("+ Position") — adjustments are stored per event and can be reset. Via ⊞ you can specify a category position, i.e. split it into concrete ingredients from the database (e.g. 30 kg vegetables → 10 kg carrots, 10 kg zucchini …) — with real ingredient prices; the unallocated rest remains as its own line with the category estimate price.',
+  help_general_text: 'Creates a category-level shopping list based on standard meals — without concrete recipes. The calculation happens automatically based on defined cooking days and serving counts. At the top you see a serving overview per meal category. In the left column you pick the standard meal variant per meal (e.g. "Lunch with potatoes" or "Lunch with rice") — every meal needs an explicit selection: without one ("please select") it is not counted and a warning above the list shows how many meals are unselected. Individual meals can also be deliberately excluded from shopping ("do not shop"). Via "Split orders" you can assign cooking days to different orders; the list is then calculated per order and the export asks which orders to export. Manage the standard meals themselves via the button of the same name: there you define which categories (e.g. vegetables, bread) or concrete ingredients are needed as an average reference value per 100 servings — the figures represent empirical averages. Category components can be split into concrete ingredients via ⊞ (like on the basic-needs list, incl. remainder); concrete ingredients pull name and price live from the ingredient database. Variants can be duplicated and adjusted. The generated list is editable: adjust quantities (✎), remove positions (✕) and add free extra positions ("+ Position") — adjustments are stored per event and can be reset. Via ⊞ you can specify a category position, i.e. split it into concrete ingredients from the database (e.g. 30 kg vegetables → 10 kg carrots, 10 kg zucchini …) — with real ingredient prices; the unallocated rest remains as its own line with the category estimate price.',
   help_special_title: '📄  Shopping List by Recipe',
   help_special_text: 'Assign specific recipes, side dishes and allergy meals to meal slots here. The shopping list is then calculated at ingredient level. For multiple recipes per slot, servings are automatically split evenly — same for side dishes. You can also adjust the split manually. A total display warns you when partial servings do not match the defined total. Allergy meals are managed separately with their own serving counts (recommendation: approx. 1% of total servings). Use the order group bar at the top to assign cooking days to different orders (e.g. Order 1 for days 1–4, Order 2 for days 5–8). When generating, separate shopping lists per order group are created. The Print Recipes button generates a PDF with recipes for each individual meal. If a recipe contains ingredient substitutions, a dialog appears on assignment letting you choose between original and substitute per ingredient. The shopping list and PDF then use the chosen substitutions automatically. Assignments with active substitutions are marked with a ⇄ symbol.',
   help_recipe_title: '📖  Recipe Book',
@@ -2406,7 +2412,7 @@ async function setSlotStandardMeal(slotId,mealId){
   if(s){s.standard_meal_id=mealId;await dbPut('meal_slots',s);}
 }
 async function addMealComponent(mealId,ingredientId,qty100,unit,subcat='',pricePerUnit=0){return dbAdd('meal_components',{standard_meal_id:mealId,ingredient_id:ingredientId,quantity_per_100:qty100,unit,subcategory:subcat,price_per_unit:pricePerUnit});}
-async function updateMealComponent(id,qty100,unit,subcat,pricePerUnit){const c=await dbGet('meal_components',id);if(c){c.quantity_per_100=qty100;c.unit=unit;c.subcategory=subcat;c.price_per_unit=pricePerUnit;await dbPut('meal_components',c);}}
+async function updateMealComponent(id,qty100,unit,subcat,pricePerUnit,ingredientId){const c=await dbGet('meal_components',id);if(c){c.quantity_per_100=qty100;c.unit=unit;c.subcategory=subcat;c.price_per_unit=pricePerUnit;if(ingredientId!==undefined)c.ingredient_id=ingredientId;await dbPut('meal_components',c);}}
 async function removeMealComponent(id){await dbDel('meal_components',id);}
 
 async function getCategories(){return (await dbGetAll('categories')).sort((a,b)=>a.name.localeCompare(b.name));}
@@ -2649,14 +2655,26 @@ async function generateGeneralOrder(dayIds){
   const subcatEnMap={};
   (await getSubcategories()).forEach(s=>{if(s.name_en) subcatEnMap[s.name]=s.name_en;});
   const meals=await getStandardMeals();
+  const ingById=new Map((await dbGetAll('ingredients')).map(i=>[i.id,i]));
   for(const did of dayIds){
     const slots=await getMealSlots(did);
     for(const slot of slots){
       const meal=resolveSlotMeal(slot,meals);
       if(!meal) continue;
       for(const comp of meal.components){
-        const subcat=comp.subcategory||t('misc_uncategorized');
         const qty=comp.quantity_per_100*(slot.portion_count/100);
+        // Konkrete Zutaten-Komponente: Name/Kategorie/Preis live aus der Zutat
+        const ing=comp.ingredient_id?ingById.get(comp.ingredient_id):null;
+        if(ing){
+          const subcat=ing.subcategory||t('misc_uncategorized');
+          const ppu=ing.unit===comp.unit?(ing.price||0):(comp.price_per_unit||0);
+          const key=`ing_${ing.id}_${comp.unit}`;
+          if(!items[key]) items[key]={name:ing.name,name_en:ing.name_en||'',ingredient_id:ing.id,quantity:0,unit:comp.unit,subcategory:subcat,subcategory_en:subcatEnMap[subcat]||'',total_cost:0,price_per_unit:ppu,_concrete:true};
+          items[key].quantity+=qty;
+          items[key].total_cost+=qty*ppu;
+          continue;
+        }
+        const subcat=comp.subcategory||t('misc_uncategorized');
         const ppu=comp.price_per_unit||0;
         const key=`${subcat}_${comp.unit}`;
         if(!items[key]) items[key]={name:subcat,quantity:0,unit:comp.unit,subcategory:subcat,subcategory_en:subcatEnMap[subcat]||'',total_cost:0,price_per_unit:ppu};
@@ -2665,7 +2683,7 @@ async function generateGeneralOrder(dayIds){
       }
     }
   }
-  return Object.values(items).sort((a,b)=>a.subcategory.localeCompare(b.subcategory)||a.unit.localeCompare(b.unit));
+  return Object.values(items).sort((a,b)=>a.subcategory.localeCompare(b.subcategory)||a.unit.localeCompare(b.unit)||(a._concrete?1:0)-(b._concrete?1:0));
 }
 
 async function generateSpecialOrder(dayIds){
@@ -3806,18 +3824,24 @@ async function renderStandardMealsPage(container){
 
     if(!meal.components.length){card.appendChild(h('div',{class:'empty-msg'},t('empty_no_std_meal_components')));}
     else {
+      const compIngById=new Map((await dbGetAll('ingredients')).map(i=>[i.id,i]));
       const tHdr=h('div',{class:'table-header'});
       [[t('col_category'),180],[t('col_qty_per_100'),100],[t('col_unit'),80],[t('col_price_per_unit'),100]].forEach(([lbl,w])=>tHdr.appendChild(h('span',{style:{width:w+'px',flexShrink:0}},lbl)));
       tHdr.appendChild(h('span',{style:{flex:1}}));
       card.appendChild(tHdr);
       for(const c of meal.components){
-        const ppu=c.price_per_unit||0;
+        const ing=c.ingredient_id?compIngById.get(c.ingredient_id):null;
+        const ppu=ing?(ing.unit===c.unit?(ing.price||0):0):(c.price_per_unit||0);
         const row=h('div',{class:'table-row'});
-        row.appendChild(h('span',{style:{width:'180px',flexShrink:0,fontSize:'13px',fontWeight:'600',color:'var(--green-light)'}},c.subcategory||'—'));
+        // Konkrete Zutat: Name in Textfarbe + Kategorie klein; Kategorie: grün wie bisher
+        const nameSpan=h('span',{style:{width:'180px',flexShrink:0,fontSize:'13px',fontWeight:'600',color:ing?'var(--text)':'var(--green-light)'}},ing?ingDisplayName(ing):(c.subcategory||'—'));
+        if(ing&&ing.subcategory) nameSpan.appendChild(h('span',{style:{display:'block',fontSize:'10px',fontWeight:'400',color:'var(--text-muted)'}},ing.subcategory));
+        row.appendChild(nameSpan);
         row.appendChild(h('span',{style:{width:'100px',flexShrink:0,fontSize:'14px'}},String(c.quantity_per_100)));
         row.appendChild(h('span',{style:{width:'80px',flexShrink:0,color:'var(--text-muted)'}},c.unit));
         row.appendChild(h('span',{style:{width:'100px',flexShrink:0,color:ppu?'var(--text)':'var(--text-muted)'}},ppu?`${ppu.toFixed(2)} €`:'—'));
         const btnGroup=h('span',{style:{marginLeft:'auto',display:'flex',gap:'4px'}});
+        if(!c.ingredient_id) btnGroup.appendChild(h('button',{class:'btn-icon btn-ghost',title:t('go_btn_split'),onClick:()=>splitComponentDialog(meal.id,c)},'⊞'));
         btnGroup.appendChild(h('button',{class:'btn-icon btn-ghost',onClick:()=>editComponentDialog(c)},'✎'));
         btnGroup.appendChild(h('button',{class:'btn-icon btn-danger',onClick:async()=>{await removeMealComponent(c.id);refresh();}},'✕'));
         row.appendChild(btnGroup);
@@ -3859,41 +3883,80 @@ async function renderStandardMealsPage(container){
     });
   }
 
-  async function addComponentDialog(mealId){
+  // Gemeinsamer Dialog für Komponenten: Auswahl ist entweder eine
+  // Kategorie (📂, wie bisher) oder eine konkrete Zutat aus der DB.
+  async function componentDialog(mealId,comp){
     const subcats=await getSubcategories();
-    if(!subcats.length){alert(t('msg_no_subcats'));return;}
-    openFormDialog({
-      title:t('dlg_add_component'),
-      saveLabel:t('btn_add'),
+    const ings=(await dbGetAll('ingredients')).sort((a,b)=>a.name.localeCompare(b.name));
+    if(!subcats.length&&!ings.length){alert(t('msg_no_subcats'));return;}
+    let dlg;
+    // Auswahl-Zustand: Kategorie (subcategory, ingredient_id 0) oder Zutat
+    const pickRef={ingredient_id:comp?(comp.ingredient_id||0):0,subcategory:comp?(comp.subcategory||''):''};
+    const initIng=pickRef.ingredient_id?ings.find(i=>i.id===pickRef.ingredient_id):null;
+    const initLabel=initIng?ingDisplayName(initIng):(pickRef.subcategory||'');
+    const syncPrice=()=>{if(dlg) dlg.inputs.price.parentElement.style.display=pickRef.ingredient_id?'none':'';};
+    const pickField=h('div',{class:`ing-display ${initLabel?'has-value':''}`,style:{cursor:'pointer'},onClick:()=>{
+      const items=[];
+      subcats.forEach(s=>items.push({id:'c'+s.id,label:`📂 ${s.name} — ${t('std_comp_cat_suffix')}`,category:s.name,pick:{ingredient_id:0,subcategory:s.name,label:s.name}}));
+      ings.forEach(i=>items.push({id:'i'+i.id,label:`${ingDisplayName(i)} (${i.unit})${i.subcategory?' — '+i.subcategory:''}`,category:i.subcategory||'',pick:{ingredient_id:i.id,subcategory:i.subcategory||'',label:ingDisplayName(i),ing:i}}));
+      openSearchPicker({
+        title:t('dlg_choose_component'),
+        items,
+        categories:[...new Set(subcats.map(s=>s.name))].sort(),
+        onPick:(it)=>{
+          pickRef.ingredient_id=it.pick.ingredient_id;
+          pickRef.subcategory=it.pick.subcategory;
+          pickField.textContent=it.pick.label;
+          pickField.classList.add('has-value');
+          if(dlg&&it.pick.ing){
+            dlg.inputs.unit.value=it.pick.ing.unit;
+            if(it.pick.ing.price) dlg.inputs.price.value=it.pick.ing.price;
+          }
+          syncPrice();
+        }
+      });
+    }},initLabel||t('std_comp_pick_ph'));
+    dlg=openFormDialog({
+      title:comp?t('dlg_edit_component'):t('dlg_add_component'),
+      saveLabel:comp?t('btn_save'):t('btn_add'),
       fields:[
-        {key:'subcategory',label:t('lbl_category'),type:'select',options:subcats.map(s=>s.name)},
-        {key:'qty',label:t('lbl_qty_per_100'),type:'number',placeholder:'z.B. 25'},
-        {key:'unit',label:t('lbl_unit'),type:'unit',value:'kg'},
-        {key:'price',label:t('lbl_price_per_unit_euro'),type:'number',placeholder:'0.00',step:0.01}
+        {key:'pick',label:t('lbl_category'),type:'custom',build:()=>pickField},
+        {key:'qty',label:t('lbl_qty_per_100'),type:'number',value:comp?comp.quantity_per_100:'',placeholder:'z.B. 25'},
+        {key:'unit',label:t('lbl_unit'),type:'unit',value:comp?comp.unit:'kg'},
+        {key:'price',label:t('lbl_price_per_unit_euro'),type:'number',value:comp?(comp.price_per_unit||''):'',placeholder:'0.00',step:0.01}
       ],
-      rows:['subcategory',['qty','unit'],'price'],
-      onSave:async({subcategory,qty,unit,price})=>{
+      rows:['pick',['qty','unit'],'price'],
+      onSave:async({qty,unit,price})=>{
         if(!qty||qty<=0) return false;
-        await addMealComponent(mealId,0,qty,unit,subcategory,price||0);
+        if(!pickRef.ingredient_id&&!pickRef.subcategory) return false;
+        if(comp) await updateMealComponent(comp.id,qty,unit,pickRef.subcategory,price||0,pickRef.ingredient_id);
+        else await addMealComponent(mealId,pickRef.ingredient_id,qty,unit,pickRef.subcategory,price||0);
         refresh();
       }
     });
+    syncPrice();
   }
+  const addComponentDialog=(mealId)=>componentDialog(mealId,null);
+  const editComponentDialog=(comp)=>componentDialog(null,comp);
 
-  async function editComponentDialog(comp){
-    const subcats=await getSubcategories();
-    openFormDialog({
-      title:t('dlg_edit_component'),
-      fields:[
-        {key:'subcategory',label:t('lbl_category'),type:'select',options:subcats.map(s=>s.name),value:comp.subcategory},
-        {key:'qty',label:t('lbl_qty_per_100'),type:'number',value:comp.quantity_per_100},
-        {key:'unit',label:t('lbl_unit'),type:'unit',value:comp.unit},
-        {key:'price',label:t('lbl_price_per_unit_euro'),type:'number',value:comp.price_per_unit||'',placeholder:'0.00',step:0.01}
-      ],
-      rows:['subcategory',['qty','unit'],'price'],
-      onSave:async({subcategory,qty,unit,price})=>{
-        if(!qty||qty<=0) return false;
-        await updateMealComponent(comp.id,qty,unit,subcategory,price||0);
+  // Kategorie-Komponente konkretisieren — gleicher Dialog wie auf der
+  // Grundbedarf-Seite (Zutaten der Kategorie, Restmengen-Anzeige).
+  // Zutaten-Anteile werden eigene Komponenten; der Rest bleibt als
+  // (verkleinerte) Kategorie-Komponente stehen.
+  function splitComponentDialog(mealId,comp){
+    openSplitDialog({
+      catItem:{subcategory:comp.subcategory,quantity:comp.quantity_per_100,unit:comp.unit,price_per_unit:comp.price_per_unit||0},
+      rec:null,
+      onSave:async(parts)=>{
+        if(!parts.length) return;
+        let used=0;
+        for(const p of parts){
+          used+=p.quantity;
+          await addMealComponent(mealId,p.ingredient_id||0,p.quantity,comp.unit,comp.subcategory,p.price_per_unit||0);
+        }
+        const rest=Math.round((comp.quantity_per_100-used)*10000)/10000;
+        if(rest>0.004) await updateMealComponent(comp.id,rest,comp.unit,comp.subcategory,comp.price_per_unit||0,0);
+        else await removeMealComponent(comp.id);
         refresh();
       }
     });
@@ -3933,8 +3996,8 @@ async function renderGeneralOrderPage(container){
           const title=LANG==='en'?'Shopping list by basic needs':'Einkaufsliste nach Grundbedarf';
           const titleTxt=LANG==='en'?'SHOPPING LIST BY BASIC NEEDS':'EINKAUFSLISTE NACH GRUNDBEDARF';
           const fname='Einkaufsliste_nach_Grundbedarf'+(suffix?'_'+suffix:'');
-          // Konkretisierte Positionen brauchen ihre Zutatennamen im Export
-          const withNames=items.some(i=>i._splitPart||i._splitRest);
+          // Konkretisierte/konkrete Positionen brauchen ihre Zutatennamen im Export
+          const withNames=items.some(i=>i._splitPart||i._splitRest||i._concrete);
           const m2=showModal(h('div',{},
             h('h2',{},t('dlg_export_general')),
             h('div',{class:'modal-buttons'},
@@ -4129,9 +4192,11 @@ async function renderGeneralOrderPage(container){
       const g=groups[num];
       let items=await generateGeneralOrder(g.dayIds);
       const groupEdits=allEdits.filter(e=>(e.group_num||1)===num);
-      // Overrides anwenden (Menge ändern / Position streichen)
+      // Overrides anwenden (Menge ändern / Position streichen) —
+      // konkrete Zutaten-Zeilen matchen über ingredient_id, Kategorie-Zeilen wie bisher
+      const ovFor=i=>groupEdits.find(e=>e.type==='override'&&e.unit===i.unit&&(i._concrete?e.ingredient_id===i.ingredient_id:(!e.ingredient_id&&e.subcategory===i.subcategory)));
       items=items.filter(i=>{
-        const ov=groupEdits.find(e=>e.type==='override'&&e.subcategory===i.subcategory&&e.unit===i.unit);
+        const ov=ovFor(i);
         if(ov&&ov.removed) return false;
         if(ov&&ov.qty_override!=null){i.quantity=ov.qty_override;i.total_cost=ov.qty_override*(i.price_per_unit||0);i._edited=true;}
         return true;
@@ -4143,7 +4208,7 @@ async function renderGeneralOrderPage(container){
       // Konkretisierungen: Kategorie-Position → konkrete Zutaten (+ Rest)
       const splitItems=[];
       items=items.filter(i=>{
-        if(i._extraId) return true;
+        if(i._extraId||i._concrete) return true;
         const sp=groupEdits.find(e=>e.type==='split'&&e.subcategory===i.subcategory&&e.unit===i.unit);
         if(!sp||!(sp.parts||[]).length) return true;
         let used=0;
@@ -4168,9 +4233,9 @@ async function renderGeneralOrderPage(container){
       }
 
       async function upsertOverride(item,patch){
-        const ex=groupEdits.find(e=>e.type==='override'&&e.subcategory===item.subcategory&&e.unit===item.unit);
+        const ex=ovFor(item);
         if(ex){Object.assign(ex,patch);await dbPut('general_order_edits',ex);}
-        else await dbAdd('general_order_edits',{action_id:selectedActionId,group_num:num,type:'override',subcategory:item.subcategory,unit:item.unit,qty_override:null,removed:false,...patch});
+        else await dbAdd('general_order_edits',{action_id:selectedActionId,group_num:num,type:'override',subcategory:item.subcategory,unit:item.unit,ingredient_id:item._concrete?item.ingredient_id:null,qty_override:null,removed:false,...patch});
       }
 
       const listOpts={
@@ -4214,7 +4279,7 @@ async function renderGeneralOrderPage(container){
             });
           } else {
             openFormDialog({
-              title:t('go_dlg_edit_position',item.subcategory),
+              title:t('go_dlg_edit_position',item._concrete?item.name:item.subcategory),
               fields:[{key:'qty',label:`${t('go_lbl_qty')} (${item.unit})`,type:'number',value:round2(item.quantity),step:0.01,required:true}],
               onSave:async({qty})=>{
                 if(qty===''||isNaN(parseFloat(qty))||parseFloat(qty)<0) return false;
@@ -4314,13 +4379,13 @@ function renderGeneralOrderList(parent,items,opts={}){
       }
       row.appendChild(qtySpan);
       row.appendChild(h('span',{style:{width:'60px',color:'var(--text-muted)',fontSize:'13px'}},item.unit));
-      if(item._splitPart||item._splitRest){
+      if(item._splitPart||item._splitRest||item._concrete){
         const pName=LANG==='en'?(item.name_en||item.name):item.name;
         row.appendChild(h('span',{style:{fontSize:'13px',marginLeft:'4px',color:item._splitRest?'var(--text-muted)':'var(--text)',fontStyle:item._splitRest?'italic':'normal'}},pName));
       }
       if(opts.stockHints&&!item._extraId&&!item._splitRest){
-        // Konkretisierte Zutaten matchen direkt, Kategorie-Zeilen über die Subkategorie
-        const rec=item._splitPart
+        // Konkrete Zutaten matchen direkt, Kategorie-Zeilen über die Subkategorie
+        const rec=(item._splitPart||item._concrete)
           ? (item.ingredient_id?opts.stockHints.byIngredient.get(item.ingredient_id):null)
           : opts.stockHints.bySubcat.get(item.subcategory);
         const badge=stockHintBadge(rec,item.unit);
@@ -4329,7 +4394,7 @@ function renderGeneralOrderList(parent,items,opts={}){
       row.appendChild(h('span',{style:{marginLeft:'auto',color:'var(--text-muted)'}},item.total_cost?`${item.total_cost.toFixed(2)} €`:'—'));
       if(opts.onEditQty){
         const btnGroup=h('span',{style:{display:'flex',gap:'4px',marginLeft:'8px'}});
-        if(opts.onSplit&&!item._extraId&&!item._splitPart&&!item._splitRest)
+        if(opts.onSplit&&!item._extraId&&!item._splitPart&&!item._splitRest&&!item._concrete)
           btnGroup.appendChild(h('button',{class:'btn-icon btn-ghost',title:t('go_btn_split'),onClick:()=>opts.onSplit(item)},'⊞'));
         btnGroup.appendChild(h('button',{class:'btn-icon btn-ghost',title:t('btn_edit'),onClick:()=>opts.onEditQty(item)},'✎'));
         if(!item._splitRest)
