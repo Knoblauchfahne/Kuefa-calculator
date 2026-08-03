@@ -13621,10 +13621,10 @@
       "attributes": [
         {
           "name": "Länge",
-          "value": null,
+          "type": "value",
           "unit": "Meter",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "pre"
         }
       ],
       "id": 8
@@ -13637,17 +13637,17 @@
       "attributes": [
         {
           "name": "Abmaße",
-          "value": null,
+          "type": "value",
           "unit": "qm",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "pre"
         },
         {
           "name": "Material",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": false
+          "value": null,
+          "in_name": ""
         }
       ],
       "id": 15
@@ -13660,10 +13660,10 @@
       "attributes": [
         {
           "name": "Fläche",
-          "value": null,
+          "type": "value",
           "unit": "qm",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "pre"
         }
       ],
       "id": 14
@@ -13676,17 +13676,17 @@
       "attributes": [
         {
           "name": "Leistung",
-          "value": null,
+          "type": "value",
           "unit": "kw",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "pre"
         },
         {
           "name": "Art",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "post"
         }
       ],
       "id": 28
@@ -13699,17 +13699,17 @@
       "attributes": [
         {
           "name": "Länge",
-          "value": null,
+          "type": "value",
           "unit": "Meter",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "pre"
         },
         {
           "name": "Trinkwasser",
-          "value": null,
+          "type": "flag",
           "unit": "",
-          "primary": false,
-          "in_name": false
+          "value": null,
+          "in_name": ""
         }
       ],
       "id": 7
@@ -13730,17 +13730,17 @@
       "attributes": [
         {
           "name": "Leistung",
-          "value": null,
+          "type": "value",
           "unit": "kw",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "pre"
         },
         {
           "name": "Art",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "post"
         }
       ],
       "id": 26
@@ -13753,10 +13753,10 @@
       "attributes": [
         {
           "name": "Art",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "post"
         }
       ],
       "id": 20
@@ -13769,24 +13769,24 @@
       "attributes": [
         {
           "name": "Art",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "post"
         },
         {
           "name": "Gumilippe",
-          "value": null,
+          "type": "flag",
           "unit": "",
-          "primary": false,
-          "in_name": false
+          "value": null,
+          "in_name": ""
         },
         {
           "name": "Öffnung",
-          "value": null,
+          "type": "flag",
           "unit": "",
-          "primary": false,
-          "in_name": false
+          "value": null,
+          "in_name": ""
         }
       ],
       "id": 18
@@ -13799,17 +13799,17 @@
       "attributes": [
         {
           "name": "Art",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "post"
         },
         {
           "name": "Höhe",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "post"
         }
       ],
       "id": 17
@@ -13822,10 +13822,10 @@
       "attributes": [
         {
           "name": "Art",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "post"
         }
       ],
       "id": 31
@@ -13838,10 +13838,10 @@
       "attributes": [
         {
           "name": "Art",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "post"
         }
       ],
       "id": 33
@@ -13854,10 +13854,10 @@
       "attributes": [
         {
           "name": "Art",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": false
+          "value": null,
+          "in_name": ""
         }
       ],
       "id": 39
@@ -13870,17 +13870,17 @@
       "attributes": [
         {
           "name": "Länge",
-          "value": null,
+          "type": "value",
           "unit": "Meter",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "pre"
         },
         {
           "name": "Drehstrom",
-          "value": null,
+          "type": "value",
           "unit": "Amper",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "pre"
         }
       ],
       "id": 11
@@ -13893,20 +13893,43 @@
       "attributes": [
         {
           "name": "Länge",
-          "value": null,
+          "type": "value",
           "unit": "Meter",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "pre"
         },
         {
           "name": "Drehstrom",
-          "value": null,
+          "type": "flag",
           "unit": "",
-          "primary": false,
-          "in_name": false
+          "value": null,
+          "in_name": ""
         }
       ],
       "id": 10
+    },
+    {
+      "name": "Kaffeemaschine",
+      "category": "Elektrogeräte",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "unit": "",
+          "value": null,
+          "in_name": "post"
+        },
+        {
+          "name": "Volumen",
+          "type": "value",
+          "unit": "Liter",
+          "value": null,
+          "in_name": "pre"
+        }
+      ],
+      "id": 45
     },
     {
       "name": "Löffel",
@@ -13924,24 +13947,24 @@
       "attributes": [
         {
           "name": "Steckplätze",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "post"
         },
         {
           "name": "Art",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "post"
         },
         {
           "name": "Drehstrom",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "post"
         }
       ],
       "id": 25
@@ -13962,10 +13985,10 @@
       "attributes": [
         {
           "name": "Art",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "post"
         }
       ],
       "id": 35
@@ -13978,24 +14001,24 @@
       "attributes": [
         {
           "name": "Leistung",
-          "value": null,
+          "type": "value",
           "unit": "kw",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "pre"
         },
         {
           "name": "Art",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "post"
         },
         {
           "name": "Anzahl Ringe",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "post"
         }
       ],
       "id": 27
@@ -14008,10 +14031,10 @@
       "attributes": [
         {
           "name": "Art",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "post"
         }
       ],
       "id": 19
@@ -14024,10 +14047,10 @@
       "attributes": [
         {
           "name": "Art",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "post"
         }
       ],
       "id": 34
@@ -14040,10 +14063,10 @@
       "attributes": [
         {
           "name": "Art",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "post"
         }
       ],
       "id": 29
@@ -14056,17 +14079,17 @@
       "attributes": [
         {
           "name": "Art",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "post"
         },
         {
           "name": "Größe",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": false
+          "value": null,
+          "in_name": ""
         }
       ],
       "id": 36
@@ -14079,10 +14102,10 @@
       "attributes": [
         {
           "name": "Art",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "post"
         }
       ],
       "id": 37
@@ -14095,17 +14118,17 @@
       "attributes": [
         {
           "name": "Volumen",
-          "value": null,
+          "type": "value",
           "unit": "Liter",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "pre"
         },
         {
           "name": "Art",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "post"
         }
       ],
       "id": 12
@@ -14134,10 +14157,10 @@
       "attributes": [
         {
           "name": "Art",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": false
+          "value": null,
+          "in_name": ""
         }
       ],
       "id": 38
@@ -14150,13 +14173,82 @@
       "attributes": [
         {
           "name": "Art",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "post"
         }
       ],
       "id": 21
+    },
+    {
+      "name": "Termobehälter",
+      "category": "Termobehälter",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "unit": "",
+          "value": null,
+          "in_name": "post"
+        },
+        {
+          "name": "Volumen",
+          "type": "value",
+          "unit": "Liter",
+          "value": null,
+          "in_name": ""
+        }
+      ],
+      "id": 42
+    },
+    {
+      "name": "Termobox",
+      "category": "Termobehälter",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "unit": "",
+          "value": null,
+          "in_name": "post"
+        },
+        {
+          "name": "Geeignete GN",
+          "type": "text",
+          "unit": "",
+          "value": null,
+          "in_name": ""
+        }
+      ],
+      "id": 44
+    },
+    {
+      "name": "Thermophore",
+      "category": "Termobehälter",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "unit": "",
+          "value": null,
+          "in_name": "post"
+        },
+        {
+          "name": "Volumen",
+          "type": "value",
+          "unit": "Liter",
+          "value": null,
+          "in_name": ""
+        }
+      ],
+      "id": 43
     },
     {
       "name": "Topf",
@@ -14166,17 +14258,17 @@
       "attributes": [
         {
           "name": "Volumen",
-          "value": null,
+          "type": "value",
           "unit": "Liter",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "pre"
         },
         {
           "name": "Durchmesser",
-          "value": null,
+          "type": "value",
           "unit": "cm",
-          "primary": true,
-          "in_name": false
+          "value": null,
+          "in_name": ""
         }
       ],
       "id": 6
@@ -14189,10 +14281,10 @@
       "attributes": [
         {
           "name": "Durchmesser",
-          "value": null,
+          "type": "value",
           "unit": "cm",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "pre"
         }
       ],
       "id": 16
@@ -14205,10 +14297,10 @@
       "attributes": [
         {
           "name": "Art",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "post"
         }
       ],
       "id": 30
@@ -14221,10 +14313,10 @@
       "attributes": [
         {
           "name": "Art",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "post"
         }
       ],
       "id": 32
@@ -14237,10 +14329,10 @@
       "attributes": [
         {
           "name": "Größe",
-          "value": null,
+          "type": "text",
           "unit": "",
-          "primary": true,
-          "in_name": true
+          "value": null,
+          "in_name": "post"
         }
       ],
       "id": 13
@@ -14290,6 +14382,10 @@
     {
       "name": "Strom",
       "id": 5
+    },
+    {
+      "name": "Termobehälter",
+      "id": 14
     },
     {
       "name": "Töpfe",
