@@ -1034,6 +1034,7 @@ de: {
 
   // ── standard meal detail ────────────────────────────────────────
   std_meal_detail_meta: '{0} — gemittelte Richtwerte pro Kategorie für 100 Personen{1}',
+  ph_std_meal_desc: 'z.B. Kartoffeln mit Gemüsecurry und Salat — was diese Variante typischerweise bedeutet',
   std_comp_pick_ph: 'Kategorie oder Zutat wählen …',
   dlg_choose_component: 'Kategorie oder Zutat wählen',
   std_comp_cat_suffix: 'Kategorie',
@@ -1761,6 +1762,7 @@ en: {
 
   // ── standard meal detail ────────────────────────────────────────
   std_meal_detail_meta: '{0} — average reference values per category for 100 people{1}',
+  ph_std_meal_desc: 'e.g. potatoes with vegetable curry and salad — what this variant typically means',
   std_comp_pick_ph: 'Choose category or ingredient …',
   dlg_choose_component: 'Choose category or ingredient',
   std_comp_cat_suffix: 'category',
@@ -2390,13 +2392,13 @@ async function getStandardMeals(){
   for(const m of meals){m.components=(await dbGetByIndex('meal_components','meal_id',m.id));}
   return meals;
 }
-async function createStandardMeal(mealType,name){return dbAdd('standard_meals',{meal_type:mealType,name});}
-async function updateStandardMeal(id,name,mealType){const m=await dbGet('standard_meals',id);if(m){m.name=name;m.meal_type=mealType;await dbPut('standard_meals',m);}}
+async function createStandardMeal(mealType,name,description=''){return dbAdd('standard_meals',{meal_type:mealType,name,description});}
+async function updateStandardMeal(id,name,mealType,description=''){const m=await dbGet('standard_meals',id);if(m){m.name=name;m.meal_type=mealType;m.description=description;await dbPut('standard_meals',m);}}
 async function deleteStandardMeal(id){await dbDelByIndex('meal_components','meal_id',id);await dbDel('standard_meals',id);}
 async function duplicateStandardMeal(id){
   const m=await dbGet('standard_meals',id);
   if(!m) return null;
-  const newId=await dbAdd('standard_meals',{meal_type:m.meal_type,name:m.name+(LANG==='en'?' (copy)':' (Kopie)')});
+  const newId=await dbAdd('standard_meals',{meal_type:m.meal_type,name:m.name+(LANG==='en'?' (copy)':' (Kopie)'),description:m.description||''});
   const comps=await dbGetByIndex('meal_components','meal_id',id);
   for(const c of comps){await dbAdd('meal_components',{standard_meal_id:newId,ingredient_id:c.ingredient_id||0,quantity_per_100:c.quantity_per_100,unit:c.unit,subcategory:c.subcategory||'',price_per_unit:c.price_per_unit||0});}
   return newId;
@@ -3827,6 +3829,7 @@ async function renderStandardMealsPage(container){
     top.appendChild(topBtns);
     card.appendChild(top);
     card.appendChild(h('div',{style:{fontSize:'12px',color:'var(--text-muted)',marginBottom:'12px'}},t('std_meal_detail_meta',mealTypeEnMap[meal.meal_type]||meal.meal_type,'')));
+    if(meal.description) card.appendChild(h('div',{style:{fontSize:'13px',color:'var(--text-muted)',marginBottom:'12px',whiteSpace:'pre-wrap',background:'var(--surface2)',borderRadius:'8px',padding:'10px'}},meal.description));
 
     if(!meal.components.length){card.appendChild(h('div',{class:'empty-msg'},t('empty_no_std_meal_components')));}
     else {
@@ -3865,10 +3868,11 @@ async function renderStandardMealsPage(container){
       saveLabel:t('btn_create'),
       fields:[
         {key:'name',label:t('lbl_name'),type:'text',placeholder:t('ph_meal_name'),required:true},
-        {key:'mealType',label:t('lbl_meal_category'),type:'select',options:mealTypes}
+        {key:'mealType',label:t('lbl_meal_category'),type:'select',options:mealTypes},
+        {key:'desc',label:t('lbl_description'),type:'textarea',rows:2,placeholder:t('ph_std_meal_desc')}
       ],
-      onSave:async({name,mealType})=>{
-        const id=await createStandardMeal(mealType,name);
+      onSave:async({name,mealType,desc})=>{
+        const id=await createStandardMeal(mealType,name,desc);
         stdMealSelectedId=id;refresh();
       }
     });
@@ -3880,10 +3884,11 @@ async function renderStandardMealsPage(container){
       title:t('dlg_edit_std_meal'),
       fields:[
         {key:'name',label:t('lbl_name'),type:'text',value:meal.name,required:true},
-        {key:'mealType',label:t('lbl_meal_category'),type:'select',options:mealTypes,value:meal.meal_type}
+        {key:'mealType',label:t('lbl_meal_category'),type:'select',options:mealTypes,value:meal.meal_type},
+        {key:'desc',label:t('lbl_description'),type:'textarea',rows:2,value:meal.description||'',placeholder:t('ph_std_meal_desc')}
       ],
-      onSave:async({name,mealType})=>{
-        await updateStandardMeal(meal.id,name,mealType);
+      onSave:async({name,mealType,desc})=>{
+        await updateStandardMeal(meal.id,name,mealType,desc);
         refresh();
       }
     });
@@ -4157,7 +4162,8 @@ async function renderGeneralOrderPage(container){
         } else {
           const sel=h('select',{style:{width:'100%',marginTop:'6px'}});
           sel.appendChild(h('option',{value:''},t('std_meal_variant_unset')));
-          variants.forEach(v=>sel.appendChild(h('option',{value:String(v.id)},v.name)));
+          // Beschreibung als Tooltip an den Varianten-Optionen
+          variants.forEach(v=>{const o=h('option',{value:String(v.id)},v.name);if(v.description)o.title=v.description;sel.appendChild(o);});
           sel.appendChild(h('option',{value:'-1'},t('std_meal_variant_skip')));
           sel.value=slot.standard_meal_id?String(slot.standard_meal_id):'';
           if(sel.selectedIndex<0) sel.value='';
