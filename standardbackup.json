@@ -13611,5 +13611,693 @@
       "id": 1
     }
   ],
-  "recipe_ingredient_substitutes": []
+  "recipe_ingredient_substitutes": [],
+  "materials": [
+    {
+      "name": "Abwasserschlauch",
+      "category": "Abwasser",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Länge",
+          "value": null,
+          "unit": "Meter",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 8
+    },
+    {
+      "name": "Bodenplane",
+      "category": "Zelte und Boden",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Abmaße",
+          "value": null,
+          "unit": "qm",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Material",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": false
+        }
+      ],
+      "id": 15
+    },
+    {
+      "name": "Bodenplatten",
+      "category": "Zelte und Boden",
+      "unit": "Stück",
+      "note": "Terraguide",
+      "attributes": [
+        {
+          "name": "Fläche",
+          "value": null,
+          "unit": "qm",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 14
+    },
+    {
+      "name": "Bräter",
+      "category": "Gas",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Leistung",
+          "value": null,
+          "unit": "kw",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 28
+    },
+    {
+      "name": "Frischwasserschlauch",
+      "category": "Frischwasser",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Länge",
+          "value": null,
+          "unit": "Meter",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Trinkwasser",
+          "value": null,
+          "unit": "",
+          "primary": false,
+          "in_name": false
+        }
+      ],
+      "id": 7
+    },
+    {
+      "name": "Gabel",
+      "category": "Besteck",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [],
+      "id": 23
+    },
+    {
+      "name": "Gasbrenner",
+      "category": "Gas",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Leistung",
+          "value": null,
+          "unit": "kw",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 26
+    },
+    {
+      "name": "Gewürzmühle",
+      "category": "Elektrogeräte",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 20
+    },
+    {
+      "name": "GN Deckel",
+      "category": "GN-Behälter",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Gumilippe",
+          "value": null,
+          "unit": "",
+          "primary": false,
+          "in_name": false
+        },
+        {
+          "name": "Öffnung",
+          "value": null,
+          "unit": "",
+          "primary": false,
+          "in_name": false
+        }
+      ],
+      "id": 18
+    },
+    {
+      "name": "GN-Behälter",
+      "category": "GN-Behälter",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Höhe",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 17
+    },
+    {
+      "name": "Hahn",
+      "category": "Frischwasser",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 31
+    },
+    {
+      "name": "Hahn",
+      "category": "Abwasser",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 33
+    },
+    {
+      "name": "Handtücher",
+      "category": "Spühlen",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": false
+        }
+      ],
+      "id": 39
+    },
+    {
+      "name": "Kabel",
+      "category": "Strom",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Länge",
+          "value": null,
+          "unit": "Meter",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Drehstrom",
+          "value": null,
+          "unit": "Amper",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 11
+    },
+    {
+      "name": "Kabeltrommel",
+      "category": "Strom",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Länge",
+          "value": null,
+          "unit": "Meter",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Drehstrom",
+          "value": null,
+          "unit": "",
+          "primary": false,
+          "in_name": false
+        }
+      ],
+      "id": 10
+    },
+    {
+      "name": "Löffel",
+      "category": "Besteck",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [],
+      "id": 22
+    },
+    {
+      "name": "Mehrfachsteckdose",
+      "category": "Strom",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Steckplätze",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Drehstrom",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 25
+    },
+    {
+      "name": "Messer",
+      "category": "Besteck",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [],
+      "id": 24
+    },
+    {
+      "name": "Messer",
+      "category": "Schnippeln",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 35
+    },
+    {
+      "name": "Paellaringbrenner",
+      "category": "Gas",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Leistung",
+          "value": null,
+          "unit": "kw",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Anzahl Ringe",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 27
+    },
+    {
+      "name": "Pürierstab",
+      "category": "Elektrogeräte",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 19
+    },
+    {
+      "name": "Schaumkelle",
+      "category": "Ausgabe- und Kochgeschirr",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 34
+    },
+    {
+      "name": "Schmutzwasserpumpe",
+      "category": "Abwasser",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 29
+    },
+    {
+      "name": "Schneidebrett",
+      "category": "Schnippeln",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Größe",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": false
+        }
+      ],
+      "id": 36
+    },
+    {
+      "name": "Schneidemaschine",
+      "category": "Elektrogeräte",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 37
+    },
+    {
+      "name": "Schöpfkelle",
+      "category": "Ausgabe- und Kochgeschirr",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Volumen",
+          "value": null,
+          "unit": "Liter",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 12
+    },
+    {
+      "name": "Schwämme",
+      "category": "Spühlen",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [],
+      "id": 41
+    },
+    {
+      "name": "Spühllappen",
+      "category": "Spühlen",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [],
+      "id": 40
+    },
+    {
+      "name": "Spühltücher",
+      "category": "Spühlen",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": false
+        }
+      ],
+      "id": 38
+    },
+    {
+      "name": "Teller",
+      "category": "Besteck",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 21
+    },
+    {
+      "name": "Topf",
+      "category": "Töpfe",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Volumen",
+          "value": null,
+          "unit": "Liter",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Durchmesser",
+          "value": null,
+          "unit": "cm",
+          "primary": true,
+          "in_name": false
+        }
+      ],
+      "id": 6
+    },
+    {
+      "name": "Topfdeckel",
+      "category": "Töpfe",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Durchmesser",
+          "value": null,
+          "unit": "cm",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 16
+    },
+    {
+      "name": "Verteiler",
+      "category": "Frischwasser",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 30
+    },
+    {
+      "name": "Verteiler",
+      "category": "Abwasser",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 32
+    },
+    {
+      "name": "Zelt",
+      "category": "Zelte und Boden",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Größe",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 13
+    }
+  ],
+  "material_categories": [
+    {
+      "name": "Abwasser",
+      "id": 3
+    },
+    {
+      "name": "Ausgabe- und Kochgeschirr",
+      "id": 6
+    },
+    {
+      "name": "Besteck",
+      "id": 10
+    },
+    {
+      "name": "Elektrogeräte",
+      "id": 9
+    },
+    {
+      "name": "Frischwasser",
+      "id": 2
+    },
+    {
+      "name": "Gas",
+      "id": 11
+    },
+    {
+      "name": "GN-Behälter",
+      "id": 8
+    },
+    {
+      "name": "Kabelbrücken",
+      "id": 4
+    },
+    {
+      "name": "Schnippeln",
+      "id": 12
+    },
+    {
+      "name": "Spühlen",
+      "id": 13
+    },
+    {
+      "name": "Strom",
+      "id": 5
+    },
+    {
+      "name": "Töpfe",
+      "id": 1
+    },
+    {
+      "name": "Zelte und Boden",
+      "id": 7
+    }
+  ]
 }
