@@ -865,9 +865,13 @@ de: {
   stock_attr_name_ph: 'Eigenschaft (z.B. Volumen)',
   stock_attr_value_ph: 'Wert',
   stock_attr_unit_ph: 'Einheit',
-  stock_attr_primary: 'Primär',
-  stock_attr_in_name: 'Im Namen',
-  stock_attr_hint: 'Primär = Eigenschaft mit Wert und Einheit (z.B. Volumen 100 L); der Wert ist optional und kann im Lager ausgefüllt werden. Nicht primär = Ja/Nein-Eigenschaft (z.B. Trinkwasserqualität), wird beim Einlagern als Checkbox abgefragt. „Im Namen" setzt Wert und Einheit bzw. den Eigenschaftsnamen vor den Namen — z.B. „100 L Topf".',
+  stock_attr_type_value: 'Wert + Einheit',
+  stock_attr_type_text: 'Text',
+  stock_attr_type_flag: 'Ja/Nein',
+  stock_attr_pos_none: '— nicht im Namen —',
+  stock_attr_pos_pre: 'Prä (vor dem Namen)',
+  stock_attr_pos_post: 'Post (nach dem Namen)',
+  stock_attr_hint: 'Typ „Wert + Einheit" (z.B. Volumen 100 L), „Text" (z.B. Art: Schnellkochtopf) oder „Ja/Nein" (z.B. Trinkwasser — wird beim Einlagern als Checkbox abgefragt). Der Wert ist optional und kann im Lager ausgefüllt werden. Prä/Post bestimmt die Position im Anzeigenamen: „100 L Topf" bzw. „GN-Behälter 1/1 hoch".',
   stock_lbl_attr_values: 'Eigenschaften',
   stock_tab_loans: '🔁 Ausleihe',
   loan_btn_new: '+ Ausleihliste',
@@ -1102,7 +1106,7 @@ de: {
   help_ingredients_title: '📦  Zutaten',
   help_ingredients_text: 'Die Zutatendatenbank. Jede Zutat hat einen Namen, eine Einheit (kg, l, etc.), einen Preis pro Einheit als Referenz, eine Kategorie, einen Abschnitt-Wert (% Verlust beim Schälen/Schneiden), einen Kochfaktor (Gewichtsänderung beim Kochen), Verarbeitungs- und Lagerhinweise, zugeordnete Allergene sowie frei definierbare Tags (z.B. „bio", „regional", „TK"). Tags helfen beim Filtern und bei der Suche nach Zutaten — auch innerhalb der Rezeptbearbeitung. Der Abschnitt-Wert wird bei der Bestellmengenberechnung automatisch aufgeschlagen und im Rezept als Netto-Menge angezeigt. Der Kochfaktor ist ein Multiplikator (1 = unverändert, 2.6 = trockene Kichererbsen werden gekocht 2,6-fach schwerer, 0.15 = Spinat schrumpft beim Garen auf 15%) und wird in Rezept und PDF als Gekocht-Spalte dargestellt – rein informativ, damit der Koch weiß, wie viel am Ende auf dem Teller landet. Die Einheit wird automatisch in die Rezepte übernommen. Zutaten lassen sich als .csv oder .txt exportieren und importieren.',
   help_stock_title: '🗄  Lager',
-  help_stock_text: 'Erfasst, was schon vorhanden ist — getrennt nach Lebensmittellager und Materiallager. Lebensmittel-Einträge sind mit Zutaten aus der Datenbank verknüpft; dadurch zeigen beide Einkaufslisten automatisch einen Hinweis, wenn etwas davon lagert: mit Menge (z.B. „🥫 5 kg auf Lager") oder ohne Menge als „auf Lager — prüfen". Die Bestellmengen werden bewusst NICHT automatisch abgezogen — du entscheidest beim Prüfen der Liste selbst. Die Menge ist optional: Ohne Menge dient der Eintrag als Erinnerung, dass etwas da ist. Jeder Eintrag zeigt sein Einlagerungsdatum („eingelagert vor 3 Monaten"), damit alte Bestände nicht blind übernommen werden. Das Materiallager ist für Nicht-Lebensmittel gedacht (Müllbeutel, Alufolie, Gaskartuschen …). Grundlage dafür ist die Materialliste — der Katalog aller Materialien, unabhängig davon, ob sie gerade im Lager liegen. Materialien haben frei anlegbare Kategorien; neue Materialien und Kategorien lassen sich direkt aus jedem Auswahl-Dialog heraus anlegen. Zusätzlich kann jedes Material frei definierbare Eigenschaften haben (z.B. Volumen in L, Länge in m) — mit optionalem Default-Wert, Primär-Markierung und der Option, im Namen zu erscheinen: Ein „Topf" mit Eigenschaft Volumen wird im Lager mit ausgefülltem Wert dann als „100 L Topf" angezeigt; primäre Eigenschaften tragen Wert und Einheit, nicht-primäre sind Ja/Nein-Eigenschaften (z.B. Trinkwasserqualität) und werden beim Einlagern als Checkbox abgefragt. Materialliste, Lebensmittellager und Materiallager lassen sich jeweils gesondert exportieren (PDF, CSV, JSON) und als JSON additiv importieren: Lagereinträge werden über den Zutaten- bzw. Materialnamen zugeordnet, identische Einträge und vorhandene Materialnamen werden übersprungen; der Materiallager-Export bettet die verwendeten Materialien samt Kategorien mit ein. Der Tab „Ausleihe" erstellt situationsbedingte Ausleihlisten (z.B. pro Aktion), damit alles wieder zurückkommt: „⇄ Befüllen" öffnet die Liste als Zwei-Spalten-Ansicht — links das vorhandene Material aus dem Lager (per →-Knopf mit wählbarer Anzahl übernehmen), rechts die Ausleihliste; über „+ Position" oben lässt sich auch Material ergänzen, das nicht in der linken Liste steht (aus dem Katalog oder frei eingetragen). Rückgabe per Häkchen abhaken (mit Fortschrittsanzeige) und als A4-Liste mit Raus/Zurück-Spalten und Unterschriftszeilen drucken. Der Auswahl-Dialog zeigt zuerst die tatsächlichen Lagereinträge (📦, inkl. Bestand) — so verknüpfte Positionen markieren den Lagereintrag mit „🔁 verliehen: Liste", bis die Rückgabe abgehakt ist. Die Einträge in Lebensmittel- und Materiallager lassen sich innerhalb ihrer Kategorie per Drag & Drop (⠿-Griff) manuell sortieren. In Rezepten kann optional benötigtes Material angegeben werden (Anzahl + Notiz, z.B. „2× Topf groß — für die Sauce") — es erscheint in der Rezept-Ansicht. Lagerbestände und Materialliste bleiben beim Laden des Standard-Datenbestands erhalten und sind im Komplett-Backup enthalten; im Standard-Datenbestand mitgelieferte Materialien werden dabei additiv ergänzt (nichts wird überschrieben).',
+  help_stock_text: 'Erfasst, was schon vorhanden ist — getrennt nach Lebensmittellager und Materiallager. Lebensmittel-Einträge sind mit Zutaten aus der Datenbank verknüpft; dadurch zeigen beide Einkaufslisten automatisch einen Hinweis, wenn etwas davon lagert: mit Menge (z.B. „🥫 5 kg auf Lager") oder ohne Menge als „auf Lager — prüfen". Die Bestellmengen werden bewusst NICHT automatisch abgezogen — du entscheidest beim Prüfen der Liste selbst. Die Menge ist optional: Ohne Menge dient der Eintrag als Erinnerung, dass etwas da ist. Jeder Eintrag zeigt sein Einlagerungsdatum („eingelagert vor 3 Monaten"), damit alte Bestände nicht blind übernommen werden. Das Materiallager ist für Nicht-Lebensmittel gedacht (Müllbeutel, Alufolie, Gaskartuschen …). Grundlage dafür ist die Materialliste — der Katalog aller Materialien, unabhängig davon, ob sie gerade im Lager liegen. Materialien haben frei anlegbare Kategorien; neue Materialien und Kategorien lassen sich direkt aus jedem Auswahl-Dialog heraus anlegen. Zusätzlich kann jedes Material frei definierbare Eigenschaften haben — in drei Typen: „Wert + Einheit" (z.B. Volumen 100 L), „Text" (z.B. Art: Schnellkochtopf) und „Ja/Nein" (z.B. Trinkwasser — wird beim Einlagern als Checkbox abgefragt). Der Wert ist optional und kann im Lager pro Eintrag ausgefüllt werden. Über Prä/Post erscheinen Eigenschaften vor oder nach dem Namen: Ein „Topf" mit Volumen (Prä) wird als „100 L Topf" angezeigt, ein „GN-Behälter" mit Art und Höhe (Post) als „GN-Behälter 1/1 hoch". Materialliste, Lebensmittellager und Materiallager lassen sich jeweils gesondert exportieren (PDF, CSV, JSON) und als JSON additiv importieren: Lagereinträge werden über den Zutaten- bzw. Materialnamen zugeordnet, identische Einträge und vorhandene Materialnamen werden übersprungen; der Materiallager-Export bettet die verwendeten Materialien samt Kategorien mit ein. Der Tab „Ausleihe" erstellt situationsbedingte Ausleihlisten (z.B. pro Aktion), damit alles wieder zurückkommt: „⇄ Befüllen" öffnet die Liste als Zwei-Spalten-Ansicht — links das vorhandene Material aus dem Lager (per →-Knopf mit wählbarer Anzahl übernehmen), rechts die Ausleihliste; über „+ Position" oben lässt sich auch Material ergänzen, das nicht in der linken Liste steht (aus dem Katalog oder frei eingetragen). Rückgabe per Häkchen abhaken (mit Fortschrittsanzeige) und als A4-Liste mit Raus/Zurück-Spalten und Unterschriftszeilen drucken. Der Auswahl-Dialog zeigt zuerst die tatsächlichen Lagereinträge (📦, inkl. Bestand) — so verknüpfte Positionen markieren den Lagereintrag mit „🔁 verliehen: Liste", bis die Rückgabe abgehakt ist. Die Einträge in Lebensmittel- und Materiallager lassen sich innerhalb ihrer Kategorie per Drag & Drop (⠿-Griff) manuell sortieren. In Rezepten kann optional benötigtes Material angegeben werden (Anzahl + Notiz, z.B. „2× Topf groß — für die Sauce") — es erscheint in der Rezept-Ansicht. Lagerbestände und Materialliste bleiben beim Laden des Standard-Datenbestands erhalten und sind im Komplett-Backup enthalten; im Standard-Datenbestand mitgelieferte Materialien werden dabei additiv ergänzt (nichts wird überschrieben).',
   help_database_title: '💾  Datenbank',
   help_database_text: 'Backup & Verwaltung. Hier kannst du die gesamte Datenbank als JSON-Datei exportieren (Backup) oder eine zuvor exportierte Datei importieren. Einzelne Tabellen können separat gelöscht werden. Nützlich für Datensicherung, Übertragung auf andere Rechner oder Browser. Achtung: Beim Import werden alle aktuellen Daten überschrieben. Die Datenbank-Übersicht zeigt dir, wie viele Einträge in jeder Tabelle gespeichert sind. Über „Standard-Daten laden" kannst du den mitgelieferten Basis-Datenbestand direkt aus dem Repo holen — dabei werden nur Rezepte, Zutaten und Stammdaten überschrieben, deine Kochaktionen, Kochtage, Mahlzeit-Slots und Rezept-Zuweisungen bleiben erhalten. Über „Kochaktionen teilen" kannst du einzelne Aktionen samt ihrer Rezept-Zuweisungen als JSON an andere Teammitglieder weitergeben — beim Import werden die Aktionen additiv hinzugefügt, nichts wird überschrieben.',
   help_season_title: '🗓  Saisonkalender',
@@ -1582,9 +1586,13 @@ en: {
   stock_attr_name_ph: 'Attribute (e.g. volume)',
   stock_attr_value_ph: 'Value',
   stock_attr_unit_ph: 'Unit',
-  stock_attr_primary: 'Primary',
-  stock_attr_in_name: 'In name',
-  stock_attr_hint: 'Primary = attribute with value and unit (e.g. volume 100 L); the value is optional and can be filled in storage. Non-primary = yes/no attribute (e.g. drinking water quality), asked as a checkbox when adding to storage. "In name" puts value and unit (or the attribute name) before the name — e.g. "100 L pot".',
+  stock_attr_type_value: 'Value + unit',
+  stock_attr_type_text: 'Text',
+  stock_attr_type_flag: 'Yes/no',
+  stock_attr_pos_none: '— not in name —',
+  stock_attr_pos_pre: 'Pre (before the name)',
+  stock_attr_pos_post: 'Post (after the name)',
+  stock_attr_hint: 'Type "value + unit" (e.g. volume 100 L), "text" (e.g. kind: pressure cooker) or "yes/no" (e.g. drinking water — asked as a checkbox when adding to storage). The value is optional and can be filled in storage. Pre/post sets the position in the display name: "100 L pot" or "GN container 1/1 deep".',
   stock_lbl_attr_values: 'Attributes',
   stock_tab_loans: '🔁 Loans',
   loan_btn_new: '+ Loan list',
@@ -1819,7 +1827,7 @@ en: {
   help_ingredients_title: '📦  Ingredients',
   help_ingredients_text: 'The ingredient database. Each ingredient has a name, a unit (kg, l, etc.), a reference price per unit, a category, a trim value (% loss during peeling/cutting), a cook factor (weight change during cooking), processing and storage notes, assigned allergens and freely definable tags (e.g. "organic", "regional", "frozen"). Tags help with filtering and searching for ingredients — including within recipe editing. The trim value is automatically added to order quantities and shown in recipes as the net quantity. The cook factor is a multiplier (1 = unchanged, 2.6 = dry chickpeas become 2.6× heavier when cooked, 0.15 = spinach shrinks to 15% when cooked) and is shown in recipes and PDFs as a "Cooked" column — purely informational so the chef knows how much ends up on the plate. The unit is automatically adopted into recipes. Ingredients can be exported and imported as .csv or .txt files.',
   help_stock_title: '🗄  Storage',
-  help_stock_text: 'Records what you already have — split into food storage and material storage. Food entries are linked to ingredients from the database; both shopping lists automatically show a hint when something is in stock: with a quantity (e.g. "🥫 5 kg in stock") or without one as "in stock — check". Order quantities are deliberately NOT deducted automatically — you decide yourself when reviewing the list. The quantity is optional: without one, the entry serves as a reminder that something is there. Each entry shows its storage date ("stored 3 months ago") so old stock is not trusted blindly. The material storage is for non-food items (bin bags, foil, gas cartridges …). It is based on the material list — the catalogue of all materials, regardless of whether they are currently in storage. Materials have freely creatable categories; new materials and categories can be created directly from any picker dialog. Each material can also have freely definable attributes (e.g. volume in L, length in m) — with an optional default value, a primary flag and the option to appear in the name: a "pot" with a volume attribute shows up in storage as "100 L pot" once the value is filled in; primary attributes carry value and unit, non-primary ones are yes/no attributes (e.g. drinking water quality) asked as a checkbox when adding to storage. Material list, food storage and material storage can each be exported separately (PDF, CSV, JSON) and imported additively from JSON: storage entries are matched by ingredient/material name, identical entries and existing material names are skipped; the material storage export embeds the referenced materials including categories. The "Loans" tab creates situational loan lists (e.g. per event) so everything comes back: "⇄ Fill" opens the list as a two-column view — available material from storage on the left (take over via → with a chosen count), the loan list on the right; "+ Item" at the top adds material that is not in the left list (from the catalogue or free text). Tick off returns (with progress display) and print an A4 list with out/back columns and signature lines. The picker shows the actual storage entries first (📦, incl. stock) — items linked this way mark the storage entry with "🔁 lent out: list" until the return is ticked off. Entries in food and material storage can be sorted manually within their category via drag & drop (⠿ handle).Recipes can optionally specify required equipment (count + note, e.g. "2× large pot — for the sauce") — it appears in the recipe view. Storage and material list are preserved when loading the default dataset and are included in the full backup; materials shipped with the default dataset are merged in additively (nothing is overwritten).',
+  help_stock_text: 'Records what you already have — split into food storage and material storage. Food entries are linked to ingredients from the database; both shopping lists automatically show a hint when something is in stock: with a quantity (e.g. "🥫 5 kg in stock") or without one as "in stock — check". Order quantities are deliberately NOT deducted automatically — you decide yourself when reviewing the list. The quantity is optional: without one, the entry serves as a reminder that something is there. Each entry shows its storage date ("stored 3 months ago") so old stock is not trusted blindly. The material storage is for non-food items (bin bags, foil, gas cartridges …). It is based on the material list — the catalogue of all materials, regardless of whether they are currently in storage. Materials have freely creatable categories; new materials and categories can be created directly from any picker dialog. Each material can also have freely definable attributes — in three types: "value + unit" (e.g. volume 100 L), "text" (e.g. kind: pressure cooker) and "yes/no" (e.g. drinking water — asked as a checkbox when adding to storage). The value is optional and can be filled per storage entry. Via pre/post, attributes appear before or after the name: a "pot" with volume (pre) shows as "100 L pot", a "GN container" with kind and depth (post) as "GN container 1/1 deep". Material list, food storage and material storage can each be exported separately (PDF, CSV, JSON) and imported additively from JSON: storage entries are matched by ingredient/material name, identical entries and existing material names are skipped; the material storage export embeds the referenced materials including categories. The "Loans" tab creates situational loan lists (e.g. per event) so everything comes back: "⇄ Fill" opens the list as a two-column view — available material from storage on the left (take over via → with a chosen count), the loan list on the right; "+ Item" at the top adds material that is not in the left list (from the catalogue or free text). Tick off returns (with progress display) and print an A4 list with out/back columns and signature lines. The picker shows the actual storage entries first (📦, incl. stock) — items linked this way mark the storage entry with "🔁 lent out: list" until the return is ticked off. Entries in food and material storage can be sorted manually within their category via drag & drop (⠿ handle).Recipes can optionally specify required equipment (count + note, e.g. "2× large pot — for the sauce") — it appears in the recipe view. Storage and material list are preserved when loading the default dataset and are included in the full backup; materials shipped with the default dataset are merged in additively (nothing is overwritten).',
   help_database_title: '💾  Database',
   help_database_text: 'Backup & management. Export the entire database as a JSON file (backup) or import a previously exported file. Individual tables can be deleted separately. Useful for data backup, transfer to another computer or browser. Warning: import overwrites all current data. The database overview shows how many entries are stored in each table. Via "Load default data" you can fetch the built-in base dataset directly from the repo — only recipes, ingredients and master data are overwritten, your cooking events, cooking days, meal slots and recipe assignments remain. Via "Share cooking events" you can share individual events including recipe assignments as JSON with team members — on import, events are added additively, nothing is overwritten.',
   help_season_title: '🗓  Seasonal Calendar',
@@ -6152,27 +6160,49 @@ async function mergeMaterialsAdditive(data){
 // Anzeigename eines Materials: „Im Namen"-Eigenschaften (Wert + Einheit)
 // werden vorangestellt — z.B. „100 L Topf". values (optional) überschreibt
 // die Katalog-Defaults, z.B. mit den Werten eines Lagereintrags.
-// Primäre Eigenschaften tragen Wert + Einheit („Volumen 100 L"),
-// nicht-primäre sind Ja/Nein-Eigenschaften („Trinkwasserqualität").
-function materialDisplayName(mat,values){
-  if(!mat) return '?';
-  const parts=(mat.attributes||[]).filter(a=>a.in_name).map(a=>{
-    const v=(values&&values[a.name]!=null&&values[a.name]!=='')?values[a.name]:a.value;
-    if(a.primary) return (v!=null&&v!=='')?`${v} ${a.unit||''}`.trim():null;
-    return v?a.name:null;
-  }).filter(Boolean);
-  return parts.length?`${parts.join(' ')} ${mat.name}`:mat.name;
+// Eigenschafts-Typen: 'value' (Wert + Einheit, z.B. Volumen 100 L),
+// 'text' (freier Text, z.B. Art: Schnellkochtopf), 'flag' (Ja/Nein,
+// z.B. Trinkwasser). in_name: '' | 'pre' | 'post' — Position im Namen.
+// Alte Einträge (primary/in_name:bool) werden beim Lesen migriert.
+function normalizeAttr(a){
+  if(a.type) return a;
+  const type=a.primary?(a.unit?'value':'text'):'flag';
+  // Migration wie beim Standard-Datenbestand: Wert-Eigenschaften prä
+  // („100 L Topf"), Text-Eigenschaften post („GN-Behälter 1/1 hoch")
+  return {
+    name:a.name,
+    type,
+    unit:a.unit||'',
+    value:a.value??null,
+    in_name:a.in_name?(type==='value'?'pre':'post'):''
+  };
 }
 
-// Kurze Zusammenfassung aller Eigenschaften („Volumen: 50 L · Trinkwasser: ✓"),
-// primäre zuerst. values wie bei materialDisplayName.
-function materialAttrSummary(mat,values){
-  const attrs=(mat&&mat.attributes)||[];
-  if(!attrs.length) return '';
-  return [...attrs].sort((a,b)=>(b.primary?1:0)-(a.primary?1:0)).map(a=>{
+// Anzeigename: Prä-Eigenschaften vor, Post-Eigenschaften hinter dem Namen —
+// „100 L Topf" bzw. „GN-Behälter 1/1 hoch". values überschreibt Defaults.
+function materialDisplayName(mat,values){
+  if(!mat) return '?';
+  const pre=[],post=[];
+  (mat.attributes||[]).map(normalizeAttr).forEach(a=>{
+    if(!a.in_name) return;
     const v=(values&&values[a.name]!=null&&values[a.name]!=='')?values[a.name]:a.value;
-    if(a.primary) return `${a.name}: ${(v!=null&&v!=='')?v:'—'}${a.unit?' '+a.unit:''}`;
-    return `${a.name}: ${v?'✓':'—'}`;
+    let part=null;
+    if(a.type==='flag') part=v?a.name:null;
+    else if(v!=null&&v!=='') part=a.type==='value'?`${v} ${a.unit||''}`.trim():String(v);
+    if(part) (a.in_name==='post'?post:pre).push(part);
+  });
+  return [...pre,mat.name,...post].join(' ');
+}
+
+// Kurze Zusammenfassung aller Eigenschaften
+// („Volumen: 50 L · Art: Schnellkochtopf · Trinkwasser: ✓").
+function materialAttrSummary(mat,values){
+  const attrs=((mat&&mat.attributes)||[]).map(normalizeAttr);
+  if(!attrs.length) return '';
+  return attrs.map(a=>{
+    const v=(values&&values[a.name]!=null&&values[a.name]!=='')?values[a.name]:a.value;
+    if(a.type==='flag') return `${a.name}: ${v?'✓':'—'}`;
+    return `${a.name}: ${(v!=null&&v!=='')?v:'—'}${a.type==='value'&&a.unit?' '+a.unit:''}`;
   }).join(' · ');
 }
 
@@ -6217,24 +6247,31 @@ async function openMaterialDialog(rec,onSaved){
   const attrRows=[];
   const attrRowsDiv=h('div',{});
   function addAttrRow(data){
+    const a=data?normalizeAttr(data):null;
     const nameInput=h('input',{type:'text',placeholder:t('stock_attr_name_ph'),style:{flex:'1',minWidth:'110px'}});
-    if(data) nameInput.value=data.name;
+    if(a) nameInput.value=a.name;
+    // Typ: Wert+Einheit / Text / Ja-Nein
+    const typeSel=h('select',{style:{width:'110px'}});
+    [['value',t('stock_attr_type_value')],['text',t('stock_attr_type_text')],['flag',t('stock_attr_type_flag')]]
+      .forEach(([v,l])=>{const o=h('option',{value:v},l);if(a&&a.type===v)o.selected=true;typeSel.appendChild(o);});
     const valueInput=h('input',{type:'text',placeholder:t('stock_attr_value_ph'),style:{width:'60px'}});
-    if(data&&data.value!=null&&data.primary) valueInput.value=data.value;
+    if(a&&a.value!=null&&a.type!=='flag') valueInput.value=a.value;
     const unitInput=h('input',{type:'text',placeholder:t('stock_attr_unit_ph'),style:{width:'60px'}});
-    if(data&&data.unit) unitInput.value=data.unit;
-    // Primär = Eigenschaft mit Wert + Einheit; sonst Ja/Nein-Eigenschaft
-    const primCb=h('input',{type:'checkbox'});primCb.checked=data?!!data.primary:true;
-    const syncPrim=()=>{const show=primCb.checked?'':'none';valueInput.style.display=show;unitInput.style.display=show;};
-    primCb.addEventListener('change',syncPrim);
-    const nameCb=h('input',{type:'checkbox'});nameCb.checked=!!(data&&data.in_name);
+    if(a&&a.unit) unitInput.value=a.unit;
+    // Position im Anzeigenamen
+    const posSel=h('select',{style:{width:'150px'}});
+    [['',t('stock_attr_pos_none')],['pre',t('stock_attr_pos_pre')],['post',t('stock_attr_pos_post')]]
+      .forEach(([v,l])=>{const o=h('option',{value:v},l);if(a&&a.in_name===v)o.selected=true;posSel.appendChild(o);});
+    const syncType=()=>{
+      valueInput.style.display=typeSel.value==='flag'?'none':'';
+      unitInput.style.display=typeSel.value==='value'?'':'none';
+    };
+    typeSel.addEventListener('change',syncType);
     const rowEl=h('div',{style:{display:'flex',gap:'6px',alignItems:'center',marginBottom:'4px',flexWrap:'wrap'}});
-    const rowObj={nameInput,valueInput,unitInput,primCb,nameCb,rowEl};
-    rowEl.append(nameInput,valueInput,unitInput,
-      h('label',{class:'checkbox',style:{fontSize:'11px',whiteSpace:'nowrap'}},primCb,t('stock_attr_primary')),
-      h('label',{class:'checkbox',style:{fontSize:'11px',whiteSpace:'nowrap'}},nameCb,t('stock_attr_in_name')),
+    const rowObj={nameInput,typeSel,valueInput,unitInput,posSel,rowEl};
+    rowEl.append(nameInput,typeSel,valueInput,unitInput,posSel,
       h('button',{class:'btn-icon btn-danger',onClick:()=>{rowEl.remove();const i=attrRows.indexOf(rowObj);if(i>=0)attrRows.splice(i,1);}},'✕'));
-    syncPrim();
+    syncType();
     attrRows.push(rowObj);attrRowsDiv.appendChild(rowEl);
   }
   ((rec&&rec.attributes)||[]).forEach(a=>addAttrRow(a));
@@ -6266,15 +6303,19 @@ async function openMaterialDialog(rec,onSaved){
       const attributes=attrRows
         .filter(r=>r.nameInput.value.trim())
         .map(r=>{
-          const primary=r.primCb.checked;
+          const type=r.typeSel.value;
           let value=null,unit='';
-          if(primary){
+          if(type!=='flag'){
             const raw=r.valueInput.value.trim();
-            const num=parseFloat(raw.replace(',','.'));
-            value=raw===''?null:((!isNaN(num)&&/^[\d.,]+$/.test(raw))?num:raw);
-            unit=r.unitInput.value.trim();
+            if(type==='value'){
+              const num=parseFloat(raw.replace(',','.'));
+              value=raw===''?null:((!isNaN(num)&&/^[\d.,]+$/.test(raw))?num:raw);
+              unit=r.unitInput.value.trim();
+            } else {
+              value=raw===''?null:raw;
+            }
           }
-          return {name:r.nameInput.value.trim(),value,unit,primary,in_name:r.nameCb.checked};
+          return {name:r.nameInput.value.trim(),type,value,unit,in_name:r.posSel.value};
         });
       let saved;
       if(rec){Object.assign(rec,{name,category,unit,note,attributes});await dbPut('materials',rec);saved=rec;}
@@ -6665,23 +6706,23 @@ async function renderStockPage(container){
     function renderAttrValueInputs(mat,values){
       attrValuesDiv.innerHTML='';
       for(const k of Object.keys(attrInputs)) delete attrInputs[k];
-      const attrs=(mat&&mat.attributes)||[];
+      const attrs=((mat&&mat.attributes)||[]).map(normalizeAttr);
       if(!attrs.length){attrValuesDiv.appendChild(h('span',{style:{fontSize:'11px',color:'var(--text-muted)'}},'—'));return;}
       attrs.forEach(a=>{
-        if(a.primary){
-          // Wert-Eigenschaft: Eingabefeld, Platzhalter zeigt Katalog-Default
-          const input=h('input',{type:'text',placeholder:(a.value!=null&&a.value!=='')?String(a.value):t('stock_attr_value_ph'),style:{width:'90px'}});
-          const v=values&&values[a.name]!=null?values[a.name]:'';
-          if(v!=='') input.value=v;
-          attrInputs[a.name]={kind:'value',el:input};
-          attrValuesDiv.appendChild(h('div',{style:{display:'flex',alignItems:'center',gap:'8px',marginBottom:'4px'}},
-            h('span',{style:{width:'150px',fontSize:'12px',fontWeight:'600'}},`${a.name}${a.unit?' ('+a.unit+')':''}`),input));
-        } else {
+        if(a.type==='flag'){
           // Ja/Nein-Eigenschaft: Checkbox
           const cb=h('input',{type:'checkbox'});
           cb.checked=!!(values&&values[a.name]);
           attrInputs[a.name]={kind:'flag',el:cb};
           attrValuesDiv.appendChild(h('label',{class:'checkbox',style:{fontSize:'12px',display:'flex',gap:'8px',marginBottom:'4px'}},cb,a.name));
+        } else {
+          // Wert- oder Text-Eigenschaft: Eingabefeld, Platzhalter zeigt Katalog-Default
+          const input=h('input',{type:'text',placeholder:(a.value!=null&&a.value!=='')?String(a.value):t('stock_attr_value_ph'),style:{width:a.type==='value'?'90px':'140px'}});
+          const v=values&&values[a.name]!=null?values[a.name]:'';
+          if(v!=='') input.value=v;
+          attrInputs[a.name]={kind:'value',el:input};
+          attrValuesDiv.appendChild(h('div',{style:{display:'flex',alignItems:'center',gap:'8px',marginBottom:'4px'}},
+            h('span',{style:{width:'150px',fontSize:'12px',fontWeight:'600'}},`${a.name}${a.type==='value'&&a.unit?' ('+a.unit+')':''}`),input));
         }
       });
     }
