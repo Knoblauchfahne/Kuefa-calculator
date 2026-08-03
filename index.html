@@ -504,6 +504,9 @@ de: {
   btn_backup_download: '⬇  Backup herunterladen',
   btn_import_json: '📂  JSON-Datei auswählen',
   btn_load_default: '🌐  Standard-Daten laden',
+  btn_export_default: '⬆ exportieren',
+  btn_export_default_hint: 'Aktuellen Datenbestand als standardbackup.json exportieren (ohne Aktionen, Lager und Ausleihen) — zum Aktualisieren des Standards im Repo',
+  status_default_exported: '✓ standardbackup.json exportiert — die Datei kann direkt ins Repo gelegt werden',
   btn_check_updates: '🔄  Nach Updates suchen',
   btn_new_ingredient: 'Neue Zutat',
   btn_import_only_new: 'Nur neue hinzufügen (bestehende behalten)',
@@ -1228,6 +1231,9 @@ en: {
   btn_backup_download: '⬇  Download backup',
   btn_import_json: '📂  Select JSON file',
   btn_load_default: '🌐  Load default data',
+  btn_export_default: '⬆ export',
+  btn_export_default_hint: 'Export the current dataset as standardbackup.json (without events, storage and loans) — for updating the default in the repo',
+  status_default_exported: '✓ standardbackup.json exported — the file can be placed directly in the repo',
   btn_check_updates: '🔄  Check for updates',
   btn_new_ingredient: 'New ingredient',
   btn_import_only_new: 'Add new only (keep existing)',
@@ -7364,6 +7370,20 @@ async function renderDatabasePage(container){
       defaultStatus.textContent=t('status_import_error',e.message);
     }
   }},t('btn_load_default')));
+  // Unauffälliger Gegenpart: aktuellen Datenbestand als standardbackup.json
+  // exportieren (ohne lokale Daten: Aktionen, Planungen, Lager, Ausleihen) —
+  // die Datei kann direkt ins Repo gelegt werden
+  defaultCard.appendChild(h('button',{class:'btn btn-ghost btn-sm',style:{marginLeft:'8px',fontSize:'11px'},title:t('btn_export_default_hint'),onClick:async()=>{
+    const skip=['actions','cooking_days','meal_slots','assignments','general_order_edits','food_stock','material_stock','loan_lists'];
+    const data={_meta:{version:DB_VERSION,exported_at:new Date().toISOString(),app:'KüFa Organizer'}};
+    for(const store of ALL_STORES){
+      if(skip.includes(store)) continue;
+      data[store]=await dbGetAll(store);
+    }
+    downloadFile('standardbackup.json',JSON.stringify(data,null,2)+'\n','application/json');
+    defaultStatus.style.color='var(--green-light)';
+    defaultStatus.textContent=t('status_default_exported');
+  }},t('btn_export_default')));
   defaultCard.appendChild(defaultStatus);
   body.appendChild(defaultCard);
 
