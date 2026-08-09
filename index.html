@@ -560,6 +560,7 @@ de: {
   lbl_portions: 'Portionen',
   lbl_meal_category: 'Mahlzeitkategorie',
   lbl_qty_per_100: 'Ø-Menge / 100 Personen',
+  lbl_qty_for_persons: 'Ø-Menge für {0} Personen',
   lbl_price_per_unit_euro: 'Preis pro Einheit (€)',
   lbl_portions_for: 'Zutaten — Angaben für',
   lbl_portions_unit: 'Portion(en)',
@@ -621,6 +622,8 @@ de: {
   col_cooked: 'Gekocht',
   col_cost: 'Kosten',
   col_qty_per_100: 'Ø-Menge/100P.',
+  col_qty_for_persons: 'Ø-Menge/{0}P.',
+  col_per_person: 'pro Person',
   col_price_per_unit: 'Preis/Einheit',
   col_day: 'Tag',
   col_meal: 'Mahlzeit',
@@ -1033,7 +1036,11 @@ de: {
   export_trim_label: 'Abschnitt:',
 
   // ── standard meal detail ────────────────────────────────────────
-  std_meal_detail_meta: '{0} — gemittelte Richtwerte pro Kategorie für 100 Personen{1}',
+  std_meal_detail_meta: '{0} — gemittelte Richtwerte (intern gespeichert pro 100 Personen){1}',
+  std_meal_calc_for: 'Berechnet für',
+  std_meal_persons_suffix: 'Personen',
+  std_meal_cost_total: 'Gesamt: {0} € für {1} Personen — {2} € pro Person',
+  std_meal_cost_incomplete: 'Positionen ohne Preis sind nicht enthalten',
   ph_std_meal_desc: 'z.B. Kartoffeln mit Gemüsecurry und Salat — was diese Variante typischerweise bedeutet',
   std_comp_pick_ph: 'Kategorie oder Zutat wählen …',
   dlg_choose_component: 'Kategorie oder Zutat wählen',
@@ -1288,6 +1295,7 @@ en: {
   lbl_portions: 'Servings',
   lbl_meal_category: 'Meal category',
   lbl_qty_per_100: 'Avg. qty / 100 people',
+  lbl_qty_for_persons: 'Avg. qty for {0} people',
   lbl_price_per_unit_euro: 'Price per unit (€)',
   lbl_portions_for: 'Ingredients — amounts for',
   lbl_portions_unit: 'serving(s)',
@@ -1349,6 +1357,8 @@ en: {
   col_cooked: 'Cooked',
   col_cost: 'Cost',
   col_qty_per_100: 'Avg/100p.',
+  col_qty_for_persons: 'Avg/{0}p.',
+  col_per_person: 'per person',
   col_price_per_unit: 'Price/unit',
   col_day: 'Day',
   col_meal: 'Meal',
@@ -1761,7 +1771,11 @@ en: {
   export_trim_label: 'Trim:',
 
   // ── standard meal detail ────────────────────────────────────────
-  std_meal_detail_meta: '{0} — average reference values per category for 100 people{1}',
+  std_meal_detail_meta: '{0} — average reference values (stored internally per 100 people){1}',
+  std_meal_calc_for: 'Calculated for',
+  std_meal_persons_suffix: 'people',
+  std_meal_cost_total: 'Total: {0} € for {1} people — {2} € per person',
+  std_meal_cost_incomplete: 'items without a price are not included',
   ph_std_meal_desc: 'e.g. potatoes with vegetable curry and salad — what this variant typically means',
   std_comp_pick_ph: 'Choose category or ingredient …',
   dlg_choose_component: 'Choose category or ingredient',
@@ -3689,6 +3703,7 @@ async function renderIngredientsPage(container){
 //  STANDARD MEALS PAGE
 // ══════════════════════════════════════════════════════════════
 let stdMealSelectedId=null;
+let stdMealPersonCount=100; // Anzeige-Basis der Detailseite; gespeichert wird immer pro 100P
 
 function showMealTypeCatsDialog(onClose){
   const content=h('div',{});
@@ -3828,25 +3843,38 @@ async function renderStandardMealsPage(container){
     topBtns.appendChild(h('button',{class:'btn btn-danger btn-sm',onClick:async()=>{if(confirm(t('msg_confirm_delete_standard_meal'))){await deleteStandardMeal(meal.id);stdMealSelectedId=null;refresh();}}},t('btn_delete')));
     top.appendChild(topBtns);
     card.appendChild(top);
-    card.appendChild(h('div',{style:{fontSize:'12px',color:'var(--text-muted)',marginBottom:'12px'}},t('std_meal_detail_meta',mealTypeEnMap[meal.meal_type]||meal.meal_type,'')));
+    card.appendChild(h('div',{style:{fontSize:'12px',color:'var(--text-muted)',marginBottom:'8px'}},t('std_meal_detail_meta',mealTypeEnMap[meal.meal_type]||meal.meal_type,'')));
+    // Frei wählbare Anzeige-Personenzahl — Tabelle, Dialoge und Kosten skalieren mit
+    const pFactor=stdMealPersonCount/100;
+    const fmtQty=n=>{const s=String(Math.round(n*10000)/10000);return LANG==='en'?s:s.replace('.',',');};
+    const pcInput=h('input',{type:'number',min:'1',step:'1',value:String(stdMealPersonCount),style:{width:'80px'},onChange:()=>{
+      const v=parseInt(pcInput.value,10);
+      if(v>0&&v!==stdMealPersonCount){stdMealPersonCount=v;refresh();}
+      else pcInput.value=String(stdMealPersonCount);
+    }});
+    card.appendChild(h('div',{style:{display:'flex',alignItems:'center',gap:'8px',marginBottom:'12px',fontSize:'13px'}},
+      h('span',{style:{fontWeight:'600'}},t('std_meal_calc_for')),pcInput,h('span',{},t('std_meal_persons_suffix'))));
     if(meal.description) card.appendChild(h('div',{style:{fontSize:'13px',color:'var(--text-muted)',marginBottom:'12px',whiteSpace:'pre-wrap',background:'var(--surface2)',borderRadius:'8px',padding:'10px'}},meal.description));
 
     if(!meal.components.length){card.appendChild(h('div',{class:'empty-msg'},t('empty_no_std_meal_components')));}
     else {
       const compIngById=new Map((await dbGetAll('ingredients')).map(i=>[i.id,i]));
       const tHdr=h('div',{class:'table-header'});
-      [[t('col_category'),180],[t('col_qty_per_100'),100],[t('col_unit'),80],[t('col_price_per_unit'),100]].forEach(([lbl,w])=>tHdr.appendChild(h('span',{style:{width:w+'px',flexShrink:0}},lbl)));
+      [[t('col_category'),180],[t('col_qty_for_persons',stdMealPersonCount),100],[t('col_per_person'),90],[t('col_unit'),80],[t('col_price_per_unit'),100]].forEach(([lbl,w])=>tHdr.appendChild(h('span',{style:{width:w+'px',flexShrink:0}},lbl)));
       tHdr.appendChild(h('span',{style:{flex:1}}));
       card.appendChild(tHdr);
+      let totalCost=0,costMissing=false;
       for(const c of meal.components){
         const ing=c.ingredient_id?compIngById.get(c.ingredient_id):null;
         const ppu=ing?(ing.unit===c.unit?(ing.price||0):0):(c.price_per_unit||0);
+        if(ppu) totalCost+=c.quantity_per_100*pFactor*ppu; else costMissing=true;
         const row=h('div',{class:'table-row'});
         // Konkrete Zutat: Name in Textfarbe + Kategorie klein; Kategorie: grün wie bisher
         const nameSpan=h('span',{style:{width:'180px',flexShrink:0,fontSize:'13px',fontWeight:'600',color:ing?'var(--text)':'var(--green-light)'}},ing?ingDisplayName(ing):(c.subcategory||'—'));
         if(ing&&ing.subcategory) nameSpan.appendChild(h('span',{style:{display:'block',fontSize:'10px',fontWeight:'400',color:'var(--text-muted)'}},ing.subcategory));
         row.appendChild(nameSpan);
-        row.appendChild(h('span',{style:{width:'100px',flexShrink:0,fontSize:'14px'}},String(c.quantity_per_100)));
+        row.appendChild(h('span',{style:{width:'100px',flexShrink:0,fontSize:'14px'}},fmtQty(c.quantity_per_100*pFactor)));
+        row.appendChild(h('span',{style:{width:'90px',flexShrink:0,fontSize:'12px',color:'var(--text-muted)'}},fmtQty(c.quantity_per_100/100)+' '+c.unit));
         row.appendChild(h('span',{style:{width:'80px',flexShrink:0,color:'var(--text-muted)'}},c.unit));
         row.appendChild(h('span',{style:{width:'100px',flexShrink:0,color:ppu?'var(--text)':'var(--text-muted)'}},ppu?`${ppu.toFixed(2)} €`:'—'));
         const btnGroup=h('span',{style:{marginLeft:'auto',display:'flex',gap:'4px'}});
@@ -3856,6 +3884,11 @@ async function renderStandardMealsPage(container){
         row.appendChild(btnGroup);
         card.appendChild(row);
       }
+      const eur=n=>{const s=n.toFixed(2);return LANG==='en'?s:s.replace('.',',');};
+      const sumLine=h('div',{style:{padding:'10px 0 2px',textAlign:'right',fontSize:'13px',fontWeight:'600'}},
+        t('std_meal_cost_total',eur(totalCost),stdMealPersonCount,eur(totalCost/stdMealPersonCount)));
+      if(costMissing) sumLine.appendChild(h('span',{style:{display:'block',fontSize:'11px',fontWeight:'400',color:'var(--text-muted)'}},'⚠ '+t('std_meal_cost_incomplete')));
+      card.appendChild(sumLine);
     }
     detailDiv.appendChild(card);
   }
@@ -3932,7 +3965,7 @@ async function renderStandardMealsPage(container){
       saveLabel:comp?t('btn_save'):t('btn_add'),
       fields:[
         {key:'pick',label:t('lbl_category'),type:'custom',build:()=>pickField},
-        {key:'qty',label:t('lbl_qty_per_100'),type:'number',value:comp?comp.quantity_per_100:'',placeholder:'z.B. 25'},
+        {key:'qty',label:t('lbl_qty_for_persons',stdMealPersonCount),type:'number',value:comp?Math.round(comp.quantity_per_100*stdMealPersonCount/100*10000)/10000:'',placeholder:'z.B. 25'},
         {key:'unit',label:t('lbl_unit'),type:'unit',value:comp?comp.unit:'kg'},
         {key:'price',label:t('lbl_price_per_unit_euro'),type:'number',value:comp?(comp.price_per_unit||''):'',placeholder:'0.00',step:0.01}
       ],
@@ -3940,8 +3973,10 @@ async function renderStandardMealsPage(container){
       onSave:async({qty,unit,price})=>{
         if(!qty||qty<=0) return false;
         if(!pickRef.ingredient_id&&!pickRef.subcategory) return false;
-        if(comp) await updateMealComponent(comp.id,qty,unit,pickRef.subcategory,price||0,pickRef.ingredient_id);
-        else await addMealComponent(mealId,pickRef.ingredient_id,qty,unit,pickRef.subcategory,price||0);
+        // Eingabe bezieht sich auf die aktuell eingestellte Personenzahl → auf 100P normieren
+        const qty100=Math.round(qty*100/stdMealPersonCount*10000)/10000;
+        if(comp) await updateMealComponent(comp.id,qty100,unit,pickRef.subcategory,price||0,pickRef.ingredient_id);
+        else await addMealComponent(mealId,pickRef.ingredient_id,qty100,unit,pickRef.subcategory,price||0);
         refresh();
       }
     });
@@ -3956,14 +3991,16 @@ async function renderStandardMealsPage(container){
   // (verkleinerte) Kategorie-Komponente stehen.
   function splitComponentDialog(mealId,comp){
     openSplitDialog({
-      catItem:{subcategory:comp.subcategory,quantity:comp.quantity_per_100,unit:comp.unit,price_per_unit:comp.price_per_unit||0},
+      // Dialog arbeitet in der aktuell eingestellten Personenzahl, gespeichert wird pro 100P
+      catItem:{subcategory:comp.subcategory,quantity:Math.round(comp.quantity_per_100*stdMealPersonCount/100*10000)/10000,unit:comp.unit,price_per_unit:comp.price_per_unit||0},
       rec:null,
       onSave:async(parts)=>{
         if(!parts.length) return;
         let used=0;
         for(const p of parts){
-          used+=p.quantity;
-          await addMealComponent(mealId,p.ingredient_id||0,p.quantity,comp.unit,comp.subcategory,p.price_per_unit||0);
+          const q100=Math.round(p.quantity*100/stdMealPersonCount*10000)/10000;
+          used+=q100;
+          await addMealComponent(mealId,p.ingredient_id||0,q100,comp.unit,comp.subcategory,p.price_per_unit||0);
         }
         const rest=Math.round((comp.quantity_per_100-used)*10000)/10000;
         if(rest>0.004) await updateMealComponent(comp.id,rest,comp.unit,comp.subcategory,comp.price_per_unit||0,0);
