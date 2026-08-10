@@ -1037,6 +1037,8 @@ de: {
 
   // ── standard meal detail ────────────────────────────────────────
   std_meal_detail_meta: '{0} — gemittelte Richtwerte (intern gespeichert pro 100 Personen){1}',
+  lbl_std_meal_default: 'Standard — bei der Einkaufsliste vorausgewählt',
+  std_meal_default_badge: '★ Standard',
   std_meal_calc_for: 'Berechnet für',
   std_meal_persons_suffix: 'Personen',
   std_meal_cost_total: 'Gesamt: {0} € für {1} Personen — {2} € pro Person',
@@ -1772,6 +1774,8 @@ en: {
 
   // ── standard meal detail ────────────────────────────────────────
   std_meal_detail_meta: '{0} — average reference values (stored internally per 100 people){1}',
+  lbl_std_meal_default: 'Default — preselected in the shopping list',
+  std_meal_default_badge: '★ Default',
   std_meal_calc_for: 'Calculated for',
   std_meal_persons_suffix: 'people',
   std_meal_cost_total: 'Total: {0} € for {1} people — {2} € per person',
@@ -2406,8 +2410,25 @@ async function getStandardMeals(){
   for(const m of meals){m.components=(await dbGetByIndex('meal_components','meal_id',m.id));}
   return meals;
 }
-async function createStandardMeal(mealType,name,description=''){return dbAdd('standard_meals',{meal_type:mealType,name,description});}
-async function updateStandardMeal(id,name,mealType,description=''){const m=await dbGet('standard_meals',id);if(m){m.name=name;m.meal_type=mealType;m.description=description;await dbPut('standard_meals',m);}}
+async function createStandardMeal(mealType,name,description='',isDefault=false){
+  const id=await dbAdd('standard_meals',{meal_type:mealType,name,description,is_default:isDefault});
+  if(isDefault) await clearOtherStandardMealDefaults(mealType,id);
+  return id;
+}
+async function updateStandardMeal(id,name,mealType,description='',isDefault=false){
+  const m=await dbGet('standard_meals',id);
+  if(m){
+    m.name=name;m.meal_type=mealType;m.description=description;m.is_default=isDefault;
+    await dbPut('standard_meals',m);
+    if(isDefault) await clearOtherStandardMealDefaults(mealType,id);
+  }
+}
+// Pro Mahlzeitkategorie kann nur eine Variante Standard sein
+async function clearOtherStandardMealDefaults(mealType,keepId){
+  for(const m of await dbGetAll('standard_meals')){
+    if(m.id!==keepId&&m.meal_type===mealType&&m.is_default){m.is_default=false;await dbPut('standard_meals',m);}
+  }
+}
 async function deleteStandardMeal(id){await dbDelByIndex('meal_components','meal_id',id);await dbDel('standard_meals',id);}
 async function duplicateStandardMeal(id){
   const m=await dbGet('standard_meals',id);
@@ -2418,16 +2439,16 @@ async function duplicateStandardMeal(id){
   return newId;
 }
 // Variante eines Slots auflösen: explizite Auswahl (slot.standard_meal_id) vor
-// Default-Variante der Kategorie; -1 = Slot vom Einkauf ausgeschlossen.
-// Nur explizite Auswahl zählt: ohne gewählte Variante (oder bei
-// „nicht einkaufen" = -1) wird der Slot nicht eingerechnet.
+// Standard-Variante (is_default) der Kategorie; -1 = Slot vom Einkauf
+// ausgeschlossen. Ohne Auswahl und ohne Standard-Variante wird der Slot
+// nicht eingerechnet (Warnzähler).
 function resolveSlotMeal(slot,meals){
   if(slot.standard_meal_id===-1) return null;
   if(slot.standard_meal_id){
     const m=meals.find(x=>x.id===slot.standard_meal_id&&x.meal_type===slot.meal_type);
     if(m) return m;
   }
-  return null;
+  return meals.find(x=>x.meal_type===slot.meal_type&&x.is_default)||null;
 }
 async function setSlotStandardMeal(slotId,mealId){
   const s=await dbGet('meal_slots',slotId);
@@ -3809,7 +3830,9 @@ async function renderStandardMealsPage(container){
         catMeals.forEach(m=>{
           const isSel=m.id===stdMealSelectedId;
           const item=h('div',{class:`list-item ${isSel?'active':''}`,onClick:()=>{stdMealSelectedId=m.id;refresh();}});
-          item.appendChild(h('div',{class:'item-name',style:{fontSize:'13px'}},m.name));
+          const nameDiv=h('div',{class:'item-name',style:{fontSize:'13px'}},m.name);
+          if(m.is_default) nameDiv.appendChild(h('span',{style:{fontSize:'10px',fontWeight:'600',color:'var(--green-light)',marginLeft:'6px'}},t('std_meal_default_badge')));
+          item.appendChild(nameDiv);
           listDiv.appendChild(item);
         });
       }
@@ -3835,7 +3858,9 @@ async function renderStandardMealsPage(container){
 
     const card=h('div',{class:'card'});
     const top=h('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'8px'}});
-    top.appendChild(h('span',{style:{fontSize:'16px',fontWeight:'700'}},meal.name));
+    const titleSpan=h('span',{style:{fontSize:'16px',fontWeight:'700'}},meal.name);
+    if(meal.is_default) titleSpan.appendChild(h('span',{style:{fontSize:'11px',fontWeight:'600',color:'var(--green-light)',marginLeft:'8px'}},t('std_meal_default_badge')));
+    top.appendChild(titleSpan);
     const topBtns=h('div',{style:{display:'flex',gap:'8px'}});
     topBtns.appendChild(h('button',{class:'btn btn-surface btn-sm',onClick:()=>addComponentDialog(meal.id)},t('btn_add_subcategory_btn')));
     topBtns.appendChild(h('button',{class:'btn btn-surface btn-sm',onClick:async()=>{const nid=await duplicateStandardMeal(meal.id);if(nid){stdMealSelectedId=nid;refresh();}}},t('btn_duplicate_recipe')));
@@ -3864,14 +3889,22 @@ async function renderStandardMealsPage(container){
       tHdr.appendChild(h('span',{style:{flex:1}}));
       card.appendChild(tHdr);
       let totalCost=0,costMissing=false;
+      // Nach Kategorie gruppieren (wie auf der Grundbedarf-Seite): Kategorie-Zeile
+      // in Grün oben, konkretisierte Zutaten eingerückt darunter
+      const compGroups=[];const compByCat={};
       for(const c of meal.components){
         const ing=c.ingredient_id?compIngById.get(c.ingredient_id):null;
+        const cat=c.subcategory||(ing&&ing.subcategory)||t('misc_uncategorized');
+        if(!compByCat[cat]){compByCat[cat]={name:cat,cats:[],ings:[]};compGroups.push(compByCat[cat]);}
+        (ing?compByCat[cat].ings:compByCat[cat].cats).push({c,ing});
+      }
+      const appendCompRow=(c,ing)=>{
         const ppu=ing?(ing.unit===c.unit?(ing.price||0):0):(c.price_per_unit||0);
         if(ppu) totalCost+=c.quantity_per_100*pFactor*ppu; else costMissing=true;
         const row=h('div',{class:'table-row'});
-        // Konkrete Zutat: Name in Textfarbe + Kategorie klein; Kategorie: grün wie bisher
-        const nameSpan=h('span',{style:{width:'180px',flexShrink:0,fontSize:'13px',fontWeight:'600',color:ing?'var(--text)':'var(--green-light)'}},ing?ingDisplayName(ing):(c.subcategory||'—'));
-        if(ing&&ing.subcategory) nameSpan.appendChild(h('span',{style:{display:'block',fontSize:'10px',fontWeight:'400',color:'var(--text-muted)'}},ing.subcategory));
+        const nameSpan=ing
+          ?h('span',{style:{width:'180px',flexShrink:0,fontSize:'13px',paddingLeft:'14px'}},'↳ '+ingDisplayName(ing))
+          :h('span',{style:{width:'180px',flexShrink:0,fontSize:'13px',fontWeight:'600',color:'var(--green-light)'}},c.subcategory||'—');
         row.appendChild(nameSpan);
         row.appendChild(h('span',{style:{width:'100px',flexShrink:0,fontSize:'14px'}},fmtQty(c.quantity_per_100*pFactor)));
         row.appendChild(h('span',{style:{width:'90px',flexShrink:0,fontSize:'12px',color:'var(--text-muted)'}},fmtQty(c.quantity_per_100/100)+' '+c.unit));
@@ -3883,6 +3916,12 @@ async function renderStandardMealsPage(container){
         btnGroup.appendChild(h('button',{class:'btn-icon btn-danger',onClick:async()=>{await removeMealComponent(c.id);refresh();}},'✕'));
         row.appendChild(btnGroup);
         card.appendChild(row);
+      };
+      for(const g of compGroups){
+        // Gruppe ohne Kategorie-Restzeile: grüne Überschriftszeile mit dem Kategorienamen
+        if(!g.cats.length) card.appendChild(h('div',{class:'table-row'},h('span',{style:{fontSize:'13px',fontWeight:'600',color:'var(--green-light)'}},g.name)));
+        for(const {c,ing} of g.cats) appendCompRow(c,ing);
+        for(const {c,ing} of g.ings) appendCompRow(c,ing);
       }
       const eur=n=>{const s=n.toFixed(2);return LANG==='en'?s:s.replace('.',',');};
       const sumLine=h('div',{style:{padding:'10px 0 2px',textAlign:'right',fontSize:'13px',fontWeight:'600'}},
@@ -3893,19 +3932,28 @@ async function renderStandardMealsPage(container){
     detailDiv.appendChild(card);
   }
 
+  // Checkbox „Standard" als Custom-Feld (openFormDialog kennt keinen checkbox-Typ)
+  function buildDefaultCheckbox(checked){
+    const cb=h('input',{type:'checkbox'});cb.checked=checked;
+    const field=h('label',{style:{display:'flex',alignItems:'center',gap:'8px',fontSize:'13px',cursor:'pointer'}},cb,h('span',{},t('lbl_std_meal_default')));
+    return {cb,field};
+  }
+
   async function addMealDialog(){
     const mealTypes=await getMealTypeNames();
     if(!mealTypes.length){alert(t('msg_please_add_meal_cats'));return;}
+    const def=buildDefaultCheckbox(false);
     openFormDialog({
       title:t('dlg_new_std_meal'),
       saveLabel:t('btn_create'),
       fields:[
         {key:'name',label:t('lbl_name'),type:'text',placeholder:t('ph_meal_name'),required:true},
         {key:'mealType',label:t('lbl_meal_category'),type:'select',options:mealTypes},
-        {key:'desc',label:t('lbl_description'),type:'textarea',rows:2,placeholder:t('ph_std_meal_desc')}
+        {key:'desc',label:t('lbl_description'),type:'textarea',rows:2,placeholder:t('ph_std_meal_desc')},
+        {key:'isDef',label:'',type:'custom',build:()=>def.field}
       ],
       onSave:async({name,mealType,desc})=>{
-        const id=await createStandardMeal(mealType,name,desc);
+        const id=await createStandardMeal(mealType,name,desc,def.cb.checked);
         stdMealSelectedId=id;refresh();
       }
     });
@@ -3913,15 +3961,17 @@ async function renderStandardMealsPage(container){
 
   async function editMealDialog(meal){
     const mealTypes=await getMealTypeNames();
+    const def=buildDefaultCheckbox(!!meal.is_default);
     openFormDialog({
       title:t('dlg_edit_std_meal'),
       fields:[
         {key:'name',label:t('lbl_name'),type:'text',value:meal.name,required:true},
         {key:'mealType',label:t('lbl_meal_category'),type:'select',options:mealTypes,value:meal.meal_type},
-        {key:'desc',label:t('lbl_description'),type:'textarea',rows:2,value:meal.description||'',placeholder:t('ph_std_meal_desc')}
+        {key:'desc',label:t('lbl_description'),type:'textarea',rows:2,value:meal.description||'',placeholder:t('ph_std_meal_desc')},
+        {key:'isDef',label:'',type:'custom',build:()=>def.field}
       ],
       onSave:async({name,mealType,desc})=>{
-        await updateStandardMeal(meal.id,name,mealType,desc);
+        await updateStandardMeal(meal.id,name,mealType,desc,def.cb.checked);
         refresh();
       }
     });
@@ -4204,6 +4254,8 @@ async function renderGeneralOrderPage(container){
           sel.appendChild(h('option',{value:'-1'},t('std_meal_variant_skip')));
           sel.value=slot.standard_meal_id?String(slot.standard_meal_id):'';
           if(sel.selectedIndex<0) sel.value='';
+          // Ohne (gültige) explizite Auswahl: Standard-Variante der Kategorie vorauswählen
+          if(sel.value===''){const def=variants.find(v=>v.is_default);if(def) sel.value=String(def.id);}
           const markUnset=()=>{sel.style.borderColor=sel.value===''?'var(--accent)':'';};
           markUnset();
           sel.addEventListener('change',async()=>{
