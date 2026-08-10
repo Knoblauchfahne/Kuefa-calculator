@@ -223,6 +223,23 @@ Dann im Browser `http://localhost:8000`.
 
 ---
 
+## Werkzeuge
+
+### Rezept-Import (`tools/rezept_import.py`)
+
+Wandelt Rezepte von Websites (schema.org-JSON-LD, z. B. Chefkoch), aus
+Markdown- oder Textdateien in das Text-Importformat des Rezeptbuchs um.
+Zutaten werden gegen die `standardbackup.json` abgeglichen (exakt,
+Singular/Plural, unscharf), Mengen auf pro Person umgerechnet.
+
+```
+py tools/rezept_import.py https://www.chefkoch.de/rezepte/... rezept.md -o import.txt
+```
+
+Danach in der App: **Rezeptbuch → Import** und die erzeugte Datei wählen.
+Optional: `pip install recipe-scrapers` erweitert die Website-Unterstützung
+(wird automatisch als Fallback genutzt). Details: `py tools/rezept_import.py --help`.
+
 ## Roadmap / offene Baustellen
 
 Der Code ist historisch gewachsen, es gibt bekannte Kandidaten für
