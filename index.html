@@ -126,6 +126,11 @@ label.checkbox input{accent-color:var(--accent);width:16px;height:16px}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
 .cal-day-header{text-align:center;font-size:11px;color:var(--text-muted);padding:4px}
 .cal-day{text-align:center;padding:10px 4px;border-radius:8px;cursor:pointer;font-size:13px;border:none;background:transparent;color:var(--text);transition:all .12s}
+.cal-matrix{border-collapse:collapse;width:100%}
+.cal-matrix th{font-size:11px;color:var(--text-muted);font-weight:600;padding:4px 6px;text-align:left;white-space:nowrap;border-bottom:1px solid var(--border)}
+.cal-matrix td{padding:3px 6px}
+.cal-matrix input{width:64px}
+.cal-matrix .day-label{font-size:12px;white-space:nowrap;cursor:pointer}
 .cal-day:hover{background:var(--surface2)}
 .cal-day.cooking{background:var(--accent-dim);color:var(--accent);font-weight:700}
 .cal-day.selected{background:var(--accent);color:#fff;font-weight:700}
@@ -735,10 +740,21 @@ de: {
   cal_days_count: '{0} Tage',
   cal_meals_header: 'Mahlzeiten — {0}',
   cal_portionen_unit: 'Portionen',
+  cal_matrix_header: 'Mahlzeiten & Portionen',
+  cal_matrix_hint: 'Leeres Feld = keine Mahlzeit. Neue Kochtage übernehmen die Mahlzeiten des Vortags.',
+  cal_day_meta: '{0} Mahlz., {1} Port.',
+  cal_day_meta_empty: 'keine Mahlzeiten',
+  cal_range_btn: '↔ Zeitraum',
+  cal_range_hint: 'Zeitraum: ersten und letzten Tag anklicken (oder Shift-Klick)',
+  cal_copy_prev_day: 'Mahlzeiten vom Vortag übernehmen',
+  cal_col_day: 'Tag',
 
   // ── action dialogs ────────────────────────────────────────
   dlg_new_action: 'Neue Kochaktion',
   dlg_edit_action: 'Kochaktion bearbeiten',
+  dlg_dup_action: 'Kochaktion duplizieren',
+  lbl_new_start_date: 'Neues Startdatum',
+  dup_action_hint: 'Kochtage und Mahlzeiten (inkl. Varianten-Auswahl) werden entsprechend verschoben übernommen. Rezept-Zuordnungen und Bestelllisten-Änderungen werden nicht kopiert.',
 
   // ── ingredient dialogs ────────────────────────────────────────
   dlg_new_ingredient: 'Neue Zutat',
@@ -1472,10 +1488,21 @@ en: {
   cal_days_count: '{0} days',
   cal_meals_header: 'Meals — {0}',
   cal_portionen_unit: 'Servings',
+  cal_matrix_header: 'Meals & portions',
+  cal_matrix_hint: 'Empty field = no meal. New cooking days copy the previous day\'s meals.',
+  cal_day_meta: '{0} meals, {1} port.',
+  cal_day_meta_empty: 'no meals',
+  cal_range_btn: '↔ Range',
+  cal_range_hint: 'Range: click the first and last day (or shift-click)',
+  cal_copy_prev_day: 'Copy meals from previous day',
+  cal_col_day: 'Day',
 
   // ── action dialogs ────────────────────────────────────────
   dlg_new_action: 'New cooking event',
   dlg_edit_action: 'Edit cooking event',
+  dlg_dup_action: 'Duplicate cooking event',
+  lbl_new_start_date: 'New start date',
+  dup_action_hint: 'Cooking days and meals (incl. variant selection) are copied with shifted dates. Recipe assignments and order-list edits are not copied.',
 
   // ── ingredient dialogs ────────────────────────────────────────
   dlg_new_ingredient: 'New ingredient',
@@ -2043,6 +2070,41 @@ async function createCookingDay(actionId,dateStr){
   const existing=await getCookingDays(actionId);
   if(existing.find(d=>d.date===dateStr)) return;
   return dbAdd('cooking_days',{action_id:actionId,date:dateStr});
+}
+// Slots eines Tages durch Kopie eines anderen ersetzen (inkl. Varianten-Auswahl)
+async function copyDaySlots(fromDayId,toDayId){
+  for(const s of await getMealSlots(toDayId)){await dbDelByIndex('assignments','meal_slot_id',s.id);await dbDel('meal_slots',s.id);}
+  for(const s of await getMealSlots(fromDayId)){await dbAdd('meal_slots',{cooking_day_id:toDayId,meal_type:s.meal_type,portion_count:s.portion_count,standard_meal_id:s.standard_meal_id||null});}
+}
+// Neuer Kochtag übernimmt automatisch die Mahlzeiten des nächstliegenden Vortags
+async function createCookingDayWithCopy(actionId,dateStr){
+  const existing=await getCookingDays(actionId);
+  if(existing.find(d=>d.date===dateStr)) return null;
+  const did=await dbAdd('cooking_days',{action_id:actionId,date:dateStr});
+  const prev=existing.filter(d=>d.date<dateStr).sort((a,b)=>b.date.localeCompare(a.date))[0];
+  if(prev) await copyDaySlots(prev.id,did);
+  return did;
+}
+function shiftDateStr(dateStr,days){
+  const d=new Date(dateStr+'T00:00:00Z');
+  d.setUTCDate(d.getUTCDate()+days);
+  return d.toISOString().slice(0,10);
+}
+// Aktion inkl. Kochtagen/Slots kopieren, Termine auf neues Startdatum verschoben.
+// Rezept-Zuordnungen (assignments) und general_order_edits werden bewusst nicht kopiert.
+async function duplicateAction(actionId,newName,newStartDate){
+  const src=await dbGet('actions',actionId);
+  if(!src) return null;
+  const newId=await dbAdd('actions',{name:newName,description:src.description||''});
+  const days=await getCookingDays(actionId);
+  if(days.length){
+    const shift=newStartDate?Math.round((Date.parse(newStartDate)-Date.parse(days[0].date))/86400000):0;
+    for(const d of days){
+      const ndid=await dbAdd('cooking_days',{action_id:newId,date:shiftDateStr(d.date,shift)});
+      for(const s of await getMealSlots(d.id)){await dbAdd('meal_slots',{cooking_day_id:ndid,meal_type:s.meal_type,portion_count:s.portion_count,standard_meal_id:s.standard_meal_id||null});}
+    }
+  }
+  return newId;
 }
 async function deleteCookingDay(id){
   const slots=await dbGetByIndex('meal_slots','cooking_day_id',id);
@@ -3072,6 +3134,7 @@ async function renderCalendarPage(container){
   if(selectedActionId){
     const actionBtns=h('div',{style:{display:'flex',gap:'6px',marginTop:'8px'}});
     actionBtns.appendChild(h('button',{class:'btn btn-surface btn-sm',style:{flex:1,fontSize:'12px'},onClick:()=>editActionDialog()},t('btn_edit')));
+    actionBtns.appendChild(h('button',{class:'btn btn-surface btn-sm',style:{flex:1,fontSize:'12px'},onClick:()=>duplicateActionDialog()},t('btn_duplicate_recipe')));
     actionBtns.appendChild(h('button',{class:'btn btn-danger btn-sm',style:{flex:1,fontSize:'12px'},onClick:()=>deleteActionHandler()},t('btn_delete')));
     actionSidebar.appendChild(actionBtns);
   }
@@ -3099,6 +3162,9 @@ async function renderCalendarPage(container){
   const mealPanel=h('div',{});
   rightCol.appendChild(mealPanel);
 
+  // Zeitraum-Auswahl: Modus per Knopf oder Shift-Klick; erster Klick = Start
+  let calRangeMode=false,calRangeStart=null;
+
   async function refreshCal(){
     calCard.innerHTML='';
     daysCard.innerHTML='';
@@ -3106,6 +3172,11 @@ async function renderCalendarPage(container){
 
     const cookingDays=selectedActionId? await getCookingDays(selectedActionId):[];
     const cookingDates=new Set(cookingDays.map(d=>d.date));
+    // Slots aller Tage vorab laden — für Tagesliste (Meta) und Matrix
+    const slotsByDay={};
+    for(const cd of cookingDays) slotsByDay[cd.id]=await getMealSlots(cd.id);
+    const dayMetaEls={};
+    const dayMetaText=ds=>ds.length?t('cal_day_meta',ds.length,ds.reduce((s,x)=>s+x.portion_count,0)):t('cal_day_meta_empty');
     const today=new Date().toISOString().slice(0,10);
     const monthNames=[t('month_jan'),t('month_feb'),t('month_mar'),t('month_apr'),t('month_may'),t('month_jun'),t('month_jul'),t('month_aug'),t('month_sep'),t('month_oct'),t('month_nov'),t('month_dec')];
 
@@ -3115,6 +3186,14 @@ async function renderCalendarPage(container){
     nav.appendChild(h('span',{class:'month-label'},`${monthNames[calMonth]} ${calYear}`));
     nav.appendChild(h('button',{class:'btn btn-surface btn-sm',onClick:()=>{calMonth++;if(calMonth>11){calMonth=0;calYear++;}refreshCal();}},'▶'));
     calCard.appendChild(nav);
+
+    // Zeitraum-Modus: nächste zwei Klicks = erster/letzter Kochtag
+    const rangeRow=h('div',{style:{display:'flex',alignItems:'center',gap:'8px',margin:'2px 0 6px',flexWrap:'wrap'}});
+    rangeRow.appendChild(h('button',{class:`btn btn-sm ${(calRangeMode||calRangeStart)?'btn-accent':'btn-surface'}`,style:{fontSize:'12px'},onClick:()=>{
+      calRangeMode=!(calRangeMode||calRangeStart);calRangeStart=null;refreshCal();
+    }},t('cal_range_btn')));
+    if(calRangeMode||calRangeStart) rangeRow.appendChild(h('span',{style:{fontSize:'11px',color:'var(--text-muted)'}},t('cal_range_hint')));
+    calCard.appendChild(rangeRow);
 
     // Day headers
     const grid=h('div',{class:'cal-grid'});
@@ -3131,12 +3210,23 @@ async function renderCalendarPage(container){
       const isSelected=dateStr===calSelectedDate;
       const isToday=dateStr===today;
       let cls='cal-day';
-      if(isSelected) cls+=' selected';
+      if(isSelected||dateStr===calRangeStart) cls+=' selected';
       else if(isCooking) cls+=' cooking';
       if(isToday&&!isSelected) cls+=' today';
-      grid.appendChild(h('button',{class:cls,onClick:async()=>{
+      grid.appendChild(h('button',{class:cls,onClick:async(e)=>{
         if(!selectedActionId){alert(t('msg_please_select_action'));return;}
-        if(!cookingDates.has(dateStr)) await createCookingDay(selectedActionId,dateStr);
+        // Zeitraum: erster Klick merkt den Start, zweiter legt alle Tage dazwischen an
+        if(calRangeStart){
+          let a=calRangeStart,b=dateStr;
+          if(b<a)[a,b]=[b,a];
+          calRangeMode=false;calRangeStart=null;
+          for(let ds=a;ds<=b;ds=shiftDateStr(ds,1)){
+            if(!cookingDates.has(ds)) await createCookingDayWithCopy(selectedActionId,ds);
+          }
+          calSelectedDate=b;refreshCal();return;
+        }
+        if(calRangeMode||e.shiftKey){calRangeStart=dateStr;refreshCal();return;}
+        if(!cookingDates.has(dateStr)) await createCookingDayWithCopy(selectedActionId,dateStr);
         calSelectedDate=dateStr;
         refreshCal();
       }},String(d)));
@@ -3153,50 +3243,69 @@ async function renderCalendarPage(container){
       cookingDays.forEach(cd=>{
         const isSel=cd.date===calSelectedDate;
         const row=h('div',{style:{display:'flex',justifyContent:'space-between',alignItems:'center',padding:'4px 0'}});
-        row.appendChild(h('span',{style:{cursor:'pointer',fontWeight:isSel?'700':'400',color:isSel?'var(--accent)':'var(--text)',fontSize:'13px'},onClick:()=>{calSelectedDate=cd.date;refreshCal();}},formatDate(cd.date)));
+        const left=h('div',{style:{cursor:'pointer'},onClick:()=>{calSelectedDate=cd.date;refreshCal();}});
+        left.appendChild(h('div',{style:{fontWeight:isSel?'700':'400',color:isSel?'var(--accent)':'var(--text)',fontSize:'13px'}},formatDate(cd.date)));
+        const metaEl=h('div',{style:{fontSize:'11px',color:'var(--text-muted)'}},dayMetaText(slotsByDay[cd.id]||[]));
+        left.appendChild(metaEl);
+        dayMetaEls[cd.id]=metaEl;
+        row.appendChild(left);
         row.appendChild(h('button',{class:'btn-icon btn-ghost',onClick:async()=>{await deleteCookingDayByDate(selectedActionId,cd.date);if(calSelectedDate===cd.date)calSelectedDate=null;refreshCal();}},'✕'));
         daysCard.appendChild(row);
       });
     }
 
-    // Meal panel
+    // Matrix: Zeilen = Kochtage, Spalten = Mahlzeitkategorien. Änderungen
+    // speichern in-place (kein voller Re-Render, damit Tab-Fokus erhalten bleibt).
     mealPanel.innerHTML='';
-    if(!calSelectedDate){
-      mealPanel.appendChild(h('div',{class:'empty-msg'},t('empty_click_day')));
-      return;
-    }
-    const day=cookingDays.find(d=>d.date===calSelectedDate);
-    if(!day) return;
-
     const mCard=h('div',{class:'card'});
-    mCard.appendChild(h('div',{style:{fontWeight:'700',fontSize:'15px',marginBottom:'12px'}},t('cal_meals_header',formatDate(calSelectedDate))));
-    const slots=await getMealSlots(day.id);
-    const slotMap={};slots.forEach(s=>slotMap[s.meal_type]=s);
+    mCard.appendChild(h('div',{style:{fontWeight:'700',fontSize:'15px',marginBottom:'4px'}},t('cal_matrix_header')));
+    if(!cookingDays.length){
+      mCard.appendChild(h('div',{class:'empty-msg'},t('empty_click_day')));
+      mealPanel.appendChild(mCard);return;
+    }
     const mealTypeCatsForCal=await getMealTypeCategories();
     const mealTypes=mealTypeCatsForCal.map(c=>c.name);
     const mealTypeEnMap={};if(LANG==='en'){mealTypeCatsForCal.forEach(c=>{if(c.name_en) mealTypeEnMap[c.name]=c.name_en;});}
     if(!mealTypes.length){mCard.appendChild(h('div',{class:'empty-msg'},t('empty_no_meal_cats')));mealPanel.appendChild(mCard);return;}
+    mCard.appendChild(h('div',{style:{fontSize:'11px',color:'var(--text-muted)',marginBottom:'10px'}},t('cal_matrix_hint')));
 
-    mealTypes.forEach(mt=>{
-      const slot=slotMap[mt];
-      const row=h('div',{class:'meal-row'});
-      row.appendChild(h('span',{class:'meal-type'},mealTypeEnMap[mt]||mt));
-      const input=h('input',{type:'number',placeholder:'0',value:slot?slot.portion_count:''});
-      row.appendChild(input);
-      row.appendChild(h('span',{class:'unit-label'},t('cal_portionen_unit')));
-
-      const saveHandler=async()=>{
-        const v=parseInt(input.value);
-        if(v>0) await createMealSlot(day.id,mt,v);
+    const wrap=h('div',{style:{overflowX:'auto'}});
+    const table=h('table',{class:'cal-matrix'});
+    const hrow=h('tr',{});
+    hrow.appendChild(h('th',{},t('cal_col_day')));
+    mealTypes.forEach(mt=>hrow.appendChild(h('th',{},mealTypeEnMap[mt]||mt)));
+    hrow.appendChild(h('th',{},''));
+    table.appendChild(h('thead',{},hrow));
+    const tbody=h('tbody',{});
+    cookingDays.forEach((cd,idx)=>{
+      const tr=h('tr',{});
+      const isSel=cd.date===calSelectedDate;
+      tr.appendChild(h('td',{},h('span',{class:'day-label',style:{color:isSel?'var(--accent)':'var(--text)',fontWeight:isSel?'700':'600'},onClick:()=>{calSelectedDate=cd.date;refreshCal();}},formatDate(cd.date))));
+      const slotMap={};(slotsByDay[cd.id]||[]).forEach(s=>slotMap[s.meal_type]=s);
+      mealTypes.forEach(mt=>{
+        const input=h('input',{type:'number',min:'0',placeholder:'—',value:slotMap[mt]?slotMap[mt].portion_count:''});
+        input.addEventListener('change',async()=>{
+          const v=parseInt(input.value);
+          const cur=(slotsByDay[cd.id]||[]).find(s=>s.meal_type===mt);
+          if(v>0) await createMealSlot(cd.id,mt,v);
+          else if(cur){await deleteMealSlot(cur.id);input.value='';}
+          else{input.value='';return;}
+          slotsByDay[cd.id]=await getMealSlots(cd.id);
+          if(dayMetaEls[cd.id]) dayMetaEls[cd.id].textContent=dayMetaText(slotsByDay[cd.id]);
+        });
+        tr.appendChild(h('td',{},input));
+      });
+      const actionTd=h('td',{});
+      if(idx>0) actionTd.appendChild(h('button',{class:'btn-icon btn-ghost',title:t('cal_copy_prev_day'),onClick:async()=>{
+        await copyDaySlots(cookingDays[idx-1].id,cd.id);
         refreshCal();
-      };
-      input.addEventListener('change',saveHandler);
-
-      if(slot){
-        row.appendChild(h('button',{class:'btn-icon btn-danger',onClick:async()=>{await deleteMealSlot(slot.id);refreshCal();}},'✕'));
-      }
-      mCard.appendChild(row);
+      }},'⧉'));
+      tr.appendChild(actionTd);
+      tbody.appendChild(tr);
     });
+    table.appendChild(tbody);
+    wrap.appendChild(table);
+    mCard.appendChild(wrap);
     mealPanel.appendChild(mCard);
   }
 
@@ -3228,6 +3337,26 @@ async function renderCalendarPage(container){
       onSave:async({name,description})=>{
         await updateAction(action.id,name,description);
         showPage('calendar');
+      }
+    });
+  }
+
+  async function duplicateActionDialog(){
+    if(!selectedActionId) return;
+    const action=(await getActions()).find(a=>a.id===selectedActionId);if(!action) return;
+    const days=await getCookingDays(selectedActionId);
+    const firstDate=days.length?days[0].date:new Date().toISOString().slice(0,10);
+    openFormDialog({
+      title:t('dlg_dup_action'),
+      saveLabel:t('btn_create'),
+      fields:[
+        {key:'name',label:t('lbl_name'),type:'text',value:action.name+(LANG==='en'?' (copy)':' (Kopie)'),required:true},
+        {key:'start',label:t('lbl_new_start_date'),type:'date',value:firstDate,hint:t('dup_action_hint')}
+      ],
+      onSave:async({name,start})=>{
+        if(!name.trim()) return false;
+        const newId=await duplicateAction(selectedActionId,name.trim(),start||firstDate);
+        selectedActionId=newId;calSelectedDate=null;showPage('calendar');
       }
     });
   }
