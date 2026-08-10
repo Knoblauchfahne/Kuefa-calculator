@@ -14,6 +14,7 @@ Aufrufe:
     py tools/rezept_import.py https://www.chefkoch.de/rezepte/...
     py tools/rezept_import.py rezept.md anderes.txt -o import.txt
     py tools/rezept_import.py rezept.md --personen 4
+    py tools/rezept_import.py --server        # für den „Umwandeln"-Knopf in der App
 
 Markdown-/Text-Konvention (Abschnitte werden per Überschrift erkannt):
     # Gemüsecurry
@@ -84,12 +85,22 @@ FRACTIONS = {'½': .5, '⅓': 1/3, '⅔': 2/3, '¼': .25, '¾': .75, '⅕': .2,
 OPTIONAL_MARKERS = ('nach belieben', 'n. b.', 'n.b.', 'optional', 'nach geschmack')
 
 
+# Im Server-Modus werden Meldungen pro Anfrage gesammelt statt gedruckt
+_report = None
+
+
 def warn(msg):
-    print(f'  ⚠ {msg}', file=sys.stderr)
+    if _report is not None:
+        _report.append(f'⚠ {msg}')
+    else:
+        print(f'  ⚠ {msg}', file=sys.stderr)
 
 
 def info(msg):
-    print(msg, file=sys.stderr)
+    if _report is not None:
+        _report.append(msg.strip())
+    else:
+        print(msg, file=sys.stderr)
 
 
 # ── Zahlen / Mengen ───────────────────────────────────────────────
@@ -177,10 +188,15 @@ def _norm(s):
 
 
 class IngredientMatcher:
-    def __init__(self, backup_path):
+    def __init__(self, backup_path=None, names=None):
         self.names = []          # Original-DB-Namen
         self.by_norm = {}
-        if backup_path and backup_path.exists():
+        if names is not None:
+            for n in names:
+                if n:
+                    self.names.append(n)
+                    self.by_norm[_norm(n)] = n
+        elif backup_path and backup_path.exists():
             data = json.loads(backup_path.read_text(encoding='utf-8'))
             for ing in data.get('ingredients', []):
                 n = ing.get('name', '')
@@ -378,7 +394,10 @@ def _section_of(line):
 
 
 def recipe_from_textfile(path):
-    text = path.read_text(encoding='utf-8-sig', errors='replace')
+    return recipe_from_text_content(path.read_text(encoding='utf-8-sig', errors='replace'))
+
+
+def recipe_from_text_content(text):
     lines = text.splitlines()
     r = {'name': '', 'description': '', 'servings': None, 'ingredients_raw': [],
          'instructions': '', 'prep_time': '', 'cook_time': '', 'tags': [], 'note': ''}
@@ -486,21 +505,98 @@ def build_block(r, matcher, default_servings):
     return '\n'.join(out)
 
 
+# ── Server-Modus für den „Umwandeln"-Knopf in der App ─────────────
+def run_server(port, backup_path):
+    import http.server
+
+    class ConvertHandler(http.server.BaseHTTPRequestHandler):
+        def _cors(self):
+            self.send_header('Access-Control-Allow-Origin', '*')
+            self.send_header('Access-Control-Allow-Headers', 'Content-Type')
+            self.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
+
+        def do_OPTIONS(self):
+            self.send_response(204)
+            self._cors()
+            self.end_headers()
+
+        def do_POST(self):
+            global _report
+            if self.path != '/convert':
+                self.send_response(404)
+                self._cors()
+                self.end_headers()
+                return
+            try:
+                length = int(self.headers.get('Content-Length', 0))
+                data = json.loads(self.rfile.read(length).decode('utf-8'))
+            except (ValueError, json.JSONDecodeError):
+                data = {}
+            _report = []
+            try:
+                if data.get('url'):
+                    r = recipe_from_url(data['url'])
+                else:
+                    r = recipe_from_text_content(data.get('text', ''))
+                # Zutatenliste aus der App (Live-DB) hat Vorrang vor dem Backup
+                if data.get('ingredients'):
+                    matcher = IngredientMatcher(names=data['ingredients'])
+                else:
+                    matcher = IngredientMatcher(backup_path)
+                if not r or not r.get('name'):
+                    resp = {'ok': False, 'error': 'Kein Rezept erkannt', 'report': _report}
+                elif not r.get('ingredients_raw'):
+                    resp = {'ok': False, 'error': f'"{r["name"]}": keine Zutaten gefunden',
+                            'report': _report}
+                else:
+                    block = build_block(r, matcher, int(data.get('personen') or 4))
+                    resp = {'ok': True, 'text': block + '\n', 'report': _report}
+            except Exception as e:  # Fehler als JSON zurückgeben statt Absturz
+                resp = {'ok': False, 'error': str(e), 'report': _report or []}
+            _report = None
+            body = json.dumps(resp, ensure_ascii=False).encode('utf-8')
+            self.send_response(200)
+            self._cors()
+            self.send_header('Content-Type', 'application/json; charset=utf-8')
+            self.send_header('Content-Length', str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
+
+        def log_message(self, fmt, *args):
+            print(f'  {self.address_string()} — {fmt % args}', file=sys.stderr)
+
+    srv = http.server.ThreadingHTTPServer(('127.0.0.1', port), ConvertHandler)
+    print(f'Rezept-Konverter läuft auf http://localhost:{port} — in der App: '
+          f'Rezeptbuch → ⚡ Umwandeln. Beenden mit Strg+C.', file=sys.stderr)
+    try:
+        srv.serve_forever()
+    except KeyboardInterrupt:
+        print('\nBeendet.', file=sys.stderr)
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser(
         description='Rezepte von Websites/Markdown/Text ins KüFa-Importformat wandeln.',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog='Beispiel:\n  py tools/rezept_import.py https://... rezept.md -o import.txt')
-    ap.add_argument('quellen', nargs='+', help='URLs, .md- oder .txt-Dateien')
+    ap.add_argument('quellen', nargs='*', help='URLs, .md- oder .txt-Dateien')
     ap.add_argument('-o', '--output', default='rezepte_import.txt',
                     help='Ausgabedatei (Standard: rezepte_import.txt)')
     ap.add_argument('--personen', type=int, default=4,
                     help='Portionsannahme, falls die Quelle keine nennt (Standard: 4)')
     ap.add_argument('--backup', default=None,
                     help='Pfad zur standardbackup.json (Standard: neben dem Skript im Repo)')
+    ap.add_argument('--server', action='store_true',
+                    help='Als lokaler Konverter-Server für den App-Knopf „Umwandeln" laufen')
+    ap.add_argument('--port', type=int, default=8124, help='Server-Port (Standard: 8124)')
     args = ap.parse_args()
 
     backup = Path(args.backup) if args.backup else Path(__file__).resolve().parent.parent / 'standardbackup.json'
+    if args.server:
+        return run_server(args.port, backup)
+    if not args.quellen:
+        ap.error('mindestens eine Quelle angeben (oder --server)')
     matcher = IngredientMatcher(backup)
 
     blocks = []

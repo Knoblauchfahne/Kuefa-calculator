@@ -240,6 +240,14 @@ Danach in der App: **Rezeptbuch → Import** und die erzeugte Datei wählen.
 Optional: `pip install recipe-scrapers` erweitert die Website-Unterstützung
 (wird automatisch als Fallback genutzt). Details: `py tools/rezept_import.py --help`.
 
+Komfortabler geht es über den Knopf **Rezeptbuch → ⚡ Umwandeln** in der App
+(URL-Eingabe oder Datei per Drag-and-drop, Vorschau, direkter Import mit
+Abgleich gegen die Live-Zutatenliste). Dafür muss der Konverter lokal laufen:
+
+```
+py tools/rezept_import.py --server
+```
+
 ## Roadmap / offene Baustellen
 
 Der Code ist historisch gewachsen, es gibt bekannte Kandidaten für

@@ -480,6 +480,17 @@ de: {
   btn_add: 'Hinzufügen',
   btn_export: 'Export',
   btn_import: 'Import',
+  btn_convert: '⚡ Umwandeln',
+  dlg_convert_recipe: 'Rezept umwandeln',
+  conv_hint: 'Wandelt Rezepte von Websites oder aus Markdown-/Textdateien ins Importformat um. Benötigt den lokalen Konverter — im Repo-Ordner starten mit:',
+  conv_url_ph: 'https://… (Adresse der Rezeptseite)',
+  conv_btn_go: 'Umwandeln',
+  conv_drop: '⇩ Datei hierher ziehen oder klicken (.md, .txt)',
+  conv_persons_lbl: 'Portionen-Fallback',
+  conv_working: '… wandelt um',
+  conv_server_error: 'Konverter nicht erreichbar. Starte ihn in einem Terminal im Repo-Ordner:\npy tools/rezept_import.py --server',
+  conv_error: 'Umwandlung fehlgeschlagen: {0}',
+  conv_preview_lbl: 'Vorschau (vor dem Import bearbeitbar):',
   btn_export_txt: 'Export .txt',
   btn_export_csv: 'Export .csv',
   btn_export_pdf: '📄 Export PDF',
@@ -1228,6 +1239,17 @@ en: {
   btn_add: 'Add',
   btn_export: 'Export',
   btn_import: 'Import',
+  btn_convert: '⚡ Convert',
+  dlg_convert_recipe: 'Convert recipe',
+  conv_hint: 'Converts recipes from websites or markdown/text files into the import format. Requires the local converter — start it in the repo folder with:',
+  conv_url_ph: 'https://… (recipe page address)',
+  conv_btn_go: 'Convert',
+  conv_drop: '⇩ Drop a file here or click (.md, .txt)',
+  conv_persons_lbl: 'Servings fallback',
+  conv_working: '… converting',
+  conv_server_error: 'Converter not reachable. Start it in a terminal in the repo folder:\npy tools/rezept_import.py --server',
+  conv_error: 'Conversion failed: {0}',
+  conv_preview_lbl: 'Preview (editable before import):',
   btn_export_txt: 'Export .txt',
   btn_export_csv: 'Export .csv',
   btn_export_pdf: '📄 Export PDF',
@@ -4956,6 +4978,7 @@ async function renderRecipeBookPage(container){
         downloadFile('Rezeptbuch.txt',allText);
       }},t('btn_export')),
       h('button',{class:'btn btn-surface',onClick:importRecipes},t('btn_import')),
+      h('button',{class:'btn btn-surface',onClick:convertRecipeDialog},t('btn_convert')),
       h('button',{class:'btn btn-surface',onClick:()=>showMealTypeCatsDialog(()=>{renderList();renderDetail();})},t('btn_categories')),
       h('button',{class:'btn btn-surface',onClick:managePreparationMethods},t('btn_processing')),
       h('button',{class:'btn btn-surface',onClick:showTagManager},t('btn_manage_tags')),
@@ -5708,6 +5731,76 @@ async function renderRecipeBookPage(container){
       )
     ));
   }
+  // „Umwandeln": URL oder .md/.txt-Datei über den lokalen Python-Konverter
+  // (tools/rezept_import.py --server, Port 8124) ins Importformat wandeln
+  async function convertRecipeDialog(){
+    const urlIn=h('input',{type:'text',placeholder:t('conv_url_ph'),style:{flex:'1'}});
+    const persIn=h('input',{type:'number',min:'1',value:'4',style:{width:'70px'}});
+    const status=h('div',{style:{fontSize:'12px',color:'var(--text-muted)',whiteSpace:'pre-wrap',marginTop:'10px',maxHeight:'140px',overflowY:'auto'}});
+    const previewLbl=h('div',{style:{fontSize:'12px',fontWeight:'600',margin:'10px 0 4px',display:'none'}},t('conv_preview_lbl'));
+    const preview=h('textarea',{rows:'10',style:{width:'100%',fontFamily:'monospace',fontSize:'12px',display:'none'}});
+    const importBtns=h('div',{class:'modal-buttons',style:{display:'none'}});
+
+    async function convertPayload(payload,append){
+      status.textContent=t('conv_working');
+      let data;
+      try{
+        payload.personen=parseInt(persIn.value)||4;
+        payload.ingredients=(await dbGetAll('ingredients')).map(i=>i.name);
+        const resp=await fetch('http://localhost:8124/convert',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+        data=await resp.json();
+      }catch(e){
+        status.textContent=t('conv_server_error');
+        return;
+      }
+      status.textContent=(data.report||[]).join('\n')+(data.ok?'':'\n'+t('conv_error',data.error||'?'));
+      if(data.ok){
+        preview.value=append&&preview.value?preview.value.trimEnd()+'\n\n'+data.text:data.text;
+        previewLbl.style.display='block';preview.style.display='block';importBtns.style.display='flex';
+      }
+    }
+    async function convertFiles(files){
+      let first=true;
+      for(const f of files){
+        if(!/\.(md|txt|markdown)$/i.test(f.name)) continue;
+        await convertPayload({text:await f.text(),filename:f.name},!first);
+        first=false;
+      }
+    }
+
+    const urlRow=h('div',{style:{display:'flex',gap:'8px',marginBottom:'10px'}},
+      urlIn,h('button',{class:'btn btn-accent btn-sm',onClick:()=>{const u=urlIn.value.trim();if(u)convertPayload({url:u},false);}},t('conv_btn_go')));
+    const fileInput=h('input',{type:'file',accept:'.md,.txt,.markdown',multiple:'multiple',style:{display:'none'}});
+    fileInput.addEventListener('change',()=>convertFiles([...fileInput.files]));
+    const dropZone=h('div',{style:{border:'2px dashed var(--border)',borderRadius:'10px',padding:'22px 12px',textAlign:'center',fontSize:'13px',color:'var(--text-muted)',cursor:'pointer'},onClick:()=>fileInput.click()},t('conv_drop'));
+    dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.style.borderColor='var(--accent)';});
+    dropZone.addEventListener('dragleave',()=>{dropZone.style.borderColor='var(--border)';});
+    dropZone.addEventListener('drop',e=>{e.preventDefault();dropZone.style.borderColor='var(--border)';convertFiles([...e.dataTransfer.files]);});
+
+    const doImport=async(overwrite)=>{
+      const {added,updated,skipped}=await importRecipeFromText(preview.value,overwrite);
+      let msg=t('msg_import_complete_recipes',added);
+      if(updated) msg+=t('msg_import_updated_recipes',updated);
+      if(skipped) msg+=t('msg_import_skipped_recipes',skipped);
+      alert(msg);
+      closeModal(modal);renderList();renderDetail();
+    };
+    importBtns.append(
+      h('button',{class:'btn btn-surface',onClick:()=>doImport(false)},t('btn_import_only_new')),
+      h('button',{class:'btn btn-accent',onClick:()=>doImport(true)},t('btn_overwrite_existing'))
+    );
+
+    const modal=showModal(h('div',{style:{minWidth:'340px',maxWidth:'640px'}},
+      h('h2',{},t('dlg_convert_recipe')),
+      h('div',{style:{fontSize:'12px',color:'var(--text-muted)',marginBottom:'4px'}},t('conv_hint')),
+      h('div',{style:{fontFamily:'monospace',fontSize:'12px',background:'var(--surface2)',borderRadius:'6px',padding:'6px 10px',marginBottom:'12px',userSelect:'all'}},'py tools/rezept_import.py --server'),
+      urlRow,dropZone,fileInput,
+      h('div',{style:{display:'flex',alignItems:'center',gap:'8px',marginTop:'10px',fontSize:'12px'}},h('span',{},t('conv_persons_lbl')),persIn),
+      status,previewLbl,preview,importBtns,
+      h('div',{class:'modal-buttons'},h('button',{class:'btn btn-surface',onClick:()=>closeModal(modal)},t('btn_close')))
+    ));
+  }
+
   async function doImportRecipes(overwrite){
     const input=document.createElement('input');input.type='file';input.accept='.txt';input.multiple=true;
     input.onchange=async()=>{
