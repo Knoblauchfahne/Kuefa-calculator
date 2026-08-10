@@ -225,6 +225,13 @@ Dann im Browser `http://localhost:8000`.
 
 ## Werkzeuge
 
+### Alles starten (`start.bat` / `tools/start.py`)
+
+Doppelklick auf **start.bat** (oder `py tools/start.py`) startet den
+App-Server auf http://localhost:8123 **und** den Rezept-Konverter auf
+Port 8124 und öffnet den Browser. Bereits laufende Server werden erkannt
+und übersprungen. Beenden mit Strg+C bzw. Fenster schließen.
+
 ### Rezept-Import (`tools/rezept_import.py`)
 
 Wandelt Rezepte von Websites (schema.org-JSON-LD, z. B. Chefkoch), aus
