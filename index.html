@@ -482,7 +482,8 @@ de: {
   btn_import: 'Import',
   btn_convert: '⚡ Umwandeln',
   dlg_convert_recipe: 'Rezept umwandeln',
-  conv_hint: 'Wandelt Rezepte von Websites oder aus Markdown-/Textdateien ins Importformat um. Benötigt den lokalen Konverter — im Repo-Ordner starten mit:',
+  conv_hint: 'Wandelt Rezepte von Websites oder aus Markdown-/Textdateien ins Importformat um. Benötigt den lokalen Konverter — starte ihn per Doppelklick auf start.bat im Repo-Ordner (oder im Terminal):',
+  conv_connected: '✓ Konverter verbunden — gib eine URL an oder ziehe eine Datei hierher.',
   conv_url_ph: 'https://… (Adresse der Rezeptseite)',
   conv_btn_go: 'Umwandeln',
   conv_drop: '⇩ Datei hierher ziehen oder klicken (.md, .txt)',
@@ -1241,7 +1242,8 @@ en: {
   btn_import: 'Import',
   btn_convert: '⚡ Convert',
   dlg_convert_recipe: 'Convert recipe',
-  conv_hint: 'Converts recipes from websites or markdown/text files into the import format. Requires the local converter — start it in the repo folder with:',
+  conv_hint: 'Converts recipes from websites or markdown/text files into the import format. Requires the local converter — start it by double-clicking start.bat in the repo folder (or in a terminal):',
+  conv_connected: '✓ Converter connected — enter a URL or drop a file here.',
   conv_url_ph: 'https://… (recipe page address)',
   conv_btn_go: 'Convert',
   conv_drop: '⇩ Drop a file here or click (.md, .txt)',
@@ -5751,6 +5753,7 @@ async function renderRecipeBookPage(container){
         data=await resp.json();
       }catch(e){
         status.textContent=t('conv_server_error');
+        checkServer();
         return;
       }
       status.textContent=(data.report||[]).join('\n')+(data.ok?'':'\n'+t('conv_error',data.error||'?'));
@@ -5790,10 +5793,25 @@ async function renderRecipeBookPage(container){
       h('button',{class:'btn btn-accent',onClick:()=>doImport(true)},t('btn_overwrite_existing'))
     );
 
+    // Erreichbarkeits-Check: Hinweis nur zeigen, wenn der Konverter NICHT läuft
+    const hintWrap=h('div',{},
+      h('div',{style:{fontSize:'12px',color:'var(--accent)',marginBottom:'4px'}},t('conv_hint')),
+      h('div',{style:{fontFamily:'monospace',fontSize:'12px',background:'var(--surface2)',borderRadius:'6px',padding:'6px 10px',marginBottom:'12px',userSelect:'all'}},'py tools/rezept_import.py --server'));
+    const connectedLine=h('div',{style:{fontSize:'12px',color:'var(--green-light)',marginBottom:'12px',display:'none'}},t('conv_connected'));
+    async function checkServer(){
+      try{
+        const ctrl=new AbortController();const to=setTimeout(()=>ctrl.abort(),1500);
+        const resp=await fetch('http://localhost:8124/ping',{signal:ctrl.signal});
+        clearTimeout(to);
+        if((await resp.json()).ok){hintWrap.style.display='none';connectedLine.style.display='block';return true;}
+      }catch(e){}
+      hintWrap.style.display='';connectedLine.style.display='none';
+      return false;
+    }
+    checkServer();
     const modal=showModal(h('div',{style:{minWidth:'340px',maxWidth:'640px'}},
       h('h2',{},t('dlg_convert_recipe')),
-      h('div',{style:{fontSize:'12px',color:'var(--text-muted)',marginBottom:'4px'}},t('conv_hint')),
-      h('div',{style:{fontFamily:'monospace',fontSize:'12px',background:'var(--surface2)',borderRadius:'6px',padding:'6px 10px',marginBottom:'12px',userSelect:'all'}},'py tools/rezept_import.py --server'),
+      hintWrap,connectedLine,
       urlRow,dropZone,fileInput,
       h('div',{style:{display:'flex',alignItems:'center',gap:'8px',marginTop:'10px',fontSize:'12px'}},h('span',{},t('conv_persons_lbl')),persIn),
       status,previewLbl,preview,importBtns,

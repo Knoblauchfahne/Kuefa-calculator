@@ -513,12 +513,26 @@ def run_server(port, backup_path):
         def _cors(self):
             self.send_header('Access-Control-Allow-Origin', '*')
             self.send_header('Access-Control-Allow-Headers', 'Content-Type')
-            self.send_header('Access-Control-Allow-Methods', 'POST, OPTIONS')
+            self.send_header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+            # Chrome Private Network Access: erlaubt Zugriff von der
+            # GitHub-Pages-Version (https) auf diesen localhost-Server
+            self.send_header('Access-Control-Allow-Private-Network', 'true')
 
         def do_OPTIONS(self):
             self.send_response(204)
             self._cors()
             self.end_headers()
+
+        def do_GET(self):
+            # /ping: Erreichbarkeits-Check für den „Umwandeln"-Dialog
+            code = 200 if self.path == '/ping' else 404
+            body = json.dumps({'ok': code == 200}).encode('utf-8')
+            self.send_response(code)
+            self._cors()
+            self.send_header('Content-Type', 'application/json; charset=utf-8')
+            self.send_header('Content-Length', str(len(body)))
+            self.end_headers()
+            self.wfile.write(body)
 
         def do_POST(self):
             global _report
