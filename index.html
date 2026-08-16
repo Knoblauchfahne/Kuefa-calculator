@@ -1071,6 +1071,7 @@ de: {
   // ── standard meal detail ────────────────────────────────────────
   std_meal_detail_meta: '{0} — gemittelte Richtwerte (intern gespeichert pro 100 Personen){1}',
   lbl_std_meal_default: 'Standard — bei der Einkaufsliste vorausgewählt',
+  std_comp_optional: 'Optional — erscheint in der Einkaufsliste als optionale Position',
   std_meal_default_badge: '★ Standard',
   std_meal_calc_for: 'Berechnet für',
   std_meal_persons_suffix: 'Personen',
@@ -1835,6 +1836,7 @@ en: {
   // ── standard meal detail ────────────────────────────────────────
   std_meal_detail_meta: '{0} — average reference values (stored internally per 100 people){1}',
   lbl_std_meal_default: 'Default — preselected in the shopping list',
+  std_comp_optional: 'Optional — appears in the shopping list as an optional position',
   std_meal_default_badge: '★ Default',
   std_meal_calc_for: 'Calculated for',
   std_meal_persons_suffix: 'people',
@@ -2536,7 +2538,7 @@ async function duplicateStandardMeal(id){
   if(!m) return null;
   const newId=await dbAdd('standard_meals',{meal_type:m.meal_type,name:m.name+(LANG==='en'?' (copy)':' (Kopie)'),description:m.description||''});
   const comps=await dbGetByIndex('meal_components','meal_id',id);
-  for(const c of comps){await dbAdd('meal_components',{standard_meal_id:newId,ingredient_id:c.ingredient_id||0,quantity_per_100:c.quantity_per_100,unit:c.unit,subcategory:c.subcategory||'',price_per_unit:c.price_per_unit||0});}
+  for(const c of comps){await dbAdd('meal_components',{standard_meal_id:newId,ingredient_id:c.ingredient_id||0,quantity_per_100:c.quantity_per_100,unit:c.unit,subcategory:c.subcategory||'',price_per_unit:c.price_per_unit||0,optional:c.optional||false});}
   return newId;
 }
 // Variante eines Slots auflösen: explizite Auswahl (slot.standard_meal_id) vor
@@ -2555,8 +2557,8 @@ async function setSlotStandardMeal(slotId,mealId){
   const s=await dbGet('meal_slots',slotId);
   if(s){s.standard_meal_id=mealId;await dbPut('meal_slots',s);}
 }
-async function addMealComponent(mealId,ingredientId,qty100,unit,subcat='',pricePerUnit=0){return dbAdd('meal_components',{standard_meal_id:mealId,ingredient_id:ingredientId,quantity_per_100:qty100,unit,subcategory:subcat,price_per_unit:pricePerUnit});}
-async function updateMealComponent(id,qty100,unit,subcat,pricePerUnit,ingredientId){const c=await dbGet('meal_components',id);if(c){c.quantity_per_100=qty100;c.unit=unit;c.subcategory=subcat;c.price_per_unit=pricePerUnit;if(ingredientId!==undefined)c.ingredient_id=ingredientId;await dbPut('meal_components',c);}}
+async function addMealComponent(mealId,ingredientId,qty100,unit,subcat='',pricePerUnit=0,optional=false){return dbAdd('meal_components',{standard_meal_id:mealId,ingredient_id:ingredientId,quantity_per_100:qty100,unit,subcategory:subcat,price_per_unit:pricePerUnit,optional});}
+async function updateMealComponent(id,qty100,unit,subcat,pricePerUnit,ingredientId,optional){const c=await dbGet('meal_components',id);if(c){c.quantity_per_100=qty100;c.unit=unit;c.subcategory=subcat;c.price_per_unit=pricePerUnit;if(ingredientId!==undefined)c.ingredient_id=ingredientId;if(optional!==undefined)c.optional=optional;await dbPut('meal_components',c);}}
 async function removeMealComponent(id){await dbDel('meal_components',id);}
 
 async function getCategories(){return (await dbGetAll('categories')).sort((a,b)=>a.name.localeCompare(b.name));}
@@ -2807,27 +2809,28 @@ async function generateGeneralOrder(dayIds){
       if(!meal) continue;
       for(const comp of meal.components){
         const qty=comp.quantity_per_100*(slot.portion_count/100);
+        const isOpt=comp.optional||false;
         // Konkrete Zutaten-Komponente: Name/Kategorie/Preis live aus der Zutat
         const ing=comp.ingredient_id?ingById.get(comp.ingredient_id):null;
         if(ing){
           const subcat=ing.subcategory||t('misc_uncategorized');
           const ppu=ing.unit===comp.unit?(ing.price||0):(comp.price_per_unit||0);
-          const key=`ing_${ing.id}_${comp.unit}`;
-          if(!items[key]) items[key]={name:ing.name,name_en:ing.name_en||'',ingredient_id:ing.id,quantity:0,unit:comp.unit,subcategory:subcat,subcategory_en:subcatEnMap[subcat]||'',total_cost:0,price_per_unit:ppu,_concrete:true};
+          const key=`ing_${ing.id}_${comp.unit}_${isOpt?'opt':'req'}`;
+          if(!items[key]) items[key]={name:ing.name,name_en:ing.name_en||'',ingredient_id:ing.id,quantity:0,unit:comp.unit,subcategory:subcat,subcategory_en:subcatEnMap[subcat]||'',total_cost:0,price_per_unit:ppu,_concrete:true,optional:isOpt};
           items[key].quantity+=qty;
           items[key].total_cost+=qty*ppu;
           continue;
         }
         const subcat=comp.subcategory||t('misc_uncategorized');
         const ppu=comp.price_per_unit||0;
-        const key=`${subcat}_${comp.unit}`;
-        if(!items[key]) items[key]={name:subcat,quantity:0,unit:comp.unit,subcategory:subcat,subcategory_en:subcatEnMap[subcat]||'',total_cost:0,price_per_unit:ppu};
+        const key=`${subcat}_${comp.unit}_${isOpt?'opt':'req'}`;
+        if(!items[key]) items[key]={name:subcat,quantity:0,unit:comp.unit,subcategory:subcat,subcategory_en:subcatEnMap[subcat]||'',total_cost:0,price_per_unit:ppu,optional:isOpt};
         items[key].quantity+=qty;
         items[key].total_cost+=qty*ppu;
       }
     }
   }
-  return Object.values(items).sort((a,b)=>a.subcategory.localeCompare(b.subcategory)||a.unit.localeCompare(b.unit)||(a._concrete?1:0)-(b._concrete?1:0));
+  return Object.values(items).sort((a,b)=>a.subcategory.localeCompare(b.subcategory)||a.unit.localeCompare(b.unit)||(a.optional?1:0)-(b.optional?1:0)||(a._concrete?1:0)-(b._concrete?1:0));
 }
 
 async function generateSpecialOrder(dayIds){
@@ -4073,6 +4076,7 @@ async function renderStandardMealsPage(container){
         const nameSpan=ing
           ?h('span',{style:{width:'180px',flexShrink:0,fontSize:'13px',paddingLeft:'14px'}},'↳ '+ingDisplayName(ing))
           :h('span',{style:{width:'180px',flexShrink:0,fontSize:'13px',fontWeight:'600',color:'var(--green-light)'}},c.subcategory||'—');
+        if(c.optional) nameSpan.appendChild(h('span',{style:{fontSize:'10px',fontWeight:'600',color:'var(--accent)',marginLeft:'6px'}},'('+t('misc_optional')+')'));
         row.appendChild(nameSpan);
         row.appendChild(h('span',{style:{width:'100px',flexShrink:0,fontSize:'14px'}},fmtQty(c.quantity_per_100*pFactor)));
         row.appendChild(h('span',{style:{width:'90px',flexShrink:0,fontSize:'12px',color:'var(--text-muted)'}},fmtQty(c.quantity_per_100/100)+' '+c.unit));
@@ -4178,6 +4182,8 @@ async function renderStandardMealsPage(container){
         }
       });
     }},initLabel||t('std_comp_pick_ph'));
+    const optCb=h('input',{type:'checkbox'});optCb.checked=comp?!!comp.optional:false;
+    const optField=h('label',{style:{display:'flex',alignItems:'center',gap:'8px',fontSize:'13px',cursor:'pointer'}},optCb,h('span',{},t('std_comp_optional')));
     dlg=openFormDialog({
       title:comp?t('dlg_edit_component'):t('dlg_add_component'),
       saveLabel:comp?t('btn_save'):t('btn_add'),
@@ -4185,16 +4191,17 @@ async function renderStandardMealsPage(container){
         {key:'pick',label:t('lbl_category'),type:'custom',build:()=>pickField},
         {key:'qty',label:t('lbl_qty_for_persons',stdMealPersonCount),type:'number',value:comp?Math.round(comp.quantity_per_100*stdMealPersonCount/100*10000)/10000:'',placeholder:'z.B. 25'},
         {key:'unit',label:t('lbl_unit'),type:'unit',value:comp?comp.unit:'kg'},
-        {key:'price',label:t('lbl_price_per_unit_euro'),type:'number',value:comp?(comp.price_per_unit||''):'',placeholder:'0.00',step:0.01}
+        {key:'price',label:t('lbl_price_per_unit_euro'),type:'number',value:comp?(comp.price_per_unit||''):'',placeholder:'0.00',step:0.01},
+        {key:'opt',label:'',type:'custom',build:()=>optField}
       ],
-      rows:['pick',['qty','unit'],'price'],
+      rows:['pick',['qty','unit'],'price','opt'],
       onSave:async({qty,unit,price})=>{
         if(!qty||qty<=0) return false;
         if(!pickRef.ingredient_id&&!pickRef.subcategory) return false;
         // Eingabe bezieht sich auf die aktuell eingestellte Personenzahl → auf 100P normieren
         const qty100=Math.round(qty*100/stdMealPersonCount*10000)/10000;
-        if(comp) await updateMealComponent(comp.id,qty100,unit,pickRef.subcategory,price||0,pickRef.ingredient_id);
-        else await addMealComponent(mealId,pickRef.ingredient_id,qty100,unit,pickRef.subcategory,price||0);
+        if(comp) await updateMealComponent(comp.id,qty100,unit,pickRef.subcategory,price||0,pickRef.ingredient_id,optCb.checked);
+        else await addMealComponent(mealId,pickRef.ingredient_id,qty100,unit,pickRef.subcategory,price||0,optCb.checked);
         refresh();
       }
     });
@@ -4218,7 +4225,7 @@ async function renderStandardMealsPage(container){
         for(const p of parts){
           const q100=Math.round(p.quantity*100/stdMealPersonCount*10000)/10000;
           used+=q100;
-          await addMealComponent(mealId,p.ingredient_id||0,q100,comp.unit,comp.subcategory,p.price_per_unit||0);
+          await addMealComponent(mealId,p.ingredient_id||0,q100,comp.unit,comp.subcategory,p.price_per_unit||0,comp.optional||false);
         }
         const rest=Math.round((comp.quantity_per_100-used)*10000)/10000;
         if(rest>0.004) await updateMealComponent(comp.id,rest,comp.unit,comp.subcategory,comp.price_per_unit||0,0);
@@ -4315,7 +4322,7 @@ async function renderGeneralOrderPage(container){
               const merged=[];
               // Name in den Schlüssel: konkretisierte Zutaten und Rest-Zeilen
               // gleicher Kategorie dürfen nicht miteinander verschmelzen
-              const key=i=>`${i.subcategory}|${i.unit}|${i.name||''}`;
+              const key=i=>`${i.subcategory}|${i.unit}|${i.name||''}|${i.optional?'opt':''}`;
               selected.forEach(({g})=>g.items.forEach(item=>{
                 const ex=merged.find(x=>key(x)===key(item));
                 if(ex){ex.quantity+=item.quantity;ex.total_cost+=item.total_cost;}
@@ -4472,7 +4479,7 @@ async function renderGeneralOrderPage(container){
       const groupEdits=allEdits.filter(e=>(e.group_num||1)===num);
       // Overrides anwenden (Menge ändern / Position streichen) —
       // konkrete Zutaten-Zeilen matchen über ingredient_id, Kategorie-Zeilen wie bisher
-      const ovFor=i=>groupEdits.find(e=>e.type==='override'&&e.unit===i.unit&&(i._concrete?e.ingredient_id===i.ingredient_id:(!e.ingredient_id&&e.subcategory===i.subcategory)));
+      const ovFor=i=>groupEdits.find(e=>e.type==='override'&&e.unit===i.unit&&!!e.optional===!!i.optional&&(i._concrete?e.ingredient_id===i.ingredient_id:(!e.ingredient_id&&e.subcategory===i.subcategory)));
       items=items.filter(i=>{
         const ov=ovFor(i);
         if(ov&&ov.removed) return false;
@@ -4487,20 +4494,20 @@ async function renderGeneralOrderPage(container){
       const splitItems=[];
       items=items.filter(i=>{
         if(i._extraId||i._concrete) return true;
-        const sp=groupEdits.find(e=>e.type==='split'&&e.subcategory===i.subcategory&&e.unit===i.unit);
+        const sp=groupEdits.find(e=>e.type==='split'&&e.subcategory===i.subcategory&&e.unit===i.unit&&!!e.optional===!!i.optional);
         if(!sp||!(sp.parts||[]).length) return true;
         let used=0;
         sp.parts.forEach((p,idx)=>{
           used+=p.quantity;
-          splitItems.push({name:p.name,name_en:p.name_en||'',ingredient_id:p.ingredient_id||null,quantity:p.quantity,unit:i.unit,subcategory:i.subcategory,subcategory_en:i.subcategory_en,price_per_unit:p.price_per_unit||0,total_cost:p.quantity*(p.price_per_unit||0),_splitPart:true,_splitId:sp.id,_partIndex:idx,_catItem:i});
+          splitItems.push({name:p.name,name_en:p.name_en||'',ingredient_id:p.ingredient_id||null,quantity:p.quantity,unit:i.unit,subcategory:i.subcategory,subcategory_en:i.subcategory_en,price_per_unit:p.price_per_unit||0,total_cost:p.quantity*(p.price_per_unit||0),optional:i.optional,_splitPart:true,_splitId:sp.id,_partIndex:idx,_catItem:i});
         });
         const rest=i.quantity-used;
-        if(rest>0.004) splitItems.push({name:`${i.subcategory} (${t('go_lbl_rest')})`,name_en:i.subcategory_en?`${i.subcategory_en} (${t('go_lbl_rest')})`:'',quantity:rest,unit:i.unit,subcategory:i.subcategory,subcategory_en:i.subcategory_en,price_per_unit:i.price_per_unit||0,total_cost:rest*(i.price_per_unit||0),_splitRest:true,_splitId:sp.id,_catItem:i});
+        if(rest>0.004) splitItems.push({name:`${i.subcategory} (${t('go_lbl_rest')})`,name_en:i.subcategory_en?`${i.subcategory_en} (${t('go_lbl_rest')})`:'',quantity:rest,unit:i.unit,subcategory:i.subcategory,subcategory_en:i.subcategory_en,price_per_unit:i.price_per_unit||0,total_cost:rest*(i.price_per_unit||0),optional:i.optional,_splitRest:true,_splitId:sp.id,_catItem:i});
         return false;
       });
       items.push(...splitItems);
       // Lager-Verwendung dieser Bestellung: Bedarf um reservierte Menge senken
-      const useFor=i=>groupEdits.find(e=>e.type==='stock_use'&&e.unit===i.unit&&(i._concrete?e.ingredient_id===i.ingredient_id:(!e.ingredient_id&&e.subcategory===i.subcategory)));
+      const useFor=i=>groupEdits.find(e=>e.type==='stock_use'&&e.unit===i.unit&&!!e.optional===!!i.optional&&(i._concrete?e.ingredient_id===i.ingredient_id:(!e.ingredient_id&&e.subcategory===i.subcategory)));
       items.forEach(i=>{
         if(i._extraId||i._splitPart||i._splitRest) return;
         const use=useFor(i);
@@ -4520,7 +4527,7 @@ async function renderGeneralOrderPage(container){
       async function upsertOverride(item,patch){
         const ex=ovFor(item);
         if(ex){Object.assign(ex,patch);await dbPut('general_order_edits',ex);}
-        else await dbAdd('general_order_edits',{action_id:selectedActionId,group_num:num,type:'override',subcategory:item.subcategory,unit:item.unit,ingredient_id:item._concrete?item.ingredient_id:null,qty_override:null,removed:false,...patch});
+        else await dbAdd('general_order_edits',{action_id:selectedActionId,group_num:num,type:'override',subcategory:item.subcategory,unit:item.unit,ingredient_id:item._concrete?item.ingredient_id:null,optional:item.optional||false,qty_override:null,removed:false,...patch});
       }
 
       const listOpts={
@@ -4535,21 +4542,21 @@ async function renderGeneralOrderPage(container){
           const avail=total-(stockUsedByKey.get(stockKeyOf(item))||0);
           const useQty=Math.min(item.quantity,avail);
           if(useQty<=0.004) return;
-          await dbAdd('general_order_edits',{action_id:selectedActionId,group_num:num,type:'stock_use',subcategory:item.subcategory,unit:item.unit,ingredient_id:item._concrete?item.ingredient_id:null,qty_used:round2(useQty)});
+          await dbAdd('general_order_edits',{action_id:selectedActionId,group_num:num,type:'stock_use',subcategory:item.subcategory,unit:item.unit,ingredient_id:item._concrete?item.ingredient_id:null,optional:item.optional||false,qty_used:round2(useQty)});
           generate();
         },
         onSplit:async(item)=>{
           const cat=item._catItem||item;
           const rec=item._splitId
             ? await dbGet('general_order_edits',item._splitId)
-            : (groupEdits.find(e=>e.type==='split'&&e.subcategory===cat.subcategory&&e.unit===cat.unit)||null);
+            : (groupEdits.find(e=>e.type==='split'&&e.subcategory===cat.subcategory&&e.unit===cat.unit&&!!e.optional===!!cat.optional)||null);
           openSplitDialog({
             catItem:cat,
             rec,
             onSave:async(parts)=>{
               if(!parts.length){if(rec) await dbDel('general_order_edits',rec.id);}
               else if(rec){rec.parts=parts;await dbPut('general_order_edits',rec);}
-              else await dbAdd('general_order_edits',{action_id:selectedActionId,group_num:num,type:'split',subcategory:cat.subcategory,unit:cat.unit,parts});
+              else await dbAdd('general_order_edits',{action_id:selectedActionId,group_num:num,type:'split',subcategory:cat.subcategory,unit:cat.unit,optional:cat.optional||false,parts});
               generate();
             }
           });
@@ -4668,7 +4675,7 @@ function renderGeneralOrderList(parent,items,opts={}){
     ghdr.appendChild(h('span',{class:'cat-meta'},`${catTotal.toFixed(2)} €`));
     grp.appendChild(ghdr);
     catItems.forEach(item=>{
-      const row=h('div',{style:{display:'flex',alignItems:'center',padding:'4px 0'}});
+      const row=h('div',{style:{display:'flex',alignItems:'center',padding:'4px 0',opacity:item.optional?'0.65':'1',fontStyle:item.optional?'italic':'normal'}});
       const qtySpan=h('span',{style:{width:'120px',fontSize:'14px',fontWeight:'600'}},String(round2(item.quantity)));
       if(item._edited){
         qtySpan.style.color='var(--accent)';
@@ -4680,6 +4687,7 @@ function renderGeneralOrderList(parent,items,opts={}){
         const pName=LANG==='en'?(item.name_en||item.name):item.name;
         row.appendChild(h('span',{style:{fontSize:'13px',marginLeft:'4px',color:item._splitRest?'var(--text-muted)':'var(--text)',fontStyle:item._splitRest?'italic':'normal'}},pName));
       }
+      if(item.optional) row.appendChild(h('span',{style:{fontSize:'10px',marginLeft:'6px',color:'var(--accent)',fontWeight:'600',whiteSpace:'nowrap'}},'('+t('misc_optional')+')'));
       if(opts.stockHints&&!item._extraId&&!item._splitRest){
         // Konkrete Zutaten matchen direkt, Kategorie-Zeilen über die Subkategorie
         const rec=(item._splitPart||item._concrete)
