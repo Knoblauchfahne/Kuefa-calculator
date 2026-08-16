@@ -872,6 +872,9 @@ de: {
   stock_dlg_use: '⤵ verwenden',
   stock_dlg_empty: 'Von dieser Kategorie liegt nichts mit passender Einheit im Lager.',
   order_surplus_hint: '⇄ {0} {1} bereits in Bestellung {2} berücksichtigt',
+  order_surplus_used: '⇄ {0} {1} abgezogen',
+  order_surplus_apply: 'Bereits berücksichtigte Menge von dieser Position abziehen',
+  order_surplus_release: 'Abzug zurücknehmen',
   go_btn_stock_transfer: '📦 Ins Lager',
   go_btn_stock_transfer_done: '📦 ✓ eingelagert',
   dlg_stock_transfer: 'Bestellung {0} ins Lager übernehmen',
@@ -1653,6 +1656,9 @@ en: {
   stock_dlg_use: '⤵ use',
   stock_dlg_empty: 'Nothing of this category with a matching unit in stock.',
   order_surplus_hint: '⇄ {0} {1} already covered in order {2}',
+  order_surplus_used: '⇄ {0} {1} deducted',
+  order_surplus_apply: 'Deduct the already covered amount from this position',
+  order_surplus_release: 'Undo deduction',
   go_btn_stock_transfer: '📦 To stock',
   go_btn_stock_transfer_done: '📦 ✓ stored',
   dlg_stock_transfer: 'Transfer order {0} to stock',
@@ -4534,6 +4540,12 @@ async function renderGeneralOrderPage(container){
     // Phase 1: alle Bestellungen berechnen — erst danach rendern, damit
     // Überschüsse aus Über-Konkretisierung gruppenübergreifend bekannt sind
     const surplusBy={};
+    // Bereits angewendete Überschuss-Abzüge (Edit-Typ surplus_use)
+    const surplusUseBy={};
+    allEdits.filter(e=>e.type==='surplus_use').forEach(e=>{
+      const k=`${e.subcategory}|${e.unit}|${e.optional?'o':'r'}`;
+      (surplusUseBy[k]=surplusUseBy[k]||[]).push({num:e.group_num||1,qty:e.qty_used||0});
+    });
     const groupData=[];
     for(const num of groupNums){
       const g=groups[num];
@@ -4579,17 +4591,24 @@ async function renderGeneralOrderPage(container){
       const useFor=i=>((i._concrete||i._splitPart)&&i.ingredient_id)
         ?groupEdits.find(e=>e.type==='stock_use'&&e.ingredient_id===i.ingredient_id&&e.unit===i.unit&&!!e.optional===!!i.optional)
         :null;
+      // Überschuss-Abzug dieser Bestellung: Kategorie-/Rest-Zeilen um die in
+      // anderen Bestellungen bereits berücksichtigte Menge senken
+      const surFor=i=>(!(i._concrete||i._splitPart)&&!i._extraId)
+        ?groupEdits.find(e=>e.type==='surplus_use'&&e.subcategory===i.subcategory&&e.unit===i.unit&&!!e.optional===!!i.optional)
+        :null;
       items.forEach(i=>{
         if(i._extraId) return;
         const use=useFor(i);
         if(use){i._stockUsed=use.qty_used||0;i.quantity=Math.max(0,round2(i.quantity-i._stockUsed));i.total_cost=i.quantity*(i.price_per_unit||0);}
+        const su=surFor(i);
+        if(su){i._surplusUsed=su.qty_used||0;i.quantity=Math.max(0,round2(i.quantity-i._surplusUsed));i.total_cost=i.quantity*(i.price_per_unit||0);}
       });
       lastItems.push(...items);
       lastItemsByGroup.push({num,label:t('order_group_label',num),dates:g.dates,items});
-      groupData.push({num,g,items,groupEdits,ovFor,useFor});
+      groupData.push({num,g,items,groupEdits,ovFor,useFor,surFor});
     }
     // Phase 2: rendern
-    for(const {num,g,items,groupEdits,ovFor,useFor} of groupData){
+    for(const {num,g,items,groupEdits,ovFor,useFor,surFor} of groupData){
       if(multi){
         const col=groupColors[(num-1)%groupColors.length];
         const groupHeader=h('div',{style:{display:'flex',alignItems:'center',gap:'8px',marginBottom:'8px',marginTop:num>groupNums[0]?'20px':'0'}});
@@ -4609,13 +4628,28 @@ async function renderGeneralOrderPage(container){
         hasEdits:groupEdits.length>0,
         stockHints,
         stockUsedByKey,
-        // Überschüsse anderer Bestellungen (Über-Konkretisierung) für diese Position
+        // Überschüsse anderer Bestellungen (Über-Konkretisierung) für diese
+        // Position — abzüglich bereits angewendeter Abzüge (surplus_use)
         surplusFor:(item)=>{
           if(item._extraId||((item._concrete||item._splitPart)&&item.ingredient_id)) return null;
           const sKey=`${item.subcategory}|${item.unit}|${item.optional?'o':'r'}`;
           const entries=(surplusBy[sKey]||[]).filter(e=>e.num!==num);
           if(!entries.length) return null;
-          return {qty:round2(entries.reduce((s,e)=>s+e.qty,0)),nums:[...new Set(entries.map(e=>e.num))].sort((a,b)=>a-b)};
+          const from=entries.reduce((s,e)=>s+e.qty,0);
+          const usedOthers=(surplusUseBy[sKey]||[]).filter(e=>e.num!==num).reduce((s,e)=>s+e.qty,0);
+          const avail=round2(Math.max(0,from-usedOthers-(item._surplusUsed||0)));
+          return {qty:avail,nums:[...new Set(entries.map(e=>e.num))].sort((a,b)=>a-b)};
+        },
+        // Abzug anwenden / zurücknehmen („Menge abgezogen")
+        onUseSurplus:async(item)=>{
+          const ex=surFor(item);
+          if(ex){await dbDel('general_order_edits',ex.id);generate();return;}
+          const sur=listOpts.surplusFor(item);
+          if(!sur||sur.qty<=0.004) return;
+          const useQty=Math.min(item.quantity,sur.qty);
+          if(useQty<=0.004) return;
+          await dbAdd('general_order_edits',{action_id:selectedActionId,group_num:num,type:'surplus_use',subcategory:item.subcategory,unit:item.unit,optional:item.optional||false,qty_used:round2(useQty)});
+          generate();
         },
         stockTransferDone:groupEdits.some(e=>e.type==='stock_transfer'),
         // Bestellung ins Lager übernehmen: Kaufmengen der konkreten Zutaten
@@ -4866,7 +4900,13 @@ function renderGeneralOrderList(parent,items,opts={}){
       if(item.optional) row.appendChild(h('span',{style:{fontSize:'10px',marginLeft:'6px',color:'var(--accent)',fontWeight:'600',whiteSpace:'nowrap'}},'('+t('misc_optional')+')'));
       if(opts.surplusFor){
         const sur=opts.surplusFor(item);
-        if(sur) row.appendChild(h('span',{style:{fontSize:'10px',fontWeight:'600',color:'#d4a017',marginLeft:'8px',whiteSpace:'nowrap'},title:t('order_surplus_hint',sur.qty,item.unit,sur.nums.join(', '))},t('order_surplus_hint',sur.qty,item.unit,sur.nums.join(', '))));
+        if(item._surplusUsed){
+          row.appendChild(h('span',{style:{fontSize:'10px',fontWeight:'600',color:'var(--green)',marginLeft:'8px',whiteSpace:'nowrap'}},t('order_surplus_used',round2(item._surplusUsed),item.unit)));
+          if(opts.onUseSurplus) row.appendChild(h('button',{class:'btn-icon btn-ghost',title:t('order_surplus_release'),style:{marginLeft:'2px'},onClick:()=>opts.onUseSurplus(item)},'↩'));
+        } else if(sur&&sur.qty>0.004){
+          row.appendChild(h('span',{style:{fontSize:'10px',fontWeight:'600',color:'#d4a017',marginLeft:'8px',whiteSpace:'nowrap'}},t('order_surplus_hint',sur.qty,item.unit,sur.nums.join(', '))));
+          if(opts.onUseSurplus&&item.quantity>0.004) row.appendChild(h('button',{class:'btn-icon btn-ghost',title:t('order_surplus_apply'),style:{marginLeft:'2px'},onClick:()=>opts.onUseSurplus(item)},'−'));
+        }
       }
       if(opts.stockHints&&!item._extraId){
         // Zutaten-Zeilen (konkrete Komponenten + Konkretisierungs-Teile) matchen
