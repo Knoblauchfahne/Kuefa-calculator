@@ -871,6 +871,16 @@ de: {
   stock_dlg_avail: '{0} {1} auf Lager — {2} {3} verfügbar',
   stock_dlg_use: '⤵ verwenden',
   stock_dlg_empty: 'Von dieser Kategorie liegt nichts mit passender Einheit im Lager.',
+  order_surplus_hint: '⇄ {0} {1} bereits in Bestellung {2} berücksichtigt',
+  go_btn_stock_transfer: '📦 Ins Lager',
+  go_btn_stock_transfer_done: '📦 ✓ eingelagert',
+  dlg_stock_transfer: 'Bestellung {0} ins Lager übernehmen',
+  stock_transfer_hint: 'Legt die Kaufmengen der konkreten Zutaten als Lagereinträge an. Aus dem Lager verwendete Mengen sind bereits abgezogen. Kategorie-Positionen ohne konkrete Zutat können nicht eingelagert werden.',
+  stock_transfer_skipped: '⚠ {0} Kategorie-Position(en) ohne konkrete Zutat übersprungen',
+  stock_transfer_none: 'Keine konkreten Zutaten mit Kaufmenge in dieser Bestellung.',
+  stock_transfer_again_confirm: 'Diese Bestellung wurde bereits eingelagert. Trotzdem nochmal einlagern?',
+  stock_transfer_done_msg: '{0} Position(en) ins Lager übernommen',
+  stock_transfer_btn_go: 'Einlagern',
   stock_hint_desc: 'Bestände erscheinen als Hinweis in den Einkaufslisten — Mengen werden nicht automatisch abgezogen.',
   msg_confirm_delete_stock: 'Lagereintrag löschen?',
   store_food_stock: 'Lebensmittellager',
@@ -1642,6 +1652,16 @@ en: {
   stock_dlg_avail: '{0} {1} in stock — {2} {3} available',
   stock_dlg_use: '⤵ use',
   stock_dlg_empty: 'Nothing of this category with a matching unit in stock.',
+  order_surplus_hint: '⇄ {0} {1} already covered in order {2}',
+  go_btn_stock_transfer: '📦 To stock',
+  go_btn_stock_transfer_done: '📦 ✓ stored',
+  dlg_stock_transfer: 'Transfer order {0} to stock',
+  stock_transfer_hint: 'Creates stock entries for the purchased quantities of the concrete ingredients. Amounts used from stock are already deducted. Category positions without a concrete ingredient cannot be stored.',
+  stock_transfer_skipped: '⚠ {0} category position(s) without a concrete ingredient skipped',
+  stock_transfer_none: 'No concrete ingredients with a purchase quantity in this order.',
+  stock_transfer_again_confirm: 'This order was already transferred to stock. Transfer again anyway?',
+  stock_transfer_done_msg: '{0} position(s) transferred to stock',
+  stock_transfer_btn_go: 'Store',
   stock_hint_desc: 'Stock appears as a hint in the shopping lists — quantities are not deducted automatically.',
   msg_confirm_delete_stock: 'Delete storage entry?',
   store_food_stock: 'Food storage',
@@ -4511,6 +4531,10 @@ async function renderGeneralOrderPage(container){
       if(e.subcategory) bumpUsed(`c${e.subcategory}|${e.unit}`,e.qty_used||0);
     });
     const multi=groupNums.length>1;
+    // Phase 1: alle Bestellungen berechnen — erst danach rendern, damit
+    // Überschüsse aus Über-Konkretisierung gruppenübergreifend bekannt sind
+    const surplusBy={};
+    const groupData=[];
     for(const num of groupNums){
       const g=groups[num];
       let items=await generateGeneralOrder(g.dayIds);
@@ -4540,6 +4564,12 @@ async function renderGeneralOrderPage(container){
           splitItems.push({name:p.name,name_en:p.name_en||'',ingredient_id:p.ingredient_id||null,quantity:p.quantity,unit:i.unit,subcategory:i.subcategory,subcategory_en:i.subcategory_en,price_per_unit:p.price_per_unit||0,total_cost:p.quantity*(p.price_per_unit||0),optional:i.optional,_splitPart:true,_splitId:sp.id,_partIndex:idx,_catItem:i});
         });
         const rest=i.quantity-used;
+        // Über-Konkretisierung: mehr konkretisiert als Bedarf → Überschuss
+        // merken, damit andere Bestellungen ihn anzeigen können
+        if(used-i.quantity>0.004){
+          const sKey=`${i.subcategory}|${i.unit}|${i.optional?'o':'r'}`;
+          (surplusBy[sKey]=surplusBy[sKey]||[]).push({num,qty:round2(used-i.quantity)});
+        }
         if(rest>0.004) splitItems.push({name:`${i.subcategory} (${t('go_lbl_rest')})`,name_en:i.subcategory_en?`${i.subcategory_en} (${t('go_lbl_rest')})`:'',quantity:rest,unit:i.unit,subcategory:i.subcategory,subcategory_en:i.subcategory_en,price_per_unit:i.price_per_unit||0,total_cost:rest*(i.price_per_unit||0),optional:i.optional,_splitRest:true,_splitId:sp.id,_catItem:i});
         return false;
       });
@@ -4556,6 +4586,10 @@ async function renderGeneralOrderPage(container){
       });
       lastItems.push(...items);
       lastItemsByGroup.push({num,label:t('order_group_label',num),dates:g.dates,items});
+      groupData.push({num,g,items,groupEdits,ovFor,useFor});
+    }
+    // Phase 2: rendern
+    for(const {num,g,items,groupEdits,ovFor,useFor} of groupData){
       if(multi){
         const col=groupColors[(num-1)%groupColors.length];
         const groupHeader=h('div',{style:{display:'flex',alignItems:'center',gap:'8px',marginBottom:'8px',marginTop:num>groupNums[0]?'20px':'0'}});
@@ -4575,6 +4609,61 @@ async function renderGeneralOrderPage(container){
         hasEdits:groupEdits.length>0,
         stockHints,
         stockUsedByKey,
+        // Überschüsse anderer Bestellungen (Über-Konkretisierung) für diese Position
+        surplusFor:(item)=>{
+          if(item._extraId||((item._concrete||item._splitPart)&&item.ingredient_id)) return null;
+          const sKey=`${item.subcategory}|${item.unit}|${item.optional?'o':'r'}`;
+          const entries=(surplusBy[sKey]||[]).filter(e=>e.num!==num);
+          if(!entries.length) return null;
+          return {qty:round2(entries.reduce((s,e)=>s+e.qty,0)),nums:[...new Set(entries.map(e=>e.num))].sort((a,b)=>a-b)};
+        },
+        stockTransferDone:groupEdits.some(e=>e.type==='stock_transfer'),
+        // Bestellung ins Lager übernehmen: Kaufmengen der konkreten Zutaten
+        // als food_stock-Einträge anlegen (Lager-Verwendungen sind schon abgezogen)
+        onStockTransfer:async()=>{
+          if(groupEdits.some(e=>e.type==='stock_transfer')&&!confirm(t('stock_transfer_again_confirm'))) return;
+          const eligible=items.filter(i=>(i._concrete||i._splitPart)&&i.ingredient_id&&i.quantity>0.004);
+          const skipped=items.filter(i=>!i._extraId&&!((i._concrete||i._splitPart)&&i.ingredient_id)&&i.quantity>0.004).length;
+          if(!eligible.length){alert(t('stock_transfer_none'));return;}
+          const act=await dbGet('actions',selectedActionId);
+          const rows=eligible.map(i=>{
+            const cb=h('input',{type:'checkbox'});cb.checked=!i.optional;
+            const qty=h('input',{type:'number',min:'0',step:'0.01',value:String(round2(i.quantity)),style:{width:'80px'}});
+            return {i,cb,qty};
+          });
+          const content=h('div',{style:{minWidth:'340px',maxWidth:'520px'}});
+          content.appendChild(h('h2',{},t('dlg_stock_transfer',num)));
+          content.appendChild(h('div',{style:{fontSize:'12px',color:'var(--text-muted)',marginBottom:'10px'}},t('stock_transfer_hint')));
+          rows.forEach(r=>{
+            const line=h('div',{style:{display:'flex',alignItems:'center',gap:'8px',padding:'5px 0',borderBottom:'1px solid var(--border)'}});
+            line.appendChild(r.cb);
+            const nm=h('span',{style:{flex:1,minWidth:0,fontSize:'13px',fontWeight:'600'}},_orderItemName(r.i)||r.i.subcategory);
+            if(r.i.optional) nm.appendChild(h('span',{style:{fontSize:'10px',color:'var(--accent)',marginLeft:'6px',fontWeight:'400'}},'('+t('misc_optional')+')'));
+            line.appendChild(nm);
+            line.append(r.qty,h('span',{style:{fontSize:'12px',color:'var(--text-muted)'}},r.i.unit));
+            content.appendChild(line);
+          });
+          if(skipped) content.appendChild(h('div',{style:{fontSize:'11px',color:'var(--accent)',marginTop:'8px'}},t('stock_transfer_skipped',skipped)));
+          content.appendChild(h('div',{class:'modal-buttons'},
+            h('button',{class:'btn btn-accent',onClick:async()=>{
+              const today=new Date().toISOString().slice(0,10);
+              let count=0;
+              for(const r of rows){
+                if(!r.cb.checked) continue;
+                const q=parseFloat(r.qty.value)||0;
+                if(q<=0) continue;
+                await dbAdd('food_stock',{ingredient_id:r.i.ingredient_id,quantity:round2(q),unit:r.i.unit,note:`${act?act.name:''} — ${t('order_group_label',num)}`,stored_at:today});
+                count++;
+              }
+              if(count) await dbAdd('general_order_edits',{action_id:selectedActionId,group_num:num,type:'stock_transfer',at:today});
+              closeModal(modal);
+              alert(t('stock_transfer_done_msg',count));
+              generate();
+            }},t('stock_transfer_btn_go')),
+            h('button',{class:'btn btn-surface',onClick:()=>closeModal(modal)},t('btn_cancel'))
+          ));
+          const modal=showModal(content);
+        },
         onUseStock:async(item)=>{
           const ex=useFor(item);
           if(ex){await dbDel('general_order_edits',ex.id);generate();return;}
@@ -4739,6 +4828,7 @@ function renderGeneralOrderList(parent,items,opts={}){
   summary.appendChild(h('span',{style:{color:'var(--text-muted)'}},t('order_cat_positions_count',items.length)));
   const summaryRight=h('span',{style:{display:'flex',alignItems:'center',gap:'8px'}});
   if(opts.onAddExtra) summaryRight.appendChild(h('button',{class:'btn btn-surface btn-sm',onClick:opts.onAddExtra},t('go_btn_add_position')));
+  if(opts.onStockTransfer) summaryRight.appendChild(h('button',{class:'btn btn-surface btn-sm',onClick:opts.onStockTransfer},opts.stockTransferDone?t('go_btn_stock_transfer_done'):t('go_btn_stock_transfer')));
   if(opts.hasEdits&&opts.onReset) summaryRight.appendChild(h('button',{class:'btn btn-surface btn-sm',onClick:opts.onReset},t('go_btn_reset_edits')));
   summaryRight.appendChild(h('span',{style:{fontWeight:'700',fontSize:'14px'}},t('order_total_cost',total.toFixed(2))));
   summary.appendChild(summaryRight);
@@ -4774,6 +4864,10 @@ function renderGeneralOrderList(parent,items,opts={}){
         row.appendChild(h('span',{style:{fontSize:'13px',marginLeft:'4px',color:item._splitRest?'var(--text-muted)':'var(--text)',fontStyle:item._splitRest?'italic':'normal'}},pName));
       }
       if(item.optional) row.appendChild(h('span',{style:{fontSize:'10px',marginLeft:'6px',color:'var(--accent)',fontWeight:'600',whiteSpace:'nowrap'}},'('+t('misc_optional')+')'));
+      if(opts.surplusFor){
+        const sur=opts.surplusFor(item);
+        if(sur) row.appendChild(h('span',{style:{fontSize:'10px',fontWeight:'600',color:'#d4a017',marginLeft:'8px',whiteSpace:'nowrap'},title:t('order_surplus_hint',sur.qty,item.unit,sur.nums.join(', '))},t('order_surplus_hint',sur.qty,item.unit,sur.nums.join(', '))));
+      }
       if(opts.stockHints&&!item._extraId){
         // Zutaten-Zeilen (konkrete Komponenten + Konkretisierungs-Teile) matchen
         // direkt; Kategorie- und Rest-Zeilen über die Subkategorie
