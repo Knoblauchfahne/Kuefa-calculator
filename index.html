@@ -4838,15 +4838,15 @@ async function renderGeneralOrderPage(container){
               }
             });
           } else {
-            // Menge + Preis ändern; bei Bedarf weitere Zutaten ergänzen
-            const allIngs=(await dbGetAll('ingredients')).sort((a,b)=>a.name.localeCompare(b.name));
+            // Menge + Preis ändern; bei Bedarf weitere Zutaten DERSELBEN Kategorie ergänzen
+            const catIngs=(await dbGetAll('ingredients')).filter(i=>(i.subcategory||'')===item.subcategory).sort((a,b)=>a.name.localeCompare(b.name));
             const extraRows=[];
             const extraDiv=h('div',{});
             const addIngBtn=h('button',{class:'btn btn-surface btn-sm',type:'button',onClick:()=>{
               const r={ingredient_id:null,name:''};
               const pickEl=h('div',{class:'ing-display',style:{cursor:'pointer',flex:'1',minWidth:'110px'},onClick:()=>{
-                const pItems=allIngs.map(i=>({id:i.id,label:`${ingDisplayName(i)} (${i.unit})${i.subcategory?' — '+i.subcategory:''}`,category:i.subcategory||'',pick:i}));
-                openSearchPicker({title:t('dlg_choose_component'),items:pItems,categories:[...new Set(allIngs.map(i=>i.subcategory||''))].filter(Boolean).sort(),onPick:(it)=>{
+                const pItems=catIngs.map(i=>({id:i.id,label:`${ingDisplayName(i)} (${i.unit})`,category:i.subcategory||'',pick:i}));
+                openSearchPicker({title:`${t('dlg_choose_component')} — ${item.subcategory}`,items:pItems,categories:[],onPick:(it)=>{
                   r.ingredient_id=it.pick.id;r.name=it.pick.name;
                   if(it.pick.unit===item.unit&&it.pick.price) r.priceEl.value=it.pick.price;
                   pickEl.textContent=ingDisplayName(it.pick);pickEl.classList.add('has-value');
