@@ -2096,6 +2096,12 @@ async function createCookingDay(actionId,dateStr){
   if(existing.find(d=>d.date===dateStr)) return;
   return dbAdd('cooking_days',{action_id:actionId,date:dateStr});
 }
+// Bestellgruppen-Zuordnung („Bestellungen aufteilen") am Kochtag speichern,
+// damit die Aufteilung Seitenwechsel und Reloads überlebt
+async function setDayOrderGroup(dayId,group){
+  const d=await dbGet('cooking_days',dayId);
+  if(d){d.order_group=group;await dbPut('cooking_days',d);}
+}
 // Slots eines Tages durch Kopie eines anderen ersetzen (inkl. Varianten-Auswahl)
 async function copyDaySlots(fromDayId,toDayId){
   for(const s of await getMealSlots(toDayId)){await dbDelByIndex('assignments','meal_slot_id',s.id);await dbDel('meal_slots',s.id);}
@@ -2125,7 +2131,7 @@ async function duplicateAction(actionId,newName,newStartDate){
   if(days.length){
     const shift=newStartDate?Math.round((Date.parse(newStartDate)-Date.parse(days[0].date))/86400000):0;
     for(const d of days){
-      const ndid=await dbAdd('cooking_days',{action_id:newId,date:shiftDateStr(d.date,shift)});
+      const ndid=await dbAdd('cooking_days',{action_id:newId,date:shiftDateStr(d.date,shift),order_group:d.order_group||1});
       for(const s of await getMealSlots(d.id)){await dbAdd('meal_slots',{cooking_day_id:ndid,meal_type:s.meal_type,portion_count:s.portion_count,standard_meal_id:s.standard_meal_id||null});}
     }
   }
@@ -4352,15 +4358,16 @@ async function renderGeneralOrderPage(container){
   body.appendChild(dayFilterCard);
   const dayEntries=[];
   days.forEach(d=>{
-    const entry={dayId:d.id,date:d.date,group:1};
+    const entry={dayId:d.id,date:d.date,group:d.order_group||1};
     const numEl=h('span',{style:{display:'inline-flex',alignItems:'center',justifyContent:'center',width:'22px',height:'22px',borderRadius:'50%',background:groupColors[0],color:'#fff',fontWeight:'700',fontSize:'12px',flexShrink:0}},'1');
     function updateDisplay(){
       numEl.textContent=String(entry.group);
       numEl.style.background=groupColors[(entry.group-1)%groupColors.length];
     }
+    updateDisplay();
     const box=h('div',{style:{display:'flex',alignItems:'center',gap:'6px',background:'var(--surface2)',padding:'4px 10px',borderRadius:'8px',fontSize:'12px',cursor:'pointer',userSelect:'none'}});
-    box.addEventListener('click',()=>{entry.group++;updateDisplay();generate();});
-    box.addEventListener('contextmenu',e=>{e.preventDefault();if(entry.group>1){entry.group--;updateDisplay();generate();}});
+    box.addEventListener('click',async()=>{entry.group++;updateDisplay();await setDayOrderGroup(entry.dayId,entry.group);generate();});
+    box.addEventListener('contextmenu',async e=>{e.preventDefault();if(entry.group>1){entry.group--;updateDisplay();await setDayOrderGroup(entry.dayId,entry.group);generate();}});
     box.append(numEl,h('span',{},formatDate(d.date)));
     dayFilterBody.appendChild(box);
     dayEntries.push(entry);
@@ -6204,16 +6211,17 @@ async function renderSpecialOrderPage(container){
     if(!days.length){dayFilterBody.appendChild(h('span',{style:{fontSize:'12px',color:'var(--text-muted)'}},t('empty_no_cooking_days_filter')));return;}
     const groupColors=['var(--accent)','var(--green)','#d4a017','#7b2d8b','#2980b9','#c0392b','#16a085','#8e44ad'];
     days.forEach(d=>{
-      const entry={dayId:d.id,date:d.date,group:1};
+      const entry={dayId:d.id,date:d.date,group:d.order_group||1};
       const numEl=h('span',{style:{display:'inline-flex',alignItems:'center',justifyContent:'center',width:'22px',height:'22px',borderRadius:'50%',background:groupColors[0],color:'#fff',fontWeight:'700',fontSize:'12px',flexShrink:0}},'1');
       function updateDisplay(){
         const col=groupColors[(entry.group-1)%groupColors.length];
         numEl.textContent=String(entry.group);
         numEl.style.background=col;
       }
+      updateDisplay();
       const box=h('div',{style:{display:'flex',alignItems:'center',gap:'6px',background:'var(--surface2)',padding:'4px 10px',borderRadius:'8px',fontSize:'12px',cursor:'pointer',userSelect:'none'}});
-      box.addEventListener('click',()=>{entry.group++;updateDisplay();});
-      box.addEventListener('contextmenu',e=>{e.preventDefault();if(entry.group>1){entry.group--;updateDisplay();}});
+      box.addEventListener('click',async()=>{entry.group++;updateDisplay();await setDayOrderGroup(entry.dayId,entry.group);});
+      box.addEventListener('contextmenu',async e=>{e.preventDefault();if(entry.group>1){entry.group--;updateDisplay();await setDayOrderGroup(entry.dayId,entry.group);}});
       box.append(numEl,h('span',{},formatDate(d.date)));
       dayFilterBody.appendChild(box);
       entry.el=numEl;
