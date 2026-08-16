@@ -129,7 +129,8 @@ label.checkbox input{accent-color:var(--accent);width:16px;height:16px}
 .cal-matrix{border-collapse:collapse;width:100%}
 .cal-matrix th{font-size:11px;color:var(--text-muted);font-weight:600;padding:4px 6px;text-align:left;white-space:nowrap;border-bottom:1px solid var(--border)}
 .cal-matrix td{padding:3px 6px}
-.cal-matrix input{width:64px}
+.cal-matrix input{width:64px;-moz-appearance:textfield;appearance:textfield}
+.cal-matrix input::-webkit-outer-spin-button,.cal-matrix input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
 .cal-matrix .day-label{font-size:12px;white-space:nowrap;cursor:pointer}
 .cal-day:hover{background:var(--surface2)}
 .cal-day.cooking{background:var(--accent-dim);color:var(--accent);font-weight:700}
