@@ -4614,13 +4614,17 @@ async function renderGeneralOrderPage(container){
         if(ex){ex.quantity=round2(ex.quantity+e.quantity);ex.total_cost=ex.quantity*(ex.price_per_unit||0);ex._edited=true;}
         else items.push({name:e.subcategory,quantity:e.quantity,unit:e.unit,subcategory:e.subcategory,subcategory_en:'',total_cost:e.quantity*(e.price_per_unit||0),price_per_unit:e.price_per_unit||0});
       });
+      // Zutaten-Extras: mit konkreten Zeilen verschmelzen; existiert stattdessen
+      // ein Konkretisierungs-Teil derselben Zutat, erst NACH dem Split mergen
+      const deferredIngExtras=[];
       groupEdits.filter(e=>e.type==='extra'&&!e.is_category&&e.ingredient_id).forEach(e=>{
         const ex=items.find(i=>i._concrete&&i.ingredient_id===e.ingredient_id&&i.unit===e.unit&&!i.optional);
-        if(ex){ex.quantity=round2(ex.quantity+e.quantity);ex.total_cost=ex.quantity*(ex.price_per_unit||0);ex._edited=true;}
-        else{
-          const ing=genIngById.get(e.ingredient_id);
-          items.push({name:ing?ing.name:e.name,name_en:ing?(ing.name_en||''):'',ingredient_id:e.ingredient_id,quantity:e.quantity,unit:e.unit,subcategory:(ing&&ing.subcategory)||t('misc_uncategorized'),subcategory_en:'',total_cost:e.quantity*(e.price_per_unit||0),price_per_unit:e.price_per_unit||0,_concrete:true});
-        }
+        if(ex){ex.quantity=round2(ex.quantity+e.quantity);ex.total_cost=ex.quantity*(ex.price_per_unit||0);ex._edited=true;return;}
+        const ing=genIngById.get(e.ingredient_id);
+        const subcat=(ing&&ing.subcategory)||t('misc_uncategorized');
+        const sp=groupEdits.find(s=>s.type==='split'&&s.subcategory===subcat&&s.unit===e.unit&&!s.optional&&(s.parts||[]).some(p=>p.ingredient_id===e.ingredient_id));
+        if(sp){deferredIngExtras.push(e);return;}
+        items.push({name:ing?ing.name:e.name,name_en:ing?(ing.name_en||''):'',ingredient_id:e.ingredient_id,quantity:e.quantity,unit:e.unit,subcategory:subcat,subcategory_en:'',total_cost:e.quantity*(e.price_per_unit||0),price_per_unit:e.price_per_unit||0,_concrete:true});
       });
       items=items.filter(i=>{
         const ov=ovFor(i);
@@ -4656,6 +4660,15 @@ async function renderGeneralOrderPage(container){
         return false;
       });
       items.push(...splitItems);
+      // Zurückgestellte Zutaten-Extras in den passenden Konkretisierungs-Teil mergen
+      deferredIngExtras.forEach(e=>{
+        const part=items.find(i=>i._splitPart&&i.ingredient_id===e.ingredient_id&&i.unit===e.unit&&!i.optional);
+        if(part){part.quantity=round2(part.quantity+e.quantity);part.total_cost=part.quantity*(part.price_per_unit||0);part._edited=true;}
+        else{
+          const ing=genIngById.get(e.ingredient_id);
+          items.push({name:ing?ing.name:e.name,name_en:ing?(ing.name_en||''):'',ingredient_id:e.ingredient_id,quantity:e.quantity,unit:e.unit,subcategory:(ing&&ing.subcategory)||t('misc_uncategorized'),subcategory_en:'',total_cost:e.quantity*(e.price_per_unit||0),price_per_unit:e.price_per_unit||0,_concrete:true});
+        }
+      });
       // Lager-Verwendung dieser Bestellung: nur auf Zutatenebene (konkrete
       // Komponenten und Konkretisierungs-Teile) — Bedarf um Reservierung senken
       const useFor=i=>((i._concrete||i._splitPart)&&i.ingredient_id)
@@ -4809,7 +4822,13 @@ async function renderGeneralOrderPage(container){
               // 1) Konkretisierung: Split-Edit um Zutaten-Teil erweitern/anlegen
               const sp=item._splitId?await dbGet('general_order_edits',item._splitId):(groupEdits.find(e=>e.type==='split'&&e.subcategory===cat.subcategory&&e.unit===cat.unit&&!!e.optional===!!cat.optional)||null);
               const part={ingredient_id:r.ing.id,name:r.ing.name,name_en:r.ing.name_en||'',quantity:q,price_per_unit:r.ing.unit===cat.unit?(r.ing.price||0):0};
-              if(sp){sp.parts=(sp.parts||[]);sp.parts.push(part);await dbPut('general_order_edits',sp);}
+              if(sp){
+                sp.parts=(sp.parts||[]);
+                const exPart=sp.parts.find(p=>p.ingredient_id===r.ing.id);
+                if(exPart) exPart.quantity=round2(exPart.quantity+q);
+                else sp.parts.push(part);
+                await dbPut('general_order_edits',sp);
+              }
               else await dbAdd('general_order_edits',{action_id:selectedActionId,group_num:num,type:'split',subcategory:cat.subcategory,unit:cat.unit,optional:cat.optional||false,parts:[part]});
               // 2) Zutaten-Reservierung (bestehende zur selben Zutat aufaddieren)
               const exUse=groupEdits.find(e=>e.type==='stock_use'&&e.ingredient_id===r.ing.id&&e.unit===cat.unit&&!!e.optional===!!cat.optional);
@@ -5170,7 +5189,14 @@ async function openSplitDialog({catItem,rec,onSave}){
       h('button',{class:'btn btn-accent',onClick:async()=>{
         const valid=parts.filter(p=>p.name&&p.quantity>0)
           .map(p=>({ingredient_id:p.ingredient_id||null,name:p.name,name_en:p.name_en||'',quantity:parseFloat(p.quantity),price_per_unit:parseFloat(p.price_per_unit)||0}));
-        await onSave(valid);
+        // Doppelte Teile (gleiche Zutat bzw. gleicher Freitext) zusammenfassen
+        const mergedParts=[];
+        for(const p of valid){
+          const ex=mergedParts.find(x=>p.ingredient_id?x.ingredient_id===p.ingredient_id:(!x.ingredient_id&&x.name===p.name));
+          if(ex) ex.quantity=round2(ex.quantity+p.quantity);
+          else mergedParts.push(p);
+        }
+        await onSave(mergedParts);
         closeModal(modal);
       }},t('btn_save'))
     )
