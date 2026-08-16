@@ -4299,25 +4299,27 @@ async function renderGeneralOrderPage(container){
         const aName=action?action.name:'';
         const groupColors=['var(--accent)','var(--green)','#d4a017','#7b2d8b','#2980b9','#c0392b','#16a085','#8e44ad'];
 
-        function openFormatDialog(items,suffix){
+        async function openFormatDialog(items,suffix,selectedNums=null){
           const title=LANG==='en'?'Shopping list by basic needs':'Einkaufsliste nach Grundbedarf';
           const titleTxt=LANG==='en'?'SHOPPING LIST BY BASIC NEEDS':'EINKAUFSLISTE NACH GRUNDBEDARF';
           const fname='Einkaufsliste_nach_Grundbedarf'+(suffix?'_'+suffix:'');
           // Konkretisierte/konkrete Positionen brauchen ihre Zutatennamen im Export
           const withNames=items.some(i=>i._splitPart||i._splitRest||i._concrete);
+          // Lagerverwendung (Packliste) mit anhängen
+          const stockList=await buildStockUsageList(selectedActionId,selectedNums);
           const m2=showModal(h('div',{},
             h('h2',{},t('dlg_export_general')),
             h('div',{class:'modal-buttons'},
               h('button',{class:'btn btn-accent',onClick:()=>{
-                printOrderPDF(items,{title,actionName:aName,includeName:withNames});
+                printOrderPDF(items,{title,actionName:aName,includeName:withNames,stockList});
                 closeModal(m2);
               }},t('btn_export_pdf')),
               h('button',{class:'btn btn-surface',onClick:()=>{
-                downloadFile(fname+'.txt',exportOrderTxt(items,{title:titleTxt,actionName:aName,includeName:withNames}));
+                downloadFile(fname+'.txt',exportOrderTxt(items,{title:titleTxt,actionName:aName,includeName:withNames,stockList}));
                 closeModal(m2);
               }},t('btn_export_txt')),
               h('button',{class:'btn btn-surface',onClick:()=>{
-                downloadFile(fname+'.csv',exportOrderCsv(items,{actionName:aName,includeName:withNames}),'text/csv');
+                downloadFile(fname+'.csv',exportOrderCsv(items,{actionName:aName,includeName:withNames,stockList}),'text/csv');
                 closeModal(m2);
               }},t('btn_export_csv')),
               h('button',{class:'btn btn-surface',onClick:()=>closeModal(m2)},t('btn_cancel'))
@@ -4364,7 +4366,7 @@ async function renderGeneralOrderPage(container){
               }));
               const suffix=selected.length===lastItemsByGroup.length?'':`Bestellung_${selected.map(c=>c.g.num).join('_')}`;
               closeModal(m);
-              openFormatDialog(merged,suffix);
+              openFormatDialog(merged,suffix,selected.map(c=>c.g.num));
             }},t('btn_next')),
             h('button',{class:'btn btn-surface',onClick:()=>closeModal(m)},t('btn_cancel'))
           )
@@ -4966,7 +4968,7 @@ function _orderGroupBySubcat(items){
 
 // Einheitlicher TXT-Export. includeName=true → pro-Zeile Zutatname
 // (Special Order); false → nur Menge+Einheit pro Zeile (General Order).
-function exportOrderTxt(items, {title, actionName, includeName}){
+function exportOrderTxt(items, {title, actionName, includeName, stockList=null}){
   const evL    = LANG==='en'?'Event':'Veranstaltung';
   const totalL = LANG==='en'?'Total':'Gesamt';
   const endL   = LANG==='en'?'END':'ENDE';
@@ -4988,6 +4990,31 @@ function exportOrderTxt(items, {title, actionName, includeName}){
     }
     t += '\n';
   }
+  if(stockList){
+    const packL  = LANG==='en'?'STOCK USE (PACKING LIST)':'LAGERVERWENDUNG (PACKLISTE)';
+    const takeL  = LANG==='en'?'Take along (planned)':'Mitnehmen (verplant)';
+    const stayL  = LANG==='en'?'In stock, not planned':'Im Lager, nicht verplant';
+    const stockL = LANG==='en'?'stock':'Lager';
+    const remL   = LANG==='en'?'remains':'bleibt';
+    const grpL   = LANG==='en'?'Order':'Bestellung';
+    t += `=== ${packL} ===\n`;
+    if(stockList.used.length){
+      t += `${takeL}:\n`;
+      for(const u of stockList.used){
+        let line=`  [ ] ${u.name}: ${u.total} ${u.unit}`;
+        const nums=Object.keys(u.byGroup);
+        if(nums.length>1) line+=` (${nums.map(n=>`${grpL} ${n}: ${u.byGroup[n]} ${u.unit}`).join(', ')})`;
+        line+=`  —  ${stockL} ${u.stock} ${u.unit}, ${remL} ${u.remaining} ${u.unit}`;
+        t += line+'\n';
+      }
+      t += '\n';
+    }
+    if(stockList.unplanned.length){
+      t += `${stayL}:\n`;
+      for(const u of stockList.unplanned) t += `  ${u.name}: ${u.stock} ${u.unit}\n`;
+      t += '\n';
+    }
+  }
   t += `=== ${endL} ===\n`;
   return t;
 }
@@ -4996,7 +5023,7 @@ function exportOrderTxt(items, {title, actionName, includeName}){
 // → Zutatname-Spalte befüllt (Einkaufsliste nach Rezept); false →
 // Zutatname-Spalte leer, Zeilen bleiben nach Subkategorie gruppiert
 // (Grundbedarfe).
-function printOrderPDF(items, {title, actionName, includeName=true}){
+function printOrderPDF(items, {title, actionName, includeName=true, stockList=null}){
   const dateStr = new Date().toLocaleDateString(LANG==='en'?'en-GB':'de-DE');
   const groups  = _orderGroupBySubcat(items);
   const grand   = items.reduce((s,i)=>s+_orderItemCost(i),0);
@@ -5037,6 +5064,33 @@ function printOrderPDF(items, {title, actionName, includeName=true}){
     body += `<tr class="cat-sum"><td colspan="3">${subtL}</td><td class="col-price">${g.subtotal.toFixed(2).replace('.',',')} €</td></tr>`;
     body += `</tbody></table>`;
   }
+  // Lagerverwendung (Packliste): mitnehmen + unverplanter Bestand
+  if(stockList){
+    const packL  = LANG==='en'?'Stock use (packing list)':'Lagerverwendung (Packliste)';
+    const takeL  = LANG==='en'?'Take along (planned)':'Mitnehmen (verplant)';
+    const stayL  = LANG==='en'?'In stock, not planned':'Im Lager, nicht verplant';
+    const stockL = LANG==='en'?'Stock':'Lager';
+    const remL   = LANG==='en'?'remains':'bleibt';
+    const grpL   = LANG==='en'?'Order':'Bestellung';
+    const fmtQ   = n=>String(n).replace('.',',');
+    body += `<div class="stock-section-title">${packL}</div>`;
+    if(stockList.used.length){
+      body += `<table class="cat-table stock-table"><thead><tr><th class="col-check"></th><th class="col-name">${takeL}</th><th class="col-qty">${qtyL}</th><th class="col-stock">${stockL}</th></tr></thead><tbody>`;
+      for(const u of stockList.used){
+        const nums=Object.keys(u.byGroup);
+        const grpInfo=nums.length>1?`<div class="grp-info">${nums.map(n=>`${grpL} ${n}: ${fmtQ(u.byGroup[n])} ${u.unit}`).join(' · ')}</div>`:'';
+        body += `<tr><td class="col-check"><span class="box"></span></td><td class="col-name">${u.name}${grpInfo}</td><td class="col-qty">${fmtQ(u.total)} ${u.unit}</td><td class="col-stock">${fmtQ(u.stock)} ${u.unit} → ${remL} ${fmtQ(u.remaining)} ${u.unit}</td></tr>`;
+      }
+      body += `</tbody></table>`;
+    }
+    if(stockList.unplanned.length){
+      body += `<table class="cat-table stock-table"><thead><tr><th class="col-name">${stayL}</th><th class="col-qty">${stockL}</th></tr></thead><tbody>`;
+      for(const u of stockList.unplanned){
+        body += `<tr><td class="col-name">${u.name}</td><td class="col-qty">${fmtQ(u.stock)} ${u.unit}</td></tr>`;
+      }
+      body += `</tbody></table>`;
+    }
+  }
   const html = `<!DOCTYPE html><html lang="${LANG}"><head><meta charset="UTF-8"><title>${title}${actionName?' — '+actionName:''}</title>
 <style>
 @page{size:A4;margin:15mm}
@@ -5057,6 +5111,10 @@ body{font-family:'Segoe UI',system-ui,sans-serif;font-size:11px;color:#111}
 .opt td{color:#888;font-style:italic}
 .opt-tag{display:inline-block;background:#eee;color:#666;padding:0 5px;border-radius:8px;font-size:9px;margin-left:4px;font-style:normal}
 .cat-sum td{background:#f5f5f5;font-weight:700;font-size:11px}
+.stock-section-title{font-size:15px;font-weight:700;margin:16px 0 8px;padding-top:10px;border-top:2px solid #2d6a4f;color:#2d6a4f}
+.stock-table th{background:#2d6a4f;border-color:#245741}
+.col-stock{width:150px;text-align:right;color:#555}
+.grp-info{font-size:9px;color:#777}
 .footer{margin-top:12px;padding-top:10px;border-top:2px solid #e63946;display:flex;justify-content:space-between;font-size:13px;font-weight:700}
 </style></head><body>
 <div class="header">
@@ -5078,7 +5136,7 @@ ${body}
 }
 
 // Einheitlicher CSV-Export. includeName=true → mit Zutat-Spalte.
-function exportOrderCsv(items, {actionName, includeName}){
+function exportOrderCsv(items, {actionName, includeName, stockList=null}){
   const evL  = LANG==='en'?'Event':'Veranstaltung';
   const catL = LANG==='en'?'Category':'Kategorie';
   const ingL = LANG==='en'?'Ingredient':'Zutat';
@@ -5108,6 +5166,22 @@ function exportOrderCsv(items, {actionName, includeName}){
   t += includeName
     ? `;;;${toL};;${String(grand.toFixed(2)).replace('.',',')}\n`
     : `;;${toL};;${String(grand.toFixed(2)).replace('.',',')}\n`;
+  if(stockList){
+    const takeL = LANG==='en'?'Stock: take along':'Lager: mitnehmen';
+    const stayL = LANG==='en'?'Stock: not planned':'Lager: nicht verplant';
+    const fmtQ  = n=>String(n).replace('.',',');
+    t += '\n';
+    for(const u of stockList.used){
+      t += `${actionName||''};${includeName?takeL:`${takeL} — ${u.name}`};`;
+      if(includeName) t += `${u.name};`;
+      t += `${fmtQ(u.total)};${u.unit};\n`;
+    }
+    for(const u of stockList.unplanned){
+      t += `${actionName||''};${includeName?stayL:`${stayL} — ${u.name}`};`;
+      if(includeName) t += `${u.name};`;
+      t += `${fmtQ(u.stock)};${u.unit};\n`;
+    }
+  }
   return t;
 }
 
@@ -6678,6 +6752,50 @@ async function getFoodStockHints(){
     if(ing&&ing.subcategory) bump(bySubcat,ing.subcategory,e.unit,e.quantity);
   }
   return {byIngredient,bySubcat};
+}
+
+// Lagerverwendungs-/Packliste für den Export der Grundbedarf-Einkaufsliste:
+// was aus dem Lager verplant ist (je Bestellung) und was unverplant liegt.
+// selectedNums (optional) filtert die Anzeige auf die exportierten Bestellungen;
+// „verbleibt" rechnet aber immer über ALLE Reservierungen der Aktion.
+async function buildStockUsageList(actionId,selectedNums=null){
+  const edits=(await dbGetByIndex('general_order_edits','action_id',actionId)).filter(e=>e.type==='stock_use'&&e.ingredient_id);
+  const stockEntries=(await dbGetAll('food_stock')).filter(s=>s.quantity>0);
+  if(!edits.length&&!stockEntries.length) return null;
+  const ingById=new Map((await dbGetAll('ingredients')).map(i=>[i.id,i]));
+  const stockBy=new Map();
+  for(const s of stockEntries){const k=`${s.ingredient_id}|${s.unit}`;stockBy.set(k,(stockBy.get(k)||0)+s.quantity);}
+  const usedBy=new Map();
+  for(const e of edits){
+    const k=`${e.ingredient_id}|${e.unit}`;
+    if(!usedBy.has(k)) usedBy.set(k,{totalAll:0,byGroup:{}});
+    const u=usedBy.get(k);
+    u.totalAll+=e.qty_used||0;
+    const num=e.group_num||1;
+    u.byGroup[num]=(u.byGroup[num]||0)+(e.qty_used||0);
+  }
+  const nameOf=id=>{const ing=ingById.get(id);return ing?ingDisplayName(ing):('#'+id);};
+  const used=[];
+  for(const [k,u] of usedBy){
+    const [idStr,unit]=k.split('|');
+    const byGroup={};let totalSel=0;
+    Object.entries(u.byGroup).forEach(([num,q])=>{
+      if(!selectedNums||selectedNums.includes(parseInt(num))){byGroup[num]=round2(q);totalSel+=q;}
+    });
+    if(totalSel<=0.004) continue;
+    const stock=stockBy.get(k)||0;
+    used.push({name:nameOf(parseInt(idStr)),unit,total:round2(totalSel),byGroup,stock:round2(stock),remaining:round2(Math.max(0,stock-u.totalAll))});
+  }
+  used.sort((a,b)=>a.name.localeCompare(b.name));
+  const unplanned=[];
+  for(const [k,q] of stockBy){
+    if(usedBy.has(k)) continue;
+    const [idStr,unit]=k.split('|');
+    unplanned.push({name:nameOf(parseInt(idStr)),unit,stock:round2(q)});
+  }
+  unplanned.sort((a,b)=>a.name.localeCompare(b.name));
+  if(!used.length&&!unplanned.length) return null;
+  return {used,unplanned};
 }
 
 // Badge für eine Listen-Position: Menge bei passender Einheit, sonst
