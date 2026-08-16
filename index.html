@@ -1102,6 +1102,7 @@ de: {
   std_meal_persons_suffix: 'Personen',
   std_meal_cost_total: 'Gesamt: {0} € für {1} Personen — {2} € pro Person',
   std_meal_cost_incomplete: 'Positionen ohne Preis sind nicht enthalten',
+  std_meal_qty_per_person: 'Ø Menge pro Person: {0}',
   ph_std_meal_desc: 'z.B. Kartoffeln mit Gemüsecurry und Salat — was diese Variante typischerweise bedeutet',
   std_comp_pick_ph: 'Kategorie oder Zutat wählen …',
   dlg_choose_component: 'Kategorie oder Zutat wählen',
@@ -1892,6 +1893,7 @@ en: {
   std_meal_persons_suffix: 'people',
   std_meal_cost_total: 'Total: {0} € for {1} people — {2} € per person',
   std_meal_cost_incomplete: 'items without a price are not included',
+  std_meal_qty_per_person: 'Avg. quantity per person: {0}',
   ph_std_meal_desc: 'e.g. potatoes with vegetable curry and salad — what this variant typically means',
   std_comp_pick_ph: 'Choose category or ingredient …',
   dlg_choose_component: 'Choose category or ingredient',
@@ -4132,6 +4134,8 @@ async function renderStandardMealsPage(container){
       tHdr.appendChild(h('span',{style:{flex:1}}));
       card.appendChild(tHdr);
       let totalCost=0,costMissing=false;
+      // Prüfkennzahl: Masse/Volumen pro Person (g/ml werden umgerechnet, andere Einheiten einzeln)
+      let totalKg=0,totalL=0;const otherUnitSums={};
       // Nach Kategorie gruppieren (wie auf der Grundbedarf-Seite): Kategorie-Zeile
       // in Grün oben, konkretisierte Zutaten eingerückt darunter
       const compGroups=[];const compByCat={};
@@ -4144,6 +4148,11 @@ async function renderStandardMealsPage(container){
       const appendCompRow=(c,ing)=>{
         const ppu=ing?(ing.unit===c.unit?(ing.price||0):0):(c.price_per_unit||0);
         if(ppu) totalCost+=c.quantity_per_100*pFactor*ppu; else costMissing=true;
+        if(c.unit==='kg') totalKg+=c.quantity_per_100;
+        else if(c.unit==='g') totalKg+=c.quantity_per_100/1000;
+        else if(c.unit==='L') totalL+=c.quantity_per_100;
+        else if(c.unit==='ml') totalL+=c.quantity_per_100/1000;
+        else otherUnitSums[c.unit]=(otherUnitSums[c.unit]||0)+c.quantity_per_100;
         const row=h('div',{class:'table-row'});
         const nameSpan=ing
           ?h('span',{style:{width:'180px',flexShrink:0,fontSize:'13px',paddingLeft:'14px'}},'↳ '+ingDisplayName(ing))
@@ -4172,6 +4181,14 @@ async function renderStandardMealsPage(container){
         t('std_meal_cost_total',eur(totalCost),stdMealPersonCount,eur(totalCost/stdMealPersonCount)));
       if(costMissing) sumLine.appendChild(h('span',{style:{display:'block',fontSize:'11px',fontWeight:'400',color:'var(--text-muted)'}},'⚠ '+t('std_meal_cost_incomplete')));
       card.appendChild(sumLine);
+      // Prüfkennzahl: Ø Menge pro Person (Masse/Volumen zusammengefasst)
+      const fmtMass=kg=>kg>=1?`${fmtQty(kg)} kg`:`${Math.round(kg*1000)} g`;
+      const fmtVol=l=>l>=1?`${fmtQty(l)} L`:`${Math.round(l*1000)} ml`;
+      const qtyParts=[];
+      if(totalKg>0.0001) qtyParts.push(fmtMass(totalKg/100));
+      if(totalL>0.0001) qtyParts.push(fmtVol(totalL/100));
+      Object.entries(otherUnitSums).forEach(([u,q])=>qtyParts.push(`${fmtQty(q/100)} ${u}`));
+      if(qtyParts.length) card.appendChild(h('div',{style:{padding:'2px 0',textAlign:'right',fontSize:'12px',color:'var(--text-muted)'}},t('std_meal_qty_per_person',qtyParts.join(' · '))));
     }
     detailDiv.appendChild(card);
   }
@@ -4345,11 +4362,16 @@ async function renderGeneralOrderPage(container){
           const withNames=items.some(i=>i._splitPart||i._splitRest||i._concrete);
           // Lagerverwendung (Packliste) mit anhängen
           const stockList=await buildStockUsageList(selectedActionId,selectedNums);
+          // Portionssumme der exportierten Bestellungen → pro-Portion-Kennzahl im PDF
+          const selGroups=getOrderGroups();
+          const selDayIds=[];
+          Object.entries(selGroups).forEach(([n,gg])=>{if(!selectedNums||selectedNums.includes(parseInt(n))) selDayIds.push(...gg.dayIds);});
+          const portionsTotal=(await getPortionSummary(selDayIds)).total;
           const m2=showModal(h('div',{},
             h('h2',{},t('dlg_export_general')),
             h('div',{class:'modal-buttons'},
               h('button',{class:'btn btn-accent',onClick:()=>{
-                printOrderPDF(items,{title,actionName:aName,includeName:withNames,stockList});
+                printOrderPDF(items,{title,actionName:aName,includeName:withNames,stockList,portionsTotal});
                 closeModal(m2);
               }},t('btn_export_pdf')),
               h('button',{class:'btn btn-surface',onClick:()=>{
@@ -5320,10 +5342,30 @@ function exportStockUsageCsv(stockList,{actionName}){
 // → Zutatname-Spalte befüllt (Einkaufsliste nach Rezept); false →
 // Zutatname-Spalte leer, Zeilen bleiben nach Subkategorie gruppiert
 // (Grundbedarfe).
-function printOrderPDF(items, {title, actionName, includeName=true, stockList=null}){
+function printOrderPDF(items, {title, actionName, includeName=true, stockList=null, portionsTotal=null}){
   const dateStr = new Date().toLocaleDateString(LANG==='en'?'en-GB':'de-DE');
   const groups  = _orderGroupBySubcat(items);
   const grand   = items.reduce((s,i)=>s+_orderItemCost(i),0);
+  // Mengen-Kennzahlen: kg/L gesamt (g/ml umgerechnet) + optional pro Portion
+  const fmtQ2=n=>String(round2(n)).replace('.',',');
+  const qSum={kg:0,L:0,other:{}};
+  items.forEach(i=>{
+    const q=i.quantity||0;
+    if(i.unit==='kg') qSum.kg+=q;
+    else if(i.unit==='g') qSum.kg+=q/1000;
+    else if(i.unit==='L') qSum.L+=q;
+    else if(i.unit==='ml') qSum.L+=q/1000;
+    else qSum.other[i.unit]=(qSum.other[i.unit]||0)+q;
+  });
+  const qParts=[];
+  if(qSum.kg>0.0001) qParts.push(`${fmtQ2(qSum.kg)} kg`);
+  if(qSum.L>0.0001) qParts.push(`${fmtQ2(qSum.L)} L`);
+  Object.entries(qSum.other).forEach(([u,q])=>qParts.push(`${fmtQ2(q)} ${u}`));
+  const perParts=[];
+  if(portionsTotal>0){
+    if(qSum.kg>0.0001) perParts.push(qSum.kg/portionsTotal>=1?`${fmtQ2(qSum.kg/portionsTotal)} kg`:`${Math.round(qSum.kg/portionsTotal*1000)} g`);
+    if(qSum.L>0.0001) perParts.push(qSum.L/portionsTotal>=1?`${fmtQ2(qSum.L/portionsTotal)} L`:`${Math.round(qSum.L/portionsTotal*1000)} ml`);
+  }
 
   const qtyL   = LANG==='en'?'Quantity':'Menge';
   const priceL = LANG==='en'?'Price':'Preis';
@@ -5358,7 +5400,11 @@ function printOrderPDF(items, {title, actionName, includeName=true, stockList=nu
         <td class="col-price">${priceStr}</td>
       </tr>`;
     }
-    body += `<tr class="cat-sum"><td colspan="3">${subtL}</td><td class="col-price">${g.subtotal.toFixed(2).replace('.',',')} €</td></tr>`;
+    // Mengen-Zwischensumme pro Kategorie (je Einheit aufsummiert)
+    const unitSums={};
+    g.items.forEach(i=>{unitSums[i.unit]=(unitSums[i.unit]||0)+(i.quantity||0);});
+    const unitStr=Object.entries(unitSums).map(([u,q])=>`${fmtQ2(q)} ${u}`).join(' · ');
+    body += `<tr class="cat-sum"><td colspan="2">${subtL}</td><td class="col-qty">${unitStr}</td><td class="col-price">${g.subtotal.toFixed(2).replace('.',',')} €</td></tr>`;
     body += `</tbody></table>`;
   }
   // Lagerverwendung (Packliste): mitnehmen + unverplanter Bestand
@@ -5395,6 +5441,8 @@ body{font-family:'Segoe UI',system-ui,sans-serif;font-size:11px;color:#111}
     ${actionName?`<span><strong>${evL}:</strong> ${actionName}</span>`:''}
     <span><strong>${dateL}:</strong> ${dateStr}</span>
     <span class="total-badge">${totalL}: ${grand.toFixed(2).replace('.',',')} €</span>
+    ${qParts.length?`<span><strong>${qtyL}:</strong> ${qParts.join(' · ')}</span>`:''}
+    ${perParts.length?`<span><strong>${LANG==='en'?'per portion':'pro Portion'}:</strong> ≈ ${perParts.join(' · ')} (${portionsTotal} ${LANG==='en'?'portions':'Portionen'})</span>`:''}
   </div>
 </div>
 ${body}
