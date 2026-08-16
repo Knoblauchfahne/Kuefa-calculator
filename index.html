@@ -2908,6 +2908,18 @@ function formatDate(dateStr){
   return `${days[d.getDay()]}, ${String(d.getDate()).padStart(2,'0')}.${String(d.getMonth()+1).padStart(2,'0')}.${d.getFullYear()}`;
 }
 
+// Scroll-Positionen über einen kompletten Neuaufbau retten — sonst springt
+// die Seite nach jeder Änderung an den Anfang. capture vor dem Leeren,
+// restore nach dem Wiederaufbau (Elemente bleiben dabei dieselben).
+function captureScroll(){
+  const els=[...document.querySelectorAll('.page-body,.col-left,.col-right,.content')];
+  if(document.scrollingElement) els.push(document.scrollingElement);
+  return els.map(el=>({el,top:el.scrollTop})).filter(s=>s.top>0);
+}
+function restoreScroll(snap){
+  snap.forEach(({el,top})=>{if(el.isConnected) el.scrollTop=top;});
+}
+
 function showModal(content,cls=''){
   const overlay=h('div',{class:'modal-overlay',onClick:e=>{if(e.target===overlay)overlay.remove();}},
     h('div',{class:`modal ${cls}`},content)
@@ -3220,6 +3232,11 @@ async function renderCalendarPage(container){
   let calRangeMode=false,calRangeStart=null;
 
   async function refreshCal(){
+    const calScrollSnap=captureScroll();
+    await refreshCalInner();
+    restoreScroll(calScrollSnap);
+  }
+  async function refreshCalInner(){
     calCard.innerHTML='';
     daysCard.innerHTML='';
     mealPanel.innerHTML='';
@@ -3991,6 +4008,11 @@ async function renderStandardMealsPage(container){
   body.appendChild(cols);
 
   async function refresh(){
+    const scrollSnap=captureScroll();
+    await refreshInner();
+    restoreScroll(scrollSnap);
+  }
+  async function refreshInner(){
     listDiv.innerHTML='';detailDiv.innerHTML='';
     const mealTypeCats=await getMealTypeCategories();
     const mealTypeEnMap={};if(LANG==='en'){mealTypeCats.forEach(c=>{if(c.name_en) mealTypeEnMap[c.name]=c.name_en;});}
@@ -4460,6 +4482,7 @@ async function renderGeneralOrderPage(container){
   }
 
   async function generate(){
+    const scrollSnap=captureScroll();
     resultDiv.innerHTML='';
     // Mahlzeiten ohne explizite Auswahl werden nicht eingerechnet — warnen.
     // Über resolveSlotMeal geprüft, damit auch verwaiste Verweise (Vorlage
@@ -4697,6 +4720,7 @@ async function renderGeneralOrderPage(container){
       }
       renderGeneralOrderList(resultDiv,items,listOpts);
     }
+    restoreScroll(scrollSnap);
   }
 
   await renderSlots();
@@ -6588,6 +6612,7 @@ async function renderSpecialOrderPage(container){
   }
 
   async function generate(){
+    const scrollSnap=captureScroll();
     resultDiv.innerHTML='';
     if(!selectedActionId){resultDiv.appendChild(h('div',{class:'empty-msg'},t('empty_no_action_selected')));return;}
     const groups=getOrderGroups();
@@ -6611,6 +6636,7 @@ async function renderSpecialOrderPage(container){
       if(!items.length){resultDiv.appendChild(h('div',{class:'empty-msg'},t('empty_no_positions_days')));continue;}
       renderOrderList(resultDiv,items,stockHints);
     }
+    restoreScroll(scrollSnap);
   }
 
   renderAssignments();generate();
