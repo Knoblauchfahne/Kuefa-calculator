@@ -1,100 +1,9 @@
 {
   "_meta": {
-    "version": 6,
-    "exported_at": "2026-04-17T17:22:17.398Z",
-    "app": "KF Portionsrechner"
+    "version": 10,
+    "exported_at": "2026-08-16T10:20:02.970Z",
+    "app": "KüFa Organizer"
   },
-  "actions": [
-    {
-      "name": "Sommercamp",
-      "description": "",
-      "created_at": "2026-04-15T14:22:43.749Z",
-      "id": 11
-    },
-    {
-      "name": "MIM Berlin 2026",
-      "description": "",
-      "created_at": "2026-04-15T12:46:19.386Z",
-      "id": 12
-    }
-  ],
-  "cooking_days": [
-    {
-      "action_id": 12,
-      "date": "2026-05-14",
-      "id": 41
-    },
-    {
-      "action_id": 12,
-      "date": "2026-05-15",
-      "id": 42
-    },
-    {
-      "action_id": 12,
-      "date": "2026-05-16",
-      "id": 43
-    },
-    {
-      "action_id": 12,
-      "date": "2026-05-17",
-      "id": 44
-    },
-    {
-      "action_id": 11,
-      "date": "2026-04-17",
-      "id": 45
-    }
-  ],
-  "meal_slots": [
-    {
-      "cooking_day_id": 41,
-      "meal_type": "Mittagessen",
-      "portion_count": 700,
-      "id": 29
-    },
-    {
-      "cooking_day_id": 41,
-      "meal_type": "Abendessen",
-      "portion_count": 700,
-      "id": 30
-    },
-    {
-      "cooking_day_id": 42,
-      "meal_type": "Mittagessen",
-      "portion_count": 900,
-      "id": 31
-    },
-    {
-      "cooking_day_id": 42,
-      "meal_type": "Abendessen",
-      "portion_count": 900,
-      "id": 32
-    },
-    {
-      "cooking_day_id": 43,
-      "meal_type": "Mittagessen",
-      "portion_count": 1100,
-      "id": 33
-    },
-    {
-      "cooking_day_id": 43,
-      "meal_type": "Abendessen",
-      "portion_count": 1100,
-      "id": 34
-    },
-    {
-      "cooking_day_id": 44,
-      "meal_type": "Mittagessen",
-      "portion_count": 600,
-      "id": 35
-    },
-    {
-      "cooking_day_id": 45,
-      "meal_type": "Abendessen",
-      "portion_count": 10,
-      "id": 36
-    }
-  ],
   "ingredients": [
     {
       "id": 499,
@@ -2219,15 +2128,31 @@
     {
       "id": 615,
       "name": "Milchreis",
+      "name_en": "Pudding Rice",
       "unit": "kg",
       "price": 5,
-      "subcategory": "Milchreis",
+      "subcategory": "Reis",
       "verarbeitungshinweis": "5-fache Flüssigkeitsmenge,  25-30 min bei niedriger Hitze unter Rühren köcheln",
       "lagerhinweis": "gekocht: Kühlschrank 2-3 Tage",
-      "abschnitt": 0,
-      "name_en": "Pudding Rice",
       "verarbeitungshinweis_en": "5x liquid, simmer 25–30 min over low heat, stirring",
-      "lagerhinweis_en": "cooked: fridge 2–3 days"
+      "lagerhinweis_en": "cooked: fridge 2–3 days",
+      "abschnitt": 0,
+      "kochfaktor": 1,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": ""
     },
     {
       "id": 616,
@@ -6045,6 +5970,64 @@
         0
       ],
       "season_category": ""
+    },
+    {
+      "name": "Grüne Schälerbsen",
+      "name_en": "Green Shell Peas",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
+      "verarbeitungshinweis": "3 Teile Wasser auf ein Teil Schälerbsen",
+      "lagerhinweis": "",
+      "verarbeitungshinweis_en": "3 parts water to 1 part split peas",
+      "lagerhinweis_en": "",
+      "abschnitt": 0,
+      "kochfaktor": 1,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": "",
+      "id": 815
+    },
+    {
+      "name": "Gerstengraupen",
+      "name_en": "Barley groats",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "verarbeitungshinweis_en": "",
+      "lagerhinweis_en": "",
+      "abschnitt": 0,
+      "kochfaktor": 1,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": "",
+      "id": 816
     }
   ],
   "subcategories": [
@@ -6119,11 +6102,6 @@
       "name_en": "Bread"
     },
     {
-      "name": "Milchreis",
-      "id": 21,
-      "name_en": "Rice pudding"
-    },
-    {
       "name": "Pflanzendrink",
       "id": 22,
       "name_en": "Plant drink"
@@ -6187,8 +6165,9 @@
   "standard_meals": [
     {
       "meal_type": "Frühstück",
-      "name": "Frühstück 1",
-      "id": 1
+      "name": "Gemischtes Frühstück",
+      "id": 1,
+      "description": "Das gemischte Frühstück ziehlt darauf ab viele Optionen zu bieten.\n[Overnight Oats oder Porridge, Obstsalat, Brot mit Aufstrich (Gemüse) und Milchreis (Glutenfrei), optional Kaffee oder Pancaces]"
     },
     {
       "meal_type": "Abendessen",
@@ -6202,13 +6181,9 @@
     },
     {
       "meal_type": "Mittagessen",
-      "name": "Mittag gemischt",
-      "id": 5
-    },
-    {
-      "meal_type": "Frühstück",
-      "name": "Frühstück 2",
-      "id": 6
+      "name": "Gemischtes Mittagessen",
+      "id": 5,
+      "description": "Das gemischte Mittagessen beinhaltet 1/3 Kartoffeln, 1/3 Pasta und 1/3 Reis"
     },
     {
       "meal_type": "Zwischenmahlzeit",
@@ -6385,7 +6360,7 @@
     {
       "standard_meal_id": 5,
       "ingredient_id": 0,
-      "quantity_per_100": 0.5,
+      "quantity_per_100": 0.3,
       "unit": "kg",
       "subcategory": "Salz",
       "id": 19,
@@ -6403,7 +6378,7 @@
     {
       "standard_meal_id": 1,
       "ingredient_id": 0,
-      "quantity_per_100": 3,
+      "quantity_per_100": 4,
       "unit": "kg",
       "subcategory": "Brot und Teigwaren",
       "id": 21,
@@ -6412,16 +6387,7 @@
     {
       "standard_meal_id": 1,
       "ingredient_id": 0,
-      "quantity_per_100": 2,
-      "unit": "kg",
-      "subcategory": "Milchreis",
-      "id": 22,
-      "price_per_unit": 2
-    },
-    {
-      "standard_meal_id": 1,
-      "ingredient_id": 0,
-      "quantity_per_100": 8,
+      "quantity_per_100": 4,
       "unit": "L",
       "subcategory": "Pflanzendrink",
       "id": 23,
@@ -6520,7 +6486,7 @@
     {
       "standard_meal_id": 10,
       "ingredient_id": 0,
-      "quantity_per_100": 30,
+      "quantity_per_100": 25,
       "unit": "kg",
       "subcategory": "Gemüse",
       "id": 35,
@@ -6538,7 +6504,7 @@
     {
       "standard_meal_id": 10,
       "ingredient_id": 0,
-      "quantity_per_100": 2,
+      "quantity_per_100": 1.2,
       "unit": "L",
       "subcategory": "Öle & Fette",
       "id": 37,
@@ -6556,7 +6522,7 @@
     {
       "standard_meal_id": 10,
       "ingredient_id": 0,
-      "quantity_per_100": 0.5,
+      "quantity_per_100": 0.3,
       "unit": "kg",
       "subcategory": "Salz",
       "id": 39,
@@ -6574,7 +6540,7 @@
     {
       "standard_meal_id": 11,
       "ingredient_id": 0,
-      "quantity_per_100": 30,
+      "quantity_per_100": 25,
       "unit": "kg",
       "subcategory": "Gemüse",
       "id": 41,
@@ -6592,7 +6558,7 @@
     {
       "standard_meal_id": 11,
       "ingredient_id": 0,
-      "quantity_per_100": 2,
+      "quantity_per_100": 1.2,
       "unit": "L",
       "subcategory": "Öle & Fette",
       "id": 43,
@@ -6831,6 +6797,42 @@
       "subcategory": "Salz",
       "id": 69,
       "price_per_unit": 0.5
+    },
+    {
+      "standard_meal_id": 1,
+      "ingredient_id": 615,
+      "quantity_per_100": 2,
+      "unit": "kg",
+      "subcategory": "Reis",
+      "price_per_unit": 5,
+      "id": 74
+    },
+    {
+      "standard_meal_id": 1,
+      "ingredient_id": 571,
+      "quantity_per_100": 0.5,
+      "unit": "kg",
+      "subcategory": "Getränke",
+      "price_per_unit": 20,
+      "id": 77
+    },
+    {
+      "standard_meal_id": 1,
+      "ingredient_id": 0,
+      "quantity_per_100": 2,
+      "unit": "kg",
+      "subcategory": "Mehl",
+      "price_per_unit": 1,
+      "id": 78
+    },
+    {
+      "standard_meal_id": 1,
+      "ingredient_id": 586,
+      "quantity_per_100": 4,
+      "unit": "L",
+      "subcategory": "Pflanzendrink",
+      "price_per_unit": 2,
+      "id": 79
     }
   ],
   "categories": [
@@ -11360,101 +11362,6 @@
       "id": 2353
     }
   ],
-  "assignments": [
-    {
-      "meal_slot_id": 27,
-      "recipe_id": 91,
-      "portion_override": 50,
-      "is_side": false,
-      "id": 35
-    },
-    {
-      "meal_slot_id": 27,
-      "recipe_id": 105,
-      "portion_override": 50,
-      "is_side": true,
-      "id": 36
-    },
-    {
-      "meal_slot_id": 28,
-      "recipe_id": 111,
-      "portion_override": 5,
-      "is_side": false,
-      "id": 37
-    },
-    {
-      "meal_slot_id": 28,
-      "recipe_id": 112,
-      "portion_override": 5,
-      "is_side": true,
-      "id": 38
-    },
-    {
-      "meal_slot_id": 28,
-      "recipe_id": 119,
-      "portion_override": 1,
-      "is_side": false,
-      "is_allergy": true,
-      "id": 44
-    },
-    {
-      "meal_slot_id": 20,
-      "recipe_id": 113,
-      "portion_override": 700,
-      "is_side": false,
-      "is_allergy": false,
-      "id": 48
-    },
-    {
-      "meal_slot_id": 21,
-      "recipe_id": 126,
-      "portion_override": 700,
-      "is_side": false,
-      "is_allergy": false,
-      "id": 49
-    },
-    {
-      "meal_slot_id": 21,
-      "recipe_id": 118,
-      "portion_override": 700,
-      "is_side": true,
-      "is_allergy": false,
-      "id": 50
-    },
-    {
-      "meal_slot_id": 29,
-      "recipe_id": 113,
-      "portion_override": 700,
-      "is_side": false,
-      "is_allergy": false,
-      "id": 51
-    },
-    {
-      "meal_slot_id": 30,
-      "recipe_id": 126,
-      "portion_override": 700,
-      "is_side": false,
-      "is_allergy": false,
-      "id": 52
-    },
-    {
-      "meal_slot_id": 30,
-      "recipe_id": 118,
-      "portion_override": 700,
-      "is_side": true,
-      "is_allergy": false,
-      "id": 53
-    },
-    {
-      "meal_slot_id": 36,
-      "recipe_id": 101,
-      "portion_override": 10,
-      "is_side": false,
-      "is_allergy": false,
-      "substitutions": {},
-      "id": 54
-    }
-  ],
   "preparation_methods": [
     {
       "name": "achtel",
@@ -11612,22 +11519,10 @@
       "name_en": "Dinner"
     },
     {
-      "name": "Zwischenmahlzeit",
+      "name": "Zwischenmahlzeit/Aktionsessen",
       "sort_order": 7,
       "id": 5,
-      "name_en": "Snack"
-    },
-    {
-      "name": "Nachspeise",
-      "sort_order": 8,
-      "id": 9,
-      "name_en": "Dessert"
-    },
-    {
-      "name": "Beilage",
-      "sort_order": 9,
-      "id": 10,
-      "name_en": "Side Dish"
+      "name_en": "Snack/Actionfood"
     }
   ],
   "allergens": [
@@ -13614,121 +13509,27 @@
   "recipe_ingredient_substitutes": [],
   "materials": [
     {
-      "name": "Abwasserschlauch",
-      "category": "Abwasser",
+      "name": "Topf",
+      "category": "Töpfe",
       "unit": "Stück",
       "note": "",
       "attributes": [
         {
-          "name": "Länge",
-          "type": "value",
+          "name": "Volumen",
           "value": null,
-          "unit": "Meter",
-          "in_name": "pre"
-        }
-      ],
-      "id": 8
-    },
-    {
-      "name": "Bodenplane",
-      "category": "Zelte und Boden",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Abmaße",
-          "type": "value",
-          "unit": "qm",
-          "value": null,
-          "in_name": "pre"
+          "unit": "Liter",
+          "primary": true,
+          "in_name": true
         },
         {
-          "name": "Material",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": ""
-        }
-      ],
-      "id": 15
-    },
-    {
-      "name": "Bodenplatten",
-      "category": "Zelte und Boden",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Fläche",
-          "type": "value",
-          "value": null,
-          "unit": "qm",
-          "in_name": "pre"
-        }
-      ],
-      "id": 14
-    },
-    {
-      "name": "Bräter",
-      "category": "Gas",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Leistung",
-          "type": "value",
-          "unit": "kw",
-          "value": null,
-          "in_name": "pre"
-        },
-        {
-          "name": "Art",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": "post"
-        }
-      ],
-      "id": 28
-    },
-    {
-      "name": "Brotmesser",
-      "category": "Messer",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "value": null,
-          "unit": "",
-          "in_name": ""
-        },
-        {
-          "name": "Länge",
-          "type": "value",
+          "name": "Durchmesser",
           "value": null,
           "unit": "cm",
-          "in_name": "pre"
+          "primary": true,
+          "in_name": false
         }
       ],
-      "id": 60
-    },
-    {
-      "name": "Dosenöffner",
-      "category": "Vorlegebesteck und Küchenwerkzeuge",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "value": null,
-          "unit": "",
-          "in_name": ""
-        }
-      ],
-      "id": 47
+      "id": 6
     },
     {
       "name": "Frischwasserschlauch",
@@ -13738,191 +13539,36 @@
       "attributes": [
         {
           "name": "Länge",
-          "type": "value",
-          "unit": "Meter",
           "value": null,
-          "in_name": "pre"
+          "unit": "Meter",
+          "primary": true,
+          "in_name": true
         },
         {
           "name": "Trinkwasser",
-          "type": "flag",
-          "unit": "",
           "value": null,
-          "in_name": ""
+          "unit": "",
+          "primary": false,
+          "in_name": false
         }
       ],
       "id": 7
     },
     {
-      "name": "Gabel",
-      "category": "Besteck",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [],
-      "id": 23
-    },
-    {
-      "name": "Gasbrenner",
-      "category": "Gas",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Leistung",
-          "type": "value",
-          "unit": "kw",
-          "value": null,
-          "in_name": "pre"
-        },
-        {
-          "name": "Art",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": "post"
-        }
-      ],
-      "id": 26
-    },
-    {
-      "name": "Gewürzmühle",
-      "category": "Elektrogeräte",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": "post"
-        }
-      ],
-      "id": 20
-    },
-    {
-      "name": "GN Deckel",
-      "category": "GN-Behälter",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": "post"
-        },
-        {
-          "name": "Gumilippe",
-          "type": "flag",
-          "unit": "",
-          "value": null,
-          "in_name": ""
-        },
-        {
-          "name": "Öffnung",
-          "type": "flag",
-          "unit": "",
-          "value": null,
-          "in_name": ""
-        }
-      ],
-      "id": 18
-    },
-    {
-      "name": "GN-Behälter",
-      "category": "GN-Behälter",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": "post"
-        },
-        {
-          "name": "Höhe",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": "post"
-        }
-      ],
-      "id": 17
-    },
-    {
-      "name": "Hahn",
-      "category": "Frischwasser",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": "post"
-        }
-      ],
-      "id": 31
-    },
-    {
-      "name": "Hahn",
+      "name": "Abwasserschlauch",
       "category": "Abwasser",
       "unit": "Stück",
       "note": "",
       "attributes": [
         {
-          "name": "Art",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": "post"
-        }
-      ],
-      "id": 33
-    },
-    {
-      "name": "Handtücher",
-      "category": "Spühlen",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": ""
-        }
-      ],
-      "id": 39
-    },
-    {
-      "name": "Kabel",
-      "category": "Strom",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
           "name": "Länge",
-          "type": "value",
-          "unit": "Meter",
-          "value": null,
-          "in_name": "pre"
-        },
-        {
-          "name": "Drehstrom",
-          "type": "value",
-          "unit": "Amper",
-          "value": null,
+          "type": "text",
+          "value": "M",
+          "unit": "",
           "in_name": "pre"
         }
       ],
-      "id": 11
+      "id": 8
     },
     {
       "name": "Kabeltrommel",
@@ -13932,408 +13578,43 @@
       "attributes": [
         {
           "name": "Länge",
-          "type": "value",
-          "unit": "Meter",
           "value": null,
-          "in_name": "pre"
+          "unit": "Meter",
+          "primary": true,
+          "in_name": true
         },
         {
           "name": "Drehstrom",
-          "type": "flag",
-          "unit": "",
           "value": null,
-          "in_name": ""
+          "unit": "",
+          "primary": false,
+          "in_name": false
         }
       ],
       "id": 10
     },
     {
-      "name": "Kaffeemaschine",
-      "category": "Elektrogeräte",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": "post"
-        },
-        {
-          "name": "Volumen",
-          "type": "value",
-          "unit": "Liter",
-          "value": null,
-          "in_name": "pre"
-        }
-      ],
-      "id": 45
-    },
-    {
-      "name": "Kartoffelstampfer",
-      "category": "Vorlegebesteck und Küchenwerkzeuge",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Länge",
-          "type": "value",
-          "value": null,
-          "unit": "cm",
-          "in_name": ""
-        },
-        {
-          "name": "Art",
-          "type": "text",
-          "value": null,
-          "unit": "",
-          "in_name": ""
-        }
-      ],
-      "id": 48
-    },
-    {
-      "name": "Kochmesser",
-      "category": "Messer",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "value": null,
-          "unit": "",
-          "in_name": "pre"
-        },
-        {
-          "name": "Länge",
-          "type": "value",
-          "value": null,
-          "unit": "cm",
-          "in_name": "post"
-        }
-      ],
-      "id": 63
-    },
-    {
-      "name": "Küchenpinsel",
-      "category": "Vorlegebesteck und Küchenwerkzeuge",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "value": null,
-          "unit": "",
-          "in_name": ""
-        }
-      ],
-      "id": 52
-    },
-    {
-      "name": "Küchenpinzette",
-      "category": "Vorlegebesteck und Küchenwerkzeuge",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "value": null,
-          "unit": "",
-          "in_name": ""
-        }
-      ],
-      "id": 51
-    },
-    {
-      "name": "Löffel",
-      "category": "Besteck",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [],
-      "id": 22
-    },
-    {
-      "name": "Mehrfachsteckdose",
+      "name": "Kabel",
       "category": "Strom",
       "unit": "Stück",
       "note": "",
       "attributes": [
         {
-          "name": "Steckplätze",
-          "type": "text",
-          "unit": "",
+          "name": "Länge",
           "value": null,
-          "in_name": "post"
-        },
-        {
-          "name": "Art",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": "post"
+          "unit": "Meter",
+          "primary": true,
+          "in_name": true
         },
         {
           "name": "Drehstrom",
-          "type": "text",
-          "unit": "",
           "value": null,
-          "in_name": "post"
+          "unit": "Amper",
+          "primary": true,
+          "in_name": true
         }
       ],
-      "id": 25
-    },
-    {
-      "name": "Messer",
-      "category": "Besteck",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [],
-      "id": 24
-    },
-    {
-      "name": "Paellaringbrenner",
-      "category": "Gas",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Leistung",
-          "type": "value",
-          "unit": "kw",
-          "value": null,
-          "in_name": "pre"
-        },
-        {
-          "name": "Art",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": "post"
-        },
-        {
-          "name": "Anzahl Ringe",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": "post"
-        }
-      ],
-      "id": 27
-    },
-    {
-      "name": "Pfannenwender",
-      "category": "Vorlegebesteck und Küchenwerkzeuge",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "value": null,
-          "unit": "",
-          "in_name": ""
-        },
-        {
-          "name": "Länge",
-          "type": "value",
-          "value": null,
-          "unit": "cm",
-          "in_name": ""
-        }
-      ],
-      "id": 53
-    },
-    {
-      "name": "Pürierstab",
-      "category": "Elektrogeräte",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": "post"
-        }
-      ],
-      "id": 19
-    },
-    {
-      "name": "Rührpaddel",
-      "category": "Vorlegebesteck und Küchenwerkzeuge",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Länge",
-          "type": "value",
-          "value": null,
-          "unit": "cm",
-          "in_name": ""
-        },
-        {
-          "name": "Art",
-          "type": "text",
-          "value": null,
-          "unit": "",
-          "in_name": "pre"
-        }
-      ],
-      "id": 46
-    },
-    {
-      "name": "Santoku",
-      "category": "Messer",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "value": null,
-          "unit": "",
-          "in_name": ""
-        },
-        {
-          "name": "Länge",
-          "type": "value",
-          "value": null,
-          "unit": "cm",
-          "in_name": ""
-        }
-      ],
-      "id": 61
-    },
-    {
-      "name": "Schaber",
-      "category": "Vorlegebesteck und Küchenwerkzeuge",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "value": null,
-          "unit": "",
-          "in_name": ""
-        }
-      ],
-      "id": 58
-    },
-    {
-      "name": "Schälmesser",
-      "category": "Messer",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "value": null,
-          "unit": "",
-          "in_name": ""
-        }
-      ],
-      "id": 62
-    },
-    {
-      "name": "Schaumkelle",
-      "category": "Vorlegebesteck und Küchenwerkzeuge",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "value": null,
-          "unit": "",
-          "in_name": "post"
-        }
-      ],
-      "id": 34
-    },
-    {
-      "name": "Schmutzwasserpumpe",
-      "category": "Abwasser",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": "post"
-        }
-      ],
-      "id": 29
-    },
-    {
-      "name": "Schneebesen",
-      "category": "Vorlegebesteck und Küchenwerkzeuge",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "value": null,
-          "unit": "",
-          "in_name": ""
-        },
-        {
-          "name": "Länge",
-          "type": "value",
-          "value": null,
-          "unit": "cm",
-          "in_name": "pre"
-        }
-      ],
-      "id": 54
-    },
-    {
-      "name": "Schneidebrett",
-      "category": "Schnippeln",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": "post"
-        },
-        {
-          "name": "Größe",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": ""
-        }
-      ],
-      "id": 36
-    },
-    {
-      "name": "Schneidemaschine",
-      "category": "Elektrogeräte",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": "post"
-        }
-      ],
-      "id": 37
+      "id": 11
     },
     {
       "name": "Schöpfkelle",
@@ -14359,12 +13640,753 @@
       "id": 12
     },
     {
+      "name": "Zelt",
+      "category": "Zelte und Boden",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Größe",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 13
+    },
+    {
+      "name": "Bodenplatten",
+      "category": "Zelte und Boden",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Fläche",
+          "type": "value",
+          "value": null,
+          "unit": "qm",
+          "in_name": "pre"
+        }
+      ],
+      "id": 14
+    },
+    {
+      "name": "Bodenplane",
+      "category": "Zelte und Boden",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Abmaße",
+          "value": null,
+          "unit": "qm",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Material",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": false
+        }
+      ],
+      "id": 15
+    },
+    {
+      "name": "Topfdeckel",
+      "category": "Töpfe",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Durchmesser",
+          "value": null,
+          "unit": "cm",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 16
+    },
+    {
+      "name": "GN-Behälter",
+      "category": "GN-Behälter",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Höhe",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 17
+    },
+    {
+      "name": "GN Deckel",
+      "category": "GN-Behälter",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Gumilippe",
+          "value": null,
+          "unit": "",
+          "primary": false,
+          "in_name": false
+        },
+        {
+          "name": "Öffnung",
+          "value": null,
+          "unit": "",
+          "primary": false,
+          "in_name": false
+        }
+      ],
+      "id": 18
+    },
+    {
+      "name": "Pürierstab",
+      "category": "Elektrogeräte",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 19
+    },
+    {
+      "name": "Gewürzmühle",
+      "category": "Elektrogeräte",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 20
+    },
+    {
+      "name": "Teller",
+      "category": "Besteck",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 21
+    },
+    {
+      "name": "Löffel",
+      "category": "Besteck",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [],
+      "id": 22
+    },
+    {
+      "name": "Gabel",
+      "category": "Besteck",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [],
+      "id": 23
+    },
+    {
+      "name": "Messer",
+      "category": "Besteck",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [],
+      "id": 24
+    },
+    {
+      "name": "Mehrfachsteckdose",
+      "category": "Strom",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Steckplätze",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Drehstrom",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 25
+    },
+    {
+      "name": "Gasbrenner",
+      "category": "Gas",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Leistung",
+          "value": null,
+          "unit": "kw",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 26
+    },
+    {
+      "name": "Paellaringbrenner",
+      "category": "Gas",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Leistung",
+          "value": null,
+          "unit": "kw",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Anzahl Ringe",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 27
+    },
+    {
+      "name": "Bräter",
+      "category": "Gas",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Leistung",
+          "value": null,
+          "unit": "kw",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 28
+    },
+    {
+      "name": "Schmutzwasserpumpe",
+      "category": "Abwasser",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 29
+    },
+    {
+      "name": "Verteiler",
+      "category": "Frischwasser",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 30
+    },
+    {
+      "name": "Hahn",
+      "category": "Frischwasser",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 31
+    },
+    {
+      "name": "Verteiler",
+      "category": "Abwasser",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 32
+    },
+    {
+      "name": "Hahn",
+      "category": "Abwasser",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 33
+    },
+    {
+      "name": "Schaumkelle",
+      "category": "Vorlegebesteck und Küchenwerkzeuge",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": "post"
+        }
+      ],
+      "id": 34
+    },
+    {
+      "name": "Schneidebrett",
+      "category": "Schnippeln",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Größe",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": false
+        }
+      ],
+      "id": 36
+    },
+    {
+      "name": "Schneidemaschine",
+      "category": "Elektrogeräte",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 37
+    },
+    {
+      "name": "Spühltücher",
+      "category": "Spühlen",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": false
+        }
+      ],
+      "id": 38
+    },
+    {
+      "name": "Handtücher",
+      "category": "Spühlen",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": false
+        }
+      ],
+      "id": 39
+    },
+    {
+      "name": "Spühllappen",
+      "category": "Spühlen",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [],
+      "id": 40
+    },
+    {
       "name": "Schwämme",
       "category": "Spühlen",
       "unit": "Stück",
       "note": "",
       "attributes": [],
       "id": 41
+    },
+    {
+      "name": "Termobehälter",
+      "category": "Termobehälter",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Volumen",
+          "value": null,
+          "unit": "Liter",
+          "primary": true,
+          "in_name": false
+        }
+      ],
+      "id": 42
+    },
+    {
+      "name": "Thermophore",
+      "category": "Termobehälter",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Volumen",
+          "value": null,
+          "unit": "Liter",
+          "primary": true,
+          "in_name": false
+        }
+      ],
+      "id": 43
+    },
+    {
+      "name": "Termobox",
+      "category": "Termobehälter",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Geeignete GN",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": false
+        }
+      ],
+      "id": 44
+    },
+    {
+      "name": "Kaffeemaschine",
+      "category": "Elektrogeräte",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "value": null,
+          "unit": "",
+          "primary": true,
+          "in_name": true
+        },
+        {
+          "name": "Volumen",
+          "value": null,
+          "unit": "Liter",
+          "primary": true,
+          "in_name": true
+        }
+      ],
+      "id": 45
+    },
+    {
+      "name": "Rührpaddel",
+      "category": "Vorlegebesteck und Küchenwerkzeuge",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Länge",
+          "type": "value",
+          "value": null,
+          "unit": "cm",
+          "in_name": ""
+        },
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": "pre"
+        }
+      ],
+      "id": 46
+    },
+    {
+      "name": "Dosenöffner",
+      "category": "Vorlegebesteck und Küchenwerkzeuge",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": ""
+        }
+      ],
+      "id": 47
+    },
+    {
+      "name": "Kartoffelstampfer",
+      "category": "Vorlegebesteck und Küchenwerkzeuge",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Länge",
+          "type": "value",
+          "value": null,
+          "unit": "cm",
+          "in_name": ""
+        },
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": ""
+        }
+      ],
+      "id": 48
+    },
+    {
+      "name": "Zange",
+      "category": "Vorlegebesteck und Küchenwerkzeuge",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": ""
+        }
+      ],
+      "id": 49
+    },
+    {
+      "name": "Wetzstahl",
+      "category": "Messer",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": ""
+        }
+      ],
+      "id": 50
+    },
+    {
+      "name": "Küchenpinzette",
+      "category": "Vorlegebesteck und Küchenwerkzeuge",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": ""
+        }
+      ],
+      "id": 51
+    },
+    {
+      "name": "Küchenpinsel",
+      "category": "Vorlegebesteck und Küchenwerkzeuge",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": ""
+        }
+      ],
+      "id": 52
+    },
+    {
+      "name": "Pfannenwender",
+      "category": "Vorlegebesteck und Küchenwerkzeuge",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": ""
+        },
+        {
+          "name": "Länge",
+          "type": "value",
+          "value": null,
+          "unit": "cm",
+          "in_name": ""
+        }
+      ],
+      "id": 53
+    },
+    {
+      "name": "Schneebesen",
+      "category": "Vorlegebesteck und Küchenwerkzeuge",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": ""
+        },
+        {
+          "name": "Länge",
+          "type": "value",
+          "value": null,
+          "unit": "cm",
+          "in_name": "pre"
+        }
+      ],
+      "id": 54
     },
     {
       "name": "Shamoji",
@@ -14381,6 +14403,22 @@
         }
       ],
       "id": 55
+    },
+    {
+      "name": "Sparschäler",
+      "category": "Schnippeln",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": ""
+        }
+      ],
+      "id": 56
     },
     {
       "name": "Silikonspatel",
@@ -14406,219 +14444,7 @@
       "id": 57
     },
     {
-      "name": "Sparschäler",
-      "category": "Schnippeln",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "value": null,
-          "unit": "",
-          "in_name": ""
-        }
-      ],
-      "id": 56
-    },
-    {
-      "name": "Spühllappen",
-      "category": "Spühlen",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [],
-      "id": 40
-    },
-    {
-      "name": "Spühltücher",
-      "category": "Spühlen",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": ""
-        }
-      ],
-      "id": 38
-    },
-    {
-      "name": "Teller",
-      "category": "Besteck",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": "post"
-        }
-      ],
-      "id": 21
-    },
-    {
-      "name": "Termobehälter",
-      "category": "Termobehälter",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": "post"
-        },
-        {
-          "name": "Volumen",
-          "type": "value",
-          "unit": "Liter",
-          "value": null,
-          "in_name": ""
-        }
-      ],
-      "id": 42
-    },
-    {
-      "name": "Termobox",
-      "category": "Termobehälter",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": "post"
-        },
-        {
-          "name": "Geeignete GN",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": ""
-        }
-      ],
-      "id": 44
-    },
-    {
-      "name": "Thermophore",
-      "category": "Termobehälter",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": "post"
-        },
-        {
-          "name": "Volumen",
-          "type": "value",
-          "unit": "Liter",
-          "value": null,
-          "in_name": ""
-        }
-      ],
-      "id": 43
-    },
-    {
-      "name": "Topf",
-      "category": "Töpfe",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Volumen",
-          "type": "value",
-          "unit": "Liter",
-          "value": null,
-          "in_name": "pre"
-        },
-        {
-          "name": "Durchmesser",
-          "type": "value",
-          "unit": "cm",
-          "value": null,
-          "in_name": ""
-        }
-      ],
-      "id": 6
-    },
-    {
-      "name": "Topfdeckel",
-      "category": "Töpfe",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Durchmesser",
-          "type": "value",
-          "unit": "cm",
-          "value": null,
-          "in_name": "pre"
-        }
-      ],
-      "id": 16
-    },
-    {
-      "name": "Verteiler",
-      "category": "Frischwasser",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": "post"
-        }
-      ],
-      "id": 30
-    },
-    {
-      "name": "Verteiler",
-      "category": "Abwasser",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": "post"
-        }
-      ],
-      "id": 32
-    },
-    {
-      "name": "Wetzstahl",
-      "category": "Messer",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Art",
-          "type": "text",
-          "value": null,
-          "unit": "",
-          "in_name": ""
-        }
-      ],
-      "id": 50
-    },
-    {
-      "name": "Zange",
+      "name": "Schaber",
       "category": "Vorlegebesteck und Küchenwerkzeuge",
       "unit": "Stück",
       "note": "",
@@ -14631,23 +14457,7 @@
           "in_name": ""
         }
       ],
-      "id": 49
-    },
-    {
-      "name": "Zelt",
-      "category": "Zelte und Boden",
-      "unit": "Stück",
-      "note": "",
-      "attributes": [
-        {
-          "name": "Größe",
-          "type": "text",
-          "unit": "",
-          "value": null,
-          "in_name": "post"
-        }
-      ],
-      "id": 13
+      "id": 58
     },
     {
       "name": "Zestenreißer",
@@ -14664,44 +14474,192 @@
         }
       ],
       "id": 59
+    },
+    {
+      "name": "Brotmesser",
+      "category": "Messer",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": ""
+        },
+        {
+          "name": "Länge",
+          "type": "value",
+          "value": null,
+          "unit": "cm",
+          "in_name": "pre"
+        }
+      ],
+      "id": 60
+    },
+    {
+      "name": "Santoku",
+      "category": "Messer",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": ""
+        },
+        {
+          "name": "Länge",
+          "type": "value",
+          "value": null,
+          "unit": "cm",
+          "in_name": ""
+        }
+      ],
+      "id": 61
+    },
+    {
+      "name": "Schälmesser",
+      "category": "Messer",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": ""
+        }
+      ],
+      "id": 62
+    },
+    {
+      "name": "Kochmesser",
+      "category": "Messer",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "value": null,
+          "unit": "",
+          "in_name": "pre"
+        },
+        {
+          "name": "Länge",
+          "type": "value",
+          "value": null,
+          "unit": "cm",
+          "in_name": "post"
+        }
+      ],
+      "id": 63
+    },
+    {
+      "name": "Messer",
+      "category": "Schnippeln",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "unit": "",
+          "value": null,
+          "in_name": "post"
+        }
+      ],
+      "id": 64
+    },
+    {
+      "name": "Schaumkelle",
+      "category": "Ausgabe- und Kochgeschirr",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Art",
+          "type": "text",
+          "unit": "",
+          "value": null,
+          "in_name": "post"
+        }
+      ],
+      "id": 65
+    },
+    {
+      "name": "Schöpfkelle",
+      "category": "Ausgabe- und Kochgeschirr",
+      "unit": "Stück",
+      "note": "",
+      "attributes": [
+        {
+          "name": "Volumen",
+          "type": "value",
+          "unit": "Liter",
+          "value": null,
+          "in_name": "pre"
+        },
+        {
+          "name": "Art",
+          "type": "text",
+          "unit": "",
+          "value": null,
+          "in_name": "post"
+        }
+      ],
+      "id": 66
     }
   ],
   "material_categories": [
     {
-      "name": "Abwasser",
-      "id": 3
-    },
-    {
-      "name": "Ausgabe- und Kochgeschirr",
-      "id": 6
-    },
-    {
-      "name": "Besteck",
-      "id": 10
-    },
-    {
-      "name": "Elektrogeräte",
-      "id": 9
+      "name": "Töpfe",
+      "id": 1
     },
     {
       "name": "Frischwasser",
       "id": 2
     },
     {
-      "name": "Gas",
-      "id": 11
-    },
-    {
-      "name": "GN-Behälter",
-      "id": 8
+      "name": "Abwasser",
+      "id": 3
     },
     {
       "name": "Kabelbrücken",
       "id": 4
     },
     {
-      "name": "Messer",
-      "id": 18
+      "name": "Strom",
+      "id": 5
+    },
+    {
+      "name": "Ausgabe- und Kochgeschirr",
+      "id": 6
+    },
+    {
+      "name": "Zelte und Boden",
+      "id": 7
+    },
+    {
+      "name": "GN-Behälter",
+      "id": 8
+    },
+    {
+      "name": "Elektrogeräte",
+      "id": 9
+    },
+    {
+      "name": "Besteck",
+      "id": 10
+    },
+    {
+      "name": "Gas",
+      "id": 11
     },
     {
       "name": "Schnippeln",
@@ -14712,24 +14670,33 @@
       "id": 13
     },
     {
-      "name": "Strom",
-      "id": 5
-    },
-    {
       "name": "Termobehälter",
       "id": 14
     },
     {
-      "name": "Töpfe",
-      "id": 1
+      "name": "Küchenwerkzeug",
+      "id": 15
+    },
+    {
+      "name": "Küchenwerkzeuge",
+      "id": 16
     },
     {
       "name": "Vorlegebesteck und Küchenwerkzeuge",
       "id": 17
     },
     {
-      "name": "Zelte und Boden",
-      "id": 7
+      "name": "Messer",
+      "id": 18
+    }
+  ],
+  "recipe_materials": [
+    {
+      "recipe_id": 91,
+      "material_id": 6,
+      "quantity": 1,
+      "note": "",
+      "id": 1
     }
   ]
 }
