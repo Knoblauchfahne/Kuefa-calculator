@@ -865,6 +865,12 @@ de: {
   stock_use_btn: 'Vorräte für diese Position verwenden (nur Planung, kein Lager-Abzug)',
   stock_release_btn: 'Lager-Verwendung zurücknehmen',
   stock_used_marker: '🥫 {0} {1} aus Lager',
+  stock_concretize_btn: 'Lagerbestand ansehen & konkretisieren',
+  dlg_stock_concretize: 'Aus dem Lager konkretisieren — {0}',
+  stock_dlg_need: 'Offener Bedarf dieser Position: {0} {1}',
+  stock_dlg_avail: '{0} {1} auf Lager — {2} {3} verfügbar',
+  stock_dlg_use: '⤵ verwenden',
+  stock_dlg_empty: 'Von dieser Kategorie liegt nichts mit passender Einheit im Lager.',
   stock_hint_desc: 'Bestände erscheinen als Hinweis in den Einkaufslisten — Mengen werden nicht automatisch abgezogen.',
   msg_confirm_delete_stock: 'Lagereintrag löschen?',
   store_food_stock: 'Lebensmittellager',
@@ -1630,6 +1636,12 @@ en: {
   stock_use_btn: 'Use stock for this position (planning only, no stock deduction)',
   stock_release_btn: 'Undo stock use',
   stock_used_marker: '🥫 {0} {1} from stock',
+  stock_concretize_btn: 'View stock & concretize',
+  dlg_stock_concretize: 'Concretize from stock — {0}',
+  stock_dlg_need: 'Open need for this position: {0} {1}',
+  stock_dlg_avail: '{0} {1} in stock — {2} {3} available',
+  stock_dlg_use: '⤵ use',
+  stock_dlg_empty: 'Nothing of this category with a matching unit in stock.',
   stock_hint_desc: 'Stock appears as a hint in the shopping lists — quantities are not deducted automatically.',
   msg_confirm_delete_stock: 'Delete storage entry?',
   store_food_stock: 'Food storage',
@@ -4464,13 +4476,14 @@ async function renderGeneralOrderPage(container){
     lastItemsByGroup=[];
     const allEdits=await dbGetByIndex('general_order_edits','action_id',selectedActionId);
     const stockHints=await getFoodStockHints();
-    // Lager-Verwendung (Planung): Reservierungen aller Bestellungen dieser Aktion
-    // aufsummieren, damit „verfügbar" überall stimmt
-    const stockKeyOf=i=>i._concrete?`i${i.ingredient_id}|${i.unit}`:`c${i.subcategory}|${i.unit}`;
+    // Lager-Verwendung (Planung): rein zutatenbasiert — Reservierungen aller
+    // Bestellungen dieser Aktion aufsummieren; Kategorie-Schlüssel werden aus
+    // der Subkategorie abgeleitet, damit auch Kategorie-Badges korrekt sind
     const stockUsedByKey=new Map();
-    allEdits.filter(e=>e.type==='stock_use').forEach(e=>{
-      const k=e.ingredient_id?`i${e.ingredient_id}|${e.unit}`:`c${e.subcategory}|${e.unit}`;
-      stockUsedByKey.set(k,(stockUsedByKey.get(k)||0)+(e.qty_used||0));
+    const bumpUsed=(k,q)=>stockUsedByKey.set(k,(stockUsedByKey.get(k)||0)+q);
+    allEdits.filter(e=>e.type==='stock_use'&&e.ingredient_id).forEach(e=>{
+      bumpUsed(`i${e.ingredient_id}|${e.unit}`,e.qty_used||0);
+      if(e.subcategory) bumpUsed(`c${e.subcategory}|${e.unit}`,e.qty_used||0);
     });
     const multi=groupNums.length>1;
     for(const num of groupNums){
@@ -4506,10 +4519,13 @@ async function renderGeneralOrderPage(container){
         return false;
       });
       items.push(...splitItems);
-      // Lager-Verwendung dieser Bestellung: Bedarf um reservierte Menge senken
-      const useFor=i=>groupEdits.find(e=>e.type==='stock_use'&&e.unit===i.unit&&!!e.optional===!!i.optional&&(i._concrete?e.ingredient_id===i.ingredient_id:(!e.ingredient_id&&e.subcategory===i.subcategory)));
+      // Lager-Verwendung dieser Bestellung: nur auf Zutatenebene (konkrete
+      // Komponenten und Konkretisierungs-Teile) — Bedarf um Reservierung senken
+      const useFor=i=>((i._concrete||i._splitPart)&&i.ingredient_id)
+        ?groupEdits.find(e=>e.type==='stock_use'&&e.ingredient_id===i.ingredient_id&&e.unit===i.unit&&!!e.optional===!!i.optional)
+        :null;
       items.forEach(i=>{
-        if(i._extraId||i._splitPart||i._splitRest) return;
+        if(i._extraId) return;
         const use=useFor(i);
         if(use){i._stockUsed=use.qty_used||0;i.quantity=Math.max(0,round2(i.quantity-i._stockUsed));i.total_cost=i.quantity*(i.price_per_unit||0);}
       });
@@ -4537,13 +4553,57 @@ async function renderGeneralOrderPage(container){
         onUseStock:async(item)=>{
           const ex=useFor(item);
           if(ex){await dbDel('general_order_edits',ex.id);generate();return;}
-          const rec=item._concrete?stockHints.byIngredient.get(item.ingredient_id):stockHints.bySubcat.get(item.subcategory);
+          const rec=stockHints.byIngredient.get(item.ingredient_id);
           const total=rec?(rec.qty.get(item.unit)||0):0;
-          const avail=total-(stockUsedByKey.get(stockKeyOf(item))||0);
+          const avail=total-(stockUsedByKey.get(`i${item.ingredient_id}|${item.unit}`)||0);
           const useQty=Math.min(item.quantity,avail);
           if(useQty<=0.004) return;
-          await dbAdd('general_order_edits',{action_id:selectedActionId,group_num:num,type:'stock_use',subcategory:item.subcategory,unit:item.unit,ingredient_id:item._concrete?item.ingredient_id:null,optional:item.optional||false,qty_used:round2(useQty)});
+          await dbAdd('general_order_edits',{action_id:selectedActionId,group_num:num,type:'stock_use',subcategory:item.subcategory,unit:item.unit,ingredient_id:item.ingredient_id,optional:item.optional||false,qty_used:round2(useQty)});
           generate();
+        },
+        // Kategorie-Zeile: lagernde Zutaten der Kategorie anzeigen; „verwenden"
+        // konkretisiert die Position (Split-Teil) und reserviert die Zutat
+        onStockFromCat:async(item)=>{
+          const cat=item._catItem||item;
+          const need=item.quantity;
+          const candidates=[];
+          for(const ing of (await dbGetAll('ingredients')).filter(i=>(i.subcategory||'')===cat.subcategory)){
+            const rec=stockHints.byIngredient.get(ing.id);
+            const q=rec?(rec.qty.get(cat.unit)||0):0;
+            if(q<=0) continue;
+            candidates.push({ing,stock:q,avail:q-(stockUsedByKey.get(`i${ing.id}|${cat.unit}`)||0)});
+          }
+          const content=h('div',{style:{minWidth:'320px',maxWidth:'500px'}});
+          content.appendChild(h('h2',{},t('dlg_stock_concretize',cat.subcategory)));
+          content.appendChild(h('div',{style:{fontSize:'12px',color:'var(--text-muted)',marginBottom:'10px'}},t('stock_dlg_need',round2(need),cat.unit)));
+          if(!candidates.length) content.appendChild(h('div',{class:'empty-msg'},t('stock_dlg_empty')));
+          candidates.forEach(r=>{
+            const line=h('div',{style:{display:'flex',alignItems:'center',gap:'8px',padding:'6px 0',borderBottom:'1px solid var(--border)'}});
+            const info=h('div',{style:{flex:1,minWidth:0}});
+            info.appendChild(h('div',{style:{fontSize:'13px',fontWeight:'600'}},ingDisplayName(r.ing)));
+            info.appendChild(h('div',{style:{fontSize:'11px',color:'var(--text-muted)'}},t('stock_dlg_avail',round2(r.stock),cat.unit,round2(Math.max(0,r.avail)),cat.unit)));
+            line.appendChild(info);
+            const qtyIn=h('input',{type:'number',min:'0',step:'0.01',value:String(round2(Math.max(0,Math.min(need,r.avail)))),style:{width:'80px'}});
+            line.append(qtyIn,h('span',{style:{fontSize:'12px',color:'var(--text-muted)'}},cat.unit));
+            const useBtn=h('button',{class:'btn btn-accent btn-sm',onClick:async()=>{
+              const q=round2(Math.min(parseFloat(qtyIn.value)||0,r.avail,need));
+              if(q<=0.004) return;
+              // 1) Konkretisierung: Split-Edit um Zutaten-Teil erweitern/anlegen
+              const sp=item._splitId?await dbGet('general_order_edits',item._splitId):(groupEdits.find(e=>e.type==='split'&&e.subcategory===cat.subcategory&&e.unit===cat.unit&&!!e.optional===!!cat.optional)||null);
+              const part={ingredient_id:r.ing.id,name:r.ing.name,name_en:r.ing.name_en||'',quantity:q,price_per_unit:r.ing.unit===cat.unit?(r.ing.price||0):0};
+              if(sp){sp.parts=(sp.parts||[]);sp.parts.push(part);await dbPut('general_order_edits',sp);}
+              else await dbAdd('general_order_edits',{action_id:selectedActionId,group_num:num,type:'split',subcategory:cat.subcategory,unit:cat.unit,optional:cat.optional||false,parts:[part]});
+              // 2) Zutaten-Reservierung (bestehende zur selben Zutat aufaddieren)
+              const exUse=groupEdits.find(e=>e.type==='stock_use'&&e.ingredient_id===r.ing.id&&e.unit===cat.unit&&!!e.optional===!!cat.optional);
+              if(exUse){exUse.qty_used=round2((exUse.qty_used||0)+q);await dbPut('general_order_edits',exUse);}
+              else await dbAdd('general_order_edits',{action_id:selectedActionId,group_num:num,type:'stock_use',subcategory:cat.subcategory,unit:cat.unit,ingredient_id:r.ing.id,optional:cat.optional||false,qty_used:q});
+              closeModal(modal);generate();
+            }},t('stock_dlg_use'));
+            line.appendChild(useBtn);
+            content.appendChild(line);
+          });
+          content.appendChild(h('div',{class:'modal-buttons'},h('button',{class:'btn btn-surface',onClick:()=>closeModal(modal)},t('btn_cancel'))));
+          const modal=showModal(content);
         },
         onSplit:async(item)=>{
           const cat=item._catItem||item;
@@ -4688,24 +4748,29 @@ function renderGeneralOrderList(parent,items,opts={}){
         row.appendChild(h('span',{style:{fontSize:'13px',marginLeft:'4px',color:item._splitRest?'var(--text-muted)':'var(--text)',fontStyle:item._splitRest?'italic':'normal'}},pName));
       }
       if(item.optional) row.appendChild(h('span',{style:{fontSize:'10px',marginLeft:'6px',color:'var(--accent)',fontWeight:'600',whiteSpace:'nowrap'}},'('+t('misc_optional')+')'));
-      if(opts.stockHints&&!item._extraId&&!item._splitRest){
-        // Konkrete Zutaten matchen direkt, Kategorie-Zeilen über die Subkategorie
-        const rec=(item._splitPart||item._concrete)
-          ? (item.ingredient_id?opts.stockHints.byIngredient.get(item.ingredient_id):null)
+      if(opts.stockHints&&!item._extraId){
+        // Zutaten-Zeilen (konkrete Komponenten + Konkretisierungs-Teile) matchen
+        // direkt; Kategorie- und Rest-Zeilen über die Subkategorie
+        const isIngRow=(item._splitPart||item._concrete)&&item.ingredient_id;
+        const rec=isIngRow
+          ? opts.stockHints.byIngredient.get(item.ingredient_id)
           : opts.stockHints.bySubcat.get(item.subcategory);
-        const key=(item._splitPart||item._concrete)?`i${item.ingredient_id}|${item.unit}`:`c${item.subcategory}|${item.unit}`;
+        const key=isIngRow?`i${item.ingredient_id}|${item.unit}`:`c${item.subcategory}|${item.unit}`;
         const usedTotal=opts.stockUsedByKey?(opts.stockUsedByKey.get(key)||0):0;
         const badge=stockHintBadge(rec,item.unit,usedTotal);
         if(badge) row.appendChild(badge);
         if(item._stockUsed) row.appendChild(h('span',{style:{fontSize:'10px',fontWeight:'600',color:'var(--green)',marginLeft:'8px',whiteSpace:'nowrap'}},t('stock_used_marker',round2(item._stockUsed),item.unit)));
-        // Vorräte verwenden / zurücknehmen (nur Planung — kein Lager-Abzug)
-        if(opts.onUseStock&&!item._splitPart){
-          const q=rec?(rec.qty.get(item.unit)||0):0;
+        const q=rec?(rec.qty.get(item.unit)||0):0;
+        if(isIngRow&&opts.onUseStock){
+          // Zutaten-Ebene: direkt verwenden / zurücknehmen (nur Planung)
           if(item._stockUsed){
             row.appendChild(h('button',{class:'btn-icon btn-ghost',title:t('stock_release_btn'),style:{marginLeft:'2px'},onClick:()=>opts.onUseStock(item)},'↩'));
           } else if(q>0&&q-usedTotal>0.004&&item.quantity>0.004){
             row.appendChild(h('button',{class:'btn-icon btn-ghost',title:t('stock_use_btn'),style:{marginLeft:'2px'},onClick:()=>opts.onUseStock(item)},'⤵'));
           }
+        } else if(!isIngRow&&!item._splitPart&&opts.onStockFromCat&&q>0&&q-usedTotal>0.004&&item.quantity>0.004){
+          // Kategorie-/Rest-Zeile: lagernde Zutaten ansehen und konkretisieren
+          row.appendChild(h('button',{class:'btn-icon btn-ghost',title:t('stock_concretize_btn'),style:{marginLeft:'2px'},onClick:()=>opts.onStockFromCat(item)},'⤵'));
         }
       }
       row.appendChild(h('span',{style:{marginLeft:'auto',color:'var(--text-muted)'}},item.total_cost?`${item.total_cost.toFixed(2)} €`:'—'));
