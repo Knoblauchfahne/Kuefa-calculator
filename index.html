@@ -861,6 +861,10 @@ de: {
   stock_empty_material: 'Noch kein Material eingelagert. Über „+ Eintrag" erfasst du z.B. Müllbeutel, Alufolie oder Gaskartuschen.',
   stock_hint_qty: '🥫 {0} {1} auf Lager',
   stock_hint_check: '🥫 auf Lager — prüfen',
+  stock_hint_avail: ' — {0} {1} verfügbar',
+  stock_use_btn: 'Vorräte für diese Position verwenden (nur Planung, kein Lager-Abzug)',
+  stock_release_btn: 'Lager-Verwendung zurücknehmen',
+  stock_used_marker: '🥫 {0} {1} aus Lager',
   stock_hint_desc: 'Bestände erscheinen als Hinweis in den Einkaufslisten — Mengen werden nicht automatisch abgezogen.',
   msg_confirm_delete_stock: 'Lagereintrag löschen?',
   store_food_stock: 'Lebensmittellager',
@@ -1621,6 +1625,10 @@ en: {
   stock_empty_material: 'No material in storage yet. Use "+ Entry" to record e.g. bin bags, foil or gas cartridges.',
   stock_hint_qty: '🥫 {0} {1} in stock',
   stock_hint_check: '🥫 in stock — check',
+  stock_hint_avail: ' — {0} {1} available',
+  stock_use_btn: 'Use stock for this position (planning only, no stock deduction)',
+  stock_release_btn: 'Undo stock use',
+  stock_used_marker: '🥫 {0} {1} from stock',
   stock_hint_desc: 'Stock appears as a hint in the shopping lists — quantities are not deducted automatically.',
   msg_confirm_delete_stock: 'Delete storage entry?',
   store_food_stock: 'Food storage',
@@ -4449,6 +4457,14 @@ async function renderGeneralOrderPage(container){
     lastItemsByGroup=[];
     const allEdits=await dbGetByIndex('general_order_edits','action_id',selectedActionId);
     const stockHints=await getFoodStockHints();
+    // Lager-Verwendung (Planung): Reservierungen aller Bestellungen dieser Aktion
+    // aufsummieren, damit „verfügbar" überall stimmt
+    const stockKeyOf=i=>i._concrete?`i${i.ingredient_id}|${i.unit}`:`c${i.subcategory}|${i.unit}`;
+    const stockUsedByKey=new Map();
+    allEdits.filter(e=>e.type==='stock_use').forEach(e=>{
+      const k=e.ingredient_id?`i${e.ingredient_id}|${e.unit}`:`c${e.subcategory}|${e.unit}`;
+      stockUsedByKey.set(k,(stockUsedByKey.get(k)||0)+(e.qty_used||0));
+    });
     const multi=groupNums.length>1;
     for(const num of groupNums){
       const g=groups[num];
@@ -4483,6 +4499,13 @@ async function renderGeneralOrderPage(container){
         return false;
       });
       items.push(...splitItems);
+      // Lager-Verwendung dieser Bestellung: Bedarf um reservierte Menge senken
+      const useFor=i=>groupEdits.find(e=>e.type==='stock_use'&&e.unit===i.unit&&(i._concrete?e.ingredient_id===i.ingredient_id:(!e.ingredient_id&&e.subcategory===i.subcategory)));
+      items.forEach(i=>{
+        if(i._extraId||i._splitPart||i._splitRest) return;
+        const use=useFor(i);
+        if(use){i._stockUsed=use.qty_used||0;i.quantity=Math.max(0,round2(i.quantity-i._stockUsed));i.total_cost=i.quantity*(i.price_per_unit||0);}
+      });
       lastItems.push(...items);
       lastItemsByGroup.push({num,label:t('order_group_label',num),dates:g.dates,items});
       if(multi){
@@ -4503,6 +4526,18 @@ async function renderGeneralOrderPage(container){
       const listOpts={
         hasEdits:groupEdits.length>0,
         stockHints,
+        stockUsedByKey,
+        onUseStock:async(item)=>{
+          const ex=useFor(item);
+          if(ex){await dbDel('general_order_edits',ex.id);generate();return;}
+          const rec=item._concrete?stockHints.byIngredient.get(item.ingredient_id):stockHints.bySubcat.get(item.subcategory);
+          const total=rec?(rec.qty.get(item.unit)||0):0;
+          const avail=total-(stockUsedByKey.get(stockKeyOf(item))||0);
+          const useQty=Math.min(item.quantity,avail);
+          if(useQty<=0.004) return;
+          await dbAdd('general_order_edits',{action_id:selectedActionId,group_num:num,type:'stock_use',subcategory:item.subcategory,unit:item.unit,ingredient_id:item._concrete?item.ingredient_id:null,qty_used:round2(useQty)});
+          generate();
+        },
         onSplit:async(item)=>{
           const cat=item._catItem||item;
           const rec=item._splitId
@@ -4650,8 +4685,20 @@ function renderGeneralOrderList(parent,items,opts={}){
         const rec=(item._splitPart||item._concrete)
           ? (item.ingredient_id?opts.stockHints.byIngredient.get(item.ingredient_id):null)
           : opts.stockHints.bySubcat.get(item.subcategory);
-        const badge=stockHintBadge(rec,item.unit);
+        const key=(item._splitPart||item._concrete)?`i${item.ingredient_id}|${item.unit}`:`c${item.subcategory}|${item.unit}`;
+        const usedTotal=opts.stockUsedByKey?(opts.stockUsedByKey.get(key)||0):0;
+        const badge=stockHintBadge(rec,item.unit,usedTotal);
         if(badge) row.appendChild(badge);
+        if(item._stockUsed) row.appendChild(h('span',{style:{fontSize:'10px',fontWeight:'600',color:'var(--green)',marginLeft:'8px',whiteSpace:'nowrap'}},t('stock_used_marker',round2(item._stockUsed),item.unit)));
+        // Vorräte verwenden / zurücknehmen (nur Planung — kein Lager-Abzug)
+        if(opts.onUseStock&&!item._splitPart){
+          const q=rec?(rec.qty.get(item.unit)||0):0;
+          if(item._stockUsed){
+            row.appendChild(h('button',{class:'btn-icon btn-ghost',title:t('stock_release_btn'),style:{marginLeft:'2px'},onClick:()=>opts.onUseStock(item)},'↩'));
+          } else if(q>0&&q-usedTotal>0.004&&item.quantity>0.004){
+            row.appendChild(h('button',{class:'btn-icon btn-ghost',title:t('stock_use_btn'),style:{marginLeft:'2px'},onClick:()=>opts.onUseStock(item)},'⤵'));
+          }
+        }
       }
       row.appendChild(h('span',{style:{marginLeft:'auto',color:'var(--text-muted)'}},item.total_cost?`${item.total_cost.toFixed(2)} €`:'—'));
       if(opts.onEditQty){
@@ -6536,11 +6583,13 @@ async function getFoodStockHints(){
 
 // Badge für eine Listen-Position: Menge bei passender Einheit, sonst
 // „prüfen"-Hinweis, wenn irgendetwas dieser Zutat/Kategorie lagert.
-function stockHintBadge(rec,unit){
+function stockHintBadge(rec,unit,usedTotal=0){
   if(!rec) return null;
   const q=rec.qty.get(unit);
-  const txt=q?t('stock_hint_qty',round2(q),unit):((rec.check||rec.qty.size)?t('stock_hint_check'):null);
+  let txt=q?t('stock_hint_qty',round2(q),unit):((rec.check||rec.qty.size)?t('stock_hint_check'):null);
   if(!txt) return null;
+  // Planungs-Reservierungen („Vorräte verwenden"): Restmenge mit anzeigen
+  if(q&&usedTotal>0) txt+=t('stock_hint_avail',round2(Math.max(0,q-usedTotal)),unit);
   return h('span',{style:{fontSize:'10px',fontWeight:'600',color:'var(--green-light)',marginLeft:'8px',whiteSpace:'nowrap'}},txt);
 }
 
