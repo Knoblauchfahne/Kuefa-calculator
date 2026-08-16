@@ -2968,12 +2968,23 @@ function formatDate(dateStr){
 // die Seite nach jeder Änderung an den Anfang. capture vor dem Leeren,
 // restore nach dem Wiederaufbau (Elemente bleiben dabei dieselben).
 function captureScroll(){
-  const els=[...document.querySelectorAll('.page-body,.col-left,.col-right,.content')];
-  if(document.scrollingElement) els.push(document.scrollingElement);
-  return els.map(el=>({el,top:el.scrollTop})).filter(s=>s.top>0);
+  const snaps=[];
+  ['.page-body','.col-left','.col-right','.content'].forEach(sel=>{
+    document.querySelectorAll(sel).forEach((el,idx)=>{
+      if(el.scrollTop>0) snaps.push({el,sel,idx,top:el.scrollTop});
+    });
+  });
+  const se=document.scrollingElement;
+  if(se&&se.scrollTop>0) snaps.push({el:se,sel:null,idx:0,top:se.scrollTop});
+  return snaps;
 }
-function restoreScroll(snap){
-  snap.forEach(({el,top})=>{if(el.isConnected) el.scrollTop=top;});
+function restoreScroll(snaps){
+  snaps.forEach(({el,sel,idx,top})=>{
+    // Wurde der Container beim Neuaufbau ersetzt (z.B. via showPage),
+    // das gleichpositionierte neue Element über den Selektor finden
+    const target=el.isConnected?el:(sel?document.querySelectorAll(sel)[idx]:document.scrollingElement);
+    if(target) target.scrollTop=top;
+  });
 }
 
 function showModal(content,cls=''){
@@ -3182,24 +3193,29 @@ function buildNav(){
 }
 
 function showPage(name){
+  // Re-Render derselben Seite (Refresh nach Eingaben, Tab-Wechsel etc.):
+  // Scroll-Position über den Neuaufbau retten. Echte Seitenwechsel starten oben.
+  const snap=name===currentPage?captureScroll():null;
   currentPage=name;
   buildNav();
   const content=document.getElementById('content');
   content.innerHTML='';
+  let p;
   switch(name){
-    case 'calendar':renderCalendarPage(content);break;
-    case 'ingredients':renderIngredientsPage(content);break;
-    case 'stock':renderStockPage(content);break;
-    case 'standard_meals':renderStandardMealsPage(content);break;
-    case 'general_order':renderGeneralOrderPage(content);break;
-    case 'recipe_book':renderRecipeBookPage(content);break;
-    case 'special_order':renderSpecialOrderPage(content);break;
+    case 'calendar':p=renderCalendarPage(content);break;
+    case 'ingredients':p=renderIngredientsPage(content);break;
+    case 'stock':p=renderStockPage(content);break;
+    case 'standard_meals':p=renderStandardMealsPage(content);break;
+    case 'general_order':p=renderGeneralOrderPage(content);break;
+    case 'recipe_book':p=renderRecipeBookPage(content);break;
+    case 'special_order':p=renderSpecialOrderPage(content);break;
 
-    case 'database':renderDatabasePage(content);break;
-    case 'season_calendar':renderSeasonCalendarPage(content);break;
-    case 'allergen_info':renderAllergenInfoPage(content);break;
-    case 'help':renderHelpPage(content);break;
+    case 'database':p=renderDatabasePage(content);break;
+    case 'season_calendar':p=renderSeasonCalendarPage(content);break;
+    case 'allergen_info':p=renderAllergenInfoPage(content);break;
+    case 'help':p=renderHelpPage(content);break;
   }
+  if(snap) Promise.resolve(p).then(()=>restoreScroll(snap));
 }
 
 // ══════════════════════════════════════════════════════════════
@@ -3497,7 +3513,7 @@ async function renderCalendarPage(container){
     selectedActionId=null;calSelectedDate=null;showPage('calendar');
   }
 
-  refreshCal();
+  await refreshCal();
 }
 
 // ══════════════════════════════════════════════════════════════
@@ -3536,6 +3552,11 @@ async function renderIngredientsPage(container){
   catFilter.addEventListener('change',renderTable);
 
   async function renderTable(){
+    const snap=captureScroll();
+    await renderTableInner();
+    restoreScroll(snap);
+  }
+  async function renderTableInner(){
     tableContainer.innerHTML='';
     let ings=await getIngredients();
     const subcatEnMap={};
@@ -3973,7 +3994,7 @@ async function renderIngredientsPage(container){
     input.click();
   }
 
-  renderTable();
+  await renderTable();
 }
 
 // ══════════════════════════════════════════════════════════════
@@ -4340,7 +4361,7 @@ async function renderStandardMealsPage(container){
     });
   }
 
-  refresh();
+  await refresh();
 }
 
 // ══════════════════════════════════════════════════════════════
@@ -5810,6 +5831,11 @@ async function renderRecipeBookPage(container){
   recipeCatFilter.addEventListener('change',renderList);
 
   async function renderList(){
+    const snap=captureScroll();
+    await renderListInner();
+    restoreScroll(snap);
+  }
+  async function renderListInner(){
     listDiv.innerHTML='';
     let recipes=await getRecipes();
     const q=searchInput.value.toLowerCase();
@@ -5834,6 +5860,11 @@ async function renderRecipeBookPage(container){
   }
 
   async function renderDetail(){
+    const snap=captureScroll();
+    await renderDetailInner();
+    restoreScroll(snap);
+  }
+  async function renderDetailInner(){
     detailDiv.innerHTML='';
     const recipes=await getRecipes();
     const recipe=recipes.find(r=>r.id===recipeSelectedId);
@@ -6682,7 +6713,7 @@ async function renderRecipeBookPage(container){
     refresh();
   }
 
-  renderList();renderDetail();
+  await renderList();await renderDetail();
 }
 
 // ══════════════════════════════════════════════════════════════
@@ -7041,6 +7072,11 @@ async function renderSpecialOrderPage(container){
   body.appendChild(cols);
 
   async function renderAssignments(){
+    const snap=captureScroll();
+    await renderAssignmentsInner();
+    restoreScroll(snap);
+  }
+  async function renderAssignmentsInner(){
     assignDiv.innerHTML='';
     assignDiv.appendChild(h('div',{style:{fontWeight:'700',fontSize:'14px',marginBottom:'8px'}},t('order_assign_header')));
     if(!selectedActionId){assignDiv.appendChild(h('div',{class:'empty-msg'},t('empty_no_action_assign')));return;}
@@ -7286,7 +7322,7 @@ async function renderSpecialOrderPage(container){
     restoreScroll(scrollSnap);
   }
 
-  renderAssignments();generate();
+  await renderAssignments();await generate();
 }
 
 
@@ -8235,6 +8271,11 @@ async function renderStockPage(container){
   const bySortOrder=nameOf=>(a,b)=>((a.e.sort_order??1e9)-(b.e.sort_order??1e9))||nameOf(a).localeCompare(nameOf(b));
 
   async function refresh(){
+    const snap=captureScroll();
+    await refreshInner();
+    restoreScroll(snap);
+  }
+  async function refreshInner(){
     listDiv.innerHTML='';
     if(stockTab==='food'){
       const entries=await dbGetAll('food_stock');
@@ -8791,6 +8832,11 @@ async function renderSeasonCalendarPage(container){
   }
 
   function renderTable(){
+    const snap=captureScroll();
+    renderTableInner();
+    restoreScroll(snap);
+  }
+  function renderTableInner(){
     tableCard.innerHTML='';
     // Header row
     const hdr=h('div',{style:{display:'flex',alignItems:'center',borderBottom:'2px solid var(--border)',position:'sticky',top:'0',background:'var(--surface)',zIndex:'2'}});
@@ -8827,7 +8873,7 @@ async function renderSeasonCalendarPage(container){
   searchInput.addEventListener('input',renderTable);
   catFilter.addEventListener('change',renderTable);
   seasonFilter.addEventListener('change',renderTable);
-  renderTable();
+  await renderTable();
 
   // Info box
   const infoCard=h('div',{class:'card',style:{marginTop:'16px',fontSize:'12px',color:'var(--text-muted)',lineHeight:'1.5'}});
