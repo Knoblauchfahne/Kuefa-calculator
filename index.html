@@ -544,6 +544,8 @@ de: {
   lbl_trim_pct: 'Abschnitt (%)',
   lbl_cook_factor: 'Kochfaktor (×)',
   lbl_cook_factor_title: 'Faktor für Gewichtsänderung beim Kochen. 1 = unverändert, 2.6 = Kichererbsen trocken→gekocht, 0.15 = Spinat frisch→gegart',
+  lbl_swell_factor: 'Quellfaktor (×)',
+  lbl_swell_factor_title: 'Faktor für Gewichtsänderung beim Einweichen/Quellen. 1 = unverändert, 2.4 = Bulgur trocken→gequollen, 3 = Trockenpilze trocken→eingeweicht',
   lbl_processing_hint: 'Verarbeitungshinweis',
   lbl_processing_hint_en: 'Verarbeitungshinweis (Englisch, optional)',
   lbl_storage_hint: 'Lagerhinweis',
@@ -594,6 +596,7 @@ de: {
   ph_price: '0.00',
   ph_trim: '0',
   ph_cook_factor: '1',
+  ph_swell_factor: '1',
   ph_processing_hint: 'z.B. 12h einweichen, Kerne entfernen',
   ph_processing_hint_en: 'e.g. Soak 12h, remove seeds',
   ph_storage_hint: 'z.B. Kühl lagern, max. 3 Tage haltbar',
@@ -628,6 +631,7 @@ de: {
   col_category: 'Kategorie',
   col_trim: 'Abschn.',
   col_cook_factor: 'Kochfaktor',
+  col_swell_factor: 'Quellfaktor',
   col_processing_hint: 'Verarb.-Hinweis',
   col_storage_hint: 'Lager-Hinweis',
   col_tags: 'Tags',
@@ -638,6 +642,7 @@ de: {
   col_total_qty: 'Gesamtmenge',
   col_netto: 'Netto',
   col_cooked: 'Gekocht',
+  col_swollen: 'Gequollen',
   col_cost: 'Kosten',
   col_qty_per_100: 'Ø-Menge/100P.',
   col_qty_for_persons: 'Ø-Menge/{0}P.',
@@ -1188,7 +1193,7 @@ de: {
   help_recipe_title: '📖  Rezeptbuch',
   help_recipe_text: 'Deine Rezeptsammlung. Jedes Rezept enthält Zutaten (mit Menge pro Person und Verarbeitungsmethode), Zubereitungsschritte, Hinweise und optional Zeitangaben. Beim Erstellen kannst du angeben, für wie viele Portionen deine Mengenangaben gelten — die App rechnet automatisch auf 1 Person herunter. Zutaten können als optional markiert werden; diese erscheinen in der Einkaufsliste mit dem Label „(optional)". Jede Zutat kann ein oder mehrere Substitutionen (Ersatzzutaten) haben — klicke auf den ⇄-Button neben einer Zutat, um Substitutionen zu definieren. Diese werden im Rezeptdetail mit „↳ oder:" angezeigt und beim Export/Import als „→ Substitut:"-Zeilen übertragen. Rezepte können als „Allergieessen" markiert werden, damit sie beim Zuweisen von Allergie-Essen zur Auswahl stehen. Rezepte werden den gleichen Mahlzeitkategorien zugeordnet wie die Standardmahlzeiten (z.B. Frühstück, Mittagessen). Dadurch werden in der Einkaufsliste nur passende Rezepte pro Mahlzeit angeboten. Zusätzlich können Rezepte mit frei definierbaren Tags versehen werden, um sie flexibel zu kategorisieren und zu filtern (z.B. „vegan", „schnell", „Sommer"). Du kannst Rezepte als .txt-Datei importieren und exportieren, duplizieren oder über eine Maske neu erstellen. Optional lassen sich benötigtes Material aus der Materialliste (Anzahl + Notiz) sowie das Volumen des fertigen Gerichts angeben („100 Portionen ergeben 35 L") — Grundlage für die Topf-Auswahl bei großen Aktionen. Über „🖨 Ausgeben" lässt sich jedes Rezept auch ohne Kochaktion direkt für eine beliebige Portionszahl ausgeben — inkl. Substitutions-Auswahl, als dieselbe A4-Rezeptseite wie beim Einkaufen nach Rezept.',
   help_ingredients_title: '📦  Zutaten',
-  help_ingredients_text: 'Die Zutatendatenbank. Jede Zutat hat einen Namen, eine Einheit (kg, l, etc.), einen Preis pro Einheit als Referenz, eine Kategorie, einen Abschnitt-Wert (% Verlust beim Schälen/Schneiden), einen Kochfaktor (Gewichtsänderung beim Kochen), Verarbeitungs- und Lagerhinweise, zugeordnete Allergene sowie frei definierbare Tags (z.B. „bio", „regional", „TK"). Tags helfen beim Filtern und bei der Suche nach Zutaten — auch innerhalb der Rezeptbearbeitung. Der Abschnitt-Wert wird bei der Bestellmengenberechnung automatisch aufgeschlagen und im Rezept als Netto-Menge angezeigt. Der Kochfaktor ist ein Multiplikator (1 = unverändert, 2.6 = trockene Kichererbsen werden gekocht 2,6-fach schwerer, 0.15 = Spinat schrumpft beim Garen auf 15%) und wird in Rezept und PDF als Gekocht-Spalte dargestellt – rein informativ, damit der Koch weiß, wie viel am Ende auf dem Teller landet. Die Einheit wird automatisch in die Rezepte übernommen. Zutaten lassen sich als .csv oder .txt exportieren und importieren.',
+  help_ingredients_text: 'Die Zutatendatenbank. Jede Zutat hat einen Namen, eine Einheit (kg, l, etc.), einen Preis pro Einheit als Referenz, eine Kategorie, einen Abschnitt-Wert (% Verlust beim Schälen/Schneiden), einen Kochfaktor (Gewichtsänderung beim Kochen), einen Quellfaktor (Gewichtsänderung beim Einweichen/Quellen), Verarbeitungs- und Lagerhinweise, zugeordnete Allergene sowie frei definierbare Tags (z.B. „bio", „regional", „TK"). Tags helfen beim Filtern und bei der Suche nach Zutaten — auch innerhalb der Rezeptbearbeitung. Der Abschnitt-Wert wird bei der Bestellmengenberechnung automatisch aufgeschlagen und im Rezept als Netto-Menge angezeigt. Der Kochfaktor ist ein Multiplikator (1 = unverändert, 2.6 = trockene Kichererbsen werden gekocht 2,6-fach schwerer, 0.15 = Spinat schrumpft beim Garen auf 15%) und wird in Rezept und PDF als Gekocht-Spalte dargestellt – rein informativ, damit der Koch weiß, wie viel am Ende auf dem Teller landet. Der Quellfaktor funktioniert genauso, bezieht sich aber aufs Einweichen (2.4 = Bulgur trocken→gequollen) und erscheint als eigene Gequollen-Spalte. Die Einheit wird automatisch in die Rezepte übernommen. Zutaten lassen sich als .csv oder .txt exportieren und importieren.',
   help_stock_title: '🗄  Lager',
   help_stock_text: 'Erfasst, was schon vorhanden ist — getrennt nach Lebensmittellager und Materiallager. Lebensmittel-Einträge sind mit Zutaten aus der Datenbank verknüpft; dadurch zeigen beide Einkaufslisten automatisch einen Hinweis, wenn etwas davon lagert: mit Menge (z.B. „🥫 5 kg auf Lager") oder ohne Menge als „auf Lager — prüfen". Die Bestellmengen werden bewusst NICHT automatisch abgezogen — du entscheidest beim Prüfen der Liste selbst. Die Menge ist optional: Ohne Menge dient der Eintrag als Erinnerung, dass etwas da ist. Jeder Eintrag zeigt sein Einlagerungsdatum („eingelagert vor 3 Monaten"), damit alte Bestände nicht blind übernommen werden. Das Materiallager ist für Nicht-Lebensmittel gedacht (Müllbeutel, Alufolie, Gaskartuschen …). Grundlage dafür ist die Materialliste — der Katalog aller Materialien, unabhängig davon, ob sie gerade im Lager liegen. Materialien haben frei anlegbare Kategorien; neue Materialien und Kategorien lassen sich direkt aus jedem Auswahl-Dialog heraus anlegen. Zusätzlich kann jedes Material frei definierbare Eigenschaften haben — in drei Typen: „Wert + Einheit" (z.B. Volumen 100 L), „Text" (z.B. Art: Schnellkochtopf) und „Ja/Nein" (z.B. Trinkwasser — wird beim Einlagern als Checkbox abgefragt). Der Wert ist optional und kann im Lager pro Eintrag ausgefüllt werden. Über Prä/Post erscheinen Eigenschaften vor oder nach dem Namen: Ein „Topf" mit Volumen (Prä) wird als „100 L Topf" angezeigt, ein „GN-Behälter" mit Art und Höhe (Post) als „GN-Behälter 1/1 hoch". Materialliste, Lebensmittellager und Materiallager lassen sich jeweils gesondert exportieren (PDF, CSV, JSON) und als JSON additiv importieren: Lagereinträge werden über den Zutaten- bzw. Materialnamen zugeordnet, identische Einträge und vorhandene Materialnamen werden übersprungen; der Materiallager-Export bettet die verwendeten Materialien samt Kategorien mit ein. Der Tab „Ausleihe" erstellt situationsbedingte Ausleihlisten (z.B. pro Aktion), damit alles wieder zurückkommt: „⇄ Befüllen" öffnet die Liste als Zwei-Spalten-Ansicht — links das vorhandene Material aus dem Lager (per →-Knopf mit wählbarer Anzahl übernehmen), rechts die Ausleihliste; über „+ Position" oben lässt sich auch Material ergänzen, das nicht in der linken Liste steht (aus dem Katalog oder frei eingetragen). Rückgabe per Häkchen abhaken (mit Fortschrittsanzeige) und als A4-Liste mit Raus/Zurück-Spalten und Unterschriftszeilen drucken. Der Auswahl-Dialog zeigt zuerst die tatsächlichen Lagereinträge (📦, inkl. Bestand) — so verknüpfte Positionen markieren den Lagereintrag mit „🔁 verliehen: Liste", bis die Rückgabe abgehakt ist. Die Einträge in Lebensmittel- und Materiallager lassen sich innerhalb ihrer Kategorie per Drag & Drop (⠿-Griff) manuell sortieren. In Rezepten kann optional benötigtes Material angegeben werden (Anzahl + Notiz, z.B. „2× Topf groß — für die Sauce") — es erscheint in der Rezept-Ansicht. Lagerbestände und Materialliste bleiben beim Laden des Standard-Datenbestands erhalten und sind im Komplett-Backup enthalten; im Standard-Datenbestand mitgelieferte Materialien werden dabei additiv ergänzt (nichts wird überschrieben).',
   help_database_title: '💾  Datenbank',
@@ -1343,6 +1348,8 @@ en: {
   lbl_trim_pct: 'Trim (%)',
   lbl_cook_factor: 'Cook factor (×)',
   lbl_cook_factor_title: 'Weight change factor during cooking. 1 = unchanged, 2.6 = dry chickpeas → cooked, 0.15 = spinach shrinks to 15%',
+  lbl_swell_factor: 'Swell factor (×)',
+  lbl_swell_factor_title: 'Weight change factor during soaking/swelling. 1 = unchanged, 2.4 = dry bulgur → soaked, 3 = dried mushrooms → soaked',
   lbl_processing_hint: 'Processing note',
   lbl_processing_hint_en: 'Processing note (English, optional)',
   lbl_storage_hint: 'Storage note',
@@ -1393,6 +1400,7 @@ en: {
   ph_price: '0.00',
   ph_trim: '0',
   ph_cook_factor: '1',
+  ph_swell_factor: '1',
   ph_processing_hint: 'e.g. Soak 12h, remove seeds',
   ph_processing_hint_en: 'e.g. Soak 12h, remove seeds',
   ph_storage_hint: 'e.g. Refrigerate, use within 3 days',
@@ -1427,6 +1435,7 @@ en: {
   col_category: 'Category',
   col_trim: 'Trim',
   col_cook_factor: 'Cook factor',
+  col_swell_factor: 'Swell factor',
   col_processing_hint: 'Processing note',
   col_storage_hint: 'Storage note',
   col_tags: 'Tags',
@@ -1437,6 +1446,7 @@ en: {
   col_total_qty: 'Total qty',
   col_netto: 'Net',
   col_cooked: 'Cooked',
+  col_swollen: 'Soaked',
   col_cost: 'Cost',
   col_qty_per_100: 'Avg/100p.',
   col_qty_for_persons: 'Avg/{0}p.',
@@ -1987,7 +1997,7 @@ en: {
   help_recipe_title: '📖  Recipe Book',
   help_recipe_text: 'Your recipe collection. Each recipe contains ingredients (with quantity per person and processing method), preparation steps, notes and optional time information. When creating, you can specify how many servings your quantities are for — the app automatically divides down to 1 person. Ingredients can be marked as optional; these appear in the shopping list with the label "(optional)". Each ingredient can have one or more substitutions (alternative ingredients) — click the ⇄ button next to an ingredient to define substitutions. They are shown in the recipe detail as "↳ or:" and exported/imported as "→ Substitute:" lines. Recipes can be marked as "Allergy meal" so they appear as an allergy alternative during assignment. Recipes are assigned to the same meal categories as standard meals (e.g. Breakfast, Lunch). This ensures only matching recipes are offered per meal in the shopping list. Recipes can also be tagged with freely definable tags for flexible categorisation and filtering (e.g. "vegan", "quick", "summer"). You can import and export recipes as .txt files, duplicate them or create new ones via a form. Optionally, required equipment from the material list (count + note) and the volume of the finished dish can be specified ("100 servings yield 35 L") — the basis for pot selection at large events. Via "🖨 Print", any recipe can be printed directly for any number of servings without a cooking event — including substitution selection, as the same A4 recipe page used in shopping by recipe.',
   help_ingredients_title: '📦  Ingredients',
-  help_ingredients_text: 'The ingredient database. Each ingredient has a name, a unit (kg, l, etc.), a reference price per unit, a category, a trim value (% loss during peeling/cutting), a cook factor (weight change during cooking), processing and storage notes, assigned allergens and freely definable tags (e.g. "organic", "regional", "frozen"). Tags help with filtering and searching for ingredients — including within recipe editing. The trim value is automatically added to order quantities and shown in recipes as the net quantity. The cook factor is a multiplier (1 = unchanged, 2.6 = dry chickpeas become 2.6× heavier when cooked, 0.15 = spinach shrinks to 15% when cooked) and is shown in recipes and PDFs as a "Cooked" column — purely informational so the chef knows how much ends up on the plate. The unit is automatically adopted into recipes. Ingredients can be exported and imported as .csv or .txt files.',
+  help_ingredients_text: 'The ingredient database. Each ingredient has a name, a unit (kg, l, etc.), a reference price per unit, a category, a trim value (% loss during peeling/cutting), a cook factor (weight change during cooking), a swell factor (weight change during soaking), processing and storage notes, assigned allergens and freely definable tags (e.g. "organic", "regional", "frozen"). Tags help with filtering and searching for ingredients — including within recipe editing. The trim value is automatically added to order quantities and shown in recipes as the net quantity. The cook factor is a multiplier (1 = unchanged, 2.6 = dry chickpeas become 2.6× heavier when cooked, 0.15 = spinach shrinks to 15% when cooked) and is shown in recipes and PDFs as a "Cooked" column — purely informational so the chef knows how much ends up on the plate. The swell factor works the same way but refers to soaking (2.4 = dry bulgur becomes 2.4x heavier) and appears as its own Soaked column. The unit is automatically adopted into recipes. Ingredients can be exported and imported as .csv or .txt files.',
   help_stock_title: '🗄  Storage',
   help_stock_text: 'Records what you already have — split into food storage and material storage. Food entries are linked to ingredients from the database; both shopping lists automatically show a hint when something is in stock: with a quantity (e.g. "🥫 5 kg in stock") or without one as "in stock — check". Order quantities are deliberately NOT deducted automatically — you decide yourself when reviewing the list. The quantity is optional: without one, the entry serves as a reminder that something is there. Each entry shows its storage date ("stored 3 months ago") so old stock is not trusted blindly. The material storage is for non-food items (bin bags, foil, gas cartridges …). It is based on the material list — the catalogue of all materials, regardless of whether they are currently in storage. Materials have freely creatable categories; new materials and categories can be created directly from any picker dialog. Each material can also have freely definable attributes — in three types: "value + unit" (e.g. volume 100 L), "text" (e.g. kind: pressure cooker) and "yes/no" (e.g. drinking water — asked as a checkbox when adding to storage). The value is optional and can be filled per storage entry. Via pre/post, attributes appear before or after the name: a "pot" with volume (pre) shows as "100 L pot", a "GN container" with kind and depth (post) as "GN container 1/1 deep". Material list, food storage and material storage can each be exported separately (PDF, CSV, JSON) and imported additively from JSON: storage entries are matched by ingredient/material name, identical entries and existing material names are skipped; the material storage export embeds the referenced materials including categories. The "Loans" tab creates situational loan lists (e.g. per event) so everything comes back: "⇄ Fill" opens the list as a two-column view — available material from storage on the left (take over via → with a chosen count), the loan list on the right; "+ Item" at the top adds material that is not in the left list (from the catalogue or free text). Tick off returns (with progress display) and print an A4 list with out/back columns and signature lines. The picker shows the actual storage entries first (📦, incl. stock) — items linked this way mark the storage entry with "🔁 lent out: list" until the return is ticked off. Entries in food and material storage can be sorted manually within their category via drag & drop (⠿ handle).Recipes can optionally specify required equipment (count + note, e.g. "2× large pot — for the sauce") — it appears in the recipe view. Storage and material list are preserved when loading the default dataset and are included in the full backup; materials shipped with the default dataset are merged in additively (nothing is overwritten).',
   help_database_title: '💾  Database',
@@ -2311,7 +2321,7 @@ async function getSubstitutes(recipeIngredientId){
   const subs=await dbGetByIndex('recipe_ingredient_substitutes','recipe_ingredient_id',recipeIngredientId);
   for(const s of subs){
     const ing=await dbGet('ingredients',s.ingredient_id);
-    if(ing){s.ingredient_name=ing.name;s.ingredient_name_en=ing.name_en||'';s.ingredient_unit=ing.unit;s.ingredient_price=ing.price||0;s.ingredient_subcategory=ing.subcategory||'';s.ingredient_abschnitt=ing.abschnitt||0;s.ingredient_kochfaktor=(ing.kochfaktor===undefined||ing.kochfaktor===null)?1:Number(ing.kochfaktor);}
+    if(ing){s.ingredient_name=ing.name;s.ingredient_name_en=ing.name_en||'';s.ingredient_unit=ing.unit;s.ingredient_price=ing.price||0;s.ingredient_subcategory=ing.subcategory||'';s.ingredient_abschnitt=ing.abschnitt||0;s.ingredient_kochfaktor=(ing.kochfaktor===undefined||ing.kochfaktor===null)?1:Number(ing.kochfaktor);s.ingredient_quellfaktor=(ing.quellfaktor===undefined||ing.quellfaktor===null)?1:Number(ing.quellfaktor);}
   }
   return subs;
 }
@@ -2532,6 +2542,7 @@ async function getIngredients(){
     ing.lagerhinweis_en=ing.lagerhinweis_en||'';
     ing.abschnitt=ing.abschnitt||0;
     ing.kochfaktor=(ing.kochfaktor===undefined||ing.kochfaktor===null||ing.kochfaktor==='')?1:Number(ing.kochfaktor);
+    ing.quellfaktor=(ing.quellfaktor===undefined||ing.quellfaktor===null||ing.quellfaktor==='')?1:Number(ing.quellfaktor);
     ing.name_en=ing.name_en||'';
     // Saison-Migration: falls noch nicht gesetzt → leeres Array (nicht saisonal)
     if(!Array.isArray(ing.months)||ing.months.length!==12) ing.months=[0,0,0,0,0,0,0,0,0,0,0,0];
@@ -2540,8 +2551,8 @@ async function getIngredients(){
   return ings;
 }
 function _normMonths(m){return Array.isArray(m)&&m.length===12?m.map(v=>{const n=Number(v);return (n===1||n===2)?n:0;}):[0,0,0,0,0,0,0,0,0,0,0,0];}
-async function createIngredient(name,unit,price=0,subcat='',verarbeitungshinweis='',lagerhinweis='',abschnitt=0,kochfaktor=1,name_en='',verarbeitungshinweis_en='',lagerhinweis_en='',months=null,season_category=''){return dbAdd('ingredients',{name,name_en,unit,price,subcategory:subcat,verarbeitungshinweis,lagerhinweis,verarbeitungshinweis_en,lagerhinweis_en,abschnitt,kochfaktor,months:_normMonths(months),season_category:season_category||''});}
-async function updateIngredient(id,name,unit,price=0,subcat='',verarbeitungshinweis='',lagerhinweis='',abschnitt=0,kochfaktor=1,name_en='',verarbeitungshinweis_en='',lagerhinweis_en='',months=null,season_category=''){await dbPut('ingredients',{id,name,name_en,unit,price,subcategory:subcat,verarbeitungshinweis,lagerhinweis,verarbeitungshinweis_en,lagerhinweis_en,abschnitt,kochfaktor,months:_normMonths(months),season_category:season_category||''});}
+async function createIngredient(name,unit,price=0,subcat='',verarbeitungshinweis='',lagerhinweis='',abschnitt=0,kochfaktor=1,name_en='',verarbeitungshinweis_en='',lagerhinweis_en='',months=null,season_category='',quellfaktor=1){return dbAdd('ingredients',{name,name_en,unit,price,subcategory:subcat,verarbeitungshinweis,lagerhinweis,verarbeitungshinweis_en,lagerhinweis_en,abschnitt,kochfaktor,quellfaktor,months:_normMonths(months),season_category:season_category||''});}
+async function updateIngredient(id,name,unit,price=0,subcat='',verarbeitungshinweis='',lagerhinweis='',abschnitt=0,kochfaktor=1,name_en='',verarbeitungshinweis_en='',lagerhinweis_en='',months=null,season_category='',quellfaktor=1){await dbPut('ingredients',{id,name,name_en,unit,price,subcategory:subcat,verarbeitungshinweis,lagerhinweis,verarbeitungshinweis_en,lagerhinweis_en,abschnitt,kochfaktor,quellfaktor,months:_normMonths(months),season_category:season_category||''});}
 async function deleteIngredient(id){
   await setIngredientAllergens(id,[]);
   await setIngredientTags(id,[]);
@@ -2645,7 +2656,7 @@ async function getRecipes(){
     for(const rc of rcs){const c=await dbGet('meal_type_categories',rc.category_id);if(c) r.categories.push(c);}
     const ris=await dbGetByIndex('recipe_ingredients','recipe_id',r.id);
     r.ingredients=[];
-    for(const ri of ris){const ing=await dbGet('ingredients',ri.ingredient_id);if(ing){r.ingredients.push({...ri,optional:ri.optional||false,ingredient_name:ing.name,ingredient_name_en:ing.name_en||'',ingredient_unit:ing.unit,ingredient_price:ing.price||0,ingredient_subcategory:ing.subcategory||'',ingredient_abschnitt:ing.abschnitt||0,ingredient_verarbeitungshinweis:ing.verarbeitungshinweis||'',ingredient_lagerhinweis:ing.lagerhinweis||'',ingredient_kochfaktor:(ing.kochfaktor===undefined||ing.kochfaktor===null||ing.kochfaktor==='')?1:Number(ing.kochfaktor),ingredient_months:Array.isArray(ing.months)&&ing.months.length===12?ing.months:null,ingredient_season_category:ing.season_category||''});}}
+    for(const ri of ris){const ing=await dbGet('ingredients',ri.ingredient_id);if(ing){r.ingredients.push({...ri,optional:ri.optional||false,ingredient_name:ing.name,ingredient_name_en:ing.name_en||'',ingredient_unit:ing.unit,ingredient_price:ing.price||0,ingredient_subcategory:ing.subcategory||'',ingredient_abschnitt:ing.abschnitt||0,ingredient_verarbeitungshinweis:ing.verarbeitungshinweis||'',ingredient_lagerhinweis:ing.lagerhinweis||'',ingredient_kochfaktor:(ing.kochfaktor===undefined||ing.kochfaktor===null||ing.kochfaktor==='')?1:Number(ing.kochfaktor),ingredient_quellfaktor:(ing.quellfaktor===undefined||ing.quellfaktor===null||ing.quellfaktor==='')?1:Number(ing.quellfaktor),ingredient_months:Array.isArray(ing.months)&&ing.months.length===12?ing.months:null,ingredient_season_category:ing.season_category||''});}}
     // Allergens: auto from ingredients + manually assigned
     const autoAllergenIds=new Set();
     for(const ri of r.ingredients){
@@ -3569,7 +3580,7 @@ async function renderIngredientsPage(container){
     if(ingTagFilterId) ings=ings.filter(i=>(i.tags||[]).some(tg=>tg.id===ingTagFilterId));
 
     const hdr=h('div',{class:'table-header'});
-    [[t('col_name'),150],[t('col_unit'),55],[t('col_price'),60],[t('col_category'),100],[t('col_trim'),55],[t('col_cook_factor'),70],[t('col_processing_hint'),130],[t('col_storage_hint'),120],[t('col_tags'),150]].forEach(([lbl,w])=>hdr.appendChild(h('span',{style:{width:w+'px',flexShrink:0}},lbl)));
+    [[t('col_name'),150],[t('col_unit'),55],[t('col_price'),60],[t('col_category'),100],[t('col_trim'),55],[t('col_cook_factor'),70],[t('col_swell_factor'),70],[t('col_processing_hint'),130],[t('col_storage_hint'),120],[t('col_tags'),150]].forEach(([lbl,w])=>hdr.appendChild(h('span',{style:{width:w+'px',flexShrink:0}},lbl)));
     hdr.appendChild(h('span',{style:{flex:1}}));
     tableContainer.appendChild(hdr);
 
@@ -3585,6 +3596,8 @@ async function renderIngredientsPage(container){
       row.appendChild(h('span',{'data-label':t('col_trim'),style:{width:'55px',flexShrink:0,color:ing.abschnitt?'var(--accent)':'var(--text-muted)'}},ing.abschnitt?`${ing.abschnitt}%`:'—'));
       const kf=ing.kochfaktor||1;
       row.appendChild(h('span',{'data-label':t('col_cook_factor'),style:{width:'70px',flexShrink:0,color:(kf!==1)?'var(--green-light)':'var(--text-muted)'}},(kf!==1)?`×${kf}`:'—'));
+      const qf=ing.quellfaktor||1;
+      row.appendChild(h('span',{'data-label':t('col_swell_factor'),style:{width:'70px',flexShrink:0,color:(qf!==1)?'var(--green-light)':'var(--text-muted)'}},(qf!==1)?`×${qf}`:'—'));
       row.appendChild(h('span',{'data-label':t('col_processing_hint'),style:{width:'130px',flexShrink:0,color:'var(--text-muted)',fontSize:'12px'}},(LANG==='en'&&ing.verarbeitungshinweis_en)?ing.verarbeitungshinweis_en:ing.verarbeitungshinweis||'—'));
       row.appendChild(h('span',{'data-label':t('col_storage_hint'),style:{width:'120px',flexShrink:0,color:'var(--text-muted)',fontSize:'12px'}},(LANG==='en'&&ing.lagerhinweis_en)?ing.lagerhinweis_en:ing.lagerhinweis||'—'));
       const tagCell=h('span',{'data-label':t('col_tags'),style:{width:'150px',flexShrink:0}});
@@ -3614,6 +3627,7 @@ async function renderIngredientsPage(container){
     subcats.forEach(s=>{const o=h('option',{value:s.name},subcatDisplayName(s));if(s.name===(ing?.subcategory||''))o.selected=true;subcatSel.appendChild(o);});
     const abschnittInput=h('input',{type:'number',placeholder:t('ph_trim'),value:ing?.abschnitt||'',style:{width:'100%'},step:'1',min:'0',max:'100'});
     const kochfaktorInput=h('input',{type:'number',placeholder:t('ph_cook_factor'),value:(ing&&ing.kochfaktor!==undefined&&ing.kochfaktor!==1)?ing.kochfaktor:'',style:{width:'100%'},step:'0.01',min:'0'});
+    const quellfaktorInput=h('input',{type:'number',placeholder:t('ph_swell_factor'),value:(ing&&ing.quellfaktor!==undefined&&ing.quellfaktor!==1)?ing.quellfaktor:'',style:{width:'100%'},step:'0.01',min:'0'});
     const verarbHinweisInput=h('input',{type:'text',placeholder:t('ph_processing_hint'),value:ing?.verarbeitungshinweis||'',style:{width:'100%'}});
     const verarbHinweisEnInput=h('input',{type:'text',placeholder:t('ph_processing_hint_en'),value:ing?.verarbeitungshinweis_en||'',style:{width:'100%'}});
     const lagerHinweisInput=h('input',{type:'text',placeholder:t('ph_storage_hint'),value:ing?.lagerhinweis||'',style:{width:'100%'}});
@@ -3668,7 +3682,8 @@ async function renderIngredientsPage(container){
       h('div',{class:'form-row'},
         h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_category')),subcatSel),
         h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_trim_pct')),abschnittInput),
-        h('div',{class:'form-group'},h('label',{class:'form-label',title:t('lbl_cook_factor_title')},t('lbl_cook_factor')),kochfaktorInput)
+        h('div',{class:'form-group'},h('label',{class:'form-label',title:t('lbl_cook_factor_title')},t('lbl_cook_factor')),kochfaktorInput),
+        h('div',{class:'form-group'},h('label',{class:'form-label',title:t('lbl_swell_factor_title')},t('lbl_swell_factor')),quellfaktorInput)
       ),
       h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_processing_hint')),verarbHinweisInput),
       h('div',{class:'form-group'},h('label',{class:'form-label'},t('lbl_processing_hint_en')),verarbHinweisEnInput),
@@ -3687,8 +3702,10 @@ async function renderIngredientsPage(container){
             const absch=parseFloat(abschnittInput.value)||0;
             const kf=parseFloat(kochfaktorInput.value);
             const kfVal=(isNaN(kf)||kf<=0)?1:kf;
-            if(ing) await updateIngredient(ing.id,n,unitSel.value,p,subcatSel.value,verarbHinweisInput.value.trim(),lagerHinweisInput.value.trim(),absch,kfVal,nameEnInput.value.trim(),verarbHinweisEnInput.value.trim(),lagerHinweisEnInput.value.trim(),monthState.slice(),seasonCatSel.value);
-            else{ing={id:await createIngredient(n,unitSel.value,p,subcatSel.value,verarbHinweisInput.value.trim(),lagerHinweisInput.value.trim(),absch,kfVal,nameEnInput.value.trim(),verarbHinweisEnInput.value.trim(),lagerHinweisEnInput.value.trim(),monthState.slice(),seasonCatSel.value)};}
+            const qf=parseFloat(quellfaktorInput.value);
+            const qfVal=(isNaN(qf)||qf<=0)?1:qf;
+            if(ing) await updateIngredient(ing.id,n,unitSel.value,p,subcatSel.value,verarbHinweisInput.value.trim(),lagerHinweisInput.value.trim(),absch,kfVal,nameEnInput.value.trim(),verarbHinweisEnInput.value.trim(),lagerHinweisEnInput.value.trim(),monthState.slice(),seasonCatSel.value,qfVal);
+            else{ing={id:await createIngredient(n,unitSel.value,p,subcatSel.value,verarbHinweisInput.value.trim(),lagerHinweisInput.value.trim(),absch,kfVal,nameEnInput.value.trim(),verarbHinweisEnInput.value.trim(),lagerHinweisEnInput.value.trim(),monthState.slice(),seasonCatSel.value,qfVal)};}
           }catch(e){alert(t('msg_ingredient_exists'));return;}
           const selAllergenIds=Object.entries(allergenVars).filter(([_,cb])=>cb.checked).map(([id])=>parseInt(id));
           await setIngredientAllergens(ing.id,selAllergenIds);
@@ -3737,13 +3754,13 @@ async function renderIngredientsPage(container){
         h('button',{class:'btn btn-surface',onClick:()=>closeModal(modal)},t('btn_cancel')),
         h('button',{class:'btn btn-danger',onClick:async()=>{
           if(!confirm(t('msg_confirm_remove_from_season'))) return;
-          await updateIngredient(ing.id,ing.name,ing.unit,ing.price||0,ing.subcategory||'',ing.verarbeitungshinweis||'',ing.lagerhinweis||'',ing.abschnitt||0,ing.kochfaktor||1,ing.name_en||'',ing.verarbeitungshinweis_en||'',ing.lagerhinweis_en||'',[0,0,0,0,0,0,0,0,0,0,0,0],'');
+          await updateIngredient(ing.id,ing.name,ing.unit,ing.price||0,ing.subcategory||'',ing.verarbeitungshinweis||'',ing.lagerhinweis||'',ing.abschnitt||0,ing.kochfaktor||1,ing.name_en||'',ing.verarbeitungshinweis_en||'',ing.lagerhinweis_en||'',[0,0,0,0,0,0,0,0,0,0,0,0],'',ing.quellfaktor||1);
           closeModal(modal);renderTable();
         }},t('btn_remove_from_season')),
         h('button',{class:'btn btn-accent',onClick:async()=>{
           const cat=seasonCatSel.value;
           if(cat&&!monthState.some(v=>v>0)){alert(t('msg_season_pick_at_least_one'));return;}
-          await updateIngredient(ing.id,ing.name,ing.unit,ing.price||0,ing.subcategory||'',ing.verarbeitungshinweis||'',ing.lagerhinweis||'',ing.abschnitt||0,ing.kochfaktor||1,ing.name_en||'',ing.verarbeitungshinweis_en||'',ing.lagerhinweis_en||'',monthState.slice(),cat);
+          await updateIngredient(ing.id,ing.name,ing.unit,ing.price||0,ing.subcategory||'',ing.verarbeitungshinweis||'',ing.lagerhinweis||'',ing.abschnitt||0,ing.kochfaktor||1,ing.name_en||'',ing.verarbeitungshinweis_en||'',ing.lagerhinweis_en||'',monthState.slice(),cat,ing.quellfaktor||1);
           closeModal(modal);renderTable();
         }},t('btn_save'))
       )
@@ -3861,12 +3878,13 @@ async function renderIngredientsPage(container){
     const ings=await getIngredients();
     if(!ings.length){alert(t('msg_no_ingredients'));return;}
     // CSV
-    let csv='\uFEFFName;Einheit;Preis;Kategorie;Abschnitt(%);Kochfaktor;Verarbeitungshinweis;Lagerhinweis;Allergene;Tags\n';
+    let csv='\uFEFFName;Einheit;Preis;Kategorie;Abschnitt(%);Kochfaktor;Quellfaktor;Verarbeitungshinweis;Lagerhinweis;Allergene;Tags\n';
     ings.forEach(i=>{
       const allergenStr=(i.allergens||[]).map(a=>a.name).join(', ');
       const tagStr=(i.tags||[]).map(t=>t.name).join(', ');
       const kfStr=(i.kochfaktor&&i.kochfaktor!==1)?String(i.kochfaktor).replace('.',','):'';
-      csv+=`${i.name};${i.unit};${i.price?String(i.price).replace('.',','):''};${i.subcategory||''};${i.abschnitt||''};${kfStr};${i.verarbeitungshinweis||''};${i.lagerhinweis||''};${allergenStr};${tagStr}\n`;
+      const qfStr=(i.quellfaktor&&i.quellfaktor!==1)?String(i.quellfaktor).replace('.',','):'';
+      csv+=`${i.name};${i.unit};${i.price?String(i.price).replace('.',','):''};${i.subcategory||''};${i.abschnitt||''};${kfStr};${qfStr};${i.verarbeitungshinweis||''};${i.lagerhinweis||''};${allergenStr};${tagStr}\n`;
     });
     // TXT
     let txt='=== ZUTATENLISTE ===\n';
@@ -3932,13 +3950,15 @@ async function renderIngredientsPage(container){
         const price=parts[2]?parseFloat(parts[2].replace(',','.'))||0:0;
         const subcat=parts[3]||'';
         const abschnitt=parts[4]?parseFloat(parts[4].replace(',','.'))||0:0;
-        // Neues Format (9 Spalten) enthält Kochfaktor; altes Format (8 Spalten) nicht
+        // Formate: alt = 8 Spalten (ohne Kochfaktor), mittel = ab 9 Spalten (mit Kochfaktor), neu = ab 11 Spalten (mit Quellfaktor)
+        const hasSwell=parts.length>=11;
         const isNewFormat=parts.length>=9;
         const kochfaktor=isNewFormat?(parts[5]?parseFloat(parts[5].replace(',','.'))||1:1):1;
-        const verarbHinweis=isNewFormat?(parts[6]||''):(parts[5]||'');
-        const lagerHinweis=isNewFormat?(parts[7]||''):(parts[6]||'');
-        const allergenStr=isNewFormat?(parts[8]||''):(parts[7]||'');
-        const tagStr=isNewFormat?(parts[9]||''):'';
+        const quellfaktor=hasSwell?(parts[6]?parseFloat(parts[6].replace(',','.'))||1:1):1;
+        const verarbHinweis=hasSwell?(parts[7]||''):(isNewFormat?(parts[6]||''):(parts[5]||''));
+        const lagerHinweis=hasSwell?(parts[8]||''):(isNewFormat?(parts[7]||''):(parts[6]||''));
+        const allergenStr=hasSwell?(parts[9]||''):(isNewFormat?(parts[8]||''):(parts[7]||''));
+        const tagStr=hasSwell?(parts[10]||''):(isNewFormat?(parts[9]||''):'');
         if(subcat){
           const subs=await getSubcategories();
           if(!subs.find(s=>s.name===subcat)){try{await createSubcategory(subcat);}catch(e){}}
@@ -3971,12 +3991,12 @@ async function renderIngredientsPage(container){
 
         try{
           if(existing){
-            await updateIngredient(existing.id,name,unit,price,subcat,verarbHinweis,lagerHinweis,abschnitt,kochfaktor,existing.name_en||'',existing.verarbeitungshinweis_en||'',existing.lagerhinweis_en||'');
+            await updateIngredient(existing.id,name,unit,price,subcat,verarbHinweis,lagerHinweis,abschnitt,kochfaktor,existing.name_en||'',existing.verarbeitungshinweis_en||'',existing.lagerhinweis_en||'',existing.months||null,existing.season_category||'',quellfaktor);
             await assignAllergens(existing.id);
             await assignTags(existing.id);
             updated++;
           }else{
-            const newId=await createIngredient(name,unit,price,subcat,verarbHinweis,lagerHinweis,abschnitt,kochfaktor);
+            const newId=await createIngredient(name,unit,price,subcat,verarbHinweis,lagerHinweis,abschnitt,kochfaktor,'','','',null,'',quellfaktor);
             await assignAllergens(newId);
             await assignTags(newId);
             existingMap[name.toLowerCase()]={id:newId};
@@ -5928,6 +5948,7 @@ async function renderRecipeBookPage(container){
     const totalCost=recipe.ingredients.reduce((s,i)=>s+i.quantity_per_person*(i.ingredient_price||0),0);
     const hasAbschnitt=recipe.ingredients.some(i=>i.ingredient_abschnitt>0);
     const hasKochfaktor=recipe.ingredients.some(i=>(i.ingredient_kochfaktor||1)!==1);
+    const hasQuellfaktor=recipe.ingredients.some(i=>(i.ingredient_quellfaktor||1)!==1);
     const nettoByUnit={};
     recipe.ingredients.forEach(i=>{const u=i.unit||'?';const netto=i.quantity_per_person*(1-(i.ingredient_abschnitt||0)/100);nettoByUnit[u]=(nettoByUnit[u]||0)+netto;});
     const nettoStr=Object.entries(nettoByUnit).map(([u,q])=>`${round2(q)} ${u}`).join(' + ');
@@ -5971,6 +5992,7 @@ async function renderRecipeBookPage(container){
         const cols=[[t('col_ingredient'),150],[t('col_processing'),110],[t('col_quantity'),70],[t('col_unit'),60]];
         if(hasAbschnitt) cols.push([t('col_netto'),80]);
         if(hasKochfaktor) cols.push([t('col_cooked'),80]);
+        if(hasQuellfaktor) cols.push([t('col_swollen'),80]);
         cols.push([t('col_category'),110],[t('col_cost'),70]);
         const tblWrap=h('div',{class:'card-table',style:{}});
         const tHdr=h('div',{class:'table-header'});
@@ -5993,6 +6015,11 @@ async function renderRecipeBookPage(container){
             const cooked=round2(netto*kf);
             row.appendChild(h('span',{'data-label':t('col_cooked'),style:{width:'80px',flexShrink:0,color:kf!==1?'var(--green-light)':'var(--text-muted)'}},kf!==1?`${cooked} ${i.unit}`:'—'));
           }
+          if(hasQuellfaktor){
+            const qf=i.ingredient_quellfaktor||1;
+            const swollen=round2(netto*qf);
+            row.appendChild(h('span',{'data-label':t('col_swollen'),style:{width:'80px',flexShrink:0,color:qf!==1?'var(--green-light)':'var(--text-muted)'}},qf!==1?`${swollen} ${i.unit}`:'—'));
+          }
           const subcatLabel=i.ingredient_subcategory?(LANG==='en'?(subcatNameEnMap[i.ingredient_subcategory]||i.ingredient_subcategory):i.ingredient_subcategory):'—';
           row.appendChild(h('span',{'data-label':t('col_category'),style:{width:'110px',flexShrink:0,color:'var(--text-muted)'}},subcatLabel));
           const cost=i.quantity_per_person*(i.ingredient_price||0);
@@ -6008,6 +6035,7 @@ async function renderRecipeBookPage(container){
               sRow.appendChild(h('span',{'data-label':t('col_unit'),style:{width:'60px',flexShrink:0,color:'var(--text-muted)'}},sub.unit));
               if(hasAbschnitt) sRow.appendChild(h('span',{'data-label':t('col_netto'),style:{width:'80px',flexShrink:0,color:'var(--text-muted)'}},'—'));
               if(hasKochfaktor) sRow.appendChild(h('span',{'data-label':t('col_cooked'),style:{width:'80px',flexShrink:0,color:'var(--text-muted)'}},'—'));
+              if(hasQuellfaktor) sRow.appendChild(h('span',{'data-label':t('col_swollen'),style:{width:'80px',flexShrink:0,color:'var(--text-muted)'}},'—'));
               const subSubcatLabel=sub.ingredient_subcategory?(LANG==='en'?(subcatNameEnMap[sub.ingredient_subcategory]||sub.ingredient_subcategory):sub.ingredient_subcategory):'—';
               sRow.appendChild(h('span',{'data-label':t('col_category'),style:{width:'110px',flexShrink:0,color:'var(--text-muted)'}},subSubcatLabel));
               const sCost=sub.quantity_per_person*(sub.ingredient_price||0);
@@ -6742,7 +6770,8 @@ function buildRecipePrintPage(recipe,{portions,substitutions={},metaSpans=[],pre
   const optIngs=recipe.ingredients.filter(i=>i.optional);
   const hasAb=recipe.ingredients.some(i=>(i.ingredient_abschnitt||0)>0);
   const hasKf=recipe.ingredients.some(i=>(i.ingredient_kochfaktor||1)!==1);
-  const colSpan=4+(hasAb?1:0)+(hasKf?1:0);
+  const hasQf=recipe.ingredients.some(i=>(i.ingredient_quellfaktor||1)!==1);
+  const colSpan=4+(hasAb?1:0)+(hasKf?1:0)+(hasQf?1:0);
   function ingTr(ing,style=''){
     const total=Math.round((ing.quantity_per_person||0)*portions*100)/100;
     const totalStr=String(total).replace('.',',');
@@ -6753,9 +6782,11 @@ function buildRecipePrintPage(recipe,{portions,substitutions={},metaSpans=[],pre
     if(hasAb){const nettoR=Math.round(netto*100)/100;const nettoStr=String(nettoR).replace('.',',');nettoTd=ab>0?`<td style="text-align:right;color:#2d6a4f">${nettoStr} ${ing.unit}</td>`:`<td style="text-align:right;color:#aaa">—</td>`;}
     let kfTd='';
     if(hasKf){const kf=ing.ingredient_kochfaktor||1;const cooked=Math.round(netto*kf*100)/100;const cookedStr=String(cooked).replace('.',',');kfTd=kf!==1?`<td style="text-align:right;color:#40916c">${cookedStr} ${ing.unit}</td>`:`<td style="text-align:right;color:#aaa">—</td>`;}
+    let qfTd='';
+    if(hasQf){const qf=ing.ingredient_quellfaktor||1;const swollen=Math.round(netto*qf*100)/100;const swollenStr=String(swollen).replace('.',',');qfTd=qf!==1?`<td style="text-align:right;color:#40916c">${swollenStr} ${ing.unit}</td>`:`<td style="text-align:right;color:#aaa">—</td>`;}
     const pdfIngName=LANG==='en'?(ing.ingredient_name_en||ing.ingredient_name):ing.ingredient_name;
     const pdfPrep=ing.preparation?(LANG==='en'?(prepEnMap[ing.preparation]||ing.preparation):ing.preparation):'—';
-    return `<tr${style}><td>${pdfIngName}</td><td>${pdfPrep}</td><td style="text-align:right">${perPStr} ${ing.unit}</td><td style="text-align:right;font-weight:700">${totalStr} ${ing.unit}</td>${nettoTd}${kfTd}</tr>`;
+    return `<tr${style}><td>${pdfIngName}</td><td>${pdfPrep}</td><td style="text-align:right">${perPStr} ${ing.unit}</td><td style="text-align:right;font-weight:700">${totalStr} ${ing.unit}</td>${nettoTd}${kfTd}${qfTd}</tr>`;
   }
   function ingTrWithSub(ing,style=''){
     const subChoice=substitutions[String(ing.id)];
@@ -6797,7 +6828,7 @@ function buildRecipePrintPage(recipe,{portions,substitutions={},metaSpans=[],pre
       ${(recipe.volumen_liter&&recipe.volumen_portionen)?`<div class="info-item"><span class="info-label">${LANG==='en'?'Volume':'Volumen'}</span><span>≈ ${String(Math.round(recipe.volumen_liter/recipe.volumen_portionen*portions*10)/10).replace('.',',')} L</span></div>`:''}
     </div>
     <table>
-      <thead><tr><th>${t('col_ingredient')}</th><th>${t('col_processing')}</th><th>${t('col_qty_per_person')}</th><th>${t('col_total_qty')}</th>${hasAb?`<th>${t('col_netto')}</th>`:''}${hasKf?`<th>${t('col_cooked')}</th>`:''}</tr></thead>
+      <thead><tr><th>${t('col_ingredient')}</th><th>${t('col_processing')}</th><th>${t('col_qty_per_person')}</th><th>${t('col_total_qty')}</th>${hasAb?`<th>${t('col_netto')}</th>`:''}${hasKf?`<th>${t('col_cooked')}</th>`:''}${hasQf?`<th>${t('col_swollen')}</th>`:''}</tr></thead>
       <tbody>${ingRows}</tbody>
     </table>
     ${recipeMaterials.length?`<div class="section"><div class="section-title">${t('recipe_material_label')}</div><div class="section-body">${recipeMaterials.map(rm=>`☐ ${rm.quantity||1}× ${rm.name}${rm.note?' — '+rm.note:''}`).join('<br>')}</div></div>`:''}
