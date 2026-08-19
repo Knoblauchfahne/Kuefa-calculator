@@ -1,7 +1,7 @@
 {
   "_meta": {
     "version": 10,
-    "exported_at": "2026-08-16T10:20:02.970Z",
+    "exported_at": "2026-08-19T16:40:53.619Z",
     "app": "KüFa Organizer"
   },
   "ingredients": [
@@ -107,15 +107,32 @@
     {
       "id": 505,
       "name": "Aprikosen getrocknet",
+      "name_en": "Dried Apricots",
       "unit": "kg",
-      "price": 8,
-      "subcategory": "Obst",
+      "price": 10,
+      "subcategory": "Nüsse, Samen und Trockenfrüchte",
       "verarbeitungshinweis": "einweichen macht sie weicher (30 min)",
       "lagerhinweis": "Kühl/trocken/luftdicht 6-12 Monate",
-      "abschnitt": 0,
-      "name_en": "Dried Apricots",
       "verarbeitungshinweis_en": "soaking softens them (30 min)",
-      "lagerhinweis_en": "cool/dry/airtight 6–12 months"
+      "lagerhinweis_en": "cool/dry/airtight 6–12 months",
+      "abschnitt": 0,
+      "kochfaktor": 1,
+      "quellfaktor": 1,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": ""
     },
     {
       "id": 506,
@@ -486,13 +503,37 @@
       "name": "Cashews",
       "unit": "kg",
       "price": 12,
-      "subcategory": "Nüsse und Samen",
+      "subcategory": "Nüsse, Samen und Trockenfrüchte",
       "verarbeitungshinweis": "eingeweicht für Saucen/Cremes 2-4 Std.",
       "lagerhinweis": "Kühl/dunkel/luftdicht 3-6 Monate",
       "abschnitt": 0,
       "name_en": "Cashews",
       "verarbeitungshinweis_en": "soak 2–4 hrs for sauces/creams",
-      "lagerhinweis_en": "cool/dark/airtight 3–6 months"
+      "lagerhinweis_en": "cool/dark/airtight 3–6 months",
+      "allergens": [
+        {
+          "name": "Schalenfrüchte (Nüsse)",
+          "id": 8,
+          "name_en": "Tree nuts (nuts)"
+        }
+      ],
+      "tags": [],
+      "kochfaktor": 1,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": ""
     },
     {
       "id": 526,
@@ -561,13 +602,31 @@
       "name": "Chiasamen",
       "unit": "kg",
       "price": 7,
-      "subcategory": "Nüsse und Samen",
+      "subcategory": "Nüsse, Samen und Trockenfrüchte",
       "verarbeitungshinweis": "10-15 min in Flüssigkeit quellen lassen (bilden Gel)",
       "lagerhinweis": "Kühl/dunkel/luftdicht 1-2 Jahre",
       "abschnitt": 0,
       "name_en": "Chia Seeds",
       "verarbeitungshinweis_en": "soak in liquid for 10–15 min (forms a gel)",
-      "lagerhinweis_en": "cool/dark/airtight 1–2 years"
+      "lagerhinweis_en": "cool/dark/airtight 1–2 years",
+      "allergens": [],
+      "tags": [],
+      "kochfaktor": 1,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": ""
     },
     {
       "id": 530,
@@ -839,13 +898,42 @@
       "name": "Erdnüsse",
       "unit": "kg",
       "price": 5,
-      "subcategory": "Nüsse und Samen",
+      "subcategory": "Nüsse, Samen und Trockenfrüchte",
       "verarbeitungshinweis": "rösten intensiviert Aroma",
       "lagerhinweis": "Kühl/dunkel/luftdicht 3-6 Monate, mag keine Feuchtigkeit",
       "abschnitt": 0,
       "name_en": "Peanuts",
       "verarbeitungshinweis_en": "toasting intensifies aroma",
-      "lagerhinweis_en": "cool/dark/airtight 3–6 months, dislikes moisture"
+      "lagerhinweis_en": "cool/dark/airtight 3–6 months, dislikes moisture",
+      "allergens": [
+        {
+          "name": "Erdnüsse",
+          "id": 5,
+          "name_en": "Peanuts"
+        },
+        {
+          "name": "Histermin",
+          "id": 16,
+          "name_en": "Histamine"
+        }
+      ],
+      "tags": [],
+      "kochfaktor": 1,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": ""
     },
     {
       "id": 546,
@@ -938,13 +1026,31 @@
       "name": "Flohsamenschalen",
       "unit": "kg",
       "price": 20,
-      "subcategory": "Nüsse und Samen",
+      "subcategory": "Nüsse, Samen und Trockenfrüchte",
       "verarbeitungshinweis": "Mit viel Wasser verwenden (1 TL auf 200ml),  als Bindemittel",
       "lagerhinweis": "Kühl/trocken/luftdicht 2 Jahre",
       "abschnitt": 0,
       "name_en": "Psyllium Husks",
       "verarbeitungshinweis_en": "use with plenty of water (1 tsp per 200 ml), as a thickener",
-      "lagerhinweis_en": "cool/dry/airtight 2 years"
+      "lagerhinweis_en": "cool/dry/airtight 2 years",
+      "allergens": [],
+      "tags": [],
+      "kochfaktor": 1,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": ""
     },
     {
       "id": 551,
@@ -1221,13 +1327,37 @@
       "name": "Haselnüsse",
       "unit": "kg",
       "price": 12,
-      "subcategory": "Nüsse und Samen",
+      "subcategory": "Nüsse, Samen und Trockenfrüchte",
       "verarbeitungshinweis": "rösten verbessert das Aroma",
       "lagerhinweis": "Kühl/dunkel/luftdicht 3-6 Monate",
       "abschnitt": 0,
       "name_en": "Hazelnuts",
       "verarbeitungshinweis_en": "toasting improves the aroma",
-      "lagerhinweis_en": "cool/dark/airtight 3–6 months"
+      "lagerhinweis_en": "cool/dark/airtight 3–6 months",
+      "allergens": [
+        {
+          "name": "Schalenfrüchte (Nüsse)",
+          "id": 8,
+          "name_en": "Tree nuts (nuts)"
+        }
+      ],
+      "tags": [],
+      "kochfaktor": 1,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": ""
     },
     {
       "id": 566,
@@ -1640,13 +1770,31 @@
       "name": "Kokosraspeln",
       "unit": "kg",
       "price": 6,
-      "subcategory": "Nüsse und Samen",
+      "subcategory": "Nüsse, Samen und Trockenfrüchte",
       "verarbeitungshinweis": "trocken rösten für mehr Aroma",
       "lagerhinweis": "Kühl/trocken/luftdicht 6 Monate",
       "abschnitt": 0,
       "name_en": "Desiccated Coconut",
       "verarbeitungshinweis_en": "dry toast for more aroma",
-      "lagerhinweis_en": "cool/dry/airtight 6 months"
+      "lagerhinweis_en": "cool/dry/airtight 6 months",
+      "allergens": [],
+      "tags": [],
+      "kochfaktor": 1,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": ""
     },
     {
       "id": 589,
@@ -1814,13 +1962,31 @@
       "name": "Leinsamen",
       "unit": "kg",
       "price": 3,
-      "subcategory": "Nüsse und Samen",
+      "subcategory": "Nüsse, Samen und Trockenfrüchte",
       "verarbeitungshinweis": "eingeweicht als Ei-Ersatz (1 EL + 3 EL Wasser)",
       "lagerhinweis": "Ganz: kühl/dunkel 1 Jahr",
       "abschnitt": 0,
       "name_en": "Linseeds",
       "verarbeitungshinweis_en": "soaked as egg substitute (1 tbsp + 3 tbsp water)",
-      "lagerhinweis_en": "whole: cool/dark 1 year"
+      "lagerhinweis_en": "whole: cool/dark 1 year",
+      "allergens": [],
+      "tags": [],
+      "kochfaktor": 1,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": ""
     },
     {
       "id": 598,
@@ -2008,26 +2174,74 @@
       "name": "Mandeln",
       "unit": "kg",
       "price": 12,
-      "subcategory": "Nüsse und Samen",
+      "subcategory": "Nüsse, Samen und Trockenfrüchte",
       "verarbeitungshinweis": "blanchieren: kurz in kochendes Wasser, Haut abziehen",
       "lagerhinweis": "Kühl/dunkel/luftdicht 6-12 Monate",
       "abschnitt": 0,
       "name_en": "Almonds",
       "verarbeitungshinweis_en": "blanch: briefly in boiling water, remove skin",
-      "lagerhinweis_en": "cool/dark/airtight 6–12 months"
+      "lagerhinweis_en": "cool/dark/airtight 6–12 months",
+      "allergens": [
+        {
+          "name": "Schalenfrüchte (Nüsse)",
+          "id": 8,
+          "name_en": "Tree nuts (nuts)"
+        }
+      ],
+      "tags": [],
+      "kochfaktor": 1,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": ""
     },
     {
       "id": 609,
       "name": "Mandelsplitter",
       "unit": "kg",
       "price": 18,
-      "subcategory": "Nüsse und Samen",
+      "subcategory": "Nüsse, Samen und Trockenfrüchte",
       "verarbeitungshinweis": "Trocken rösten für mehr Aroma",
       "lagerhinweis": "Kühl/dunkel/luftdicht 3-6 Monate",
       "abschnitt": 0,
       "name_en": "Flaked Almonds",
       "verarbeitungshinweis_en": "dry toast for more aroma",
-      "lagerhinweis_en": "cool/dark/airtight 3–6 months"
+      "lagerhinweis_en": "cool/dark/airtight 3–6 months",
+      "allergens": [
+        {
+          "name": "Schalenfrüchte (Nüsse)",
+          "id": 8,
+          "name_en": "Tree nuts (nuts)"
+        }
+      ],
+      "tags": [],
+      "kochfaktor": 1,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": ""
     },
     {
       "id": 610,
@@ -2741,13 +2955,37 @@
       "name": "Pinienkerne",
       "unit": "kg",
       "price": 25,
-      "subcategory": "Nüsse und Samen",
+      "subcategory": "Nüsse, Samen und Trockenfrüchte",
       "verarbeitungshinweis": "Trocken rösten für mehr Aroma - verbrennt aber schnell",
       "lagerhinweis": "Kühl/dunkel/luftdicht 1-3 Monate",
       "abschnitt": 0,
       "name_en": "Pine Nuts",
       "verarbeitungshinweis_en": "dry toast for more aroma – burns quickly",
-      "lagerhinweis_en": "cool/dark/airtight 1–3 months"
+      "lagerhinweis_en": "cool/dark/airtight 1–3 months",
+      "allergens": [
+        {
+          "name": "Schalenfrüchte (Nüsse)",
+          "id": 8,
+          "name_en": "Tree nuts (nuts)"
+        }
+      ],
+      "tags": [],
+      "kochfaktor": 1,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": ""
     },
     {
       "id": 645,
@@ -2768,13 +3006,42 @@
       "name": "Pistazien",
       "unit": "kg",
       "price": 20,
-      "subcategory": "Nüsse und Samen",
+      "subcategory": "Nüsse, Samen und Trockenfrüchte",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühl/dunkel/luftdicht 3-6 Monate",
       "abschnitt": 0,
       "name_en": "Pistachios",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "cool/dark/airtight 3–6 months"
+      "lagerhinweis_en": "cool/dark/airtight 3–6 months",
+      "allergens": [
+        {
+          "name": "Schalenfrüchte (Nüsse)",
+          "id": 8,
+          "name_en": "Tree nuts (nuts)"
+        },
+        {
+          "name": "FODMAPs",
+          "id": 23,
+          "name_en": "FODMAPs"
+        }
+      ],
+      "tags": [],
+      "kochfaktor": 1,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": ""
     },
     {
       "id": 647,
@@ -2888,15 +3155,49 @@
     {
       "id": 655,
       "name": "Rosinen",
+      "name_en": "Raisins",
       "unit": "kg",
       "price": 5,
-      "subcategory": "Obst",
+      "subcategory": "Nüsse, Samen und Trockenfrüchte",
       "verarbeitungshinweis": "einweichen macht sie weicher (30 min)",
       "lagerhinweis": "Kühl/trocken/luftdicht 6-12 Monate",
-      "abschnitt": 0,
-      "name_en": "Raisins",
       "verarbeitungshinweis_en": "soaking softens them (30 min)",
-      "lagerhinweis_en": "cool/dry/airtight 6–12 months"
+      "lagerhinweis_en": "cool/dry/airtight 6–12 months",
+      "abschnitt": 0,
+      "kochfaktor": 1,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": "",
+      "allergens": [
+        {
+          "name": "Schwefeldioxid & Sulfite",
+          "id": 13,
+          "name_en": "Sulfur dioxide & sulfites"
+        },
+        {
+          "name": "Histermin",
+          "id": 16,
+          "name_en": "Histamine"
+        },
+        {
+          "name": "Fruktose",
+          "id": 18,
+          "name_en": "Fructose"
+        }
+      ],
+      "tags": []
     },
     {
       "id": 656,
@@ -3707,16 +4008,16 @@
     {
       "id": 702,
       "name": "Tomaten",
+      "name_en": "Tomatoes",
       "unit": "kg",
       "price": 3,
       "subcategory": "Gemüse",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Raumtemperatur (nie kühlen - verlieren Aroma), reif 3-5 Tage",
-      "abschnitt": 5,
-      "kochfaktor": 0.7,
-      "name_en": "Tomatoes",
       "verarbeitungshinweis_en": "",
       "lagerhinweis_en": "room temperature (never refrigerate – loses aroma), ripe: 3–5 days",
+      "abschnitt": 5,
+      "kochfaktor": 0.7,
       "months": [
         0,
         0,
@@ -3870,13 +4171,42 @@
       "name": "Walnüsse",
       "unit": "kg",
       "price": 18,
-      "subcategory": "Nüsse und Samen",
+      "subcategory": "Nüsse, Samen und Trockenfrüchte",
       "verarbeitungshinweis": "",
       "lagerhinweis": "Kühl/dunkel/luftdicht 3-6 Monate",
       "abschnitt": 0,
       "name_en": "Walnuts",
       "verarbeitungshinweis_en": "",
-      "lagerhinweis_en": "cool/dark/airtight 3–6 months"
+      "lagerhinweis_en": "cool/dark/airtight 3–6 months",
+      "allergens": [
+        {
+          "name": "Schalenfrüchte (Nüsse)",
+          "id": 8,
+          "name_en": "Tree nuts (nuts)"
+        },
+        {
+          "name": "Histermin",
+          "id": 16,
+          "name_en": "Histamine"
+        }
+      ],
+      "tags": [],
+      "kochfaktor": 1,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": ""
     },
     {
       "id": 712,
@@ -5252,7 +5582,7 @@
       "name_en": "Sunflower seeds",
       "unit": "kg",
       "price": 5,
-      "subcategory": "Nüsse und Samen",
+      "subcategory": "Nüsse, Samen und Trockenfrüchte",
       "verarbeitungshinweis": "Kurz anrösten intensiviert den Geschmack. Auch als Basis für veganen Parmesan.",
       "lagerhinweis": "Trocken/dunkel; nach Öffnen in Dose ca. 6 Monate",
       "abschnitt": 0,
@@ -5273,7 +5603,9 @@
         0,
         0
       ],
-      "season_category": ""
+      "season_category": "",
+      "allergens": [],
+      "tags": []
     },
     {
       "id": 788,
@@ -5281,7 +5613,7 @@
       "name_en": "Pumpkin seeds",
       "unit": "kg",
       "price": 20,
-      "subcategory": "Nüsse und Samen",
+      "subcategory": "Nüsse, Samen und Trockenfrüchte",
       "verarbeitungshinweis": "Als Topping oder in Pesto. Rösten bringt Nussaroma hervor.",
       "lagerhinweis": "Kühl/trocken; nach Öffnen ca. 6 Monate",
       "abschnitt": 0,
@@ -5302,7 +5634,9 @@
         0,
         0
       ],
-      "season_category": ""
+      "season_category": "",
+      "allergens": [],
+      "tags": []
     },
     {
       "id": 789,
@@ -5310,7 +5644,7 @@
       "name_en": "Hemp seeds",
       "unit": "kg",
       "price": 15,
-      "subcategory": "Nüsse und Samen",
+      "subcategory": "Nüsse, Samen und Trockenfrüchte",
       "verarbeitungshinweis": "Mild-nussig. Unerhitzt über Salat oder Bowls; hitzeempfindlich.",
       "lagerhinweis": "Kühlschrank oder kühl/dunkel",
       "abschnitt": 0,
@@ -5331,7 +5665,9 @@
         0,
         0
       ],
-      "season_category": ""
+      "season_category": "",
+      "allergens": [],
+      "tags": []
     },
     {
       "id": 790,
@@ -6028,6 +6364,595 @@
       ],
       "season_category": "",
       "id": 816
+    },
+    {
+      "name": "Reismehl",
+      "name_en": "Rice flour",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Mehl",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "verarbeitungshinweis_en": "",
+      "lagerhinweis_en": "",
+      "abschnitt": 0,
+      "kochfaktor": 1,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": "",
+      "id": 817
+    },
+    {
+      "id": 818,
+      "name": "Gemüsebrühpulver (allergiefreundlich)",
+      "name_en": "Vegetable bouillon powder (hypoallergenic)",
+      "unit": "kg",
+      "price": 10,
+      "subcategory": "Gewürze und Kräuter",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "verarbeitungshinweis_en": "",
+      "lagerhinweis_en": "",
+      "abschnitt": 0,
+      "kochfaktor": 1,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": ""
+    },
+    {
+      "name": "Dinkelflakes",
+      "name_en": "Spelt flakes",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Haferflocken und Cerealien",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "verarbeitungshinweis_en": "",
+      "lagerhinweis_en": "",
+      "abschnitt": 0,
+      "kochfaktor": 1,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": "",
+      "id": 819
+    },
+    {
+      "name": "Nudeln (glutenfrei)",
+      "name_en": "Pasta (gluten free)",
+      "unit": "kg",
+      "price": 6,
+      "subcategory": "Pasta und Nudeln",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "verarbeitungshinweis_en": "",
+      "lagerhinweis_en": "",
+      "abschnitt": 0,
+      "kochfaktor": 1,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": "",
+      "id": 820
+    },
+    {
+      "id": 821,
+      "name": "Karotte (violett)",
+      "name_en": "Carrot (purple)",
+      "unit": "kg",
+      "price": 3.5,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "möglichst kühl und feucht, ideal etwa 0–5 °C",
+      "verarbeitungshinweis_en": "",
+      "lagerhinweis_en": "as cool and humid as possible, ideally around 0–5°C",
+      "abschnitt": 10,
+      "kochfaktor": 0.9,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1
+      ],
+      "season_category": "Gemüse"
+    },
+    {
+      "name": "Wirsingkohl",
+      "name_en": "Savoy cabbage",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "äußere beschädigte/welke Blätter entfernen; vierteln; kräftigen Strunk herausschneiden; Blätter/Streifen gründlich waschen. Die weicheren Teile des Strunks können bei Eintöpfen fein geschnitten mitverwendet werden.",
+      "lagerhinweis": "möglichst kalt und feucht, ideal etwa 0–1 °C; im normalen Kühlschrank ungefähr bis 5 Tage.",
+      "verarbeitungshinweis_en": "Remove outer damaged or wilted leaves; cut into quarters; cut out the tough core; wash the leaves or strips thoroughly. The softer parts of the core can be finely chopped and used in stews.",
+      "lagerhinweis_en": "As cold and humid as possible, ideally around 0–1°C; in a standard refrigerator, for up to about 5 days.",
+      "abschnitt": 20,
+      "kochfaktor": 0.8,
+      "months": [
+        1,
+        1,
+        1,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
+      "season_category": "Gemüse",
+      "id": 822
+    },
+    {
+      "name": "Staudensellerie",
+      "name_en": "Celery stalks",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "Wurzelansatz abschneiden, einzelne Stangen lösen und gründlich waschen; welke oder beschädigte Stellen entfernen. Blätter unbedingt mitverwenden – sehr aromatisch.",
+      "lagerhinweis": "etwa 2–7 °C, möglichst vor Austrocknung geschützt; im Kühlschrank bis ungefähr 2 Wochen.",
+      "verarbeitungshinweis_en": "Trim off the root ends, separate the stalks, and wash thoroughly; remove any wilted or damaged parts. Be sure to use the leaves as well—they are very aromatic.",
+      "lagerhinweis_en": "approx. 2–7°C, ideally protected from drying out; in the refrigerator for up to approximately 2 weeks.",
+      "abschnitt": 10,
+      "kochfaktor": 0.85,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        0
+      ],
+      "season_category": "Gemüse",
+      "id": 823
+    },
+    {
+      "name": "Pflaume",
+      "name_en": "Plum",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Obst",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "verarbeitungshinweis_en": "",
+      "lagerhinweis_en": "",
+      "abschnitt": 10,
+      "kochfaktor": 0.85,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        1,
+        0,
+        0
+      ],
+      "season_category": "Obst",
+      "id": 824
+    },
+    {
+      "name": "Zwetschge",
+      "name_en": "Damson plum",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Obst",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "verarbeitungshinweis_en": "",
+      "lagerhinweis_en": "",
+      "abschnitt": 8,
+      "kochfaktor": 0.85,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        1,
+        0,
+        0
+      ],
+      "season_category": "",
+      "id": 825
+    },
+    {
+      "name": "Rettich (weiß)",
+      "name_en": "White radish",
+      "unit": "kg",
+      "price": 3,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "Einsalzen zieht Wasser und mildert die Schärfe.",
+      "lagerhinweis": "0–5 °C, Grün vorher entfernen; gegen Austrocknung schützen",
+      "verarbeitungshinweis_en": "Salting draws out moisture and mellows the pungency.",
+      "lagerhinweis_en": "0–5 °C; remove greens beforehand; protect against drying out.",
+      "abschnitt": 15,
+      "kochfaktor": 0.9,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        0,
+        0
+      ],
+      "season_category": "Gemüse",
+      "id": 826
+    },
+    {
+      "name": "Steckrübe",
+      "name_en": "Rutabaga",
+      "unit": "kg",
+      "price": 2,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "kühl, dunkel und möglichst ganz lagern",
+      "verarbeitungshinweis_en": "",
+      "lagerhinweis_en": "Store in a cool, dark place and keep whole if possible.",
+      "abschnitt": 25,
+      "kochfaktor": 0.9,
+      "months": [
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        1
+      ],
+      "season_category": "Gemüse",
+      "id": 827
+    },
+    {
+      "id": 828,
+      "name": "Datteltomate",
+      "name_en": "Date tomato",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "verarbeitungshinweis_en": "",
+      "lagerhinweis_en": "",
+      "abschnitt": 5,
+      "kochfaktor": 0.85,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1
+      ],
+      "season_category": "Gemüse"
+    },
+    {
+      "id": 829,
+      "name": "Strauchtomaten",
+      "name_en": "Vine-ripened tomatoes",
+      "unit": "kg",
+      "price": 2.5,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "verarbeitungshinweis_en": "",
+      "lagerhinweis_en": "",
+      "abschnitt": 5,
+      "kochfaktor": 0.85,
+      "months": [
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        0
+      ],
+      "season_category": ""
+    },
+    {
+      "name": "Romatomaten",
+      "name_en": "Roma tomatoes",
+      "unit": "kg",
+      "price": 4,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "verarbeitungshinweis_en": "",
+      "lagerhinweis_en": "",
+      "abschnitt": 3,
+      "kochfaktor": 0.85,
+      "months": [
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        1,
+        1,
+        0
+      ],
+      "season_category": "",
+      "id": 830
+    },
+    {
+      "id": 831,
+      "name": "Ochsenherztomate",
+      "name_en": "bull's heart tomato",
+      "unit": "kg",
+      "price": 6,
+      "subcategory": "Gemüse",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "verarbeitungshinweis_en": "",
+      "lagerhinweis_en": "",
+      "abschnitt": 5,
+      "kochfaktor": 0.85,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        1,
+        0,
+        0
+      ],
+      "season_category": ""
+    },
+    {
+      "name": "Gemüsezwiebel",
+      "name_en": "Large onion",
+      "unit": "kg",
+      "price": 2.5,
+      "subcategory": "Zwiebeln",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "verarbeitungshinweis_en": "",
+      "lagerhinweis_en": "",
+      "abschnitt": 8,
+      "kochfaktor": 0.75,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0
+      ],
+      "season_category": "",
+      "id": 832
+    },
+    {
+      "id": 833,
+      "name": "Grünkernschrot",
+      "name_en": "Cracked green spelt",
+      "unit": "kg",
+      "price": 4.5,
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "verarbeitungshinweis_en": "",
+      "lagerhinweis_en": "",
+      "abschnitt": 0,
+      "kochfaktor": 2.5,
+      "months": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "season_category": ""
+    },
+    {
+      "id": 834,
+      "name": "Grünkern",
+      "name_en": "Green spelt",
+      "unit": "kg",
+      "price": 4.5,
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "",
+      "verarbeitungshinweis_en": "",
+      "lagerhinweis_en": "",
+      "abschnitt": 0,
+      "kochfaktor": 2.5,
+      "months": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "season_category": ""
+    },
+    {
+      "name": "Sultaninen",
+      "name_en": "sultanas",
+      "unit": "kg",
+      "price": 7,
+      "subcategory": "Nüsse, Samen und Trockenfrüchte",
+      "verarbeitungshinweis": "",
+      "lagerhinweis": "Soak in water or juice for a softer consistency.",
+      "verarbeitungshinweis_en": "Für weichere Konsistenz in Wasser/Saft einweichen",
+      "lagerhinweis_en": "",
+      "abschnitt": 0,
+      "kochfaktor": 1.5,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": "",
+      "id": 835,
+      "allergens": [
+        {
+          "name": "Schwefeldioxid & Sulfite",
+          "id": 13,
+          "name_en": "Sulfur dioxide & sulfites"
+        }
+      ],
+      "tags": []
+    },
+    {
+      "name": "Reisflocken",
+      "name_en": "Rice flakes",
+      "unit": "kg",
+      "price": 6,
+      "subcategory": "Haferflocken und Cerealien",
+      "verarbeitungshinweis": "In heiße Flüssigkeit einrühren, kurz kochen und nachquellen lassen",
+      "lagerhinweis": "",
+      "verarbeitungshinweis_en": "Stir into hot liquid, bring briefly to a boil, and let stand.",
+      "lagerhinweis_en": "",
+      "abschnitt": 0,
+      "kochfaktor": 1,
+      "quellfaktor": 5,
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "season_category": "",
+      "id": 836
     }
   ],
   "subcategories": [
@@ -6117,9 +7042,9 @@
       "name_en": "Spices and herbs"
     },
     {
-      "name": "Nüsse und Samen",
+      "name": "Nüsse, Samen und Trockenfrüchte",
       "id": 25,
-      "name_en": "Nuts and seeds"
+      "name_en": "Nuts, seeds and dried fruits"
     },
     {
       "name": "Saucen & Pasten",
@@ -6171,29 +7096,31 @@
     },
     {
       "meal_type": "Abendessen",
-      "name": "Abend gemischt",
-      "id": 3
+      "name": "Gemischtes Abendessen",
+      "id": 3,
+      "description": "",
+      "is_default": false
     },
     {
-      "meal_type": "Zwischenmahlzeit",
-      "name": "Action food",
-      "id": 4
+      "meal_type": "Zwischenmahlzeit/Aktionsessen",
+      "name": "Action food (Brot)",
+      "id": 4,
+      "description": "",
+      "is_default": false
     },
     {
       "meal_type": "Mittagessen",
       "name": "Gemischtes Mittagessen",
       "id": 5,
-      "description": "Das gemischte Mittagessen beinhaltet 1/3 Kartoffeln, 1/3 Pasta und 1/3 Reis"
-    },
-    {
-      "meal_type": "Zwischenmahlzeit",
-      "name": "Actionfood 2",
-      "id": 9
+      "description": "Das gemischte Mittagessen beinhaltet 1/3 Kartoffeln, 1/3 Pasta und 1/3 Reis und ist geeignet für wenn nur sehr grob kalkuliert werden soll und für großere Mengen oder Zeiträume.",
+      "is_default": false
     },
     {
       "id": 10,
       "meal_type": "Mittagessen",
-      "name": "Mittag mit Kartoffeln"
+      "name": "Mittag mit Kartoffeln",
+      "description": "",
+      "is_default": false
     },
     {
       "id": 11,
@@ -6219,6 +7146,13 @@
       "id": 15,
       "meal_type": "Abendessen",
       "name": "Abend mit Reis"
+    },
+    {
+      "meal_type": "Allergieessen",
+      "name": "Gemischtes Allergieessen",
+      "description": "",
+      "is_default": true,
+      "id": 16
     }
   ],
   "meal_components": [
@@ -6263,9 +7197,10 @@
       "ingredient_id": 0,
       "quantity_per_100": 6,
       "unit": "kg",
-      "subcategory": "Hülsenfrüchte und Trockenwaren ",
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
       "id": 5,
-      "price_per_unit": 3
+      "price_per_unit": 3,
+      "optional": false
     },
     {
       "standard_meal_id": 3,
@@ -6288,7 +7223,7 @@
     {
       "standard_meal_id": 3,
       "ingredient_id": 0,
-      "quantity_per_100": 0.5,
+      "quantity_per_100": 0.4,
       "unit": "kg",
       "subcategory": "Salz",
       "id": 8,
@@ -6324,7 +7259,7 @@
     {
       "standard_meal_id": 5,
       "ingredient_id": 0,
-      "quantity_per_100": 30,
+      "quantity_per_100": 25,
       "unit": "kg",
       "subcategory": "Gemüse",
       "id": 15,
@@ -6335,9 +7270,10 @@
       "ingredient_id": 0,
       "quantity_per_100": 5,
       "unit": "kg",
-      "subcategory": "Hülsenfrüchte und Trockenwaren ",
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
       "id": 16,
-      "price_per_unit": 3
+      "price_per_unit": 3,
+      "optional": false
     },
     {
       "standard_meal_id": 5,
@@ -6360,7 +7296,7 @@
     {
       "standard_meal_id": 5,
       "ingredient_id": 0,
-      "quantity_per_100": 0.3,
+      "quantity_per_100": 0.4,
       "unit": "kg",
       "subcategory": "Salz",
       "id": 19,
@@ -6378,47 +7314,52 @@
     {
       "standard_meal_id": 1,
       "ingredient_id": 0,
-      "quantity_per_100": 4,
+      "quantity_per_100": 5,
       "unit": "kg",
       "subcategory": "Brot und Teigwaren",
       "id": 21,
-      "price_per_unit": 3.5
+      "price_per_unit": 3.5,
+      "optional": false
     },
     {
       "standard_meal_id": 1,
       "ingredient_id": 0,
-      "quantity_per_100": 4,
+      "quantity_per_100": 5,
       "unit": "L",
       "subcategory": "Pflanzendrink",
       "id": 23,
-      "price_per_unit": 2
+      "price_per_unit": 2,
+      "optional": false
     },
     {
       "standard_meal_id": 1,
       "ingredient_id": 0,
-      "quantity_per_100": 12,
+      "quantity_per_100": 8,
       "unit": "kg",
       "subcategory": "Obst",
       "id": 24,
-      "price_per_unit": 3.5
+      "price_per_unit": 3.5,
+      "optional": false
     },
     {
       "standard_meal_id": 1,
       "ingredient_id": 0,
       "quantity_per_100": 1.5,
       "unit": "kg",
-      "subcategory": "Hülsenfrüchte und Trockenwaren ",
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
       "id": 25,
-      "price_per_unit": 3
+      "price_per_unit": 3,
+      "optional": false
     },
     {
       "standard_meal_id": 1,
       "ingredient_id": 0,
-      "quantity_per_100": 3,
+      "quantity_per_100": 5,
       "unit": "kg",
       "subcategory": "Gemüse",
       "id": 26,
-      "price_per_unit": 3
+      "price_per_unit": 3,
+      "optional": false
     },
     {
       "standard_meal_id": 1,
@@ -6432,11 +7373,12 @@
     {
       "standard_meal_id": 1,
       "ingredient_id": 0,
-      "quantity_per_100": 1.5,
+      "quantity_per_100": 1,
       "unit": "kg",
       "subcategory": "Zucker",
       "id": 28,
-      "price_per_unit": 1
+      "price_per_unit": 1,
+      "optional": false
     },
     {
       "standard_meal_id": 4,
@@ -6470,9 +7412,10 @@
       "ingredient_id": 0,
       "quantity_per_100": 1.5,
       "unit": "kg",
-      "subcategory": "Hülsenfrüchte und Trockenwaren ",
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
       "id": 33,
-      "price_per_unit": 3
+      "price_per_unit": 3,
+      "optional": false
     },
     {
       "standard_meal_id": 10,
@@ -6486,7 +7429,7 @@
     {
       "standard_meal_id": 10,
       "ingredient_id": 0,
-      "quantity_per_100": 25,
+      "quantity_per_100": 15,
       "unit": "kg",
       "subcategory": "Gemüse",
       "id": 35,
@@ -6495,16 +7438,7 @@
     {
       "standard_meal_id": 10,
       "ingredient_id": 0,
-      "quantity_per_100": 5,
-      "unit": "kg",
-      "subcategory": "Hülsenfrüchte und Trockenwaren ",
-      "id": 36,
-      "price_per_unit": 3
-    },
-    {
-      "standard_meal_id": 10,
-      "ingredient_id": 0,
-      "quantity_per_100": 1.2,
+      "quantity_per_100": 2,
       "unit": "L",
       "subcategory": "Öle & Fette",
       "id": 37,
@@ -6522,7 +7456,7 @@
     {
       "standard_meal_id": 10,
       "ingredient_id": 0,
-      "quantity_per_100": 0.3,
+      "quantity_per_100": 0.4,
       "unit": "kg",
       "subcategory": "Salz",
       "id": 39,
@@ -6531,7 +7465,7 @@
     {
       "standard_meal_id": 11,
       "ingredient_id": 0,
-      "quantity_per_100": 10.5,
+      "quantity_per_100": 10,
       "unit": "kg",
       "subcategory": "Pasta und Nudeln",
       "id": 40,
@@ -6540,25 +7474,27 @@
     {
       "standard_meal_id": 11,
       "ingredient_id": 0,
-      "quantity_per_100": 25,
+      "quantity_per_100": 20,
       "unit": "kg",
       "subcategory": "Gemüse",
       "id": 41,
-      "price_per_unit": 3
+      "price_per_unit": 3,
+      "optional": false
     },
     {
       "standard_meal_id": 11,
       "ingredient_id": 0,
       "quantity_per_100": 5,
       "unit": "kg",
-      "subcategory": "Hülsenfrüchte und Trockenwaren ",
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
       "id": 42,
-      "price_per_unit": 3
+      "price_per_unit": 3,
+      "optional": false
     },
     {
       "standard_meal_id": 11,
       "ingredient_id": 0,
-      "quantity_per_100": 1.2,
+      "quantity_per_100": 3,
       "unit": "L",
       "subcategory": "Öle & Fette",
       "id": 43,
@@ -6576,7 +7512,7 @@
     {
       "standard_meal_id": 11,
       "ingredient_id": 0,
-      "quantity_per_100": 0.5,
+      "quantity_per_100": 0.4,
       "unit": "kg",
       "subcategory": "Salz",
       "id": 45,
@@ -6603,11 +7539,12 @@
     {
       "standard_meal_id": 12,
       "ingredient_id": 0,
-      "quantity_per_100": 5,
+      "quantity_per_100": 6,
       "unit": "kg",
-      "subcategory": "Hülsenfrüchte und Trockenwaren ",
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
       "id": 48,
-      "price_per_unit": 3
+      "price_per_unit": 3,
+      "optional": false
     },
     {
       "standard_meal_id": 12,
@@ -6630,7 +7567,7 @@
     {
       "standard_meal_id": 12,
       "ingredient_id": 0,
-      "quantity_per_100": 0.5,
+      "quantity_per_100": 0.4,
       "unit": "kg",
       "subcategory": "Salz",
       "id": 51,
@@ -6639,7 +7576,7 @@
     {
       "standard_meal_id": 13,
       "ingredient_id": 0,
-      "quantity_per_100": 27,
+      "quantity_per_100": 30,
       "unit": "kg",
       "subcategory": "Kartoffeln",
       "id": 52,
@@ -6648,7 +7585,7 @@
     {
       "standard_meal_id": 13,
       "ingredient_id": 0,
-      "quantity_per_100": 30,
+      "quantity_per_100": 20,
       "unit": "kg",
       "subcategory": "Gemüse",
       "id": 53,
@@ -6657,11 +7594,12 @@
     {
       "standard_meal_id": 13,
       "ingredient_id": 0,
-      "quantity_per_100": 6,
+      "quantity_per_100": 5,
       "unit": "kg",
-      "subcategory": "Hülsenfrüchte und Trockenwaren ",
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
       "id": 54,
-      "price_per_unit": 3
+      "price_per_unit": 3,
+      "optional": false
     },
     {
       "standard_meal_id": 13,
@@ -6684,7 +7622,7 @@
     {
       "standard_meal_id": 13,
       "ingredient_id": 0,
-      "quantity_per_100": 0.5,
+      "quantity_per_100": 0.4,
       "unit": "kg",
       "subcategory": "Salz",
       "id": 57,
@@ -6693,7 +7631,7 @@
     {
       "standard_meal_id": 14,
       "ingredient_id": 0,
-      "quantity_per_100": 10.5,
+      "quantity_per_100": 10,
       "unit": "kg",
       "subcategory": "Pasta und Nudeln",
       "id": 58,
@@ -6702,25 +7640,27 @@
     {
       "standard_meal_id": 14,
       "ingredient_id": 0,
-      "quantity_per_100": 30,
+      "quantity_per_100": 20,
       "unit": "kg",
       "subcategory": "Gemüse",
       "id": 59,
-      "price_per_unit": 3
+      "price_per_unit": 3,
+      "optional": false
     },
     {
       "standard_meal_id": 14,
       "ingredient_id": 0,
       "quantity_per_100": 6,
       "unit": "kg",
-      "subcategory": "Hülsenfrüchte und Trockenwaren ",
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
       "id": 60,
-      "price_per_unit": 3
+      "price_per_unit": 3,
+      "optional": false
     },
     {
       "standard_meal_id": 14,
       "ingredient_id": 0,
-      "quantity_per_100": 2,
+      "quantity_per_100": 3,
       "unit": "L",
       "subcategory": "Öle & Fette",
       "id": 61,
@@ -6738,7 +7678,7 @@
     {
       "standard_meal_id": 14,
       "ingredient_id": 0,
-      "quantity_per_100": 0.5,
+      "quantity_per_100": 0.4,
       "unit": "kg",
       "subcategory": "Salz",
       "id": 63,
@@ -6760,16 +7700,18 @@
       "unit": "kg",
       "subcategory": "Gemüse",
       "id": 65,
-      "price_per_unit": 3
+      "price_per_unit": 3,
+      "optional": false
     },
     {
       "standard_meal_id": 15,
       "ingredient_id": 0,
       "quantity_per_100": 6,
       "unit": "kg",
-      "subcategory": "Hülsenfrüchte und Trockenwaren ",
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
       "id": 66,
-      "price_per_unit": 3
+      "price_per_unit": 3,
+      "optional": false
     },
     {
       "standard_meal_id": 15,
@@ -6792,7 +7734,7 @@
     {
       "standard_meal_id": 15,
       "ingredient_id": 0,
-      "quantity_per_100": 0.5,
+      "quantity_per_100": 0.4,
       "unit": "kg",
       "subcategory": "Salz",
       "id": 69,
@@ -6810,20 +7752,22 @@
     {
       "standard_meal_id": 1,
       "ingredient_id": 571,
-      "quantity_per_100": 0.5,
+      "quantity_per_100": 0.7,
       "unit": "kg",
       "subcategory": "Getränke",
       "price_per_unit": 20,
-      "id": 77
+      "id": 77,
+      "optional": false
     },
     {
       "standard_meal_id": 1,
       "ingredient_id": 0,
-      "quantity_per_100": 2,
+      "quantity_per_100": 1,
       "unit": "kg",
       "subcategory": "Mehl",
       "price_per_unit": 1,
-      "id": 78
+      "id": 78,
+      "optional": false
     },
     {
       "standard_meal_id": 1,
@@ -6832,7 +7776,436 @@
       "unit": "L",
       "subcategory": "Pflanzendrink",
       "price_per_unit": 2,
-      "id": 79
+      "id": 79,
+      "optional": false
+    },
+    {
+      "standard_meal_id": 10,
+      "ingredient_id": 556,
+      "quantity_per_100": 0.1,
+      "unit": "kg",
+      "subcategory": "Gewürze und Kräuter",
+      "price_per_unit": 20,
+      "id": 80,
+      "optional": true
+    },
+    {
+      "standard_meal_id": 12,
+      "ingredient_id": 556,
+      "quantity_per_100": 0.1,
+      "unit": "kg",
+      "subcategory": "Gewürze und Kräuter",
+      "price_per_unit": 20,
+      "id": 81,
+      "optional": true
+    },
+    {
+      "standard_meal_id": 5,
+      "ingredient_id": 556,
+      "quantity_per_100": 0.1,
+      "unit": "kg",
+      "subcategory": "Gewürze und Kräuter",
+      "price_per_unit": 20,
+      "id": 82,
+      "optional": true
+    },
+    {
+      "standard_meal_id": 3,
+      "ingredient_id": 556,
+      "quantity_per_100": 0.1,
+      "unit": "kg",
+      "subcategory": "Gewürze und Kräuter",
+      "price_per_unit": 20,
+      "id": 83,
+      "optional": true
+    },
+    {
+      "standard_meal_id": 13,
+      "ingredient_id": 556,
+      "quantity_per_100": 0.1,
+      "unit": "kg",
+      "subcategory": "Gewürze und Kräuter",
+      "price_per_unit": 20,
+      "id": 84,
+      "optional": true
+    },
+    {
+      "standard_meal_id": 14,
+      "ingredient_id": 556,
+      "quantity_per_100": 0.1,
+      "unit": "kg",
+      "subcategory": "Gewürze und Kräuter",
+      "price_per_unit": 20,
+      "id": 85,
+      "optional": true
+    },
+    {
+      "standard_meal_id": 15,
+      "ingredient_id": 556,
+      "quantity_per_100": 0.1,
+      "unit": "kg",
+      "subcategory": "Gewürze und Kräuter",
+      "price_per_unit": 20,
+      "id": 86,
+      "optional": true
+    },
+    {
+      "standard_meal_id": 11,
+      "ingredient_id": 556,
+      "quantity_per_100": 0.1,
+      "unit": "kg",
+      "subcategory": "Gewürze und Kräuter",
+      "price_per_unit": 20,
+      "id": 87,
+      "optional": true
+    },
+    {
+      "standard_meal_id": 11,
+      "ingredient_id": 705,
+      "quantity_per_100": 10,
+      "unit": "kg",
+      "subcategory": "Konserven oder Schläuche",
+      "price_per_unit": 3,
+      "id": 88
+    },
+    {
+      "standard_meal_id": 14,
+      "ingredient_id": 705,
+      "quantity_per_100": 10,
+      "unit": "kg",
+      "subcategory": "Konserven oder Schläuche",
+      "price_per_unit": 3,
+      "id": 89
+    },
+    {
+      "standard_meal_id": 15,
+      "ingredient_id": 682,
+      "quantity_per_100": 0.5,
+      "unit": "L",
+      "subcategory": "Saucen & Pasten",
+      "price_per_unit": 3,
+      "optional": true,
+      "id": 90
+    },
+    {
+      "standard_meal_id": 12,
+      "ingredient_id": 682,
+      "quantity_per_100": 0.5,
+      "unit": "L",
+      "subcategory": "Saucen & Pasten",
+      "price_per_unit": 3,
+      "optional": true,
+      "id": 91
+    },
+    {
+      "standard_meal_id": 15,
+      "ingredient_id": 586,
+      "quantity_per_100": 1,
+      "unit": "L",
+      "subcategory": "Pflanzendrink",
+      "price_per_unit": 2,
+      "optional": true,
+      "id": 92
+    },
+    {
+      "standard_meal_id": 1,
+      "ingredient_id": 741,
+      "quantity_per_100": 0.5,
+      "unit": "kg",
+      "subcategory": "Öle & Fette",
+      "price_per_unit": 10,
+      "optional": true,
+      "id": 93
+    },
+    {
+      "standard_meal_id": 1,
+      "ingredient_id": 614,
+      "quantity_per_100": 0.5,
+      "unit": "kg",
+      "subcategory": "Saucen & Pasten",
+      "price_per_unit": 6,
+      "optional": true,
+      "id": 94
+    },
+    {
+      "standard_meal_id": 5,
+      "ingredient_id": 0,
+      "quantity_per_100": 0.2,
+      "unit": "L",
+      "subcategory": "Essig",
+      "price_per_unit": 0,
+      "optional": true,
+      "id": 95
+    },
+    {
+      "standard_meal_id": 10,
+      "ingredient_id": 0,
+      "quantity_per_100": 0.2,
+      "unit": "L",
+      "subcategory": "Essig",
+      "price_per_unit": 0,
+      "optional": true,
+      "id": 96
+    },
+    {
+      "standard_meal_id": 11,
+      "ingredient_id": 0,
+      "quantity_per_100": 0.2,
+      "unit": "L",
+      "subcategory": "Essig",
+      "price_per_unit": 0,
+      "optional": true,
+      "id": 97
+    },
+    {
+      "standard_meal_id": 12,
+      "ingredient_id": 0,
+      "quantity_per_100": 0.2,
+      "unit": "L",
+      "subcategory": "Essig",
+      "price_per_unit": 0,
+      "optional": true,
+      "id": 98
+    },
+    {
+      "standard_meal_id": 3,
+      "ingredient_id": 0,
+      "quantity_per_100": 0.2,
+      "unit": "L",
+      "subcategory": "Essig",
+      "price_per_unit": 0,
+      "optional": true,
+      "id": 99
+    },
+    {
+      "standard_meal_id": 13,
+      "ingredient_id": 0,
+      "quantity_per_100": 0.2,
+      "unit": "L",
+      "subcategory": "Essig",
+      "price_per_unit": 0,
+      "optional": true,
+      "id": 100
+    },
+    {
+      "standard_meal_id": 14,
+      "ingredient_id": 0,
+      "quantity_per_100": 0.2,
+      "unit": "L",
+      "subcategory": "Essig",
+      "price_per_unit": 0,
+      "optional": true,
+      "id": 101
+    },
+    {
+      "standard_meal_id": 15,
+      "ingredient_id": 0,
+      "quantity_per_100": 0.2,
+      "unit": "L",
+      "subcategory": "Essig",
+      "price_per_unit": 0,
+      "optional": true,
+      "id": 102
+    },
+    {
+      "standard_meal_id": 16,
+      "ingredient_id": 0,
+      "quantity_per_100": 9,
+      "unit": "kg",
+      "subcategory": "Reis",
+      "price_per_unit": 2,
+      "optional": false,
+      "id": 103
+    },
+    {
+      "standard_meal_id": 16,
+      "ingredient_id": 0,
+      "quantity_per_100": 10,
+      "unit": "kg",
+      "subcategory": "Kartoffeln",
+      "price_per_unit": 3,
+      "optional": false,
+      "id": 104
+    },
+    {
+      "standard_meal_id": 16,
+      "ingredient_id": 0,
+      "quantity_per_100": 25,
+      "unit": "kg",
+      "subcategory": "Gemüse",
+      "price_per_unit": 3,
+      "optional": false,
+      "id": 105
+    },
+    {
+      "standard_meal_id": 16,
+      "ingredient_id": 0,
+      "quantity_per_100": 4,
+      "unit": "kg",
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
+      "price_per_unit": 3,
+      "optional": false,
+      "id": 106
+    },
+    {
+      "standard_meal_id": 16,
+      "ingredient_id": 0,
+      "quantity_per_100": 3,
+      "unit": "L",
+      "subcategory": "Öle & Fette",
+      "price_per_unit": 2.5,
+      "optional": false,
+      "id": 107
+    },
+    {
+      "standard_meal_id": 16,
+      "ingredient_id": 604,
+      "quantity_per_100": 1,
+      "unit": "kg",
+      "subcategory": "Mehl",
+      "price_per_unit": 2,
+      "optional": true,
+      "id": 108
+    },
+    {
+      "standard_meal_id": 16,
+      "ingredient_id": 817,
+      "quantity_per_100": 1,
+      "unit": "kg",
+      "subcategory": "Mehl",
+      "price_per_unit": 3,
+      "optional": false,
+      "id": 109
+    },
+    {
+      "standard_meal_id": 16,
+      "ingredient_id": 818,
+      "quantity_per_100": 0.3,
+      "unit": "kg",
+      "subcategory": "",
+      "price_per_unit": 10,
+      "optional": true,
+      "id": 110
+    },
+    {
+      "standard_meal_id": 16,
+      "ingredient_id": 665,
+      "quantity_per_100": 0.3,
+      "unit": "kg",
+      "subcategory": "Salz",
+      "price_per_unit": 0.7,
+      "optional": false,
+      "id": 111
+    },
+    {
+      "standard_meal_id": 10,
+      "ingredient_id": 0,
+      "quantity_per_100": 5,
+      "unit": "kg",
+      "subcategory": "Hülsenfrüchte und Trockenwaren",
+      "price_per_unit": 3,
+      "optional": false,
+      "id": 112
+    },
+    {
+      "standard_meal_id": 5,
+      "ingredient_id": 583,
+      "quantity_per_100": 0.5,
+      "unit": "kg",
+      "subcategory": "Gemüse",
+      "price_per_unit": 7,
+      "optional": true,
+      "id": 113
+    },
+    {
+      "standard_meal_id": 10,
+      "ingredient_id": 583,
+      "quantity_per_100": 0.5,
+      "unit": "kg",
+      "subcategory": "Gemüse",
+      "price_per_unit": 7,
+      "optional": true,
+      "id": 114
+    },
+    {
+      "standard_meal_id": 11,
+      "ingredient_id": 583,
+      "quantity_per_100": 0.5,
+      "unit": "kg",
+      "subcategory": "Gemüse",
+      "price_per_unit": 7,
+      "optional": true,
+      "id": 115
+    },
+    {
+      "standard_meal_id": 12,
+      "ingredient_id": 583,
+      "quantity_per_100": 0.5,
+      "unit": "kg",
+      "subcategory": "Gemüse",
+      "price_per_unit": 7,
+      "optional": true,
+      "id": 116
+    },
+    {
+      "standard_meal_id": 13,
+      "ingredient_id": 583,
+      "quantity_per_100": 0.5,
+      "unit": "kg",
+      "subcategory": "Gemüse",
+      "price_per_unit": 7,
+      "optional": true,
+      "id": 117
+    },
+    {
+      "standard_meal_id": 14,
+      "ingredient_id": 583,
+      "quantity_per_100": 0.5,
+      "unit": "kg",
+      "subcategory": "Gemüse",
+      "price_per_unit": 7,
+      "optional": true,
+      "id": 118
+    },
+    {
+      "standard_meal_id": 15,
+      "ingredient_id": 583,
+      "quantity_per_100": 0.5,
+      "unit": "kg",
+      "subcategory": "Gemüse",
+      "price_per_unit": 7,
+      "optional": true,
+      "id": 119
+    },
+    {
+      "standard_meal_id": 3,
+      "ingredient_id": 583,
+      "quantity_per_100": 0.5,
+      "unit": "kg",
+      "subcategory": "Gemüse",
+      "price_per_unit": 7,
+      "optional": true,
+      "id": 120
+    },
+    {
+      "standard_meal_id": 1,
+      "ingredient_id": 697,
+      "quantity_per_100": 0.1,
+      "unit": "kg",
+      "subcategory": "Getränke",
+      "price_per_unit": 15,
+      "optional": true,
+      "id": 121
+    },
+    {
+      "standard_meal_id": 16,
+      "ingredient_id": 820,
+      "quantity_per_100": 3.5,
+      "unit": "kg",
+      "subcategory": "Pasta und Nudeln",
+      "price_per_unit": 6,
+      "optional": false,
+      "id": 122
     }
   ],
   "categories": [
@@ -11523,6 +12896,12 @@
       "sort_order": 7,
       "id": 5,
       "name_en": "Snack/Actionfood"
+    },
+    {
+      "name": "Allergieessen",
+      "sort_order": 8,
+      "id": 11,
+      "name_en": "Allergyfood"
     }
   ],
   "allergens": [
@@ -11675,29 +13054,14 @@
       "name": "raffinierter Zucker",
       "id": 69,
       "name_en": "refined sugar"
+    },
+    {
+      "name": "Dinkel",
+      "id": 70,
+      "name_en": "Spelt"
     }
   ],
   "ingredient_allergens": [
-    {
-      "ingredient_id": 505,
-      "allergen_id": 18,
-      "id": 523
-    },
-    {
-      "ingredient_id": 505,
-      "allergen_id": 16,
-      "id": 524
-    },
-    {
-      "ingredient_id": 505,
-      "allergen_id": 13,
-      "id": 525
-    },
-    {
-      "ingredient_id": 505,
-      "allergen_id": 21,
-      "id": 526
-    },
     {
       "ingredient_id": 507,
       "allergen_id": 16,
@@ -12199,21 +13563,6 @@
       "id": 645
     },
     {
-      "ingredient_id": 655,
-      "allergen_id": 18,
-      "id": 647
-    },
-    {
-      "ingredient_id": 655,
-      "allergen_id": 16,
-      "id": 648
-    },
-    {
-      "ingredient_id": 655,
-      "allergen_id": 13,
-      "id": 649
-    },
-    {
       "ingredient_id": 656,
       "allergen_id": 22,
       "id": 650
@@ -12594,16 +13943,6 @@
       "id": 759
     },
     {
-      "ingredient_id": 702,
-      "allergen_id": 16,
-      "id": 760
-    },
-    {
-      "ingredient_id": 702,
-      "allergen_id": 22,
-      "id": 761
-    },
-    {
       "ingredient_id": 527,
       "allergen_id": 16,
       "id": 762
@@ -12977,6 +14316,91 @@
       "ingredient_id": 808,
       "allergen_id": 20,
       "id": 848
+    },
+    {
+      "ingredient_id": 819,
+      "allergen_id": 1,
+      "id": 849
+    },
+    {
+      "ingredient_id": 823,
+      "allergen_id": 9,
+      "id": 850
+    },
+    {
+      "ingredient_id": 824,
+      "allergen_id": 18,
+      "id": 851
+    },
+    {
+      "ingredient_id": 702,
+      "allergen_id": 16,
+      "id": 852
+    },
+    {
+      "ingredient_id": 702,
+      "allergen_id": 22,
+      "id": 853
+    },
+    {
+      "ingredient_id": 834,
+      "allergen_id": 1,
+      "id": 857
+    },
+    {
+      "ingredient_id": 834,
+      "allergen_id": 70,
+      "id": 858
+    },
+    {
+      "ingredient_id": 833,
+      "allergen_id": 1,
+      "id": 859
+    },
+    {
+      "ingredient_id": 833,
+      "allergen_id": 70,
+      "id": 860
+    },
+    {
+      "ingredient_id": 835,
+      "allergen_id": 13,
+      "id": 861
+    },
+    {
+      "ingredient_id": 655,
+      "allergen_id": 13,
+      "id": 862
+    },
+    {
+      "ingredient_id": 655,
+      "allergen_id": 16,
+      "id": 863
+    },
+    {
+      "ingredient_id": 655,
+      "allergen_id": 18,
+      "id": 864
+    },
+    {
+      "ingredient_id": 505,
+      "allergen_id": 13,
+      "id": 865
+    },
+    {
+      "ingredient_id": 505,
+      "allergen_id": 16,
+      "id": 866
+    },
+    {
+      "ingredient_id": 505,
+      "allergen_id": 18,
+      "id": 867
+    },
+    {
+      "ingredient_id": 505,
+      "allergen_id": 21,
+      "id": 868
     }
   ],
   "recipe_allergens": [
@@ -13410,6 +14834,10 @@
       "name": "glutenfrei",
       "id": 10,
       "name_en": "gluten-free"
+    },
+    {
+      "name": "tomate",
+      "id": 12
     }
   ],
   "recipe_tags": [
@@ -13504,6 +14932,31 @@
       "ingredient_id": 774,
       "tag_id": 10,
       "id": 1
+    },
+    {
+      "ingredient_id": 830,
+      "tag_id": 12,
+      "id": 3
+    },
+    {
+      "ingredient_id": 828,
+      "tag_id": 12,
+      "id": 4
+    },
+    {
+      "ingredient_id": 831,
+      "tag_id": 12,
+      "id": 5
+    },
+    {
+      "ingredient_id": 829,
+      "tag_id": 12,
+      "id": 6
+    },
+    {
+      "ingredient_id": 702,
+      "tag_id": 12,
+      "id": 7
     }
   ],
   "recipe_ingredient_substitutes": [],
