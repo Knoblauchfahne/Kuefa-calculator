@@ -114,6 +114,17 @@ label.checkbox input{accent-color:var(--accent);width:16px;height:16px}
 .modal-text{font-size:13px;color:var(--text-muted);line-height:1.5;margin-bottom:8px}
 /* Hinweis-Leiste unten (Backup-Erinnerung) */
 .app-banner{position:fixed;left:50%;transform:translateX(-50%);bottom:20px;width:max-content;background:var(--surface);color:var(--text);border:1px solid var(--border);padding:10px 14px;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.35);z-index:1150;display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:13px;max-width:calc(100vw - 24px)}
+/* Toasts */
+#toast-root{position:fixed;right:16px;bottom:16px;z-index:1300;display:flex;flex-direction:column;gap:8px;align-items:flex-end;pointer-events:none;max-width:calc(100vw - 32px)}
+.toast{pointer-events:auto;display:flex;align-items:flex-start;gap:10px;min-width:220px;max-width:420px;background:var(--surface);color:var(--text);border:1px solid var(--border);border-left:4px solid var(--text-muted);border-radius:8px;padding:10px 12px;box-shadow:0 6px 20px rgba(0,0,0,.35);font-size:13px;line-height:1.4;animation:toast-in .2s ease-out}
+.toast-ok{border-left-color:var(--green-light)}
+.toast-warn{border-left-color:#d4a017}
+.toast-error{border-left-color:var(--accent)}
+.toast-msg{flex:1;white-space:pre-line}
+.toast-close{background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:12px;padding:0 2px}
+.toast-out{opacity:0;transform:translateY(6px);transition:all .3s}
+@keyframes toast-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.modal-confirm{z-index:1250}
 /* −-Knopf in „Bestellungen aufteilen" */
 .og-dec{width:22px;height:22px;border:1px solid var(--border);border-radius:50%;background:transparent;color:var(--text-muted);font-size:14px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0;flex-shrink:0}
 .og-dec:hover{background:var(--surface3);color:var(--text)}
@@ -261,6 +272,8 @@ label.checkbox input{accent-color:var(--accent);width:16px;height:16px}
   .filter-row>.search-input{flex-basis:100%!important}
   .tag-filter-wrap{flex-shrink:1}
   .og-dec{width:28px;height:28px}
+  #toast-root{left:12px;right:12px;bottom:12px;align-items:stretch}
+  .toast{max-width:none}
   /* Forms */
   .form-row{flex-direction:column}
   .form-group input,.form-group select,.form-group textarea{width:100%}
@@ -676,6 +689,9 @@ de: {
   msg_confirm_delete_action: 'Kochaktion "{0}" und alle zugehörigen Kochtage wirklich löschen?',
   msg_confirm_delete_cooking_day: 'Kochtag {0} mit {1} Mahlzeit(en) und allen Rezept-Zuweisungen löschen?',
   msg_discard_changes: 'Ungespeicherte Änderungen verwerfen?',
+  btn_confirm_ok: 'OK',
+  btn_confirm_discard: 'Verwerfen',
+  dlg_confirm_title: 'Bitte bestätigen',
   backup_banner_never: 'Deine Daten liegen nur in diesem Browser und es gibt noch kein Backup.',
   backup_banner_old: 'Deine Daten liegen nur in diesem Browser. Letztes Backup vor {0} Tagen.',
   backup_last: 'Letztes Backup: {0}',
@@ -1278,6 +1294,61 @@ de: {
   lbl_description_en: 'Englische Beschreibung (optional)',
   ph_recipe_desc_en: 'z.B. A hearty tomato soup',
   misc_or: 'oder',
+  // ── ehemals inline (LANG==='en' ? … : …) ──
+  x_copy: ' (Kopie)',
+  x_shopping_list_by_basic_needs: 'Einkaufsliste nach Grundbedarf',
+  x_shopping_list_by_basic_needs_2: 'EINKAUFSLISTE NACH GRUNDBEDARF',
+  x_other: 'Sonstiges',
+  x_event: 'Veranstaltung',
+  x_total: 'Gesamt',
+  x_end: 'ENDE',
+  x_stock_use_packing_list: 'LAGERVERWENDUNG (PACKLISTE)',
+  x_take_along_planned: 'Mitnehmen (verplant)',
+  x_in_stock_not_planned: 'Im Lager, nicht verplant',
+  x_stock: 'Lager',
+  x_remains: 'bleibt',
+  x_order: 'Bestellung',
+  x_type: 'Typ',
+  x_ingredient: 'Zutat',
+  x_quantity: 'Menge',
+  x_unit: 'Einheit',
+  x_orders: 'Bestellungen',
+  x_stock_2: 'Lager',
+  x_remains_2: 'Bleibt',
+  x_take_along: 'Mitnehmen',
+  x_not_planned: 'Nicht verplant',
+  x_price: 'Preis',
+  x_subtotal: 'Zwischensumme',
+  x_date: 'Datum',
+  x_grand_total: 'Gesamtsumme',
+  x_opt: 'opt.',
+  x_per_portion: 'pro Portion',
+  x_portions: 'Portionen',
+  x_stock_use_packing_list_2: 'Lagerverwendung (Packliste)',
+  x_category: 'Kategorie',
+  x_cost: 'Preis',
+  x_stock_take_along: 'Lager: mitnehmen',
+  x_stock_not_planned: 'Lager: nicht verplant',
+  x_volume: 'Volumen',
+  x_shopping_list_by_recipe: 'Einkaufsliste nach Rezept',
+  x_shopping_list_by_recipe_2: 'EINKAUFSLISTE NACH REZEPT',
+  x_cooking_event: 'Kochaktion',
+  x_recipes: 'Rezepte',
+  x_attributes: 'Eigenschaften',
+  x_note: 'Notiz',
+  x_loan_list: 'Ausleihliste',
+  x_out: 'Raus',
+  x_back: 'Zurück',
+  x_qty: 'Anzahl',
+  x_item: 'Gegenstand',
+  x_lent_to: 'Ausgeliehen an',
+  x_handed_out_date_signature: 'Ausgegeben (Datum/Unterschrift):',
+  x_returned_complete_date_signature: 'Vollständig zurück (Datum/Unterschrift):',
+  x_material_list: 'Materialliste',
+  x_material: 'Material',
+  x_stored: 'Eingelagert',
+  x_food_storage: 'Lebensmittellager',
+  x_material_storage: 'Materiallager',
 },
 en: {
   // ── nav ────────────────────────────────────────
@@ -1495,6 +1566,9 @@ en: {
   msg_confirm_delete_action: 'Really delete cooking event "{0}" and all related cooking days?',
   msg_confirm_delete_cooking_day: 'Delete cooking day {0} with {1} meal(s) and all recipe assignments?',
   msg_discard_changes: 'Discard unsaved changes?',
+  btn_confirm_ok: 'OK',
+  btn_confirm_discard: 'Discard',
+  dlg_confirm_title: 'Please confirm',
   backup_banner_never: 'Your data only lives in this browser and there is no backup yet.',
   backup_banner_old: 'Your data only lives in this browser. Last backup {0} days ago.',
   backup_last: 'Last backup: {0}',
@@ -2097,6 +2171,61 @@ en: {
   lbl_description_en: 'English description (optional)',
   ph_recipe_desc_en: 'e.g. A hearty tomato soup',
   misc_or: 'or',
+  // ── formerly inline (LANG==='en' ? … : …) ──
+  x_copy: ' (copy)',
+  x_shopping_list_by_basic_needs: 'Shopping list by basic needs',
+  x_shopping_list_by_basic_needs_2: 'SHOPPING LIST BY BASIC NEEDS',
+  x_other: 'Other',
+  x_event: 'Event',
+  x_total: 'Total',
+  x_end: 'END',
+  x_stock_use_packing_list: 'STOCK USE (PACKING LIST)',
+  x_take_along_planned: 'Take along (planned)',
+  x_in_stock_not_planned: 'In stock, not planned',
+  x_stock: 'stock',
+  x_remains: 'remains',
+  x_order: 'Order',
+  x_type: 'Type',
+  x_ingredient: 'Ingredient',
+  x_quantity: 'Quantity',
+  x_unit: 'Unit',
+  x_orders: 'Orders',
+  x_stock_2: 'Stock',
+  x_remains_2: 'Remains',
+  x_take_along: 'Take along',
+  x_not_planned: 'Not planned',
+  x_price: 'Price',
+  x_subtotal: 'Subtotal',
+  x_date: 'Date',
+  x_grand_total: 'Grand total',
+  x_opt: 'opt.',
+  x_per_portion: 'per portion',
+  x_portions: 'portions',
+  x_stock_use_packing_list_2: 'Stock use (packing list)',
+  x_category: 'Category',
+  x_cost: 'Cost',
+  x_stock_take_along: 'Stock: take along',
+  x_stock_not_planned: 'Stock: not planned',
+  x_volume: 'Volume',
+  x_shopping_list_by_recipe: 'Shopping list by recipe',
+  x_shopping_list_by_recipe_2: 'SHOPPING LIST BY RECIPE',
+  x_cooking_event: 'Cooking Event',
+  x_recipes: 'Recipes',
+  x_attributes: 'Attributes',
+  x_note: 'Note',
+  x_loan_list: 'Loan list',
+  x_out: 'Out',
+  x_back: 'Back',
+  x_qty: 'Qty',
+  x_item: 'Item',
+  x_lent_to: 'Lent to',
+  x_handed_out_date_signature: 'Handed out (date/signature):',
+  x_returned_complete_date_signature: 'Returned complete (date/signature):',
+  x_material_list: 'Material list',
+  x_material: 'Material',
+  x_stored: 'Stored',
+  x_food_storage: 'Food storage',
+  x_material_storage: 'Material storage',
 }
 };
 let LANG = localStorage.getItem('kuefa-lang') || 'de';
@@ -2555,7 +2684,7 @@ function showTagManager(){
           ));
         }},t('tag_rename')));
         row.appendChild(h('button',{class:'btn btn-danger btn-sm',style:{fontSize:'11px',padding:'2px 8px',flexShrink:0},onClick:async()=>{
-          if(!confirm(t('msg_confirm_delete_tag',tag.name,rc,ic))) return;
+          if(!await confirmDialog(t('msg_confirm_delete_tag',tag.name,rc,ic))) return;
           await deleteTag(tag.id);refreshTagList();
         }},'🗑'));
         tagListDiv.appendChild(row);
@@ -2666,7 +2795,7 @@ async function deleteStandardMeal(id){await dbDelByIndex('meal_components','meal
 async function duplicateStandardMeal(id){
   const m=await dbGet('standard_meals',id);
   if(!m) return null;
-  const newId=await dbAdd('standard_meals',{meal_type:m.meal_type,name:m.name+(LANG==='en'?' (copy)':' (Kopie)'),description:m.description||''});
+  const newId=await dbAdd('standard_meals',{meal_type:m.meal_type,name:m.name+(t('x_copy')),description:m.description||''});
   const comps=await dbGetByIndex('meal_components','meal_id',id);
   for(const c of comps){await dbAdd('meal_components',{standard_meal_id:newId,ingredient_id:c.ingredient_id||0,quantity_per_100:c.quantity_per_100,unit:c.unit,subcategory:c.subcategory||'',price_per_unit:c.price_per_unit||0,optional:c.optional||false});}
   return newId;
@@ -3074,9 +3203,9 @@ function restoreScroll(snaps){
 function _isSearchField(el){
   return el&&el.tagName==='INPUT'&&(el.type==='search'||el.placeholder===t('ph_search')||el.classList.contains('search-input'));
 }
-function requestCloseModal(overlay){
+async function requestCloseModal(overlay){
   if(!overlay||!overlay.isConnected) return;
-  if(overlay._dirty&&!confirm(t('msg_discard_changes'))) return;
+  if(overlay._dirty&&!(await confirmDialog(t('msg_discard_changes'),{okLabel:t('btn_confirm_discard')}))) return;
   overlay.remove();
 }
 function showModal(content,cls=''){
@@ -3094,6 +3223,7 @@ function closeModal(overlay){if(overlay) overlay.remove();}
 // Esc schließt den obersten Dialog (mit Rückfrage bei Eingaben)
 document.addEventListener('keydown',e=>{
   if(e.key!=='Escape') return;
+  if(document.querySelector('#modal-root .modal-confirm')) return;
   const overlays=document.querySelectorAll('#modal-root .modal-overlay');
   if(!overlays.length) return;
   // Offene Autocomplete-Listen o.ä. schließen zuerst selbst
@@ -3194,7 +3324,7 @@ function openFormDialog({title,fields,rows,onSave,saveLabel,cancelLabel}){
       if(f.required){
         const v=values[f.key];
         if(v===''||v==null){
-          alert(t('msg_please_name'));
+          toast(t('msg_please_name'),'warn');
           if(inputs[f.key].focus) inputs[f.key].focus();
           return false;
         }
@@ -3235,6 +3365,52 @@ function openFormDialog({title,fields,rows,onSave,saveLabel,cancelLabel}){
 }
 
 function round2(n){return Math.round(n*100)/100;}
+
+// ── Zahlen im Sprachformat (de: 1.234,5 · en: 1,234.5) ─────────
+function LOCALE(){return LANG==='en'?'en-GB':'de-DE';}
+const _nfCache={};
+function _nf(min,max){const k=LANG+min+'_'+max;return _nfCache[k]||(_nfCache[k]=new Intl.NumberFormat(LOCALE(),{minimumFractionDigits:min,maximumFractionDigits:max}));}
+// Menge: bis zu 2 Nachkommastellen, ohne überflüssige Nullen
+function fmtNum(n,maxDec=2){return _nf(0,maxDec).format(Number(n)||0);}
+// Betrag: immer 2 Nachkommastellen, ohne €-Zeichen
+function fmtMoneyNum(n){return _nf(2,2).format(Number(n)||0);}
+
+// ── Toast statt alert ───────────────────────────────────────────
+// type: 'info' | 'ok' | 'warn' | 'error'. Verschwindet nach ms (Fehler länger).
+function toast(msg,type='info',ms){
+  let root=document.getElementById('toast-root');
+  if(!root){root=h('div',{id:'toast-root','aria-live':'polite'});document.body.appendChild(root);}
+  const el=h('div',{class:`toast toast-${type}`,role:type==='error'?'alert':'status'},
+    h('span',{class:'toast-msg'},String(msg)),
+    h('button',{class:'toast-close',type:'button','aria-label':t('aria_close'),onClick:()=>el.remove()},'✕'));
+  root.appendChild(el);
+  setTimeout(()=>{el.classList.add('toast-out');setTimeout(()=>el.remove(),300);},ms||(type==='error'?7000:4000));
+  return el;
+}
+
+// ── Bestätigungsdialog statt confirm ────────────────────────────
+// Liefert ein Promise<boolean>. Enter bestätigt, Esc/Abbrechen verneint.
+function confirmDialog(msg,{okLabel,danger=true}={}){
+  return new Promise(resolve=>{
+    let done=false;
+    const finish=v=>{if(done)return;done=true;overlay.remove();resolve(v);};
+    const okBtn=h('button',{class:`btn ${danger?'btn-accent':'btn-green'}`,onClick:()=>finish(true)},okLabel||t('btn_confirm_ok'));
+    const overlay=h('div',{class:'modal-overlay modal-confirm',onClick:e=>{if(e.target===overlay)finish(false);}},
+      h('div',{class:'modal',role:'alertdialog','aria-modal':'true'},
+        h('h2',{},t('dlg_confirm_title')),
+        h('p',{class:'modal-text',style:{whiteSpace:'pre-line',color:'var(--text)'}},String(msg)),
+        h('div',{class:'modal-buttons'},
+          h('button',{class:'btn btn-surface',onClick:()=>finish(false)},t('btn_cancel')),
+          okBtn)));
+    overlay._confirm=finish;
+    overlay.addEventListener('keydown',e=>{
+      if(e.key==='Enter'){e.preventDefault();e.stopPropagation();finish(true);}
+      else if(e.key==='Escape'){e.preventDefault();e.stopPropagation();finish(false);}
+    });
+    document.getElementById('modal-root').appendChild(overlay);
+    okBtn.focus();
+  });
+}
 
 // Kleiner −-Knopf für „Bestellungen aufteilen" — Rechtsklick gibt es auf
 // Touch-Geräten nicht. Klick geht nicht an die Box (die zählt +1).
@@ -3482,7 +3658,7 @@ async function renderCalendarPage(container){
       else if(isCooking) cls+=' cooking';
       if(isToday&&!isSelected) cls+=' today';
       grid.appendChild(h('button',{class:cls,onClick:async(e)=>{
-        if(!selectedActionId){alert(t('msg_please_select_action'));return;}
+        if(!selectedActionId){toast(t('msg_please_select_action'),'warn');return;}
         // Zeitraum: erster Klick merkt den Start, zweiter legt alle Tage dazwischen an
         if(calRangeStart){
           let a=calRangeStart,b=dateStr;
@@ -3519,7 +3695,7 @@ async function renderCalendarPage(container){
         row.appendChild(left);
         row.appendChild(h('button',{class:'btn-icon btn-ghost',title:t('aria_delete_day'),'aria-label':t('aria_delete_day'),onClick:async()=>{
           const nSlots=(slotsByDay[cd.id]||[]).length;
-          if(nSlots&&!confirm(t('msg_confirm_delete_cooking_day',formatDate(cd.date),nSlots))) return;
+          if(nSlots&&!await confirmDialog(t('msg_confirm_delete_cooking_day',formatDate(cd.date),nSlots))) return;
           await deleteCookingDayByDate(selectedActionId,cd.date);if(calSelectedDate===cd.date)calSelectedDate=null;refreshCal();}},'✕'));
         daysCard.appendChild(row);
       });
@@ -3621,7 +3797,7 @@ async function renderCalendarPage(container){
       title:t('dlg_dup_action'),
       saveLabel:t('btn_create'),
       fields:[
-        {key:'name',label:t('lbl_name'),type:'text',value:action.name+(LANG==='en'?' (copy)':' (Kopie)'),required:true},
+        {key:'name',label:t('lbl_name'),type:'text',value:action.name+(t('x_copy')),required:true},
         {key:'start',label:t('lbl_new_start_date'),type:'date',value:firstDate,hint:t('dup_action_hint')}
       ],
       onSave:async({name,start})=>{
@@ -3636,7 +3812,7 @@ async function renderCalendarPage(container){
     if(!selectedActionId) return;
     const actions=await getActions();
     const action=actions.find(a=>a.id===selectedActionId);
-    if(!action||!confirm(t('msg_confirm_delete_action',action.name))) return;
+    if(!action||!await confirmDialog(t('msg_confirm_delete_action',action.name))) return;
     await deleteAction(action.id);
     selectedActionId=null;calSelectedDate=null;showPage('calendar');
   }
@@ -3707,7 +3883,7 @@ async function renderIngredientsPage(container){
       const row=h('div',{class:'table-row'});
       row.appendChild(h('span',{class:'ct-title',style:{width:'150px',flexShrink:0,fontSize:'13px'}},ingDisplayName(ing)));
       row.appendChild(h('span',{'data-label':t('col_unit'),style:{width:'55px',flexShrink:0,color:'var(--text-muted)'}},ing.unit));
-      row.appendChild(h('span',{'data-label':t('col_price'),style:{width:'60px',flexShrink:0,color:'var(--text-muted)'}},ing.price?`${ing.price.toFixed(2)} €`:'—'));
+      row.appendChild(h('span',{'data-label':t('col_price'),style:{width:'60px',flexShrink:0,color:'var(--text-muted)'}},ing.price?`${fmtMoneyNum(ing.price)} €`:'—'));
       const subcatLabel=ing.subcategory?(LANG==='en'?(subcatEnMap[ing.subcategory]||ing.subcategory):ing.subcategory):'—';
       row.appendChild(h('span',{'data-label':t('col_category'),style:{width:'100px',flexShrink:0,color:ing.subcategory?'var(--green-light)':'var(--text-muted)'}},subcatLabel));
       row.appendChild(h('span',{'data-label':t('col_trim'),style:{width:'55px',flexShrink:0,color:ing.abschnitt?'var(--accent)':'var(--text-muted)'}},ing.abschnitt?`${ing.abschnitt}%`:'—'));
@@ -3725,7 +3901,7 @@ async function renderIngredientsPage(container){
       btns.appendChild(h('button',{class:'btn-icon btn-ghost',onClick:()=>ingredientDialog(ing)},'✎'));
       const inCal=!!ing.season_category&&Array.isArray(ing.months)&&ing.months.some(v=>v>0);
       btns.appendChild(h('button',{class:'btn-icon btn-ghost',title:inCal?t('btn_edit_season'):t('btn_add_to_season'),style:{opacity:inCal?'1':'0.5'},onClick:()=>seasonDialog(ing)},'📅'));
-      btns.appendChild(h('button',{class:'btn-icon btn-danger',onClick:async()=>{if(confirm(t('msg_confirm_delete_ingredient',ing.name))){await deleteIngredient(ing.id);renderTable();}}},'✕'));
+      btns.appendChild(h('button',{class:'btn-icon btn-danger',onClick:async()=>{if(await confirmDialog(t('msg_confirm_delete_ingredient',ing.name))){await deleteIngredient(ing.id);renderTable();}}},'✕'));
       row.appendChild(btns);
       tableContainer.appendChild(row);
     });
@@ -3813,7 +3989,7 @@ async function renderIngredientsPage(container){
       h('div',{class:'modal-buttons'},
         h('button',{class:'btn btn-surface',onClick:()=>closeModal(modal)},t('btn_cancel')),
         h('button',{class:'btn btn-accent',onClick:async()=>{
-          const n=nameInput.value.trim();if(!n){alert(t('msg_please_name'));return;}
+          const n=nameInput.value.trim();if(!n){toast(t('msg_please_name'),'warn');return;}
           const p=parseFloat(priceInput.value)||0;
           try{
             const absch=parseFloat(abschnittInput.value)||0;
@@ -3823,7 +3999,7 @@ async function renderIngredientsPage(container){
             const qfVal=(isNaN(qf)||qf<=0)?1:qf;
             if(ing) await updateIngredient(ing.id,n,unitSel.value,p,subcatSel.value,verarbHinweisInput.value.trim(),lagerHinweisInput.value.trim(),absch,kfVal,nameEnInput.value.trim(),verarbHinweisEnInput.value.trim(),lagerHinweisEnInput.value.trim(),monthState.slice(),seasonCatSel.value,qfVal);
             else{ing={id:await createIngredient(n,unitSel.value,p,subcatSel.value,verarbHinweisInput.value.trim(),lagerHinweisInput.value.trim(),absch,kfVal,nameEnInput.value.trim(),verarbHinweisEnInput.value.trim(),lagerHinweisEnInput.value.trim(),monthState.slice(),seasonCatSel.value,qfVal)};}
-          }catch(e){alert(t('msg_ingredient_exists'));return;}
+          }catch(e){toast(t('msg_ingredient_exists'),'error');return;}
           const selAllergenIds=Object.entries(allergenVars).filter(([_,cb])=>cb.checked).map(([id])=>parseInt(id));
           await setIngredientAllergens(ing.id,selAllergenIds);
           await setIngredientTags(ing.id,selectedTagIds);
@@ -3870,13 +4046,13 @@ async function renderIngredientsPage(container){
       h('div',{class:'modal-buttons'},
         h('button',{class:'btn btn-surface',onClick:()=>closeModal(modal)},t('btn_cancel')),
         h('button',{class:'btn btn-danger',onClick:async()=>{
-          if(!confirm(t('msg_confirm_remove_from_season'))) return;
+          if(!await confirmDialog(t('msg_confirm_remove_from_season'))) return;
           await updateIngredient(ing.id,ing.name,ing.unit,ing.price||0,ing.subcategory||'',ing.verarbeitungshinweis||'',ing.lagerhinweis||'',ing.abschnitt||0,ing.kochfaktor||1,ing.name_en||'',ing.verarbeitungshinweis_en||'',ing.lagerhinweis_en||'',[0,0,0,0,0,0,0,0,0,0,0,0],'',ing.quellfaktor||1);
           closeModal(modal);renderTable();
         }},t('btn_remove_from_season')),
         h('button',{class:'btn btn-accent',onClick:async()=>{
           const cat=seasonCatSel.value;
-          if(cat&&!monthState.some(v=>v>0)){alert(t('msg_season_pick_at_least_one'));return;}
+          if(cat&&!monthState.some(v=>v>0)){toast(t('msg_season_pick_at_least_one'),'warn');return;}
           await updateIngredient(ing.id,ing.name,ing.unit,ing.price||0,ing.subcategory||'',ing.verarbeitungshinweis||'',ing.lagerhinweis||'',ing.abschnitt||0,ing.kochfaktor||1,ing.name_en||'',ing.verarbeitungshinweis_en||'',ing.lagerhinweis_en||'',monthState.slice(),cat,ing.quellfaktor||1);
           closeModal(modal);renderTable();
         }},t('btn_save'))
@@ -3891,7 +4067,7 @@ async function renderIngredientsPage(container){
     const newInput=h('input',{type:'text',placeholder:t('ph_new_category'),style:{flex:1}});
     addRow.append(newInput,h('button',{class:'btn btn-accent btn-sm',onClick:async()=>{
       if(!newInput.value.trim()) return;
-      try{await createSubcategory(newInput.value.trim());}catch(e){alert(t('msg_already_exists'));return;}
+      try{await createSubcategory(newInput.value.trim());}catch(e){toast(t('msg_already_exists'),'error');return;}
       newInput.value='';refresh();
     }},'+'));
     content.appendChild(addRow);
@@ -3925,7 +4101,7 @@ async function renderIngredientsPage(container){
             )
           ));
         }},'✎'));
-        btns.appendChild(h('button',{class:'btn-icon btn-danger',onClick:async()=>{if(confirm(t('msg_confirm_delete_subcategory',s.name))){await deleteSubcategory(s.id);refresh();}}},'✕'));
+        btns.appendChild(h('button',{class:'btn-icon btn-danger',onClick:async()=>{if(await confirmDialog(t('msg_confirm_delete_subcategory',s.name))){await deleteSubcategory(s.id);refresh();}}},'✕'));
         row.appendChild(btns);
         listDiv.appendChild(row);
       });
@@ -3940,7 +4116,7 @@ async function renderIngredientsPage(container){
     const newInput=h('input',{type:'text',placeholder:t('ph_allergen_name'),style:{flex:1}});
     addRow.append(newInput,h('button',{class:'btn btn-accent btn-sm',onClick:async()=>{
       if(!newInput.value.trim()) return;
-      try{await createAllergen(newInput.value.trim());}catch(e){alert(t('msg_already_exists'));return;}
+      try{await createAllergen(newInput.value.trim());}catch(e){toast(t('msg_already_exists'),'error');return;}
       newInput.value='';refresh();
     }},'+'));
     content.appendChild(addRow);
@@ -3974,7 +4150,7 @@ async function renderIngredientsPage(container){
             )
           ));
         }},'✎'));
-        btns.appendChild(h('button',{class:'btn-icon btn-danger',onClick:async()=>{if(confirm(t('msg_confirm_delete_allergen',a.name))){await deleteAllergen(a.id);refresh();}}},'✕'));
+        btns.appendChild(h('button',{class:'btn-icon btn-danger',onClick:async()=>{if(await confirmDialog(t('msg_confirm_delete_allergen',a.name))){await deleteAllergen(a.id);refresh();}}},'✕'));
         row.appendChild(btns);
         listDiv.appendChild(row);
       });
@@ -3993,7 +4169,7 @@ async function renderIngredientsPage(container){
 
   async function exportIngredients(){
     const ings=await getIngredients();
-    if(!ings.length){alert(t('msg_no_ingredients'));return;}
+    if(!ings.length){toast(t('msg_no_ingredients'),'warn');return;}
     // CSV
     let csv='\uFEFFName;Einheit;Preis;Kategorie;Abschnitt(%);Kochfaktor;Quellfaktor;Verarbeitungshinweis;Lagerhinweis;Allergene;Tags\n';
     ings.forEach(i=>{
@@ -4012,7 +4188,7 @@ async function renderIngredientsPage(container){
       txt+=`--- ${cat} ---\n`;
       groups[cat].forEach(i=>{
         txt+=`  ${i.name} (${i.unit})`;
-        if(i.price) txt+=`  —  ${i.price.toFixed(2)} €/E.`;
+        if(i.price) txt+=`  —  ${fmtMoneyNum(i.price)} €/E.`;
         if(i.abschnitt) txt+=`  —  Abschnitt: ${i.abschnitt}%`;
         if(i.verarbeitungshinweis) txt+=`  [V: ${i.verarbeitungshinweis}]`;
         if(i.lagerhinweis) txt+=`  [L: ${i.lagerhinweis}]`;
@@ -4124,7 +4300,7 @@ async function renderIngredientsPage(container){
       let msg=t('msg_import_complete_ings',added);
       if(updated) msg+=t('msg_import_updated_ings',updated);
       if(skipped) msg+=t('msg_import_skipped_ings',skipped);
-      alert(msg);
+      toast(msg,'warn');
       await refreshCatFilter();
       renderTable();
     };
@@ -4148,7 +4324,7 @@ function showMealTypeCatsDialog(onClose){
   const newInput=h('input',{type:'text',placeholder:t('ph_meal_cat'),style:{flex:1}});
   addRow.append(newInput,h('button',{class:'btn btn-accent btn-sm',onClick:async()=>{
     const v=newInput.value.trim();if(!v) return;
-    try{await createMealTypeCategory(v);}catch(e){alert(t('msg_cat_exists'));}
+    try{await createMealTypeCategory(v);}catch(e){toast(t('msg_cat_exists'),'error');}
     newInput.value='';refreshList();
   }},'+'));
   content.appendChild(addRow);
@@ -4196,7 +4372,7 @@ function showMealTypeCatsDialog(onClose){
         ));
       }},'✎'));
       btns.appendChild(h('button',{class:'btn-icon btn-danger',onClick:async()=>{
-        if(confirm(t('msg_confirm_delete_subcategory',c.name))){await deleteMealTypeCategory(c.id);refreshList();}
+        if(await confirmDialog(t('msg_confirm_delete_subcategory',c.name))){await deleteMealTypeCategory(c.id);refreshList();}
       }},'✕'));
       row.appendChild(btns);
       listDiv2.appendChild(row);
@@ -4284,7 +4460,7 @@ async function renderStandardMealsPage(container){
     topBtns.appendChild(h('button',{class:'btn btn-surface btn-sm',onClick:()=>addComponentDialog(meal.id)},t('btn_add_subcategory_btn')));
     topBtns.appendChild(h('button',{class:'btn btn-surface btn-sm',onClick:async()=>{const nid=await duplicateStandardMeal(meal.id);if(nid){stdMealSelectedId=nid;refresh();}}},t('btn_duplicate_recipe')));
     topBtns.appendChild(h('button',{class:'btn btn-surface btn-sm',onClick:()=>editMealDialog(meal)},t('btn_edit')));
-    topBtns.appendChild(h('button',{class:'btn btn-danger btn-sm',onClick:async()=>{if(confirm(t('msg_confirm_delete_standard_meal'))){await deleteStandardMeal(meal.id);stdMealSelectedId=null;refresh();}}},t('btn_delete')));
+    topBtns.appendChild(h('button',{class:'btn btn-danger btn-sm',onClick:async()=>{if(await confirmDialog(t('msg_confirm_delete_standard_meal'))){await deleteStandardMeal(meal.id);stdMealSelectedId=null;refresh();}}},t('btn_delete')));
     top.appendChild(topBtns);
     card.appendChild(top);
     card.appendChild(h('div',{style:{fontSize:'12px',color:'var(--text-muted)',marginBottom:'8px'}},t('std_meal_detail_meta',mealTypeEnMap[meal.meal_type]||meal.meal_type,'')));
@@ -4336,7 +4512,7 @@ async function renderStandardMealsPage(container){
         row.appendChild(h('span',{style:{width:'100px',flexShrink:0,fontSize:'14px'}},fmtQty(c.quantity_per_100*pFactor)));
         row.appendChild(h('span',{style:{width:'90px',flexShrink:0,fontSize:'12px',color:'var(--text-muted)'}},fmtQty(c.quantity_per_100/100)+' '+c.unit));
         row.appendChild(h('span',{style:{width:'80px',flexShrink:0,color:'var(--text-muted)'}},c.unit));
-        row.appendChild(h('span',{style:{width:'100px',flexShrink:0,color:ppu?'var(--text)':'var(--text-muted)'}},ppu?`${ppu.toFixed(2)} €`:'—'));
+        row.appendChild(h('span',{style:{width:'100px',flexShrink:0,color:ppu?'var(--text)':'var(--text-muted)'}},ppu?`${fmtMoneyNum(ppu)} €`:'—'));
         const btnGroup=h('span',{style:{marginLeft:'auto',display:'flex',gap:'4px'}});
         if(!c.ingredient_id) btnGroup.appendChild(h('button',{class:'btn-icon btn-ghost',title:t('go_btn_split'),onClick:()=>splitComponentDialog(meal.id,c)},'⊞'));
         btnGroup.appendChild(h('button',{class:'btn-icon btn-ghost',onClick:()=>editComponentDialog(c)},'✎'));
@@ -4376,7 +4552,7 @@ async function renderStandardMealsPage(container){
 
   async function addMealDialog(){
     const mealTypes=await getMealTypeNames();
-    if(!mealTypes.length){alert(t('msg_please_add_meal_cats'));return;}
+    if(!mealTypes.length){toast(t('msg_please_add_meal_cats'),'warn');return;}
     const def=buildDefaultCheckbox(false);
     openFormDialog({
       title:t('dlg_new_std_meal'),
@@ -4417,7 +4593,7 @@ async function renderStandardMealsPage(container){
   async function componentDialog(mealId,comp){
     const subcats=await getSubcategories();
     const ings=(await dbGetAll('ingredients')).sort((a,b)=>a.name.localeCompare(b.name));
-    if(!subcats.length&&!ings.length){alert(t('msg_no_subcats'));return;}
+    if(!subcats.length&&!ings.length){toast(t('msg_no_subcats'),'warn');return;}
     let dlg;
     // Auswahl-Zustand: Kategorie (subcategory, ingredient_id 0) oder Zutat
     const pickRef={ingredient_id:comp?(comp.ingredient_id||0):0,subcategory:comp?(comp.subcategory||''):''};
@@ -4523,14 +4699,14 @@ async function renderGeneralOrderPage(container){
   const header=h('div',{class:'page-header'},h('h1',{},t('page_general_order')),
     h('div',{style:{display:'flex',gap:'8px'}},
       h('button',{class:'btn btn-surface',onClick:async()=>{
-        if(!lastItems.length){alert(t('msg_no_data_export'));return;}
+        if(!lastItems.length){toast(t('msg_no_data_export'),'warn');return;}
         const action=await dbGet('actions',selectedActionId);
         const aName=action?action.name:'';
         const groupColors=['var(--accent)','var(--green)','#d4a017','#7b2d8b','#2980b9','#c0392b','#16a085','#8e44ad'];
 
         async function openFormatDialog(items,suffix,selectedNums=null){
-          const title=LANG==='en'?'Shopping list by basic needs':'Einkaufsliste nach Grundbedarf';
-          const titleTxt=LANG==='en'?'SHOPPING LIST BY BASIC NEEDS':'EINKAUFSLISTE NACH GRUNDBEDARF';
+          const title=t('x_shopping_list_by_basic_needs');
+          const titleTxt=t('x_shopping_list_by_basic_needs_2');
           const fname='Einkaufsliste_nach_Grundbedarf'+(suffix?'_'+suffix:'');
           // Konkretisierte/konkrete Positionen brauchen ihre Zutatennamen im Export
           const withNames=items.some(i=>i._splitPart||i._splitRest||i._concrete);
@@ -4588,7 +4764,7 @@ async function renderGeneralOrderPage(container){
           h('div',{class:'modal-buttons'},
             h('button',{class:'btn btn-accent',onClick:()=>{
               const selected=checks.filter(c=>c.cb.checked);
-              if(!selected.length){alert(t('msg_no_data_export'));return;}
+              if(!selected.length){toast(t('msg_no_data_export'),'warn');return;}
               const merged=[];
               // Name in den Schlüssel: konkretisierte Zutaten und Rest-Zeilen
               // gleicher Kategorie dürfen nicht miteinander verschmelzen
@@ -4609,7 +4785,7 @@ async function renderGeneralOrderPage(container){
       h('button',{class:'btn btn-surface',onClick:async()=>{
         // Separater Packlisten-Export: nur Lagerverwendung, über ALLE Bestellungen
         const stockList=await buildStockUsageList(selectedActionId);
-        if(!stockList){alert(t('packlist_empty'));return;}
+        if(!stockList){toast(t('packlist_empty'),'warn');return;}
         const act=selectedActionId?await dbGet('actions',selectedActionId):null;
         const pName=act?act.name:'';
         const fname='Packliste_Lagerverwendung';
@@ -5113,10 +5289,10 @@ async function renderGeneralOrderPage(container){
         // Bestellung ins Lager übernehmen: Kaufmengen der konkreten Zutaten
         // als food_stock-Einträge anlegen (Lager-Verwendungen sind schon abgezogen)
         onStockTransfer:async()=>{
-          if(groupEdits.some(e=>e.type==='stock_transfer')&&!confirm(t('stock_transfer_again_confirm'))) return;
+          if(groupEdits.some(e=>e.type==='stock_transfer')&&!await confirmDialog(t('stock_transfer_again_confirm'))) return;
           const eligible=items.filter(i=>(i._concrete||i._splitPart)&&i.ingredient_id&&i.quantity>0.004);
           const skipped=items.filter(i=>!i._extraId&&!((i._concrete||i._splitPart)&&i.ingredient_id)&&i.quantity>0.004).length;
-          if(!eligible.length){alert(t('stock_transfer_none'));return;}
+          if(!eligible.length){toast(t('stock_transfer_none'),'warn');return;}
           const act=await dbGet('actions',selectedActionId);
           const rows=eligible.map(i=>{
             const cb=h('input',{type:'checkbox'});cb.checked=!i.optional;
@@ -5149,7 +5325,7 @@ async function renderGeneralOrderPage(container){
               }
               if(count) await dbAdd('general_order_edits',{action_id:selectedActionId,group_num:num,type:'stock_transfer',at:today});
               closeModal(modal);
-              alert(t('stock_transfer_done_msg',count));
+              toast(t('stock_transfer_done_msg',count),'ok');
               generate();
             }},t('stock_transfer_btn_go')),
             h('button',{class:'btn btn-surface',onClick:()=>closeModal(modal)},t('btn_cancel'))
@@ -5308,7 +5484,7 @@ async function renderGeneralOrderPage(container){
           });
         },
         onReset:async()=>{
-          if(!confirm(t('go_msg_confirm_reset'))) return;
+          if(!await confirmDialog(t('go_msg_confirm_reset'))) return;
           for(const e of groupEdits) await dbDel('general_order_edits',e.id);
           generate();
         }
@@ -5341,7 +5517,7 @@ function renderGeneralOrderList(parent,items,opts={}){
   if(opts.onAddExtra) summaryRight.appendChild(h('button',{class:'btn btn-surface btn-sm',onClick:opts.onAddExtra},t('go_btn_add_position')));
   if(opts.onStockTransfer) summaryRight.appendChild(h('button',{class:'btn btn-surface btn-sm',onClick:opts.onStockTransfer},opts.stockTransferDone?t('go_btn_stock_transfer_done'):t('go_btn_stock_transfer')));
   if(opts.hasEdits&&opts.onReset) summaryRight.appendChild(h('button',{class:'btn btn-surface btn-sm',onClick:opts.onReset},t('go_btn_reset_edits')));
-  summaryRight.appendChild(h('span',{style:{fontWeight:'700',fontSize:'14px'}},t('order_total_cost',total.toFixed(2))));
+  summaryRight.appendChild(h('span',{style:{fontWeight:'700',fontSize:'14px'}},t('order_total_cost',fmtMoneyNum(total))));
   summary.appendChild(summaryRight);
   parent.appendChild(summary);
 
@@ -5359,11 +5535,11 @@ function renderGeneralOrderList(parent,items,opts={}){
     if(catItems[0]._extraId) nameSpan.appendChild(h('span',{style:{fontSize:'10px',fontWeight:'600',color:'var(--green-light)',marginLeft:'6px'}},t('go_extra_marker')));
     if(catItems.some(i=>i._splitId)) nameSpan.appendChild(h('span',{style:{fontSize:'10px',fontWeight:'600',color:'var(--accent)',marginLeft:'6px'}},t('go_split_marker')));
     ghdr.appendChild(nameSpan);
-    ghdr.appendChild(h('span',{class:'cat-meta'},`${catTotal.toFixed(2)} €`));
+    ghdr.appendChild(h('span',{class:'cat-meta'},`${fmtMoneyNum(catTotal)} €`));
     grp.appendChild(ghdr);
     catItems.forEach(item=>{
       const row=h('div',{style:{display:'flex',alignItems:'center',padding:'4px 0',opacity:item.optional?'0.65':'1',fontStyle:item.optional?'italic':'normal'}});
-      const qtySpan=h('span',{style:{width:'120px',fontSize:'14px',fontWeight:'600'}},String(round2(item.quantity)));
+      const qtySpan=h('span',{style:{width:'120px',fontSize:'14px',fontWeight:'600'}},fmtNum(item.quantity));
       if(item._edited){
         qtySpan.style.color='var(--accent)';
         qtySpan.appendChild(h('span',{style:{fontSize:'10px',fontWeight:'600',marginLeft:'6px'}},t('go_edited_marker')));
@@ -5410,7 +5586,7 @@ function renderGeneralOrderList(parent,items,opts={}){
           row.appendChild(h('button',{class:'btn-icon btn-ghost',title:t('stock_concretize_btn'),style:{marginLeft:'2px'},onClick:()=>opts.onStockFromCat(item)},'⤵'));
         }
       }
-      row.appendChild(h('span',{style:{marginLeft:'auto',color:'var(--text-muted)'}},item.total_cost?`${item.total_cost.toFixed(2)} €`:'—'));
+      row.appendChild(h('span',{style:{marginLeft:'auto',color:'var(--text-muted)'}},item.total_cost?`${fmtMoneyNum(item.total_cost)} €`:'—'));
       if(opts.onEditQty){
         const btnGroup=h('span',{style:{display:'flex',gap:'4px',marginLeft:'8px'}});
         if(opts.onSplit&&!item._extraId&&!item._splitPart&&!item._splitRest&&!item._concrete)
@@ -5452,7 +5628,7 @@ async function openSplitDialog({catItem,rec,onSave}){
     const sel=h('select',{style:{flex:'1'}});
     sel.appendChild(h('option',{value:''},t('go_split_free_entry')));
     ings.forEach(ing=>{
-      const o=h('option',{value:String(ing.id)},`${LANG==='en'?(ing.name_en||ing.name):ing.name} (${ing.unit}${ing.price?`, ${ing.price.toFixed(2)} €`:''})`);
+      const o=h('option',{value:String(ing.id)},`${LANG==='en'?(ing.name_en||ing.name):ing.name} (${ing.unit}${ing.price?`, ${fmtMoneyNum(ing.price)} €`:''})`);
       if(p.ingredient_id===ing.id) o.selected=true;
       sel.appendChild(o);
     });
@@ -5521,7 +5697,7 @@ function renderOrderList(parent,items,stockHints=null){
   const total=items.reduce((s,i)=>s+i.quantity*i.price,0);
   const summary=h('div',{class:'card',style:{display:'flex',justifyContent:'space-between',alignItems:'center'}});
   summary.appendChild(h('span',{style:{color:'var(--text-muted)'}},t('order_positions_count',items.length)));
-  summary.appendChild(h('span',{style:{fontWeight:'700',fontSize:'14px'}},t('order_total_cost',total.toFixed(2))));
+  summary.appendChild(h('span',{style:{fontWeight:'700',fontSize:'14px'}},t('order_total_cost',fmtMoneyNum(total))));
   parent.appendChild(summary);
 
   const groups={};
@@ -5534,7 +5710,7 @@ function renderOrderList(parent,items,stockHints=null){
     const grp=h('div',{class:'cat-group'});
     const ghdr=h('div',{style:{display:'flex',justifyContent:'space-between',marginBottom:'4px'}});
     ghdr.appendChild(h('span',{class:'cat-name'},catLabel));
-    ghdr.appendChild(h('span',{class:'cat-meta'},t('order_articles_cost',catItems.length,catTotal.toFixed(2))));
+    ghdr.appendChild(h('span',{class:'cat-meta'},t('order_articles_cost',catItems.length,fmtMoneyNum(catTotal))));
     grp.appendChild(ghdr);
     catItems.forEach(item=>{
       const row=h('div',{style:{display:'flex',alignItems:'center',padding:'2px 0',opacity:item.optional?'0.6':'1',fontStyle:item.optional?'italic':'normal'}});
@@ -5546,9 +5722,9 @@ function renderOrderList(parent,items,stockHints=null){
         if(badge) nameEl.appendChild(badge);
       }
       row.appendChild(nameEl);
-      row.appendChild(h('span',{style:{width:'80px'}},String(round2(item.quantity))));
+      row.appendChild(h('span',{style:{width:'80px'}},fmtNum(item.quantity)));
       row.appendChild(h('span',{style:{width:'60px',color:'var(--text-muted)'}},item.unit));
-      row.appendChild(h('span',{style:{marginLeft:'auto',color:'var(--text-muted)'}},item.price?`${(item.quantity*item.price).toFixed(2)} €`:'—'));
+      row.appendChild(h('span',{style:{marginLeft:'auto',color:'var(--text-muted)'}},item.price?`${fmtMoneyNum(item.quantity*item.price)} €`:'—'));
       grp.appendChild(row);
     });
     parent.appendChild(grp);
@@ -5570,7 +5746,7 @@ function _orderItemName(i){
   return LANG==='en' ? (i.name_en||i.name) : i.name;
 }
 function _orderGroupBySubcat(items){
-  const other = LANG==='en'?'Other':'Sonstiges';
+  const other = t('x_other');
   const groups = {};
   items.forEach(i=>{
     const cat = i.subcategory||other;
@@ -5587,23 +5763,23 @@ function _orderGroupBySubcat(items){
 // Einheitlicher TXT-Export. includeName=true → pro-Zeile Zutatname
 // (Special Order); false → nur Menge+Einheit pro Zeile (General Order).
 function exportOrderTxt(items, {title, actionName, includeName, stockList=null}){
-  const evL    = LANG==='en'?'Event':'Veranstaltung';
-  const totalL = LANG==='en'?'Total':'Gesamt';
-  const endL   = LANG==='en'?'END':'ENDE';
+  const evL    = t('x_event');
+  const totalL = t('x_total');
+  const endL   = t('x_end');
 
   let t = `=== ${title} ===\n`;
   if(actionName) t += `${evL}: ${actionName}\n`;
   const grand = items.reduce((s,i)=>s+_orderItemCost(i),0);
-  t += `${totalL}: ${grand.toFixed(2)} €\n\n`;
+  t += `${totalL}: ${fmtMoneyNum(grand)} €\n\n`;
 
   for(const g of _orderGroupBySubcat(items)){
-    t += `--- ${g.label} (${g.subtotal.toFixed(2)} €) ---\n`;
+    t += `--- ${g.label} (${fmtMoneyNum(g.subtotal)} €) ---\n`;
     for(const i of g.items){
       const cost = _orderItemCost(i);
       t += includeName
         ? `  ${_orderItemName(i)}; ${round2(i.quantity)} ${i.unit}`
         : `  ${round2(i.quantity)} ${i.unit}`;
-      if(cost) t += `  —  ${cost.toFixed(2)} €`;
+      if(cost) t += `  —  ${fmtMoneyNum(cost)} €`;
       t += '\n';
     }
     t += '\n';
@@ -5616,12 +5792,12 @@ function exportOrderTxt(items, {title, actionName, includeName, stockList=null})
 // Lagerverwendungs-Abschnitt als TXT-Block — geteilt zwischen dem
 // Einkaufslisten-Export und dem separaten Packlisten-Export
 function _stockUsageTxtSection(stockList){
-  const packL  = LANG==='en'?'STOCK USE (PACKING LIST)':'LAGERVERWENDUNG (PACKLISTE)';
-  const takeL  = LANG==='en'?'Take along (planned)':'Mitnehmen (verplant)';
-  const stayL  = LANG==='en'?'In stock, not planned':'Im Lager, nicht verplant';
-  const stockL = LANG==='en'?'stock':'Lager';
-  const remL   = LANG==='en'?'remains':'bleibt';
-  const grpL   = LANG==='en'?'Order':'Bestellung';
+  const packL  = t('x_stock_use_packing_list');
+  const takeL  = t('x_take_along_planned');
+  const stayL  = t('x_in_stock_not_planned');
+  const stockL = t('x_stock');
+  const remL   = t('x_remains');
+  const grpL   = t('x_order');
   let t = `=== ${packL} ===\n`;
   if(stockList.used.length){
     t += `${takeL}:\n`;
@@ -5644,8 +5820,8 @@ function _stockUsageTxtSection(stockList){
 
 // Separater Packlisten-Export (nur Lagerverwendung, alle Bestellungen)
 function exportStockUsageTxt(stockList,{actionName}){
-  const evL=LANG==='en'?'Event':'Veranstaltung';
-  const endL=LANG==='en'?'END':'ENDE';
+  const evL=t('x_event');
+  const endL=t('x_end');
   let t='';
   if(actionName) t += `${evL}: ${actionName}\n\n`;
   t += _stockUsageTxtSection(stockList);
@@ -5654,16 +5830,16 @@ function exportStockUsageTxt(stockList,{actionName}){
 }
 
 function exportStockUsageCsv(stockList,{actionName}){
-  const evL   = LANG==='en'?'Event':'Veranstaltung';
-  const typeL = LANG==='en'?'Type':'Typ';
-  const ingL  = LANG==='en'?'Ingredient':'Zutat';
-  const qtyL  = LANG==='en'?'Quantity':'Menge';
-  const unL   = LANG==='en'?'Unit':'Einheit';
-  const grpL  = LANG==='en'?'Orders':'Bestellungen';
-  const stockL= LANG==='en'?'Stock':'Lager';
-  const remL  = LANG==='en'?'Remains':'Bleibt';
-  const takeL = LANG==='en'?'Take along':'Mitnehmen';
-  const stayL = LANG==='en'?'Not planned':'Nicht verplant';
+  const evL   = t('x_event');
+  const typeL = t('x_type');
+  const ingL  = t('x_ingredient');
+  const qtyL  = t('x_quantity');
+  const unL   = t('x_unit');
+  const grpL  = t('x_orders');
+  const stockL= t('x_stock_2');
+  const remL  = t('x_remains_2');
+  const takeL = t('x_take_along');
+  const stayL = t('x_not_planned');
   const fmtQ  = n=>String(n).replace('.',',');
   let t=`﻿${evL};${typeL};${ingL};${qtyL};${unL};${grpL};${stockL};${remL}\n`;
   for(const u of stockList.used){
@@ -5682,7 +5858,7 @@ function exportStockUsageCsv(stockList,{actionName}){
 // (Grundbedarfe).
 function printOrderPDF(items, {title, actionName, includeName=true, stockList=null, portionsTotal=null}){
   title=esc(title);actionName=esc(actionName);
-  const dateStr = new Date().toLocaleDateString(LANG==='en'?'en-GB':'de-DE');
+  const dateStr = new Date().toLocaleDateString(LOCALE());
   const groups  = _orderGroupBySubcat(items);
   const grand   = items.reduce((s,i)=>s+_orderItemCost(i),0);
   // Mengen-Kennzahlen: kg/L gesamt (g/ml umgerechnet) + optional pro Portion
@@ -5706,14 +5882,14 @@ function printOrderPDF(items, {title, actionName, includeName=true, stockList=nu
     if(qSum.L>0.0001) perParts.push(qSum.L/portionsTotal>=1?`${fmtQ2(qSum.L/portionsTotal)} L`:`${Math.round(qSum.L/portionsTotal*1000)} ml`);
   }
 
-  const qtyL   = LANG==='en'?'Quantity':'Menge';
-  const priceL = LANG==='en'?'Price':'Preis';
-  const subtL  = LANG==='en'?'Subtotal':'Zwischensumme';
-  const evL    = LANG==='en'?'Event':'Veranstaltung';
-  const dateL  = LANG==='en'?'Date':'Datum';
-  const totalL = LANG==='en'?'Total':'Gesamt';
-  const gtL    = LANG==='en'?'Grand total':'Gesamtsumme';
-  const optL   = LANG==='en'?'opt.':'opt.';
+  const qtyL   = t('x_quantity');
+  const priceL = t('x_price');
+  const subtL  = t('x_subtotal');
+  const evL    = t('x_event');
+  const dateL  = t('x_date');
+  const totalL = t('x_total');
+  const gtL    = t('x_grand_total');
+  const optL   = t('x_opt');
 
   let body='';
   for(const g of groups){
@@ -5729,7 +5905,7 @@ function printOrderPDF(items, {title, actionName, includeName=true, stockList=nu
       const iName    = includeName ? _orderItemName(i) : '';
       const qtyStr   = String(round2(i.quantity)).replace('.',',');
       const cost     = _orderItemCost(i);
-      const priceStr = cost ? (cost.toFixed(2).replace('.',',')+' €') : '—';
+      const priceStr = cost ? (fmtMoneyNum(cost)+' €') : '—';
       const rowCls   = i.optional ? ' class="opt"' : '';
       const optTag   = i.optional ? ` <span class="opt-tag">${optL}</span>` : '';
       body += `<tr${rowCls}>
@@ -5743,7 +5919,7 @@ function printOrderPDF(items, {title, actionName, includeName=true, stockList=nu
     const unitSums={};
     g.items.forEach(i=>{unitSums[i.unit]=(unitSums[i.unit]||0)+(i.quantity||0);});
     const unitStr=Object.entries(unitSums).map(([u,q])=>`${fmtQ2(q)} ${u}`).join(' · ');
-    body += `<tr class="cat-sum"><td colspan="2">${subtL}</td><td class="col-qty">${unitStr}</td><td class="col-price">${g.subtotal.toFixed(2).replace('.',',')} €</td></tr>`;
+    body += `<tr class="cat-sum"><td colspan="2">${subtL}</td><td class="col-qty">${unitStr}</td><td class="col-price">${fmtMoneyNum(g.subtotal)} €</td></tr>`;
     body += `</tbody></table>`;
   }
   // Lagerverwendung (Packliste): mitnehmen + unverplanter Bestand
@@ -5779,16 +5955,16 @@ body{font-family:'Segoe UI',system-ui,sans-serif;font-size:11px;color:#111}
   <div class="meta">
     ${actionName?`<span><strong>${evL}:</strong> ${actionName}</span>`:''}
     <span><strong>${dateL}:</strong> ${dateStr}</span>
-    <span class="total-badge">${totalL}: ${grand.toFixed(2).replace('.',',')} €</span>
+    <span class="total-badge">${totalL}: ${fmtMoneyNum(grand)} €</span>
     ${qParts.length?`<span><strong>${qtyL}:</strong> ${qParts.join(' · ')}</span>`:''}
-    ${perParts.length?`<span><strong>${LANG==='en'?'per portion':'pro Portion'}:</strong> ≈ ${perParts.join(' · ')} (${portionsTotal} ${LANG==='en'?'portions':'Portionen'})</span>`:''}
+    ${perParts.length?`<span><strong>${t('x_per_portion')}:</strong> ≈ ${perParts.join(' · ')} (${portionsTotal} ${t('x_portions')})</span>`:''}
   </div>
 </div>
 ${body}
-<div class="footer"><span>${gtL}</span><span>${grand.toFixed(2).replace('.',',')} €</span></div>
+<div class="footer"><span>${gtL}</span><span>${fmtMoneyNum(grand)} €</span></div>
 </body></html>`;
   const win=window.open('','_blank');
-  if(!win){alert(t('msg_popup_blocked'));return;}
+  if(!win){toast(t('msg_popup_blocked'),'error');return;}
   win.document.write(html);
   win.document.close();
   win.onload=()=>win.print();
@@ -5797,13 +5973,13 @@ ${body}
 // Lagerverwendungs-Tabellen als HTML — geteilt zwischen Einkaufslisten-PDF
 // und separatem Packlisten-PDF (nutzt die .cat-table/.stock-table-Styles)
 function _stockUsageHtml(stockList){
-  const packL  = LANG==='en'?'Stock use (packing list)':'Lagerverwendung (Packliste)';
-  const takeL  = LANG==='en'?'Take along (planned)':'Mitnehmen (verplant)';
-  const stayL  = LANG==='en'?'In stock, not planned':'Im Lager, nicht verplant';
-  const stockL = LANG==='en'?'Stock':'Lager';
-  const remL   = LANG==='en'?'remains':'bleibt';
-  const grpL   = LANG==='en'?'Order':'Bestellung';
-  const qtyL   = LANG==='en'?'Quantity':'Menge';
+  const packL  = t('x_stock_use_packing_list_2');
+  const takeL  = t('x_take_along_planned');
+  const stayL  = t('x_in_stock_not_planned');
+  const stockL = t('x_stock_2');
+  const remL   = t('x_remains');
+  const grpL   = t('x_order');
+  const qtyL   = t('x_quantity');
   const fmtQ   = n=>String(n).replace('.',',');
   let body = `<div class="stock-section-title">${packL}</div>`;
   if(stockList.used.length){
@@ -5828,10 +6004,10 @@ function _stockUsageHtml(stockList){
 // Separates Packlisten-PDF (nur Lagerverwendung, alle Bestellungen)
 function printStockUsagePDF(stockList,{actionName}){
   actionName=esc(actionName);
-  const title  = LANG==='en'?'Stock use (packing list)':'Lagerverwendung (Packliste)';
-  const evL    = LANG==='en'?'Event':'Veranstaltung';
-  const dateL  = LANG==='en'?'Date':'Datum';
-  const dateStr= new Date().toLocaleDateString(LANG==='en'?'en-GB':'de-DE');
+  const title  = t('x_stock_use_packing_list_2');
+  const evL    = t('x_event');
+  const dateL  = t('x_date');
+  const dateStr= new Date().toLocaleDateString(LOCALE());
   const html = `<!DOCTYPE html><html lang="${LANG}"><head><meta charset="UTF-8"><title>${title}${actionName?' — '+actionName:''}</title>
 <style>
 @page{size:A4;margin:15mm}
@@ -5862,7 +6038,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;font-size:11px;color:#111}
 ${_stockUsageHtml(stockList)}
 </body></html>`;
   const win=window.open('','_blank');
-  if(!win){alert(t('msg_popup_blocked'));return;}
+  if(!win){toast(t('msg_popup_blocked'),'error');return;}
   win.document.write(html);
   win.document.close();
   win.onload=()=>win.print();
@@ -5870,14 +6046,14 @@ ${_stockUsageHtml(stockList)}
 
 // Einheitlicher CSV-Export. includeName=true → mit Zutat-Spalte.
 function exportOrderCsv(items, {actionName, includeName, stockList=null}){
-  const evL  = LANG==='en'?'Event':'Veranstaltung';
-  const catL = LANG==='en'?'Category':'Kategorie';
-  const ingL = LANG==='en'?'Ingredient':'Zutat';
-  const qtyL = LANG==='en'?'Quantity':'Menge';
-  const unL  = LANG==='en'?'Unit':'Einheit';
-  const cL   = LANG==='en'?'Cost':'Preis';
-  const toL  = LANG==='en'?'Total':'Gesamt';
-  const otherL = LANG==='en'?'Other':'Sonstiges';
+  const evL  = t('x_event');
+  const catL = t('x_category');
+  const ingL = t('x_ingredient');
+  const qtyL = t('x_quantity');
+  const unL  = t('x_unit');
+  const cL   = t('x_cost');
+  const toL  = t('x_total');
+  const otherL = t('x_other');
 
   let t = `\uFEFF${evL};${catL};`;
   if(includeName) t += `${ingL};`;
@@ -5900,8 +6076,8 @@ function exportOrderCsv(items, {actionName, includeName, stockList=null}){
     ? `;;;${toL};;${String(grand.toFixed(2)).replace('.',',')}\n`
     : `;;${toL};;${String(grand.toFixed(2)).replace('.',',')}\n`;
   if(stockList){
-    const takeL = LANG==='en'?'Stock: take along':'Lager: mitnehmen';
-    const stayL = LANG==='en'?'Stock: not planned':'Lager: nicht verplant';
+    const takeL = t('x_stock_take_along');
+    const stayL = t('x_stock_not_planned');
     const fmtQ  = n=>String(n).replace('.',',');
     t += '\n';
     for(const u of stockList.used){
@@ -5933,7 +6109,7 @@ async function renderRecipeBookPage(container){
     h('div',{style:{display:'flex',gap:'8px'}},
       h('button',{class:'btn btn-surface',onClick:async()=>{
         const recipes=await getRecipes();
-        if(!recipes.length){alert(t('msg_no_recipes'));return;}
+        if(!recipes.length){toast(t('msg_no_recipes'),'warn');return;}
         let allText='';
         for(const r of recipes) allText+=exportRecipeToText(r)+'\n';
         downloadFile('Rezeptbuch.txt',allText);
@@ -6032,7 +6208,7 @@ async function renderRecipeBookPage(container){
     topBtns.appendChild(h('button',{class:'btn btn-surface btn-sm',onClick:()=>recipeDialog(recipe)},t('btn_edit_recipe')));
     topBtns.appendChild(h('button',{class:'btn btn-surface btn-sm',onClick:()=>duplicateRecipe(recipe)},t('btn_duplicate_recipe')));
     topBtns.appendChild(h('button',{class:'btn btn-surface btn-sm',onClick:()=>exportRecipe(recipe)},t('btn_export_recipe')));
-    topBtns.appendChild(h('button',{class:'btn btn-danger btn-sm',onClick:async()=>{if(confirm(t('msg_confirm_delete_recipe'))){await deleteRecipe(recipe.id);recipeSelectedId=null;renderList();renderDetail();}}},t('btn_delete_recipe')));
+    topBtns.appendChild(h('button',{class:'btn btn-danger btn-sm',onClick:async()=>{if(await confirmDialog(t('msg_confirm_delete_recipe'))){await deleteRecipe(recipe.id);recipeSelectedId=null;renderList();renderDetail();}}},t('btn_delete_recipe')));
     top.appendChild(topBtns);
     card.appendChild(top);
 
@@ -6071,7 +6247,7 @@ async function renderRecipeBookPage(container){
     const nettoByUnit={};
     recipe.ingredients.forEach(i=>{const u=i.unit||'?';const netto=i.quantity_per_person*(1-(i.ingredient_abschnitt||0)/100);nettoByUnit[u]=(nettoByUnit[u]||0)+netto;});
     const nettoStr=Object.entries(nettoByUnit).map(([u,q])=>`${round2(q)} ${u}`).join(' + ');
-    card.appendChild(h('div',{style:{fontWeight:'700',fontSize:'13px',margin:'12px 0 8px'}},t('recipe_ings_per_person',nettoStr,totalCost.toFixed(2))));
+    card.appendChild(h('div',{style:{fontWeight:'700',fontSize:'13px',margin:'12px 0 8px'}},t('recipe_ings_per_person',nettoStr,fmtMoneyNum(totalCost))));
 
     // Seasonality check: any seasonal ingredients not currently in season?
     {
@@ -6142,7 +6318,7 @@ async function renderRecipeBookPage(container){
           const subcatLabel=i.ingredient_subcategory?(LANG==='en'?(subcatNameEnMap[i.ingredient_subcategory]||i.ingredient_subcategory):i.ingredient_subcategory):'—';
           row.appendChild(h('span',{'data-label':t('col_category'),style:{width:'110px',flexShrink:0,color:'var(--text-muted)'}},subcatLabel));
           const cost=i.quantity_per_person*(i.ingredient_price||0);
-          row.appendChild(h('span',{'data-label':t('col_cost'),style:{width:'70px',flexShrink:0,color:'var(--text-muted)'}},i.ingredient_price?`${cost.toFixed(2)} €`:'—'));
+          row.appendChild(h('span',{'data-label':t('col_cost'),style:{width:'70px',flexShrink:0,color:'var(--text-muted)'}},i.ingredient_price?`${fmtMoneyNum(cost)} €`:'—'));
           tblWrap.appendChild(row);
           if(i.substitutes&&i.substitutes.length){
             i.substitutes.forEach(sub=>{
@@ -6158,7 +6334,7 @@ async function renderRecipeBookPage(container){
               const subSubcatLabel=sub.ingredient_subcategory?(LANG==='en'?(subcatNameEnMap[sub.ingredient_subcategory]||sub.ingredient_subcategory):sub.ingredient_subcategory):'—';
               sRow.appendChild(h('span',{'data-label':t('col_category'),style:{width:'110px',flexShrink:0,color:'var(--text-muted)'}},subSubcatLabel));
               const sCost=sub.quantity_per_person*(sub.ingredient_price||0);
-              sRow.appendChild(h('span',{'data-label':t('col_cost'),style:{width:'70px',flexShrink:0,color:'var(--text-muted)'}},sub.ingredient_price?`${sCost.toFixed(2)} €`:'—'));
+              sRow.appendChild(h('span',{'data-label':t('col_cost'),style:{width:'70px',flexShrink:0,color:'var(--text-muted)'}},sub.ingredient_price?`${fmtMoneyNum(sCost)} €`:'—'));
               tblWrap.appendChild(sRow);
             });
           }
@@ -6248,7 +6424,7 @@ async function renderRecipeBookPage(container){
           });
           const prepEnMap={};
           if(LANG==='en'){(await getPreparationMethods()).forEach(x=>{if(x.name_en) prepEnMap[x.name]=x.name_en;});}
-          const dateStr=new Date().toLocaleDateString(LANG==='en'?'en-GB':'de-DE');
+          const dateStr=new Date().toLocaleDateString(LOCALE());
           const recipeMaterials=await getRecipeMaterialsResolved(recipe.id);
           const page=buildRecipePrintPage(recipe,{portions,substitutions,metaSpans:[`<span>${dateStr}</span>`],prepEnMap,recipeMaterials});
           openRecipePrintWindow(page,(LANG==='en'&&recipe.name_en)?recipe.name_en:recipe.name);
@@ -6445,7 +6621,7 @@ async function renderRecipeBookPage(container){
       const newIngBtn=h('button',{class:'btn btn-green btn-sm',onClick:async()=>{
         const newName=prompt(t('misc_new_ingredient_name'));if(!newName) return;
         try{const nid=await createIngredient(newName,'kg',0,'');allIngs=await getIngredients();ingIdRef.value=nid;display.textContent=newName;display.classList.add('has-value');unitRef.value='kg';unitLabel.textContent='kg';closeModal(popup);}
-        catch(e){alert(t('msg_ingredient_exists'));}
+        catch(e){toast(t('msg_ingredient_exists'),'error');}
       }},t('btn_new_ingredient'));
 
       const popup=showModal(h('div',{},
@@ -6566,7 +6742,7 @@ async function renderRecipeBookPage(container){
     content.appendChild(h('div',{class:'modal-buttons'},
       h('button',{class:'btn btn-surface',onClick:()=>closeModal(modal)},t('btn_cancel')),
       h('button',{class:'btn btn-accent',onClick:async()=>{
-        const n=nameInput.value.trim();if(!n){alert(t('msg_please_enter_name'));return;}
+        const n=nameInput.value.trim();if(!n){toast(t('msg_please_enter_name'),'warn');return;}
         const catIds=Object.entries(catVars).filter(([_,cb])=>cb.checked).map(([id])=>parseInt(id));
         const portDiv=parseFloat(portionenInput.value)||1;
         const ingsData=ingRows.filter(r=>r.ingId.value&&parseFloat(r.qtyInput.value)>0).map(r=>({ingredient_id:r.ingId.value,quantity_per_person:Math.round((parseFloat(r.qtyInput.value)/portDiv)*10000)/10000,unit:r.unitRef.value,preparation:r.prepSel.value||'',optional:r.optionalRef.value||false,substitutes:(r.subsArr||[]).filter(s=>s.ingredient_id&&s.quantity_per_person>0).map(s=>({ingredient_id:s.ingredient_id,quantity_per_person:Math.round((s.quantity_per_person/portDiv)*10000)/10000,unit:s.unit,preparation:s.preparation||''}))}));
@@ -6762,7 +6938,7 @@ async function renderRecipeBookPage(container){
       let msg=t('msg_import_complete_recipes',added);
       if(updated) msg+=t('msg_import_updated_recipes',updated);
       if(skipped) msg+=t('msg_import_skipped_recipes',skipped);
-      alert(msg);
+      toast(msg,'warn');
       closeModal(modal);renderList();renderDetail();
     };
     importBtns.append(
@@ -6808,7 +6984,7 @@ async function renderRecipeBookPage(container){
       let msg=t('msg_import_complete_recipes',totalAdded);
       if(totalUpdated) msg+=t('msg_import_updated_recipes',totalUpdated);
       if(totalSkipped) msg+=t('msg_import_skipped_recipes',totalSkipped);
-      alert(msg);
+      toast(msg,'warn');
       renderList();renderDetail();
     };
     input.click();
@@ -6821,7 +6997,7 @@ async function renderRecipeBookPage(container){
     const newInput=h('input',{type:'text',placeholder:t('ph_new_method'),style:{flex:1}});
     addRow.append(newInput,h('button',{class:'btn btn-accent btn-sm',onClick:async()=>{
       const v=newInput.value.trim();if(!v) return;
-      try{await createPreparationMethod(v);}catch(e){alert(t('msg_method_exists'));}
+      try{await createPreparationMethod(v);}catch(e){toast(t('msg_method_exists'),'error');}
       newInput.value='';refresh();
     }},'+'));
     content.appendChild(addRow);
@@ -6852,7 +7028,7 @@ async function renderRecipeBookPage(container){
             )
           ));
         }},'✎'));
-        btns.appendChild(h('button',{class:'btn-icon btn-danger',onClick:async()=>{if(confirm(t('msg_confirm_delete_method',m.name))){await deletePreparationMethod(m.id);refresh();}}},'✕'));
+        btns.appendChild(h('button',{class:'btn-icon btn-danger',onClick:async()=>{if(await confirmDialog(t('msg_confirm_delete_method',m.name))){await deletePreparationMethod(m.id);refresh();}}},'✕'));
         row.appendChild(btns);
         listDiv2.appendChild(row);
       });
@@ -6926,8 +7102,8 @@ function buildRecipePrintPage(recipe,{portions,substitutions={},metaSpans=[],pre
   }
   let totalCost=0;
   for(const ing of recipe.ingredients){totalCost+=(ing.ingredient_price||0)*(ing.quantity_per_person||0)*portions;}
-  const costStr=totalCost.toFixed(2).replace('.',',')+' €';
-  const costPerP=(totalCost/portions).toFixed(2).replace('.',',')+' €';
+  const costStr=fmtMoneyNum(totalCost)+' €';
+  const costPerP=fmtMoneyNum(totalCost/portions)+' €';
 
   return `<div class="recipe-page">
     <div class="page-top">
@@ -6944,7 +7120,7 @@ function buildRecipePrintPage(recipe,{portions,substitutions={},metaSpans=[],pre
       ${recipe.garzeit?`<div class="info-item"><span class="info-label">${t('pdf_cook_time_label')}</span><span>${esc(recipe.garzeit)}</span></div>`:''}
       <div class="info-item"><span class="info-label">${t('pdf_total_cost')}</span><span>${costStr}</span></div>
       <div class="info-item"><span class="info-label">${t('pdf_cost_per_portion')}</span><span>${costPerP}</span></div>
-      ${(recipe.volumen_liter&&recipe.volumen_portionen)?`<div class="info-item"><span class="info-label">${LANG==='en'?'Volume':'Volumen'}</span><span>≈ ${String(Math.round(recipe.volumen_liter/recipe.volumen_portionen*portions*10)/10).replace('.',',')} L</span></div>`:''}
+      ${(recipe.volumen_liter&&recipe.volumen_portionen)?`<div class="info-item"><span class="info-label">${t('x_volume')}</span><span>≈ ${String(Math.round(recipe.volumen_liter/recipe.volumen_portionen*portions*10)/10).replace('.',',')} L</span></div>`:''}
     </div>
     <table>
       <thead><tr><th>${t('col_ingredient')}</th><th>${t('col_processing')}</th><th>${t('col_qty_per_person')}</th><th>${t('col_total_qty')}</th>${hasAb?`<th>${t('col_netto')}</th>`:''}${hasKf?`<th>${t('col_cooked')}</th>`:''}${hasQf?`<th>${t('col_swollen')}</th>`:''}</tr></thead>
@@ -6997,7 +7173,7 @@ tr:nth-child(even){background:#fafafa}
 .section,.notes-box,.fill-fields,.desc-block,.info-grid,table{break-inside:avoid;page-break-inside:avoid}
 </style></head><body>${pagesHtml}</body></html>`;
   const win=window.open('','_blank');
-  if(!win){alert(t('msg_popup_blocked'));return;}
+  if(!win){toast(t('msg_popup_blocked'),'error');return;}
   win.document.write(printHTML);
   win.document.close();
   win.onload=()=>win.print();
@@ -7009,14 +7185,14 @@ async function renderSpecialOrderPage(container){
   const header=h('div',{class:'page-header'},h('h1',{},t('page_special_order')),
     h('div',{style:{display:'flex',gap:'8px'}},
       h('button',{class:'btn btn-surface',onClick:async()=>{
-        if(!lastItems.length){alert(t('msg_no_list_yet'));return;}
+        if(!lastItems.length){toast(t('msg_no_list_yet'),'warn');return;}
         const action=await dbGet('actions',selectedActionId);
         const aName=action?action.name:'';
         const groupColors=['var(--accent)','var(--green)','#d4a017','#7b2d8b','#2980b9','#c0392b','#16a085','#8e44ad'];
 
         function openFormatDialog(items, suffix){
-          const title=LANG==='en'?'Shopping list by recipe':'Einkaufsliste nach Rezept';
-          const titleTxt=LANG==='en'?'SHOPPING LIST BY RECIPE':'EINKAUFSLISTE NACH REZEPT';
+          const title=t('x_shopping_list_by_recipe');
+          const titleTxt=t('x_shopping_list_by_recipe_2');
           const fname='Einkaufsliste_nach_Rezept'+(suffix?'_'+suffix:'');
           const m2=showModal(h('div',{},
             h('h2',{},t('dlg_export_special')),
@@ -7069,7 +7245,7 @@ async function renderSpecialOrderPage(container){
           h('div',{class:'modal-buttons'},
             h('button',{class:'btn btn-accent',onClick:()=>{
               const selected=checks.filter(c=>c.cb.checked);
-              if(!selected.length){alert(t('msg_no_list_yet'));return;}
+              if(!selected.length){toast(t('msg_no_list_yet'),'warn');return;}
               const merged=[];
               const key=i=>`${i.ingredient_id}|${i.unit}|${i.subcategory}`;
               selected.forEach(({g})=>g.items.forEach(item=>{
@@ -7093,11 +7269,11 @@ async function renderSpecialOrderPage(container){
   container.append(header,body);
 
   async function printRecipes(){
-    if(!selectedActionId){alert(t('msg_no_action_selected'));return;}
+    if(!selectedActionId){toast(t('msg_no_action_selected'),'warn');return;}
     const dayIds=getSelectedDayIds();
-    if(!dayIds.length){alert(t('msg_no_days_selected'));return;}
+    if(!dayIds.length){toast(t('msg_no_days_selected'),'warn');return;}
     const assignments=await getAssignments(dayIds);
-    if(!assignments.length){alert(t('msg_no_recipes_assigned'));return;}
+    if(!assignments.length){toast(t('msg_no_recipes_assigned'),'warn');return;}
     const action=await dbGet('actions',selectedActionId);
     const actionName=action?action.name:'';
     const actionDesc=action?action.description||'':'';
@@ -7136,7 +7312,7 @@ async function renderSpecialOrderPage(container){
     const totalRecipes=assignments.length;
     const overviewPage=`<div class="recipe-page">
       <div class="page-top">
-        <div class="recipe-title">${actionName||(LANG==='en'?'Cooking Event':'Kochaktion')}</div>
+        <div class="recipe-title">${actionName||(t('x_cooking_event'))}</div>
         <div class="meta-row">${actionDesc?`<span>${actionDesc}</span>`:''}<span>${t('pdf_days_count',dayIds.length,dayIds.length!==1?'e':'')}</span><span>${t('pdf_recipe_assignments',totalRecipes)}</span><span class="portions-badge">${t('pdf_total_portions',totalPortions)}</span></div>
       </div>
       <div style="font-weight:700;font-size:14px;margin:12px 0 8px">${t('pdf_overview_title')}</div>
@@ -7161,7 +7337,7 @@ async function renderSpecialOrderPage(container){
       ].filter(Boolean);
       pages+=buildRecipePrintPage(recipe,{portions,substitutions:a.substitutions||{},metaSpans,prepEnMap:pdfPrepEnMap,recipeMaterials:await getRecipeMaterialsResolved(recipe.id)});
     }
-    openRecipePrintWindow(pages,`${LANG==='en'?'Recipes':'Rezepte'} — ${actionName}`);
+    openRecipePrintWindow(pages,`${t('x_recipes')} — ${actionName}`);
   }
 
   // Day order groups
@@ -7317,7 +7493,7 @@ async function renderSpecialOrderPage(container){
     const allRecipes=await getRecipes();
     // Filter recipes that have this meal type category assigned
     const recipes=allRecipes.filter(r=>r.categories.some(c=>c.name===mealType));
-    if(!recipes.length){alert(t('msg_no_recipes_in_cat',mealType));return;}
+    if(!recipes.length){toast(t('msg_no_recipes_in_cat',mealType),'warn');return;}
     const searchInput=h('input',{type:'text',placeholder:t('ph_search'),style:{width:'100%',marginBottom:'8px'}});
     const recipeSel=h('select',{style:{width:'100%'}});
     recipeSel.appendChild(h('option',{value:''},t('misc_choose_recipe')));
@@ -7400,7 +7576,7 @@ async function renderSpecialOrderPage(container){
   async function allergyAssignDialog(slotId,mealType,totalPortions){
     const allRecipes=await getRecipes();
     const recipes=allRecipes.filter(r=>r.is_allergy_friendly&&r.categories.some(c=>c.name===mealType));
-    if(!recipes.length){alert(t('msg_no_allergy_in_cat',mealType));return;}
+    if(!recipes.length){toast(t('msg_no_allergy_in_cat',mealType),'warn');return;}
     const defaultPortions=Math.max(1,Math.ceil(totalPortions*0.01));
     const searchInput=h('input',{type:'text',placeholder:t('ph_search'),style:{width:'100%',marginBottom:'8px'}});
     const recipeSel=h('select',{style:{width:'100%'}});
@@ -7778,8 +7954,8 @@ async function openMaterialDialog(rec,onSaved){
 
 // Materialliste als CSV (Excel-tauglich, mit BOM)
 function exportMatListCsv(mats){
-  const catL=LANG==='en'?'Category':'Kategorie', unitL=LANG==='en'?'Unit':'Einheit',
-        attrL=LANG==='en'?'Attributes':'Eigenschaften', noteL=LANG==='en'?'Note':'Notiz';
+  const catL=t('x_category'), unitL=t('x_unit'),
+        attrL=t('x_attributes'), noteL=t('x_note');
   let s='\uFEFF'+`Name;${catL};${unitL};${attrL};${noteL}\n`;
   mats.forEach(m=>{
     const attrs=materialAttrSummary(m).split(';').join(',');
@@ -7792,8 +7968,8 @@ function exportMatListCsv(mats){
 // headers[0] wird durch den Kategorienamen ersetzt; groups = {kat: [zeile[], …]}
 function printCatTablePDF(title,headers,groups){
   title=esc(title);
-  const dateStr=new Date().toLocaleDateString(LANG==='en'?'en-GB':'de-DE');
-  const dateL=LANG==='en'?'Date':'Datum';
+  const dateStr=new Date().toLocaleDateString(LOCALE());
+  const dateL=t('x_date');
   let body='';
   Object.keys(groups).sort().forEach(cat=>{
     body+=`<table class="cat-table"><thead><tr><th>${esc(cat)}</th>${headers.slice(1).map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>`;
@@ -7819,7 +7995,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;font-size:11px;color:#111}
 ${body}
 </body></html>`;
   const win=window.open('','_blank');
-  if(!win){alert(t('msg_popup_blocked'));return;}
+  if(!win){toast(t('msg_popup_blocked'),'error');return;}
   win.document.write(html);
   win.document.close();
   win.onload=()=>win.print();
@@ -7828,14 +8004,14 @@ ${body}
 // Ausleihliste als druckbares PDF: Checkbox-Spalten für Ausgabe und
 // Rückgabe, Unterschriftszeilen am Ende
 function printLoanListPDF(list){
-  const dateStr=list.created_at?formatDate(list.created_at):new Date().toLocaleDateString(LANG==='en'?'en-GB':'de-DE');
-  const title=(LANG==='en'?'Loan list':'Ausleihliste')+' — '+esc(list.name);
-  const outL=LANG==='en'?'Out':'Raus', backL=LANG==='en'?'Back':'Zurück',
-        qtyL=LANG==='en'?'Qty':'Anzahl', itemL=LANG==='en'?'Item':'Gegenstand',
-        noteL=LANG==='en'?'Note':'Notiz', dateL=LANG==='en'?'Date':'Datum',
-        lentToL=LANG==='en'?'Lent to':'Ausgeliehen an',
-        signOutL=LANG==='en'?'Handed out (date/signature):':'Ausgegeben (Datum/Unterschrift):',
-        signBackL=LANG==='en'?'Returned complete (date/signature):':'Vollständig zurück (Datum/Unterschrift):';
+  const dateStr=list.created_at?formatDate(list.created_at):new Date().toLocaleDateString(LOCALE());
+  const title=(t('x_loan_list'))+' — '+esc(list.name);
+  const outL=t('x_out'), backL=t('x_back'),
+        qtyL=t('x_qty'), itemL=t('x_item'),
+        noteL=t('x_note'), dateL=t('x_date'),
+        lentToL=t('x_lent_to'),
+        signOutL=t('x_handed_out_date_signature'),
+        signBackL=t('x_returned_complete_date_signature');
   let rows='';
   (list.items||[]).forEach(it=>{
     rows+=`<tr><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td><td style="text-align:right;font-weight:700">${it.quantity??1}</td><td>${esc(it.name)}</td><td>${esc(it.note)}</td></tr>`;
@@ -7872,7 +8048,7 @@ tr:nth-child(even) td{background:#fafafa}
 </div>
 </body></html>`;
   const win=window.open('','_blank');
-  if(!win){alert(t('msg_popup_blocked'));return;}
+  if(!win){toast(t('msg_popup_blocked'),'error');return;}
   win.document.write(html);
   win.document.close();
   win.onload=()=>win.print();
@@ -7880,11 +8056,11 @@ tr:nth-child(even) td{background:#fafafa}
 
 // Materialliste als druckbares PDF
 function printMaterialListPDF(mats){
-  const unitL=LANG==='en'?'Unit':'Einheit', attrL=LANG==='en'?'Attributes':'Eigenschaften',
-        noteL=LANG==='en'?'Note':'Notiz', otherL=LANG==='en'?'Other':'Sonstiges';
+  const unitL=t('x_unit'), attrL=t('x_attributes'),
+        noteL=t('x_note'), otherL=t('x_other');
   const groups={};
   mats.forEach(m=>{const c=m.category||otherL;(groups[c]=groups[c]||[]).push([m.name,m.unit||'',materialAttrSummary(m),m.note||'']);});
-  printCatTablePDF(LANG==='en'?'Material list':'Materialliste',['',unitL,attrL,noteL],groups);
+  printCatTablePDF(t('x_material_list'),['',unitL,attrL,noteL],groups);
 }
 
 async function renderStockPage(container){
@@ -7945,11 +8121,11 @@ async function renderStockPage(container){
   }
 
   const L={
-    ing:LANG==='en'?'Ingredient':'Zutat', mat:LANG==='en'?'Material':'Material',
-    cat:LANG==='en'?'Category':'Kategorie', qty:LANG==='en'?'Quantity':'Menge',
-    unit:LANG==='en'?'Unit':'Einheit', note:LANG==='en'?'Note':'Notiz',
-    attrs:LANG==='en'?'Attributes':'Eigenschaften', stored:LANG==='en'?'Stored':'Eingelagert',
-    other:LANG==='en'?'Other':'Sonstiges'
+    ing:t('x_ingredient'), mat:t('x_material'),
+    cat:t('x_category'), qty:t('x_quantity'),
+    unit:t('x_unit'), note:t('x_note'),
+    attrs:t('x_attributes'), stored:t('x_stored'),
+    other:t('x_other')
   };
   const csvSafe=v=>String(v??'').split(';').join(',');
   const qtyStr=e=>e.quantity!=null?`${round2(e.quantity)} ${e.unit}`:t('stock_present');
@@ -7972,7 +8148,7 @@ async function renderStockPage(container){
       const ing=ingById.get(e.ingredient_id);
       return {e,name:ing?ing.name:('#'+e.ingredient_id),category:(ing&&ing.subcategory)||''};
     });
-    const title=LANG==='en'?'Food storage':'Lebensmittellager';
+    const title=t('x_food_storage');
     exportDialog(t('stock_food_export_title'),[
       [t('btn_export_pdf'),()=>{
         const groups={};
@@ -7998,7 +8174,7 @@ async function renderStockPage(container){
       const m=matById.get(e.material_id);
       return {e,m,name:m?materialDisplayName(m,e.attr_values):('#'+e.material_id),category:(m&&m.category)||''};
     });
-    const title=LANG==='en'?'Material storage':'Materiallager';
+    const title=t('x_material_storage');
     exportDialog(t('stock_material_export_title'),[
       [t('btn_export_pdf'),()=>{
         const groups={};
@@ -8423,7 +8599,7 @@ async function renderStockPage(container){
     const btns=h('span',{style:{display:'flex',gap:'4px',marginLeft:'8px'}});
     btns.appendChild(h('button',{class:'btn-icon btn-ghost',title:t('btn_edit'),onClick:()=>editFn(e)},'✎'));
     btns.appendChild(h('button',{class:'btn-icon btn-danger',title:t('btn_delete'),onClick:async()=>{
-      if(!confirm(t('msg_confirm_delete_stock'))) return;
+      if(!await confirmDialog(t('msg_confirm_delete_stock'))) return;
       await dbDel(store,e.id);refresh();
     }},'✕'));
     row.appendChild(btns);
@@ -8505,8 +8681,8 @@ async function renderStockPage(container){
           const btns=h('span',{style:{display:'flex',gap:'4px',marginLeft:'auto'}});
           btns.appendChild(h('button',{class:'btn-icon btn-ghost',title:t('btn_edit'),onClick:()=>openMaterialDialog(m,async()=>{await reloadMaterials();refresh();})},'✎'));
           btns.appendChild(h('button',{class:'btn-icon btn-danger',title:t('btn_delete'),onClick:async()=>{
-            if(stockEntries.some(e=>e.material_id===m.id)||recMatEntries.some(e=>e.material_id===m.id)){alert(t('msg_material_in_use'));return;}
-            if(!confirm(t('msg_confirm_delete_material'))) return;
+            if(stockEntries.some(e=>e.material_id===m.id)||recMatEntries.some(e=>e.material_id===m.id)){toast(t('msg_material_in_use'),'error');return;}
+            if(!await confirmDialog(t('msg_confirm_delete_material'))) return;
             await dbDel('materials',m.id);await reloadMaterials();refresh();
           }},'✕'));
           row.appendChild(btns);
@@ -8537,7 +8713,7 @@ async function renderStockPage(container){
         btns.appendChild(h('button',{class:'btn-icon btn-ghost',title:'PDF',onClick:()=>printLoanListPDF(list)},'🖨'));
         btns.appendChild(h('button',{class:'btn-icon btn-ghost',title:t('btn_edit'),onClick:()=>loanListDialog(list)},'✎'));
         btns.appendChild(h('button',{class:'btn-icon btn-danger',title:t('btn_delete'),onClick:async()=>{
-          if(!confirm(t('msg_confirm_delete_loan'))) return;
+          if(!await confirmDialog(t('msg_confirm_delete_loan'))) return;
           await dbDel('loan_lists',list.id);refresh();
         }},'✕'));
         hdr.appendChild(btns);
@@ -8798,7 +8974,7 @@ async function renderDatabasePage(container){
     const input=document.createElement('input');input.type='file';input.accept='.json';
     input.onchange=async()=>{
       if(!input.files.length) return;
-      if(!confirm(t('msg_confirm_import_db'))) return;
+      if(!await confirmDialog(t('msg_confirm_import_db'))) return;
       try{
         const text=await input.files[0].text();
         await importFullDatabase(text);
@@ -8821,7 +8997,7 @@ async function renderDatabasePage(container){
   defaultCard.appendChild(h('div',{style:{fontSize:'13px',color:'var(--text-muted)',marginBottom:'12px'}},t('db_default_desc')));
   const defaultStatus=h('div',{style:{marginTop:'8px',fontSize:'13px'}});
   defaultCard.appendChild(h('button',{class:'btn btn-surface',onClick:async()=>{
-    if(!confirm(t('msg_confirm_load_default'))) return;
+    if(!await confirmDialog(t('msg_confirm_load_default'))) return;
     await loadDefaultData(defaultStatus);
   }},t('btn_load_default')));
   // Unauffälliger Gegenpart: aktuellen Datenbestand als standardbackup.json
@@ -8851,7 +9027,7 @@ async function renderDatabasePage(container){
   allActionsForShare.forEach(a=>actionSel.appendChild(h('option',{value:String(a.id)},a.name)));
   const shareBtnRow=h('div',{style:{display:'flex',gap:'8px',flexWrap:'wrap'}});
   shareBtnRow.appendChild(h('button',{class:'btn btn-accent',onClick:async()=>{
-    if(!allActionsForShare.length){alert(t('msg_no_actions_share'));return;}
+    if(!allActionsForShare.length){toast(t('msg_no_actions_share'),'warn');return;}
     const v=actionSel.value;
     const ids=(v==='all')?null:[parseInt(v)];
     try{
@@ -8861,7 +9037,7 @@ async function renderDatabasePage(container){
       if(v==='all'){fname=`KF_Aktionen_${date}.json`;}
       else{const a=allActionsForShare.find(x=>String(x.id)===v);const safeName=(a?a.name:'Aktion').replace(/[^a-zA-Z0-9äöüÄÖÜß_-]+/g,'_');fname=`KF_Aktion_${safeName}_${date}.json`;}
       downloadFile(fname,json,'application/json');
-    }catch(e){alert(t('msg_export_error',e.message));}
+    }catch(e){toast(t('msg_export_error',e.message),'error');}
   }},t('btn_export_actions')));
   const shareStatus=h('div',{style:{marginTop:'8px',fontSize:'13px'}});
   shareBtnRow.appendChild(h('button',{class:'btn btn-surface',onClick:()=>{
@@ -8931,7 +9107,7 @@ async function renderDatabasePage(container){
         row.appendChild(h('span',{style:{fontSize:'13px',color:'var(--text-muted)',minWidth:'80px',textAlign:'right'}},t('db_entries_count',items.length)));
         if(items.length>0){
           row.appendChild(h('button',{class:'btn btn-danger btn-sm',style:{marginLeft:'8px',fontSize:'11px',padding:'2px 8px'},onClick:async()=>{
-            if(!confirm(t('msg_confirm_delete_store',items.length,storeLabels[store]||store))) return;
+            if(!await confirmDialog(t('msg_confirm_delete_store',items.length,storeLabels[store]||store))) return;
             await new Promise((res,rej)=>{const tx=db.transaction(store,'readwrite');const s=tx.objectStore(store);const r=s.clear();r.onsuccess=()=>res();r.onerror=e=>rej(e);});
             refreshInfoTable();
           }},'🗑'));
@@ -8960,13 +9136,13 @@ async function renderDatabasePage(container){
   dangerCard.appendChild(h('div',{style:{fontWeight:'700',fontSize:'14px',marginBottom:'8px',color:'var(--accent)'}},t('db_danger_title')));
   dangerCard.appendChild(h('div',{style:{fontSize:'13px',color:'var(--text-muted)',marginBottom:'12px'}},t('db_danger_desc')));
   dangerCard.appendChild(h('button',{class:'btn btn-danger',onClick:async()=>{
-    if(!confirm(t('msg_confirm_delete_all'))) return;
-    if(!confirm(t('msg_confirm_delete_all2'))) return;
+    if(!await confirmDialog(t('msg_confirm_delete_all'))) return;
+    if(!await confirmDialog(t('msg_confirm_delete_all2'))) return;
     for(const store of ALL_STORES){
       await new Promise((res,rej)=>{const tx=db.transaction(store,'readwrite');const s=tx.objectStore(store);const r=s.clear();r.onsuccess=()=>res();r.onerror=e=>rej(e);});
     }
-    alert(t('msg_all_deleted'));
-    location.reload();
+    toast(t('msg_all_deleted'),'ok');
+    setTimeout(()=>location.reload(),1500);
   }},t('btn_delete_all_data')));
   body.appendChild(dangerCard);
 }

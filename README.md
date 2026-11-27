@@ -200,8 +200,11 @@ Dann im Browser `http://localhost:8000`.
 - **DOM**: immer über `h(tag, attrs, ...children)` — keine rohen
   `document.createElement` in der App-Logik
 - **Texte**: immer durch `t('key', …)` — **nie** hardcoded DE/EN
-- **Dialoge**: `showModal(…)` + `closeModal(…)`
-- **Fehler-Feedback**: `alert(t('msg_…'))` (wird später durch Toast ersetzt)
+- **Dialoge**: `showModal(…)` + `closeModal(…)`; einfache Formulare über
+  `openFormDialog({…})`; Rückfragen über `await confirmDialog(t('msg_…'))`
+- **Feedback**: `toast(t('msg_…'), 'info'|'ok'|'warn'|'error')` — kein `alert`/`confirm`
+- **Zahlen**: `fmtNum(n)` für Mengen, `fmtMoneyNum(n)` für Beträge (Sprachformat);
+  im Druck-HTML Nutzerdaten immer durch `esc(…)`
 
 ### CSS
 
@@ -261,13 +264,13 @@ Der Code ist historisch gewachsen, es gibt bekannte Kandidaten für
 Refactoring. In Arbeit / geplant:
 
 - [ ] **i18n gruppieren** (aktuell ~1000 flache Keys je Sprache)
-- [ ] **Dialog-Helper** (`buildFormDialog`) — der Dialog-Aufbau wiederholt
+- [x] **Dialog-Helper** (`openFormDialog`) — der Dialog-Aufbau wiederholt
       sich in Ingredient-, Recipe-, Season-, Tag-, Category-Dialog
 - [ ] **Export-Pipeline vereinheitlichen** — `aggregateOrderItems()` +
       `formatTxt/Csv/Pdf`, die Datenaufbereitung ist dupliziert
 - [ ] **App-State bündeln** — viele `let`-Globals zentralisieren
 - [ ] **Inline-Styles → CSS-Klassen**, wo die Werte statisch sind
-- [ ] **Toast statt `alert`** für User-Feedback
+- [x] **Toast statt `alert`** für User-Feedback (plus `confirmDialog` statt `confirm`)
 
 ---
 
