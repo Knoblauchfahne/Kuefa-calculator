@@ -40,12 +40,14 @@
   --green:#2d6a4f;--green-light:#40916c;
   --surface:#1a1a1a;--surface2:#222;--surface3:#2c2c2c;
   --border:#333;--text:#f0f0f0;--text-muted:#888;--bg:#111;
+  --accent-btn:#c9303c;--accent-btn-hover:#b02a35;
 }
 :root.light{
   --accent:#e63946;--accent-hover:#d62839;--accent-dim:#fce4e6;
   --green:#2d6a4f;--green-light:#40916c;
   --surface:#ffffff;--surface2:#f5f5f5;--surface3:#eee;
   --border:#ddd;--text:#222;--text-muted:#666;--bg:#f0f0f0;
+  --accent-btn:#c9303c;--accent-btn-hover:#b02a35;
 }
 html,body{height:100%;font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);font-size:14px;overflow:hidden}
 input,select,textarea,button{font-family:inherit;font-size:inherit}
@@ -64,7 +66,7 @@ input,select,textarea,button{font-family:inherit;font-size:inherit}
 .nav-btn{display:block;width:100%;text-align:left;padding:8px 12px;margin:1px 0;border:none;background:transparent;color:var(--text-muted);font-size:13px;border-radius:6px;cursor:pointer;transition:all .15s}
 .nav-btn:hover{background:var(--surface2)}
 .nav-btn.active{background:var(--accent-dim);color:var(--accent)}
-.sidebar-footer{padding:12px;text-align:center;font-size:10px;color:#444}
+.sidebar-footer{padding:12px;text-align:center;font-size:10px;color:var(--text-muted)}
 
 /* ── Content ──────────────────────────────────────────────── */
 .content{flex:1;display:flex;flex-direction:column;overflow:hidden}
@@ -84,7 +86,9 @@ input,select,textarea,button{font-family:inherit;font-size:inherit}
 
 /* ── Buttons ──────────────────────────────────────────────── */
 .btn{padding:6px 16px;border:none;border-radius:6px;cursor:pointer;font-size:13px;font-weight:500;transition:all .15s;display:inline-flex;align-items:center;gap:6px}
-.btn-accent{background:var(--accent);color:#fff}.btn-accent:hover{background:var(--accent-hover)}
+.btn-accent{background:var(--accent-btn);color:#fff}.btn-accent:hover{background:var(--accent-btn-hover)}
+.btn:disabled,.btn:disabled:hover{opacity:.45;cursor:not-allowed}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .btn-surface{background:var(--surface2);color:var(--text)}.btn-surface:hover{background:var(--surface3)}
 .btn-ghost{background:transparent;color:var(--text-muted)}.btn-ghost:hover{background:var(--surface2)}
 .btn-danger{background:transparent;color:var(--accent)}.btn-danger:hover{background:var(--accent-dim)}
@@ -95,7 +99,7 @@ input,select,textarea,button{font-family:inherit;font-size:inherit}
 /* ── Forms ────────────────────────────────────────────────── */
 input[type=text],input[type=number],select,textarea{background:var(--surface2);border:1px solid var(--border);color:var(--text);padding:8px 12px;border-radius:6px;outline:none;transition:border .15s;line-height:1.5}
 input:focus,select:focus,textarea:focus{border-color:var(--accent)}
-input::placeholder{color:#555}
+input::placeholder,textarea::placeholder{color:var(--text-muted);opacity:1}
 select{cursor:pointer}
 .form-group{margin-bottom:12px}
 .form-label{display:block;font-size:12px;color:var(--text-muted);margin-bottom:4px}
@@ -106,7 +110,15 @@ label.checkbox{display:inline-flex;align-items:center;gap:6px;cursor:pointer;fon
 label.checkbox input{accent-color:var(--accent);width:16px;height:16px}
 
 /* ── Modal ────────────────────────────────────────────────── */
-.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;z-index:1000}
+.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;z-index:1200}
+.modal-text{font-size:13px;color:var(--text-muted);line-height:1.5;margin-bottom:8px}
+/* Hinweis-Leiste unten (Backup-Erinnerung) */
+.app-banner{position:fixed;left:50%;transform:translateX(-50%);bottom:20px;width:max-content;background:var(--surface);color:var(--text);border:1px solid var(--border);padding:10px 14px;border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.35);z-index:1150;display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:13px;max-width:calc(100vw - 24px)}
+/* −-Knopf in „Bestellungen aufteilen" */
+.og-dec{width:22px;height:22px;border:1px solid var(--border);border-radius:50%;background:transparent;color:var(--text-muted);font-size:14px;line-height:1;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;padding:0;flex-shrink:0}
+.og-dec:hover{background:var(--surface3);color:var(--text)}
+/* Filterzeile (Suche + Kategorie + Tags) */
+.filter-row{display:flex;gap:8px;align-items:center}
 .modal{background:var(--surface);border-radius:12px;width:460px;max-width:95vw;max-height:90vh;overflow-y:auto;padding:20px}
 .modal-lg{width:650px}
 .modal-with-side{display:flex;gap:0;padding:0;width:auto;max-width:95vw}
@@ -129,6 +141,7 @@ label.checkbox input{accent-color:var(--accent);width:16px;height:16px}
 .cal-matrix{border-collapse:collapse;width:100%}
 .cal-matrix th{font-size:11px;color:var(--text-muted);font-weight:600;padding:4px 6px;text-align:left;white-space:nowrap;border-bottom:1px solid var(--border)}
 .cal-matrix td{padding:3px 6px}
+.cal-matrix th:first-child,.cal-matrix td:first-child{position:sticky;left:0;background:var(--surface);z-index:1}
 .cal-matrix input{width:64px;-moz-appearance:textfield;appearance:textfield}
 .cal-matrix input::-webkit-outer-spin-button,.cal-matrix input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
 .cal-matrix .day-label{font-size:12px;white-space:nowrap;cursor:pointer}
@@ -243,6 +256,11 @@ label.checkbox input{accent-color:var(--accent);width:16px;height:16px}
   .action-bar{flex-direction:column;align-items:stretch}
   .action-bar select{min-width:0;width:100%}
   .search-input{width:100%}
+  .filter-row{flex-wrap:wrap}
+  .filter-row>*{flex:1 1 140px!important;min-width:0!important}
+  .filter-row>.search-input{flex-basis:100%!important}
+  .tag-filter-wrap{flex-shrink:1}
+  .og-dec{width:28px;height:28px}
   /* Forms */
   .form-row{flex-direction:column}
   .form-group input,.form-group select,.form-group textarea{width:100%}
@@ -310,12 +328,12 @@ label.checkbox input{accent-color:var(--accent);width:16px;height:16px}
 </head>
 <body>
 <div class="ctrl-bar" id="ctrl-bar">
-  <button class="lang-toggle" id="lang-toggle" onclick="toggleLang()" title="Deutsch / English">DE</button>
-  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Hell / Dunkel umschalten">🌙</button>
+  <button class="lang-toggle" id="lang-toggle" onclick="toggleLang()" title="Deutsch / English" aria-label="Deutsch / English">DE</button>
+  <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Hell / Dunkel umschalten" aria-label="Hell / Dunkel umschalten">🌙</button>
 </div>
 <div class="app">
   <!-- Hamburger (mobile only) -->
-  <button class="hamburger" id="hamburger-btn" onclick="toggleSidebar()">☰</button>
+  <button class="hamburger" id="hamburger-btn" onclick="toggleSidebar()" aria-label="Menü" title="Menü">☰</button>
   <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
   <!-- Sidebar -->
   <div class="sidebar" id="sidebar">
@@ -656,6 +674,21 @@ de: {
 
   // ── alert/confirm messages ────────────────────────────────────────
   msg_confirm_delete_action: 'Kochaktion "{0}" und alle zugehörigen Kochtage wirklich löschen?',
+  msg_confirm_delete_cooking_day: 'Kochtag {0} mit {1} Mahlzeit(en) und allen Rezept-Zuweisungen löschen?',
+  msg_discard_changes: 'Ungespeicherte Änderungen verwerfen?',
+  backup_banner_never: 'Deine Daten liegen nur in diesem Browser und es gibt noch kein Backup.',
+  backup_banner_old: 'Deine Daten liegen nur in diesem Browser. Letztes Backup vor {0} Tagen.',
+  backup_last: 'Letztes Backup: {0}',
+  backup_last_never: 'Noch kein Backup heruntergeladen',
+  welcome_title: 'Willkommen beim KüFa Organizer',
+  welcome_text: 'Die Datenbank ist noch leer. Mit den Standard-Daten bekommst du sofort Zutaten, Rezepte, Standardmahlzeiten und Allergene als Startpunkt. Du kannst alles danach anpassen.',
+  welcome_load: 'Standard-Daten laden',
+  welcome_skip: 'Leer starten',
+  aria_close: 'Schließen',
+  aria_menu: 'Menü öffnen',
+  aria_delete_day: 'Kochtag löschen',
+  order_group_dec: 'Bestellung verringern',
+  order_group_inc: 'Bestellung erhöhen',
   msg_confirm_delete_ingredient: '"{0}" wirklich löschen?',
   msg_confirm_delete_subcategory: '"{0}" löschen?',
   msg_confirm_delete_allergen: '"{0}" löschen?',
@@ -826,7 +859,7 @@ de: {
 
   // ── order / assignment UI ────────────────────────────────────────
   order_split_label: 'Bestellungen aufteilen',
-  order_split_hint: 'Klick: +1 / Rechtsklick: -1',
+  order_split_hint: 'Klick: +1 / − oder Rechtsklick: −1',
   go_slots_header: 'Mahlzeiten & Varianten',
   go_btn_add_position: '+ Position',
   go_btn_reset_edits: '↺ Anpassungen zurücksetzen',
@@ -1460,6 +1493,21 @@ en: {
 
   // ── alert/confirm messages ────────────────────────────────────────
   msg_confirm_delete_action: 'Really delete cooking event "{0}" and all related cooking days?',
+  msg_confirm_delete_cooking_day: 'Delete cooking day {0} with {1} meal(s) and all recipe assignments?',
+  msg_discard_changes: 'Discard unsaved changes?',
+  backup_banner_never: 'Your data only lives in this browser and there is no backup yet.',
+  backup_banner_old: 'Your data only lives in this browser. Last backup {0} days ago.',
+  backup_last: 'Last backup: {0}',
+  backup_last_never: 'No backup downloaded yet',
+  welcome_title: 'Welcome to KüFa Organizer',
+  welcome_text: 'The database is still empty. The default data gives you ingredients, recipes, standard meals and allergens to start with. You can change everything afterwards.',
+  welcome_load: 'Load default data',
+  welcome_skip: 'Start empty',
+  aria_close: 'Close',
+  aria_menu: 'Open menu',
+  aria_delete_day: 'Delete cooking day',
+  order_group_dec: 'Decrease order',
+  order_group_inc: 'Increase order',
   msg_confirm_delete_ingredient: 'Really delete "{0}"?',
   msg_confirm_delete_subcategory: 'Delete "{0}"?',
   msg_confirm_delete_allergen: 'Delete "{0}"?',
@@ -1630,7 +1678,7 @@ en: {
 
   // ── order / assignment UI ────────────────────────────────────────
   order_split_label: 'Split orders',
-  order_split_hint: 'Click: +1 / Right-click: -1',
+  order_split_hint: 'Click: +1 / − or right-click: −1',
   go_slots_header: 'Meals & variants',
   go_btn_add_position: '+ Position',
   go_btn_reset_edits: '↺ Reset adjustments',
@@ -2070,6 +2118,9 @@ function toggleLang() {
 document.addEventListener('DOMContentLoaded', () => {
   const btn = document.getElementById('lang-toggle');
   if (btn) btn.textContent = LANG.toUpperCase();
+  document.documentElement.lang = LANG;
+  const hb = document.getElementById('hamburger-btn');
+  if (hb) { hb.setAttribute('aria-label', t('aria_menu')); hb.title = t('aria_menu'); }
 });
 
 // ══════════════════════════════════════════════════════════════
@@ -2966,7 +3017,25 @@ function h(tag,attrs,...children){
     else if(c instanceof Node) el.appendChild(c);
     else if(Array.isArray(c)) c.forEach(x=>{if(x instanceof Node) el.appendChild(x);});
   }
+  if(tag==='button'&&!el.hasAttribute('aria-label')) _labelIconButton(el);
   return el;
+}
+// Icon-Buttons (✎, ✕ …) haben keinen lesbaren Text — Screenreader und
+// Tooltip bekommen dann den title bzw. eine Standard-Beschriftung.
+function _labelIconButton(el){
+  const txt=el.textContent.trim();
+  if(txt.length>2) return;
+  const title=el.getAttribute('title');
+  if(title){el.setAttribute('aria-label',title);return;}
+  const map={'✎':'btn_edit','✕':'btn_delete','×':'btn_delete','✖':'btn_delete'};
+  if(map[txt]){const l=t(map[txt]);el.setAttribute('aria-label',l);el.setAttribute('title',l);}
+}
+
+// Lokales Datum als YYYY-MM-DD (toISOString wäre UTC und liefert
+// zwischen Mitternacht und 1/2 Uhr den Vortag)
+function todayStr(){
+  const d=new Date();
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 }
 
 function formatDate(dateStr){
@@ -2998,14 +3067,40 @@ function restoreScroll(snaps){
   });
 }
 
+// Dialoge merken sich, ob darin etwas eingegeben wurde. Klick auf den
+// Hintergrund oder Esc schließt dann nur nach Rückfrage — sonst gehen
+// lange Eingaben (z.B. Rezept-Dialog) durch einen Fehlklick verloren.
+// Suchfelder zählen nicht als Eingabe.
+function _isSearchField(el){
+  return el&&el.tagName==='INPUT'&&(el.type==='search'||el.placeholder===t('ph_search')||el.classList.contains('search-input'));
+}
+function requestCloseModal(overlay){
+  if(!overlay||!overlay.isConnected) return;
+  if(overlay._dirty&&!confirm(t('msg_discard_changes'))) return;
+  overlay.remove();
+}
 function showModal(content,cls=''){
-  const overlay=h('div',{class:'modal-overlay',onClick:e=>{if(e.target===overlay)overlay.remove();}},
-    h('div',{class:`modal ${cls}`},content)
+  const overlay=h('div',{class:'modal-overlay',onClick:e=>{if(e.target===overlay)requestCloseModal(overlay);}},
+    h('div',{class:`modal ${cls}`,role:'dialog','aria-modal':'true'},content)
   );
+  overlay._dirty=false;
+  const markDirty=e=>{if(!_isSearchField(e.target)) overlay._dirty=true;};
+  overlay.addEventListener('input',markDirty);
+  overlay.addEventListener('change',markDirty);
   document.getElementById('modal-root').appendChild(overlay);
   return overlay;
 }
 function closeModal(overlay){if(overlay) overlay.remove();}
+// Esc schließt den obersten Dialog (mit Rückfrage bei Eingaben)
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Escape') return;
+  const overlays=document.querySelectorAll('#modal-root .modal-overlay');
+  if(!overlays.length) return;
+  // Offene Autocomplete-Listen o.ä. schließen zuerst selbst
+  if(e.defaultPrevented) return;
+  e.preventDefault();
+  requestCloseModal(overlays[overlays.length-1]);
+});
 
 function unitSelect(val='kg'){
   const sel=h('select',{value:val});
@@ -3125,6 +3220,14 @@ function openFormDialog({title,fields,rows,onSave,saveLabel,cancelLabel}){
     )
   ));
 
+  // Enter in einem einzeiligen Feld speichert
+  modal.addEventListener('keydown',e=>{
+    if(e.key==='Enter'&&e.target.tagName==='INPUT'&&!e.isComposing){
+      e.preventDefault();
+      modal.querySelector('.modal-buttons .btn-accent')?.click();
+    }
+  });
+
   const first=inputs[fields[0]?.key];
   if(first&&first.focus) first.focus();
 
@@ -3132,6 +3235,17 @@ function openFormDialog({title,fields,rows,onSave,saveLabel,cancelLabel}){
 }
 
 function round2(n){return Math.round(n*100)/100;}
+
+// Kleiner −-Knopf für „Bestellungen aufteilen" — Rechtsklick gibt es auf
+// Touch-Geräten nicht. Klick geht nicht an die Box (die zählt +1).
+function orderGroupDecBtn(onDec){
+  return h('button',{class:'og-dec',type:'button',title:t('order_group_dec'),'aria-label':t('order_group_dec'),onClick:e=>{e.stopPropagation();onDec();}},'−');
+}
+
+// HTML-Escaping für Werte in Druck-/Export-HTML (window.open + document.write)
+function esc(v){
+  return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
 
 async function getDayIds(){
   if(!selectedActionId) return [];
@@ -3281,10 +3395,10 @@ async function renderCalendarPage(container){
 
   // Action detail buttons (below action list)
   if(selectedActionId){
-    const actionBtns=h('div',{style:{display:'flex',gap:'6px',marginTop:'8px'}});
-    actionBtns.appendChild(h('button',{class:'btn btn-surface btn-sm',style:{flex:1,fontSize:'12px'},onClick:()=>editActionDialog()},t('btn_edit')));
-    actionBtns.appendChild(h('button',{class:'btn btn-surface btn-sm',style:{flex:1,fontSize:'12px'},onClick:()=>duplicateActionDialog()},t('btn_duplicate_recipe')));
-    actionBtns.appendChild(h('button',{class:'btn btn-danger btn-sm',style:{flex:1,fontSize:'12px'},onClick:()=>deleteActionHandler()},t('btn_delete')));
+    const actionBtns=h('div',{style:{display:'flex',flexWrap:'wrap',gap:'6px',marginTop:'8px'}});
+    actionBtns.appendChild(h('button',{class:'btn btn-surface btn-sm',style:{flex:'1 1 auto',justifyContent:'center',fontSize:'12px'},onClick:()=>editActionDialog()},t('btn_edit')));
+    actionBtns.appendChild(h('button',{class:'btn btn-surface btn-sm',style:{flex:'1 1 auto',justifyContent:'center',fontSize:'12px'},onClick:()=>duplicateActionDialog()},t('btn_duplicate_recipe')));
+    actionBtns.appendChild(h('button',{class:'btn btn-danger btn-sm',style:{flex:'1 1 auto',justifyContent:'center',fontSize:'12px'},onClick:()=>deleteActionHandler()},t('btn_delete')));
     actionSidebar.appendChild(actionBtns);
   }
 
@@ -3294,8 +3408,8 @@ async function renderCalendarPage(container){
 
   // Two columns for calendar + meals
   const cols=h('div',{class:'cal-cols'});
-  const leftCol=h('div',{style:{flex:'1'}});
-  const rightCol=h('div',{style:{flex:'1'}});
+  const leftCol=h('div',{style:{flex:'1',minWidth:0}});
+  const rightCol=h('div',{style:{flex:'1',minWidth:0}});
   cols.append(leftCol,rightCol);
   contentArea.appendChild(cols);
 
@@ -3331,7 +3445,7 @@ async function renderCalendarPage(container){
     for(const cd of cookingDays) slotsByDay[cd.id]=await getMealSlots(cd.id);
     const dayMetaEls={};
     const dayMetaText=ds=>ds.length?t('cal_day_meta',ds.length,ds.reduce((s,x)=>s+x.portion_count,0)):t('cal_day_meta_empty');
-    const today=new Date().toISOString().slice(0,10);
+    const today=todayStr();
     const monthNames=[t('month_jan'),t('month_feb'),t('month_mar'),t('month_apr'),t('month_may'),t('month_jun'),t('month_jul'),t('month_aug'),t('month_sep'),t('month_oct'),t('month_nov'),t('month_dec')];
 
     // Nav
@@ -3403,7 +3517,10 @@ async function renderCalendarPage(container){
         left.appendChild(metaEl);
         dayMetaEls[cd.id]=metaEl;
         row.appendChild(left);
-        row.appendChild(h('button',{class:'btn-icon btn-ghost',onClick:async()=>{await deleteCookingDayByDate(selectedActionId,cd.date);if(calSelectedDate===cd.date)calSelectedDate=null;refreshCal();}},'✕'));
+        row.appendChild(h('button',{class:'btn-icon btn-ghost',title:t('aria_delete_day'),'aria-label':t('aria_delete_day'),onClick:async()=>{
+          const nSlots=(slotsByDay[cd.id]||[]).length;
+          if(nSlots&&!confirm(t('msg_confirm_delete_cooking_day',formatDate(cd.date),nSlots))) return;
+          await deleteCookingDayByDate(selectedActionId,cd.date);if(calSelectedDate===cd.date)calSelectedDate=null;refreshCal();}},'✕'));
         daysCard.appendChild(row);
       });
     }
@@ -3499,7 +3616,7 @@ async function renderCalendarPage(container){
     if(!selectedActionId) return;
     const action=(await getActions()).find(a=>a.id===selectedActionId);if(!action) return;
     const days=await getCookingDays(selectedActionId);
-    const firstDate=days.length?days[0].date:new Date().toISOString().slice(0,10);
+    const firstDate=days.length?days[0].date:todayStr();
     openFormDialog({
       title:t('dlg_dup_action'),
       saveLabel:t('btn_create'),
@@ -3545,7 +3662,7 @@ async function renderIngredientsPage(container){
   const body=h('div',{class:'page-body'});
   container.append(header,body);
 
-  const filterRow=h('div',{style:{display:'flex',gap:'8px',alignItems:'center'}});
+  const filterRow=h('div',{class:'filter-row'});
   const searchInput=h('input',{type:'text',class:'search-input',placeholder:t('ph_search'),style:{flex:1}});
   const catFilter=h('select',{style:{minWidth:'160px'}});
   catFilter.appendChild(h('option',{value:''},t('filter_all_categories')));
@@ -4553,7 +4670,7 @@ async function renderGeneralOrderPage(container){
     const box=h('div',{style:{display:'flex',alignItems:'center',gap:'6px',background:'var(--surface2)',padding:'4px 10px',borderRadius:'8px',fontSize:'12px',cursor:'pointer',userSelect:'none'}});
     box.addEventListener('click',async()=>{entry.group++;updateDisplay();await setDayOrderGroup(entry.dayId,entry.group);generate();});
     box.addEventListener('contextmenu',async e=>{e.preventDefault();if(entry.group>1){entry.group--;updateDisplay();await setDayOrderGroup(entry.dayId,entry.group);generate();}});
-    box.append(numEl,h('span',{},formatDate(d.date)));
+    box.append(orderGroupDecBtn(()=>box.dispatchEvent(new MouseEvent('contextmenu',{cancelable:true}))),numEl,h('span',{},formatDate(d.date)));
     dayFilterBody.appendChild(box);
     dayEntries.push(entry);
   });
@@ -5021,7 +5138,7 @@ async function renderGeneralOrderPage(container){
           if(skipped) content.appendChild(h('div',{style:{fontSize:'11px',color:'var(--accent)',marginTop:'8px'}},t('stock_transfer_skipped',skipped)));
           content.appendChild(h('div',{class:'modal-buttons'},
             h('button',{class:'btn btn-accent',onClick:async()=>{
-              const today=new Date().toISOString().slice(0,10);
+              const today=todayStr();
               let count=0;
               for(const r of rows){
                 if(!r.cb.checked) continue;
@@ -5564,6 +5681,7 @@ function exportStockUsageCsv(stockList,{actionName}){
 // Zutatname-Spalte leer, Zeilen bleiben nach Subkategorie gruppiert
 // (Grundbedarfe).
 function printOrderPDF(items, {title, actionName, includeName=true, stockList=null, portionsTotal=null}){
+  title=esc(title);actionName=esc(actionName);
   const dateStr = new Date().toLocaleDateString(LANG==='en'?'en-GB':'de-DE');
   const groups  = _orderGroupBySubcat(items);
   const grand   = items.reduce((s,i)=>s+_orderItemCost(i),0);
@@ -5602,7 +5720,7 @@ function printOrderPDF(items, {title, actionName, includeName=true, stockList=nu
     body += `<table class="cat-table">
       <thead><tr>
         <th class="col-check"></th>
-        <th class="col-name">${g.label}</th>
+        <th class="col-name">${esc(g.label)}</th>
         <th class="col-qty">${qtyL}</th>
         <th class="col-price">${priceL}</th>
       </tr></thead>
@@ -5616,7 +5734,7 @@ function printOrderPDF(items, {title, actionName, includeName=true, stockList=nu
       const optTag   = i.optional ? ` <span class="opt-tag">${optL}</span>` : '';
       body += `<tr${rowCls}>
         <td class="col-check"><span class="box"></span></td>
-        <td class="col-name">${iName}${optTag}</td>
+        <td class="col-name">${esc(iName)}${optTag}</td>
         <td class="col-qty">${qtyStr} ${i.unit}</td>
         <td class="col-price">${priceStr}</td>
       </tr>`;
@@ -5693,14 +5811,14 @@ function _stockUsageHtml(stockList){
     for(const u of stockList.used){
       const nums=Object.keys(u.byGroup);
       const grpInfo=nums.length>1?`<div class="grp-info">${nums.map(n=>`${grpL} ${n}: ${fmtQ(u.byGroup[n])} ${u.unit}`).join(' · ')}</div>`:'';
-      body += `<tr><td class="col-check"><span class="box"></span></td><td class="col-name">${u.name}${grpInfo}</td><td class="col-qty">${fmtQ(u.total)} ${u.unit}</td><td class="col-stock">${fmtQ(u.stock)} ${u.unit} → ${remL} ${fmtQ(u.remaining)} ${u.unit}</td></tr>`;
+      body += `<tr><td class="col-check"><span class="box"></span></td><td class="col-name">${esc(u.name)}${grpInfo}</td><td class="col-qty">${fmtQ(u.total)} ${u.unit}</td><td class="col-stock">${fmtQ(u.stock)} ${u.unit} → ${remL} ${fmtQ(u.remaining)} ${u.unit}</td></tr>`;
     }
     body += `</tbody></table>`;
   }
   if(stockList.unplanned.length){
     body += `<table class="cat-table stock-table"><thead><tr><th class="col-name">${stayL}</th><th class="col-qty">${stockL}</th></tr></thead><tbody>`;
     for(const u of stockList.unplanned){
-      body += `<tr><td class="col-name">${u.name}</td><td class="col-qty">${fmtQ(u.stock)} ${u.unit}</td></tr>`;
+      body += `<tr><td class="col-name">${esc(u.name)}</td><td class="col-qty">${fmtQ(u.stock)} ${u.unit}</td></tr>`;
     }
     body += `</tbody></table>`;
   }
@@ -5709,6 +5827,7 @@ function _stockUsageHtml(stockList){
 
 // Separates Packlisten-PDF (nur Lagerverwendung, alle Bestellungen)
 function printStockUsagePDF(stockList,{actionName}){
+  actionName=esc(actionName);
   const title  = LANG==='en'?'Stock use (packing list)':'Lagerverwendung (Packliste)';
   const evL    = LANG==='en'?'Event':'Veranstaltung';
   const dateL  = LANG==='en'?'Date':'Datum';
@@ -6786,7 +6905,7 @@ function buildRecipePrintPage(recipe,{portions,substitutions={},metaSpans=[],pre
     if(hasQf){const qf=ing.ingredient_quellfaktor||1;const swollen=Math.round(netto*qf*100)/100;const swollenStr=String(swollen).replace('.',',');qfTd=qf!==1?`<td style="text-align:right;color:#40916c">${swollenStr} ${ing.unit}</td>`:`<td style="text-align:right;color:#aaa">—</td>`;}
     const pdfIngName=LANG==='en'?(ing.ingredient_name_en||ing.ingredient_name):ing.ingredient_name;
     const pdfPrep=ing.preparation?(LANG==='en'?(prepEnMap[ing.preparation]||ing.preparation):ing.preparation):'—';
-    return `<tr${style}><td>${pdfIngName}</td><td>${pdfPrep}</td><td style="text-align:right">${perPStr} ${ing.unit}</td><td style="text-align:right;font-weight:700">${totalStr} ${ing.unit}</td>${nettoTd}${kfTd}${qfTd}</tr>`;
+    return `<tr${style}><td>${esc(pdfIngName)}</td><td>${esc(pdfPrep)}</td><td style="text-align:right">${perPStr} ${ing.unit}</td><td style="text-align:right;font-weight:700">${totalStr} ${ing.unit}</td>${nettoTd}${kfTd}${qfTd}</tr>`;
   }
   function ingTrWithSub(ing,style=''){
     const subChoice=substitutions[String(ing.id)];
@@ -6794,7 +6913,7 @@ function buildRecipePrintPage(recipe,{portions,substitutions={},metaSpans=[],pre
       const subIngObj={...ing,ingredient_name:subChoice.ingredient_name,ingredient_name_en:subChoice.ingredient_name_en||'',quantity_per_person:subChoice.quantity_per_person,unit:subChoice.unit||ing.unit,preparation:subChoice.preparation||ing.preparation};
       let row=ingTr(subIngObj,style);
       const origName=LANG==='en'?(ing.ingredient_name_en||ing.ingredient_name):ing.ingredient_name;
-      row+=`<tr${style}><td colspan="${colSpan}" style="font-size:9px;color:#888;padding:2px 10px;font-style:italic">⇄ ${t('pdf_instead_of')} ${origName}</td></tr>`;
+      row+=`<tr${style}><td colspan="${colSpan}" style="font-size:9px;color:#888;padding:2px 10px;font-style:italic">⇄ ${t('pdf_instead_of')} ${esc(origName)}</td></tr>`;
       return row;
     }
     return ingTr(ing,style);
@@ -6812,17 +6931,17 @@ function buildRecipePrintPage(recipe,{portions,substitutions={},metaSpans=[],pre
 
   return `<div class="recipe-page">
     <div class="page-top">
-      <div class="recipe-title">${(LANG==='en'&&recipe.name_en)?recipe.name_en:recipe.name}</div>
+      <div class="recipe-title">${esc((LANG==='en'&&recipe.name_en)?recipe.name_en:recipe.name)}</div>
       <div class="meta-row">${metaSpans.join('')}<span class="portions-badge">${portions} ${t('cal_portionen_unit')}</span></div>
     </div>
     <div class="fill-fields">
       <div class="fill-line"><strong>${t('pdf_cooking_team')}</strong> <span class="line-blank"></span></div>
       <div class="fill-line"><strong>${t('pdf_schedule')}</strong> <span class="line-blank-short"></span> <strong>${t('pdf_ready_by')}</strong> <span class="line-blank-short"></span></div>
     </div>
-    ${(()=>{const d=(LANG==='en'&&recipe.description_en)?recipe.description_en:recipe.description;return d?`<div class="desc-block"><strong>${t('pdf_description')}</strong> ${d}</div>`:''})()}
+    ${(()=>{const d=(LANG==='en'&&recipe.description_en)?recipe.description_en:recipe.description;return d?`<div class="desc-block"><strong>${t('pdf_description')}</strong> ${esc(d)}</div>`:''})()}
     <div class="info-grid">
-      ${recipe.zubereitung_zeit?`<div class="info-item"><span class="info-label">${t('pdf_prep_time_label')}</span><span>${recipe.zubereitung_zeit}</span></div>`:''}
-      ${recipe.garzeit?`<div class="info-item"><span class="info-label">${t('pdf_cook_time_label')}</span><span>${recipe.garzeit}</span></div>`:''}
+      ${recipe.zubereitung_zeit?`<div class="info-item"><span class="info-label">${t('pdf_prep_time_label')}</span><span>${esc(recipe.zubereitung_zeit)}</span></div>`:''}
+      ${recipe.garzeit?`<div class="info-item"><span class="info-label">${t('pdf_cook_time_label')}</span><span>${esc(recipe.garzeit)}</span></div>`:''}
       <div class="info-item"><span class="info-label">${t('pdf_total_cost')}</span><span>${costStr}</span></div>
       <div class="info-item"><span class="info-label">${t('pdf_cost_per_portion')}</span><span>${costPerP}</span></div>
       ${(recipe.volumen_liter&&recipe.volumen_portionen)?`<div class="info-item"><span class="info-label">${LANG==='en'?'Volume':'Volumen'}</span><span>≈ ${String(Math.round(recipe.volumen_liter/recipe.volumen_portionen*portions*10)/10).replace('.',',')} L</span></div>`:''}
@@ -6831,10 +6950,10 @@ function buildRecipePrintPage(recipe,{portions,substitutions={},metaSpans=[],pre
       <thead><tr><th>${t('col_ingredient')}</th><th>${t('col_processing')}</th><th>${t('col_qty_per_person')}</th><th>${t('col_total_qty')}</th>${hasAb?`<th>${t('col_netto')}</th>`:''}${hasKf?`<th>${t('col_cooked')}</th>`:''}${hasQf?`<th>${t('col_swollen')}</th>`:''}</tr></thead>
       <tbody>${ingRows}</tbody>
     </table>
-    ${recipeMaterials.length?`<div class="section"><div class="section-title">${t('recipe_material_label')}</div><div class="section-body">${recipeMaterials.map(rm=>`☐ ${rm.quantity||1}× ${rm.name}${rm.note?' — '+rm.note:''}`).join('<br>')}</div></div>`:''}
-    ${(()=>{const ah=(LANG==='en'&&recipe.allergen_hinweis_en)?recipe.allergen_hinweis_en:recipe.allergen_hinweis;return recipe.allergens.length||ah?`<div class="section"><div class="section-title">${t('pdf_allergens_section')}</div><div class="section-body">${recipe.allergens.map(a=>`<span style="display:inline-block;background:#fce4e4;color:#c0392b;padding:2px 10px;border-radius:10px;font-size:11px;margin:2px 4px 2px 0">${allergenDisplayName(a)}</span>`).join('')}${ah?`<div style="margin-top:4px;font-style:italic;font-size:11px;color:#666">${ah}</div>`:''}</div></div>`:''})()}
-    ${(()=>{const z=(LANG==='en'&&recipe.zubereitung_en)?recipe.zubereitung_en:recipe.zubereitung;return z?`<div class="section"><div class="section-title">${t('pdf_preparation_section')}</div><div class="section-body">${z.replace(/\n/g,'<br>')}</div></div>`:''})()}
-    ${(()=>{const hn=(LANG==='en'&&recipe.hinweis_en)?recipe.hinweis_en:recipe.hinweis;return hn?`<div class="section"><div class="section-title">${t('pdf_note_section')}</div><div class="section-body">${hn.replace(/\n/g,'<br>')}</div></div>`:''})()}
+    ${recipeMaterials.length?`<div class="section"><div class="section-title">${t('recipe_material_label')}</div><div class="section-body">${recipeMaterials.map(rm=>`☐ ${esc(rm.quantity||1)}× ${esc(rm.name)}${rm.note?' — '+esc(rm.note):''}`).join('<br>')}</div></div>`:''}
+    ${(()=>{const ah=(LANG==='en'&&recipe.allergen_hinweis_en)?recipe.allergen_hinweis_en:recipe.allergen_hinweis;return recipe.allergens.length||ah?`<div class="section"><div class="section-title">${t('pdf_allergens_section')}</div><div class="section-body">${recipe.allergens.map(a=>`<span style="display:inline-block;background:#fce4e4;color:#c0392b;padding:2px 10px;border-radius:10px;font-size:11px;margin:2px 4px 2px 0">${allergenDisplayName(a)}</span>`).join('')}${ah?`<div style="margin-top:4px;font-style:italic;font-size:11px;color:#666">${esc(ah)}</div>`:''}</div></div>`:''})()}
+    ${(()=>{const z=(LANG==='en'&&recipe.zubereitung_en)?recipe.zubereitung_en:recipe.zubereitung;return z?`<div class="section"><div class="section-title">${t('pdf_preparation_section')}</div><div class="section-body">${esc(z).replace(/\n/g,'<br>')}</div></div>`:''})()}
+    ${(()=>{const hn=(LANG==='en'&&recipe.hinweis_en)?recipe.hinweis_en:recipe.hinweis;return hn?`<div class="section"><div class="section-title">${t('pdf_note_section')}</div><div class="section-body">${esc(hn).replace(/\n/g,'<br>')}</div></div>`:''})()}
     <div class="notes-box">
       <div class="notes-title">${t('pdf_notes_box')}</div>
       <div class="notes-lines"><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div><div class="note-line"></div></div>
@@ -6844,6 +6963,7 @@ function buildRecipePrintPage(recipe,{portions,substitutions={},metaSpans=[],pre
 
 // Öffnet das Druckfenster mit den übergebenen Rezeptseiten
 function openRecipePrintWindow(pagesHtml,title){
+  title=esc(title);
   const printHTML=`<!DOCTYPE html><html lang="${LANG}"><head><meta charset="UTF-8"><title>${title}</title>
 <style>
 @page{size:A4;margin:0}
@@ -7075,7 +7195,7 @@ async function renderSpecialOrderPage(container){
       const box=h('div',{style:{display:'flex',alignItems:'center',gap:'6px',background:'var(--surface2)',padding:'4px 10px',borderRadius:'8px',fontSize:'12px',cursor:'pointer',userSelect:'none'}});
       box.addEventListener('click',async()=>{entry.group++;updateDisplay();await setDayOrderGroup(entry.dayId,entry.group);});
       box.addEventListener('contextmenu',async e=>{e.preventDefault();if(entry.group>1){entry.group--;updateDisplay();await setDayOrderGroup(entry.dayId,entry.group);}});
-      box.append(numEl,h('span',{},formatDate(d.date)));
+      box.append(orderGroupDecBtn(()=>box.dispatchEvent(new MouseEvent('contextmenu',{cancelable:true}))),numEl,h('span',{},formatDate(d.date)));
       dayFilterBody.appendChild(box);
       entry.el=numEl;
       dayEntries.push(entry);
@@ -7231,6 +7351,11 @@ async function renderSpecialOrderPage(container){
         }},t('btn_assign'))
       )
     ));
+    // Zuweisen erst mit gewähltem Rezept; bleibt nach der Suche genau
+    // ein Rezept übrig, wird es direkt ausgewählt
+    const okBtn=modal.querySelector('.modal-buttons .btn-accent');
+    const syncOk=()=>{if(recipeSel.options.length===2&&!recipeSel.value) recipeSel.selectedIndex=1;okBtn.disabled=!recipeSel.value;};
+    recipeSel.addEventListener('change',syncOk);searchInput.addEventListener('input',syncOk);syncOk();searchInput.focus();
   }
 
   function showSubstitutionPicker(slotId,recipeId,isSide,isAllergy,recipe,ingsWithSubs,onDone){
@@ -7323,6 +7448,11 @@ async function renderSpecialOrderPage(container){
         }},t('btn_assign'))
       )
     ));
+    // Zuweisen erst mit gewähltem Rezept; bleibt nach der Suche genau
+    // ein Rezept übrig, wird es direkt ausgewählt
+    const okBtn=modal.querySelector('.modal-buttons .btn-accent');
+    const syncOk=()=>{if(recipeSel.options.length===2&&!recipeSel.value) recipeSel.selectedIndex=1;okBtn.disabled=!recipeSel.value;};
+    recipeSel.addEventListener('change',syncOk);searchInput.addEventListener('input',syncOk);syncOk();searchInput.focus();
   }
 
   async function generate(){
@@ -7661,13 +7791,14 @@ function exportMatListCsv(mats){
 // Generisches druckbares PDF: Tabellen pro Kategorie (Print-Fenster).
 // headers[0] wird durch den Kategorienamen ersetzt; groups = {kat: [zeile[], …]}
 function printCatTablePDF(title,headers,groups){
+  title=esc(title);
   const dateStr=new Date().toLocaleDateString(LANG==='en'?'en-GB':'de-DE');
   const dateL=LANG==='en'?'Date':'Datum';
   let body='';
   Object.keys(groups).sort().forEach(cat=>{
-    body+=`<table class="cat-table"><thead><tr><th>${cat}</th>${headers.slice(1).map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>`;
+    body+=`<table class="cat-table"><thead><tr><th>${esc(cat)}</th>${headers.slice(1).map(x=>`<th>${x}</th>`).join('')}</tr></thead><tbody>`;
     groups[cat].forEach(row=>{
-      body+=`<tr>${row.map(c=>`<td>${c??''}</td>`).join('')}</tr>`;
+      body+=`<tr>${row.map(c=>`<td>${esc(c)}</td>`).join('')}</tr>`;
     });
     body+='</tbody></table>';
   });
@@ -7698,7 +7829,7 @@ ${body}
 // Rückgabe, Unterschriftszeilen am Ende
 function printLoanListPDF(list){
   const dateStr=list.created_at?formatDate(list.created_at):new Date().toLocaleDateString(LANG==='en'?'en-GB':'de-DE');
-  const title=(LANG==='en'?'Loan list':'Ausleihliste')+' — '+list.name;
+  const title=(LANG==='en'?'Loan list':'Ausleihliste')+' — '+esc(list.name);
   const outL=LANG==='en'?'Out':'Raus', backL=LANG==='en'?'Back':'Zurück',
         qtyL=LANG==='en'?'Qty':'Anzahl', itemL=LANG==='en'?'Item':'Gegenstand',
         noteL=LANG==='en'?'Note':'Notiz', dateL=LANG==='en'?'Date':'Datum',
@@ -7707,7 +7838,7 @@ function printLoanListPDF(list){
         signBackL=LANG==='en'?'Returned complete (date/signature):':'Vollständig zurück (Datum/Unterschrift):';
   let rows='';
   (list.items||[]).forEach(it=>{
-    rows+=`<tr><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td><td style="text-align:right;font-weight:700">${it.quantity??1}</td><td>${it.name}</td><td>${it.note||''}</td></tr>`;
+    rows+=`<tr><td class="col-check"><span class="box"></span></td><td class="col-check"><span class="box"></span></td><td style="text-align:right;font-weight:700">${it.quantity??1}</td><td>${esc(it.name)}</td><td>${esc(it.note)}</td></tr>`;
   });
   const html=`<!DOCTYPE html><html lang="${LANG}"><head><meta charset="UTF-8"><title>${title}</title>
 <style>
@@ -7729,7 +7860,7 @@ tr:nth-child(even) td{background:#fafafa}
 </style></head><body>
 <div class="header">
   <div class="title">${title}</div>
-  <div class="meta"><span><strong>${dateL}:</strong> ${dateStr}</span>${list.lent_to?`<span><strong>${lentToL}:</strong> ${list.lent_to}</span>`:''}${list.note?`<span>${list.note}</span>`:''}</div>
+  <div class="meta"><span><strong>${dateL}:</strong> ${dateStr}</span>${list.lent_to?`<span><strong>${lentToL}:</strong> ${esc(list.lent_to)}</span>`:''}${list.note?`<span>${esc(list.note)}</span>`:''}</div>
 </div>
 <table>
   <thead><tr><th class="col-check">${outL}</th><th class="col-check">${backL}</th><th style="width:60px;text-align:right">${qtyL}</th><th>${itemL}</th><th>${noteL}</th></tr></thead>
@@ -7908,7 +8039,7 @@ async function renderStockPage(container){
     for(const en of data.entries){
       const ing=en.ingredient_name?byName.get(String(en.ingredient_name).toLowerCase()):null;
       if(!ing){skipped++;continue;}
-      const rec={ingredient_id:ing.id,quantity:en.quantity??null,unit:en.unit||ing.unit||'kg',note:en.note||'',stored_at:en.stored_at||new Date().toISOString().slice(0,10)};
+      const rec={ingredient_id:ing.id,quantity:en.quantity??null,unit:en.unit||ing.unit||'kg',note:en.note||'',stored_at:en.stored_at||todayStr()};
       if(seen.has(dupKey(rec))){skipped++;continue;}
       await dbAdd('food_stock',rec);seen.add(dupKey(rec));added++;
     }
@@ -7928,7 +8059,7 @@ async function renderStockPage(container){
     for(const en of data.entries){
       const mat=en.material_name?byName.get(String(en.material_name).toLowerCase()):null;
       if(!mat){skipped++;continue;}
-      const rec={material_id:mat.id,quantity:en.quantity??null,unit:en.unit||mat.unit||'Stück',note:en.note||'',attr_values:en.attr_values||{},stored_at:en.stored_at||new Date().toISOString().slice(0,10)};
+      const rec={material_id:mat.id,quantity:en.quantity??null,unit:en.unit||mat.unit||'Stück',note:en.note||'',attr_values:en.attr_values||{},stored_at:en.stored_at||todayStr()};
       if(seen.has(dupKey(rec))){skipped++;continue;}
       await dbAdd('material_stock',rec);seen.add(dupKey(rec));added++;
     }
@@ -7984,7 +8115,7 @@ async function renderStockPage(container){
         if(!ingredient_id) return false;
         const quantity=(qty==null||qty<=0)?null:qty;
         if(rec){Object.assign(rec,{ingredient_id,quantity,unit,note});await dbPut('food_stock',rec);}
-        else await dbAdd('food_stock',{ingredient_id,quantity,unit,note,stored_at:new Date().toISOString().slice(0,10)});
+        else await dbAdd('food_stock',{ingredient_id,quantity,unit,note,stored_at:todayStr()});
         refresh();
       }
     });
@@ -8075,7 +8206,7 @@ async function renderStockPage(container){
           }
         }
         if(rec){Object.assign(rec,{material_id,quantity,unit,note,attr_values});await dbPut('material_stock',rec);}
-        else await dbAdd('material_stock',{material_id,quantity,unit,note,attr_values,stored_at:new Date().toISOString().slice(0,10)});
+        else await dbAdd('material_stock',{material_id,quantity,unit,note,attr_values,stored_at:todayStr()});
         refresh();
       }
     });
@@ -8100,7 +8231,7 @@ async function renderStockPage(container){
       ],
       onSave:async({name,lent,note})=>{
         if(rec){Object.assign(rec,{name,lent_to:lent,note});await dbPut('loan_lists',rec);}
-        else await dbAdd('loan_lists',{name,lent_to:lent,note,created_at:new Date().toISOString().slice(0,10),items:[]});
+        else await dbAdd('loan_lists',{name,lent_to:lent,note,created_at:todayStr(),items:[]});
         refresh();
       }
     });
@@ -8557,6 +8688,90 @@ async function importFullDatabase(json,stores=null){
   }
 }
 
+// Standard-Datenbestand aus standardbackup.json laden (Datenbank-Seite
+// und Willkommens-Dialog beim Erststart). Aktionen/Lager bleiben erhalten.
+async function loadDefaultData(statusEl){
+  statusEl.style.color='var(--text-muted)';
+  statusEl.textContent=t('status_loading_default');
+  try{
+    const resp=await fetch('standardbackup.json',{cache:'no-store'});
+    if(!resp.ok) throw new Error('HTTP '+resp.status);
+    const text=await resp.text();
+    // Nur Nicht-Aktions-Stores überschreiben
+    const storesToImport=ALL_STORES.filter(s=>!ACTION_STORES.includes(s));
+    await importFullDatabase(text,storesToImport);
+    // Standard-Materialien additiv ergänzen (lokale Materialliste bleibt unangetastet)
+    await mergeMaterialsAdditive(JSON.parse(text));
+    statusEl.style.color='var(--green-light)';
+    statusEl.textContent=t('status_default_loaded');
+    setTimeout(()=>location.reload(),1500);
+    return true;
+  }catch(e){
+    statusEl.style.color='var(--accent)';
+    statusEl.textContent=t('status_import_error',e.message);
+    return false;
+  }
+}
+
+// ── Backup-Erinnerung ────────────────────────────────────────
+// Alle Daten liegen nur in IndexedDB dieses Browsers. Wir merken uns das
+// Datum des letzten Komplett-Backups und erinnern nach BACKUP_REMIND_DAYS.
+const BACKUP_REMIND_DAYS=14;
+function _lsGet(k){try{return localStorage.getItem(k);}catch(_){return null;}}
+function _lsSet(k,v){try{localStorage.setItem(k,v);}catch(_){}}
+function lastBackupText(){
+  const d=_lsGet('kf_last_backup');
+  return d?t('backup_last',formatDate(d)):t('backup_last_never');
+}
+async function downloadFullBackup(){
+  const json=await exportFullDatabase();
+  const date=todayStr();
+  downloadFile(`KF_Backup_${date}.json`,json,'application/json');
+  _lsSet('kf_last_backup',date);
+  document.getElementById('backup-banner')?.remove();
+}
+function _daysSince(dateStr){
+  return Math.floor((new Date(todayStr()+'T00:00:00')-new Date(dateStr+'T00:00:00'))/86400000);
+}
+async function maybeShowBackupReminder(){
+  // Nur erinnern, wenn es eigene Daten gibt (mind. eine Aktion)
+  const actions=await getActions();
+  if(!actions.length) return;
+  const snooze=_lsGet('kf_backup_snooze');
+  if(snooze&&snooze>=todayStr()) return;
+  const last=_lsGet('kf_last_backup');
+  if(last&&_daysSince(last)<BACKUP_REMIND_DAYS) return;
+  const msg=last?t('backup_banner_old',_daysSince(last)):t('backup_banner_never');
+  const banner=h('div',{id:'backup-banner',class:'app-banner',role:'status'},
+    h('span',{},msg),
+    h('button',{class:'btn btn-sm btn-accent',onClick:()=>downloadFullBackup()},t('btn_backup_download')),
+    h('button',{class:'btn btn-sm btn-ghost',onClick:()=>{
+      // 3 Tage Ruhe
+      const d=new Date();d.setDate(d.getDate()+3);
+      _lsSet('kf_backup_snooze',`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`);
+      banner.remove();
+    }},t('btn_update_later'))
+  );
+  document.body.appendChild(banner);
+}
+
+// ── Erststart ────────────────────────────────────────────────
+async function maybeShowWelcome(){
+  const [ings,recs]=await Promise.all([getIngredients(),getRecipes()]);
+  if(ings.length||recs.length) return;
+  const status=h('div',{style:{marginTop:'8px',fontSize:'13px'}});
+  let modal;
+  modal=showModal(h('div',{},
+    h('h2',{},t('welcome_title')),
+    h('p',{class:'modal-text'},t('welcome_text')),
+    status,
+    h('div',{class:'modal-buttons'},
+      h('button',{class:'btn btn-surface',onClick:()=>closeModal(modal)},t('welcome_skip')),
+      h('button',{class:'btn btn-accent',onClick:async e=>{e.currentTarget.disabled=true;if(!await loadDefaultData(status)) e.currentTarget.disabled=false;}},t('welcome_load'))
+    )
+  ));
+}
+
 async function renderDatabasePage(container){
   const header=h('div',{class:'page-header'},h('h1',{},t('page_database')));
   const body=h('div',{class:'page-body'});
@@ -8566,11 +8781,12 @@ async function renderDatabasePage(container){
   const exportCard=h('div',{class:'card',style:{marginBottom:'16px'}});
   exportCard.appendChild(h('div',{style:{fontWeight:'700',fontSize:'14px',marginBottom:'8px'}},t('db_backup_title')));
   exportCard.appendChild(h('div',{style:{fontSize:'13px',color:'var(--text-muted)',marginBottom:'12px'}},t('db_backup_desc')));
+  const lastBackupEl=h('div',{style:{fontSize:'12px',color:'var(--text-muted)',marginTop:'8px'}},lastBackupText());
   exportCard.appendChild(h('button',{class:'btn btn-accent',onClick:async()=>{
-    const json=await exportFullDatabase();
-    const date=new Date().toISOString().slice(0,10);
-    downloadFile(`KF_Backup_${date}.json`,json,'application/json');
+    await downloadFullBackup();
+    lastBackupEl.textContent=lastBackupText();
   }},t('btn_backup_download')));
+  exportCard.appendChild(lastBackupEl);
   body.appendChild(exportCard);
 
   // Import section
@@ -8606,24 +8822,7 @@ async function renderDatabasePage(container){
   const defaultStatus=h('div',{style:{marginTop:'8px',fontSize:'13px'}});
   defaultCard.appendChild(h('button',{class:'btn btn-surface',onClick:async()=>{
     if(!confirm(t('msg_confirm_load_default'))) return;
-    defaultStatus.style.color='var(--text-muted)';
-    defaultStatus.textContent=t('status_loading_default');
-    try{
-      const resp=await fetch('standardbackup.json',{cache:'no-store'});
-      if(!resp.ok) throw new Error('Datei nicht gefunden (HTTP '+resp.status+')');
-      const text=await resp.text();
-      // Nur Nicht-Aktions-Stores überschreiben
-      const storesToImport=ALL_STORES.filter(s=>!ACTION_STORES.includes(s));
-      await importFullDatabase(text,storesToImport);
-      // Standard-Materialien additiv ergänzen (lokale Materialliste bleibt unangetastet)
-      await mergeMaterialsAdditive(JSON.parse(text));
-      defaultStatus.style.color='var(--green-light)';
-      defaultStatus.textContent=t('status_default_loaded');
-      setTimeout(()=>location.reload(),1500);
-    }catch(e){
-      defaultStatus.style.color='var(--accent)';
-      defaultStatus.textContent=t('status_import_error',e.message);
-    }
+    await loadDefaultData(defaultStatus);
   }},t('btn_load_default')));
   // Unauffälliger Gegenpart: aktuellen Datenbestand als standardbackup.json
   // exportieren (ohne lokale Daten: Aktionen, Planungen, Lager, Ausleihen) —
@@ -8657,7 +8856,7 @@ async function renderDatabasePage(container){
     const ids=(v==='all')?null:[parseInt(v)];
     try{
       const json=await exportActions(ids);
-      const date=new Date().toISOString().slice(0,10);
+      const date=todayStr();
       let fname;
       if(v==='all'){fname=`KF_Aktionen_${date}.json`;}
       else{const a=allActionsForShare.find(x=>String(x.id)===v);const safeName=(a?a.name:'Aktion').replace(/[^a-zA-Z0-9äöüÄÖÜß_-]+/g,'_');fname=`KF_Aktion_${safeName}_${date}.json`;}
@@ -9095,6 +9294,10 @@ async function init(){
   if(actions.length) selectedActionId=actions[0].id;
   buildNav();
   showPage('calendar');
+  // Browser bitten, die Daten nicht bei Speicherknappheit zu löschen
+  try{if(navigator.storage?.persist&&!(await navigator.storage.persisted())) await navigator.storage.persist();}catch(_){}
+  await maybeShowWelcome();
+  await maybeShowBackupReminder();
 }
 init();
 </script>
