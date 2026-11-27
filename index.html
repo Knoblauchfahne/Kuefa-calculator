@@ -184,6 +184,27 @@ label.checkbox input{accent-color:var(--text);width:16px;height:16px}
 
 /* ── Action Bar ───────────────────────────────────────────── */
 .action-bar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+/* Aktions-Umschalter im Seitenkopf */
+.action-switch{display:flex;align-items:center;gap:6px;margin-top:4px}
+.action-switch-label{font-size:12px;color:var(--text-muted)}
+.action-switch select{padding:3px 8px;font-size:12px;max-width:260px}
+/* Fortschritt der Aktion */
+.prog-card{margin-top:12px;padding:12px}
+.prog-title{font-size:13px;font-weight:700;margin-bottom:6px}
+.prog-row{display:flex;align-items:flex-start;gap:8px;width:100%;text-align:left;background:transparent;border:none;color:var(--text);padding:6px 4px;border-radius:6px;font:inherit}
+button.prog-row{cursor:pointer}
+button.prog-row:hover{background:var(--surface2)}
+.prog-dot{width:10px;height:10px;border-radius:50%;margin-top:4px;flex-shrink:0;background:var(--text-muted)}
+.prog-ok .prog-dot{background:var(--ok)}
+.prog-warn .prog-dot{background:var(--warn)}
+.prog-todo .prog-dot{background:transparent;border:2px solid var(--text-muted)}
+.prog-text{display:flex;flex-direction:column;min-width:0}
+.prog-label{font-size:12px;font-weight:600}
+.prog-value{font-size:11px;color:var(--text-muted)}
+.prog-warn .prog-value{color:var(--warn)}
+.prog-hint{font-size:11px;color:var(--text-muted);padding:2px 4px 4px 22px}
+.apply-all-btn{margin-top:4px;font-size:11px}
+.notice-warn{background:var(--warn-dim);color:var(--warn);border-radius:8px;padding:8px 12px;font-size:12px;font-weight:600;margin-bottom:8px}
 .action-bar select{min-width:260px}
 
 /* ── Two-Col Layout ───────────────────────────────────────── */
@@ -279,6 +300,7 @@ label.checkbox input{accent-color:var(--text);width:16px;height:16px}
   .two-col .col-right{flex:1;overflow-y:visible}
   /* Action bar */
   .action-bar{flex-direction:column;align-items:stretch}
+  .action-switch select{max-width:none;flex:1}
   .action-bar select{min-width:0;width:100%}
   .search-input{width:100%}
   .filter-row{flex-wrap:wrap}
@@ -703,6 +725,24 @@ de: {
   msg_confirm_delete_action: 'Kochaktion "{0}" und alle zugehörigen Kochtage wirklich löschen?',
   msg_confirm_delete_cooking_day: 'Kochtag {0} mit {1} Mahlzeit(en) und allen Rezept-Zuweisungen löschen?',
   msg_discard_changes: 'Ungespeicherte Änderungen verwerfen?',
+  action_switch_label: 'Aktion',
+  action_switch_none: 'Noch keine Kochaktion — im Kalender anlegen',
+  go_apply_all_days: 'Für alle Tage übernehmen',
+  go_applied_all: 'Auswahl für {0} Mahlzeiten übernommen',
+  order_no_recipe_warning: '{0} Mahlzeit(en) ohne Rezept — sie fehlen in der Einkaufsliste',
+  prog_title: 'Stand der Aktion',
+  prog_days: 'Kochtage und Portionen',
+  prog_days_val: '{0} Tage · {1} Portionen',
+  prog_days_none: 'Noch keine Kochtage — Tage im Kalender anklicken',
+  prog_general: 'Einkauf nach Grundbedarf',
+  prog_general_open: '{0} Mahlzeit(en) ohne Auswahl',
+  prog_general_done: 'Alle Mahlzeiten ausgewählt',
+  prog_recipes: 'Einkauf nach Rezept',
+  prog_recipes_open: '{0} von {1} Mahlzeiten ohne Rezept',
+  prog_recipes_done: 'Alle Mahlzeiten haben ein Rezept',
+  prog_stock: 'Lager und Ausleihe',
+  prog_stock_val: 'Packliste und Ausleihlisten',
+  prog_hint: 'Für den Einkauf reicht einer der beiden Wege.',
   btn_confirm_ok: 'OK',
   btn_confirm_discard: 'Verwerfen',
   dlg_confirm_title: 'Bitte bestätigen',
@@ -1583,6 +1623,24 @@ en: {
   msg_confirm_delete_action: 'Really delete cooking event "{0}" and all related cooking days?',
   msg_confirm_delete_cooking_day: 'Delete cooking day {0} with {1} meal(s) and all recipe assignments?',
   msg_discard_changes: 'Discard unsaved changes?',
+  action_switch_label: 'Event',
+  action_switch_none: 'No cooking event yet — create one in the calendar',
+  go_apply_all_days: 'Apply to all days',
+  go_applied_all: 'Selection applied to {0} meals',
+  order_no_recipe_warning: '{0} meal(s) without a recipe — they are missing from the shopping list',
+  prog_title: 'Event status',
+  prog_days: 'Cooking days and portions',
+  prog_days_val: '{0} days · {1} portions',
+  prog_days_none: 'No cooking days yet — click days in the calendar',
+  prog_general: 'Shopping by basic needs',
+  prog_general_open: '{0} meal(s) without selection',
+  prog_general_done: 'All meals selected',
+  prog_recipes: 'Shopping by recipe',
+  prog_recipes_open: '{0} of {1} meals without a recipe',
+  prog_recipes_done: 'All meals have a recipe',
+  prog_stock: 'Storage and loans',
+  prog_stock_val: 'Packing list and loan lists',
+  prog_hint: 'One of the two shopping routes is enough.',
   btn_confirm_ok: 'OK',
   btn_confirm_discard: 'Discard',
   dlg_confirm_title: 'Please confirm',
@@ -3156,6 +3214,7 @@ let currentPage = 'calendar';
 function h(tag,attrs,...children){
   const el=document.createElement(tag);
   if(attrs) for(const[k,v] of Object.entries(attrs)){
+    if(v==null) continue;
     if(k==='class') el.className=v;
     else if(k.startsWith('on')) el.addEventListener(k.slice(2).toLowerCase(),v);
     else if(k==='style'&&typeof v==='object') Object.assign(el.style,v);
@@ -3495,6 +3554,58 @@ function esc(v){
   return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 }
 
+// ── Aktions-Umschalter für den Seitenkopf ────────────────────
+// Zeigt, für welche Kochaktion eine Seite gilt, und wechselt sie direkt.
+function buildActionSwitcher(){
+  const wrap=h('div',{class:'action-switch'});
+  (async()=>{
+    const actions=await getActions();
+    if(!actions.length){
+      wrap.appendChild(h('button',{class:'btn btn-ghost btn-sm',onClick:()=>showPage('calendar')},t('action_switch_none')));
+      return;
+    }
+    const sel=h('select',{'aria-label':t('action_switch_label')});
+    actions.forEach(a=>{const o=h('option',{value:String(a.id)},a.name);if(a.id===selectedActionId)o.selected=true;sel.appendChild(o);});
+    sel.addEventListener('change',()=>{selectedActionId=parseInt(sel.value);calSelectedDate=null;showPage(currentPage);});
+    wrap.append(h('span',{class:'action-switch-label'},t('action_switch_label')),sel);
+  })();
+  return wrap;
+}
+
+// ── Fortschritt einer Kochaktion (Kalender-Seitenleiste) ─────
+// Ein Blick: Tage/Portionen, offene Grundbedarf-Auswahl, Mahlzeiten ohne
+// Rezept. Jede Zeile springt an die passende Stelle.
+async function fillActionProgress(el,actionId){
+  // Mehrere schnelle Aufrufe (Eingaben in der Matrix): nur der letzte zeichnet
+  const gen=el._gen=(el._gen||0)+1;
+  if(!actionId){el.innerHTML='';return;}
+  const days=await getCookingDays(actionId);
+  const dayIds=days.map(d=>d.id);
+  const slots=dayIds.length?await getAllMealSlotsForDays(dayIds):[];
+  const portions=slots.reduce((sum,x)=>sum+(x.portion_count||0),0);
+  const meals=await getStandardMeals();
+  const unsetGo=slots.filter(x=>x.standard_meal_id!==-1&&!resolveSlotMeal(x,meals)).length;
+  const assigns=dayIds.length?await getAssignments(dayIds):[];
+  const noRecipe=slots.filter(x=>!assigns.some(a=>a.meal_slot_id===x.id)).length;
+  if(gen!==el._gen) return;
+  el.innerHTML='';
+  const row=(state,label,value,page)=>{
+    const r=h(page?'button':'div',{class:`prog-row prog-${state}`,type:page?'button':null,onClick:page?()=>showPage(page):null},
+      h('span',{class:'prog-dot','aria-hidden':'true'}),
+      h('span',{class:'prog-text'},h('span',{class:'prog-label'},label),h('span',{class:'prog-value'},value)));
+    if(!page) r.removeAttribute('type');
+    return r;
+  };
+  el.appendChild(h('div',{class:'prog-title'},t('prog_title')));
+  el.appendChild(row(slots.length?'ok':'todo',t('prog_days'),slots.length?t('prog_days_val',days.length,fmtNum(portions,0)):t('prog_days_none'),null));
+  if(slots.length){
+    el.appendChild(row(unsetGo?'warn':'ok',t('prog_general'),unsetGo?t('prog_general_open',unsetGo):t('prog_general_done'),'general_order'));
+    el.appendChild(row(noRecipe?(noRecipe===slots.length?'todo':'warn'):'ok',t('prog_recipes'),noRecipe?t('prog_recipes_open',noRecipe,slots.length):t('prog_recipes_done'),'special_order'));
+    el.appendChild(h('div',{class:'prog-hint'},t('prog_hint')));
+  }
+  el.appendChild(row('todo',t('prog_stock'),t('prog_stock_val'),'stock'));
+}
+
 async function getDayIds(){
   if(!selectedActionId) return [];
   const days=await getCookingDays(selectedActionId);
@@ -3650,6 +3761,9 @@ async function renderCalendarPage(container){
     actionBtns.appendChild(h('button',{class:'btn btn-danger btn-sm',style:{flex:'1 1 auto',justifyContent:'center',fontSize:'12px'},onClick:()=>deleteActionHandler()},t('btn_delete')));
     actionSidebar.appendChild(actionBtns);
   }
+  const progressCard=h('div',{class:'card prog-card'});
+  if(selectedActionId) actionSidebar.appendChild(progressCard);
+  const refreshProgress=()=>fillActionProgress(progressCard,selectedActionId);
 
   // Content area (calendar + meals)
   const contentArea=h('div',{class:'cal-content'});
@@ -3683,6 +3797,7 @@ async function renderCalendarPage(container){
     restoreScroll(calScrollSnap);
   }
   async function refreshCalInner(){
+    refreshProgress();
     calCard.innerHTML='';
     daysCard.innerHTML='';
     mealPanel.innerHTML='';
@@ -3812,6 +3927,7 @@ async function renderCalendarPage(container){
           else{input.value='';return;}
           slotsByDay[cd.id]=await getMealSlots(cd.id);
           if(dayMetaEls[cd.id]) dayMetaEls[cd.id].textContent=dayMetaText(slotsByDay[cd.id]);
+          refreshProgress();
         });
         tr.appendChild(h('td',{},input));
       });
@@ -4769,7 +4885,7 @@ async function getPortionSummary(dayIds){
 async function renderGeneralOrderPage(container){
   let lastItems=[];
   let lastItemsByGroup=[];   // [{num, label, dates, items}]
-  const header=h('div',{class:'page-header'},h('h1',{},t('page_general_order')),
+  const header=h('div',{class:'page-header'},h('div',{},h('h1',{},t('page_general_order')),buildActionSwitcher()),
     h('div',{style:{display:'flex',gap:'8px'}},
       h('button',{class:'btn btn-surface',onClick:async()=>{
         if(!lastItems.length){toast(t('msg_no_data_export'),'warn');return;}
@@ -4977,6 +5093,16 @@ async function renderGeneralOrderPage(container){
             generate();
           });
           slotDiv.appendChild(sel);
+          const sameType=slots.filter(x=>x.meal_type===slot.meal_type);
+          if(sameType.length>1){
+            slotDiv.appendChild(h('button',{class:'btn btn-ghost btn-sm apply-all-btn',onClick:async()=>{
+              const v=sel.value===''?null:parseInt(sel.value);
+              for(const x of sameType) await setSlotStandardMeal(x.id,v);
+              toast(t('go_applied_all',sameType.length),'ok');
+              const snap=captureScroll();await renderSlots();restoreScroll(snap);
+              generate();
+            }},t('go_apply_all_days')));
+          }
         }
         slotsDiv.appendChild(slotDiv);
       });
@@ -7255,7 +7381,7 @@ tr:nth-child(even){background:#fafafa}
 async function renderSpecialOrderPage(container){
   let lastItems=[];
   let lastItemsByGroup=[];   // [{num, label, dates, items}]
-  const header=h('div',{class:'page-header'},h('h1',{},t('page_special_order')),
+  const header=h('div',{class:'page-header'},h('div',{},h('h1',{},t('page_special_order')),buildActionSwitcher()),
     h('div',{style:{display:'flex',gap:'8px'}},
       h('button',{class:'btn btn-surface',onClick:async()=>{
         if(!lastItems.length){toast(t('msg_no_list_yet'),'warn');return;}
@@ -7486,6 +7612,8 @@ async function renderSpecialOrderPage(container){
     if(!slots.length){assignDiv.appendChild(h('div',{class:'empty-msg'},t('empty_no_meals_assign')));return;}
     const assignments=await getAssignments(dayIds);
     const mealTypeEnMap={};if(LANG==='en'){(await getMealTypeCategories()).forEach(c=>{if(c.name_en) mealTypeEnMap[c.name]=c.name_en;});}
+    const withoutRecipe=slots.filter(x=>!assignments.some(a=>a.meal_slot_id===x.id)).length;
+    if(withoutRecipe) assignDiv.appendChild(h('div',{class:'notice-warn',role:'status'},t('order_no_recipe_warning',withoutRecipe)));
 
     const byDate={};slots.forEach(s=>(byDate[s.date]=byDate[s.date]||[]).push(s));
 
